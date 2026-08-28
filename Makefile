@@ -153,6 +153,7 @@ generate-all:
 		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$generator/conf.json \
 		  --generator-name $$generator \
+		  --skip-validate-spec \
 		  --output /local/clients/$$generator/generated; \
 	done
 	$(call run_hook,x-post-generate-all)
@@ -169,6 +170,7 @@ generate-primary:
 		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$generator/conf.json \
 		  --generator-name $$generator \
+		  --skip-validate-spec \
 		  --output /local/clients/$$generator/generated; \
 	done
 	$(call run_hook,x-post-generate-primary)

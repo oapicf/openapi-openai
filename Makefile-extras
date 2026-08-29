@@ -9,11 +9,6 @@ x-post-init-spec:
 	# ships some integer bounds (e.g. "seed") as lossy float-rounded int64 literals (e.g. "-9223372036854776000",
 	# not a valid Long). Both cases blow up as a NumberFormatException in the generator. Int32 bounds are a
 	# safe default/clamp since real API values are always well within that range.
-	yq -i ' \
-	  with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum") | not); .minimum = -2147483648) | \
-	  with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum")) | select((.minimum | tostring | length) > 11); .minimum = -2147483648) | \
-	  with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum") | not); .maximum = 2147483647) | \
-	  with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum")) | select((.maximum | tostring | length) > 10); .maximum = 2147483647) \
-	' stage/specification.yml
+	yq -i 'with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum") | not); .minimum = -2147483648) | with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum")) | select((.minimum | tostring | length) > 11); .minimum = -2147483648) | with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum") | not); .maximum = 2147483647) | with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum")) | select((.maximum | tostring | length) > 10); .maximum = 2147483647)' stage/specification.yml
 
 .PHONY: x-pre-build-python x-post-init-spec

@@ -3,12 +3,4 @@
 x-pre-build-python:
 	sed -i 's/StrictStr\] = auto$$/StrictStr] = "auto"/g' clients/python/generated/openapiopenai/models/realtime_response_create_params_conversation.py || true
 
-x-post-init-spec:
-	# Ensure every integer schema has a minimum/maximum within int32 range. Some generators (e.g. ktorm-schema)
-	# synthesise their own Long.MIN_VALUE/MAX_VALUE bounds for unbounded integers, and the spec itself also
-	# ships some integer bounds (e.g. "seed") as lossy float-rounded int64 literals (e.g. "-9223372036854776000",
-	# not a valid Long). Both cases blow up as a NumberFormatException in the generator. Int32 bounds are a
-	# safe default/clamp since real API values are always well within that range.
-	yq -i 'with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum") | not); .minimum = -2147483648) | with(.. | select(has("type")) | select(.type == "integer") | select(has("minimum")) | select((.minimum | tostring | length) > 11); .minimum = -2147483648) | with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum") | not); .maximum = 2147483647) | with(.. | select(has("type")) | select(.type == "integer") | select(has("maximum")) | select((.maximum | tostring | length) > 10); .maximum = 2147483647)' stage/specification.yml
-
-.PHONY: x-pre-build-python x-post-init-spec
+.PHONY: x-pre-build-python

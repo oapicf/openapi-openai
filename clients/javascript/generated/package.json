@@ -42,5 +42,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/oapicf/openapi-openai"
+  }
 }

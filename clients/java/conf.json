@@ -1,6 +1,6 @@
 {
   "artifactId": "openapiopenai",
-  "artifactVersion": "1.3.0",
+  "artifactVersion": "1.3.1-pre.0",
   "artifactUrl": "https://github.com/oapicf/openapi-openai",
   "artifactDescription": "OpenAI API client generated from Swagger / Open API specification",
   "groupId": "com.github.oapicf",

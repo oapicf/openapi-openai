@@ -170,12 +170,12 @@ class _$RealtimeServerEventResponseContentPartAddedPartSerializer implements Pri
   }
 }
 
+
+/// The content type (\"text\", \"audio\").
 class RealtimeServerEventResponseContentPartAddedPartTypeEnum extends EnumClass {
 
-  /// The content type (\"text\", \"audio\").
   @BuiltValueEnumConst(wireName: r'audio')
   static const RealtimeServerEventResponseContentPartAddedPartTypeEnum audio = _$realtimeServerEventResponseContentPartAddedPartTypeEnum_audio;
-  /// The content type (\"text\", \"audio\").
   @BuiltValueEnumConst(wireName: r'text')
   static const RealtimeServerEventResponseContentPartAddedPartTypeEnum text = _$realtimeServerEventResponseContentPartAddedPartTypeEnum_text;
 

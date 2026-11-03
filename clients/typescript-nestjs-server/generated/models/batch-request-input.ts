@@ -19,7 +19,7 @@ export interface BatchRequestInput {
 }
 export namespace BatchRequestInput {
   export const MethodEnum = {
-    Post: 'POST'
+    Post: 'POST',
   } as const;
   export type MethodEnum = typeof MethodEnum[keyof typeof MethodEnum];
 }

@@ -73,12 +73,12 @@ class _$ChatCompletionRequestAssistantMessageContentPartSerializer implements Pr
   }
 }
 
+
+/// The type of the content part.
 class ChatCompletionRequestAssistantMessageContentPartTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'text')
   static const ChatCompletionRequestAssistantMessageContentPartTypeEnum text = _$chatCompletionRequestAssistantMessageContentPartTypeEnum_text;
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const ChatCompletionRequestAssistantMessageContentPartTypeEnum refusal = _$chatCompletionRequestAssistantMessageContentPartTypeEnum_refusal;
 

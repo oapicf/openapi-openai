@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * ResponseFormatJsonSchemaJsonSchema
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ResponseFormatJsonSchemaJsonSchema   {
   @JsonProperty("description")
   private String description;
@@ -76,7 +76,7 @@ public class ResponseFormatJsonSchemaJsonSchema   {
 
   public ResponseFormatJsonSchemaJsonSchema putSchemaItem(String key, Object schemaItem) {
     if (this.schema == null) {
-      this.schema = new HashMap<>());
+      this.schema = new HashMap<>();
     }
     this.schema.put(key, schemaItem);
     return this;

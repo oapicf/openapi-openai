@@ -188,7 +188,12 @@ namespace Org.OpenAPITools.Model
                         case "event":
                             string? varEventRawValue = utf8JsonReader.GetString();
                             if (varEventRawValue != null)
-                                varEvent = new Option<ErrorEvent.EventEnum?>(ErrorEvent.EventEnumFromStringOrDefault(varEventRawValue));
+                            {
+                                ErrorEvent.EventEnum? varEventValue = ErrorEvent.EventEnumFromStringOrDefault(varEventRawValue);
+                                if (varEventValue == null)
+                                    throw new JsonException();
+                                varEvent = new Option<ErrorEvent.EventEnum?>(varEventValue);
+                            }
                             break;
                         case "data":
                             data = new Option<Error?>(JsonSerializer.Deserialize<Error>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -200,16 +205,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class ErrorEvent.", nameof(varEvent));
+                throw new JsonException("Property is required for class ErrorEvent: event.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ErrorEvent.", nameof(data));
+                throw new JsonException("Property is required for class ErrorEvent: data.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class ErrorEvent.");
+                throw new JsonException("Property is not nullable for class ErrorEvent: event.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ErrorEvent.");
+                throw new JsonException("Property is not nullable for class ErrorEvent: data.");
 
             return new ErrorEvent(varEvent.Value!.Value!, data.Value!);
         }
@@ -220,7 +225,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="errorEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ErrorEvent errorEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,12 +239,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="errorEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ErrorEvent errorEvent, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (errorEvent.Data == null)
-                throw new ArgumentNullException(nameof(errorEvent.Data), "Property is required for class ErrorEvent.");
-
             var varEventRawValue = ErrorEvent.EventEnumToJsonValue(errorEvent.Event);
             writer.WriteString("event", varEventRawValue);
             writer.WritePropertyName("data");

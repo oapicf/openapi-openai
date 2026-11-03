@@ -18,7 +18,6 @@ public class ListRunsResponse  {
   private String _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid RunObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "run_abc123", required = true, value = "")

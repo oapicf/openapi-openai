@@ -31,14 +31,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventInputAudioBufferCommit {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventInputAudioBufferCommit
      */
     eventId?: string;
     /**
      * The event type, must be `input_audio_buffer.commit`.
-     * @type {RealtimeClientEventInputAudioBufferCommitTypeEnum}
-     * @memberof RealtimeClientEventInputAudioBufferCommit
      */
     type: RealtimeClientEventInputAudioBufferCommitTypeEnum;
 }
@@ -48,7 +44,7 @@ export interface RealtimeClientEventInputAudioBufferCommit {
  * @export
  */
 export const RealtimeClientEventInputAudioBufferCommitTypeEnum = {
-    InputAudioBufferCommit: 'input_audio_buffer.commit'
+    InputAudioBufferCommit: 'input_audio_buffer.commit',
 } as const;
 export type RealtimeClientEventInputAudioBufferCommitTypeEnum = typeof RealtimeClientEventInputAudioBufferCommitTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferCommitTypeEnum];
 

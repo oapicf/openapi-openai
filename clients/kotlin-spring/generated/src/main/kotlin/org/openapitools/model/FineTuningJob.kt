@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.FineTuneMethod
 import org.openapitools.model.FineTuningJobError
 import org.openapitools.model.FineTuningJobHyperparameters
@@ -31,7 +28,7 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param finishedAt The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
  * @param hyperparameters 
  * @param model The base model that is being fine-tuned.
- * @param &#x60;object&#x60; The object type, which is always \"fine_tuning.job\".
+ * @param `object` The object type, which is always \"fine_tuning.job\".
  * @param organizationId The organization that owns the fine-tuning job.
  * @param resultFiles The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
  * @param status The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
@@ -46,65 +43,65 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class FineTuningJob(
 
     @Schema(required = true, description = "The object identifier, which can be referenced in the API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the fine-tuning job was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("error")
+    @param:JsonProperty("error", required = true)
     @get:JsonProperty("error", required = true) val error: FineTuningJobError?,
 
     @Schema(required = true, description = "The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.")
-    @param:JsonProperty("fine_tuned_model")
+    @param:JsonProperty("fine_tuned_model", required = true)
     @get:JsonProperty("fine_tuned_model", required = true) val fineTunedModel: kotlin.String?,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.")
-    @param:JsonProperty("finished_at")
+    @param:JsonProperty("finished_at", required = true)
     @get:JsonProperty("finished_at", required = true) val finishedAt: kotlin.Int?,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("hyperparameters")
+    @param:JsonProperty("hyperparameters", required = true)
     @get:JsonProperty("hyperparameters", required = true) val hyperparameters: FineTuningJobHyperparameters,
 
     @Schema(required = true, description = "The base model that is being fine-tuned.")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always \"fine_tuning.job\".")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: FineTuningJob.`Object`,
 
     @Schema(required = true, description = "The organization that owns the fine-tuning job.")
-    @param:JsonProperty("organization_id")
+    @param:JsonProperty("organization_id", required = true)
     @get:JsonProperty("organization_id", required = true) val organizationId: kotlin.String,
 
     @Schema(required = true, description = "The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).")
-    @param:JsonProperty("result_files")
+    @param:JsonProperty("result_files", required = true)
     @get:JsonProperty("result_files", required = true) val resultFiles: kotlin.collections.List<kotlin.String>,
 
     @Schema(required = true, description = "The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.")
-    @param:JsonProperty("status")
+    @param:JsonProperty("status", required = true)
     @get:JsonProperty("status", required = true) val status: FineTuningJob.Status,
 
     @Schema(required = true, description = "The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.")
-    @param:JsonProperty("trained_tokens")
+    @param:JsonProperty("trained_tokens", required = true)
     @get:JsonProperty("trained_tokens", required = true) val trainedTokens: kotlin.Int?,
 
     @Schema(required = true, description = "The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents).")
-    @param:JsonProperty("training_file")
+    @param:JsonProperty("training_file", required = true)
     @get:JsonProperty("training_file", required = true) val trainingFile: kotlin.String,
 
     @Schema(required = true, description = "The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).")
-    @param:JsonProperty("validation_file")
+    @param:JsonProperty("validation_file", required = true)
     @get:JsonProperty("validation_file", required = true) val validationFile: kotlin.String?,
 
     @Schema(required = true, description = "The seed used for the fine-tuning job.")
-    @param:JsonProperty("seed")
+    @param:JsonProperty("seed", required = true)
     @get:JsonProperty("seed", required = true) val seed: kotlin.Int,
 
     @field:Valid
@@ -119,8 +116,6 @@ data class FineTuningJob(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("method")
     @get:JsonProperty("method") val method: FineTuneMethod? = null
 ) {
@@ -132,12 +127,12 @@ data class FineTuningJob(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         fine_tuningPeriodJob("fine_tuning.job");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -155,12 +150,12 @@ data class FineTuningJob(
         succeeded("succeeded"),
         failed("failed"),
         cancelled("cancelled");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

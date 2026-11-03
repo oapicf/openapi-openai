@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class CostsResultAmount.");
+                throw new JsonException("Property is not nullable for class CostsResultAmount: value.");
 
             if (currency.IsSet && currency.Value == null)
-                throw new ArgumentNullException(nameof(currency), "Property is not nullable for class CostsResultAmount.");
+                throw new JsonException("Property is not nullable for class CostsResultAmount: currency.");
 
             return new CostsResultAmount(value, currency);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="costsResultAmount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CostsResultAmount costsResultAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,11 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="costsResultAmount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CostsResultAmount costsResultAmount, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (costsResultAmount.ValueOption.IsSet && costsResultAmount.Value == null)
+                throw new JsonException("Cannot write null property CostsResultAmount.Value to non-nullable JSON property 'value'.");
+
             if (costsResultAmount.CurrencyOption.IsSet && costsResultAmount.Currency == null)
-                throw new ArgumentNullException(nameof(costsResultAmount.Currency), "Property is required for class CostsResultAmount.");
+                throw new JsonException("Cannot write null property CostsResultAmount.Currency to non-nullable JSON property 'currency'.");
 
             if (costsResultAmount.ValueOption.IsSet)
                 writer.WriteNumber("value", costsResultAmount.ValueOption.Value!.Value);

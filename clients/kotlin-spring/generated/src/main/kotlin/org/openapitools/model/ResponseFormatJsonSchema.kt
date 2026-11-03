@@ -24,12 +24,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ResponseFormatJsonSchema(
 
     @Schema(required = true, description = "The type of response format being defined: `json_schema`")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: ResponseFormatJsonSchema.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("json_schema")
+    @param:JsonProperty("json_schema", required = true)
     @get:JsonProperty("json_schema", required = true) val jsonSchema: ResponseFormatJsonSchemaJsonSchema
 ) : AssistantsApiResponseFormatOption, CreateChatCompletionRequestResponseFormat {
 
@@ -40,12 +40,12 @@ data class ResponseFormatJsonSchema(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         json_schema("json_schema");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

@@ -160,10 +160,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class ModifyAssistantRequestToolResources.");
+                throw new JsonException("Property is not nullable for class ModifyAssistantRequestToolResources: code_interpreter.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class ModifyAssistantRequestToolResources.");
+                throw new JsonException("Property is not nullable for class ModifyAssistantRequestToolResources: file_search.");
 
             return new ModifyAssistantRequestToolResources(codeInterpreter, fileSearch);
         }
@@ -174,7 +174,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyAssistantRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyAssistantRequestToolResources modifyAssistantRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,14 +188,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyAssistantRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyAssistantRequestToolResources modifyAssistantRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modifyAssistantRequestToolResources.CodeInterpreterOption.IsSet && modifyAssistantRequestToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(modifyAssistantRequestToolResources.CodeInterpreter), "Property is required for class ModifyAssistantRequestToolResources.");
+                throw new JsonException("Cannot write null property ModifyAssistantRequestToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (modifyAssistantRequestToolResources.FileSearchOption.IsSet && modifyAssistantRequestToolResources.FileSearch == null)
-                throw new ArgumentNullException(nameof(modifyAssistantRequestToolResources.FileSearch), "Property is required for class ModifyAssistantRequestToolResources.");
+                throw new JsonException("Cannot write null property ModifyAssistantRequestToolResources.FileSearch to non-nullable JSON property 'file_search'.");
 
             if (modifyAssistantRequestToolResources.CodeInterpreterOption.IsSet)
             {

@@ -24,7 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents a message within a [thread](/docs/api-reference/threads).")
 @JsonTypeName("MessageObject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageObject   {
   private String id;
   public enum ObjectEnum {
@@ -176,10 +176,10 @@ public class MessageObject   {
 }
 
   private RoleEnum role;
-  private @Valid List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
   private String assistantId;
   private String runId;
-  private @Valid List<@Valid CreateMessageRequestAttachmentsInner> attachments;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   public MessageObject() {
@@ -400,7 +400,7 @@ public class MessageObject   {
   /**
    * The content of the message in array of text and/or images.
    **/
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -408,12 +408,12 @@ public class MessageObject   {
   
   @ApiModelProperty(required = true, value = "The content of the message in array of text and/or images.")
   @JsonProperty(required = true, value = "content")
-  @NotNull @Valid public List<@Valid MessageObjectContentInner> getContent() {
+  @NotNull public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
   @JsonProperty(required = true, value = "content")
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 
@@ -484,7 +484,7 @@ public class MessageObject   {
   
   @ApiModelProperty(required = true, value = "A list of files attached to the message, and the tools they were added to.")
   @JsonProperty(required = true, value = "attachments")
-  @NotNull @Valid public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+  @NotNull public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
     return attachments;
   }
 

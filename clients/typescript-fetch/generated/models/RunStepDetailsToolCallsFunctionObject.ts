@@ -29,20 +29,14 @@ import {
 export interface RunStepDetailsToolCallsFunctionObject {
     /**
      * The ID of the tool call object.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsFunctionObject
      */
     id: string;
     /**
      * The type of tool call. This is always going to be `function` for this type of tool call.
-     * @type {RunStepDetailsToolCallsFunctionObjectTypeEnum}
-     * @memberof RunStepDetailsToolCallsFunctionObject
      */
     type: RunStepDetailsToolCallsFunctionObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDetailsToolCallsFunctionObjectFunction}
-     * @memberof RunStepDetailsToolCallsFunctionObject
      */
     _function: RunStepDetailsToolCallsFunctionObjectFunction;
 }
@@ -52,7 +46,7 @@ export interface RunStepDetailsToolCallsFunctionObject {
  * @export
  */
 export const RunStepDetailsToolCallsFunctionObjectTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type RunStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDetailsToolCallsFunctionObjectTypeEnum];
 

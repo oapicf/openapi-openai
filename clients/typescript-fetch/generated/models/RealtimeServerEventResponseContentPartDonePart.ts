@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseContentPartDonePart {
     /**
      * The content type ("text", "audio").
-     * @type {RealtimeServerEventResponseContentPartDonePartTypeEnum}
-     * @memberof RealtimeServerEventResponseContentPartDonePart
      */
     type?: RealtimeServerEventResponseContentPartDonePartTypeEnum;
     /**
      * The text content (if type is "text").
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDonePart
      */
     text?: string;
     /**
      * Base64-encoded audio data (if type is "audio").
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDonePart
      */
     audio?: string;
     /**
      * The transcript of the audio (if type is "audio").
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDonePart
      */
     transcript?: string;
 }
@@ -51,7 +43,7 @@ export interface RealtimeServerEventResponseContentPartDonePart {
  */
 export const RealtimeServerEventResponseContentPartDonePartTypeEnum = {
     Audio: 'audio',
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type RealtimeServerEventResponseContentPartDonePartTypeEnum = typeof RealtimeServerEventResponseContentPartDonePartTypeEnum[keyof typeof RealtimeServerEventResponseContentPartDonePartTypeEnum];
 

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MessageContentTextAnnotationsFilePathObjectFilePath {
     /**
      * The ID of the file that was generated.
-     * @type {string}
-     * @memberof MessageContentTextAnnotationsFilePathObjectFilePath
      */
     fileId: string;
 }

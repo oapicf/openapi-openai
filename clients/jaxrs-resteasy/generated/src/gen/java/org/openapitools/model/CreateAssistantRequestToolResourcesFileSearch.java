@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequestToolResourcesFileSearch   {
   
   private List<String> vectorStoreIds = new ArrayList<>();
@@ -40,8 +40,7 @@ public class CreateAssistantRequestToolResourcesFileSearch   {
   
   @ApiModelProperty(value = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. ")
   @JsonProperty("vector_stores")
- @Size(max=1)  @Valid
-  public List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
+ @Size(max=1)  public List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
     return vectorStores;
   }
   public void setVectorStores(List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> vectorStores) {

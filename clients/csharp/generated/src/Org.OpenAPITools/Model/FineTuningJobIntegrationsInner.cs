@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuningJobIntegrationsInner" /> class.
         /// </summary>
         /// <param name="fineTuningIntegration"></param>
-        public FineTuningJobIntegrationsInner(FineTuningIntegration fineTuningIntegration)
+        internal FineTuningJobIntegrationsInner(FineTuningIntegration fineTuningIntegration)
         {
             FineTuningIntegration = fineTuningIntegration;
             OnCreated();
@@ -154,7 +154,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobIntegrationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJobIntegrationsInner fineTuningJobIntegrationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -169,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobIntegrationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJobIntegrationsInner fineTuningJobIntegrationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

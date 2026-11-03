@@ -153,13 +153,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!input.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationRequest.", nameof(input));
+                throw new JsonException("Property is required for class CreateModerationRequest: input.");
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class CreateModerationRequest.");
+                throw new JsonException("Property is not nullable for class CreateModerationRequest: input.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateModerationRequest.");
+                throw new JsonException("Property is not nullable for class CreateModerationRequest: model.");
 
             return new CreateModerationRequest(input.Value!, model);
         }
@@ -170,7 +170,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationRequest createModerationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -185,14 +184,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationRequest createModerationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationRequest.Input == null)
-                throw new ArgumentNullException(nameof(createModerationRequest.Input), "Property is required for class CreateModerationRequest.");
-
             if (createModerationRequest.ModelOption.IsSet && createModerationRequest.Model == null)
-                throw new ArgumentNullException(nameof(createModerationRequest.Model), "Property is required for class CreateModerationRequest.");
+                throw new JsonException("Cannot write null property CreateModerationRequest.Model to non-nullable JSON property 'model'.");
 
             writer.WritePropertyName("input");
             JsonSerializer.Serialize(writer, createModerationRequest.Input, jsonSerializerOptions);

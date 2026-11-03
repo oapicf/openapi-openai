@@ -189,34 +189,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListVectorStoresResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListVectorStoresResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListVectorStoresResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListVectorStoresResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class ListVectorStoresResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class ListVectorStoresResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class ListVectorStoresResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class ListVectorStoresResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ListVectorStoresResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ListVectorStoresResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListVectorStoresResponse.");
+                throw new JsonException("Property is not nullable for class ListVectorStoresResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListVectorStoresResponse.");
+                throw new JsonException("Property is not nullable for class ListVectorStoresResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ListVectorStoresResponse.");
+                throw new JsonException("Property is not nullable for class ListVectorStoresResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ListVectorStoresResponse.");
+                throw new JsonException("Property is not nullable for class ListVectorStoresResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListVectorStoresResponse.");
+                throw new JsonException("Property is not nullable for class ListVectorStoresResponse: has_more.");
 
             return new ListVectorStoresResponse(varObject.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -227,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listVectorStoresResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListVectorStoresResponse listVectorStoresResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,21 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listVectorStoresResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListVectorStoresResponse listVectorStoresResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listVectorStoresResponse.Object == null)
-                throw new ArgumentNullException(nameof(listVectorStoresResponse.Object), "Property is required for class ListVectorStoresResponse.");
-
-            if (listVectorStoresResponse.Data == null)
-                throw new ArgumentNullException(nameof(listVectorStoresResponse.Data), "Property is required for class ListVectorStoresResponse.");
-
-            if (listVectorStoresResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(listVectorStoresResponse.FirstId), "Property is required for class ListVectorStoresResponse.");
-
-            if (listVectorStoresResponse.LastId == null)
-                throw new ArgumentNullException(nameof(listVectorStoresResponse.LastId), "Property is required for class ListVectorStoresResponse.");
-
             writer.WriteString("object", listVectorStoresResponse.Object);
 
             writer.WritePropertyName("data");

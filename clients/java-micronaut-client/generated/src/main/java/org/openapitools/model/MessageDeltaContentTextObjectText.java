@@ -34,14 +34,14 @@ import javax.annotation.Generated;
   MessageDeltaContentTextObjectText.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("MessageDeltaContentTextObject_text")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class MessageDeltaContentTextObjectText {
     public static final String JSON_PROPERTY_VALUE = "value";
     private String value;
 
     public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-    private List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations = null;
+    private List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations = null;
 
     public MessageDeltaContentTextObjectText() {
     }
@@ -68,7 +68,7 @@ public class MessageDeltaContentTextObjectText {
         this.value = value;
     }
 
-    public MessageDeltaContentTextObjectText annotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+    public MessageDeltaContentTextObjectText annotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
         this.annotations = annotations;
         return this;
     }
@@ -88,13 +88,13 @@ public class MessageDeltaContentTextObjectText {
     @Nullable
     @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
+    public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
         return annotations;
     }
 
     @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setAnnotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+    public void setAnnotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
         this.annotations = annotations;
     }
 

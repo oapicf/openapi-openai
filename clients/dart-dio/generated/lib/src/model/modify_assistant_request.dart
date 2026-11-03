@@ -294,3 +294,4 @@ class _$ModifyAssistantRequestSerializer implements PrimitiveSerializer<ModifyAs
   }
 }
 
+

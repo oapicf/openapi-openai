@@ -124,9 +124,10 @@ class _$CreateModerationRequestInputOneOfInnerOneOfSerializer implements Primiti
   }
 }
 
+
+/// Always `image_url`.
 class CreateModerationRequestInputOneOfInnerOneOfTypeEnum extends EnumClass {
 
-  /// Always `image_url`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const CreateModerationRequestInputOneOfInnerOneOfTypeEnum imageUrl = _$createModerationRequestInputOneOfInnerOneOfTypeEnum_imageUrl;
 

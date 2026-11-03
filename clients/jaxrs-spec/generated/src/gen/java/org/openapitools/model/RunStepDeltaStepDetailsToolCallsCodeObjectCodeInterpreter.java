@@ -23,10 +23,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The Code Interpreter tool call definition.")
 @JsonTypeName("RunStepDeltaStepDetailsToolCallsCodeObject_code_interpreter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter   {
   private String input;
-  private @Valid List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> outputs = new ArrayList<>();
+  private List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> outputs = new ArrayList<>();
 
   public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter() {
   }
@@ -62,7 +62,7 @@ public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter   {
   
   @ApiModelProperty(value = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.")
   @JsonProperty("outputs")
-  @Valid public List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> getOutputs() {
+  public List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> getOutputs() {
     return outputs;
   }
 

@@ -18,8 +18,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
- * @param &#x60;data&#x60; 
+ * @param `object` 
+ * @param `data` 
  * @param firstId 
  * @param lastId 
  * @param hasMore 
@@ -27,24 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProjectServiceAccountListResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ProjectServiceAccountListResponse.`Object`,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<ProjectServiceAccount>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("first_id")
+    @param:JsonProperty("first_id", required = true)
     @get:JsonProperty("first_id", required = true) val firstId: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("last_id")
+    @param:JsonProperty("last_id", required = true)
     @get:JsonProperty("last_id", required = true) val lastId: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("has_more")
+    @param:JsonProperty("has_more", required = true)
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean
 ) {
 
@@ -55,12 +55,12 @@ data class ProjectServiceAccountListResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         list("list");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

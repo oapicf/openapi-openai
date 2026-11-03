@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 import java.time.*;
 import java.math.*;
-@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.26.0")
 
 /**
  * References an image [File](/docs/api-reference/files) in the content of a message.

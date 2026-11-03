@@ -308,7 +308,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageImagesResult.ObjectEnum?>(UsageImagesResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageImagesResult.ObjectEnum? varObjectValue = UsageImagesResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageImagesResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "images":
                             images = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -341,22 +346,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageImagesResult.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageImagesResult: object.");
 
             if (!images.IsSet)
-                throw new ArgumentException("Property is required for class UsageImagesResult.", nameof(images));
+                throw new JsonException("Property is required for class UsageImagesResult: images.");
 
             if (!numModelRequests.IsSet)
-                throw new ArgumentException("Property is required for class UsageImagesResult.", nameof(numModelRequests));
+                throw new JsonException("Property is required for class UsageImagesResult: num_model_requests.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageImagesResult.");
+                throw new JsonException("Property is not nullable for class UsageImagesResult: object.");
 
             if (images.IsSet && images.Value == null)
-                throw new ArgumentNullException(nameof(images), "Property is not nullable for class UsageImagesResult.");
+                throw new JsonException("Property is not nullable for class UsageImagesResult: images.");
 
             if (numModelRequests.IsSet && numModelRequests.Value == null)
-                throw new ArgumentNullException(nameof(numModelRequests), "Property is not nullable for class UsageImagesResult.");
+                throw new JsonException("Property is not nullable for class UsageImagesResult: num_model_requests.");
 
             return new UsageImagesResult(varObject.Value!.Value!, images.Value!.Value!, numModelRequests.Value!.Value!, source, size, projectId, userId, apiKeyId, model);
         }
@@ -367,7 +372,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageImagesResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageImagesResult usageImagesResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -382,7 +386,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageImagesResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageImagesResult usageImagesResult, JsonSerializerOptions jsonSerializerOptions)
         {
             var varObjectRawValue = UsageImagesResult.ObjectEnumToJsonValue(usageImagesResult.Object);

@@ -21,7 +21,7 @@ object DeleteAssistantResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object AssistantDeleted extends `Object`
+    case object AssistantDeleted extends `Object` { override def toString: String = "assistant.deleted" }
 
     import org.json4s._
 

@@ -24,11 +24,11 @@ object CreateChatCompletionStreamResponseChoicesInnerEnums {
 
   sealed trait FinishReason
   object FinishReason {
-    case object Stop extends FinishReason
-    case object Length extends FinishReason
-    case object ToolCalls extends FinishReason
-    case object ContentFilter extends FinishReason
-    case object FunctionCall extends FinishReason
+    case object Stop extends FinishReason { override def toString: String = "stop" }
+    case object Length extends FinishReason { override def toString: String = "length" }
+    case object ToolCalls extends FinishReason { override def toString: String = "tool_calls" }
+    case object ContentFilter extends FinishReason { override def toString: String = "content_filter" }
+    case object FunctionCall extends FinishReason { override def toString: String = "function_call" }
 
     import org.json4s._
 

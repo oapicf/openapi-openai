@@ -160,10 +160,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class CreateThreadAndRunRequestToolResources.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequestToolResources: code_interpreter.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class CreateThreadAndRunRequestToolResources.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequestToolResources: file_search.");
 
             return new CreateThreadAndRunRequestToolResources(codeInterpreter, fileSearch);
         }
@@ -174,7 +174,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadAndRunRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadAndRunRequestToolResources createThreadAndRunRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,14 +188,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadAndRunRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadAndRunRequestToolResources createThreadAndRunRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createThreadAndRunRequestToolResources.CodeInterpreterOption.IsSet && createThreadAndRunRequestToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequestToolResources.CodeInterpreter), "Property is required for class CreateThreadAndRunRequestToolResources.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequestToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (createThreadAndRunRequestToolResources.FileSearchOption.IsSet && createThreadAndRunRequestToolResources.FileSearch == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequestToolResources.FileSearch), "Property is required for class CreateThreadAndRunRequestToolResources.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequestToolResources.FileSearch to non-nullable JSON property 'file_search'.");
 
             if (createThreadAndRunRequestToolResources.CodeInterpreterOption.IsSet)
             {

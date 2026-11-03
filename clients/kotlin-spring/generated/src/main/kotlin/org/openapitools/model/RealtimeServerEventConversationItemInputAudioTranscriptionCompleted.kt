@@ -26,23 +26,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `conversation.item.input_audio_transcription.completed`. ")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.Type,
 
     @Schema(required = true, description = "The ID of the user message item containing the audio.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the content part containing the audio.")
-    @param:JsonProperty("content_index")
+    @param:JsonProperty("content_index", required = true)
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @Schema(required = true, description = "The transcribed text.")
-    @param:JsonProperty("transcript")
+    @param:JsonProperty("transcript", required = true)
     @get:JsonProperty("transcript", required = true) val transcript: kotlin.String
 ) {
 
@@ -53,12 +53,12 @@ data class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         conversationPeriodItemPeriodInput_audio_transcriptionPeriodCompleted("conversation.item.input_audio_transcription.completed");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

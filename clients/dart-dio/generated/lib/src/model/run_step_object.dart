@@ -372,9 +372,10 @@ class _$RunStepObjectSerializer implements PrimitiveSerializer<RunStepObject> {
   }
 }
 
+
+/// The object type, which is always `thread.run.step`.
 class RunStepObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread.run.step`.
   @BuiltValueEnumConst(wireName: r'thread.run.step')
   static const RunStepObjectObjectEnum threadPeriodRunPeriodStep = _$runStepObjectObjectEnum_threadPeriodRunPeriodStep;
 
@@ -386,12 +387,11 @@ class RunStepObjectObjectEnum extends EnumClass {
   static RunStepObjectObjectEnum valueOf(String name) => _$runStepObjectObjectEnumValueOf(name);
 }
 
+/// The type of run step, which can be either `message_creation` or `tool_calls`.
 class RunStepObjectTypeEnum extends EnumClass {
 
-  /// The type of run step, which can be either `message_creation` or `tool_calls`.
   @BuiltValueEnumConst(wireName: r'message_creation')
   static const RunStepObjectTypeEnum messageCreation = _$runStepObjectTypeEnum_messageCreation;
-  /// The type of run step, which can be either `message_creation` or `tool_calls`.
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const RunStepObjectTypeEnum toolCalls = _$runStepObjectTypeEnum_toolCalls;
 
@@ -403,21 +403,17 @@ class RunStepObjectTypeEnum extends EnumClass {
   static RunStepObjectTypeEnum valueOf(String name) => _$runStepObjectTypeEnumValueOf(name);
 }
 
+/// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
 class RunStepObjectStatusEnum extends EnumClass {
 
-  /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const RunStepObjectStatusEnum inProgress = _$runStepObjectStatusEnum_inProgress;
-  /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const RunStepObjectStatusEnum cancelled = _$runStepObjectStatusEnum_cancelled;
-  /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
   @BuiltValueEnumConst(wireName: r'failed')
   static const RunStepObjectStatusEnum failed = _$runStepObjectStatusEnum_failed;
-  /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
   @BuiltValueEnumConst(wireName: r'completed')
   static const RunStepObjectStatusEnum completed = _$runStepObjectStatusEnum_completed;
-  /// The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
   @BuiltValueEnumConst(wireName: r'expired')
   static const RunStepObjectStatusEnum expired = _$runStepObjectStatusEnum_expired;
 

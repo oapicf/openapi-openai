@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The default strategy. This strategy currently uses a &#x60;max_chunk_size_tokens&#x60; of &#x60;800&#x60; and &#x60;chunk_overlap_tokens&#x60; of &#x60;400&#x60;.
  */
 @ApiModel(description = "The default strategy. This strategy currently uses a `max_chunk_size_tokens` of `800` and `chunk_overlap_tokens` of `400`.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AutoChunkingStrategyRequestParam   {
   /**
    * Always `auto`.

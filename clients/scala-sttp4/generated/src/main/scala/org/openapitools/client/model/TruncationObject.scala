@@ -26,8 +26,8 @@ object TruncationObjectEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Auto extends `Type`
-    case object LastMessages extends `Type`
+    case object Auto extends `Type` { override def toString: String = "auto" }
+    case object LastMessages extends `Type` { override def toString: String = "last_messages" }
 
     import org.json4s._
 

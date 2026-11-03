@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateMessageRequest_attachments_inner")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateMessageRequestAttachmentsInner   {
   private String fileId;
-  private @Valid List<CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
 
   public CreateMessageRequestAttachmentsInner() {
   }
@@ -52,7 +52,7 @@ public class CreateMessageRequestAttachmentsInner   {
   /**
    * The tools to add this file to.
    **/
-  public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -60,12 +60,12 @@ public class CreateMessageRequestAttachmentsInner   {
   
   @ApiModelProperty(value = "The tools to add this file to.")
   @JsonProperty("tools")
-  @Valid public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty("tools")
-  public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 

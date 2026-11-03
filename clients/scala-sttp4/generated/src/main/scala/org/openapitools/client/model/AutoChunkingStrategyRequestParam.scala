@@ -24,7 +24,7 @@ object AutoChunkingStrategyRequestParamEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Auto extends `Type`
+    case object Auto extends `Type` { override def toString: String = "auto" }
 
     import org.json4s._
 

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface InviteRequestProjectsInner {
     /**
      * Project's public ID
-     * @type {string}
-     * @memberof InviteRequestProjectsInner
      */
     id: string;
     /**
      * Project membership role
-     * @type {InviteRequestProjectsInnerRoleEnum}
-     * @memberof InviteRequestProjectsInner
      */
     role: InviteRequestProjectsInnerRoleEnum;
 }
@@ -39,7 +35,7 @@ export interface InviteRequestProjectsInner {
  */
 export const InviteRequestProjectsInnerRoleEnum = {
     Member: 'member',
-    Owner: 'owner'
+    Owner: 'owner',
 } as const;
 export type InviteRequestProjectsInnerRoleEnum = typeof InviteRequestProjectsInnerRoleEnum[keyof typeof InviteRequestProjectsInnerRoleEnum];
 

@@ -258,7 +258,12 @@ namespace Org.OpenAPITools.Model
                         case "purpose":
                             string? purposeRawValue = utf8JsonReader.GetString();
                             if (purposeRawValue != null)
-                                purpose = new Option<CreateUploadRequest.PurposeEnum?>(CreateUploadRequest.PurposeEnumFromStringOrDefault(purposeRawValue));
+                            {
+                                CreateUploadRequest.PurposeEnum? purposeValue = CreateUploadRequest.PurposeEnumFromStringOrDefault(purposeRawValue);
+                                if (purposeValue == null)
+                                    throw new JsonException();
+                                purpose = new Option<CreateUploadRequest.PurposeEnum?>(purposeValue);
+                            }
                             break;
                         case "bytes":
                             bytes = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -273,28 +278,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!filename.IsSet)
-                throw new ArgumentException("Property is required for class CreateUploadRequest.", nameof(filename));
+                throw new JsonException("Property is required for class CreateUploadRequest: filename.");
 
             if (!purpose.IsSet)
-                throw new ArgumentException("Property is required for class CreateUploadRequest.", nameof(purpose));
+                throw new JsonException("Property is required for class CreateUploadRequest: purpose.");
 
             if (!bytes.IsSet)
-                throw new ArgumentException("Property is required for class CreateUploadRequest.", nameof(bytes));
+                throw new JsonException("Property is required for class CreateUploadRequest: bytes.");
 
             if (!mimeType.IsSet)
-                throw new ArgumentException("Property is required for class CreateUploadRequest.", nameof(mimeType));
+                throw new JsonException("Property is required for class CreateUploadRequest: mime_type.");
 
             if (filename.IsSet && filename.Value == null)
-                throw new ArgumentNullException(nameof(filename), "Property is not nullable for class CreateUploadRequest.");
+                throw new JsonException("Property is not nullable for class CreateUploadRequest: filename.");
 
             if (purpose.IsSet && purpose.Value == null)
-                throw new ArgumentNullException(nameof(purpose), "Property is not nullable for class CreateUploadRequest.");
+                throw new JsonException("Property is not nullable for class CreateUploadRequest: purpose.");
 
             if (bytes.IsSet && bytes.Value == null)
-                throw new ArgumentNullException(nameof(bytes), "Property is not nullable for class CreateUploadRequest.");
+                throw new JsonException("Property is not nullable for class CreateUploadRequest: bytes.");
 
             if (mimeType.IsSet && mimeType.Value == null)
-                throw new ArgumentNullException(nameof(mimeType), "Property is not nullable for class CreateUploadRequest.");
+                throw new JsonException("Property is not nullable for class CreateUploadRequest: mime_type.");
 
             return new CreateUploadRequest(filename.Value!, purpose.Value!.Value!, bytes.Value!.Value!, mimeType.Value!);
         }
@@ -305,7 +310,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createUploadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateUploadRequest createUploadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -320,15 +324,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createUploadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateUploadRequest createUploadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createUploadRequest.Filename == null)
-                throw new ArgumentNullException(nameof(createUploadRequest.Filename), "Property is required for class CreateUploadRequest.");
-
-            if (createUploadRequest.MimeType == null)
-                throw new ArgumentNullException(nameof(createUploadRequest.MimeType), "Property is required for class CreateUploadRequest.");
-
             writer.WriteString("filename", createUploadRequest.Filename);
 
             var purposeRawValue = CreateUploadRequest.PurposeEnumToJsonValue(createUploadRequest.Purpose);

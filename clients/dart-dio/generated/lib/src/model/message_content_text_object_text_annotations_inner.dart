@@ -78,12 +78,12 @@ class _$MessageContentTextObjectTextAnnotationsInnerSerializer implements Primit
   }
 }
 
+
+/// Always `file_citation`.
 class MessageContentTextObjectTextAnnotationsInnerTypeEnum extends EnumClass {
 
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_citation')
   static const MessageContentTextObjectTextAnnotationsInnerTypeEnum fileCitation = _$messageContentTextObjectTextAnnotationsInnerTypeEnum_fileCitation;
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_path')
   static const MessageContentTextObjectTextAnnotationsInnerTypeEnum filePath = _$messageContentTextObjectTextAnnotationsInnerTypeEnum_filePath;
 

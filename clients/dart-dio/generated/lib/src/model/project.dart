@@ -196,9 +196,10 @@ class _$ProjectSerializer implements PrimitiveSerializer<Project> {
   }
 }
 
+
+/// The object type, which is always `organization.project`
 class ProjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.project`
   @BuiltValueEnumConst(wireName: r'organization.project')
   static const ProjectObjectEnum organizationPeriodProject = _$projectObjectEnum_organizationPeriodProject;
 
@@ -210,12 +211,11 @@ class ProjectObjectEnum extends EnumClass {
   static ProjectObjectEnum valueOf(String name) => _$projectObjectEnumValueOf(name);
 }
 
+/// `active` or `archived`
 class ProjectStatusEnum extends EnumClass {
 
-  /// `active` or `archived`
   @BuiltValueEnumConst(wireName: r'active')
   static const ProjectStatusEnum active = _$projectStatusEnum_active;
-  /// `active` or `archived`
   @BuiltValueEnumConst(wireName: r'archived')
   static const ProjectStatusEnum archived = _$projectStatusEnum_archived;
 

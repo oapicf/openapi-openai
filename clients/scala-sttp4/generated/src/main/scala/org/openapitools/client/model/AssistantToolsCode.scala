@@ -20,7 +20,7 @@ object AssistantToolsCodeEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object CodeInterpreter extends `Type`
+    case object CodeInterpreter extends `Type` { override def toString: String = "code_interpreter" }
 
     import org.json4s._
 

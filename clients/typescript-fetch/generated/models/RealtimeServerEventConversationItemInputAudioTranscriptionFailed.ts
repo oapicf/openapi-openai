@@ -32,34 +32,24 @@ import {
 export interface RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     eventId: string;
     /**
      * The event type, must be
      * `conversation.item.input_audio_transcription.failed`.
      * 
-     * @type {RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     type: RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum;
     /**
      * The ID of the user message item.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     itemId: string;
     /**
      * The index of the content part containing the audio.
-     * @type {number}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     contentIndex: number;
     /**
      * 
-     * @type {RealtimeServerEventConversationItemInputAudioTranscriptionFailedError}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailed
      */
     error: RealtimeServerEventConversationItemInputAudioTranscriptionFailedError;
 }
@@ -69,7 +59,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionFaile
  * @export
  */
 export const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum = {
-    ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed'
+    ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed',
 } as const;
 export type RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum = typeof RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum[keyof typeof RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum];
 

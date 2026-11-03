@@ -21,62 +21,42 @@ import { mapValues } from '../runtime';
 export interface TranscriptionSegment {
     /**
      * Unique identifier of the segment.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     id: number;
     /**
      * Seek offset of the segment.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     seek: number;
     /**
      * Start time of the segment in seconds.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     start: number;
     /**
      * End time of the segment in seconds.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     end: number;
     /**
      * Text content of the segment.
-     * @type {string}
-     * @memberof TranscriptionSegment
      */
     text: string;
     /**
      * Array of token IDs for the text content.
-     * @type {Array<number>}
-     * @memberof TranscriptionSegment
      */
     tokens: Array<number>;
     /**
      * Temperature parameter used for generating the segment.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     temperature: number;
     /**
      * Average logprob of the segment. If the value is lower than -1, consider the logprobs failed.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     avgLogprob: number;
     /**
      * Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     compressionRatio: number;
     /**
      * Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.
-     * @type {number}
-     * @memberof TranscriptionSegment
      */
     noSpeechProb: number;
 }

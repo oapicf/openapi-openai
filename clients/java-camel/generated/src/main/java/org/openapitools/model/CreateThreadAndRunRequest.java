@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -32,7 +31,7 @@ import jakarta.annotation.Generated;
  * CreateThreadAndRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequest {
 
   private String assistantId;
@@ -43,8 +42,7 @@ public class CreateThreadAndRunRequest {
 
   private JsonNullable<String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
-  private JsonNullable<List<CreateThreadAndRunRequestToolsInner>> tools = JsonNullable.<List<CreateThreadAndRunRequestToolsInner>>undefined();
+  private JsonNullable<List<@Valid CreateThreadAndRunRequestToolsInner>> tools = JsonNullable.<List<@Valid CreateThreadAndRunRequestToolsInner>>undefined();
 
   private JsonNullable<CreateThreadAndRunRequestToolResources> toolResources = JsonNullable.<CreateThreadAndRunRequestToolResources>undefined();
 
@@ -159,7 +157,7 @@ public class CreateThreadAndRunRequest {
     this.instructions = instructions;
   }
 
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = JsonNullable.of(tools);
     return this;
   }
@@ -176,14 +174,14 @@ public class CreateThreadAndRunRequest {
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    * @return tools
    */
-  @Valid @Size(max = 20) 
+  @Size(max = 20) 
   @Schema(name = "tools", description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
-  public JsonNullable<List<CreateThreadAndRunRequestToolsInner>> getTools() {
+  public JsonNullable<List<@Valid CreateThreadAndRunRequestToolsInner>> getTools() {
     return tools;
   }
 
-  public void setTools(JsonNullable<List<CreateThreadAndRunRequestToolsInner>> tools) {
+  public void setTools(JsonNullable<List<@Valid CreateThreadAndRunRequestToolsInner>> tools) {
     this.tools = tools;
   }
 

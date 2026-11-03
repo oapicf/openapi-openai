@@ -25,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "Embedding", description = "Represents an embedding vector returned by embedding endpoint. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Embedding {
 
   private Integer index;
@@ -118,7 +118,7 @@ public class Embedding {
    * The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
    * @return embedding
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "embedding", description = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("embedding")
   public List<BigDecimal> getEmbedding() {

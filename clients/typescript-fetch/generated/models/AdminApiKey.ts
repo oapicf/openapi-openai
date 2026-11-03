@@ -29,44 +29,30 @@ import {
 export interface AdminApiKey {
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKey
      */
     object?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKey
      */
     id?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKey
      */
     name?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKey
      */
     redactedValue?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKey
      */
     value?: string;
     /**
      * 
-     * @type {number}
-     * @memberof AdminApiKey
      */
     createdAt?: number;
     /**
      * 
-     * @type {AdminApiKeyOwner}
-     * @memberof AdminApiKey
      */
     owner?: AdminApiKeyOwner;
 }

@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseFunctionCallArgumentsDeltaSerializer implemen
   }
 }
 
+
+/// The event type, must be `response.function_call_arguments.delta`. 
 class RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.function_call_arguments.delta`. 
   @BuiltValueEnumConst(wireName: r'response.function_call_arguments.delta')
   static const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum responsePeriodFunctionCallArgumentsPeriodDelta = _$realtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum_responsePeriodFunctionCallArgumentsPeriodDelta;
 

@@ -29,26 +29,18 @@ import {
 export interface UsageResponse {
     /**
      * 
-     * @type {UsageResponseObjectEnum}
-     * @memberof UsageResponse
      */
     object: UsageResponseObjectEnum;
     /**
      * 
-     * @type {Array<UsageTimeBucket>}
-     * @memberof UsageResponse
      */
     data: Array<UsageTimeBucket>;
     /**
      * 
-     * @type {boolean}
-     * @memberof UsageResponse
      */
     hasMore: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof UsageResponse
      */
     nextPage: string;
 }
@@ -58,7 +50,7 @@ export interface UsageResponse {
  * @export
  */
 export const UsageResponseObjectEnum = {
-    Page: 'page'
+    Page: 'page',
 } as const;
 export type UsageResponseObjectEnum = typeof UsageResponseObjectEnum[keyof typeof UsageResponseObjectEnum];
 

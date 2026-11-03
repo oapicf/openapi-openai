@@ -12,7 +12,7 @@ import org.openapitools.model.RealtimeSession;
  * Returned when a session is updated with a &#x60;session.update&#x60; event, unless  there is an error. 
  */
 @ApiModel(description = "Returned when a session is updated with a `session.update` event, unless  there is an error. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventSessionUpdated   {
   @JsonProperty("event_id")
   private String eventId;

@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModel;
  * ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. 
  */
 @ApiModel(description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequestModel   {
 
   @Override

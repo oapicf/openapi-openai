@@ -83,7 +83,7 @@ export interface FineTuningJob {
 }
 export namespace FineTuningJob {
     export const ObjectEnum = {
-        FineTuningJob: 'fine_tuning.job'
+        FineTuningJob: 'fine_tuning.job',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
@@ -92,7 +92,7 @@ export namespace FineTuningJob {
         Running: 'running',
         Succeeded: 'succeeded',
         Failed: 'failed',
-        Cancelled: 'cancelled'
+        Cancelled: 'cancelled',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

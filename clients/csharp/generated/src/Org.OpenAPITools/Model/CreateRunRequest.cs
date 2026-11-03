@@ -483,22 +483,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!assistantId.IsSet)
-                throw new ArgumentException("Property is required for class CreateRunRequest.", nameof(assistantId));
+                throw new JsonException("Property is required for class CreateRunRequest: assistant_id.");
 
             if (assistantId.IsSet && assistantId.Value == null)
-                throw new ArgumentNullException(nameof(assistantId), "Property is not nullable for class CreateRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateRunRequest: assistant_id.");
 
             if (truncationStrategy.IsSet && truncationStrategy.Value == null)
-                throw new ArgumentNullException(nameof(truncationStrategy), "Property is not nullable for class CreateRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateRunRequest: truncation_strategy.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class CreateRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateRunRequest: tool_choice.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class CreateRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateRunRequest: parallel_tool_calls.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class CreateRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateRunRequest: response_format.");
 
             return new CreateRunRequest(assistantId.Value!, model, instructions, additionalInstructions, additionalMessages, tools, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
         }
@@ -509,7 +509,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateRunRequest createRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -524,20 +523,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateRunRequest createRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createRunRequest.AssistantId == null)
-                throw new ArgumentNullException(nameof(createRunRequest.AssistantId), "Property is required for class CreateRunRequest.");
-
             if (createRunRequest.TruncationStrategyOption.IsSet && createRunRequest.TruncationStrategy == null)
-                throw new ArgumentNullException(nameof(createRunRequest.TruncationStrategy), "Property is required for class CreateRunRequest.");
+                throw new JsonException("Cannot write null property CreateRunRequest.TruncationStrategy to non-nullable JSON property 'truncation_strategy'.");
 
             if (createRunRequest.ToolChoiceOption.IsSet && createRunRequest.ToolChoice == null)
-                throw new ArgumentNullException(nameof(createRunRequest.ToolChoice), "Property is required for class CreateRunRequest.");
+                throw new JsonException("Cannot write null property CreateRunRequest.ToolChoice to non-nullable JSON property 'tool_choice'.");
+
+            if (createRunRequest.ParallelToolCallsOption.IsSet && createRunRequest.ParallelToolCalls == null)
+                throw new JsonException("Cannot write null property CreateRunRequest.ParallelToolCalls to non-nullable JSON property 'parallel_tool_calls'.");
 
             if (createRunRequest.ResponseFormatOption.IsSet && createRunRequest.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(createRunRequest.ResponseFormat), "Property is required for class CreateRunRequest.");
+                throw new JsonException("Cannot write null property CreateRunRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             writer.WriteString("assistant_id", createRunRequest.AssistantId);
 

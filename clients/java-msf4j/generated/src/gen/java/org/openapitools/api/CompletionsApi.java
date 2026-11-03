@@ -27,7 +27,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the completions API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CompletionsApi  {
    private final CompletionsApiService delegate = CompletionsApiServiceFactory.getCompletionsApi();
 

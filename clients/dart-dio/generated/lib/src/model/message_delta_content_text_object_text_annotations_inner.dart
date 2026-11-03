@@ -79,12 +79,12 @@ class _$MessageDeltaContentTextObjectTextAnnotationsInnerSerializer implements P
   }
 }
 
+
+/// Always `file_citation`.
 class MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum extends EnumClass {
 
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_citation')
   static const MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum fileCitation = _$messageDeltaContentTextObjectTextAnnotationsInnerTypeEnum_fileCitation;
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_path')
   static const MessageDeltaContentTextObjectTextAnnotationsInnerTypeEnum filePath = _$messageDeltaContentTextObjectTextAnnotationsInnerTypeEnum_filePath;
 

@@ -98,7 +98,7 @@ public class UsersApiHandler {
         UserRoleUpdateRequest userRoleUpdateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<UserRoleUpdateRequest>(){}) : null;
 
         logger.debug("Parameter userId is {}", userId);
-        logger.debug("Parameter userRoleUpdateRequest is {}", userRoleUpdateRequest);
+        logger.debug("Parameter userRoleUpdateRequest is (body omitted)");
 
         api.modifyUser(userId, userRoleUpdateRequest)
             .onSuccess(apiResponse -> {

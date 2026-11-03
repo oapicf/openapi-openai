@@ -35,20 +35,38 @@ import {
 } from '../models/ApiKeyList';
 
 export interface AdminApiKeysCreateOperationRequest {
+    /**
+     * 
+     */
     adminApiKeysCreateRequest: AdminApiKeysCreateRequest;
 }
 
 export interface AdminApiKeysDeleteRequest {
+    /**
+     * 
+     */
     keyId: string;
 }
 
 export interface AdminApiKeysGetRequest {
+    /**
+     * 
+     */
     keyId: string;
 }
 
 export interface AdminApiKeysListRequest {
+    /**
+     * 
+     */
     after?: string | null;
+    /**
+     * 
+     */
     order?: AdminApiKeysListOrderEnum;
+    /**
+     * 
+     */
     limit?: number;
 }
 
@@ -290,6 +308,6 @@ export class DefaultApi extends runtime.BaseAPI {
  */
 export const AdminApiKeysListOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type AdminApiKeysListOrderEnum = typeof AdminApiKeysListOrderEnum[keyof typeof AdminApiKeysListOrderEnum];

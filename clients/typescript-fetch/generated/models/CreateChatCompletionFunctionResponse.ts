@@ -36,26 +36,18 @@ import {
 export interface CreateChatCompletionFunctionResponse {
     /**
      * A unique identifier for the chat completion.
-     * @type {string}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     id: string;
     /**
      * A list of chat completion choices. Can be more than one if `n` is greater than 1.
-     * @type {Array<CreateChatCompletionFunctionResponseChoicesInner>}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     choices: Array<CreateChatCompletionFunctionResponseChoicesInner>;
     /**
      * The Unix timestamp (in seconds) of when the chat completion was created.
-     * @type {number}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     created: number;
     /**
      * The model used for the chat completion.
-     * @type {string}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     model: string;
     /**
@@ -63,20 +55,14 @@ export interface CreateChatCompletionFunctionResponse {
      * 
      * Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
      * 
-     * @type {string}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     systemFingerprint?: string;
     /**
      * The object type, which is always `chat.completion`.
-     * @type {CreateChatCompletionFunctionResponseObjectEnum}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     object: CreateChatCompletionFunctionResponseObjectEnum;
     /**
      * 
-     * @type {CompletionUsage}
-     * @memberof CreateChatCompletionFunctionResponse
      */
     usage?: CompletionUsage;
 }
@@ -86,7 +72,7 @@ export interface CreateChatCompletionFunctionResponse {
  * @export
  */
 export const CreateChatCompletionFunctionResponseObjectEnum = {
-    ChatCompletion: 'chat.completion'
+    ChatCompletion: 'chat.completion',
 } as const;
 export type CreateChatCompletionFunctionResponseObjectEnum = typeof CreateChatCompletionFunctionResponseObjectEnum[keyof typeof CreateChatCompletionFunctionResponseObjectEnum];
 

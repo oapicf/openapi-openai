@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **createEmbedding**
 ```swift
-    open class func createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, completion: @escaping (_ data: CreateEmbeddingResponse?, _ error: Error?) -> Void)
+    open class func createEmbedding(createEmbeddingRequest: CreateEmbeddingRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CreateEmbeddingResponse
 ```
 
 Creates an embedding vector representing the input text.
@@ -22,15 +22,11 @@ import OpenAPIClient
 let createEmbeddingRequest = CreateEmbeddingRequest(input: CreateEmbeddingRequest_input(), model: CreateEmbeddingRequest_model(), encodingFormat: "encodingFormat_example", dimensions: 123, user: "user_example") // CreateEmbeddingRequest | 
 
 // Creates an embedding vector representing the input text.
-EmbeddingsAPI.createEmbedding(createEmbeddingRequest: createEmbeddingRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await EmbeddingsAPI.createEmbedding(createEmbeddingRequest: createEmbeddingRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

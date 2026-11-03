@@ -52,7 +52,7 @@ public class RunStepDeltaStepDetailsToolCallsObject   {
 
 
     private TypeEnum type;
-    private List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+    private List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -69,7 +69,7 @@ public class RunStepDeltaStepDetailsToolCallsObject   {
      */
     public RunStepDeltaStepDetailsToolCallsObject(
         TypeEnum type, 
-        List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls
+        List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls
     ) {
         this.type = type;
         this.toolCalls = toolCalls;
@@ -93,11 +93,11 @@ public class RunStepDeltaStepDetailsToolCallsObject   {
      * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
      * @return toolCalls
      */
-    public List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+    public List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
         return toolCalls;
     }
 
-    public void setToolCalls(List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public void setToolCalls(List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.toolCalls = toolCalls;
     }
 

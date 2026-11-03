@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepStreamEventOneOf5   {
   /**
    * Gets or Sets event

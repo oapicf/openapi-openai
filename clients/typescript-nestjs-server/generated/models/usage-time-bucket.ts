@@ -9,7 +9,7 @@ export interface UsageTimeBucket {
 }
 export namespace UsageTimeBucket {
   export const ObjectEnum = {
-    Bucket: 'bucket'
+    Bucket: 'bucket',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

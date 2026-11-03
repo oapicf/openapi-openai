@@ -144,9 +144,10 @@ class _$RealtimeClientEventInputAudioBufferAppendSerializer implements Primitive
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.append`.
 class RealtimeClientEventInputAudioBufferAppendTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.append`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.append')
   static const RealtimeClientEventInputAudioBufferAppendTypeEnum inputAudioBufferPeriodAppend = _$realtimeClientEventInputAudioBufferAppendTypeEnum_inputAudioBufferPeriodAppend;
 

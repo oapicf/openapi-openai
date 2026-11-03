@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * Deprecated in favor of &#x60;tool_choice&#x60;.  Controls which (if any) function is called by the model.  &#x60;none&#x60; means the model will not call a function and instead generates a message.  &#x60;auto&#x60; means the model can pick between generating a message or calling a function.  Specifying a particular function via &#x60;{\&quot;name\&quot;: \&quot;my_function\&quot;}&#x60; forces the model to call that function.  &#x60;none&#x60; is the default when no functions are present. &#x60;auto&#x60; is the default if functions are present. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionRequestFunctionCall   {
   @JsonProperty("name")

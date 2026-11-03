@@ -24,7 +24,7 @@ export interface RunStepDetailsToolCallsCodeOutputLogsObject {
 }
 export namespace RunStepDetailsToolCallsCodeOutputLogsObject {
     export const TypeEnum = {
-        Logs: 'logs'
+        Logs: 'logs',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

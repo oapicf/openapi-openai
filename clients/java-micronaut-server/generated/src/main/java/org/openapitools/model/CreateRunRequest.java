@@ -55,7 +55,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("CreateRunRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateRunRequest {
     public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
@@ -74,7 +74,7 @@ public class CreateRunRequest {
     private List<@Valid CreateMessageRequest> additionalMessages = null;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = null;
+    private List<@Valid AssistantObjectToolsInner> tools = null;
 
     public static final String JSON_PROPERTY_METADATA = "metadata";
     private Object metadata;
@@ -234,7 +234,7 @@ public class CreateRunRequest {
         this.additionalMessages = additionalMessages;
     }
 
-    public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+    public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -256,13 +256,13 @@ public class CreateRunRequest {
     @Schema(name = "tools", description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

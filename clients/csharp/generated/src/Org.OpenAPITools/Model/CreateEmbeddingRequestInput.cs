@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequestInput" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateEmbeddingRequestInput(string @string)
+        public CreateEmbeddingRequestInput(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequestInput" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal CreateEmbeddingRequestInput(List<string> list)
+        public CreateEmbeddingRequestInput(List<string> list)
         {
             List = list;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequestInput" /> class.
         /// </summary>
         /// <param name="list1"></param>
-        internal CreateEmbeddingRequestInput(List<int> list1)
+        public CreateEmbeddingRequestInput(List<int> list1)
         {
             List1 = list1;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateEmbeddingRequestInput" /> class.
         /// </summary>
         /// <param name="list1"></param>
-        internal CreateEmbeddingRequestInput(List<List<int>> list1)
+        public CreateEmbeddingRequestInput(List<List<int>> list1)
         {
             List1 = list1;
             OnCreated();
@@ -227,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateEmbeddingRequestInput createEmbeddingRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,7 +241,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateEmbeddingRequestInput createEmbeddingRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
 

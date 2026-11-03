@@ -7,7 +7,7 @@ export interface UserDeleteResponse {
 }
 export namespace UserDeleteResponse {
   export const ObjectEnum = {
-    OrganizationUserDeleted: 'organization.user.deleted'
+    OrganizationUserDeleted: 'organization.user.deleted',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

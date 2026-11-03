@@ -132,8 +132,7 @@ class RunObject(BaseModel):
         _items = []
         if self.tools:
             for _item_tools in self.tools:
-                if _item_tools:
-                    _items.append(_item_tools.to_dict())
+                _items.append(_item_tools.to_dict() if _item_tools is not None else None)
             _dict['tools'] = _items
         # override the default output from pydantic by calling `to_dict()` of usage
         if self.usage:

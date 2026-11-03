@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogProjectUpdatedChangesRequested {
     /**
      * The title of the project as seen on the dashboard.
-     * @type {string}
-     * @memberof AuditLogProjectUpdatedChangesRequested
      */
     title?: string;
 }

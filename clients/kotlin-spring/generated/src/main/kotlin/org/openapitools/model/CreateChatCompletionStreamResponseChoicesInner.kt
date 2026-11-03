@@ -28,15 +28,15 @@ data class CreateChatCompletionStreamResponseChoicesInner(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("delta")
+    @param:JsonProperty("delta", required = true)
     @get:JsonProperty("delta", required = true) val delta: ChatCompletionStreamResponseDelta,
 
     @Schema(required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ")
-    @param:JsonProperty("finish_reason")
+    @param:JsonProperty("finish_reason", required = true)
     @get:JsonProperty("finish_reason", required = true) val finishReason: CreateChatCompletionStreamResponseChoicesInner.FinishReason?,
 
     @Schema(required = true, description = "The index of the choice in the list of choices.")
-    @param:JsonProperty("index")
+    @param:JsonProperty("index", required = true)
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
@@ -56,12 +56,12 @@ data class CreateChatCompletionStreamResponseChoicesInner(
         tool_calls("tool_calls"),
         content_filter("content_filter"),
         function_call("function_call");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): FinishReason {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FinishReason'")
             }
         }

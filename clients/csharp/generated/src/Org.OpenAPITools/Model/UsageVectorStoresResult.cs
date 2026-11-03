@@ -207,7 +207,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageVectorStoresResult.ObjectEnum?>(UsageVectorStoresResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageVectorStoresResult.ObjectEnum? varObjectValue = UsageVectorStoresResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageVectorStoresResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "usage_bytes":
                             usageBytes = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -222,16 +227,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageVectorStoresResult.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageVectorStoresResult: object.");
 
             if (!usageBytes.IsSet)
-                throw new ArgumentException("Property is required for class UsageVectorStoresResult.", nameof(usageBytes));
+                throw new JsonException("Property is required for class UsageVectorStoresResult: usage_bytes.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageVectorStoresResult.");
+                throw new JsonException("Property is not nullable for class UsageVectorStoresResult: object.");
 
             if (usageBytes.IsSet && usageBytes.Value == null)
-                throw new ArgumentNullException(nameof(usageBytes), "Property is not nullable for class UsageVectorStoresResult.");
+                throw new JsonException("Property is not nullable for class UsageVectorStoresResult: usage_bytes.");
 
             return new UsageVectorStoresResult(varObject.Value!.Value!, usageBytes.Value!.Value!, projectId);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageVectorStoresResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageVectorStoresResult usageVectorStoresResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +261,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageVectorStoresResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageVectorStoresResult usageVectorStoresResult, JsonSerializerOptions jsonSerializerOptions)
         {
             var varObjectRawValue = UsageVectorStoresResult.ObjectEnumToJsonValue(usageVectorStoresResult.Object);

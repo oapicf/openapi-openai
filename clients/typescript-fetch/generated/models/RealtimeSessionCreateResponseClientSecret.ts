@@ -24,16 +24,12 @@ export interface RealtimeSessionCreateResponseClientSecret {
      * to the Realtime API. Use this in client-side environments rather than
      * a standard API token, which should only be used server-side.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateResponseClientSecret
      */
     value?: string;
     /**
      * Timestamp for when the token expires. Currently, all tokens expire
      * after one minute.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateResponseClientSecret
      */
     expiresAt?: number;
 }

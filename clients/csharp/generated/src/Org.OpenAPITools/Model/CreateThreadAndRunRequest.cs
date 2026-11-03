@@ -481,25 +481,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!assistantId.IsSet)
-                throw new ArgumentException("Property is required for class CreateThreadAndRunRequest.", nameof(assistantId));
+                throw new JsonException("Property is required for class CreateThreadAndRunRequest: assistant_id.");
 
             if (assistantId.IsSet && assistantId.Value == null)
-                throw new ArgumentNullException(nameof(assistantId), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: assistant_id.");
 
             if (thread.IsSet && thread.Value == null)
-                throw new ArgumentNullException(nameof(thread), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: thread.");
 
             if (truncationStrategy.IsSet && truncationStrategy.Value == null)
-                throw new ArgumentNullException(nameof(truncationStrategy), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: truncation_strategy.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: tool_choice.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: parallel_tool_calls.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class CreateThreadAndRunRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadAndRunRequest: response_format.");
 
             return new CreateThreadAndRunRequest(assistantId.Value!, thread, model, instructions, tools, toolResources, metadata, temperature, topP, stream, maxPromptTokens, maxCompletionTokens, truncationStrategy, toolChoice, parallelToolCalls, responseFormat);
         }
@@ -510,7 +510,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadAndRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadAndRunRequest createThreadAndRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -525,23 +524,22 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadAndRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadAndRunRequest createThreadAndRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createThreadAndRunRequest.AssistantId == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequest.AssistantId), "Property is required for class CreateThreadAndRunRequest.");
-
             if (createThreadAndRunRequest.ThreadOption.IsSet && createThreadAndRunRequest.Thread == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequest.Thread), "Property is required for class CreateThreadAndRunRequest.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequest.Thread to non-nullable JSON property 'thread'.");
 
             if (createThreadAndRunRequest.TruncationStrategyOption.IsSet && createThreadAndRunRequest.TruncationStrategy == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequest.TruncationStrategy), "Property is required for class CreateThreadAndRunRequest.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequest.TruncationStrategy to non-nullable JSON property 'truncation_strategy'.");
 
             if (createThreadAndRunRequest.ToolChoiceOption.IsSet && createThreadAndRunRequest.ToolChoice == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequest.ToolChoice), "Property is required for class CreateThreadAndRunRequest.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequest.ToolChoice to non-nullable JSON property 'tool_choice'.");
+
+            if (createThreadAndRunRequest.ParallelToolCallsOption.IsSet && createThreadAndRunRequest.ParallelToolCalls == null)
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequest.ParallelToolCalls to non-nullable JSON property 'parallel_tool_calls'.");
 
             if (createThreadAndRunRequest.ResponseFormatOption.IsSet && createThreadAndRunRequest.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(createThreadAndRunRequest.ResponseFormat), "Property is required for class CreateThreadAndRunRequest.");
+                throw new JsonException("Cannot write null property CreateThreadAndRunRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             writer.WriteString("assistant_id", createThreadAndRunRequest.AssistantId);
 

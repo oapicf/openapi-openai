@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * The monetary value in its associated currency.
- * @param &#x60;value&#x60; The numeric value of the cost.
+ * @param `value` The numeric value of the cost.
  * @param currency Lowercase ISO-4217 currency e.g. \"usd\"
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

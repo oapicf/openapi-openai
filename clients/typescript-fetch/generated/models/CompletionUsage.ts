@@ -36,32 +36,22 @@ import {
 export interface CompletionUsage {
     /**
      * Number of tokens in the generated completion.
-     * @type {number}
-     * @memberof CompletionUsage
      */
     completionTokens: number;
     /**
      * Number of tokens in the prompt.
-     * @type {number}
-     * @memberof CompletionUsage
      */
     promptTokens: number;
     /**
      * Total number of tokens used in the request (prompt + completion).
-     * @type {number}
-     * @memberof CompletionUsage
      */
     totalTokens: number;
     /**
      * 
-     * @type {CompletionUsageCompletionTokensDetails}
-     * @memberof CompletionUsage
      */
     completionTokensDetails?: CompletionUsageCompletionTokensDetails;
     /**
      * 
-     * @type {CompletionUsagePromptTokensDetails}
-     * @memberof CompletionUsage
      */
     promptTokensDetails?: CompletionUsagePromptTokensDetails;
 }

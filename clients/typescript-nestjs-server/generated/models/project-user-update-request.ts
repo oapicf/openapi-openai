@@ -9,7 +9,7 @@ export interface ProjectUserUpdateRequest {
 export namespace ProjectUserUpdateRequest {
   export const RoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

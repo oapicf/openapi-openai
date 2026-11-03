@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface VectorStoreFileObjectLastError {
     /**
      * One of `server_error` or `rate_limit_exceeded`.
-     * @type {VectorStoreFileObjectLastErrorCodeEnum}
-     * @memberof VectorStoreFileObjectLastError
      */
     code: VectorStoreFileObjectLastErrorCodeEnum;
     /**
      * A human-readable description of the error.
-     * @type {string}
-     * @memberof VectorStoreFileObjectLastError
      */
     message: string;
 }
@@ -40,7 +36,7 @@ export interface VectorStoreFileObjectLastError {
 export const VectorStoreFileObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
     UnsupportedFile: 'unsupported_file',
-    InvalidFile: 'invalid_file'
+    InvalidFile: 'invalid_file',
 } as const;
 export type VectorStoreFileObjectLastErrorCodeEnum = typeof VectorStoreFileObjectLastErrorCodeEnum[keyof typeof VectorStoreFileObjectLastErrorCodeEnum];
 

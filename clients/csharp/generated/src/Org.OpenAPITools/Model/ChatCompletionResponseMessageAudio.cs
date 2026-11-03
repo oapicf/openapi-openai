@@ -176,28 +176,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionResponseMessageAudio.", nameof(id));
+                throw new JsonException("Property is required for class ChatCompletionResponseMessageAudio: id.");
 
             if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionResponseMessageAudio.", nameof(expiresAt));
+                throw new JsonException("Property is required for class ChatCompletionResponseMessageAudio: expires_at.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionResponseMessageAudio.", nameof(data));
+                throw new JsonException("Property is required for class ChatCompletionResponseMessageAudio: data.");
 
             if (!transcript.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionResponseMessageAudio.", nameof(transcript));
+                throw new JsonException("Property is required for class ChatCompletionResponseMessageAudio: transcript.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ChatCompletionResponseMessageAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionResponseMessageAudio: id.");
 
             if (expiresAt.IsSet && expiresAt.Value == null)
-                throw new ArgumentNullException(nameof(expiresAt), "Property is not nullable for class ChatCompletionResponseMessageAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionResponseMessageAudio: expires_at.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ChatCompletionResponseMessageAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionResponseMessageAudio: data.");
 
             if (transcript.IsSet && transcript.Value == null)
-                throw new ArgumentNullException(nameof(transcript), "Property is not nullable for class ChatCompletionResponseMessageAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionResponseMessageAudio: transcript.");
 
             return new ChatCompletionResponseMessageAudio(id.Value!, expiresAt.Value!.Value!, data.Value!, transcript.Value!);
         }
@@ -208,7 +208,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionResponseMessageAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionResponseMessageAudio chatCompletionResponseMessageAudio, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -223,18 +222,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionResponseMessageAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionResponseMessageAudio chatCompletionResponseMessageAudio, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionResponseMessageAudio.Id == null)
-                throw new ArgumentNullException(nameof(chatCompletionResponseMessageAudio.Id), "Property is required for class ChatCompletionResponseMessageAudio.");
-
-            if (chatCompletionResponseMessageAudio.Data == null)
-                throw new ArgumentNullException(nameof(chatCompletionResponseMessageAudio.Data), "Property is required for class ChatCompletionResponseMessageAudio.");
-
-            if (chatCompletionResponseMessageAudio.Transcript == null)
-                throw new ArgumentNullException(nameof(chatCompletionResponseMessageAudio.Transcript), "Property is required for class ChatCompletionResponseMessageAudio.");
-
             writer.WriteString("id", chatCompletionResponseMessageAudio.Id);
 
             writer.WriteNumber("expires_at", chatCompletionResponseMessageAudio.ExpiresAt);

@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageApiControllerImp extends UsageApiControllerImpInterface {
     @Override
     public UsageResponse usageAudioSpeeches(Http.Request request, @NotNull Integer startTime, Integer endTime, String bucketWidth, List<String> projectIds, List<String> userIds, List<String> apiKeyIds, List<String> models, List<String> groupBy, Integer limit, String page) throws Exception {

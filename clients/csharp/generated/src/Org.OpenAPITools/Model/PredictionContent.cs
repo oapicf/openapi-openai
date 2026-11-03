@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<PredictionContent.TypeEnum?>(PredictionContent.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                PredictionContent.TypeEnum? typeValue = PredictionContent.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<PredictionContent.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "content":
                             content = new Option<PredictionContentContent?>(JsonSerializer.Deserialize<PredictionContentContent>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PredictionContent.", nameof(type));
+                throw new JsonException("Property is required for class PredictionContent: type.");
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class PredictionContent.", nameof(content));
+                throw new JsonException("Property is required for class PredictionContent: content.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class PredictionContent.");
+                throw new JsonException("Property is not nullable for class PredictionContent: type.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class PredictionContent.");
+                throw new JsonException("Property is not nullable for class PredictionContent: content.");
 
             return new PredictionContent(type.Value!.Value!, content.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="predictionContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PredictionContent predictionContent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="predictionContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PredictionContent predictionContent, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (predictionContent.Content == null)
-                throw new ArgumentNullException(nameof(predictionContent.Content), "Property is required for class PredictionContent.");
-
             var typeRawValue = PredictionContent.TypeEnumToJsonValue(predictionContent.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("content");

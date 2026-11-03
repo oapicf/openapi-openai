@@ -46,7 +46,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   ModifyAssistantRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("ModifyAssistantRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class ModifyAssistantRequest {
     public static final String JSON_PROPERTY_MODEL = "model";
@@ -62,7 +62,7 @@ public class ModifyAssistantRequest {
     private String instructions;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = null;
+    private List<@Valid AssistantObjectToolsInner> tools = null;
 
     public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
     private ModifyAssistantRequestToolResources toolResources;
@@ -177,7 +177,7 @@ public class ModifyAssistantRequest {
         this.instructions = instructions;
     }
 
-    public ModifyAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+    public ModifyAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -199,13 +199,13 @@ public class ModifyAssistantRequest {
     @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

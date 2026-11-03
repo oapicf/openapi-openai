@@ -16,7 +16,7 @@ export interface ListFineTuningJobEventsResponse {
 }
 export namespace ListFineTuningJobEventsResponse {
     export const ObjectEnum = {
-        List: 'list'
+        List: 'list',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

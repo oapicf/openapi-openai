@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **createCompletion**
 ```swift
-    open class func createCompletion(createCompletionRequest: CreateCompletionRequest, completion: @escaping (_ data: CreateCompletionResponse?, _ error: Error?) -> Void)
+    open class func createCompletion(createCompletionRequest: CreateCompletionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CreateCompletionResponse
 ```
 
 Creates a completion for the provided prompt and parameters.
@@ -22,15 +22,11 @@ import OpenAPIClient
 let createCompletionRequest = CreateCompletionRequest(model: CreateCompletionRequest_model(), prompt: CreateCompletionRequest_prompt(), bestOf: 123, echo: false, frequencyPenalty: 123, logitBias: "TODO", logprobs: 123, maxTokens: 123, n: 123, presencePenalty: 123, seed: 123, stop: CreateCompletionRequest_stop(), stream: false, streamOptions: ChatCompletionStreamOptions(includeUsage: false), suffix: "suffix_example", temperature: 123, topP: 123, user: "user_example") // CreateCompletionRequest | 
 
 // Creates a completion for the provided prompt and parameters.
-CompletionsAPI.createCompletion(createCompletionRequest: createCompletionRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await CompletionsAPI.createCompletion(createCompletionRequest: createCompletionRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

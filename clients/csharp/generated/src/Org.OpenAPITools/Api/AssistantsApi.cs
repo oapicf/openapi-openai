@@ -1650,11 +1650,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -1914,11 +1926,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.AssistantObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.AssistantObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.AssistantObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.AssistantObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.AssistantObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -2189,11 +2213,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.MessageObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.MessageObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.MessageObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.MessageObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.MessageObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -2481,11 +2517,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -2748,11 +2796,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ThreadObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ThreadObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ThreadObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ThreadObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ThreadObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3012,11 +3072,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3264,11 +3336,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.DeleteAssistantResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.DeleteAssistantResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.DeleteAssistantResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.DeleteAssistantResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.DeleteAssistantResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3527,11 +3611,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.DeleteMessageResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.DeleteMessageResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.DeleteMessageResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.DeleteMessageResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.DeleteMessageResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -3779,11 +3875,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.DeleteThreadResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.DeleteThreadResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.DeleteThreadResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.DeleteThreadResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.DeleteThreadResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -4031,11 +4139,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.AssistantObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.AssistantObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.AssistantObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.AssistantObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.AssistantObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -4294,11 +4414,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.MessageObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.MessageObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.MessageObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.MessageObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.MessageObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -4557,11 +4689,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -4848,11 +4992,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunStepObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunStepObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunStepObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunStepObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunStepObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -5100,11 +5256,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ThreadObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ThreadObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ThreadObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ThreadObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ThreadObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -5393,11 +5561,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ListAssistantsResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ListAssistantsResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ListAssistantsResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ListAssistantsResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ListAssistantsResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -5710,11 +5890,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ListMessagesResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ListMessagesResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ListMessagesResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ListMessagesResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ListMessagesResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -6038,11 +6230,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ListRunStepsResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ListRunStepsResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ListRunStepsResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ListRunStepsResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ListRunStepsResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -6342,11 +6546,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ListRunsResponse? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ListRunsResponse? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ListRunsResponse? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ListRunsResponse>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ListRunsResponse? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -6617,11 +6833,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.AssistantObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.AssistantObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.AssistantObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.AssistantObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.AssistantObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -6903,11 +7131,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.MessageObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.MessageObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.MessageObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.MessageObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.MessageObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7189,11 +7429,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7464,11 +7716,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.ThreadObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.ThreadObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.ThreadObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.ThreadObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.ThreadObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -7750,11 +8014,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.RunObject? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.RunObject? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.RunObject? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.RunObject>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.RunObject? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null

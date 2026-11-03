@@ -30,7 +30,7 @@ object RealtimeServerEventConversationItemInputAudioTranscriptionFailedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ConversationItemInputAudioTranscriptionFailed extends `Type`
+    case object ConversationItemInputAudioTranscriptionFailed extends `Type` { override def toString: String = "conversation.item.input_audio_transcription.failed" }
 
     import org.json4s._
 

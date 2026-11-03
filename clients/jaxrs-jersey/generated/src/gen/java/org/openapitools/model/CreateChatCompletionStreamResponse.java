@@ -42,7 +42,7 @@ import javax.validation.Valid;
   CreateChatCompletionStreamResponse.JSON_PROPERTY_OBJECT,
   CreateChatCompletionStreamResponse.JSON_PROPERTY_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionStreamResponse   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -183,7 +183,7 @@ public class CreateChatCompletionStreamResponse   {
    **/
   @JsonProperty(value = "choices")
   @ApiModelProperty(required = true, value = "A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. ")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid CreateChatCompletionStreamResponseChoicesInner> getChoices() {
     return choices;
   }

@@ -19,7 +19,7 @@ export interface CreateFineTuningJobRequestIntegrationsInner {
 }
 export namespace CreateFineTuningJobRequestIntegrationsInner {
     export const TypeEnum = {
-        Wandb: 'wandb'
+        Wandb: 'wandb',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -38,8 +38,6 @@ public class ChatCompletionStreamResponseDelta  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid ChatCompletionMessageToolCallChunk> toolCalls = new ArrayList<>();
 
 public enum RoleEnum {

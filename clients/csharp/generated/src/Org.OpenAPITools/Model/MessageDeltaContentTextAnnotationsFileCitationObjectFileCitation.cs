@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation: file_id.");
 
             if (quote.IsSet && quote.Value == null)
-                throw new ArgumentNullException(nameof(quote), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation: quote.");
 
             return new MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation(fileId, quote);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFileCitationObjectFileCitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation messageDeltaContentTextAnnotationsFileCitationObjectFileCitation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFileCitationObjectFileCitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation messageDeltaContentTextAnnotationsFileCitationObjectFileCitation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileIdOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileId == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileId), "Property is required for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileId to non-nullable JSON property 'file_id'.");
 
             if (messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.QuoteOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.Quote == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.Quote), "Property is required for class MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation.Quote to non-nullable JSON property 'quote'.");
 
             if (messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileIdOption.IsSet)
                 writer.WriteString("file_id", messageDeltaContentTextAnnotationsFileCitationObjectFileCitation.FileId);

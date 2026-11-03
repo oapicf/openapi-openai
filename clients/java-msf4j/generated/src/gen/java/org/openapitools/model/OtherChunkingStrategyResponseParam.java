@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * This is returned when the chunking strategy is unknown. Typically, this is because the file was indexed before the &#x60;chunking_strategy&#x60; concept was introduced in the API.
  */
 @ApiModel(description = "This is returned when the chunking strategy is unknown. Typically, this is because the file was indexed before the `chunking_strategy` concept was introduced in the API.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class OtherChunkingStrategyResponseParam   {
   /**
    * Always `other`.

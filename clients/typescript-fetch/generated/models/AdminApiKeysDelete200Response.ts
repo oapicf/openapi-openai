@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface AdminApiKeysDelete200Response {
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeysDelete200Response
      */
     id?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeysDelete200Response
      */
     object?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof AdminApiKeysDelete200Response
      */
     deleted?: boolean;
 }

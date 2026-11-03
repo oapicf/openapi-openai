@@ -218,7 +218,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<CreateEmbeddingResponse.ObjectEnum?>(CreateEmbeddingResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                CreateEmbeddingResponse.ObjectEnum? varObjectValue = CreateEmbeddingResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<CreateEmbeddingResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "usage":
                             usage = new Option<CreateEmbeddingResponseUsage?>(JsonSerializer.Deserialize<CreateEmbeddingResponseUsage>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -230,28 +235,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponse.", nameof(data));
+                throw new JsonException("Property is required for class CreateEmbeddingResponse: data.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponse.", nameof(model));
+                throw new JsonException("Property is required for class CreateEmbeddingResponse: model.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class CreateEmbeddingResponse: object.");
 
             if (!usage.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponse.", nameof(usage));
+                throw new JsonException("Property is required for class CreateEmbeddingResponse: usage.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class CreateEmbeddingResponse.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponse: data.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateEmbeddingResponse.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponse: model.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class CreateEmbeddingResponse.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponse: object.");
 
             if (usage.IsSet && usage.Value == null)
-                throw new ArgumentNullException(nameof(usage), "Property is not nullable for class CreateEmbeddingResponse.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponse: usage.");
 
             return new CreateEmbeddingResponse(data.Value!, model.Value!, varObject.Value!.Value!, usage.Value!);
         }
@@ -262,7 +267,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateEmbeddingResponse createEmbeddingResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -277,18 +281,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateEmbeddingResponse createEmbeddingResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createEmbeddingResponse.Data == null)
-                throw new ArgumentNullException(nameof(createEmbeddingResponse.Data), "Property is required for class CreateEmbeddingResponse.");
-
-            if (createEmbeddingResponse.Model == null)
-                throw new ArgumentNullException(nameof(createEmbeddingResponse.Model), "Property is required for class CreateEmbeddingResponse.");
-
-            if (createEmbeddingResponse.Usage == null)
-                throw new ArgumentNullException(nameof(createEmbeddingResponse.Usage), "Property is required for class CreateEmbeddingResponse.");
-
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, createEmbeddingResponse.Data, jsonSerializerOptions);
             writer.WriteString("model", createEmbeddingResponse.Model);

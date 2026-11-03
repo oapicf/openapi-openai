@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -43,7 +42,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "AuditLog", description = "A log of a user action or configuration change within this organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AuditLog {
 
   private String id;
@@ -52,69 +51,48 @@ public class AuditLog {
 
   private Integer effectiveAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProject project;
 
   private AuditLogActor actor;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyCreated apiKeyCreated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyUpdated apiKeyUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogApiKeyDeleted apiKeyDeleted;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteSent inviteSent;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteAccepted inviteAccepted;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogInviteAccepted inviteDeleted;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogLoginFailed loginFailed;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogLoginFailed logoutFailed;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogOrganizationUpdated organizationUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectCreated projectCreated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectUpdated projectUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogProjectArchived projectArchived;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogRateLimitUpdated rateLimitUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogRateLimitDeleted rateLimitDeleted;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountCreated serviceAccountCreated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountUpdated serviceAccountUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogServiceAccountDeleted serviceAccountDeleted;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserAdded userAdded;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserUpdated userUpdated;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AuditLogUserDeleted userDeleted;
 
   public AuditLog() {

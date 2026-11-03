@@ -35,7 +35,7 @@ import javax.validation.Valid;
   RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.JSON_PROPERTY_INPUT,
   RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.JSON_PROPERTY_OUTPUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter   {
   public static final String JSON_PROPERTY_INPUT = "input";
   @JsonProperty(JSON_PROPERTY_INPUT)
@@ -84,7 +84,7 @@ public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter   {
    **/
   @JsonProperty(value = "outputs")
   @ApiModelProperty(value = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.")
-  @Valid 
+  
   public List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> getOutputs() {
     return outputs;
   }

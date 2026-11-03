@@ -20,8 +20,6 @@ public class ApiKeyList  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid AdminApiKey> data = new ArrayList<>();
 
   @ApiModelProperty(example = "false", value = "")

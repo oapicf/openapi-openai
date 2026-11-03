@@ -189,8 +189,6 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant")), SYSTEM(Str
   */
   @ApiModelProperty(value = "The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. ")
 
-  @Valid
-
   private List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
 
  /**

@@ -220,6 +220,7 @@ class _$UsageEmbeddingsResultSerializer implements PrimitiveSerializer<UsageEmbe
   }
 }
 
+
 class UsageEmbeddingsResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.embeddings.result')

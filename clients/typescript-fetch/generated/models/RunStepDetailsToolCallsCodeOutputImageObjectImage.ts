@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsCodeOutputImageObjectImage {
     /**
      * The [file](/docs/api-reference/files) ID of the image.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsCodeOutputImageObjectImage
      */
     fileId: string;
 }

@@ -26,7 +26,7 @@ import org.openapitools.model.AssistantsNamedToolChoiceFunction;
  */
 
 @ApiModel(description = "Controls which (if any) tool is called by the model. `none` means the model will not call any tools and instead generates a message. `auto` is the default value and means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools before responding to the user. Specifying a particular tool like `{\"type\": \"file_search\"}` or `{\"type\": \"function\", \"function\": {\"name\": \"my_function\"}}` forces the model to call that tool. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantsApiToolChoiceOption   {
   
 

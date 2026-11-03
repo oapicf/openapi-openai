@@ -49,7 +49,7 @@ public class ImagesApiHandler {
         RequestParameter body = requestParameters.body();
         CreateImageRequest createImageRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateImageRequest>(){}) : null;
 
-        logger.debug("Parameter createImageRequest is {}", createImageRequest);
+        logger.debug("Parameter createImageRequest is (body omitted)");
 
         api.createImage(createImageRequest)
             .onSuccess(apiResponse -> {
@@ -69,8 +69,18 @@ public class ImagesApiHandler {
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        FileUpload image = routingContext.fileUploads().iterator().next();
-        FileUpload mask = routingContext.fileUploads().iterator().next();
+        FileUpload image = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            image = routingContext.fileUploads().iterator().next();
+        }
+        FileUpload mask = null;
+        if (routingContext.fileUploads().isEmpty()) {
+        } else {
+            mask = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter image is {}", image);
         logger.debug("Parameter mask is {}", mask);
@@ -93,7 +103,13 @@ public class ImagesApiHandler {
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        FileUpload image = routingContext.fileUploads().iterator().next();
+        FileUpload image = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            image = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter image is {}", image);
 

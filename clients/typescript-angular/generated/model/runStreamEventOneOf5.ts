@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf5 {
 }
 export namespace RunStreamEventOneOf5 {
     export const EventEnum = {
-        ThreadRunIncomplete: 'thread.run.incomplete'
+        ThreadRunIncomplete: 'thread.run.incomplete',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

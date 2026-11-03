@@ -17,13 +17,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * CreateImageRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateImageRequest   {
   @JsonProperty("prompt")
   private String prompt;
 
   @JsonProperty("model")
-  private CreateImageRequestModel model;
+  private CreateImageRequestModel model = dall-e-2;
 
   @JsonProperty("n")
   private Integer n = 1;

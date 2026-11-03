@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface Model {
     /**
      * The model identifier, which can be referenced in the API endpoints.
-     * @type {string}
-     * @memberof Model
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) when the model was created.
-     * @type {number}
-     * @memberof Model
      */
     created: number;
     /**
      * The object type, which is always "model".
-     * @type {ModelObjectEnum}
-     * @memberof Model
      */
     object: ModelObjectEnum;
     /**
      * The organization that owns the model.
-     * @type {string}
-     * @memberof Model
      */
     ownedBy: string;
 }
@@ -50,7 +42,7 @@ export interface Model {
  * @export
  */
 export const ModelObjectEnum = {
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type ModelObjectEnum = typeof ModelObjectEnum[keyof typeof ModelObjectEnum];
 

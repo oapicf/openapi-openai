@@ -170,9 +170,10 @@ class _$RealtimeSessionTurnDetectionSerializer implements PrimitiveSerializer<Re
   }
 }
 
+
+/// Type of turn detection, only `server_vad` is currently supported. 
 class RealtimeSessionTurnDetectionTypeEnum extends EnumClass {
 
-  /// Type of turn detection, only `server_vad` is currently supported. 
   @BuiltValueEnumConst(wireName: r'server_vad')
   static const RealtimeSessionTurnDetectionTypeEnum serverVad = _$realtimeSessionTurnDetectionTypeEnum_serverVad;
 

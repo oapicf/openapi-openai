@@ -11,7 +11,7 @@ export interface AutoChunkingStrategyRequestParam {
 }
 export namespace AutoChunkingStrategyRequestParam {
   export const TypeEnum = {
-    Auto: 'auto'
+    Auto: 'auto',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

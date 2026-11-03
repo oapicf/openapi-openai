@@ -10,7 +10,7 @@ export interface RunStepStreamEventOneOf3 {
 }
 export namespace RunStepStreamEventOneOf3 {
   export const EventEnum = {
-    ThreadRunStepCompleted: 'thread.run.step.completed'
+    ThreadRunStepCompleted: 'thread.run.step.completed',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

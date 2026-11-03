@@ -78,8 +78,7 @@ class ChatCompletionTokenLogprob(BaseModel):
         _items = []
         if self.top_logprobs:
             for _item_top_logprobs in self.top_logprobs:
-                if _item_top_logprobs:
-                    _items.append(_item_top_logprobs.to_dict())
+                _items.append(_item_top_logprobs.to_dict() if _item_top_logprobs is not None else None)
             _dict['top_logprobs'] = _items
         # set to None if bytes (nullable) is None
         # and model_fields_set contains the field

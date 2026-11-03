@@ -32,7 +32,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStarted {
 }
 export namespace RealtimeServerEventInputAudioBufferSpeechStarted {
     export const TypeEnum = {
-        InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started'
+        InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

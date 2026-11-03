@@ -16,7 +16,7 @@ export interface ListModelsResponse {
 }
 export namespace ListModelsResponse {
     export const ObjectEnum = {
-        List: 'list'
+        List: 'list',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

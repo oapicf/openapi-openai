@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunObjectRequiredAction.TypeEnum?>(RunObjectRequiredAction.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunObjectRequiredAction.TypeEnum? typeValue = RunObjectRequiredAction.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunObjectRequiredAction.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "submit_tool_outputs":
                             submitToolOutputs = new Option<RunObjectRequiredActionSubmitToolOutputs?>(JsonSerializer.Deserialize<RunObjectRequiredActionSubmitToolOutputs>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunObjectRequiredAction.", nameof(type));
+                throw new JsonException("Property is required for class RunObjectRequiredAction: type.");
 
             if (!submitToolOutputs.IsSet)
-                throw new ArgumentException("Property is required for class RunObjectRequiredAction.", nameof(submitToolOutputs));
+                throw new JsonException("Property is required for class RunObjectRequiredAction: submit_tool_outputs.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunObjectRequiredAction.");
+                throw new JsonException("Property is not nullable for class RunObjectRequiredAction: type.");
 
             if (submitToolOutputs.IsSet && submitToolOutputs.Value == null)
-                throw new ArgumentNullException(nameof(submitToolOutputs), "Property is not nullable for class RunObjectRequiredAction.");
+                throw new JsonException("Property is not nullable for class RunObjectRequiredAction: submit_tool_outputs.");
 
             return new RunObjectRequiredAction(type.Value!.Value!, submitToolOutputs.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectRequiredAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunObjectRequiredAction runObjectRequiredAction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectRequiredAction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunObjectRequiredAction runObjectRequiredAction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runObjectRequiredAction.SubmitToolOutputs == null)
-                throw new ArgumentNullException(nameof(runObjectRequiredAction.SubmitToolOutputs), "Property is required for class RunObjectRequiredAction.");
-
             var typeRawValue = RunObjectRequiredAction.TypeEnumToJsonValue(runObjectRequiredAction.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("submit_tool_outputs");

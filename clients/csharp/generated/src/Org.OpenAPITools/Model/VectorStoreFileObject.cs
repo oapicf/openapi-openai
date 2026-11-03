@@ -360,7 +360,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<VectorStoreFileObject.ObjectEnum?>(VectorStoreFileObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                VectorStoreFileObject.ObjectEnum? varObjectValue = VectorStoreFileObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<VectorStoreFileObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "usage_bytes":
                             usageBytes = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -374,7 +379,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<VectorStoreFileObject.StatusEnum?>(VectorStoreFileObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                VectorStoreFileObject.StatusEnum? statusValue = VectorStoreFileObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<VectorStoreFileObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "last_error":
                             lastError = new Option<VectorStoreFileObjectLastError?>(JsonSerializer.Deserialize<VectorStoreFileObjectLastError>(ref utf8JsonReader, jsonSerializerOptions));
@@ -389,46 +399,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(id));
+                throw new JsonException("Property is required for class VectorStoreFileObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(varObject));
+                throw new JsonException("Property is required for class VectorStoreFileObject: object.");
 
             if (!usageBytes.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(usageBytes));
+                throw new JsonException("Property is required for class VectorStoreFileObject: usage_bytes.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class VectorStoreFileObject: created_at.");
 
             if (!vectorStoreId.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(vectorStoreId));
+                throw new JsonException("Property is required for class VectorStoreFileObject: vector_store_id.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(status));
+                throw new JsonException("Property is required for class VectorStoreFileObject: status.");
 
             if (!lastError.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObject.", nameof(lastError));
+                throw new JsonException("Property is required for class VectorStoreFileObject: last_error.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: object.");
 
             if (usageBytes.IsSet && usageBytes.Value == null)
-                throw new ArgumentNullException(nameof(usageBytes), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: usage_bytes.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: created_at.");
 
             if (vectorStoreId.IsSet && vectorStoreId.Value == null)
-                throw new ArgumentNullException(nameof(vectorStoreId), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: vector_store_id.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: status.");
 
             if (chunkingStrategy.IsSet && chunkingStrategy.Value == null)
-                throw new ArgumentNullException(nameof(chunkingStrategy), "Property is not nullable for class VectorStoreFileObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObject: chunking_strategy.");
 
             return new VectorStoreFileObject(id.Value!, varObject.Value!.Value!, usageBytes.Value!.Value!, createdAt.Value!.Value!, vectorStoreId.Value!, status.Value!.Value!, lastError.Value!, chunkingStrategy);
         }
@@ -439,7 +449,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreFileObject vectorStoreFileObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -454,17 +463,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreFileObject vectorStoreFileObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (vectorStoreFileObject.Id == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileObject.Id), "Property is required for class VectorStoreFileObject.");
-
-            if (vectorStoreFileObject.VectorStoreId == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileObject.VectorStoreId), "Property is required for class VectorStoreFileObject.");
-
             if (vectorStoreFileObject.ChunkingStrategyOption.IsSet && vectorStoreFileObject.ChunkingStrategy == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileObject.ChunkingStrategy), "Property is required for class VectorStoreFileObject.");
+                throw new JsonException("Cannot write null property VectorStoreFileObject.ChunkingStrategy to non-nullable JSON property 'chunking_strategy'.");
 
             writer.WriteString("id", vectorStoreFileObject.Id);
 

@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "The expiration policy for a vector store.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class VectorStoreExpirationAfter   {
   /**
    * Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.

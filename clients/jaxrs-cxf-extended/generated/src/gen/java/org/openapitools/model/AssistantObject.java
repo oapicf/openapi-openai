@@ -100,8 +100,7 @@ public enum ObjectEnum {
   * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
   */
   @ApiModelProperty(required = true, value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-  @Valid
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   @Valid
@@ -311,21 +310,21 @@ public enum ObjectEnum {
   */
   @JsonProperty("tools")
   @NotNull
- @Size(max=128)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=128)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
- public void setTools(List<AssistantObjectToolsInner> tools) {
+ public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }

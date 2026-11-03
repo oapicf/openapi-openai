@@ -170,12 +170,12 @@ class _$RealtimeServerEventResponseContentPartDonePartSerializer implements Prim
   }
 }
 
+
+/// The content type (\"text\", \"audio\").
 class RealtimeServerEventResponseContentPartDonePartTypeEnum extends EnumClass {
 
-  /// The content type (\"text\", \"audio\").
   @BuiltValueEnumConst(wireName: r'audio')
   static const RealtimeServerEventResponseContentPartDonePartTypeEnum audio = _$realtimeServerEventResponseContentPartDonePartTypeEnum_audio;
-  /// The content type (\"text\", \"audio\").
   @BuiltValueEnumConst(wireName: r'text')
   static const RealtimeServerEventResponseContentPartDonePartTypeEnum text = _$realtimeServerEventResponseContentPartDonePartTypeEnum_text;
 

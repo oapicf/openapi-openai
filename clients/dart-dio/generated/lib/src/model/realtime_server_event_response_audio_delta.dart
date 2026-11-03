@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseAudioDeltaSerializer implements PrimitiveSeri
   }
 }
 
+
+/// The event type, must be `response.audio.delta`.
 class RealtimeServerEventResponseAudioDeltaTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.audio.delta`.
   @BuiltValueEnumConst(wireName: r'response.audio.delta')
   static const RealtimeServerEventResponseAudioDeltaTypeEnum responsePeriodAudioPeriodDelta = _$realtimeServerEventResponseAudioDeltaTypeEnum_responsePeriodAudioPeriodDelta;
 

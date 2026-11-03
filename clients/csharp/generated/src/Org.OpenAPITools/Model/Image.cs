@@ -183,13 +183,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (b64Json.IsSet && b64Json.Value == null)
-                throw new ArgumentNullException(nameof(b64Json), "Property is not nullable for class Image.");
+                throw new JsonException("Property is not nullable for class Image: b64_json.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class Image.");
+                throw new JsonException("Property is not nullable for class Image: url.");
 
             if (revisedPrompt.IsSet && revisedPrompt.Value == null)
-                throw new ArgumentNullException(nameof(revisedPrompt), "Property is not nullable for class Image.");
+                throw new JsonException("Property is not nullable for class Image: revised_prompt.");
 
             return new Image(b64Json, url, revisedPrompt);
         }
@@ -200,7 +200,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="image"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Image image, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -215,17 +214,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="image"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Image image, JsonSerializerOptions jsonSerializerOptions)
         {
             if (image.B64JsonOption.IsSet && image.B64Json == null)
-                throw new ArgumentNullException(nameof(image.B64Json), "Property is required for class Image.");
+                throw new JsonException("Cannot write null property Image.B64Json to non-nullable JSON property 'b64_json'.");
 
             if (image.UrlOption.IsSet && image.Url == null)
-                throw new ArgumentNullException(nameof(image.Url), "Property is required for class Image.");
+                throw new JsonException("Cannot write null property Image.Url to non-nullable JSON property 'url'.");
 
             if (image.RevisedPromptOption.IsSet && image.RevisedPrompt == null)
-                throw new ArgumentNullException(nameof(image.RevisedPrompt), "Property is required for class Image.");
+                throw new JsonException("Cannot write null property Image.RevisedPrompt to non-nullable JSON property 'revised_prompt'.");
 
             if (image.B64JsonOption.IsSet)
                 writer.WriteString("b64_json", image.B64Json);

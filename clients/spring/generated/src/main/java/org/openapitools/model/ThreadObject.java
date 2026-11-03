@@ -22,7 +22,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "ThreadObject", description = "Represents a thread that contains [messages](/docs/api-reference/messages).")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ThreadObject {
 
   private String id;
@@ -155,8 +155,8 @@ public class ThreadObject {
    * Get toolResources
    * @return toolResources
    */
-  @NotNull @Valid 
-  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Valid 
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("tool_resources")
   public JsonNullable<ModifyThreadRequestToolResources> getToolResources() {
     return toolResources;
@@ -176,8 +176,8 @@ public class ThreadObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;

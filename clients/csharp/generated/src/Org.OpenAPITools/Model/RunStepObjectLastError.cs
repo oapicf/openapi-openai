@@ -205,7 +205,12 @@ namespace Org.OpenAPITools.Model
                         case "code":
                             string? codeRawValue = utf8JsonReader.GetString();
                             if (codeRawValue != null)
-                                code = new Option<RunStepObjectLastError.CodeEnum?>(RunStepObjectLastError.CodeEnumFromStringOrDefault(codeRawValue));
+                            {
+                                RunStepObjectLastError.CodeEnum? codeValue = RunStepObjectLastError.CodeEnumFromStringOrDefault(codeRawValue);
+                                if (codeValue == null)
+                                    throw new JsonException();
+                                code = new Option<RunStepObjectLastError.CodeEnum?>(codeValue);
+                            }
                             break;
                         case "message":
                             message = new Option<string?>(utf8JsonReader.GetString()!);
@@ -217,16 +222,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObjectLastError.", nameof(code));
+                throw new JsonException("Property is required for class RunStepObjectLastError: code.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObjectLastError.", nameof(message));
+                throw new JsonException("Property is required for class RunStepObjectLastError: message.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class RunStepObjectLastError.");
+                throw new JsonException("Property is not nullable for class RunStepObjectLastError: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class RunStepObjectLastError.");
+                throw new JsonException("Property is not nullable for class RunStepObjectLastError: message.");
 
             return new RunStepObjectLastError(code.Value!.Value!, message.Value!);
         }
@@ -237,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepObjectLastError runStepObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -252,12 +256,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepObjectLastError runStepObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepObjectLastError.Message == null)
-                throw new ArgumentNullException(nameof(runStepObjectLastError.Message), "Property is required for class RunStepObjectLastError.");
-
             var codeRawValue = RunStepObjectLastError.CodeEnumToJsonValue(runStepObjectLastError.Code);
             writer.WriteString("code", codeRawValue);
             writer.WriteString("message", runStepObjectLastError.Message);

@@ -191,7 +191,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ChatCompletionRequestMessageContentPartText.TypeEnum?>(ChatCompletionRequestMessageContentPartText.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ChatCompletionRequestMessageContentPartText.TypeEnum? typeValue = ChatCompletionRequestMessageContentPartText.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ChatCompletionRequestMessageContentPartText.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -203,16 +208,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestMessageContentPartText.", nameof(type));
+                throw new JsonException("Property is required for class ChatCompletionRequestMessageContentPartText: type.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestMessageContentPartText.", nameof(text));
+                throw new JsonException("Property is required for class ChatCompletionRequestMessageContentPartText: text.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ChatCompletionRequestMessageContentPartText.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartText: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class ChatCompletionRequestMessageContentPartText.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartText: text.");
 
             return new ChatCompletionRequestMessageContentPartText(type.Value!.Value!, text.Value!);
         }
@@ -223,7 +228,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartText chatCompletionRequestMessageContentPartText, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -238,12 +242,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartText chatCompletionRequestMessageContentPartText, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestMessageContentPartText.Text == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestMessageContentPartText.Text), "Property is required for class ChatCompletionRequestMessageContentPartText.");
-
             var typeRawValue = ChatCompletionRequestMessageContentPartText.TypeEnumToJsonValue(chatCompletionRequestMessageContentPartText.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("text", chatCompletionRequestMessageContentPartText.Text);

@@ -23,10 +23,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
-  private @Valid List<@Valid ChatCompletionTokenLogprob> content;
-  private @Valid List<@Valid ChatCompletionTokenLogprob> refusal;
+  private List<@Valid ChatCompletionTokenLogprob> content;
+  private List<@Valid ChatCompletionTokenLogprob> refusal;
 
   public CreateChatCompletionResponseChoicesInnerLogprobs() {
   }
@@ -51,7 +51,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   
   @ApiModelProperty(required = true, value = "A list of message content tokens with log probability information.")
   @JsonProperty(required = true, value = "content")
-  @NotNull @Valid public List<@Valid ChatCompletionTokenLogprob> getContent() {
+  @NotNull public List<@Valid ChatCompletionTokenLogprob> getContent() {
     return content;
   }
 
@@ -87,7 +87,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   
   @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
   @JsonProperty(required = true, value = "refusal")
-  @NotNull @Valid public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
+  @NotNull public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
     return refusal;
   }
 

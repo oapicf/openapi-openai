@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an `assistant` that can call the model and use tools.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `assistant`.
+ * @param `object` The object type, which is always `assistant`.
  * @param createdAt The Unix timestamp (in seconds) for when the assistant was created.
  * @param name The name of the assistant. The maximum length is 256 characters. 
  * @param description The description of the assistant. The maximum length is 512 characters. 

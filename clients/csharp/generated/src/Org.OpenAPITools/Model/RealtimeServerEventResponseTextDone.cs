@@ -249,7 +249,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventResponseTextDone.TypeEnum?>(RealtimeServerEventResponseTextDone.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventResponseTextDone.TypeEnum? typeValue = RealtimeServerEventResponseTextDone.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventResponseTextDone.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "response_id":
                             responseId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -273,46 +278,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: type.");
 
             if (!responseId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(responseId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: response_id.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: item_id.");
 
             if (!outputIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(outputIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: output_index.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: content_index.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseTextDone.", nameof(text));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseTextDone: text.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: type.");
 
             if (responseId.IsSet && responseId.Value == null)
-                throw new ArgumentNullException(nameof(responseId), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: response_id.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: item_id.");
 
             if (outputIndex.IsSet && outputIndex.Value == null)
-                throw new ArgumentNullException(nameof(outputIndex), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: output_index.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: content_index.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class RealtimeServerEventResponseTextDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseTextDone: text.");
 
             return new RealtimeServerEventResponseTextDone(eventId.Value!, type.Value!.Value!, responseId.Value!, itemId.Value!, outputIndex.Value!.Value!, contentIndex.Value!.Value!, text.Value!);
         }
@@ -323,7 +328,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseTextDone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventResponseTextDone realtimeServerEventResponseTextDone, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -338,21 +342,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseTextDone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventResponseTextDone realtimeServerEventResponseTextDone, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventResponseTextDone.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseTextDone.EventId), "Property is required for class RealtimeServerEventResponseTextDone.");
-
-            if (realtimeServerEventResponseTextDone.ResponseId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseTextDone.ResponseId), "Property is required for class RealtimeServerEventResponseTextDone.");
-
-            if (realtimeServerEventResponseTextDone.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseTextDone.ItemId), "Property is required for class RealtimeServerEventResponseTextDone.");
-
-            if (realtimeServerEventResponseTextDone.Text == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseTextDone.Text), "Property is required for class RealtimeServerEventResponseTextDone.");
-
             writer.WriteString("event_id", realtimeServerEventResponseTextDone.EventId);
 
             var typeRawValue = RealtimeServerEventResponseTextDone.TypeEnumToJsonValue(realtimeServerEventResponseTextDone.Type);

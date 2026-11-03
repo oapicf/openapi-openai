@@ -205,7 +205,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventRateLimitsUpdated.TypeEnum?>(RealtimeServerEventRateLimitsUpdated.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventRateLimitsUpdated.TypeEnum? typeValue = RealtimeServerEventRateLimitsUpdated.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventRateLimitsUpdated.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "rate_limits":
                             rateLimits = new Option<List<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>?>(JsonSerializer.Deserialize<List<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -217,22 +222,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventRateLimitsUpdated.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventRateLimitsUpdated: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventRateLimitsUpdated.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventRateLimitsUpdated: type.");
 
             if (!rateLimits.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventRateLimitsUpdated.", nameof(rateLimits));
+                throw new JsonException("Property is required for class RealtimeServerEventRateLimitsUpdated: rate_limits.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventRateLimitsUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdated: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventRateLimitsUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdated: type.");
 
             if (rateLimits.IsSet && rateLimits.Value == null)
-                throw new ArgumentNullException(nameof(rateLimits), "Property is not nullable for class RealtimeServerEventRateLimitsUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdated: rate_limits.");
 
             return new RealtimeServerEventRateLimitsUpdated(eventId.Value!, type.Value!.Value!, rateLimits.Value!);
         }
@@ -243,7 +248,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventRateLimitsUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventRateLimitsUpdated realtimeServerEventRateLimitsUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,15 +262,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventRateLimitsUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventRateLimitsUpdated realtimeServerEventRateLimitsUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventRateLimitsUpdated.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventRateLimitsUpdated.EventId), "Property is required for class RealtimeServerEventRateLimitsUpdated.");
-
-            if (realtimeServerEventRateLimitsUpdated.RateLimits == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventRateLimitsUpdated.RateLimits), "Property is required for class RealtimeServerEventRateLimitsUpdated.");
-
             writer.WriteString("event_id", realtimeServerEventRateLimitsUpdated.EventId);
 
             var typeRawValue = RealtimeServerEventRateLimitsUpdated.TypeEnumToJsonValue(realtimeServerEventRateLimitsUpdated.Type);

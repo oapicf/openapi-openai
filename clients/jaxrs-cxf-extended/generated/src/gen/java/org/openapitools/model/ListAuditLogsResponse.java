@@ -49,7 +49,6 @@ public enum ObjectEnum {
   private ObjectEnum _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid AuditLog> data = new ArrayList<>();
 
   @ApiModelProperty(example = "audit_log-defb456h8dks", required = true, value = "")

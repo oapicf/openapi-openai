@@ -40,7 +40,7 @@ import javax.validation.Valid;
   CreateTranscription200Response.JSON_PROPERTY_WORDS,
   CreateTranscription200Response.JSON_PROPERTY_SEGMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscription200Response   {
   public static final String JSON_PROPERTY_TEXT = "text";
   @JsonProperty(JSON_PROPERTY_TEXT)
@@ -141,7 +141,7 @@ public class CreateTranscription200Response   {
    **/
   @JsonProperty(value = "words")
   @ApiModelProperty(value = "Extracted words and their corresponding timestamps.")
-  @Valid 
+  
   public List<@Valid TranscriptionWord> getWords() {
     return words;
   }
@@ -169,7 +169,7 @@ public class CreateTranscription200Response   {
    **/
   @JsonProperty(value = "segments")
   @ApiModelProperty(value = "Segments of the transcribed text and their corresponding details.")
-  @Valid 
+  
   public List<@Valid TranscriptionSegment> getSegments() {
     return segments;
   }

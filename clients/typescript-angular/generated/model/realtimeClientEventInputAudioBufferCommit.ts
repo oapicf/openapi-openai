@@ -24,7 +24,7 @@ export interface RealtimeClientEventInputAudioBufferCommit {
 }
 export namespace RealtimeClientEventInputAudioBufferCommit {
     export const TypeEnum = {
-        InputAudioBufferCommit: 'input_audio_buffer.commit'
+        InputAudioBufferCommit: 'input_audio_buffer.commit',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

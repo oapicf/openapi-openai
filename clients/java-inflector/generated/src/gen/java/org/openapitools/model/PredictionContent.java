@@ -15,7 +15,7 @@ import org.openapitools.model.PredictionContentContent;
  **/
 
 @ApiModel(description = "Static predicted output content, such as the content of a text file that is being regenerated. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class PredictionContent   {
   /**
    * The type of the predicted content you want to provide. This type is currently always `content`. 

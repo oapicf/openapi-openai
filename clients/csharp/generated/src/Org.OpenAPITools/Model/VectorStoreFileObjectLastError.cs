@@ -219,7 +219,12 @@ namespace Org.OpenAPITools.Model
                         case "code":
                             string? codeRawValue = utf8JsonReader.GetString();
                             if (codeRawValue != null)
-                                code = new Option<VectorStoreFileObjectLastError.CodeEnum?>(VectorStoreFileObjectLastError.CodeEnumFromStringOrDefault(codeRawValue));
+                            {
+                                VectorStoreFileObjectLastError.CodeEnum? codeValue = VectorStoreFileObjectLastError.CodeEnumFromStringOrDefault(codeRawValue);
+                                if (codeValue == null)
+                                    throw new JsonException();
+                                code = new Option<VectorStoreFileObjectLastError.CodeEnum?>(codeValue);
+                            }
                             break;
                         case "message":
                             message = new Option<string?>(utf8JsonReader.GetString()!);
@@ -231,16 +236,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObjectLastError.", nameof(code));
+                throw new JsonException("Property is required for class VectorStoreFileObjectLastError: code.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileObjectLastError.", nameof(message));
+                throw new JsonException("Property is required for class VectorStoreFileObjectLastError: message.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class VectorStoreFileObjectLastError.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObjectLastError: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class VectorStoreFileObjectLastError.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileObjectLastError: message.");
 
             return new VectorStoreFileObjectLastError(code.Value!.Value!, message.Value!);
         }
@@ -251,7 +256,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreFileObjectLastError vectorStoreFileObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,12 +270,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreFileObjectLastError vectorStoreFileObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (vectorStoreFileObjectLastError.Message == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileObjectLastError.Message), "Property is required for class VectorStoreFileObjectLastError.");
-
             var codeRawValue = VectorStoreFileObjectLastError.CodeEnumToJsonValue(vectorStoreFileObjectLastError.Code);
             writer.WriteString("code", codeRawValue);
             writer.WriteString("message", vectorStoreFileObjectLastError.Message);

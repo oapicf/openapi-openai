@@ -29,33 +29,23 @@ import {
 export interface ThreadObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof ThreadObject
      */
     id: string;
     /**
      * The object type, which is always `thread`.
-     * @type {ThreadObjectObjectEnum}
-     * @memberof ThreadObject
      */
     object: ThreadObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the thread was created.
-     * @type {number}
-     * @memberof ThreadObject
      */
     createdAt: number;
     /**
      * 
-     * @type {ModifyThreadRequestToolResources}
-     * @memberof ThreadObject
      */
     toolResources: ModifyThreadRequestToolResources | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof ThreadObject
      */
     metadata: object | null;
 }
@@ -65,7 +55,7 @@ export interface ThreadObject {
  * @export
  */
 export const ThreadObjectObjectEnum = {
-    Thread: 'thread'
+    Thread: 'thread',
 } as const;
 export type ThreadObjectObjectEnum = typeof ThreadObjectObjectEnum[keyof typeof ThreadObjectObjectEnum];
 

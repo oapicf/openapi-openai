@@ -35,7 +35,7 @@ object RealtimeServerEventResponseTextDeltaEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseTextDelta extends `Type`
+    case object ResponseTextDelta extends `Type` { override def toString: String = "response.text.delta" }
 
     import org.json4s._
 

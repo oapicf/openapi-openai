@@ -17,7 +17,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("list_audit_logs_effective_at_parameter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ListAuditLogsEffectiveAtParameter   {
   private Integer gt;
   private Integer gte;

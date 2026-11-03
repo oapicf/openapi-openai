@@ -24,16 +24,12 @@ export interface CreateChatCompletionRequestAudio {
     /**
      * The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive).
      * 
-     * @type {CreateChatCompletionRequestAudioVoiceEnum}
-     * @memberof CreateChatCompletionRequestAudio
      */
     voice: CreateChatCompletionRequestAudioVoiceEnum;
     /**
      * Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,
      * `opus`, or `pcm16`.
      * 
-     * @type {CreateChatCompletionRequestAudioFormatEnum}
-     * @memberof CreateChatCompletionRequestAudio
      */
     format: CreateChatCompletionRequestAudioFormatEnum;
 }
@@ -50,7 +46,7 @@ export const CreateChatCompletionRequestAudioVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 export type CreateChatCompletionRequestAudioVoiceEnum = typeof CreateChatCompletionRequestAudioVoiceEnum[keyof typeof CreateChatCompletionRequestAudioVoiceEnum];
 
@@ -62,7 +58,7 @@ export const CreateChatCompletionRequestAudioFormatEnum = {
     Mp3: 'mp3',
     Flac: 'flac',
     Opus: 'opus',
-    Pcm16: 'pcm16'
+    Pcm16: 'pcm16',
 } as const;
 export type CreateChatCompletionRequestAudioFormatEnum = typeof CreateChatCompletionRequestAudioFormatEnum[keyof typeof CreateChatCompletionRequestAudioFormatEnum];
 

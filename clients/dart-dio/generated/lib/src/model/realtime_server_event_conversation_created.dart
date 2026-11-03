@@ -141,9 +141,10 @@ class _$RealtimeServerEventConversationCreatedSerializer implements PrimitiveSer
   }
 }
 
+
+/// The event type, must be `conversation.created`.
 class RealtimeServerEventConversationCreatedTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.created`.
   @BuiltValueEnumConst(wireName: r'conversation.created')
   static const RealtimeServerEventConversationCreatedTypeEnum conversationPeriodCreated = _$realtimeServerEventConversationCreatedTypeEnum_conversationPeriodCreated;
 

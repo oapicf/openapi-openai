@@ -33,14 +33,10 @@ export interface PredictionContent {
      * The type of the predicted content you want to provide. This type is
      * currently always `content`.
      * 
-     * @type {PredictionContentTypeEnum}
-     * @memberof PredictionContent
      */
     type: PredictionContentTypeEnum;
     /**
      * 
-     * @type {PredictionContentContent}
-     * @memberof PredictionContent
      */
     content: PredictionContentContent;
 }
@@ -50,7 +46,7 @@ export interface PredictionContent {
  * @export
  */
 export const PredictionContentTypeEnum = {
-    Content: 'content'
+    Content: 'content',
 } as const;
 export type PredictionContentTypeEnum = typeof PredictionContentTypeEnum[keyof typeof PredictionContentTypeEnum];
 

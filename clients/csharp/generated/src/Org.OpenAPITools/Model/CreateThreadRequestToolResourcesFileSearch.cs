@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (vectorStoreIds.IsSet && vectorStoreIds.Value == null)
-                throw new ArgumentNullException(nameof(vectorStoreIds), "Property is not nullable for class CreateThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResourcesFileSearch: vector_store_ids.");
 
             if (vectorStores.IsSet && vectorStores.Value == null)
-                throw new ArgumentNullException(nameof(vectorStores), "Property is not nullable for class CreateThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResourcesFileSearch: vector_stores.");
 
             return new CreateThreadRequestToolResourcesFileSearch(vectorStoreIds, vectorStores);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResourcesFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadRequestToolResourcesFileSearch createThreadRequestToolResourcesFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResourcesFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadRequestToolResourcesFileSearch createThreadRequestToolResourcesFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createThreadRequestToolResourcesFileSearch.VectorStoreIdsOption.IsSet && createThreadRequestToolResourcesFileSearch.VectorStoreIds == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResourcesFileSearch.VectorStoreIds), "Property is required for class CreateThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResourcesFileSearch.VectorStoreIds to non-nullable JSON property 'vector_store_ids'.");
 
             if (createThreadRequestToolResourcesFileSearch.VectorStoresOption.IsSet && createThreadRequestToolResourcesFileSearch.VectorStores == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResourcesFileSearch.VectorStores), "Property is required for class CreateThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResourcesFileSearch.VectorStores to non-nullable JSON property 'vector_stores'.");
 
             if (createThreadRequestToolResourcesFileSearch.VectorStoreIdsOption.IsSet)
             {

@@ -45,7 +45,7 @@ public class EmbeddingsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateEmbeddingRequest createEmbeddingRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateEmbeddingRequest>(){}) : null;
 
-        logger.debug("Parameter createEmbeddingRequest is {}", createEmbeddingRequest);
+        logger.debug("Parameter createEmbeddingRequest is (body omitted)");
 
         api.createEmbedding(createEmbeddingRequest)
             .onSuccess(apiResponse -> {

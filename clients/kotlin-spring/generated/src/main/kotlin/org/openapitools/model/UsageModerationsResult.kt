@@ -4,9 +4,6 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,7 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The aggregated moderations usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param inputTokens The aggregated number of input tokens used.
  * @param numModelRequests The count of requests made to the model.
  * @param projectId When `group_by=project_id`, this field provides the project ID of the grouped usage result.
@@ -31,15 +28,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class UsageModerationsResult(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageModerationsResult.`Object`,
 
     @Schema(required = true, description = "The aggregated number of input tokens used.")
-    @param:JsonProperty("input_tokens")
+    @param:JsonProperty("input_tokens", required = true)
     @get:JsonProperty("input_tokens", required = true) val inputTokens: kotlin.Int,
 
     @Schema(required = true, description = "The count of requests made to the model.")
-    @param:JsonProperty("num_model_requests")
+    @param:JsonProperty("num_model_requests", required = true)
     @get:JsonProperty("num_model_requests", required = true) val numModelRequests: kotlin.Int,
 
     @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
@@ -66,12 +63,12 @@ data class UsageModerationsResult(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUsagePeriodModerationsPeriodResult("organization.usage.moderations.result");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

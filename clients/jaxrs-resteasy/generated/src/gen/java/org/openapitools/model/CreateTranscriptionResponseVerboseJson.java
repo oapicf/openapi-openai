@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Represents a verbose json transcription response returned by model, based on the provided input.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Represents a verbose json transcription response returned by model, based on the provided input.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscriptionResponseVerboseJson   {
   
   private String language;
@@ -72,7 +72,6 @@ public class CreateTranscriptionResponseVerboseJson   {
   
   @ApiModelProperty(value = "Extracted words and their corresponding timestamps.")
   @JsonProperty("words")
-  @Valid
   public List<@Valid TranscriptionWord> getWords() {
     return words;
   }
@@ -86,7 +85,6 @@ public class CreateTranscriptionResponseVerboseJson   {
   
   @ApiModelProperty(value = "Segments of the transcribed text and their corresponding details.")
   @JsonProperty("segments")
-  @Valid
   public List<@Valid TranscriptionSegment> getSegments() {
     return segments;
   }

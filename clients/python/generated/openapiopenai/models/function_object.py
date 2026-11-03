@@ -93,7 +93,7 @@ class FunctionObject(BaseModel):
             "description": obj.get("description"),
             "name": obj.get("name"),
             "parameters": obj.get("parameters"),
-            "strict": obj.get("strict") if obj.get("strict") is not None else False
+            "strict": obj.get("strict") if "strict" in obj else False
         })
         return _obj
 

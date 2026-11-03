@@ -704,15 +704,14 @@ class _$CreateChatCompletionRequestSerializer implements PrimitiveSerializer<Cre
   }
 }
 
+
+/// **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
 class CreateChatCompletionRequestReasoningEffortEnum extends EnumClass {
 
-  /// **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
   @BuiltValueEnumConst(wireName: r'low')
   static const CreateChatCompletionRequestReasoningEffortEnum low = _$createChatCompletionRequestReasoningEffortEnum_low;
-  /// **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
   @BuiltValueEnumConst(wireName: r'medium')
   static const CreateChatCompletionRequestReasoningEffortEnum medium = _$createChatCompletionRequestReasoningEffortEnum_medium;
-  /// **o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. 
   @BuiltValueEnumConst(wireName: r'high')
   static const CreateChatCompletionRequestReasoningEffortEnum high = _$createChatCompletionRequestReasoningEffortEnum_high;
 
@@ -739,12 +738,11 @@ class CreateChatCompletionRequestModalitiesEnum extends EnumClass {
   static CreateChatCompletionRequestModalitiesEnum valueOf(String name) => _$createChatCompletionRequestModalitiesEnumValueOf(name);
 }
 
+/// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
 class CreateChatCompletionRequestServiceTierEnum extends EnumClass {
 
-  /// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
   @BuiltValueEnumConst(wireName: r'auto')
   static const CreateChatCompletionRequestServiceTierEnum auto = _$createChatCompletionRequestServiceTierEnum_auto;
-  /// Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. 
   @BuiltValueEnumConst(wireName: r'default')
   static const CreateChatCompletionRequestServiceTierEnum default_ = _$createChatCompletionRequestServiceTierEnum_default_;
 

@@ -43,87 +43,59 @@ import {
 export interface MessageObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof MessageObject
      */
     id: string;
     /**
      * The object type, which is always `thread.message`.
-     * @type {MessageObjectObjectEnum}
-     * @memberof MessageObject
      */
     object: MessageObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the message was created.
-     * @type {number}
-     * @memberof MessageObject
      */
     createdAt: number;
     /**
      * The [thread](/docs/api-reference/threads) ID that this message belongs to.
-     * @type {string}
-     * @memberof MessageObject
      */
     threadId: string;
     /**
      * The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
-     * @type {MessageObjectStatusEnum}
-     * @memberof MessageObject
      */
     status: MessageObjectStatusEnum;
     /**
      * 
-     * @type {MessageObjectIncompleteDetails}
-     * @memberof MessageObject
      */
     incompleteDetails: MessageObjectIncompleteDetails | null;
     /**
      * The Unix timestamp (in seconds) for when the message was completed.
-     * @type {number}
-     * @memberof MessageObject
      */
     completedAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the message was marked as incomplete.
-     * @type {number}
-     * @memberof MessageObject
      */
     incompleteAt: number | null;
     /**
      * The entity that produced the message. One of `user` or `assistant`.
-     * @type {MessageObjectRoleEnum}
-     * @memberof MessageObject
      */
     role: MessageObjectRoleEnum;
     /**
      * The content of the message in array of text and/or images.
-     * @type {Array<MessageObjectContentInner>}
-     * @memberof MessageObject
      */
     content: Array<MessageObjectContentInner>;
     /**
      * If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
-     * @type {string}
-     * @memberof MessageObject
      */
     assistantId: string | null;
     /**
      * The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
-     * @type {string}
-     * @memberof MessageObject
      */
     runId: string | null;
     /**
      * A list of files attached to the message, and the tools they were added to.
-     * @type {Array<CreateMessageRequestAttachmentsInner>}
-     * @memberof MessageObject
      */
     attachments: Array<CreateMessageRequestAttachmentsInner> | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof MessageObject
      */
     metadata: object | null;
 }
@@ -133,7 +105,7 @@ export interface MessageObject {
  * @export
  */
 export const MessageObjectObjectEnum = {
-    ThreadMessage: 'thread.message'
+    ThreadMessage: 'thread.message',
 } as const;
 export type MessageObjectObjectEnum = typeof MessageObjectObjectEnum[keyof typeof MessageObjectObjectEnum];
 
@@ -143,7 +115,7 @@ export type MessageObjectObjectEnum = typeof MessageObjectObjectEnum[keyof typeo
 export const MessageObjectStatusEnum = {
     InProgress: 'in_progress',
     Incomplete: 'incomplete',
-    Completed: 'completed'
+    Completed: 'completed',
 } as const;
 export type MessageObjectStatusEnum = typeof MessageObjectStatusEnum[keyof typeof MessageObjectStatusEnum];
 
@@ -152,7 +124,7 @@ export type MessageObjectStatusEnum = typeof MessageObjectStatusEnum[keyof typeo
  */
 export const MessageObjectRoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 export type MessageObjectRoleEnum = typeof MessageObjectRoleEnum[keyof typeof MessageObjectRoleEnum];
 

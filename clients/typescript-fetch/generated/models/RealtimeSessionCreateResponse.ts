@@ -59,16 +59,12 @@ import {
 export interface RealtimeSessionCreateResponse {
     /**
      * 
-     * @type {RealtimeSessionCreateResponseClientSecret}
-     * @memberof RealtimeSessionCreateResponse
      */
     clientSecret?: RealtimeSessionCreateResponseClientSecret;
     /**
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<RealtimeSessionCreateResponseModalitiesEnum>}
-     * @memberof RealtimeSessionCreateResponse
      */
     modalities?: Array<RealtimeSessionCreateResponseModalitiesEnum>;
     /**
@@ -85,8 +81,6 @@ export interface RealtimeSessionCreateResponse {
      * field is not set and are visible in the `session.created` event at the 
      * start of the session.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateResponse
      */
     instructions?: string;
     /**
@@ -95,61 +89,43 @@ export interface RealtimeSessionCreateResponse {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {RealtimeSessionCreateResponseVoiceEnum}
-     * @memberof RealtimeSessionCreateResponse
      */
     voice?: RealtimeSessionCreateResponseVoiceEnum;
     /**
      * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateResponse
      */
     inputAudioFormat?: string;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateResponse
      */
     outputAudioFormat?: string;
     /**
      * 
-     * @type {RealtimeSessionInputAudioTranscription}
-     * @memberof RealtimeSessionCreateResponse
      */
     inputAudioTranscription?: RealtimeSessionInputAudioTranscription;
     /**
      * 
-     * @type {RealtimeSessionCreateResponseTurnDetection}
-     * @memberof RealtimeSessionCreateResponse
      */
     turnDetection?: RealtimeSessionCreateResponseTurnDetection;
     /**
      * Tools (functions) available to the model.
-     * @type {Array<RealtimeResponseCreateParamsToolsInner>}
-     * @memberof RealtimeSessionCreateResponse
      */
     tools?: Array<RealtimeResponseCreateParamsToolsInner>;
     /**
      * How the model chooses tools. Options are `auto`, `none`, `required`, or 
      * specify a function.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateResponse
      */
     toolChoice?: string;
     /**
      * Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateResponse
      */
     temperature?: number;
     /**
      * 
-     * @type {RealtimeResponseCreateParamsMaxResponseOutputTokens}
-     * @memberof RealtimeSessionCreateResponse
      */
     maxResponseOutputTokens?: RealtimeResponseCreateParamsMaxResponseOutputTokens;
 }
@@ -160,7 +136,7 @@ export interface RealtimeSessionCreateResponse {
  */
 export const RealtimeSessionCreateResponseModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 export type RealtimeSessionCreateResponseModalitiesEnum = typeof RealtimeSessionCreateResponseModalitiesEnum[keyof typeof RealtimeSessionCreateResponseModalitiesEnum];
 
@@ -175,7 +151,7 @@ export const RealtimeSessionCreateResponseVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 export type RealtimeSessionCreateResponseVoiceEnum = typeof RealtimeSessionCreateResponseVoiceEnum[keyof typeof RealtimeSessionCreateResponseVoiceEnum];
 

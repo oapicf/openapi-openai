@@ -23,7 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The delta containing the fields that have changed on the Message.")
 @JsonTypeName("MessageDeltaObject_delta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaObjectDelta   {
   public enum RoleEnum {
 
@@ -73,7 +73,7 @@ public class MessageDeltaObjectDelta   {
 }
 
   private RoleEnum role;
-  private @Valid List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
+  private List<@Valid MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
 
   public MessageDeltaObjectDelta() {
   }
@@ -101,7 +101,7 @@ public class MessageDeltaObjectDelta   {
   /**
    * The content of the message in array of text and/or images.
    **/
-  public MessageDeltaObjectDelta content(List<MessageDeltaObjectDeltaContentInner> content) {
+  public MessageDeltaObjectDelta content(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
     return this;
   }
@@ -109,12 +109,12 @@ public class MessageDeltaObjectDelta   {
   
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
   @JsonProperty("content")
-  @Valid public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
+  public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
     return content;
   }
 
   @JsonProperty("content")
-  public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+  public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
   }
 

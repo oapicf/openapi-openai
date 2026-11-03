@@ -28,11 +28,11 @@ import org.openapitools.model.CreateCompletionRequestStop;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionRequest   {
   
   private CreateCompletionRequestModel model;
-  private CreateCompletionRequestPrompt prompt;
+  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
   private Integer bestOf = 1;
   private Boolean echo = false;
   private BigDecimal frequencyPenalty = new BigDecimal("0");

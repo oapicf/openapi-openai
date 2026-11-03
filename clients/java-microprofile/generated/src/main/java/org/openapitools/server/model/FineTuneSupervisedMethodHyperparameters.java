@@ -38,13 +38,13 @@ import javax.json.bind.annotation.JsonbCreator;
 public class FineTuneSupervisedMethodHyperparameters  {
   
   @JsonbProperty("batch_size")
-  protected FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  protected FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   @JsonbProperty("learning_rate_multiplier")
-  protected FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  protected FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonbProperty("n_epochs")
-  protected FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  protected FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
 
   /**

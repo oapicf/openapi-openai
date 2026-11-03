@@ -123,6 +123,7 @@ class _$MessageStreamEventOneOf3Serializer implements PrimitiveSerializer<Messag
   }
 }
 
+
 class MessageStreamEventOneOf3EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.message.completed')

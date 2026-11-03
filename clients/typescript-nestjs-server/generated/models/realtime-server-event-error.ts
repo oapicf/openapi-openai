@@ -17,7 +17,7 @@ export interface RealtimeServerEventError {
 }
 export namespace RealtimeServerEventError {
   export const TypeEnum = {
-    Error: 'error'
+    Error: 'error',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

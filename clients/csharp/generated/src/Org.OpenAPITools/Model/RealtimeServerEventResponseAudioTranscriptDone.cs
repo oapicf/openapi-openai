@@ -249,7 +249,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventResponseAudioTranscriptDone.TypeEnum?>(RealtimeServerEventResponseAudioTranscriptDone.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventResponseAudioTranscriptDone.TypeEnum? typeValue = RealtimeServerEventResponseAudioTranscriptDone.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventResponseAudioTranscriptDone.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "response_id":
                             responseId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -273,46 +278,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: type.");
 
             if (!responseId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(responseId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: response_id.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: item_id.");
 
             if (!outputIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(outputIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: output_index.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: content_index.");
 
             if (!transcript.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone.", nameof(transcript));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioTranscriptDone: transcript.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: type.");
 
             if (responseId.IsSet && responseId.Value == null)
-                throw new ArgumentNullException(nameof(responseId), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: response_id.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: item_id.");
 
             if (outputIndex.IsSet && outputIndex.Value == null)
-                throw new ArgumentNullException(nameof(outputIndex), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: output_index.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: content_index.");
 
             if (transcript.IsSet && transcript.Value == null)
-                throw new ArgumentNullException(nameof(transcript), "Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioTranscriptDone: transcript.");
 
             return new RealtimeServerEventResponseAudioTranscriptDone(eventId.Value!, type.Value!.Value!, responseId.Value!, itemId.Value!, outputIndex.Value!.Value!, contentIndex.Value!.Value!, transcript.Value!);
         }
@@ -323,7 +328,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseAudioTranscriptDone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventResponseAudioTranscriptDone realtimeServerEventResponseAudioTranscriptDone, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -338,21 +342,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseAudioTranscriptDone"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventResponseAudioTranscriptDone realtimeServerEventResponseAudioTranscriptDone, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventResponseAudioTranscriptDone.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioTranscriptDone.EventId), "Property is required for class RealtimeServerEventResponseAudioTranscriptDone.");
-
-            if (realtimeServerEventResponseAudioTranscriptDone.ResponseId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioTranscriptDone.ResponseId), "Property is required for class RealtimeServerEventResponseAudioTranscriptDone.");
-
-            if (realtimeServerEventResponseAudioTranscriptDone.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioTranscriptDone.ItemId), "Property is required for class RealtimeServerEventResponseAudioTranscriptDone.");
-
-            if (realtimeServerEventResponseAudioTranscriptDone.Transcript == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioTranscriptDone.Transcript), "Property is required for class RealtimeServerEventResponseAudioTranscriptDone.");
-
             writer.WriteString("event_id", realtimeServerEventResponseAudioTranscriptDone.EventId);
 
             var typeRawValue = RealtimeServerEventResponseAudioTranscriptDone.TypeEnumToJsonValue(realtimeServerEventResponseAudioTranscriptDone.Type);

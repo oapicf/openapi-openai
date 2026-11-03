@@ -148,16 +148,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!arguments.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestAssistantMessageFunctionCall.", nameof(arguments));
+                throw new JsonException("Property is required for class ChatCompletionRequestAssistantMessageFunctionCall: arguments.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestAssistantMessageFunctionCall.", nameof(name));
+                throw new JsonException("Property is required for class ChatCompletionRequestAssistantMessageFunctionCall: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class ChatCompletionRequestAssistantMessageFunctionCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessageFunctionCall: arguments.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionRequestAssistantMessageFunctionCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessageFunctionCall: name.");
 
             return new ChatCompletionRequestAssistantMessageFunctionCall(arguments.Value!, name.Value!);
         }
@@ -168,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessageFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessageFunctionCall chatCompletionRequestAssistantMessageFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,15 +182,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessageFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessageFunctionCall chatCompletionRequestAssistantMessageFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestAssistantMessageFunctionCall.Arguments == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestAssistantMessageFunctionCall.Arguments), "Property is required for class ChatCompletionRequestAssistantMessageFunctionCall.");
-
-            if (chatCompletionRequestAssistantMessageFunctionCall.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestAssistantMessageFunctionCall.Name), "Property is required for class ChatCompletionRequestAssistantMessageFunctionCall.");
-
             writer.WriteString("arguments", chatCompletionRequestAssistantMessageFunctionCall.Arguments);
 
             writer.WriteString("name", chatCompletionRequestAssistantMessageFunctionCall.Name);

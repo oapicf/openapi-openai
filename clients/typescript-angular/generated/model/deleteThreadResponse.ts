@@ -16,7 +16,7 @@ export interface DeleteThreadResponse {
 }
 export namespace DeleteThreadResponse {
     export const ObjectEnum = {
-        ThreadDeleted: 'thread.deleted'
+        ThreadDeleted: 'thread.deleted',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

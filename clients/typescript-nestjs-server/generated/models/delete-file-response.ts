@@ -7,7 +7,7 @@ export interface DeleteFileResponse {
 }
 export namespace DeleteFileResponse {
   export const ObjectEnum = {
-    File: 'file'
+    File: 'file',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

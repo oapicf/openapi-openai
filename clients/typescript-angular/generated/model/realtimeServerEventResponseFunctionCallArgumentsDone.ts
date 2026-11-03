@@ -44,7 +44,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDone {
 }
 export namespace RealtimeServerEventResponseFunctionCallArgumentsDone {
     export const TypeEnum = {
-        ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done'
+        ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

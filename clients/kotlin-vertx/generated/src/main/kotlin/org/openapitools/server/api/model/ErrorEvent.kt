@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

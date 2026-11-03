@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Arrays;
@@ -25,18 +24,15 @@ import jakarta.annotation.Generated;
  * FunctionObject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FunctionObject {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
   private String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Map<String, Object> parameters = new HashMap<>();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> strict = JsonNullable.<Boolean>undefined();
 
   public FunctionObject() {
@@ -131,7 +127,7 @@ public class FunctionObject {
    * @return strict
    */
   
-  @Schema(name = "strict", description = "Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "strict", description = "Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("strict")
   public JsonNullable<Boolean> getStrict() {
     return strict;

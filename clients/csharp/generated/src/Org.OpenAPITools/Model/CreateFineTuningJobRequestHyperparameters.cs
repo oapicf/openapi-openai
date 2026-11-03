@@ -180,13 +180,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequestHyperparameters: batch_size.");
 
             if (learningRateMultiplier.IsSet && learningRateMultiplier.Value == null)
-                throw new ArgumentNullException(nameof(learningRateMultiplier), "Property is not nullable for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequestHyperparameters: learning_rate_multiplier.");
 
             if (nEpochs.IsSet && nEpochs.Value == null)
-                throw new ArgumentNullException(nameof(nEpochs), "Property is not nullable for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequestHyperparameters: n_epochs.");
 
             return new CreateFineTuningJobRequestHyperparameters(batchSize, learningRateMultiplier, nEpochs);
         }
@@ -197,7 +197,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparameters"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparameters createFineTuningJobRequestHyperparameters, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -212,17 +211,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparameters"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparameters createFineTuningJobRequestHyperparameters, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createFineTuningJobRequestHyperparameters.BatchSizeOption.IsSet && createFineTuningJobRequestHyperparameters.BatchSize == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequestHyperparameters.BatchSize), "Property is required for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequestHyperparameters.BatchSize to non-nullable JSON property 'batch_size'.");
 
             if (createFineTuningJobRequestHyperparameters.LearningRateMultiplierOption.IsSet && createFineTuningJobRequestHyperparameters.LearningRateMultiplier == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequestHyperparameters.LearningRateMultiplier), "Property is required for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequestHyperparameters.LearningRateMultiplier to non-nullable JSON property 'learning_rate_multiplier'.");
 
             if (createFineTuningJobRequestHyperparameters.NEpochsOption.IsSet && createFineTuningJobRequestHyperparameters.NEpochs == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequestHyperparameters.NEpochs), "Property is required for class CreateFineTuningJobRequestHyperparameters.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequestHyperparameters.NEpochs to non-nullable JSON property 'n_epochs'.");
 
             if (createFineTuningJobRequestHyperparameters.BatchSizeOption.IsSet)
             {

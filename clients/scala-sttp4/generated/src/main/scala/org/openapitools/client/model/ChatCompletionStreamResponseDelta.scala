@@ -29,10 +29,10 @@ object ChatCompletionStreamResponseDeltaEnums {
 
   sealed trait Role
   object Role {
-    case object System extends Role
-    case object User extends Role
-    case object Assistant extends Role
-    case object Tool extends Role
+    case object System extends Role { override def toString: String = "system" }
+    case object User extends Role { override def toString: String = "user" }
+    case object Assistant extends Role { override def toString: String = "assistant" }
+    case object Tool extends Role { override def toString: String = "tool" }
 
     import org.json4s._
 

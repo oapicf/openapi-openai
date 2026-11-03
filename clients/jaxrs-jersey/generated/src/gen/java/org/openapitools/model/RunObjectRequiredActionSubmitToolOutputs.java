@@ -34,7 +34,7 @@ import javax.validation.Valid;
 @JsonPropertyOrder({
   RunObjectRequiredActionSubmitToolOutputs.JSON_PROPERTY_TOOL_CALLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObjectRequiredActionSubmitToolOutputs   {
   public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
   @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
@@ -59,7 +59,7 @@ public class RunObjectRequiredActionSubmitToolOutputs   {
    **/
   @JsonProperty(value = "tool_calls")
   @ApiModelProperty(required = true, value = "A list of the relevant tool calls.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid RunToolCallObject> getToolCalls() {
     return toolCalls;
   }

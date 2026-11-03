@@ -198,7 +198,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsToolCallsObject.TypeEnum?>(RunStepDeltaStepDetailsToolCallsObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsToolCallsObject.TypeEnum? typeValue = RunStepDeltaStepDetailsToolCallsObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsToolCallsObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "tool_calls":
                             toolCalls = new Option<List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>?>(JsonSerializer.Deserialize<List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -210,13 +215,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsObject: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsObject: type.");
 
             if (toolCalls.IsSet && toolCalls.Value == null)
-                throw new ArgumentNullException(nameof(toolCalls), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsObject: tool_calls.");
 
             return new RunStepDeltaStepDetailsToolCallsObject(type.Value!.Value!, toolCalls);
         }
@@ -227,7 +232,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsObject runStepDeltaStepDetailsToolCallsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,11 +246,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsObject runStepDeltaStepDetailsToolCallsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsObject.ToolCallsOption.IsSet && runStepDeltaStepDetailsToolCallsObject.ToolCalls == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsObject.ToolCalls), "Property is required for class RunStepDeltaStepDetailsToolCallsObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsObject.ToolCalls to non-nullable JSON property 'tool_calls'.");
 
             var typeRawValue = RunStepDeltaStepDetailsToolCallsObject.TypeEnumToJsonValue(runStepDeltaStepDetailsToolCallsObject.Type);
             writer.WriteString("type", typeRawValue);

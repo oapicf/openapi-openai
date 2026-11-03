@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateChatCompletionStreamResponse_usage", description = "An optional field that will only be present when you set `stream_options: {\"include_usage\": true}` in your request. When present, it contains a null value except for the last chunk which contains the token usage statistics for the entire request. ")
 @JsonTypeName("CreateChatCompletionStreamResponse_usage")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionStreamResponseUsage {
 
   private Integer completionTokens;

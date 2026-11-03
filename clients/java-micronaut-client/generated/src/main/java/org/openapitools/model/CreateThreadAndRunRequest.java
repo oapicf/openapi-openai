@@ -55,7 +55,7 @@ import javax.annotation.Generated;
   CreateThreadAndRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("CreateThreadAndRunRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateThreadAndRunRequest {
     public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
@@ -71,7 +71,7 @@ public class CreateThreadAndRunRequest {
     private String instructions;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<CreateThreadAndRunRequestToolsInner> tools = null;
+    private List<@Valid CreateThreadAndRunRequestToolsInner> tools = null;
 
     public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
     private CreateThreadAndRunRequestToolResources toolResources;
@@ -200,7 +200,7 @@ public class CreateThreadAndRunRequest {
         this.instructions = instructions;
     }
 
-    public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+    public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -221,13 +221,13 @@ public class CreateThreadAndRunRequest {
     @Size(max=20)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<CreateThreadAndRunRequestToolsInner> getTools() {
+    public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+    public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
         this.tools = tools;
     }
 

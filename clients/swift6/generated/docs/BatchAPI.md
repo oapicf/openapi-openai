@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **cancelBatch**
 ```swift
-    open class func cancelBatch(batchId: String, completion: @escaping (_ data: Batch?, _ error: Error?) -> Void)
+    open class func cancelBatch(batchId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Batch
 ```
 
 Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
@@ -25,15 +25,11 @@ import OpenAPIClient
 let batchId = "batchId_example" // String | The ID of the batch to cancel.
 
 // Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.
-BatchAPI.cancelBatch(batchId: batchId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BatchAPI.cancelBatch(batchId: batchId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **createBatch**
 ```swift
-    open class func createBatch(createBatchRequest: CreateBatchRequest, completion: @escaping (_ data: Batch?, _ error: Error?) -> Void)
+    open class func createBatch(createBatchRequest: CreateBatchRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Batch
 ```
 
 Creates and executes a batch from an uploaded file of requests
@@ -73,15 +69,11 @@ import OpenAPIClient
 let createBatchRequest = createBatch_request(inputFileId: "inputFileId_example", endpoint: "endpoint_example", completionWindow: "completionWindow_example", metadata: "TODO") // CreateBatchRequest | 
 
 // Creates and executes a batch from an uploaded file of requests
-BatchAPI.createBatch(createBatchRequest: createBatchRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BatchAPI.createBatch(createBatchRequest: createBatchRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -108,7 +100,7 @@ Name | Type | Description  | Notes
 
 # **listBatches**
 ```swift
-    open class func listBatches(after: String? = nil, limit: Int? = nil, completion: @escaping (_ data: ListBatchesResponse?, _ error: Error?) -> Void)
+    open class func listBatches(after: String? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListBatchesResponse
 ```
 
 List your organization's batches.
@@ -122,15 +114,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let limit = 987 // Int | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  (optional) (default to 20)
 
 // List your organization's batches.
-BatchAPI.listBatches(after: after, limit: limit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BatchAPI.listBatches(after: after, limit: limit)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -158,7 +146,7 @@ Name | Type | Description  | Notes
 
 # **retrieveBatch**
 ```swift
-    open class func retrieveBatch(batchId: String, completion: @escaping (_ data: Batch?, _ error: Error?) -> Void)
+    open class func retrieveBatch(batchId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Batch
 ```
 
 Retrieves a batch.
@@ -171,15 +159,11 @@ import OpenAPIClient
 let batchId = "batchId_example" // String | The ID of the batch to retrieve.
 
 // Retrieves a batch.
-BatchAPI.retrieveBatch(batchId: batchId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BatchAPI.retrieveBatch(batchId: batchId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

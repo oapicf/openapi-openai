@@ -35,20 +35,40 @@ import {
 } from '../models/UserRoleUpdateRequest';
 
 export interface DeleteUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: string;
 }
 
 export interface ListUsersRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
 }
 
 export interface ModifyUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: string;
+    /**
+     * 
+     */
     userRoleUpdateRequest: UserRoleUpdateRequest;
 }
 
 export interface RetrieveUserRequest {
+    /**
+     * The ID of the user.
+     */
     userId: string;
 }
 

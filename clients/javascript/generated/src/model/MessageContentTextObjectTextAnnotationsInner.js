@@ -20,7 +20,7 @@ import MessageContentTextAnnotationsFilePathObjectFilePath from './MessageConten
 /**
  * The MessageContentTextObjectTextAnnotationsInner model module.
  * @module model/MessageContentTextObjectTextAnnotationsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageContentTextObjectTextAnnotationsInner {
     /**

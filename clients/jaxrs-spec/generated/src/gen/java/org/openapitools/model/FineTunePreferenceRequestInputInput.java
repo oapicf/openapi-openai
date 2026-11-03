@@ -22,10 +22,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("FineTunePreferenceRequestInput_input")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTunePreferenceRequestInputInput   {
-  private @Valid List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
-  private @Valid List<@Valid ChatCompletionTool> tools = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
   private Boolean parallelToolCalls = true;
 
   public FineTunePreferenceRequestInputInput() {
@@ -33,7 +33,7 @@ public class FineTunePreferenceRequestInputInput   {
 
   /**
    **/
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -41,12 +41,12 @@ public class FineTunePreferenceRequestInputInput   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("messages")
-  @Valid  @Size(min=1)public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
+   @Size(min=1)public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
   @JsonProperty("messages")
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
@@ -77,7 +77,7 @@ public class FineTunePreferenceRequestInputInput   {
   
   @ApiModelProperty(value = "A list of tools the model may generate JSON inputs for.")
   @JsonProperty("tools")
-  @Valid public List<@Valid ChatCompletionTool> getTools() {
+  public List<@Valid ChatCompletionTool> getTools() {
     return tools;
   }
 

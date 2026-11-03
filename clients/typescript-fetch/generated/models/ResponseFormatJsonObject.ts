@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ResponseFormatJsonObject {
     /**
      * The type of response format being defined: `json_object`
-     * @type {ResponseFormatJsonObjectTypeEnum}
-     * @memberof ResponseFormatJsonObject
      */
     type: ResponseFormatJsonObjectTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface ResponseFormatJsonObject {
  * @export
  */
 export const ResponseFormatJsonObjectTypeEnum = {
-    JsonObject: 'json_object'
+    JsonObject: 'json_object',
 } as const;
 export type ResponseFormatJsonObjectTypeEnum = typeof ResponseFormatJsonObjectTypeEnum[keyof typeof ResponseFormatJsonObjectTypeEnum];
 

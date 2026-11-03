@@ -20,7 +20,6 @@ public class CreateThreadRequest  {
   * A list of [messages](/docs/api-reference/messages) to start the thread with.
   */
   @ApiModelProperty(value = "A list of [messages](/docs/api-reference/messages) to start the thread with.")
-  @Valid
   private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
 
   @ApiModelProperty(value = "")

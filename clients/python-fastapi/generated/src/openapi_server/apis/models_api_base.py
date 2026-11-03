@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing_extensions import Annotated
 from openapi_server.models.delete_model_response import DeleteModelResponse
 from openapi_server.models.list_models_response import ListModelsResponse
@@ -23,13 +23,13 @@ class BaseModelsApi:
 
     async def retrieve_model(
         self,
-        model: Annotated[StrictStr, Field(description="The ID of the model to use for this request")],
+        model: Annotated[str, Field(description="The ID of the model to use for this request")],
     ) -> Model:
         ...
 
 
     async def delete_model(
         self,
-        model: Annotated[StrictStr, Field(description="The model to delete")],
+        model: Annotated[str, Field(description="The model to delete")],
     ) -> DeleteModelResponse:
         ...

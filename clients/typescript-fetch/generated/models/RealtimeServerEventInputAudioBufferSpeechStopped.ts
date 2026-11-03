@@ -24,14 +24,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventInputAudioBufferSpeechStopped {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStopped
      */
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.speech_stopped`.
-     * @type {RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStopped
      */
     type: RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum;
     /**
@@ -39,14 +35,10 @@ export interface RealtimeServerEventInputAudioBufferSpeechStopped {
      * correspond to the end of audio sent to the model, and thus includes the 
      * `min_silence_duration_ms` configured in the Session.
      * 
-     * @type {number}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStopped
      */
     audioEndMs: number;
     /**
      * The ID of the user message item that will be created.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStopped
      */
     itemId: string;
 }
@@ -56,7 +48,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStopped {
  * @export
  */
 export const RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum = {
-    InputAudioBufferSpeechStopped: 'input_audio_buffer.speech_stopped'
+    InputAudioBufferSpeechStopped: 'input_audio_buffer.speech_stopped',
 } as const;
 export type RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum = typeof RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferSpeechStoppedTypeEnum];
 

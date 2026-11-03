@@ -299,22 +299,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateFineTuningJobRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateFineTuningJobRequest: model.");
 
             if (!trainingFile.IsSet)
-                throw new ArgumentException("Property is required for class CreateFineTuningJobRequest.", nameof(trainingFile));
+                throw new JsonException("Property is required for class CreateFineTuningJobRequest: training_file.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateFineTuningJobRequest.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequest: model.");
 
             if (trainingFile.IsSet && trainingFile.Value == null)
-                throw new ArgumentNullException(nameof(trainingFile), "Property is not nullable for class CreateFineTuningJobRequest.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequest: training_file.");
 
             if (hyperparameters.IsSet && hyperparameters.Value == null)
-                throw new ArgumentNullException(nameof(hyperparameters), "Property is not nullable for class CreateFineTuningJobRequest.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequest: hyperparameters.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class CreateFineTuningJobRequest.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequest: method.");
 
             return new CreateFineTuningJobRequest(model.Value!, trainingFile.Value!, hyperparameters, suffix, validationFile, integrations, seed, method);
         }
@@ -325,7 +325,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateFineTuningJobRequest createFineTuningJobRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -340,20 +339,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateFineTuningJobRequest createFineTuningJobRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createFineTuningJobRequest.Model == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequest.Model), "Property is required for class CreateFineTuningJobRequest.");
-
-            if (createFineTuningJobRequest.TrainingFile == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequest.TrainingFile), "Property is required for class CreateFineTuningJobRequest.");
-
             if (createFineTuningJobRequest.HyperparametersOption.IsSet && createFineTuningJobRequest.Hyperparameters == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequest.Hyperparameters), "Property is required for class CreateFineTuningJobRequest.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequest.Hyperparameters to non-nullable JSON property 'hyperparameters'.");
 
             if (createFineTuningJobRequest.MethodOption.IsSet && createFineTuningJobRequest.Method == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequest.Method), "Property is required for class CreateFineTuningJobRequest.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequest.Method to non-nullable JSON property 'method'.");
 
             writer.WritePropertyName("model");
             JsonSerializer.Serialize(writer, createFineTuningJobRequest.Model, jsonSerializerOptions);

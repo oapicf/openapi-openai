@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -30,59 +29,43 @@ import jakarta.annotation.Generated;
  * CreateCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionRequest {
 
   private CreateCompletionRequestModel model;
 
   private JsonNullable<CreateCompletionRequestPrompt> prompt = JsonNullable.<CreateCompletionRequestPrompt>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 20) Integer> bestOf = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> echo = JsonNullable.<Boolean>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 5) Integer> logprobs = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) Integer> maxTokens = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 128) Integer> n = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateCompletionRequestStop> stop = JsonNullable.<CreateCompletionRequestStop>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> suffix = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
   public CreateCompletionRequest() {
@@ -127,8 +110,8 @@ public class CreateCompletionRequest {
    * Get prompt
    * @return prompt
    */
-  @NotNull @Valid 
-  @Schema(name = "prompt", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Valid 
+  @Schema(name = "prompt", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("prompt")
   public JsonNullable<CreateCompletionRequestPrompt> getPrompt() {
     return prompt;
@@ -151,7 +134,7 @@ public class CreateCompletionRequest {
    * @return bestOf
    */
   @Min(value = 0) @Max(value = 20) 
-  @Schema(name = "best_of", description = "Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "best_of", description = "Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed.  When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return – `best_of` must be greater than `n`.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("best_of")
   public JsonNullable<@Min(value = 0) @Max(value = 20) Integer> getBestOf() {
     return bestOf;
@@ -171,7 +154,7 @@ public class CreateCompletionRequest {
    * @return echo
    */
   
-  @Schema(name = "echo", description = "Echo back the prompt in addition to the completion ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "echo", description = "Echo back the prompt in addition to the completion ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("echo")
   public JsonNullable<Boolean> getEcho() {
     return echo;
@@ -193,7 +176,7 @@ public class CreateCompletionRequest {
    * @return frequencyPenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("frequency_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getFrequencyPenalty() {
     return frequencyPenalty;
@@ -209,7 +192,7 @@ public class CreateCompletionRequest {
   }
 
   public CreateCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
-    if (this.logitBias == null || !this.logitBias.isPresent()) {
+    if (this.logitBias == null || !this.logitBias.isPresent() || this.logitBias.get() == null) {
       this.logitBias = JsonNullable.of(new HashMap<>());
     }
     this.logitBias.get().put(key, logitBiasItem);
@@ -221,7 +204,7 @@ public class CreateCompletionRequest {
    * @return logitBias
    */
   
-  @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.  As an example, you can pass `{\"50256\": -100}` to prevent the <|endoftext|> token from being generated. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("logit_bias")
   public JsonNullable<Map<String, Integer>> getLogitBias() {
     return logitBias;
@@ -243,7 +226,7 @@ public class CreateCompletionRequest {
    * @return logprobs
    */
   @Min(value = 0) @Max(value = 5) 
-  @Schema(name = "logprobs", description = "Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logprobs", description = "Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response.  The maximum value for `logprobs` is 5. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("logprobs")
   public JsonNullable<@Min(value = 0) @Max(value = 5) Integer> getLogprobs() {
     return logprobs;
@@ -264,7 +247,7 @@ public class CreateCompletionRequest {
    * @return maxTokens
    */
   @Min(value = 0) 
-  @Schema(name = "max_tokens", example = "16", description = "The maximum number of [tokens](/tokenizer) that can be generated in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_tokens", example = "16", description = "The maximum number of [tokens](/tokenizer) that can be generated in the completion.  The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("max_tokens")
   public JsonNullable<@Min(value = 0) Integer> getMaxTokens() {
     return maxTokens;
@@ -286,7 +269,7 @@ public class CreateCompletionRequest {
    * @return n
    */
   @Min(value = 1) @Max(value = 128) 
-  @Schema(name = "n", example = "1", description = "How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "n", example = "1", description = "How many completions to generate for each prompt.  **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("n")
   public JsonNullable<@Min(value = 1) @Max(value = 128) Integer> getN() {
     return n;
@@ -308,7 +291,7 @@ public class CreateCompletionRequest {
    * @return presencePenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.  [See more information about frequency and presence penalties.](/docs/guides/text-generation) ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("presence_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getPresencePenalty() {
     return presencePenalty;
@@ -330,7 +313,7 @@ public class CreateCompletionRequest {
    * @return seed
    */
   @Min(value = -9223372036854776000) @Max(value = 9223372036854776000) 
-  @Schema(name = "seed", description = "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "seed", description = "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.  Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("seed")
   public JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> getSeed() {
     return seed;
@@ -350,7 +333,7 @@ public class CreateCompletionRequest {
    * @return stop
    */
   @Valid 
-  @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stop")
   public JsonNullable<CreateCompletionRequestStop> getStop() {
     return stop;
@@ -370,7 +353,7 @@ public class CreateCompletionRequest {
    * @return stream
    */
   
-  @Schema(name = "stream", description = "Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream", description = "Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream")
   public JsonNullable<Boolean> getStream() {
     return stream;
@@ -390,7 +373,7 @@ public class CreateCompletionRequest {
    * @return streamOptions
    */
   @Valid 
-  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream_options")
   public JsonNullable<ChatCompletionStreamOptions> getStreamOptions() {
     return streamOptions;
@@ -410,7 +393,7 @@ public class CreateCompletionRequest {
    * @return suffix
    */
   
-  @Schema(name = "suffix", example = "test.", description = "The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "suffix", example = "test.", description = "The suffix that comes after a completion of inserted text.  This parameter is only supported for `gpt-3.5-turbo-instruct`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("suffix")
   public JsonNullable<String> getSuffix() {
     return suffix;
@@ -432,7 +415,7 @@ public class CreateCompletionRequest {
    * @return temperature
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
-  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.  We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("temperature")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
     return temperature;
@@ -454,7 +437,7 @@ public class CreateCompletionRequest {
    * @return topP
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
-  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("top_p")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
     return topP;

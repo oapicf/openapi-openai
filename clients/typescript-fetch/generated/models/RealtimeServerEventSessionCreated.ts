@@ -32,20 +32,14 @@ import {
 export interface RealtimeServerEventSessionCreated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventSessionCreated
      */
     eventId: string;
     /**
      * The event type, must be `session.created`.
-     * @type {RealtimeServerEventSessionCreatedTypeEnum}
-     * @memberof RealtimeServerEventSessionCreated
      */
     type: RealtimeServerEventSessionCreatedTypeEnum;
     /**
      * 
-     * @type {RealtimeSession}
-     * @memberof RealtimeServerEventSessionCreated
      */
     session: RealtimeSession;
 }
@@ -55,7 +49,7 @@ export interface RealtimeServerEventSessionCreated {
  * @export
  */
 export const RealtimeServerEventSessionCreatedTypeEnum = {
-    SessionCreated: 'session.created'
+    SessionCreated: 'session.created',
 } as const;
 export type RealtimeServerEventSessionCreatedTypeEnum = typeof RealtimeServerEventSessionCreatedTypeEnum[keyof typeof RealtimeServerEventSessionCreatedTypeEnum];
 

@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileIds.IsSet && fileIds.Value == null)
-                throw new ArgumentNullException(nameof(fileIds), "Property is not nullable for class CreateAssistantRequestToolResourcesCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class CreateAssistantRequestToolResourcesCodeInterpreter: file_ids.");
 
             return new CreateAssistantRequestToolResourcesCodeInterpreter(fileIds);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequestToolResourcesCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateAssistantRequestToolResourcesCodeInterpreter createAssistantRequestToolResourcesCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequestToolResourcesCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateAssistantRequestToolResourcesCodeInterpreter createAssistantRequestToolResourcesCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createAssistantRequestToolResourcesCodeInterpreter.FileIdsOption.IsSet && createAssistantRequestToolResourcesCodeInterpreter.FileIds == null)
-                throw new ArgumentNullException(nameof(createAssistantRequestToolResourcesCodeInterpreter.FileIds), "Property is required for class CreateAssistantRequestToolResourcesCodeInterpreter.");
+                throw new JsonException("Cannot write null property CreateAssistantRequestToolResourcesCodeInterpreter.FileIds to non-nullable JSON property 'file_ids'.");
 
             if (createAssistantRequestToolResourcesCodeInterpreter.FileIdsOption.IsSet)
             {

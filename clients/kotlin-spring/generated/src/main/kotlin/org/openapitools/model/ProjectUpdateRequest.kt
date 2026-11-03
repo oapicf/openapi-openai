@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProjectUpdateRequest(
 
     @Schema(required = true, description = "The updated name of the project, this name appears in reports.")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String
 ) {
 

@@ -38,13 +38,13 @@ import javax.json.bind.annotation.JsonbCreator;
 public class FineTuningJobHyperparameters  {
   
   @JsonbProperty("batch_size")
-  protected CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  protected CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   @JsonbProperty("learning_rate_multiplier")
-  protected CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  protected CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonbProperty("n_epochs")
-  protected CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  protected CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
 
   /**

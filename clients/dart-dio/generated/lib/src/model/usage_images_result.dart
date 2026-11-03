@@ -260,6 +260,7 @@ class _$UsageImagesResultSerializer implements PrimitiveSerializer<UsageImagesRe
   }
 }
 
+
 class UsageImagesResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.images.result')

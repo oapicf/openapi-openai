@@ -291,7 +291,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectServiceAccount.ObjectEnum?>(ProjectServiceAccount.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectServiceAccount.ObjectEnum? varObjectValue = ProjectServiceAccount.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectServiceAccount.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -302,7 +307,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ProjectServiceAccount.RoleEnum?>(ProjectServiceAccount.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ProjectServiceAccount.RoleEnum? roleValue = ProjectServiceAccount.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ProjectServiceAccount.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -314,34 +324,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccount.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectServiceAccount: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccount.", nameof(id));
+                throw new JsonException("Property is required for class ProjectServiceAccount: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccount.", nameof(name));
+                throw new JsonException("Property is required for class ProjectServiceAccount: name.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccount.", nameof(role));
+                throw new JsonException("Property is required for class ProjectServiceAccount: role.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccount.", nameof(createdAt));
+                throw new JsonException("Property is required for class ProjectServiceAccount: created_at.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectServiceAccount.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccount: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectServiceAccount.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccount: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ProjectServiceAccount.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccount: name.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ProjectServiceAccount.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccount: role.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class ProjectServiceAccount.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccount: created_at.");
 
             return new ProjectServiceAccount(varObject.Value!.Value!, id.Value!, name.Value!, role.Value!.Value!, createdAt.Value!.Value!);
         }
@@ -352,7 +362,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectServiceAccount projectServiceAccount, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -367,15 +376,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccount"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectServiceAccount projectServiceAccount, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectServiceAccount.Id == null)
-                throw new ArgumentNullException(nameof(projectServiceAccount.Id), "Property is required for class ProjectServiceAccount.");
-
-            if (projectServiceAccount.Name == null)
-                throw new ArgumentNullException(nameof(projectServiceAccount.Name), "Property is required for class ProjectServiceAccount.");
-
             var varObjectRawValue = ProjectServiceAccount.ObjectEnumToJsonValue(projectServiceAccount.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", projectServiceAccount.Id);

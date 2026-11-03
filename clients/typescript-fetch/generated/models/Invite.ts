@@ -29,56 +29,38 @@ import {
 export interface Invite {
     /**
      * The object type, which is always `organization.invite`
-     * @type {InviteObjectEnum}
-     * @memberof Invite
      */
     object: InviteObjectEnum;
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof Invite
      */
     id: string;
     /**
      * The email address of the individual to whom the invite was sent
-     * @type {string}
-     * @memberof Invite
      */
     email: string;
     /**
      * `owner` or `reader`
-     * @type {InviteRoleEnum}
-     * @memberof Invite
      */
     role: InviteRoleEnum;
     /**
      * `accepted`,`expired`, or `pending`
-     * @type {InviteStatusEnum}
-     * @memberof Invite
      */
     status: InviteStatusEnum;
     /**
      * The Unix timestamp (in seconds) of when the invite was sent.
-     * @type {number}
-     * @memberof Invite
      */
     invitedAt: number;
     /**
      * The Unix timestamp (in seconds) of when the invite expires.
-     * @type {number}
-     * @memberof Invite
      */
     expiresAt: number;
     /**
      * The Unix timestamp (in seconds) of when the invite was accepted.
-     * @type {number}
-     * @memberof Invite
      */
     acceptedAt?: number;
     /**
      * The projects that were granted membership upon acceptance of the invite.
-     * @type {Array<InviteProjectsInner>}
-     * @memberof Invite
      */
     projects?: Array<InviteProjectsInner>;
 }
@@ -88,7 +70,7 @@ export interface Invite {
  * @export
  */
 export const InviteObjectEnum = {
-    OrganizationInvite: 'organization.invite'
+    OrganizationInvite: 'organization.invite',
 } as const;
 export type InviteObjectEnum = typeof InviteObjectEnum[keyof typeof InviteObjectEnum];
 
@@ -97,7 +79,7 @@ export type InviteObjectEnum = typeof InviteObjectEnum[keyof typeof InviteObject
  */
 export const InviteRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 export type InviteRoleEnum = typeof InviteRoleEnum[keyof typeof InviteRoleEnum];
 
@@ -107,7 +89,7 @@ export type InviteRoleEnum = typeof InviteRoleEnum[keyof typeof InviteRoleEnum];
 export const InviteStatusEnum = {
     Accepted: 'accepted',
     Expired: 'expired',
-    Pending: 'pending'
+    Pending: 'pending',
 } as const;
 export type InviteStatusEnum = typeof InviteStatusEnum[keyof typeof InviteStatusEnum];
 

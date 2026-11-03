@@ -177,6 +177,7 @@ class _$ListFineTuningJobCheckpointsResponseSerializer implements PrimitiveSeria
   }
 }
 
+
 class ListFineTuningJobCheckpointsResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

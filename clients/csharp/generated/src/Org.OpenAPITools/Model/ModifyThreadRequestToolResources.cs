@@ -160,10 +160,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class ModifyThreadRequestToolResources.");
+                throw new JsonException("Property is not nullable for class ModifyThreadRequestToolResources: code_interpreter.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class ModifyThreadRequestToolResources.");
+                throw new JsonException("Property is not nullable for class ModifyThreadRequestToolResources: file_search.");
 
             return new ModifyThreadRequestToolResources(codeInterpreter, fileSearch);
         }
@@ -174,7 +174,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyThreadRequestToolResources modifyThreadRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,14 +188,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyThreadRequestToolResources modifyThreadRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modifyThreadRequestToolResources.CodeInterpreterOption.IsSet && modifyThreadRequestToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(modifyThreadRequestToolResources.CodeInterpreter), "Property is required for class ModifyThreadRequestToolResources.");
+                throw new JsonException("Cannot write null property ModifyThreadRequestToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (modifyThreadRequestToolResources.FileSearchOption.IsSet && modifyThreadRequestToolResources.FileSearch == null)
-                throw new ArgumentNullException(nameof(modifyThreadRequestToolResources.FileSearch), "Property is required for class ModifyThreadRequestToolResources.");
+                throw new JsonException("Cannot write null property ModifyThreadRequestToolResources.FileSearch to non-nullable JSON property 'file_search'.");
 
             if (modifyThreadRequestToolResources.CodeInterpreterOption.IsSet)
             {

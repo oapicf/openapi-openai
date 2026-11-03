@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface OtherChunkingStrategyResponseParam {
     /**
      * Always `other`.
-     * @type {OtherChunkingStrategyResponseParamTypeEnum}
-     * @memberof OtherChunkingStrategyResponseParam
      */
     type: OtherChunkingStrategyResponseParamTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface OtherChunkingStrategyResponseParam {
  * @export
  */
 export const OtherChunkingStrategyResponseParamTypeEnum = {
-    Other: 'other'
+    Other: 'other',
 } as const;
 export type OtherChunkingStrategyResponseParamTypeEnum = typeof OtherChunkingStrategyResponseParamTypeEnum[keyof typeof OtherChunkingStrategyResponseParamTypeEnum];
 

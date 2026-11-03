@@ -107,9 +107,10 @@ class _$ResponseFormatJsonObjectSerializer implements PrimitiveSerializer<Respon
   }
 }
 
+
+/// The type of response format being defined: `json_object`
 class ResponseFormatJsonObjectTypeEnum extends EnumClass {
 
-  /// The type of response format being defined: `json_object`
   @BuiltValueEnumConst(wireName: r'json_object')
   static const ResponseFormatJsonObjectTypeEnum jsonObject = _$responseFormatJsonObjectTypeEnum_jsonObject;
 

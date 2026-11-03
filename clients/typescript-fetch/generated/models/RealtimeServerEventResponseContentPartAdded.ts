@@ -31,44 +31,30 @@ import {
 export interface RealtimeServerEventResponseContentPartAdded {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     eventId: string;
     /**
      * The event type, must be `response.content_part.added`.
-     * @type {RealtimeServerEventResponseContentPartAddedTypeEnum}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     type: RealtimeServerEventResponseContentPartAddedTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     responseId: string;
     /**
      * The ID of the item to which the content part was added.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     contentIndex: number;
     /**
      * 
-     * @type {RealtimeServerEventResponseContentPartAddedPart}
-     * @memberof RealtimeServerEventResponseContentPartAdded
      */
     part: RealtimeServerEventResponseContentPartAddedPart;
 }
@@ -78,7 +64,7 @@ export interface RealtimeServerEventResponseContentPartAdded {
  * @export
  */
 export const RealtimeServerEventResponseContentPartAddedTypeEnum = {
-    ResponseContentPartAdded: 'response.content_part.added'
+    ResponseContentPartAdded: 'response.content_part.added',
 } as const;
 export type RealtimeServerEventResponseContentPartAddedTypeEnum = typeof RealtimeServerEventResponseContentPartAddedTypeEnum[keyof typeof RealtimeServerEventResponseContentPartAddedTypeEnum];
 

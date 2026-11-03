@@ -19,14 +19,14 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("TranscriptionSegment")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class TranscriptionSegment   {
   private Integer id;
   private Integer seek;
   private Float start;
   private Float end;
   private String text;
-  private @Valid List<Integer> tokens = new ArrayList<>();
+  private List<Integer> tokens = new ArrayList<>();
   private Float temperature;
   private Float avgLogprob;
   private Float compressionRatio;

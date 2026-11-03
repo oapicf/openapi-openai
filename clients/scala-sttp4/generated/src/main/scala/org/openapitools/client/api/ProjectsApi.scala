@@ -51,7 +51,7 @@ class ProjectsApi(baseUrl: String) {
    * 
    * @param projectId The ID of the project.
    */
-  def archiveProject(bearerToken: String)(projectId: String): Request[Either[ResponseException[String], Project]] =
+  def archiveProject(bearerToken: String)(projectId: String): sttp.client4.Request[Either[ResponseException[String], Project]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}/archive")
       .contentType("application/json")
@@ -67,7 +67,7 @@ class ProjectsApi(baseUrl: String) {
    * 
    * @param projectCreateRequest The project create request payload.
    */
-  def createProject(bearerToken: String)(projectCreateRequest: ProjectCreateRequest): Request[Either[ResponseException[String], Project]] =
+  def createProject(bearerToken: String)(projectCreateRequest: ProjectCreateRequest): sttp.client4.Request[Either[ResponseException[String], Project]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects")
       .contentType("application/json")
@@ -86,7 +86,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param projectServiceAccountCreateRequest The project service account create request payload.
    */
-  def createProjectServiceAccount(bearerToken: String)(projectId: String, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest): Request[Either[ResponseException[String], ProjectServiceAccountCreateResponse]] =
+  def createProjectServiceAccount(bearerToken: String)(projectId: String, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest): sttp.client4.Request[Either[ResponseException[String], ProjectServiceAccountCreateResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}/service_accounts")
       .contentType("application/json")
@@ -105,7 +105,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param projectUserCreateRequest The project user create request payload.
    */
-  def createProjectUser(bearerToken: String)(projectId: String, projectUserCreateRequest: ProjectUserCreateRequest): Request[Either[ResponseException[String], ProjectUser]] =
+  def createProjectUser(bearerToken: String)(projectId: String, projectUserCreateRequest: ProjectUserCreateRequest): sttp.client4.Request[Either[ResponseException[String], ProjectUser]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}/users")
       .contentType("application/json")
@@ -124,7 +124,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param keyId The ID of the API key.
    */
-  def deleteProjectApiKey(bearerToken: String)(projectId: String, keyId: String): Request[Either[ResponseException[String], ProjectApiKeyDeleteResponse]] =
+  def deleteProjectApiKey(bearerToken: String)(projectId: String, keyId: String): sttp.client4.Request[Either[ResponseException[String], ProjectApiKeyDeleteResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/projects/${projectId}/api_keys/${keyId}")
       .contentType("application/json")
@@ -141,7 +141,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param serviceAccountId The ID of the service account.
    */
-  def deleteProjectServiceAccount(bearerToken: String)(projectId: String, serviceAccountId: String): Request[Either[ResponseException[String], ProjectServiceAccountDeleteResponse]] =
+  def deleteProjectServiceAccount(bearerToken: String)(projectId: String, serviceAccountId: String): sttp.client4.Request[Either[ResponseException[String], ProjectServiceAccountDeleteResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/projects/${projectId}/service_accounts/${serviceAccountId}")
       .contentType("application/json")
@@ -159,7 +159,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param userId The ID of the user.
    */
-  def deleteProjectUser(bearerToken: String)(projectId: String, userId: String): Request[Either[ResponseException[String], ProjectUserDeleteResponse]] =
+  def deleteProjectUser(bearerToken: String)(projectId: String, userId: String): sttp.client4.Request[Either[ResponseException[String], ProjectUserDeleteResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/projects/${projectId}/users/${userId}")
       .contentType("application/json")
@@ -177,7 +177,7 @@ class ProjectsApi(baseUrl: String) {
    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listProjectApiKeys(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): Request[Either[ResponseException[String], ProjectApiKeyListResponse]] =
+  def listProjectApiKeys(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ProjectApiKeyListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/api_keys?limit=${ limit }&after=${ after }")
       .contentType("application/json")
@@ -196,7 +196,7 @@ class ProjectsApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    */
-  def listProjectRateLimits(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None, before: Option[String] = None): Request[Either[ResponseException[String], ProjectRateLimitListResponse]] =
+  def listProjectRateLimits(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None, before: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ProjectRateLimitListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/rate_limits?limit=${ limit }&after=${ after }&before=${ before }")
       .contentType("application/json")
@@ -215,7 +215,7 @@ class ProjectsApi(baseUrl: String) {
    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listProjectServiceAccounts(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): Request[Either[ResponseException[String], ProjectServiceAccountListResponse]] =
+  def listProjectServiceAccounts(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ProjectServiceAccountListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/service_accounts?limit=${ limit }&after=${ after }")
       .contentType("application/json")
@@ -234,7 +234,7 @@ class ProjectsApi(baseUrl: String) {
    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listProjectUsers(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): Request[Either[ResponseException[String], ProjectUserListResponse]] =
+  def listProjectUsers(bearerToken: String)(projectId: String, limit: Option[Int] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ProjectUserListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/users?limit=${ limit }&after=${ after }")
       .contentType("application/json")
@@ -252,7 +252,7 @@ class ProjectsApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param includeArchived If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.
    */
-  def listProjects(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None, includeArchived: Option[Boolean] = None): Request[Either[ResponseException[String], ProjectListResponse]] =
+  def listProjects(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None, includeArchived: Option[Boolean] = None): sttp.client4.Request[Either[ResponseException[String], ProjectListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects?limit=${ limit }&after=${ after }&include_archived=${ includeArchived }")
       .contentType("application/json")
@@ -270,7 +270,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param projectUpdateRequest The project update request payload.
    */
-  def modifyProject(bearerToken: String)(projectId: String, projectUpdateRequest: ProjectUpdateRequest): Request[Either[ResponseException[String], Project]] =
+  def modifyProject(bearerToken: String)(projectId: String, projectUpdateRequest: ProjectUpdateRequest): sttp.client4.Request[Either[ResponseException[String], Project]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}")
       .contentType("application/json")
@@ -290,7 +290,7 @@ class ProjectsApi(baseUrl: String) {
    * @param userId The ID of the user.
    * @param projectUserUpdateRequest The project user update request payload.
    */
-  def modifyProjectUser(bearerToken: String)(projectId: String, userId: String, projectUserUpdateRequest: ProjectUserUpdateRequest): Request[Either[ResponseException[String], ProjectUser]] =
+  def modifyProjectUser(bearerToken: String)(projectId: String, userId: String, projectUserUpdateRequest: ProjectUserUpdateRequest): sttp.client4.Request[Either[ResponseException[String], ProjectUser]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}/users/${userId}")
       .contentType("application/json")
@@ -307,7 +307,7 @@ class ProjectsApi(baseUrl: String) {
    * 
    * @param projectId The ID of the project.
    */
-  def retrieveProject(bearerToken: String)(projectId: String): Request[Either[ResponseException[String], Project]] =
+  def retrieveProject(bearerToken: String)(projectId: String): sttp.client4.Request[Either[ResponseException[String], Project]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}")
       .contentType("application/json")
@@ -324,7 +324,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param keyId The ID of the API key.
    */
-  def retrieveProjectApiKey(bearerToken: String)(projectId: String, keyId: String): Request[Either[ResponseException[String], ProjectApiKey]] =
+  def retrieveProjectApiKey(bearerToken: String)(projectId: String, keyId: String): sttp.client4.Request[Either[ResponseException[String], ProjectApiKey]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/api_keys/${keyId}")
       .contentType("application/json")
@@ -341,7 +341,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param serviceAccountId The ID of the service account.
    */
-  def retrieveProjectServiceAccount(bearerToken: String)(projectId: String, serviceAccountId: String): Request[Either[ResponseException[String], ProjectServiceAccount]] =
+  def retrieveProjectServiceAccount(bearerToken: String)(projectId: String, serviceAccountId: String): sttp.client4.Request[Either[ResponseException[String], ProjectServiceAccount]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/service_accounts/${serviceAccountId}")
       .contentType("application/json")
@@ -358,7 +358,7 @@ class ProjectsApi(baseUrl: String) {
    * @param projectId The ID of the project.
    * @param userId The ID of the user.
    */
-  def retrieveProjectUser(bearerToken: String)(projectId: String, userId: String): Request[Either[ResponseException[String], ProjectUser]] =
+  def retrieveProjectUser(bearerToken: String)(projectId: String, userId: String): sttp.client4.Request[Either[ResponseException[String], ProjectUser]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/projects/${projectId}/users/${userId}")
       .contentType("application/json")
@@ -377,7 +377,7 @@ class ProjectsApi(baseUrl: String) {
    * @param rateLimitId The ID of the rate limit.
    * @param projectRateLimitUpdateRequest The project rate limit update request payload.
    */
-  def updateProjectRateLimits(bearerToken: String)(projectId: String, rateLimitId: String, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest): Request[Either[ResponseException[String], ProjectRateLimit]] =
+  def updateProjectRateLimits(bearerToken: String)(projectId: String, rateLimitId: String, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest): sttp.client4.Request[Either[ResponseException[String], ProjectRateLimit]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/projects/${projectId}/rate_limits/${rateLimitId}")
       .contentType("application/json")

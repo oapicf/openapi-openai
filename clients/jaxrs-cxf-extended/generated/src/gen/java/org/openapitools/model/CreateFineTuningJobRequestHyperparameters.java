@@ -21,15 +21,15 @@ public class CreateFineTuningJobRequestHyperparameters  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @ApiModelProperty(value = "")
   @Valid
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
  /**
   * Get batchSize
   * @return batchSize

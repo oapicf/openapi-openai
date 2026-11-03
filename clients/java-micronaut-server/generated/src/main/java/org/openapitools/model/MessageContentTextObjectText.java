@@ -35,16 +35,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
   MessageContentTextObjectText.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("MessageContentTextObject_text")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class MessageContentTextObjectText {
     public static final String JSON_PROPERTY_VALUE = "value";
     private String value;
 
     public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-    private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+    private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
-    public MessageContentTextObjectText(String value, List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+    public MessageContentTextObjectText(String value, List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
         this.value = value;
         this.annotations = annotations;
     }
@@ -72,7 +72,7 @@ public class MessageContentTextObjectText {
         this.value = value;
     }
 
-    public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+    public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
         this.annotations = annotations;
         return this;
     }
@@ -90,13 +90,13 @@ public class MessageContentTextObjectText {
     @Schema(name = "annotations", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+    public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
         return annotations;
     }
 
     @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+    public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
         this.annotations = annotations;
     }
 

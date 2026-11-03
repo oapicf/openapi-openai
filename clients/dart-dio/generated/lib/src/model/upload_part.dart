@@ -158,9 +158,10 @@ class _$UploadPartSerializer implements PrimitiveSerializer<UploadPart> {
   }
 }
 
+
+/// The object type, which is always `upload.part`.
 class UploadPartObjectEnum extends EnumClass {
 
-  /// The object type, which is always `upload.part`.
   @BuiltValueEnumConst(wireName: r'upload.part')
   static const UploadPartObjectEnum uploadPeriodPart = _$uploadPartObjectEnum_uploadPeriodPart;
 

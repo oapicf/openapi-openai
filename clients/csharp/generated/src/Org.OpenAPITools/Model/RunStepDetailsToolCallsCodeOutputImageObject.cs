@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDetailsToolCallsCodeOutputImageObject.TypeEnum?>(RunStepDetailsToolCallsCodeOutputImageObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDetailsToolCallsCodeOutputImageObject.TypeEnum? typeValue = RunStepDetailsToolCallsCodeOutputImageObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDetailsToolCallsCodeOutputImageObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "image":
                             image = new Option<RunStepDetailsToolCallsCodeOutputImageObjectImage?>(JsonSerializer.Deserialize<RunStepDetailsToolCallsCodeOutputImageObjectImage>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObject: type.");
 
             if (!image.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObject.", nameof(image));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObject: image.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObject: type.");
 
             if (image.IsSet && image.Value == null)
-                throw new ArgumentNullException(nameof(image), "Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObject: image.");
 
             return new RunStepDetailsToolCallsCodeOutputImageObject(type.Value!.Value!, image.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeOutputImageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeOutputImageObject runStepDetailsToolCallsCodeOutputImageObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeOutputImageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeOutputImageObject runStepDetailsToolCallsCodeOutputImageObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsCodeOutputImageObject.Image == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsCodeOutputImageObject.Image), "Property is required for class RunStepDetailsToolCallsCodeOutputImageObject.");
-
             var typeRawValue = RunStepDetailsToolCallsCodeOutputImageObject.TypeEnumToJsonValue(runStepDetailsToolCallsCodeOutputImageObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("image");

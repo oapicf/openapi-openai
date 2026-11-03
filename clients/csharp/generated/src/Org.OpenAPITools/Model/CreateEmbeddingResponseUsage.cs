@@ -148,16 +148,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!promptTokens.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponseUsage.", nameof(promptTokens));
+                throw new JsonException("Property is required for class CreateEmbeddingResponseUsage: prompt_tokens.");
 
             if (!totalTokens.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingResponseUsage.", nameof(totalTokens));
+                throw new JsonException("Property is required for class CreateEmbeddingResponseUsage: total_tokens.");
 
             if (promptTokens.IsSet && promptTokens.Value == null)
-                throw new ArgumentNullException(nameof(promptTokens), "Property is not nullable for class CreateEmbeddingResponseUsage.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponseUsage: prompt_tokens.");
 
             if (totalTokens.IsSet && totalTokens.Value == null)
-                throw new ArgumentNullException(nameof(totalTokens), "Property is not nullable for class CreateEmbeddingResponseUsage.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingResponseUsage: total_tokens.");
 
             return new CreateEmbeddingResponseUsage(promptTokens.Value!.Value!, totalTokens.Value!.Value!);
         }
@@ -168,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingResponseUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateEmbeddingResponseUsage createEmbeddingResponseUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,7 +182,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingResponseUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateEmbeddingResponseUsage createEmbeddingResponseUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("prompt_tokens", createEmbeddingResponseUsage.PromptTokens);

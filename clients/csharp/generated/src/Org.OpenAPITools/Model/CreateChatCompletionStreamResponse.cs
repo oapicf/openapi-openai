@@ -360,11 +360,24 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<CreateChatCompletionStreamResponse.ObjectEnum?>(CreateChatCompletionStreamResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                CreateChatCompletionStreamResponse.ObjectEnum? varObjectValue = CreateChatCompletionStreamResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<CreateChatCompletionStreamResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "service_tier":
                             string? serviceTierRawValue = utf8JsonReader.GetString();
-                            serviceTier = new Option<CreateChatCompletionStreamResponse.ServiceTierEnum?>(serviceTierRawValue == null ? null : CreateChatCompletionStreamResponse.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
+                            if (serviceTierRawValue == null)
+                                serviceTier = new Option<CreateChatCompletionStreamResponse.ServiceTierEnum?>(null);
+                            else
+                            {
+                                CreateChatCompletionStreamResponse.ServiceTierEnum? serviceTierValue = CreateChatCompletionStreamResponse.ServiceTierEnumFromStringOrDefault(serviceTierRawValue);
+                                if (serviceTierValue == null)
+                                    throw new JsonException();
+                                serviceTier = new Option<CreateChatCompletionStreamResponse.ServiceTierEnum?>(serviceTierValue);
+                            }
                             break;
                         case "system_fingerprint":
                             systemFingerprint = new Option<string?>(utf8JsonReader.GetString()!);
@@ -379,37 +392,37 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponse.", nameof(id));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponse: id.");
 
             if (!choices.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponse.", nameof(choices));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponse: choices.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponse.", nameof(created));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponse: created.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponse.", nameof(model));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponse: model.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: id.");
 
             if (choices.IsSet && choices.Value == null)
-                throw new ArgumentNullException(nameof(choices), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: choices.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: created.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: model.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: object.");
 
             if (systemFingerprint.IsSet && systemFingerprint.Value == null)
-                throw new ArgumentNullException(nameof(systemFingerprint), "Property is not nullable for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponse: system_fingerprint.");
 
             return new CreateChatCompletionStreamResponse(id.Value!, choices.Value!, created.Value!.Value!, model.Value!, varObject.Value!.Value!, serviceTier, systemFingerprint, usage);
         }
@@ -420,7 +433,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionStreamResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionStreamResponse createChatCompletionStreamResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -435,20 +447,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionStreamResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionStreamResponse createChatCompletionStreamResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createChatCompletionStreamResponse.Id == null)
-                throw new ArgumentNullException(nameof(createChatCompletionStreamResponse.Id), "Property is required for class CreateChatCompletionStreamResponse.");
-
-            if (createChatCompletionStreamResponse.Choices == null)
-                throw new ArgumentNullException(nameof(createChatCompletionStreamResponse.Choices), "Property is required for class CreateChatCompletionStreamResponse.");
-
-            if (createChatCompletionStreamResponse.Model == null)
-                throw new ArgumentNullException(nameof(createChatCompletionStreamResponse.Model), "Property is required for class CreateChatCompletionStreamResponse.");
-
             if (createChatCompletionStreamResponse.SystemFingerprintOption.IsSet && createChatCompletionStreamResponse.SystemFingerprint == null)
-                throw new ArgumentNullException(nameof(createChatCompletionStreamResponse.SystemFingerprint), "Property is required for class CreateChatCompletionStreamResponse.");
+                throw new JsonException("Cannot write null property CreateChatCompletionStreamResponse.SystemFingerprint to non-nullable JSON property 'system_fingerprint'.");
 
             writer.WriteString("id", createChatCompletionStreamResponse.Id);
 

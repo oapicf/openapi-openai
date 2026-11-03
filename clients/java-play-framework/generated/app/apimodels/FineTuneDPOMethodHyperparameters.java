@@ -14,28 +14,28 @@ import javax.validation.Valid;
 /**
  * The hyperparameters used for the fine-tuning job.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FineTuneDPOMethodHyperparameters   {
   @JsonProperty("beta")
   @Valid
 
-  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
 
   @JsonProperty("batch_size")
   @Valid
 
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   @JsonProperty("learning_rate_multiplier")
   @Valid
 
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonProperty("n_epochs")
   @Valid
 
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   public FineTuneDPOMethodHyperparameters beta(FineTuneDPOMethodHyperparametersBeta beta) {
     this.beta = beta;

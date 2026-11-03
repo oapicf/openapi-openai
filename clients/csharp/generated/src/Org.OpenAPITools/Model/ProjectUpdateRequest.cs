@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUpdateRequest.", nameof(name));
+                throw new JsonException("Property is required for class ProjectUpdateRequest: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ProjectUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectUpdateRequest: name.");
 
             return new ProjectUpdateRequest(name.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectUpdateRequest projectUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectUpdateRequest projectUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectUpdateRequest.Name == null)
-                throw new ArgumentNullException(nameof(projectUpdateRequest.Name), "Property is required for class ProjectUpdateRequest.");
-
             writer.WriteString("name", projectUpdateRequest.Name);
         }
     }

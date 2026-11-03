@@ -148,16 +148,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!input.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.", nameof(input));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter: input.");
 
             if (!outputs.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.", nameof(outputs));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter: outputs.");
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsCodeObjectCodeInterpreter: input.");
 
             if (outputs.IsSet && outputs.Value == null)
-                throw new ArgumentNullException(nameof(outputs), "Property is not nullable for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsCodeObjectCodeInterpreter: outputs.");
 
             return new RunStepDetailsToolCallsCodeObjectCodeInterpreter(input.Value!, outputs.Value!);
         }
@@ -168,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeObjectCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeObjectCodeInterpreter runStepDetailsToolCallsCodeObjectCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,15 +182,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeObjectCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeObjectCodeInterpreter runStepDetailsToolCallsCodeObjectCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsCodeObjectCodeInterpreter.Input == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsCodeObjectCodeInterpreter.Input), "Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.");
-
-            if (runStepDetailsToolCallsCodeObjectCodeInterpreter.Outputs == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsCodeObjectCodeInterpreter.Outputs), "Property is required for class RunStepDetailsToolCallsCodeObjectCodeInterpreter.");
-
             writer.WriteString("input", runStepDetailsToolCallsCodeObjectCodeInterpreter.Input);
 
             writer.WritePropertyName("outputs");

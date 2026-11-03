@@ -23,20 +23,14 @@ import { mapValues } from '../runtime';
 export interface CreateChatCompletionStreamResponseUsage {
     /**
      * Number of tokens in the generated completion.
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseUsage
      */
     completionTokens: number;
     /**
      * Number of tokens in the prompt.
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseUsage
      */
     promptTokens: number;
     /**
      * Total number of tokens used in the request (prompt + completion).
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseUsage
      */
     totalTokens: number;
 }

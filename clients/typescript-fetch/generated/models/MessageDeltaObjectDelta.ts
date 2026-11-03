@@ -29,14 +29,10 @@ import {
 export interface MessageDeltaObjectDelta {
     /**
      * The entity that produced the message. One of `user` or `assistant`.
-     * @type {MessageDeltaObjectDeltaRoleEnum}
-     * @memberof MessageDeltaObjectDelta
      */
     role?: MessageDeltaObjectDeltaRoleEnum;
     /**
      * The content of the message in array of text and/or images.
-     * @type {Array<MessageDeltaObjectDeltaContentInner>}
-     * @memberof MessageDeltaObjectDelta
      */
     content?: Array<MessageDeltaObjectDeltaContentInner>;
 }
@@ -47,7 +43,7 @@ export interface MessageDeltaObjectDelta {
  */
 export const MessageDeltaObjectDeltaRoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
 } as const;
 export type MessageDeltaObjectDeltaRoleEnum = typeof MessageDeltaObjectDeltaRoleEnum[keyof typeof MessageDeltaObjectDeltaRoleEnum];
 

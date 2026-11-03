@@ -139,3 +139,4 @@ class _$TranscriptionWordSerializer implements PrimitiveSerializer<Transcription
   }
 }
 
+

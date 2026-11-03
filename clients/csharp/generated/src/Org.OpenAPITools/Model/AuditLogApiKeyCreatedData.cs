@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (scopes.IsSet && scopes.Value == null)
-                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class AuditLogApiKeyCreatedData.");
+                throw new JsonException("Property is not nullable for class AuditLogApiKeyCreatedData: scopes.");
 
             return new AuditLogApiKeyCreatedData(scopes);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogApiKeyCreatedData auditLogApiKeyCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogApiKeyCreatedData auditLogApiKeyCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogApiKeyCreatedData.ScopesOption.IsSet && auditLogApiKeyCreatedData.Scopes == null)
-                throw new ArgumentNullException(nameof(auditLogApiKeyCreatedData.Scopes), "Property is required for class AuditLogApiKeyCreatedData.");
+                throw new JsonException("Cannot write null property AuditLogApiKeyCreatedData.Scopes to non-nullable JSON property 'scopes'.");
 
             if (auditLogApiKeyCreatedData.ScopesOption.IsSet)
             {

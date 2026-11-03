@@ -204,16 +204,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (gt.IsSet && gt.Value == null)
-                throw new ArgumentNullException(nameof(gt), "Property is not nullable for class ListAuditLogsEffectiveAtParameter.");
+                throw new JsonException("Property is not nullable for class ListAuditLogsEffectiveAtParameter: gt.");
 
             if (gte.IsSet && gte.Value == null)
-                throw new ArgumentNullException(nameof(gte), "Property is not nullable for class ListAuditLogsEffectiveAtParameter.");
+                throw new JsonException("Property is not nullable for class ListAuditLogsEffectiveAtParameter: gte.");
 
             if (lt.IsSet && lt.Value == null)
-                throw new ArgumentNullException(nameof(lt), "Property is not nullable for class ListAuditLogsEffectiveAtParameter.");
+                throw new JsonException("Property is not nullable for class ListAuditLogsEffectiveAtParameter: lt.");
 
             if (lte.IsSet && lte.Value == null)
-                throw new ArgumentNullException(nameof(lte), "Property is not nullable for class ListAuditLogsEffectiveAtParameter.");
+                throw new JsonException("Property is not nullable for class ListAuditLogsEffectiveAtParameter: lte.");
 
             return new ListAuditLogsEffectiveAtParameter(gt, gte, lt, lte);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listAuditLogsEffectiveAtParameter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListAuditLogsEffectiveAtParameter listAuditLogsEffectiveAtParameter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,9 +238,20 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listAuditLogsEffectiveAtParameter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListAuditLogsEffectiveAtParameter listAuditLogsEffectiveAtParameter, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (listAuditLogsEffectiveAtParameter.GtOption.IsSet && listAuditLogsEffectiveAtParameter.Gt == null)
+                throw new JsonException("Cannot write null property ListAuditLogsEffectiveAtParameter.Gt to non-nullable JSON property 'gt'.");
+
+            if (listAuditLogsEffectiveAtParameter.GteOption.IsSet && listAuditLogsEffectiveAtParameter.Gte == null)
+                throw new JsonException("Cannot write null property ListAuditLogsEffectiveAtParameter.Gte to non-nullable JSON property 'gte'.");
+
+            if (listAuditLogsEffectiveAtParameter.LtOption.IsSet && listAuditLogsEffectiveAtParameter.Lt == null)
+                throw new JsonException("Cannot write null property ListAuditLogsEffectiveAtParameter.Lt to non-nullable JSON property 'lt'.");
+
+            if (listAuditLogsEffectiveAtParameter.LteOption.IsSet && listAuditLogsEffectiveAtParameter.Lte == null)
+                throw new JsonException("Cannot write null property ListAuditLogsEffectiveAtParameter.Lte to non-nullable JSON property 'lte'.");
+
             if (listAuditLogsEffectiveAtParameter.GtOption.IsSet)
                 writer.WriteNumber("gt", listAuditLogsEffectiveAtParameter.GtOption.Value!.Value);
 

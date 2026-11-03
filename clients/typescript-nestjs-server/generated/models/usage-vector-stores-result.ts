@@ -16,7 +16,7 @@ export interface UsageVectorStoresResult {
 }
 export namespace UsageVectorStoresResult {
   export const ObjectEnum = {
-    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result'
+    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

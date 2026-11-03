@@ -18,13 +18,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Fine-tuning job event object
- * @param &#x60;object&#x60; The object type, which is always \"fine_tuning.job.event\".
+ * @param `object` The object type, which is always \"fine_tuning.job.event\".
  * @param id The object identifier.
  * @param createdAt The Unix timestamp (in seconds) for when the fine-tuning job was created.
  * @param level The log level of the event.
  * @param message The message of the event.
  * @param type The type of event.
- * @param &#x60;data&#x60; The data associated with the event.
+ * @param `data` The data associated with the event.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

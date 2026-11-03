@@ -24,23 +24,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class VectorStoreObjectFileCounts(
 
     @Schema(required = true, description = "The number of files that are currently being processed.")
-    @param:JsonProperty("in_progress")
+    @param:JsonProperty("in_progress", required = true)
     @get:JsonProperty("in_progress", required = true) val inProgress: kotlin.Int,
 
     @Schema(required = true, description = "The number of files that have been successfully processed.")
-    @param:JsonProperty("completed")
+    @param:JsonProperty("completed", required = true)
     @get:JsonProperty("completed", required = true) val completed: kotlin.Int,
 
     @Schema(required = true, description = "The number of files that have failed to process.")
-    @param:JsonProperty("failed")
+    @param:JsonProperty("failed", required = true)
     @get:JsonProperty("failed", required = true) val failed: kotlin.Int,
 
     @Schema(required = true, description = "The number of files that were cancelled.")
-    @param:JsonProperty("cancelled")
+    @param:JsonProperty("cancelled", required = true)
     @get:JsonProperty("cancelled", required = true) val cancelled: kotlin.Int,
 
     @Schema(required = true, description = "The total number of files.")
-    @param:JsonProperty("total")
+    @param:JsonProperty("total", required = true)
     @get:JsonProperty("total", required = true) val total: kotlin.Int
 ) {
 

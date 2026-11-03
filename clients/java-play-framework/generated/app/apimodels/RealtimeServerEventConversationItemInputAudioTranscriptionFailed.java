@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * Returned when input audio transcription is configured, and a transcription  request for a user message failed. These events are separate from other  &#x60;error&#x60; events so that the client can identify the related Item. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RealtimeServerEventConversationItemInputAudioTranscriptionFailed   {
   @JsonProperty("event_id")

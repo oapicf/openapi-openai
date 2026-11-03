@@ -21,7 +21,7 @@ object CreateFineTuningJobRequestIntegrationsInnerEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Wandb extends `Type`
+    case object Wandb extends `Type` { override def toString: String = "wandb" }
 
     import org.json4s._
 

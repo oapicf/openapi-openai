@@ -13,23 +13,23 @@ import javax.validation.Valid;
 /**
  * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FineTuningJobHyperparameters   {
   @JsonProperty("batch_size")
   @Valid
 
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   @JsonProperty("learning_rate_multiplier")
   @Valid
 
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonProperty("n_epochs")
   @Valid
 
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   public FineTuningJobHyperparameters batchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;

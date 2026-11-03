@@ -188,7 +188,9 @@ class RealtimeResponseCreateParams {
         outputAudioFormat: RealtimeResponseCreateParamsOutputAudioFormatEnum.fromJson(json[r'output_audio_format']),
         tools: RealtimeResponseCreateParamsToolsInner.listFromJson(json[r'tools']),
         toolChoice: mapValueOfType<String>(json, r'tool_choice'),
-        temperature: num.parse('${json[r'temperature']}'),
+        temperature: json[r'temperature'] == null
+            ? null
+            : num.parse('${json[r'temperature']}'),
         maxResponseOutputTokens: RealtimeResponseCreateParamsMaxResponseOutputTokens.fromJson(json[r'max_response_output_tokens']),
         conversation: RealtimeResponseCreateParamsConversation.fromJson(json[r'conversation']),
         metadata: mapValueOfType<Object>(json, r'metadata'),

@@ -21,7 +21,7 @@ object StaticChunkingStrategyRequestParamEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Static extends `Type`
+    case object Static extends `Type` { override def toString: String = "static" }
 
     import org.json4s._
 

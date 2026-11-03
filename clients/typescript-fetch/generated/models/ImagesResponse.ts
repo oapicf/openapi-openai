@@ -29,14 +29,10 @@ import {
 export interface ImagesResponse {
     /**
      * 
-     * @type {number}
-     * @memberof ImagesResponse
      */
     created: number;
     /**
      * 
-     * @type {Array<Image>}
-     * @memberof ImagesResponse
      */
     data: Array<Image>;
 }

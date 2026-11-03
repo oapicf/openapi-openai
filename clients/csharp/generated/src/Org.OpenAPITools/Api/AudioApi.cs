@@ -507,11 +507,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public System.IO.Stream? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                System.IO.Stream? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private System.IO.Stream? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? ContentStream
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref System.IO.Stream? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -846,11 +858,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.CreateTranscription200Response? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.CreateTranscription200Response? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.CreateTranscription200Response? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.CreateTranscription200Response>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.CreateTranscription200Response? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
@@ -1159,11 +1183,23 @@ namespace Org.OpenAPITools.Api
             /// <returns></returns>
             public Org.OpenAPITools.Model.CreateTranslation200Response? Ok()
             {
-                // This logic may be modified with the AsModel.mustache template
+                bool suppressDefault = false;
+                Org.OpenAPITools.Model.CreateTranslation200Response? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Org.OpenAPITools.Model.CreateTranslation200Response? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
                     ? System.Text.Json.JsonSerializer.Deserialize<Org.OpenAPITools.Model.CreateTranslation200Response>(RawContent, _jsonSerializerOptions)
                     : null;
             }
+
+            partial void OnOk(ref bool suppressDefault, ref Org.OpenAPITools.Model.CreateTranslation200Response? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents a project rate limit config.
- * @param &#x60;object&#x60; The object type, which is always `project.rate_limit`
+ * @param `object` The object type, which is always `project.rate_limit`
  * @param id The identifier, which can be referenced in API endpoints.
  * @param model The model this rate limit applies to.
  * @param maxRequestsPer1Minute The maximum requests per minute.

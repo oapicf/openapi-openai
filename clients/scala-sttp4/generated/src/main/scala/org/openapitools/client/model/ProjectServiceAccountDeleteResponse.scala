@@ -21,7 +21,7 @@ object ProjectServiceAccountDeleteResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationProjectServiceAccountDeleted extends `Object`
+    case object OrganizationProjectServiceAccountDeleted extends `Object` { override def toString: String = "organization.project.service_account.deleted" }
 
     import org.json4s._
 

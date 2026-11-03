@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -29,7 +28,7 @@ import jakarta.annotation.Generated;
  * CreateCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionRequest {
 
   private CreateCompletionRequestModel model;
@@ -42,7 +41,6 @@ public class CreateCompletionRequest {
 
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
   private JsonNullable<@Min(value = 0) @Max(value = 5) Integer> logprobs = JsonNullable.<Integer>undefined();
@@ -110,7 +108,7 @@ public class CreateCompletionRequest {
    * Get prompt
    * @return prompt
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "prompt", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("prompt")
   public JsonNullable<CreateCompletionRequestPrompt> getPrompt() {

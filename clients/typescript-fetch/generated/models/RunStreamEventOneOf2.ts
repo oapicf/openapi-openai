@@ -29,14 +29,10 @@ import {
 export interface RunStreamEventOneOf2 {
     /**
      * 
-     * @type {RunStreamEventOneOf2EventEnum}
-     * @memberof RunStreamEventOneOf2
      */
     event: RunStreamEventOneOf2EventEnum;
     /**
      * 
-     * @type {RunObject}
-     * @memberof RunStreamEventOneOf2
      */
     data: RunObject;
 }
@@ -46,7 +42,7 @@ export interface RunStreamEventOneOf2 {
  * @export
  */
 export const RunStreamEventOneOf2EventEnum = {
-    ThreadRunInProgress: 'thread.run.in_progress'
+    ThreadRunInProgress: 'thread.run.in_progress',
 } as const;
 export type RunStreamEventOneOf2EventEnum = typeof RunStreamEventOneOf2EventEnum[keyof typeof RunStreamEventOneOf2EventEnum];
 

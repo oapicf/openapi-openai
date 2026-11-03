@@ -46,7 +46,7 @@ import javax.validation.Valid;
   CreateModerationResponseResultsInnerCategoryAppliedInputTypes.JSON_PROPERTY_VIOLENCE,
   CreateModerationResponseResultsInnerCategoryAppliedInputTypes.JSON_PROPERTY_VIOLENCE_GRAPHIC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
   /**
    * Gets or Sets hate

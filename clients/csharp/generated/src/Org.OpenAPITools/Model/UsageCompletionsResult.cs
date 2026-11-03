@@ -355,7 +355,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageCompletionsResult.ObjectEnum?>(UsageCompletionsResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageCompletionsResult.ObjectEnum? varObjectValue = UsageCompletionsResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageCompletionsResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "input_tokens":
                             inputTokens = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -397,37 +402,37 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageCompletionsResult.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageCompletionsResult: object.");
 
             if (!inputTokens.IsSet)
-                throw new ArgumentException("Property is required for class UsageCompletionsResult.", nameof(inputTokens));
+                throw new JsonException("Property is required for class UsageCompletionsResult: input_tokens.");
 
             if (!outputTokens.IsSet)
-                throw new ArgumentException("Property is required for class UsageCompletionsResult.", nameof(outputTokens));
+                throw new JsonException("Property is required for class UsageCompletionsResult: output_tokens.");
 
             if (!numModelRequests.IsSet)
-                throw new ArgumentException("Property is required for class UsageCompletionsResult.", nameof(numModelRequests));
+                throw new JsonException("Property is required for class UsageCompletionsResult: num_model_requests.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: object.");
 
             if (inputTokens.IsSet && inputTokens.Value == null)
-                throw new ArgumentNullException(nameof(inputTokens), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: input_tokens.");
 
             if (outputTokens.IsSet && outputTokens.Value == null)
-                throw new ArgumentNullException(nameof(outputTokens), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: output_tokens.");
 
             if (numModelRequests.IsSet && numModelRequests.Value == null)
-                throw new ArgumentNullException(nameof(numModelRequests), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: num_model_requests.");
 
             if (inputCachedTokens.IsSet && inputCachedTokens.Value == null)
-                throw new ArgumentNullException(nameof(inputCachedTokens), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: input_cached_tokens.");
 
             if (inputAudioTokens.IsSet && inputAudioTokens.Value == null)
-                throw new ArgumentNullException(nameof(inputAudioTokens), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: input_audio_tokens.");
 
             if (outputAudioTokens.IsSet && outputAudioTokens.Value == null)
-                throw new ArgumentNullException(nameof(outputAudioTokens), "Property is not nullable for class UsageCompletionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCompletionsResult: output_audio_tokens.");
 
             return new UsageCompletionsResult(varObject.Value!.Value!, inputTokens.Value!.Value!, outputTokens.Value!.Value!, numModelRequests.Value!.Value!, inputCachedTokens, inputAudioTokens, outputAudioTokens, projectId, userId, apiKeyId, model, batch);
         }
@@ -438,7 +443,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageCompletionsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageCompletionsResult usageCompletionsResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -453,9 +457,17 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageCompletionsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageCompletionsResult usageCompletionsResult, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (usageCompletionsResult.InputCachedTokensOption.IsSet && usageCompletionsResult.InputCachedTokens == null)
+                throw new JsonException("Cannot write null property UsageCompletionsResult.InputCachedTokens to non-nullable JSON property 'input_cached_tokens'.");
+
+            if (usageCompletionsResult.InputAudioTokensOption.IsSet && usageCompletionsResult.InputAudioTokens == null)
+                throw new JsonException("Cannot write null property UsageCompletionsResult.InputAudioTokens to non-nullable JSON property 'input_audio_tokens'.");
+
+            if (usageCompletionsResult.OutputAudioTokensOption.IsSet && usageCompletionsResult.OutputAudioTokens == null)
+                throw new JsonException("Cannot write null property UsageCompletionsResult.OutputAudioTokens to non-nullable JSON property 'output_audio_tokens'.");
+
             var varObjectRawValue = UsageCompletionsResult.ObjectEnumToJsonValue(usageCompletionsResult.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteNumber("input_tokens", usageCompletionsResult.InputTokens);

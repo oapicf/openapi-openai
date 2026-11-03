@@ -56,7 +56,7 @@ export interface AssistantObject {
 }
 export namespace AssistantObject {
   export const ObjectEnum = {
-    Assistant: 'assistant'
+    Assistant: 'assistant',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

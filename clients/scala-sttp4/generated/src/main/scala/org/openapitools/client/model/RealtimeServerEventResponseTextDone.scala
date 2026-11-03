@@ -35,7 +35,7 @@ object RealtimeServerEventResponseTextDoneEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseTextDone extends `Type`
+    case object ResponseTextDone extends `Type` { override def toString: String = "response.text.done" }
 
     import org.json4s._
 

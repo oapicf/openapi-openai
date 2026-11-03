@@ -22,14 +22,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequest   {
   
   private String assistantId;
   private CreateThreadRequest thread;
   private CreateRunRequestModel model;
   private String instructions;
-  private List<CreateThreadAndRunRequestToolsInner> tools;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools;
   private CreateThreadAndRunRequestToolResources toolResources;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
@@ -99,10 +99,10 @@ public class CreateThreadAndRunRequest   {
   
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
   @JsonProperty("tools")
- @Size(max=20)  public List<CreateThreadAndRunRequestToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 

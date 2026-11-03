@@ -19,17 +19,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is completed.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class RunStepStreamEventOneOf3(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("event")
+    @param:JsonProperty("event", required = true)
     @get:JsonProperty("event", required = true) val event: RunStepStreamEventOneOf3.Event,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: RunStepObject
 ) : RunStepStreamEvent {
 
@@ -40,12 +40,12 @@ data class RunStepStreamEventOneOf3(
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
         threadPeriodRunPeriodStepPeriodCompleted("thread.run.step.completed");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }

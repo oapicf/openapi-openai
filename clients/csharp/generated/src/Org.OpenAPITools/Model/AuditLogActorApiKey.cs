@@ -256,7 +256,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AuditLogActorApiKey.TypeEnum?>(AuditLogActorApiKey.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AuditLogActorApiKey.TypeEnum? typeValue = AuditLogActorApiKey.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AuditLogActorApiKey.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "user":
                             user = new Option<AuditLogActorUser?>(JsonSerializer.Deserialize<AuditLogActorUser>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -271,16 +276,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogActorApiKey.");
+                throw new JsonException("Property is not nullable for class AuditLogActorApiKey: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AuditLogActorApiKey.");
+                throw new JsonException("Property is not nullable for class AuditLogActorApiKey: type.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class AuditLogActorApiKey.");
+                throw new JsonException("Property is not nullable for class AuditLogActorApiKey: user.");
 
             if (serviceAccount.IsSet && serviceAccount.Value == null)
-                throw new ArgumentNullException(nameof(serviceAccount), "Property is not nullable for class AuditLogActorApiKey.");
+                throw new JsonException("Property is not nullable for class AuditLogActorApiKey: service_account.");
 
             return new AuditLogActorApiKey(id, type, user, serviceAccount);
         }
@@ -291,7 +296,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActorApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogActorApiKey auditLogActorApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -306,17 +310,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActorApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogActorApiKey auditLogActorApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogActorApiKey.IdOption.IsSet && auditLogActorApiKey.Id == null)
-                throw new ArgumentNullException(nameof(auditLogActorApiKey.Id), "Property is required for class AuditLogActorApiKey.");
+                throw new JsonException("Cannot write null property AuditLogActorApiKey.Id to non-nullable JSON property 'id'.");
+
+            if (auditLogActorApiKey.TypeOption.IsSet && auditLogActorApiKey.Type == null)
+                throw new JsonException("Cannot write null property AuditLogActorApiKey.Type to non-nullable JSON property 'type'.");
 
             if (auditLogActorApiKey.UserOption.IsSet && auditLogActorApiKey.User == null)
-                throw new ArgumentNullException(nameof(auditLogActorApiKey.User), "Property is required for class AuditLogActorApiKey.");
+                throw new JsonException("Cannot write null property AuditLogActorApiKey.User to non-nullable JSON property 'user'.");
 
             if (auditLogActorApiKey.ServiceAccountOption.IsSet && auditLogActorApiKey.ServiceAccount == null)
-                throw new ArgumentNullException(nameof(auditLogActorApiKey.ServiceAccount), "Property is required for class AuditLogActorApiKey.");
+                throw new JsonException("Cannot write null property AuditLogActorApiKey.ServiceAccount to non-nullable JSON property 'service_account'.");
 
             if (auditLogActorApiKey.IdOption.IsSet)
                 writer.WriteString("id", auditLogActorApiKey.Id);

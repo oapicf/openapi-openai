@@ -124,9 +124,10 @@ class _$RunStepDetailsToolCallsCodeOutputImageObjectSerializer implements Primit
   }
 }
 
+
+/// Always `image`.
 class RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum extends EnumClass {
 
-  /// Always `image`.
   @BuiltValueEnumConst(wireName: r'image')
   static const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum image = _$runStepDetailsToolCallsCodeOutputImageObjectTypeEnum_image;
 

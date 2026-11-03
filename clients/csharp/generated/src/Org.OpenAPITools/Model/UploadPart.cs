@@ -222,7 +222,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UploadPart.ObjectEnum?>(UploadPart.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UploadPart.ObjectEnum? varObjectValue = UploadPart.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UploadPart.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -231,28 +236,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UploadPart.", nameof(id));
+                throw new JsonException("Property is required for class UploadPart: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class UploadPart.", nameof(createdAt));
+                throw new JsonException("Property is required for class UploadPart: created_at.");
 
             if (!uploadId.IsSet)
-                throw new ArgumentException("Property is required for class UploadPart.", nameof(uploadId));
+                throw new JsonException("Property is required for class UploadPart: upload_id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UploadPart.", nameof(varObject));
+                throw new JsonException("Property is required for class UploadPart: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UploadPart.");
+                throw new JsonException("Property is not nullable for class UploadPart: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class UploadPart.");
+                throw new JsonException("Property is not nullable for class UploadPart: created_at.");
 
             if (uploadId.IsSet && uploadId.Value == null)
-                throw new ArgumentNullException(nameof(uploadId), "Property is not nullable for class UploadPart.");
+                throw new JsonException("Property is not nullable for class UploadPart: upload_id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UploadPart.");
+                throw new JsonException("Property is not nullable for class UploadPart: object.");
 
             return new UploadPart(id.Value!, createdAt.Value!.Value!, uploadId.Value!, varObject.Value!.Value!);
         }
@@ -263,7 +268,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="uploadPart"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UploadPart uploadPart, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -278,15 +282,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="uploadPart"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UploadPart uploadPart, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (uploadPart.Id == null)
-                throw new ArgumentNullException(nameof(uploadPart.Id), "Property is required for class UploadPart.");
-
-            if (uploadPart.UploadId == null)
-                throw new ArgumentNullException(nameof(uploadPart.UploadId), "Property is required for class UploadPart.");
-
             writer.WriteString("id", uploadPart.Id);
 
             writer.WriteNumber("created_at", uploadPart.CreatedAt);

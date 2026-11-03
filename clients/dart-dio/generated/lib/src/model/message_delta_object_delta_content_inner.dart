@@ -81,18 +81,16 @@ class _$MessageDeltaObjectDeltaContentInnerSerializer implements PrimitiveSerial
   }
 }
 
+
+/// Always `image_file`.
 class MessageDeltaObjectDeltaContentInnerTypeEnum extends EnumClass {
 
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_file')
   static const MessageDeltaObjectDeltaContentInnerTypeEnum imageFile = _$messageDeltaObjectDeltaContentInnerTypeEnum_imageFile;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'text')
   static const MessageDeltaObjectDeltaContentInnerTypeEnum text = _$messageDeltaObjectDeltaContentInnerTypeEnum_text;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const MessageDeltaObjectDeltaContentInnerTypeEnum refusal = _$messageDeltaObjectDeltaContentInnerTypeEnum_refusal;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const MessageDeltaObjectDeltaContentInnerTypeEnum imageUrl = _$messageDeltaObjectDeltaContentInnerTypeEnum_imageUrl;
 

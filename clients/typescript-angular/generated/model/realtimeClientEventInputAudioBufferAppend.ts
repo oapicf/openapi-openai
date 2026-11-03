@@ -28,7 +28,7 @@ export interface RealtimeClientEventInputAudioBufferAppend {
 }
 export namespace RealtimeClientEventInputAudioBufferAppend {
     export const TypeEnum = {
-        InputAudioBufferAppend: 'input_audio_buffer.append'
+        InputAudioBufferAppend: 'input_audio_buffer.append',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

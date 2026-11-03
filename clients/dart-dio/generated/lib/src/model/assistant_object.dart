@@ -332,9 +332,10 @@ class _$AssistantObjectSerializer implements PrimitiveSerializer<AssistantObject
   }
 }
 
+
+/// The object type, which is always `assistant`.
 class AssistantObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const AssistantObjectObjectEnum assistant = _$assistantObjectObjectEnum_assistant;
 

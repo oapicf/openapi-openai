@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -23,16 +22,13 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RealtimeResponse_usage_input_token_details", description = "Details about the input tokens used in the Response.")
 @JsonTypeName("RealtimeResponse_usage_input_token_details")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseUsageInputTokenDetails {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer cachedTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer textTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer audioTokens;
 
   public RealtimeResponseUsageInputTokenDetails cachedTokens(@Nullable Integer cachedTokens) {

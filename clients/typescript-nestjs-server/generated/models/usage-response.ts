@@ -9,7 +9,7 @@ export interface UsageResponse {
 }
 export namespace UsageResponse {
   export const ObjectEnum = {
-    Page: 'page'
+    Page: 'page',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

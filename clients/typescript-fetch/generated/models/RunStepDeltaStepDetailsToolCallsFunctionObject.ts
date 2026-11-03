@@ -29,26 +29,18 @@ import {
 export interface RunStepDeltaStepDetailsToolCallsFunctionObject {
     /**
      * The index of the tool call in the tool calls array.
-     * @type {number}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
      */
     index: number;
     /**
      * The ID of the tool call object.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
      */
     id?: string;
     /**
      * The type of tool call. This is always going to be `function` for this type of tool call.
-     * @type {RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
      */
     type: RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDeltaStepDetailsToolCallsFunctionObjectFunction}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObject
      */
     _function?: RunStepDeltaStepDetailsToolCallsFunctionObjectFunction;
 }
@@ -58,7 +50,7 @@ export interface RunStepDeltaStepDetailsToolCallsFunctionObject {
  * @export
  */
 export const RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum];
 

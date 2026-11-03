@@ -23,7 +23,7 @@ export interface RealtimeServerEventInputAudioBufferCommitted {
 }
 export namespace RealtimeServerEventInputAudioBufferCommitted {
   export const TypeEnum = {
-    InputAudioBufferCommitted: 'input_audio_buffer.committed'
+    InputAudioBufferCommitted: 'input_audio_buffer.committed',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -44,18 +44,18 @@ export interface FineTuningJobEvent {
 }
 export namespace FineTuningJobEvent {
     export const ObjectEnum = {
-        FineTuningJobEvent: 'fine_tuning.job.event'
+        FineTuningJobEvent: 'fine_tuning.job.event',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const LevelEnum = {
         Info: 'info',
         Warn: 'warn',
-        Error: 'error'
+        Error: 'error',
     } as const;
     export type LevelEnum = typeof LevelEnum[keyof typeof LevelEnum];
     export const TypeEnum = {
         Message: 'message',
-        Metrics: 'metrics'
+        Metrics: 'metrics',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

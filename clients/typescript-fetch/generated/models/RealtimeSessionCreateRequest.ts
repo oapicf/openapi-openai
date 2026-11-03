@@ -52,15 +52,11 @@ export interface RealtimeSessionCreateRequest {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<RealtimeSessionCreateRequestModalitiesEnum>}
-     * @memberof RealtimeSessionCreateRequest
      */
     modalities?: Array<RealtimeSessionCreateRequestModalitiesEnum>;
     /**
      * The Realtime model used for this session.
      * 
-     * @type {RealtimeSessionCreateRequestModelEnum}
-     * @memberof RealtimeSessionCreateRequest
      */
     model: RealtimeSessionCreateRequestModelEnum;
     /**
@@ -77,8 +73,6 @@ export interface RealtimeSessionCreateRequest {
      * field is not set and are visible in the `session.created` event at the 
      * start of the session.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateRequest
      */
     instructions?: string;
     /**
@@ -87,61 +81,43 @@ export interface RealtimeSessionCreateRequest {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {RealtimeSessionCreateRequestVoiceEnum}
-     * @memberof RealtimeSessionCreateRequest
      */
     voice?: RealtimeSessionCreateRequestVoiceEnum;
     /**
      * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {RealtimeSessionCreateRequestInputAudioFormatEnum}
-     * @memberof RealtimeSessionCreateRequest
      */
     inputAudioFormat?: RealtimeSessionCreateRequestInputAudioFormatEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {RealtimeSessionCreateRequestOutputAudioFormatEnum}
-     * @memberof RealtimeSessionCreateRequest
      */
     outputAudioFormat?: RealtimeSessionCreateRequestOutputAudioFormatEnum;
     /**
      * 
-     * @type {RealtimeSessionInputAudioTranscription}
-     * @memberof RealtimeSessionCreateRequest
      */
     inputAudioTranscription?: RealtimeSessionInputAudioTranscription;
     /**
      * 
-     * @type {RealtimeSessionCreateRequestTurnDetection}
-     * @memberof RealtimeSessionCreateRequest
      */
     turnDetection?: RealtimeSessionCreateRequestTurnDetection;
     /**
      * Tools (functions) available to the model.
-     * @type {Array<RealtimeResponseCreateParamsToolsInner>}
-     * @memberof RealtimeSessionCreateRequest
      */
     tools?: Array<RealtimeResponseCreateParamsToolsInner>;
     /**
      * How the model chooses tools. Options are `auto`, `none`, `required`, or 
      * specify a function.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateRequest
      */
     toolChoice?: string;
     /**
      * Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateRequest
      */
     temperature?: number;
     /**
      * 
-     * @type {RealtimeResponseCreateParamsMaxResponseOutputTokens}
-     * @memberof RealtimeSessionCreateRequest
      */
     maxResponseOutputTokens?: RealtimeResponseCreateParamsMaxResponseOutputTokens;
 }
@@ -152,7 +128,7 @@ export interface RealtimeSessionCreateRequest {
  */
 export const RealtimeSessionCreateRequestModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 export type RealtimeSessionCreateRequestModalitiesEnum = typeof RealtimeSessionCreateRequestModalitiesEnum[keyof typeof RealtimeSessionCreateRequestModalitiesEnum];
 
@@ -164,7 +140,7 @@ export const RealtimeSessionCreateRequestModelEnum = {
     Gpt4oRealtimePreview20241001: 'gpt-4o-realtime-preview-2024-10-01',
     Gpt4oRealtimePreview20241217: 'gpt-4o-realtime-preview-2024-12-17',
     Gpt4oMiniRealtimePreview: 'gpt-4o-mini-realtime-preview',
-    Gpt4oMiniRealtimePreview20241217: 'gpt-4o-mini-realtime-preview-2024-12-17'
+    Gpt4oMiniRealtimePreview20241217: 'gpt-4o-mini-realtime-preview-2024-12-17',
 } as const;
 export type RealtimeSessionCreateRequestModelEnum = typeof RealtimeSessionCreateRequestModelEnum[keyof typeof RealtimeSessionCreateRequestModelEnum];
 
@@ -179,7 +155,7 @@ export const RealtimeSessionCreateRequestVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 export type RealtimeSessionCreateRequestVoiceEnum = typeof RealtimeSessionCreateRequestVoiceEnum[keyof typeof RealtimeSessionCreateRequestVoiceEnum];
 
@@ -189,7 +165,7 @@ export type RealtimeSessionCreateRequestVoiceEnum = typeof RealtimeSessionCreate
 export const RealtimeSessionCreateRequestInputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 export type RealtimeSessionCreateRequestInputAudioFormatEnum = typeof RealtimeSessionCreateRequestInputAudioFormatEnum[keyof typeof RealtimeSessionCreateRequestInputAudioFormatEnum];
 
@@ -199,7 +175,7 @@ export type RealtimeSessionCreateRequestInputAudioFormatEnum = typeof RealtimeSe
 export const RealtimeSessionCreateRequestOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 export type RealtimeSessionCreateRequestOutputAudioFormatEnum = typeof RealtimeSessionCreateRequestOutputAudioFormatEnum[keyof typeof RealtimeSessionCreateRequestOutputAudioFormatEnum];
 

@@ -18,7 +18,7 @@ import FineTuningIntegration from './FineTuningIntegration';
 /**
  * The FineTuningJobIntegrationsInner model module.
  * @module model/FineTuningJobIntegrationsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class FineTuningJobIntegrationsInner {
     /**

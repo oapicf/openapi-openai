@@ -54,7 +54,7 @@ import javax.validation.Valid;
   FineTuningJob.JSON_PROPERTY_ESTIMATED_FINISH,
   FineTuningJob.JSON_PROPERTY_METHOD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJob   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -190,7 +190,7 @@ public class FineTuningJob   {
 
   public static final String JSON_PROPERTY_INTEGRATIONS = "integrations";
   @JsonProperty(JSON_PROPERTY_INTEGRATIONS)
-  private List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
 
   public static final String JSON_PROPERTY_SEED = "seed";
   @JsonProperty(JSON_PROPERTY_SEED)
@@ -492,7 +492,7 @@ public class FineTuningJob   {
     this.validationFile = validationFile;
   }
 
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }
@@ -511,12 +511,12 @@ public class FineTuningJob   {
    **/
   @JsonProperty(value = "integrations")
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
-  @Valid  @Size(max=5)
-  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+   @Size(max=5)
+  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param choices The list of completion choices the model generated for the input prompt.
  * @param created The Unix timestamp (in seconds) of when the completion was created.
  * @param model The model used for completion.
- * @param &#x60;object&#x60; The object type, which is always \"text_completion\"
+ * @param `object` The object type, which is always \"text_completion\"
  * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param usage 
  */

@@ -302,7 +302,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<User.ObjectEnum?>(User.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                User.ObjectEnum? varObjectValue = User.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<User.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -316,7 +321,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<User.RoleEnum?>(User.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                User.RoleEnum? roleValue = User.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<User.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "added_at":
                             addedAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -328,40 +338,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(varObject));
+                throw new JsonException("Property is required for class User: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(id));
+                throw new JsonException("Property is required for class User: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(name));
+                throw new JsonException("Property is required for class User: name.");
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(email));
+                throw new JsonException("Property is required for class User: email.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(role));
+                throw new JsonException("Property is required for class User: role.");
 
             if (!addedAt.IsSet)
-                throw new ArgumentException("Property is required for class User.", nameof(addedAt));
+                throw new JsonException("Property is required for class User: added_at.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: name.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: email.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: role.");
 
             if (addedAt.IsSet && addedAt.Value == null)
-                throw new ArgumentNullException(nameof(addedAt), "Property is not nullable for class User.");
+                throw new JsonException("Property is not nullable for class User: added_at.");
 
             return new User(varObject.Value!.Value!, id.Value!, name.Value!, email.Value!, role.Value!.Value!, addedAt.Value!.Value!);
         }
@@ -372,7 +382,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="user"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, User user, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -387,18 +396,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="user"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, User user, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (user.Id == null)
-                throw new ArgumentNullException(nameof(user.Id), "Property is required for class User.");
-
-            if (user.Name == null)
-                throw new ArgumentNullException(nameof(user.Name), "Property is required for class User.");
-
-            if (user.Email == null)
-                throw new ArgumentNullException(nameof(user.Email), "Property is required for class User.");
-
             var varObjectRawValue = User.ObjectEnumToJsonValue(user.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", user.Id);

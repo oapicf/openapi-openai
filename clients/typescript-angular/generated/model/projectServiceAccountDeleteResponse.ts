@@ -16,7 +16,7 @@ export interface ProjectServiceAccountDeleteResponse {
 }
 export namespace ProjectServiceAccountDeleteResponse {
     export const ObjectEnum = {
-        OrganizationProjectServiceAccountDeleted: 'organization.project.service_account.deleted'
+        OrganizationProjectServiceAccountDeleted: 'organization.project.service_account.deleted',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

@@ -103,14 +103,10 @@ export interface CreateChatCompletionRequest {
      * supported, like [text](/docs/guides/text-generation),
      * [images](/docs/guides/vision), and [audio](/docs/guides/audio).
      * 
-     * @type {Array<ChatCompletionRequestMessage>}
-     * @memberof CreateChatCompletionRequest
      */
     messages: Array<ChatCompletionRequestMessage>;
     /**
      * 
-     * @type {CreateChatCompletionRequestModel}
-     * @memberof CreateChatCompletionRequest
      */
     model: CreateChatCompletionRequestModel;
     /**
@@ -118,8 +114,6 @@ export interface CreateChatCompletionRequest {
      * use in our [model distillation](/docs/guides/distillation) or
      * [evals](/docs/guides/evals) products.
      * 
-     * @type {boolean}
-     * @memberof CreateChatCompletionRequest
      */
     store?: boolean | null;
     /**
@@ -131,16 +125,12 @@ export interface CreateChatCompletionRequest {
      * reasoning effort can result in faster responses and fewer tokens used
      * on reasoning in a response.
      * 
-     * @type {CreateChatCompletionRequestReasoningEffortEnum}
-     * @memberof CreateChatCompletionRequest
      */
     reasoningEffort?: CreateChatCompletionRequestReasoningEffortEnum;
     /**
      * Developer-defined tags and values used for filtering completions
      * in the [dashboard](https://platform.openai.com/chat-completions).
      * 
-     * @type {{ [key: string]: string; }}
-     * @memberof CreateChatCompletionRequest
      */
     metadata?: { [key: string]: string; } | null;
     /**
@@ -148,8 +138,6 @@ export interface CreateChatCompletionRequest {
      * their existing frequency in the text so far, decreasing the model's
      * likelihood to repeat the same line verbatim.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     frequencyPenalty?: number | null;
     /**
@@ -162,8 +150,6 @@ export interface CreateChatCompletionRequest {
      * decrease or increase likelihood of selection; values like -100 or 100
      * should result in a ban or exclusive selection of the relevant token.
      * 
-     * @type {{ [key: string]: number; }}
-     * @memberof CreateChatCompletionRequest
      */
     logitBias?: { [key: string]: number; } | null;
     /**
@@ -171,8 +157,6 @@ export interface CreateChatCompletionRequest {
      * returns the log probabilities of each output token returned in the
      * `content` of `message`.
      * 
-     * @type {boolean}
-     * @memberof CreateChatCompletionRequest
      */
     logprobs?: boolean | null;
     /**
@@ -180,8 +164,6 @@ export interface CreateChatCompletionRequest {
      * return at each token position, each with an associated log probability.
      * `logprobs` must be set to `true` if this parameter is used.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     topLogprobs?: number | null;
     /**
@@ -192,22 +174,16 @@ export interface CreateChatCompletionRequest {
      * This value is now deprecated in favor of `max_completion_tokens`, and is
      * not compatible with [o1 series models](/docs/guides/reasoning).
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      * @deprecated
      */
     maxTokens?: number | null;
     /**
      * An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning).
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     maxCompletionTokens?: number | null;
     /**
      * How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     n?: number | null;
     /**
@@ -222,8 +198,6 @@ export interface CreateChatCompletionRequest {
      * 
      * `["text", "audio"]`
      * 
-     * @type {Array<CreateChatCompletionRequestModalitiesEnum>}
-     * @memberof CreateChatCompletionRequest
      */
     modalities?: Array<CreateChatCompletionRequestModalitiesEnum> | null;
     /**
@@ -232,14 +206,10 @@ export interface CreateChatCompletionRequest {
      * response are known ahead of time. This is most common when you are
      * regenerating a file with only minor changes to most of the content.
      * 
-     * @type {PredictionContent}
-     * @memberof CreateChatCompletionRequest
      */
     prediction?: PredictionContent | null;
     /**
      * 
-     * @type {CreateChatCompletionRequestAudio}
-     * @memberof CreateChatCompletionRequest
      */
     audio?: CreateChatCompletionRequestAudio | null;
     /**
@@ -247,14 +217,10 @@ export interface CreateChatCompletionRequest {
      * whether they appear in the text so far, increasing the model's likelihood
      * to talk about new topics.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     presencePenalty?: number | null;
     /**
      * 
-     * @type {CreateChatCompletionRequestResponseFormat}
-     * @memberof CreateChatCompletionRequest
      */
     responseFormat?: CreateChatCompletionRequestResponseFormat;
     /**
@@ -262,8 +228,6 @@ export interface CreateChatCompletionRequest {
      * If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.
      * Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     seed?: number | null;
     /**
@@ -276,35 +240,25 @@ export interface CreateChatCompletionRequest {
      * 
      *   When this parameter is set, the response body will include the `service_tier` utilized.
      * 
-     * @type {CreateChatCompletionRequestServiceTierEnum}
-     * @memberof CreateChatCompletionRequest
      */
     serviceTier?: CreateChatCompletionRequestServiceTierEnum | null;
     /**
      * 
-     * @type {CreateChatCompletionRequestStop}
-     * @memberof CreateChatCompletionRequest
      */
     stop?: CreateChatCompletionRequestStop;
     /**
      * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
      * 
-     * @type {boolean}
-     * @memberof CreateChatCompletionRequest
      */
     stream?: boolean | null;
     /**
      * 
-     * @type {ChatCompletionStreamOptions}
-     * @memberof CreateChatCompletionRequest
      */
     streamOptions?: ChatCompletionStreamOptions | null;
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
      * We generally recommend altering this or `top_p` but not both.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     temperature?: number | null;
     /**
@@ -315,40 +269,28 @@ export interface CreateChatCompletionRequest {
      * 
      * We generally recommend altering this or `temperature` but not both.
      * 
-     * @type {number}
-     * @memberof CreateChatCompletionRequest
      */
     topP?: number | null;
     /**
      * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported.
      * 
-     * @type {Array<ChatCompletionTool>}
-     * @memberof CreateChatCompletionRequest
      */
     tools?: Array<ChatCompletionTool>;
     /**
      * 
-     * @type {ChatCompletionToolChoiceOption}
-     * @memberof CreateChatCompletionRequest
      */
     toolChoice?: ChatCompletionToolChoiceOption;
     /**
      * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-     * @type {boolean}
-     * @memberof CreateChatCompletionRequest
      */
     parallelToolCalls?: boolean;
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
      * 
-     * @type {string}
-     * @memberof CreateChatCompletionRequest
      */
     user?: string;
     /**
      * 
-     * @type {CreateChatCompletionRequestFunctionCall}
-     * @memberof CreateChatCompletionRequest
      * @deprecated
      */
     functionCall?: CreateChatCompletionRequestFunctionCall;
@@ -357,8 +299,6 @@ export interface CreateChatCompletionRequest {
      * 
      * A list of functions the model may generate JSON inputs for.
      * 
-     * @type {Array<ChatCompletionFunctions>}
-     * @memberof CreateChatCompletionRequest
      * @deprecated
      */
     functions?: Array<ChatCompletionFunctions>;
@@ -371,7 +311,7 @@ export interface CreateChatCompletionRequest {
 export const CreateChatCompletionRequestReasoningEffortEnum = {
     Low: 'low',
     Medium: 'medium',
-    High: 'high'
+    High: 'high',
 } as const;
 export type CreateChatCompletionRequestReasoningEffortEnum = typeof CreateChatCompletionRequestReasoningEffortEnum[keyof typeof CreateChatCompletionRequestReasoningEffortEnum];
 
@@ -380,7 +320,7 @@ export type CreateChatCompletionRequestReasoningEffortEnum = typeof CreateChatCo
  */
 export const CreateChatCompletionRequestModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 export type CreateChatCompletionRequestModalitiesEnum = typeof CreateChatCompletionRequestModalitiesEnum[keyof typeof CreateChatCompletionRequestModalitiesEnum];
 
@@ -389,7 +329,7 @@ export type CreateChatCompletionRequestModalitiesEnum = typeof CreateChatComplet
  */
 export const CreateChatCompletionRequestServiceTierEnum = {
     Auto: 'auto',
-    Default: 'default'
+    Default: 'default',
 } as const;
 export type CreateChatCompletionRequestServiceTierEnum = typeof CreateChatCompletionRequestServiceTierEnum[keyof typeof CreateChatCompletionRequestServiceTierEnum];
 

@@ -227,7 +227,12 @@ namespace Org.OpenAPITools.Model
                         case "ranker":
                             string? rankerRawValue = utf8JsonReader.GetString();
                             if (rankerRawValue != null)
-                                ranker = new Option<FileSearchRankingOptions.RankerEnum?>(FileSearchRankingOptions.RankerEnumFromStringOrDefault(rankerRawValue));
+                            {
+                                FileSearchRankingOptions.RankerEnum? rankerValue = FileSearchRankingOptions.RankerEnumFromStringOrDefault(rankerRawValue);
+                                if (rankerValue == null)
+                                    throw new JsonException();
+                                ranker = new Option<FileSearchRankingOptions.RankerEnum?>(rankerValue);
+                            }
                             break;
                         default:
                             break;
@@ -236,13 +241,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!scoreThreshold.IsSet)
-                throw new ArgumentException("Property is required for class FileSearchRankingOptions.", nameof(scoreThreshold));
+                throw new JsonException("Property is required for class FileSearchRankingOptions: score_threshold.");
 
             if (scoreThreshold.IsSet && scoreThreshold.Value == null)
-                throw new ArgumentNullException(nameof(scoreThreshold), "Property is not nullable for class FileSearchRankingOptions.");
+                throw new JsonException("Property is not nullable for class FileSearchRankingOptions: score_threshold.");
 
             if (ranker.IsSet && ranker.Value == null)
-                throw new ArgumentNullException(nameof(ranker), "Property is not nullable for class FileSearchRankingOptions.");
+                throw new JsonException("Property is not nullable for class FileSearchRankingOptions: ranker.");
 
             return new FileSearchRankingOptions(scoreThreshold.Value!.Value!, ranker);
         }
@@ -253,7 +258,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fileSearchRankingOptions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FileSearchRankingOptions fileSearchRankingOptions, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -268,9 +272,11 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fileSearchRankingOptions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FileSearchRankingOptions fileSearchRankingOptions, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (fileSearchRankingOptions.RankerOption.IsSet && fileSearchRankingOptions.Ranker == null)
+                throw new JsonException("Cannot write null property FileSearchRankingOptions.Ranker to non-nullable JSON property 'ranker'.");
+
             writer.WriteNumber("score_threshold", fileSearchRankingOptions.ScoreThreshold);
 
             var rankerRawValue = FileSearchRankingOptions.RankerEnumToJsonValue(fileSearchRankingOptions.RankerOption.Value!.Value);

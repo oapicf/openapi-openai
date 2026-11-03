@@ -128,9 +128,10 @@ class _$RunStepDeltaStepDetailsToolCallsObjectSerializer implements PrimitiveSer
   }
 }
 
+
+/// Always `tool_calls`.
 class RunStepDeltaStepDetailsToolCallsObjectTypeEnum extends EnumClass {
 
-  /// Always `tool_calls`.
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const RunStepDeltaStepDetailsToolCallsObjectTypeEnum toolCalls = _$runStepDeltaStepDetailsToolCallsObjectTypeEnum_toolCalls;
 

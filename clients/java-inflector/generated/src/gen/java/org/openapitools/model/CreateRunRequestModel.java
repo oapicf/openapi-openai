@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
  **/
 
 @ApiModel(description = "The ID of the [Model](/docs/api-reference/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequestModel   {
 
   @Override

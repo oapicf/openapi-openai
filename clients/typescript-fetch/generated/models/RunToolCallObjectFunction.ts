@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunToolCallObjectFunction {
     /**
      * The name of the function.
-     * @type {string}
-     * @memberof RunToolCallObjectFunction
      */
     name: string;
     /**
      * The arguments that the model expects you to pass to the function.
-     * @type {string}
-     * @memberof RunToolCallObjectFunction
      */
     arguments: string;
 }

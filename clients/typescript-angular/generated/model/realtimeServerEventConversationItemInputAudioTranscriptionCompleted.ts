@@ -36,7 +36,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionCompl
 }
 export namespace RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
     export const TypeEnum = {
-        ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed'
+        ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

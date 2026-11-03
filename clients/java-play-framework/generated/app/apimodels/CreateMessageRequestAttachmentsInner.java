@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * CreateMessageRequestAttachmentsInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateMessageRequestAttachmentsInner   {
   @JsonProperty("file_id")
@@ -24,7 +24,7 @@ public class CreateMessageRequestAttachmentsInner   {
   @JsonProperty("tools")
   @Valid
 
-  private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
 
   public CreateMessageRequestAttachmentsInner fileId(String fileId) {
     this.fileId = fileId;
@@ -43,7 +43,7 @@ public class CreateMessageRequestAttachmentsInner   {
     this.fileId = fileId;
   }
 
-  public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -60,11 +60,11 @@ public class CreateMessageRequestAttachmentsInner   {
    * The tools to add this file to.
    * @return tools
   **/
-  public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 

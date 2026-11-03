@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CreateTranscriptionResponseJson {
     /**
      * The transcribed text.
-     * @type {string}
-     * @memberof CreateTranscriptionResponseJson
      */
     text: string;
 }

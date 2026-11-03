@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionMessageToolCallChunk
 import org.openapitools.model.ChatCompletionStreamResponseDeltaFunctionCall
 import javax.validation.constraints.DecimalMax
@@ -37,21 +34,15 @@ data class ChatCompletionStreamResponseDelta(
     @field:Valid
     @Schema(description = "")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("function_call")
     @get:JsonProperty("function_call") val functionCall: ChatCompletionStreamResponseDeltaFunctionCall? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tool_calls")
     @get:JsonProperty("tool_calls") val toolCalls: kotlin.collections.List<ChatCompletionMessageToolCallChunk>? = null,
 
     @Schema(description = "The role of the author of this message.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("role")
     @get:JsonProperty("role") val role: ChatCompletionStreamResponseDelta.Role? = null,
 
@@ -70,12 +61,12 @@ data class ChatCompletionStreamResponseDelta(
         user("user"),
         assistant("assistant"),
         tool("tool");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }

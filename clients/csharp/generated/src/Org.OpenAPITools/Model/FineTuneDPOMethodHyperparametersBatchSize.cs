@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersBatchSize" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal FineTuneDPOMethodHyperparametersBatchSize(string @string)
+        public FineTuneDPOMethodHyperparametersBatchSize(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersBatchSize" /> class.
         /// </summary>
         /// <param name="int"></param>
-        internal FineTuneDPOMethodHyperparametersBatchSize(int @int)
+        public FineTuneDPOMethodHyperparametersBatchSize(int @int)
         {
             Int = @int;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersBatchSize"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersBatchSize fineTuneDPOMethodHyperparametersBatchSize, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersBatchSize"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersBatchSize fineTuneDPOMethodHyperparametersBatchSize, JsonSerializerOptions jsonSerializerOptions)
         {
 

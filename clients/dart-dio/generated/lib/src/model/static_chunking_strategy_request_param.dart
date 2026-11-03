@@ -124,9 +124,10 @@ class _$StaticChunkingStrategyRequestParamSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// Always `static`.
 class StaticChunkingStrategyRequestParamTypeEnum extends EnumClass {
 
-  /// Always `static`.
   @BuiltValueEnumConst(wireName: r'static')
   static const StaticChunkingStrategyRequestParamTypeEnum static_ = _$staticChunkingStrategyRequestParamTypeEnum_static_;
 

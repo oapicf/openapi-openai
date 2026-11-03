@@ -371,7 +371,7 @@ class AuditLogsApi:
         # process the query parameters
         if effective_at is not None:
             
-            _query_params.append(('effective_at', effective_at))
+            _query_params.extend(self.api_client.explode_query_object('effective_at', effective_at))
             
         if project_ids is not None:
             

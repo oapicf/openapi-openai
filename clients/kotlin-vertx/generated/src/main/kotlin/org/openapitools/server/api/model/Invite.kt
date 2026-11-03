@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an individual `invite` to the organization.
- * @param &#x60;object&#x60; The object type, which is always `organization.invite`
+ * @param `object` The object type, which is always `organization.invite`
  * @param id The identifier, which can be referenced in API endpoints
  * @param email The email address of the individual to whom the invite was sent
  * @param role `owner` or `reader`

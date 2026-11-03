@@ -4,9 +4,6 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,7 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The aggregated images usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param images The number of images processed.
  * @param numModelRequests The count of requests made to the model.
  * @param source When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
@@ -33,15 +30,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class UsageImagesResult(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageImagesResult.`Object`,
 
     @Schema(required = true, description = "The number of images processed.")
-    @param:JsonProperty("images")
+    @param:JsonProperty("images", required = true)
     @get:JsonProperty("images", required = true) val images: kotlin.Int,
 
     @Schema(required = true, description = "The count of requests made to the model.")
-    @param:JsonProperty("num_model_requests")
+    @param:JsonProperty("num_model_requests", required = true)
     @get:JsonProperty("num_model_requests", required = true) val numModelRequests: kotlin.Int,
 
     @Schema(description = "When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.")
@@ -76,12 +73,12 @@ data class UsageImagesResult(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUsagePeriodImagesPeriodResult("organization.usage.images.result");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

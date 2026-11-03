@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class MessageContentTextAnnotationsFilePathObjectFilePath(
 
     @Schema(required = true, description = "The ID of the file that was generated.")
-    @param:JsonProperty("file_id")
+    @param:JsonProperty("file_id", required = true)
     @get:JsonProperty("file_id", required = true) val fileId: kotlin.String
 ) {
 

@@ -26,7 +26,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "MessageObject", description = "Represents a message within a [thread](/docs/api-reference/threads).")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageObject {
 
   private String id;
@@ -152,14 +152,12 @@ public class MessageObject {
 
   private RoleEnum role;
 
-  @Valid
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
   private JsonNullable<String> assistantId = JsonNullable.<String>undefined();
 
   private JsonNullable<String> runId = JsonNullable.<String>undefined();
 
-  @Valid
   private JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> attachments = JsonNullable.<List<@Valid CreateMessageRequestAttachmentsInner>>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
@@ -171,7 +169,7 @@ public class MessageObject {
   /**
    * Constructor with only required parameters
    */
-  public MessageObject(String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<MessageObjectContentInner> content, String assistantId, String runId, List<@Valid CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
+  public MessageObject(String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<@Valid MessageObjectContentInner> content, String assistantId, String runId, List<@Valid CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -297,7 +295,7 @@ public class MessageObject {
    * Get incompleteDetails
    * @return incompleteDetails
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "incomplete_details", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("incomplete_details")
   public JsonNullable<MessageObjectIncompleteDetails> getIncompleteDetails() {
@@ -317,7 +315,7 @@ public class MessageObject {
    * The Unix timestamp (in seconds) for when the message was completed.
    * @return completedAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "completed_at", description = "The Unix timestamp (in seconds) for when the message was completed.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("completed_at")
   public JsonNullable<Integer> getCompletedAt() {
@@ -337,7 +335,7 @@ public class MessageObject {
    * The Unix timestamp (in seconds) for when the message was marked as incomplete.
    * @return incompleteAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "incomplete_at", description = "The Unix timestamp (in seconds) for when the message was marked as incomplete.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("incomplete_at")
   public JsonNullable<Integer> getIncompleteAt() {
@@ -368,7 +366,7 @@ public class MessageObject {
     this.role = role;
   }
 
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -385,14 +383,14 @@ public class MessageObject {
    * The content of the message in array of text and/or images.
    * @return content
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "content", description = "The content of the message in array of text and/or images.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("content")
-  public List<MessageObjectContentInner> getContent() {
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 
@@ -405,7 +403,7 @@ public class MessageObject {
    * If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
    * @return assistantId
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "assistant_id", description = "If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("assistant_id")
   public JsonNullable<String> getAssistantId() {
@@ -425,7 +423,7 @@ public class MessageObject {
    * The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.
    * @return runId
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "run_id", description = "The ID of the [run](/docs/api-reference/runs) associated with the creation of this message. Value is `null` when messages are created manually using the create message or create thread endpoints.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("run_id")
   public JsonNullable<String> getRunId() {
@@ -453,7 +451,7 @@ public class MessageObject {
    * A list of files attached to the message, and the tools they were added to.
    * @return attachments
    */
-  @NotNull @Valid 
+  /* @Present */ 
   @Schema(name = "attachments", description = "A list of files attached to the message, and the tools they were added to.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("attachments")
   public JsonNullable<List<@Valid CreateMessageRequestAttachmentsInner>> getAttachments() {
@@ -473,7 +471,7 @@ public class MessageObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {

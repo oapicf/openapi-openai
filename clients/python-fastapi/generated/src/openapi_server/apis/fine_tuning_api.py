@@ -22,8 +22,7 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_server.models.create_fine_tuning_job_request import CreateFineTuningJobRequest
@@ -31,6 +30,7 @@ from openapi_server.models.fine_tuning_job import FineTuningJob
 from openapi_server.models.list_fine_tuning_job_checkpoints_response import ListFineTuningJobCheckpointsResponse
 from openapi_server.models.list_fine_tuning_job_events_response import ListFineTuningJobEventsResponse
 from openapi_server.models.list_paginated_fine_tuning_jobs_response import ListPaginatedFineTuningJobsResponse
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -50,8 +50,8 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_paginated_fine_tuning_jobs(
-    after: Annotated[Optional[StrictStr], Field(description="Identifier for the last job from the previous pagination request.")] = Query(None, description="Identifier for the last job from the previous pagination request.", alias="after"),
-    limit: Annotated[Optional[StrictInt], Field(description="Number of fine-tuning jobs to retrieve.")] = Query(20, description="Number of fine-tuning jobs to retrieve.", alias="limit"),
+    after: Annotated[Optional[str], Field(description="Identifier for the last job from the previous pagination request.")] = Query(None, description="Identifier for the last job from the previous pagination request.", alias="after"),
+    limit: Annotated[Optional[int], Field(description="Number of fine-tuning jobs to retrieve.")] = Query(20, description="Number of fine-tuning jobs to retrieve.", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -71,7 +71,7 @@ async def list_paginated_fine_tuning_jobs(
     response_model_by_alias=True,
 )
 async def create_fine_tuning_job(
-    create_fine_tuning_job_request: CreateFineTuningJobRequest = Body(None, description=""),
+    create_fine_tuning_job_request: CreateFineTuningJobRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -91,7 +91,7 @@ async def create_fine_tuning_job(
     response_model_by_alias=True,
 )
 async def retrieve_fine_tuning_job(
-    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job. ")] = Path(..., description="The ID of the fine-tuning job. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
+    fine_tuning_job_id: Annotated[str, Field(description="The ID of the fine-tuning job. ")] = Path(..., description="The ID of the fine-tuning job. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -111,7 +111,7 @@ async def retrieve_fine_tuning_job(
     response_model_by_alias=True,
 )
 async def cancel_fine_tuning_job(
-    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to cancel. ")] = Path(..., description="The ID of the fine-tuning job to cancel. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
+    fine_tuning_job_id: Annotated[str, Field(description="The ID of the fine-tuning job to cancel. ")] = Path(..., description="The ID of the fine-tuning job to cancel. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -131,9 +131,9 @@ async def cancel_fine_tuning_job(
     response_model_by_alias=True,
 )
 async def list_fine_tuning_job_checkpoints(
-    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get checkpoints for. ")] = Path(..., description="The ID of the fine-tuning job to get checkpoints for. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
-    after: Annotated[Optional[StrictStr], Field(description="Identifier for the last checkpoint ID from the previous pagination request.")] = Query(None, description="Identifier for the last checkpoint ID from the previous pagination request.", alias="after"),
-    limit: Annotated[Optional[StrictInt], Field(description="Number of checkpoints to retrieve.")] = Query(10, description="Number of checkpoints to retrieve.", alias="limit"),
+    fine_tuning_job_id: Annotated[str, Field(description="The ID of the fine-tuning job to get checkpoints for. ")] = Path(..., description="The ID of the fine-tuning job to get checkpoints for. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
+    after: Annotated[Optional[str], Field(description="Identifier for the last checkpoint ID from the previous pagination request.")] = Query(None, description="Identifier for the last checkpoint ID from the previous pagination request.", alias="after"),
+    limit: Annotated[Optional[int], Field(description="Number of checkpoints to retrieve.")] = Query(10, description="Number of checkpoints to retrieve.", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -153,9 +153,9 @@ async def list_fine_tuning_job_checkpoints(
     response_model_by_alias=True,
 )
 async def list_fine_tuning_events(
-    fine_tuning_job_id: Annotated[StrictStr, Field(description="The ID of the fine-tuning job to get events for. ")] = Path(..., description="The ID of the fine-tuning job to get events for. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
-    after: Annotated[Optional[StrictStr], Field(description="Identifier for the last event from the previous pagination request.")] = Query(None, description="Identifier for the last event from the previous pagination request.", alias="after"),
-    limit: Annotated[Optional[StrictInt], Field(description="Number of events to retrieve.")] = Query(20, description="Number of events to retrieve.", alias="limit"),
+    fine_tuning_job_id: Annotated[str, Field(description="The ID of the fine-tuning job to get events for. ")] = Path(..., description="The ID of the fine-tuning job to get events for. ", examples=["ft-AF1WoRqd3aJAHsqc9NY7iL8F"]),
+    after: Annotated[Optional[str], Field(description="Identifier for the last event from the previous pagination request.")] = Query(None, description="Identifier for the last event from the previous pagination request.", alias="after"),
+    limit: Annotated[Optional[int], Field(description="Number of events to retrieve.")] = Query(20, description="Number of events to retrieve.", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

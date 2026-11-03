@@ -17,22 +17,22 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param id 
  * @param deleted 
  */
 data class ProjectApiKeyDeleteResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ProjectApiKeyDeleteResponse.`Object`,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("deleted")
+    @param:JsonProperty("deleted", required = true)
     @get:JsonProperty("deleted", required = true) val deleted: kotlin.Boolean
 ) {
 
@@ -43,12 +43,12 @@ data class ProjectApiKeyDeleteResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodProjectPeriodApi_keyPeriodDeleted("organization.project.api_key.deleted");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

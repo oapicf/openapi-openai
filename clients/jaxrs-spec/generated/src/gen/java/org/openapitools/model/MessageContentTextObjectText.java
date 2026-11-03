@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("MessageContentTextObject_text")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageContentTextObjectText   {
   private String value;
-  private @Valid List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageContentTextObjectText() {
   }
@@ -60,7 +60,7 @@ public class MessageContentTextObjectText   {
 
   /**
    **/
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -68,12 +68,12 @@ public class MessageContentTextObjectText   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "annotations")
-  @NotNull @Valid public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  @NotNull public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
   @JsonProperty(required = true, value = "annotations")
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

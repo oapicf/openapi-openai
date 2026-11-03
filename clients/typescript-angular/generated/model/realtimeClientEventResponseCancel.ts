@@ -28,7 +28,7 @@ export interface RealtimeClientEventResponseCancel {
 }
 export namespace RealtimeClientEventResponseCancel {
     export const TypeEnum = {
-        ResponseCancel: 'response.cancel'
+        ResponseCancel: 'response.cancel',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

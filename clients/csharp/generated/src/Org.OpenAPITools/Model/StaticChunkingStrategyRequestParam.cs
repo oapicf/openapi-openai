@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<StaticChunkingStrategyRequestParam.TypeEnum?>(StaticChunkingStrategyRequestParam.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                StaticChunkingStrategyRequestParam.TypeEnum? typeValue = StaticChunkingStrategyRequestParam.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<StaticChunkingStrategyRequestParam.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "static":
                             varStatic = new Option<StaticChunkingStrategy?>(JsonSerializer.Deserialize<StaticChunkingStrategy>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class StaticChunkingStrategyRequestParam.", nameof(type));
+                throw new JsonException("Property is required for class StaticChunkingStrategyRequestParam: type.");
 
             if (!varStatic.IsSet)
-                throw new ArgumentException("Property is required for class StaticChunkingStrategyRequestParam.", nameof(varStatic));
+                throw new JsonException("Property is required for class StaticChunkingStrategyRequestParam: static.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class StaticChunkingStrategyRequestParam.");
+                throw new JsonException("Property is not nullable for class StaticChunkingStrategyRequestParam: type.");
 
             if (varStatic.IsSet && varStatic.Value == null)
-                throw new ArgumentNullException(nameof(varStatic), "Property is not nullable for class StaticChunkingStrategyRequestParam.");
+                throw new JsonException("Property is not nullable for class StaticChunkingStrategyRequestParam: static.");
 
             return new StaticChunkingStrategyRequestParam(type.Value!.Value!, varStatic.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="staticChunkingStrategyRequestParam"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StaticChunkingStrategyRequestParam staticChunkingStrategyRequestParam, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="staticChunkingStrategyRequestParam"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StaticChunkingStrategyRequestParam staticChunkingStrategyRequestParam, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (staticChunkingStrategyRequestParam.Static == null)
-                throw new ArgumentNullException(nameof(staticChunkingStrategyRequestParam.Static), "Property is required for class StaticChunkingStrategyRequestParam.");
-
             var typeRawValue = StaticChunkingStrategyRequestParam.TypeEnumToJsonValue(staticChunkingStrategyRequestParam.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("static");

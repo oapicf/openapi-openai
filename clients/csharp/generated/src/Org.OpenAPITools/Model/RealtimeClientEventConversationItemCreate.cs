@@ -226,7 +226,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeClientEventConversationItemCreate.TypeEnum?>(RealtimeClientEventConversationItemCreate.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeClientEventConversationItemCreate.TypeEnum? typeValue = RealtimeClientEventConversationItemCreate.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeClientEventConversationItemCreate.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "item":
                             item = new Option<RealtimeConversationItem?>(JsonSerializer.Deserialize<RealtimeConversationItem>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -244,22 +249,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventConversationItemCreate.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeClientEventConversationItemCreate: type.");
 
             if (!item.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventConversationItemCreate.", nameof(item));
+                throw new JsonException("Property is required for class RealtimeClientEventConversationItemCreate: item.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventConversationItemCreate: type.");
 
             if (item.IsSet && item.Value == null)
-                throw new ArgumentNullException(nameof(item), "Property is not nullable for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventConversationItemCreate: item.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventConversationItemCreate: event_id.");
 
             if (previousItemId.IsSet && previousItemId.Value == null)
-                throw new ArgumentNullException(nameof(previousItemId), "Property is not nullable for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventConversationItemCreate: previous_item_id.");
 
             return new RealtimeClientEventConversationItemCreate(type.Value!.Value!, item.Value!, eventId, previousItemId);
         }
@@ -270,7 +275,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventConversationItemCreate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeClientEventConversationItemCreate realtimeClientEventConversationItemCreate, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -285,17 +289,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventConversationItemCreate"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeClientEventConversationItemCreate realtimeClientEventConversationItemCreate, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeClientEventConversationItemCreate.Item == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventConversationItemCreate.Item), "Property is required for class RealtimeClientEventConversationItemCreate.");
-
             if (realtimeClientEventConversationItemCreate.EventIdOption.IsSet && realtimeClientEventConversationItemCreate.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventConversationItemCreate.EventId), "Property is required for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Cannot write null property RealtimeClientEventConversationItemCreate.EventId to non-nullable JSON property 'event_id'.");
 
             if (realtimeClientEventConversationItemCreate.PreviousItemIdOption.IsSet && realtimeClientEventConversationItemCreate.PreviousItemId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventConversationItemCreate.PreviousItemId), "Property is required for class RealtimeClientEventConversationItemCreate.");
+                throw new JsonException("Cannot write null property RealtimeClientEventConversationItemCreate.PreviousItemId to non-nullable JSON property 'previous_item_id'.");
 
             var typeRawValue = RealtimeClientEventConversationItemCreate.TypeEnumToJsonValue(realtimeClientEventConversationItemCreate.Type);
             writer.WriteString("type", typeRawValue);

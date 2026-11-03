@@ -19,17 +19,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Occurs when a [run step](/docs/api-reference/run-steps/step-object) is cancelled.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class RunStepStreamEventOneOf5(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("event")
+    @param:JsonProperty("event", required = true)
     @get:JsonProperty("event", required = true) val event: RunStepStreamEventOneOf5.Event,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: RunStepObject
 ) : RunStepStreamEvent {
 
@@ -40,12 +40,12 @@ data class RunStepStreamEventOneOf5(
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
         threadPeriodRunPeriodStepPeriodCancelled("thread.run.step.cancelled");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }

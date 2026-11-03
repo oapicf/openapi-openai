@@ -127,15 +127,14 @@ class _$AssistantsNamedToolChoiceSerializer implements PrimitiveSerializer<Assis
   }
 }
 
+
+/// The type of the tool. If type is `function`, the function name must be set
 class AssistantsNamedToolChoiceTypeEnum extends EnumClass {
 
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'function')
   static const AssistantsNamedToolChoiceTypeEnum function_ = _$assistantsNamedToolChoiceTypeEnum_function_;
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const AssistantsNamedToolChoiceTypeEnum codeInterpreter = _$assistantsNamedToolChoiceTypeEnum_codeInterpreter;
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'file_search')
   static const AssistantsNamedToolChoiceTypeEnum fileSearch = _$assistantsNamedToolChoiceTypeEnum_fileSearch;
 

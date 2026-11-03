@@ -23,14 +23,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeResponseStatusDetailsError {
     /**
      * The type of error.
-     * @type {string}
-     * @memberof RealtimeResponseStatusDetailsError
      */
     type?: string;
     /**
      * Error code, if any.
-     * @type {string}
-     * @memberof RealtimeResponseStatusDetailsError
      */
     code?: string;
 }

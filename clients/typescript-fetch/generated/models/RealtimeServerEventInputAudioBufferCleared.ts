@@ -23,14 +23,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventInputAudioBufferCleared {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferCleared
      */
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.cleared`.
-     * @type {RealtimeServerEventInputAudioBufferClearedTypeEnum}
-     * @memberof RealtimeServerEventInputAudioBufferCleared
      */
     type: RealtimeServerEventInputAudioBufferClearedTypeEnum;
 }
@@ -40,7 +36,7 @@ export interface RealtimeServerEventInputAudioBufferCleared {
  * @export
  */
 export const RealtimeServerEventInputAudioBufferClearedTypeEnum = {
-    InputAudioBufferCleared: 'input_audio_buffer.cleared'
+    InputAudioBufferCleared: 'input_audio_buffer.cleared',
 } as const;
 export type RealtimeServerEventInputAudioBufferClearedTypeEnum = typeof RealtimeServerEventInputAudioBufferClearedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferClearedTypeEnum];
 

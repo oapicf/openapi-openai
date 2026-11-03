@@ -29,32 +29,22 @@ import {
 export interface ListRunStepsResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListRunStepsResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<RunStepObject>}
-     * @memberof ListRunStepsResponse
      */
     data: Array<RunStepObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListRunStepsResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListRunStepsResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListRunStepsResponse
      */
     hasMore: boolean;
 }

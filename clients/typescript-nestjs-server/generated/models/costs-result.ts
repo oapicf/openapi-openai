@@ -18,7 +18,7 @@ export interface CostsResult {
 }
 export namespace CostsResult {
   export const ObjectEnum = {
-    OrganizationCostsResult: 'organization.costs.result'
+    OrganizationCostsResult: 'organization.costs.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

@@ -227,7 +227,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnum?>(RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnum? typeValue = RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "item_id":
                             itemId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -245,34 +250,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: type.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: item_id.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: content_index.");
 
             if (!transcript.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.", nameof(transcript));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: transcript.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: type.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: item_id.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: content_index.");
 
             if (transcript.IsSet && transcript.Value == null)
-                throw new ArgumentNullException(nameof(transcript), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted: transcript.");
 
             return new RealtimeServerEventConversationItemInputAudioTranscriptionCompleted(eventId.Value!, type.Value!.Value!, itemId.Value!, contentIndex.Value!.Value!, transcript.Value!);
         }
@@ -283,7 +288,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemInputAudioTranscriptionCompleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationItemInputAudioTranscriptionCompleted realtimeServerEventConversationItemInputAudioTranscriptionCompleted, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -298,18 +302,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemInputAudioTranscriptionCompleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationItemInputAudioTranscriptionCompleted realtimeServerEventConversationItemInputAudioTranscriptionCompleted, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventConversationItemInputAudioTranscriptionCompleted.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionCompleted.EventId), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
-
-            if (realtimeServerEventConversationItemInputAudioTranscriptionCompleted.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionCompleted.ItemId), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
-
-            if (realtimeServerEventConversationItemInputAudioTranscriptionCompleted.Transcript == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionCompleted.Transcript), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.");
-
             writer.WriteString("event_id", realtimeServerEventConversationItemInputAudioTranscriptionCompleted.EventId);
 
             var typeRawValue = RealtimeServerEventConversationItemInputAudioTranscriptionCompleted.TypeEnumToJsonValue(realtimeServerEventConversationItemInputAudioTranscriptionCompleted.Type);

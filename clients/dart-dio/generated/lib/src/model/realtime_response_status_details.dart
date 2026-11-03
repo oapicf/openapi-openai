@@ -151,18 +151,16 @@ class _$RealtimeResponseStatusDetailsSerializer implements PrimitiveSerializer<R
   }
 }
 
+
+/// The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). 
 class RealtimeResponseStatusDetailsTypeEnum extends EnumClass {
 
-  /// The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). 
   @BuiltValueEnumConst(wireName: r'completed')
   static const RealtimeResponseStatusDetailsTypeEnum completed = _$realtimeResponseStatusDetailsTypeEnum_completed;
-  /// The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). 
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const RealtimeResponseStatusDetailsTypeEnum cancelled = _$realtimeResponseStatusDetailsTypeEnum_cancelled;
-  /// The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). 
   @BuiltValueEnumConst(wireName: r'failed')
   static const RealtimeResponseStatusDetailsTypeEnum failed = _$realtimeResponseStatusDetailsTypeEnum_failed;
-  /// The type of error that caused the response to fail, corresponding  with the `status` field (`completed`, `cancelled`, `incomplete`,  `failed`). 
   @BuiltValueEnumConst(wireName: r'incomplete')
   static const RealtimeResponseStatusDetailsTypeEnum incomplete = _$realtimeResponseStatusDetailsTypeEnum_incomplete;
 
@@ -174,18 +172,15 @@ class RealtimeResponseStatusDetailsTypeEnum extends EnumClass {
   static RealtimeResponseStatusDetailsTypeEnum valueOf(String name) => _$realtimeResponseStatusDetailsTypeEnumValueOf(name);
 }
 
+/// The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). 
 class RealtimeResponseStatusDetailsReasonEnum extends EnumClass {
 
-  /// The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). 
   @BuiltValueEnumConst(wireName: r'turn_detected')
   static const RealtimeResponseStatusDetailsReasonEnum turnDetected = _$realtimeResponseStatusDetailsReasonEnum_turnDetected;
-  /// The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). 
   @BuiltValueEnumConst(wireName: r'client_cancelled')
   static const RealtimeResponseStatusDetailsReasonEnum clientCancelled = _$realtimeResponseStatusDetailsReasonEnum_clientCancelled;
-  /// The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). 
   @BuiltValueEnumConst(wireName: r'max_output_tokens')
   static const RealtimeResponseStatusDetailsReasonEnum maxOutputTokens = _$realtimeResponseStatusDetailsReasonEnum_maxOutputTokens;
-  /// The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response). 
   @BuiltValueEnumConst(wireName: r'content_filter')
   static const RealtimeResponseStatusDetailsReasonEnum contentFilter = _$realtimeResponseStatusDetailsReasonEnum_contentFilter;
 

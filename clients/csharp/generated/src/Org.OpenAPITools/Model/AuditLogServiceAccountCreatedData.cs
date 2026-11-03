@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class AuditLogServiceAccountCreatedData.");
+                throw new JsonException("Property is not nullable for class AuditLogServiceAccountCreatedData: role.");
 
             return new AuditLogServiceAccountCreatedData(role);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogServiceAccountCreatedData auditLogServiceAccountCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogServiceAccountCreatedData auditLogServiceAccountCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogServiceAccountCreatedData.RoleOption.IsSet && auditLogServiceAccountCreatedData.Role == null)
-                throw new ArgumentNullException(nameof(auditLogServiceAccountCreatedData.Role), "Property is required for class AuditLogServiceAccountCreatedData.");
+                throw new JsonException("Cannot write null property AuditLogServiceAccountCreatedData.Role to non-nullable JSON property 'role'.");
 
             if (auditLogServiceAccountCreatedData.RoleOption.IsSet)
                 writer.WriteString("role", auditLogServiceAccountCreatedData.Role);

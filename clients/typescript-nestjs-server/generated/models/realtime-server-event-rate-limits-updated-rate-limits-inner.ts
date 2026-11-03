@@ -21,7 +21,7 @@ export interface RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
 export namespace RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
   export const NameEnum = {
     Requests: 'requests',
-    Tokens: 'tokens'
+    Tokens: 'tokens',
   } as const;
   export type NameEnum = typeof NameEnum[keyof typeof NameEnum];
 }

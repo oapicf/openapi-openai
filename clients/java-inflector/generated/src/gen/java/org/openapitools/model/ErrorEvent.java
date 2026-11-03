@@ -15,7 +15,7 @@ import org.openapitools.model.Error;
  **/
 
 @ApiModel(description = "Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ErrorEvent   {
   /**
    * Gets or Sets event

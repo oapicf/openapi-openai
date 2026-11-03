@@ -17,7 +17,7 @@ import javax.validation.Valid;
 /**
  * Represents an &#x60;assistant&#x60; that can call the model and use tools.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class AssistantObject   {
   @JsonProperty("id")
@@ -92,7 +92,7 @@ public class AssistantObject   {
 @Size(max=128)
 @Valid
 
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   @JsonProperty("tool_resources")
   @Valid
@@ -242,7 +242,7 @@ public class AssistantObject   {
     this.instructions = instructions;
   }
 
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -259,11 +259,11 @@ public class AssistantObject   {
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
   **/
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

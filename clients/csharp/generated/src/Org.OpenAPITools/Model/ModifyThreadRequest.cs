@@ -169,7 +169,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyThreadRequest modifyThreadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -184,7 +183,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyThreadRequest modifyThreadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modifyThreadRequest.ToolResourcesOption.IsSet)

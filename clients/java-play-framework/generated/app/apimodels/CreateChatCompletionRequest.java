@@ -27,7 +27,7 @@ import javax.validation.Valid;
 /**
  * CreateChatCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateChatCompletionRequest   {
   @JsonProperty("messages")
@@ -35,7 +35,7 @@ public class CreateChatCompletionRequest   {
 @Size(min=1)
 @Valid
 
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   @JsonProperty("model")
   @NotNull
@@ -224,7 +224,7 @@ public class CreateChatCompletionRequest   {
   @JsonProperty("stop")
   @Valid
 
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   @JsonProperty("stream")
   
@@ -278,7 +278,7 @@ public class CreateChatCompletionRequest   {
 
   private List<@Valid ChatCompletionFunctions> functions = null;
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -295,11 +295,11 @@ public class CreateChatCompletionRequest   {
    * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    * @return messages
   **/
-  public List<ChatCompletionRequestMessage> getMessages() {
+  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 

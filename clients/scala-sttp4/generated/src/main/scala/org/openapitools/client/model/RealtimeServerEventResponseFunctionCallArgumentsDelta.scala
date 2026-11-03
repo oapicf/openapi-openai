@@ -35,7 +35,7 @@ object RealtimeServerEventResponseFunctionCallArgumentsDeltaEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseFunctionCallArgumentsDelta extends `Type`
+    case object ResponseFunctionCallArgumentsDelta extends `Type` { override def toString: String = "response.function_call_arguments.delta" }
 
     import org.json4s._
 

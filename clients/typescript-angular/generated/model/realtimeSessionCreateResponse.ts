@@ -58,7 +58,7 @@ export interface RealtimeSessionCreateResponse {
 export namespace RealtimeSessionCreateResponse {
     export const ModalitiesEnum = {
         Text: 'text',
-        Audio: 'audio'
+        Audio: 'audio',
     } as const;
     export type ModalitiesEnum = typeof ModalitiesEnum[keyof typeof ModalitiesEnum];
     export const VoiceEnum = {
@@ -69,7 +69,7 @@ export namespace RealtimeSessionCreateResponse {
         Echo: 'echo',
         Sage: 'sage',
         Shimmer: 'shimmer',
-        Verse: 'verse'
+        Verse: 'verse',
     } as const;
     export type VoiceEnum = typeof VoiceEnum[keyof typeof VoiceEnum];
 }

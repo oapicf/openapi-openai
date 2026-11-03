@@ -52,7 +52,7 @@ export interface UsageCompletionsResult {
 }
 export namespace UsageCompletionsResult {
   export const ObjectEnum = {
-    OrganizationUsageCompletionsResult: 'organization.usage.completions.result'
+    OrganizationUsageCompletionsResult: 'organization.usage.completions.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

@@ -23,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventInputAudioBufferCleared(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `input_audio_buffer.cleared`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventInputAudioBufferCleared.Type
 ) {
 
@@ -38,12 +38,12 @@ data class RealtimeServerEventInputAudioBufferCleared(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         input_audio_bufferPeriodCleared("input_audio_buffer.cleared");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

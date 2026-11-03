@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CreateModerationRequestInputOneOfInnerOneOfImageUrl {
     /**
      * Either a URL of the image or the base64 encoded image data.
-     * @type {string}
-     * @memberof CreateModerationRequestInputOneOfInnerOneOfImageUrl
      */
     url: string;
 }

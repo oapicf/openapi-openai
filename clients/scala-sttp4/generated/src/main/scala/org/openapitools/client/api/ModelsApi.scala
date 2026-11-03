@@ -33,7 +33,7 @@ class ModelsApi(baseUrl: String) {
    * 
    * @param model The model to delete
    */
-  def deleteModel(bearerToken: String)(model: String): Request[Either[ResponseException[String], DeleteModelResponse]] =
+  def deleteModel(bearerToken: String)(model: String): sttp.client4.Request[Either[ResponseException[String], DeleteModelResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/models/${model}")
       .contentType("application/json")
@@ -47,7 +47,7 @@ class ModelsApi(baseUrl: String) {
    * Available security schemes:
    *   ApiKeyAuth (http)
    */
-  def listModels(bearerToken: String)(): Request[Either[ResponseException[String], ListModelsResponse]] =
+  def listModels(bearerToken: String)(): sttp.client4.Request[Either[ResponseException[String], ListModelsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/models")
       .contentType("application/json")
@@ -63,7 +63,7 @@ class ModelsApi(baseUrl: String) {
    * 
    * @param model The ID of the model to use for this request
    */
-  def retrieveModel(bearerToken: String)(model: String): Request[Either[ResponseException[String], Model]] =
+  def retrieveModel(bearerToken: String)(model: String): sttp.client4.Request[Either[ResponseException[String], Model]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/models/${model}")
       .contentType("application/json")

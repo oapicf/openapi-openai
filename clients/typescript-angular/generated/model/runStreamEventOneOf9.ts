@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf9 {
 }
 export namespace RunStreamEventOneOf9 {
     export const EventEnum = {
-        ThreadRunExpired: 'thread.run.expired'
+        ThreadRunExpired: 'thread.run.expired',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

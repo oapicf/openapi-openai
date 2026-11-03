@@ -36,69 +36,47 @@ import {
 export interface VectorStoreObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof VectorStoreObject
      */
     id: string;
     /**
      * The object type, which is always `vector_store`.
-     * @type {VectorStoreObjectObjectEnum}
-     * @memberof VectorStoreObject
      */
     object: VectorStoreObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the vector store was created.
-     * @type {number}
-     * @memberof VectorStoreObject
      */
     createdAt: number;
     /**
      * The name of the vector store.
-     * @type {string}
-     * @memberof VectorStoreObject
      */
     name: string;
     /**
      * The total number of bytes used by the files in the vector store.
-     * @type {number}
-     * @memberof VectorStoreObject
      */
     usageBytes: number;
     /**
      * 
-     * @type {VectorStoreObjectFileCounts}
-     * @memberof VectorStoreObject
      */
     fileCounts: VectorStoreObjectFileCounts;
     /**
      * The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
-     * @type {VectorStoreObjectStatusEnum}
-     * @memberof VectorStoreObject
      */
     status: VectorStoreObjectStatusEnum;
     /**
      * 
-     * @type {VectorStoreExpirationAfter}
-     * @memberof VectorStoreObject
      */
     expiresAfter?: VectorStoreExpirationAfter;
     /**
      * The Unix timestamp (in seconds) for when the vector store will expire.
-     * @type {number}
-     * @memberof VectorStoreObject
      */
     expiresAt?: number | null;
     /**
      * The Unix timestamp (in seconds) for when the vector store was last active.
-     * @type {number}
-     * @memberof VectorStoreObject
      */
     lastActiveAt: number | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof VectorStoreObject
      */
     metadata: object | null;
 }
@@ -108,7 +86,7 @@ export interface VectorStoreObject {
  * @export
  */
 export const VectorStoreObjectObjectEnum = {
-    VectorStore: 'vector_store'
+    VectorStore: 'vector_store',
 } as const;
 export type VectorStoreObjectObjectEnum = typeof VectorStoreObjectObjectEnum[keyof typeof VectorStoreObjectObjectEnum];
 
@@ -118,7 +96,7 @@ export type VectorStoreObjectObjectEnum = typeof VectorStoreObjectObjectEnum[key
 export const VectorStoreObjectStatusEnum = {
     Expired: 'expired',
     InProgress: 'in_progress',
-    Completed: 'completed'
+    Completed: 'completed',
 } as const;
 export type VectorStoreObjectStatusEnum = typeof VectorStoreObjectStatusEnum[keyof typeof VectorStoreObjectStatusEnum];
 

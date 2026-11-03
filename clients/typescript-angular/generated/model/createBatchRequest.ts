@@ -31,11 +31,11 @@ export namespace CreateBatchRequest {
     export const EndpointEnum = {
         V1ChatCompletions: '/v1/chat/completions',
         V1Embeddings: '/v1/embeddings',
-        V1Completions: '/v1/completions'
+        V1Completions: '/v1/completions',
     } as const;
     export type EndpointEnum = typeof EndpointEnum[keyof typeof EndpointEnum];
     export const CompletionWindowEnum = {
-        _24h: '24h'
+        _24h: '24h',
     } as const;
     export type CompletionWindowEnum = typeof CompletionWindowEnum[keyof typeof CompletionWindowEnum];
 }

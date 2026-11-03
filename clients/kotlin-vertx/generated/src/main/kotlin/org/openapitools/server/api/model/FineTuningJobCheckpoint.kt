@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param stepNumber The step number that the checkpoint was created at.
  * @param metrics 
  * @param fineTuningJobId The name of the fine-tuning job that this checkpoint was created from.
- * @param &#x60;object&#x60; The object type, which is always \"fine_tuning.job.checkpoint\".
+ * @param `object` The object type, which is always \"fine_tuning.job.checkpoint\".
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

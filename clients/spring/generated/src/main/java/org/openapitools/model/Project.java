@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -25,7 +24,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "Project", description = "Represents an individual project.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Project {
 
   private String id;
@@ -69,7 +68,6 @@ public class Project {
 
   private Integer createdAt;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> archivedAt = JsonNullable.<Integer>undefined();
 
   /**
@@ -218,7 +216,7 @@ public class Project {
    * @return archivedAt
    */
   
-  @Schema(name = "archived_at", description = "The Unix timestamp (in seconds) of when the project was archived or `null`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "archived_at", description = "The Unix timestamp (in seconds) of when the project was archived or `null`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("archived_at")
   public JsonNullable<Integer> getArchivedAt() {
     return archivedAt;

@@ -10,7 +10,7 @@ import play.api.libs.json._
   * @param contentIndex The index of the content part to truncate. Set this to 0.
   * @param audioEndMs Inclusive duration up to which audio is truncated, in milliseconds. If  the audio_end_ms is greater than the actual audio duration, the server  will respond with an error. 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class RealtimeClientEventConversationItemTruncate(
   eventId: Option[String],
   `type`: RealtimeClientEventConversationItemTruncate.Type.Value,

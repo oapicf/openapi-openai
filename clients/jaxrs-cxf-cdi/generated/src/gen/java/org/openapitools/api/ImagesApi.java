@@ -29,7 +29,7 @@ import javax.validation.Valid;
 @Api
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-26T05:16:04.319549348Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-11-03T06:33:55.768045576Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 
 public class ImagesApi  {
 

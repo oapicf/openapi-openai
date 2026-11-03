@@ -138,7 +138,6 @@ public enum VoiceEnum {
   * Tools (functions) available to the model.
   */
   @ApiModelProperty(value = "Tools (functions) available to the model.")
-  @Valid
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
  /**

@@ -148,3 +148,4 @@ class _$ChatCompletionFunctionsSerializer implements PrimitiveSerializer<ChatCom
   }
 }
 
+

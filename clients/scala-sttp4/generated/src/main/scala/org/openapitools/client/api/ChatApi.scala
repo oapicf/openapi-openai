@@ -32,7 +32,7 @@ class ChatApi(baseUrl: String) {
    * 
    * @param createChatCompletionRequest 
    */
-  def createChatCompletion(bearerToken: String)(createChatCompletionRequest: CreateChatCompletionRequest): Request[Either[ResponseException[String], CreateChatCompletionResponse]] =
+  def createChatCompletion(bearerToken: String)(createChatCompletionRequest: CreateChatCompletionRequest): sttp.client4.Request[Either[ResponseException[String], CreateChatCompletionResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/chat/completions")
       .contentType("application/json")

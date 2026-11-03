@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param startTime 
  * @param endTime 
  * @param result 
@@ -26,20 +26,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class UsageTimeBucket(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageTimeBucket.`Object`,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("start_time")
+    @param:JsonProperty("start_time", required = true)
     @get:JsonProperty("start_time", required = true) val startTime: kotlin.Int,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("end_time")
+    @param:JsonProperty("end_time", required = true)
     @get:JsonProperty("end_time", required = true) val endTime: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("result")
+    @param:JsonProperty("result", required = true)
     @get:JsonProperty("result", required = true) val result: kotlin.collections.List<UsageTimeBucketResultInner>
 ) {
 
@@ -50,12 +50,12 @@ data class UsageTimeBucket(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         bucket("bucket");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

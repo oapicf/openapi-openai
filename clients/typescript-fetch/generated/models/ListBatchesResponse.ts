@@ -29,32 +29,22 @@ import {
 export interface ListBatchesResponse {
     /**
      * 
-     * @type {Array<Batch>}
-     * @memberof ListBatchesResponse
      */
     data: Array<Batch>;
     /**
      * 
-     * @type {string}
-     * @memberof ListBatchesResponse
      */
     firstId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListBatchesResponse
      */
     lastId?: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListBatchesResponse
      */
     hasMore: boolean;
     /**
      * 
-     * @type {ListBatchesResponseObjectEnum}
-     * @memberof ListBatchesResponse
      */
     object: ListBatchesResponseObjectEnum;
 }
@@ -64,7 +54,7 @@ export interface ListBatchesResponse {
  * @export
  */
 export const ListBatchesResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListBatchesResponseObjectEnum = typeof ListBatchesResponseObjectEnum[keyof typeof ListBatchesResponseObjectEnum];
 

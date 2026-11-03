@@ -14,7 +14,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
 }
 export namespace RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
   export const TypeEnum = {
-    Image: 'image'
+    Image: 'image',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

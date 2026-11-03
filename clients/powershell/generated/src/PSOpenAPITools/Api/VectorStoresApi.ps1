@@ -63,11 +63,11 @@ function Stop-VectorStoreFileBatch {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling cancelVectorStoreFileBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
         if (!$BatchId) {
             throw "Error! The required parameter `BatchId` missing when calling cancelVectorStoreFileBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Web.HTTPUtility]::UrlEncode($BatchId))
+        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Uri]::EscapeDataString([string]$BatchId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -237,7 +237,7 @@ function New-VectorStoreFile {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling createVectorStoreFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if (!$CreateVectorStoreFileRequest) {
             throw "Error! The required parameter `CreateVectorStoreFileRequest` missing when calling createVectorStoreFile."
@@ -330,7 +330,7 @@ function New-VectorStoreFileBatch {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling createVectorStoreFileBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if (!$CreateVectorStoreFileBatchRequest) {
             throw "Error! The required parameter `CreateVectorStoreFileBatchRequest` missing when calling createVectorStoreFileBatch."
@@ -414,7 +414,7 @@ function Invoke-DeleteVectorStore {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling deleteVectorStore."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -498,11 +498,11 @@ function Invoke-DeleteVectorStoreFile {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling deleteVectorStoreFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
         if (!$FileId) {
             throw "Error! The required parameter `FileId` missing when calling deleteVectorStoreFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Web.HTTPUtility]::UrlEncode($FileId))
+        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Uri]::EscapeDataString([string]$FileId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -580,7 +580,7 @@ function Get-VectorStore {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling getVectorStore."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -664,11 +664,11 @@ function Get-VectorStoreFile {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling getVectorStoreFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
         if (!$FileId) {
             throw "Error! The required parameter `FileId` missing when calling getVectorStoreFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Web.HTTPUtility]::UrlEncode($FileId))
+        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Uri]::EscapeDataString([string]$FileId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -752,11 +752,11 @@ function Get-VectorStoreFileBatch {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling getVectorStoreFileBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
         if (!$BatchId) {
             throw "Error! The required parameter `BatchId` missing when calling getVectorStoreFileBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Web.HTTPUtility]::UrlEncode($BatchId))
+        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Uri]::EscapeDataString([string]$BatchId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -872,11 +872,11 @@ function Invoke-ListFilesInVectorStoreBatch {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling listFilesInVectorStoreBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
         if (!$BatchId) {
             throw "Error! The required parameter `BatchId` missing when calling listFilesInVectorStoreBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Web.HTTPUtility]::UrlEncode($BatchId))
+        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Uri]::EscapeDataString([string]$BatchId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1006,7 +1006,7 @@ function Invoke-ListVectorStoreFiles {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling listVectorStoreFiles."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1222,7 +1222,7 @@ function Edit-VectorStore {
         if (!$VectorStoreId) {
             throw "Error! The required parameter `VectorStoreId` missing when calling modifyVectorStore."
         }
-        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Web.HTTPUtility]::UrlEncode($VectorStoreId))
+        $LocalVarUri = $LocalVarUri.replace('{vector_store_id}', [System.Uri]::EscapeDataString([string]$VectorStoreId))
 
         if (!$UpdateVectorStoreRequest) {
             throw "Error! The required parameter `UpdateVectorStoreRequest` missing when calling modifyVectorStore."

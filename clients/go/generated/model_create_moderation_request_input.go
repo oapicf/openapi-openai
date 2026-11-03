@@ -111,21 +111,11 @@ func (dst *CreateModerationRequestInput) UnmarshalJSON(data []byte) error {
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput)")
-        }
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput)")
-        }
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput)")
-        }
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput): %v", err)
+		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateModerationRequestInput)")
 	}
 }
 

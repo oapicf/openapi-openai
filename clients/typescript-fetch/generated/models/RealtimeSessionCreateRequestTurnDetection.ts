@@ -25,8 +25,6 @@ export interface RealtimeSessionCreateRequestTurnDetection {
     /**
      * Type of turn detection, only `server_vad` is currently supported.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionCreateRequestTurnDetection
      */
     type?: string;
     /**
@@ -34,16 +32,12 @@ export interface RealtimeSessionCreateRequestTurnDetection {
      * higher threshold will require louder audio to activate the model, and 
      * thus might perform better in noisy environments.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateRequestTurnDetection
      */
     threshold?: number;
     /**
      * Amount of audio to include before the VAD detected speech (in 
      * milliseconds). Defaults to 300ms.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateRequestTurnDetection
      */
     prefixPaddingMs?: number;
     /**
@@ -51,16 +45,12 @@ export interface RealtimeSessionCreateRequestTurnDetection {
      * to 500ms. With shorter values the model will respond more quickly, 
      * but may jump in on short pauses from the user.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionCreateRequestTurnDetection
      */
     silenceDurationMs?: number;
     /**
      * Whether or not to automatically generate a response when VAD is
      * enabled. `true` by default.
      * 
-     * @type {boolean}
-     * @memberof RealtimeSessionCreateRequestTurnDetection
      */
     createResponse?: boolean;
 }

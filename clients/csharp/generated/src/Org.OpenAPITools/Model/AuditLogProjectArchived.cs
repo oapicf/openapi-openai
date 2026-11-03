@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogProjectArchived.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectArchived: id.");
 
             return new AuditLogProjectArchived(id);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectArchived"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogProjectArchived auditLogProjectArchived, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectArchived"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogProjectArchived auditLogProjectArchived, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogProjectArchived.IdOption.IsSet && auditLogProjectArchived.Id == null)
-                throw new ArgumentNullException(nameof(auditLogProjectArchived.Id), "Property is required for class AuditLogProjectArchived.");
+                throw new JsonException("Cannot write null property AuditLogProjectArchived.Id to non-nullable JSON property 'id'.");
 
             if (auditLogProjectArchived.IdOption.IsSet)
                 writer.WriteString("id", auditLogProjectArchived.Id);

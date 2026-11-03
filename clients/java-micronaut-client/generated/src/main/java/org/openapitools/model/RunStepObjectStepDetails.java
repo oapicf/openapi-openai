@@ -38,7 +38,7 @@ import javax.annotation.Generated;
   RunStepObjectStepDetails.JSON_PROPERTY_TOOL_CALLS
 })
 @JsonTypeName("RunStepObject_step_details")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class RunStepObjectStepDetails {
     /**
@@ -81,9 +81,9 @@ public class RunStepObjectStepDetails {
     private RunStepDetailsMessageCreationObjectMessageCreation messageCreation;
 
     public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
-    private List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+    private List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
 
-    public RunStepObjectStepDetails(TypeEnum type, RunStepDetailsMessageCreationObjectMessageCreation messageCreation, List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public RunStepObjectStepDetails(TypeEnum type, RunStepDetailsMessageCreationObjectMessageCreation messageCreation, List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.type = type;
         this.messageCreation = messageCreation;
         this.toolCalls = toolCalls;
@@ -134,7 +134,7 @@ public class RunStepObjectStepDetails {
         this.messageCreation = messageCreation;
     }
 
-    public RunStepObjectStepDetails toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public RunStepObjectStepDetails toolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.toolCalls = toolCalls;
         return this;
     }
@@ -151,13 +151,13 @@ public class RunStepObjectStepDetails {
     @NotNull
     @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+    public List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
         return toolCalls;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setToolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public void setToolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.toolCalls = toolCalls;
     }
 

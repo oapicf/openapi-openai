@@ -184,9 +184,10 @@ class _$InviteListResponseSerializer implements PrimitiveSerializer<InviteListRe
   }
 }
 
+
+/// The object type, which is always `list`
 class InviteListResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always `list`
   @BuiltValueEnumConst(wireName: r'list')
   static const InviteListResponseObjectEnum list = _$inviteListResponseObjectEnum_list;
 

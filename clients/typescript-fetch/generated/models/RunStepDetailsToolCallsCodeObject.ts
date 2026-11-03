@@ -29,20 +29,14 @@ import {
 export interface RunStepDetailsToolCallsCodeObject {
     /**
      * The ID of the tool call.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsCodeObject
      */
     id: string;
     /**
      * The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
-     * @type {RunStepDetailsToolCallsCodeObjectTypeEnum}
-     * @memberof RunStepDetailsToolCallsCodeObject
      */
     type: RunStepDetailsToolCallsCodeObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDetailsToolCallsCodeObjectCodeInterpreter}
-     * @memberof RunStepDetailsToolCallsCodeObject
      */
     codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter;
 }
@@ -52,7 +46,7 @@ export interface RunStepDetailsToolCallsCodeObject {
  * @export
  */
 export const RunStepDetailsToolCallsCodeObjectTypeEnum = {
-    CodeInterpreter: 'code_interpreter'
+    CodeInterpreter: 'code_interpreter',
 } as const;
 export type RunStepDetailsToolCallsCodeObjectTypeEnum = typeof RunStepDetailsToolCallsCodeObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeObjectTypeEnum];
 

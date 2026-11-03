@@ -30,7 +30,7 @@ export interface RealtimeClientEventConversationItemCreate {
 }
 export namespace RealtimeClientEventConversationItemCreate {
     export const TypeEnum = {
-        ConversationItemCreate: 'conversation.item.create'
+        ConversationItemCreate: 'conversation.item.create',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

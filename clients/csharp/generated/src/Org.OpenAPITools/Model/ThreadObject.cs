@@ -226,7 +226,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ThreadObject.ObjectEnum?>(ThreadObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ThreadObject.ObjectEnum? varObjectValue = ThreadObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ThreadObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -244,28 +249,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ThreadObject.", nameof(id));
+                throw new JsonException("Property is required for class ThreadObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ThreadObject.", nameof(varObject));
+                throw new JsonException("Property is required for class ThreadObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class ThreadObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class ThreadObject: created_at.");
 
             if (!toolResources.IsSet)
-                throw new ArgumentException("Property is required for class ThreadObject.", nameof(toolResources));
+                throw new JsonException("Property is required for class ThreadObject: tool_resources.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class ThreadObject.", nameof(metadata));
+                throw new JsonException("Property is required for class ThreadObject: metadata.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ThreadObject.");
+                throw new JsonException("Property is not nullable for class ThreadObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ThreadObject.");
+                throw new JsonException("Property is not nullable for class ThreadObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class ThreadObject.");
+                throw new JsonException("Property is not nullable for class ThreadObject: created_at.");
 
             return new ThreadObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, toolResources.Value!, metadata.Value!);
         }
@@ -276,7 +281,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="threadObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ThreadObject threadObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -291,12 +295,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="threadObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ThreadObject threadObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (threadObject.Id == null)
-                throw new ArgumentNullException(nameof(threadObject.Id), "Property is required for class ThreadObject.");
-
             writer.WriteString("id", threadObject.Id);
 
             var varObjectRawValue = ThreadObject.ObjectEnumToJsonValue(threadObject.Object);

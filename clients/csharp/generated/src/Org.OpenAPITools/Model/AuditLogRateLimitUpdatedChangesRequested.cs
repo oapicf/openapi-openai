@@ -246,22 +246,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (maxRequestsPer1Minute.IsSet && maxRequestsPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Minute), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: max_requests_per_1_minute.");
 
             if (maxTokensPer1Minute.IsSet && maxTokensPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxTokensPer1Minute), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: max_tokens_per_1_minute.");
 
             if (maxImagesPer1Minute.IsSet && maxImagesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxImagesPer1Minute), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: max_images_per_1_minute.");
 
             if (maxAudioMegabytesPer1Minute.IsSet && maxAudioMegabytesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxAudioMegabytesPer1Minute), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: max_audio_megabytes_per_1_minute.");
 
             if (maxRequestsPer1Day.IsSet && maxRequestsPer1Day.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Day), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: max_requests_per_1_day.");
 
             if (batch1DayMaxInputTokens.IsSet && batch1DayMaxInputTokens.Value == null)
-                throw new ArgumentNullException(nameof(batch1DayMaxInputTokens), "Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdatedChangesRequested: batch_1_day_max_input_tokens.");
 
             return new AuditLogRateLimitUpdatedChangesRequested(maxRequestsPer1Minute, maxTokensPer1Minute, maxImagesPer1Minute, maxAudioMegabytesPer1Minute, maxRequestsPer1Day, batch1DayMaxInputTokens);
         }
@@ -272,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogRateLimitUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogRateLimitUpdatedChangesRequested auditLogRateLimitUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -287,9 +286,26 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogRateLimitUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogRateLimitUpdatedChangesRequested auditLogRateLimitUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1MinuteOption.IsSet && auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1Minute == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1Minute to non-nullable JSON property 'max_requests_per_1_minute'.");
+
+            if (auditLogRateLimitUpdatedChangesRequested.MaxTokensPer1MinuteOption.IsSet && auditLogRateLimitUpdatedChangesRequested.MaxTokensPer1Minute == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.MaxTokensPer1Minute to non-nullable JSON property 'max_tokens_per_1_minute'.");
+
+            if (auditLogRateLimitUpdatedChangesRequested.MaxImagesPer1MinuteOption.IsSet && auditLogRateLimitUpdatedChangesRequested.MaxImagesPer1Minute == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.MaxImagesPer1Minute to non-nullable JSON property 'max_images_per_1_minute'.");
+
+            if (auditLogRateLimitUpdatedChangesRequested.MaxAudioMegabytesPer1MinuteOption.IsSet && auditLogRateLimitUpdatedChangesRequested.MaxAudioMegabytesPer1Minute == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.MaxAudioMegabytesPer1Minute to non-nullable JSON property 'max_audio_megabytes_per_1_minute'.");
+
+            if (auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1DayOption.IsSet && auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1Day == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1Day to non-nullable JSON property 'max_requests_per_1_day'.");
+
+            if (auditLogRateLimitUpdatedChangesRequested.Batch1DayMaxInputTokensOption.IsSet && auditLogRateLimitUpdatedChangesRequested.Batch1DayMaxInputTokens == null)
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdatedChangesRequested.Batch1DayMaxInputTokens to non-nullable JSON property 'batch_1_day_max_input_tokens'.");
+
             if (auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1MinuteOption.IsSet)
                 writer.WriteNumber("max_requests_per_1_minute", auditLogRateLimitUpdatedChangesRequested.MaxRequestsPer1MinuteOption.Value!.Value);
 

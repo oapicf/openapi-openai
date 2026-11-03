@@ -26,7 +26,7 @@ export interface RealtimeClientEventResponseCreate {
 }
 export namespace RealtimeClientEventResponseCreate {
     export const TypeEnum = {
-        ResponseCreate: 'response.create'
+        ResponseCreate: 'response.create',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

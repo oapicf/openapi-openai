@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -26,13 +25,11 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("CreateAssistantRequest_tool_resources_file_search")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequestToolResourcesFileSearch {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> vectorStoreIds = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
 
   public CreateAssistantRequestToolResourcesFileSearch vectorStoreIds(List<String> vectorStoreIds) {
@@ -81,7 +78,7 @@ public class CreateAssistantRequestToolResourcesFileSearch {
    * A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. 
    * @return vectorStores
    */
-  @Valid @Size(max = 1) 
+  @Size(max = 1) 
   @Schema(name = "vector_stores", description = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("vector_stores")
   public List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
@@ -125,7 +122,7 @@ public class CreateAssistantRequestToolResourcesFileSearch {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(@Nullable Object o) {
     return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

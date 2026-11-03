@@ -171,6 +171,7 @@ class _$ListAuditLogsResponseSerializer implements PrimitiveSerializer<ListAudit
   }
 }
 
+
 class ListAuditLogsResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

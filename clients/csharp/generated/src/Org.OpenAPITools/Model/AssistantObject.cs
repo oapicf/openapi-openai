@@ -385,7 +385,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<AssistantObject.ObjectEnum?>(AssistantObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                AssistantObject.ObjectEnum? varObjectValue = AssistantObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<AssistantObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -427,49 +432,49 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(id));
+                throw new JsonException("Property is required for class AssistantObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(varObject));
+                throw new JsonException("Property is required for class AssistantObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class AssistantObject: created_at.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(model));
+                throw new JsonException("Property is required for class AssistantObject: model.");
 
             if (!tools.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(tools));
+                throw new JsonException("Property is required for class AssistantObject: tools.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(name));
+                throw new JsonException("Property is required for class AssistantObject: name.");
 
             if (!description.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(description));
+                throw new JsonException("Property is required for class AssistantObject: description.");
 
             if (!instructions.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(instructions));
+                throw new JsonException("Property is required for class AssistantObject: instructions.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class AssistantObject.", nameof(metadata));
+                throw new JsonException("Property is required for class AssistantObject: metadata.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: created_at.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: model.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: tools.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class AssistantObject.");
+                throw new JsonException("Property is not nullable for class AssistantObject: response_format.");
 
             return new AssistantObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, model.Value!, tools.Value!, name.Value!, description.Value!, instructions.Value!, toolResources, metadata.Value!, temperature, topP, responseFormat);
         }
@@ -480,7 +485,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantObject assistantObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -495,20 +499,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantObject assistantObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (assistantObject.Id == null)
-                throw new ArgumentNullException(nameof(assistantObject.Id), "Property is required for class AssistantObject.");
-
-            if (assistantObject.Model == null)
-                throw new ArgumentNullException(nameof(assistantObject.Model), "Property is required for class AssistantObject.");
-
-            if (assistantObject.Tools == null)
-                throw new ArgumentNullException(nameof(assistantObject.Tools), "Property is required for class AssistantObject.");
-
             if (assistantObject.ResponseFormatOption.IsSet && assistantObject.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(assistantObject.ResponseFormat), "Property is required for class AssistantObject.");
+                throw new JsonException("Cannot write null property AssistantObject.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             writer.WriteString("id", assistantObject.Id);
 

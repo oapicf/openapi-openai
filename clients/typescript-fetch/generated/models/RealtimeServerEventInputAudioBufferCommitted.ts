@@ -25,27 +25,19 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventInputAudioBufferCommitted {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferCommitted
      */
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.committed`.
-     * @type {RealtimeServerEventInputAudioBufferCommittedTypeEnum}
-     * @memberof RealtimeServerEventInputAudioBufferCommitted
      */
     type: RealtimeServerEventInputAudioBufferCommittedTypeEnum;
     /**
      * The ID of the preceding item after which the new item will be inserted.
      * 
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferCommitted
      */
     previousItemId: string;
     /**
      * The ID of the user message item that will be created.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferCommitted
      */
     itemId: string;
 }
@@ -55,7 +47,7 @@ export interface RealtimeServerEventInputAudioBufferCommitted {
  * @export
  */
 export const RealtimeServerEventInputAudioBufferCommittedTypeEnum = {
-    InputAudioBufferCommitted: 'input_audio_buffer.committed'
+    InputAudioBufferCommitted: 'input_audio_buffer.committed',
 } as const;
 export type RealtimeServerEventInputAudioBufferCommittedTypeEnum = typeof RealtimeServerEventInputAudioBufferCommittedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferCommittedTypeEnum];
 

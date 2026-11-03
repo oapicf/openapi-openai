@@ -29,14 +29,10 @@ import {
 export interface AuditLogUserUpdated {
     /**
      * The project ID.
-     * @type {string}
-     * @memberof AuditLogUserUpdated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogUserUpdatedChangesRequested}
-     * @memberof AuditLogUserUpdated
      */
     changesRequested?: AuditLogUserUpdatedChangesRequested;
 }

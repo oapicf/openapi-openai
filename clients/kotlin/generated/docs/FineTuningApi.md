@@ -145,10 +145,10 @@ try {
 ```
 
 ### Parameters
-| **fineTuningJobId** | **kotlin.String**| The ID of the fine-tuning job to get events for.  | |
-| **after** | **kotlin.String**| Identifier for the last event from the previous pagination request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fineTuningJobId** | **kotlin.String**| The ID of the fine-tuning job to get events for.  | |
+| **after** | **kotlin.String**| Identifier for the last event from the previous pagination request. | [optional] |
 | **limit** | **kotlin.Int**| Number of events to retrieve. | [optional] [default to 20] |
 
 ### Return type
@@ -201,10 +201,10 @@ try {
 ```
 
 ### Parameters
-| **fineTuningJobId** | **kotlin.String**| The ID of the fine-tuning job to get checkpoints for.  | |
-| **after** | **kotlin.String**| Identifier for the last checkpoint ID from the previous pagination request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **fineTuningJobId** | **kotlin.String**| The ID of the fine-tuning job to get checkpoints for.  | |
+| **after** | **kotlin.String**| Identifier for the last checkpoint ID from the previous pagination request. | [optional] |
 | **limit** | **kotlin.Int**| Number of checkpoints to retrieve. | [optional] [default to 10] |
 
 ### Return type
@@ -256,9 +256,9 @@ try {
 ```
 
 ### Parameters
-| **after** | **kotlin.String**| Identifier for the last job from the previous pagination request. | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **after** | **kotlin.String**| Identifier for the last job from the previous pagination request. | [optional] |
 | **limit** | **kotlin.Int**| Number of fine-tuning jobs to retrieve. | [optional] [default to 20] |
 
 ### Return type

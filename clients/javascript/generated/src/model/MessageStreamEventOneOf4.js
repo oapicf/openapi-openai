@@ -17,7 +17,7 @@ import MessageObject from './MessageObject';
 /**
  * The MessageStreamEventOneOf4 model module.
  * @module model/MessageStreamEventOneOf4
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageStreamEventOneOf4 {
     /**

@@ -21,74 +21,50 @@ import { mapValues } from '../runtime';
 export interface UsageCompletionsResult {
     /**
      * 
-     * @type {UsageCompletionsResultObjectEnum}
-     * @memberof UsageCompletionsResult
      */
     object: UsageCompletionsResultObjectEnum;
     /**
      * The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     inputTokens: number;
     /**
      * The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     inputCachedTokens?: number;
     /**
      * The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     outputTokens: number;
     /**
      * The aggregated number of audio input tokens used, including cached tokens.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     inputAudioTokens?: number;
     /**
      * The aggregated number of audio output tokens used.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     outputAudioTokens?: number;
     /**
      * The count of requests made to the model.
-     * @type {number}
-     * @memberof UsageCompletionsResult
      */
     numModelRequests: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageCompletionsResult
      */
     projectId?: string | null;
     /**
      * When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageCompletionsResult
      */
     userId?: string | null;
     /**
      * When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageCompletionsResult
      */
     apiKeyId?: string | null;
     /**
      * When `group_by=model`, this field provides the model name of the grouped usage result.
-     * @type {string}
-     * @memberof UsageCompletionsResult
      */
     model?: string | null;
     /**
      * When `group_by=batch`, this field tells whether the grouped usage result is batch or not.
-     * @type {boolean}
-     * @memberof UsageCompletionsResult
      */
     batch?: boolean | null;
 }
@@ -98,7 +74,7 @@ export interface UsageCompletionsResult {
  * @export
  */
 export const UsageCompletionsResultObjectEnum = {
-    OrganizationUsageCompletionsResult: 'organization.usage.completions.result'
+    OrganizationUsageCompletionsResult: 'organization.usage.completions.result',
 } as const;
 export type UsageCompletionsResultObjectEnum = typeof UsageCompletionsResultObjectEnum[keyof typeof UsageCompletionsResultObjectEnum];
 

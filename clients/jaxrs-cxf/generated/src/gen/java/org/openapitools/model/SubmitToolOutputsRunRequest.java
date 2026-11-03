@@ -20,8 +20,6 @@ public class SubmitToolOutputsRunRequest  {
   */
   @ApiModelProperty(required = true, value = "A list of tools for which the outputs are being submitted.")
 
-  @Valid
-
   private List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> toolOutputs = new ArrayList<>();
 
  /**

@@ -159,9 +159,10 @@ class _$CreateEmbeddingResponseSerializer implements PrimitiveSerializer<CreateE
   }
 }
 
+
+/// The object type, which is always \"list\".
 class CreateEmbeddingResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"list\".
   @BuiltValueEnumConst(wireName: r'list')
   static const CreateEmbeddingResponseObjectEnum list = _$createEmbeddingResponseObjectEnum_list;
 

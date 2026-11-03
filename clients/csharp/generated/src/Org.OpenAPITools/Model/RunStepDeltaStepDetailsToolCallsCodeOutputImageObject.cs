@@ -211,7 +211,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.TypeEnum?>(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.TypeEnum? typeValue = RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "image":
                             image = new Option<RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage?>(JsonSerializer.Deserialize<RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -223,19 +228,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.", nameof(index));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject: type.");
 
             if (image.IsSet && image.Value == null)
-                throw new ArgumentNullException(nameof(image), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject: image.");
 
             return new RunStepDeltaStepDetailsToolCallsCodeOutputImageObject(index.Value!.Value!, type.Value!.Value!, image);
         }
@@ -246,7 +251,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputImageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputImageObject runStepDeltaStepDetailsToolCallsCodeOutputImageObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,11 +265,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputImageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputImageObject runStepDeltaStepDetailsToolCallsCodeOutputImageObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsCodeOutputImageObject.ImageOption.IsSet && runStepDeltaStepDetailsToolCallsCodeOutputImageObject.Image == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeOutputImageObject.Image), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeOutputImageObject.Image to non-nullable JSON property 'image'.");
 
             writer.WriteNumber("index", runStepDeltaStepDetailsToolCallsCodeOutputImageObject.Index);
 

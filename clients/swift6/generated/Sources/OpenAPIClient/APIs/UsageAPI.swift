@@ -73,7 +73,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -84,7 +84,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -161,7 +162,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -172,7 +173,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -240,7 +242,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -248,7 +250,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -328,7 +331,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -340,7 +343,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -407,7 +411,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -415,7 +419,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -492,7 +497,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -503,7 +508,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -606,7 +612,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -619,7 +625,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -696,7 +703,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -707,7 +714,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -775,7 +783,7 @@ open class UsageAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start_time": (wrappedValue: startTime.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "end_time": (wrappedValue: endTime?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "bucket_width": (wrappedValue: bucketWidth?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -783,7 +791,8 @@ open class UsageAPI {
             "group_by": (wrappedValue: groupBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "page": (wrappedValue: page?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :

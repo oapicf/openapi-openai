@@ -249,7 +249,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventResponseAudioDelta.TypeEnum?>(RealtimeServerEventResponseAudioDelta.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventResponseAudioDelta.TypeEnum? typeValue = RealtimeServerEventResponseAudioDelta.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventResponseAudioDelta.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "response_id":
                             responseId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -273,46 +278,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: type.");
 
             if (!responseId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(responseId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: response_id.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: item_id.");
 
             if (!outputIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(outputIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: output_index.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: content_index.");
 
             if (!delta.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseAudioDelta.", nameof(delta));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseAudioDelta: delta.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: type.");
 
             if (responseId.IsSet && responseId.Value == null)
-                throw new ArgumentNullException(nameof(responseId), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: response_id.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: item_id.");
 
             if (outputIndex.IsSet && outputIndex.Value == null)
-                throw new ArgumentNullException(nameof(outputIndex), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: output_index.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: content_index.");
 
             if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class RealtimeServerEventResponseAudioDelta.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseAudioDelta: delta.");
 
             return new RealtimeServerEventResponseAudioDelta(eventId.Value!, type.Value!.Value!, responseId.Value!, itemId.Value!, outputIndex.Value!.Value!, contentIndex.Value!.Value!, delta.Value!);
         }
@@ -323,7 +328,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseAudioDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventResponseAudioDelta realtimeServerEventResponseAudioDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -338,21 +342,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseAudioDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventResponseAudioDelta realtimeServerEventResponseAudioDelta, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventResponseAudioDelta.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioDelta.EventId), "Property is required for class RealtimeServerEventResponseAudioDelta.");
-
-            if (realtimeServerEventResponseAudioDelta.ResponseId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioDelta.ResponseId), "Property is required for class RealtimeServerEventResponseAudioDelta.");
-
-            if (realtimeServerEventResponseAudioDelta.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioDelta.ItemId), "Property is required for class RealtimeServerEventResponseAudioDelta.");
-
-            if (realtimeServerEventResponseAudioDelta.Delta == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseAudioDelta.Delta), "Property is required for class RealtimeServerEventResponseAudioDelta.");
-
             writer.WriteString("event_id", realtimeServerEventResponseAudioDelta.EventId);
 
             var typeRawValue = RealtimeServerEventResponseAudioDelta.TypeEnumToJsonValue(realtimeServerEventResponseAudioDelta.Type);

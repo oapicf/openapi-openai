@@ -124,9 +124,10 @@ class _$MessageContentImageFileObjectSerializer implements PrimitiveSerializer<M
   }
 }
 
+
+/// Always `image_file`.
 class MessageContentImageFileObjectTypeEnum extends EnumClass {
 
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_file')
   static const MessageContentImageFileObjectTypeEnum imageFile = _$messageContentImageFileObjectTypeEnum_imageFile;
 

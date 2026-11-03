@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageContentImageUrlObjectImageUrl {
     /**
      * The external URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
-     * @type {string}
-     * @memberof MessageContentImageUrlObjectImageUrl
      */
     url: string;
     /**
      * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`. Default value is `auto`
-     * @type {MessageContentImageUrlObjectImageUrlDetailEnum}
-     * @memberof MessageContentImageUrlObjectImageUrl
      */
     detail?: MessageContentImageUrlObjectImageUrlDetailEnum;
 }
@@ -40,7 +36,7 @@ export interface MessageContentImageUrlObjectImageUrl {
 export const MessageContentImageUrlObjectImageUrlDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 export type MessageContentImageUrlObjectImageUrlDetailEnum = typeof MessageContentImageUrlObjectImageUrlDetailEnum[keyof typeof MessageContentImageUrlObjectImageUrlDetailEnum];
 

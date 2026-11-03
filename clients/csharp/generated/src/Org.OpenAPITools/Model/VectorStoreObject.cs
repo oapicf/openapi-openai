@@ -386,7 +386,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<VectorStoreObject.ObjectEnum?>(VectorStoreObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                VectorStoreObject.ObjectEnum? varObjectValue = VectorStoreObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<VectorStoreObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -403,7 +408,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<VectorStoreObject.StatusEnum?>(VectorStoreObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                VectorStoreObject.StatusEnum? statusValue = VectorStoreObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<VectorStoreObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "expires_after":
                             expiresAfter = new Option<VectorStoreExpirationAfter?>(JsonSerializer.Deserialize<VectorStoreExpirationAfter>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -424,55 +434,55 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(id));
+                throw new JsonException("Property is required for class VectorStoreObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(varObject));
+                throw new JsonException("Property is required for class VectorStoreObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class VectorStoreObject: created_at.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(name));
+                throw new JsonException("Property is required for class VectorStoreObject: name.");
 
             if (!usageBytes.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(usageBytes));
+                throw new JsonException("Property is required for class VectorStoreObject: usage_bytes.");
 
             if (!fileCounts.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(fileCounts));
+                throw new JsonException("Property is required for class VectorStoreObject: file_counts.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(status));
+                throw new JsonException("Property is required for class VectorStoreObject: status.");
 
             if (!lastActiveAt.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(lastActiveAt));
+                throw new JsonException("Property is required for class VectorStoreObject: last_active_at.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObject.", nameof(metadata));
+                throw new JsonException("Property is required for class VectorStoreObject: metadata.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: created_at.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: name.");
 
             if (usageBytes.IsSet && usageBytes.Value == null)
-                throw new ArgumentNullException(nameof(usageBytes), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: usage_bytes.");
 
             if (fileCounts.IsSet && fileCounts.Value == null)
-                throw new ArgumentNullException(nameof(fileCounts), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: file_counts.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: status.");
 
             if (expiresAfter.IsSet && expiresAfter.Value == null)
-                throw new ArgumentNullException(nameof(expiresAfter), "Property is not nullable for class VectorStoreObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreObject: expires_after.");
 
             return new VectorStoreObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, name.Value!, usageBytes.Value!.Value!, fileCounts.Value!, status.Value!.Value!, expiresAfter, expiresAt, lastActiveAt.Value!, metadata.Value!);
         }
@@ -483,7 +493,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreObject vectorStoreObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -498,20 +507,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreObject vectorStoreObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (vectorStoreObject.Id == null)
-                throw new ArgumentNullException(nameof(vectorStoreObject.Id), "Property is required for class VectorStoreObject.");
-
-            if (vectorStoreObject.Name == null)
-                throw new ArgumentNullException(nameof(vectorStoreObject.Name), "Property is required for class VectorStoreObject.");
-
-            if (vectorStoreObject.FileCounts == null)
-                throw new ArgumentNullException(nameof(vectorStoreObject.FileCounts), "Property is required for class VectorStoreObject.");
-
             if (vectorStoreObject.ExpiresAfterOption.IsSet && vectorStoreObject.ExpiresAfter == null)
-                throw new ArgumentNullException(nameof(vectorStoreObject.ExpiresAfter), "Property is required for class VectorStoreObject.");
+                throw new JsonException("Cannot write null property VectorStoreObject.ExpiresAfter to non-nullable JSON property 'expires_after'.");
 
             writer.WriteString("id", vectorStoreObject.Id);
 

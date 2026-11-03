@@ -21,9 +21,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("SubmitToolOutputsRunRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class SubmitToolOutputsRunRequest   {
-  private @Valid List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> toolOutputs = new ArrayList<>();
+  private List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> toolOutputs = new ArrayList<>();
   private Boolean stream;
 
   public SubmitToolOutputsRunRequest() {
@@ -47,7 +47,7 @@ public class SubmitToolOutputsRunRequest   {
   
   @ApiModelProperty(required = true, value = "A list of tools for which the outputs are being submitted.")
   @JsonProperty(required = true, value = "tool_outputs")
-  @NotNull @Valid public List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> getToolOutputs() {
+  @NotNull public List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> getToolOutputs() {
     return toolOutputs;
   }
 

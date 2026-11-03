@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,10 +25,9 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeConversationItem", description = "The item to add to the conversation.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeConversationItem {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
   /**
@@ -69,7 +67,6 @@ public class RealtimeConversationItem {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TypeEnum type;
 
   /**
@@ -105,7 +102,6 @@ public class RealtimeConversationItem {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ObjectEnum _object;
 
   /**
@@ -143,7 +139,6 @@ public class RealtimeConversationItem {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable StatusEnum status;
 
   /**
@@ -183,22 +178,16 @@ public class RealtimeConversationItem {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RoleEnum role;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String callId;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String arguments;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String output;
 
   public RealtimeConversationItem id(@Nullable String id) {
@@ -323,7 +312,7 @@ public class RealtimeConversationItem {
    * The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. 
    * @return content
    */
-  @Valid 
+  
   @Schema(name = "content", description = "The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("content")
   public List<@Valid RealtimeConversationItemContentInner> getContent() {

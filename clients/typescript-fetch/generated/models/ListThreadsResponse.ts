@@ -29,32 +29,22 @@ import {
 export interface ListThreadsResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListThreadsResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<ThreadObject>}
-     * @memberof ListThreadsResponse
      */
     data: Array<ThreadObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListThreadsResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListThreadsResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListThreadsResponse
      */
     hasMore: boolean;
 }

@@ -25,8 +25,6 @@ export interface RealtimeSessionTurnDetection {
     /**
      * Type of turn detection, only `server_vad` is currently supported.
      * 
-     * @type {RealtimeSessionTurnDetectionTypeEnum}
-     * @memberof RealtimeSessionTurnDetection
      */
     type?: RealtimeSessionTurnDetectionTypeEnum;
     /**
@@ -34,16 +32,12 @@ export interface RealtimeSessionTurnDetection {
      * higher threshold will require louder audio to activate the model, and 
      * thus might perform better in noisy environments.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionTurnDetection
      */
     threshold?: number;
     /**
      * Amount of audio to include before the VAD detected speech (in 
      * milliseconds). Defaults to 300ms.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionTurnDetection
      */
     prefixPaddingMs?: number;
     /**
@@ -51,8 +45,6 @@ export interface RealtimeSessionTurnDetection {
      * to 500ms. With shorter values the model will respond more quickly, 
      * but may jump in on short pauses from the user.
      * 
-     * @type {number}
-     * @memberof RealtimeSessionTurnDetection
      */
     silenceDurationMs?: number;
 }
@@ -62,7 +54,7 @@ export interface RealtimeSessionTurnDetection {
  * @export
  */
 export const RealtimeSessionTurnDetectionTypeEnum = {
-    ServerVad: 'server_vad'
+    ServerVad: 'server_vad',
 } as const;
 export type RealtimeSessionTurnDetectionTypeEnum = typeof RealtimeSessionTurnDetectionTypeEnum[keyof typeof RealtimeSessionTurnDetectionTypeEnum];
 

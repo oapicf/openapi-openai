@@ -18,7 +18,7 @@ import AssistantToolsFileSearchTypeOnly from './AssistantToolsFileSearchTypeOnly
 /**
  * The CreateMessageRequestAttachmentsInnerToolsInner model module.
  * @module model/CreateMessageRequestAttachmentsInnerToolsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateMessageRequestAttachmentsInnerToolsInner {
     /**

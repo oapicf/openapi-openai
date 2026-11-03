@@ -29,20 +29,14 @@ import {
 export interface CreateModerationResponse {
     /**
      * The unique identifier for the moderation request.
-     * @type {string}
-     * @memberof CreateModerationResponse
      */
     id: string;
     /**
      * The model used to generate the moderation results.
-     * @type {string}
-     * @memberof CreateModerationResponse
      */
     model: string;
     /**
      * A list of moderation objects.
-     * @type {Array<CreateModerationResponseResultsInner>}
-     * @memberof CreateModerationResponse
      */
     results: Array<CreateModerationResponseResultsInner>;
 }

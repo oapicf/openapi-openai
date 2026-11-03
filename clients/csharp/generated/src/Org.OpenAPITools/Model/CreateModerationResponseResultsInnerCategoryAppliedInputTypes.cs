@@ -1062,82 +1062,82 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!hate.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(hate));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: hate.");
 
             if (!hateThreatening.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(hateThreatening));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: hate/threatening.");
 
             if (!harassment.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(harassment));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: harassment.");
 
             if (!harassmentThreatening.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(harassmentThreatening));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: harassment/threatening.");
 
             if (!illicit.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(illicit));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: illicit.");
 
             if (!illicitViolent.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(illicitViolent));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: illicit/violent.");
 
             if (!selfHarm.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(selfHarm));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm.");
 
             if (!selfHarmIntent.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(selfHarmIntent));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm/intent.");
 
             if (!selfHarmInstructions.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(selfHarmInstructions));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm/instructions.");
 
             if (!sexual.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(sexual));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: sexual.");
 
             if (!sexualMinors.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(sexualMinors));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: sexual/minors.");
 
             if (!violence.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(violence));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: violence.");
 
             if (!violenceGraphic.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.", nameof(violenceGraphic));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: violence/graphic.");
 
             if (hate.IsSet && hate.Value == null)
-                throw new ArgumentNullException(nameof(hate), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: hate.");
 
             if (hateThreatening.IsSet && hateThreatening.Value == null)
-                throw new ArgumentNullException(nameof(hateThreatening), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: hate/threatening.");
 
             if (harassment.IsSet && harassment.Value == null)
-                throw new ArgumentNullException(nameof(harassment), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: harassment.");
 
             if (harassmentThreatening.IsSet && harassmentThreatening.Value == null)
-                throw new ArgumentNullException(nameof(harassmentThreatening), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: harassment/threatening.");
 
             if (illicit.IsSet && illicit.Value == null)
-                throw new ArgumentNullException(nameof(illicit), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: illicit.");
 
             if (illicitViolent.IsSet && illicitViolent.Value == null)
-                throw new ArgumentNullException(nameof(illicitViolent), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: illicit/violent.");
 
             if (selfHarm.IsSet && selfHarm.Value == null)
-                throw new ArgumentNullException(nameof(selfHarm), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm.");
 
             if (selfHarmIntent.IsSet && selfHarmIntent.Value == null)
-                throw new ArgumentNullException(nameof(selfHarmIntent), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm/intent.");
 
             if (selfHarmInstructions.IsSet && selfHarmInstructions.Value == null)
-                throw new ArgumentNullException(nameof(selfHarmInstructions), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: self-harm/instructions.");
 
             if (sexual.IsSet && sexual.Value == null)
-                throw new ArgumentNullException(nameof(sexual), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: sexual.");
 
             if (sexualMinors.IsSet && sexualMinors.Value == null)
-                throw new ArgumentNullException(nameof(sexualMinors), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: sexual/minors.");
 
             if (violence.IsSet && violence.Value == null)
-                throw new ArgumentNullException(nameof(violence), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: violence.");
 
             if (violenceGraphic.IsSet && violenceGraphic.Value == null)
-                throw new ArgumentNullException(nameof(violenceGraphic), "Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes: violence/graphic.");
 
             return new CreateModerationResponseResultsInnerCategoryAppliedInputTypes(hate.Value!, hateThreatening.Value!, harassment.Value!, harassmentThreatening.Value!, illicit.Value!, illicitViolent.Value!, selfHarm.Value!, selfHarmIntent.Value!, selfHarmInstructions.Value!, sexual.Value!, sexualMinors.Value!, violence.Value!, violenceGraphic.Value!);
         }
@@ -1148,7 +1148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponseResultsInnerCategoryAppliedInputTypes"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationResponseResultsInnerCategoryAppliedInputTypes createModerationResponseResultsInnerCategoryAppliedInputTypes, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1163,48 +1162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponseResultsInnerCategoryAppliedInputTypes"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationResponseResultsInnerCategoryAppliedInputTypes createModerationResponseResultsInnerCategoryAppliedInputTypes, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.Hate == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.Hate), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.HateThreatening == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.HateThreatening), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.Harassment == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.Harassment), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.HarassmentThreatening == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.HarassmentThreatening), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.Illicit == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.Illicit), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.IllicitViolent == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.IllicitViolent), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarm == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarm), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmIntent == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmIntent), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmInstructions == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.SelfHarmInstructions), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.Sexual == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.Sexual), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.SexualMinors == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.SexualMinors), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.Violence == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.Violence), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
-            if (createModerationResponseResultsInnerCategoryAppliedInputTypes.ViolenceGraphic == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInnerCategoryAppliedInputTypes.ViolenceGraphic), "Property is required for class CreateModerationResponseResultsInnerCategoryAppliedInputTypes.");
-
             writer.WritePropertyName("hate");
             JsonSerializer.Serialize(writer, createModerationResponseResultsInnerCategoryAppliedInputTypes.Hate, jsonSerializerOptions);
             writer.WritePropertyName("hate/threatening");

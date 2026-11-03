@@ -218,7 +218,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectServiceAccountListResponse.ObjectEnum?>(ProjectServiceAccountListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectServiceAccountListResponse.ObjectEnum? varObjectValue = ProjectServiceAccountListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectServiceAccountListResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<ProjectServiceAccount>?>(JsonSerializer.Deserialize<List<ProjectServiceAccount>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -239,34 +244,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountListResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectServiceAccountListResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountListResponse.", nameof(data));
+                throw new JsonException("Property is required for class ProjectServiceAccountListResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountListResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class ProjectServiceAccountListResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountListResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class ProjectServiceAccountListResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountListResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ProjectServiceAccountListResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectServiceAccountListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountListResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ProjectServiceAccountListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountListResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ProjectServiceAccountListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountListResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ProjectServiceAccountListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountListResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ProjectServiceAccountListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountListResponse: has_more.");
 
             return new ProjectServiceAccountListResponse(varObject.Value!.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -277,7 +282,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectServiceAccountListResponse projectServiceAccountListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -292,18 +296,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectServiceAccountListResponse projectServiceAccountListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectServiceAccountListResponse.Data == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountListResponse.Data), "Property is required for class ProjectServiceAccountListResponse.");
-
-            if (projectServiceAccountListResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountListResponse.FirstId), "Property is required for class ProjectServiceAccountListResponse.");
-
-            if (projectServiceAccountListResponse.LastId == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountListResponse.LastId), "Property is required for class ProjectServiceAccountListResponse.");
-
             var varObjectRawValue = ProjectServiceAccountListResponse.ObjectEnumToJsonValue(projectServiceAccountListResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WritePropertyName("data");

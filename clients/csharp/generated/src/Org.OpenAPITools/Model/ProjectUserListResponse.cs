@@ -185,34 +185,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserListResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectUserListResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserListResponse.", nameof(data));
+                throw new JsonException("Property is required for class ProjectUserListResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserListResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class ProjectUserListResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserListResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class ProjectUserListResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserListResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ProjectUserListResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectUserListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectUserListResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ProjectUserListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectUserListResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ProjectUserListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectUserListResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ProjectUserListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectUserListResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ProjectUserListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectUserListResponse: has_more.");
 
             return new ProjectUserListResponse(varObject.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -223,7 +223,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectUserListResponse projectUserListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -238,21 +237,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectUserListResponse projectUserListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectUserListResponse.Object == null)
-                throw new ArgumentNullException(nameof(projectUserListResponse.Object), "Property is required for class ProjectUserListResponse.");
-
-            if (projectUserListResponse.Data == null)
-                throw new ArgumentNullException(nameof(projectUserListResponse.Data), "Property is required for class ProjectUserListResponse.");
-
-            if (projectUserListResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(projectUserListResponse.FirstId), "Property is required for class ProjectUserListResponse.");
-
-            if (projectUserListResponse.LastId == null)
-                throw new ArgumentNullException(nameof(projectUserListResponse.LastId), "Property is required for class ProjectUserListResponse.");
-
             writer.WriteString("object", projectUserListResponse.Object);
 
             writer.WritePropertyName("data");

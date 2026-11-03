@@ -235,7 +235,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ListFineTuningJobCheckpointsResponse.ObjectEnum?>(ListFineTuningJobCheckpointsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ListFineTuningJobCheckpointsResponse.ObjectEnum? varObjectValue = ListFineTuningJobCheckpointsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ListFineTuningJobCheckpointsResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "has_more":
                             hasMore = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -253,22 +258,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListFineTuningJobCheckpointsResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListFineTuningJobCheckpointsResponse: data.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListFineTuningJobCheckpointsResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListFineTuningJobCheckpointsResponse: object.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ListFineTuningJobCheckpointsResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ListFineTuningJobCheckpointsResponse: has_more.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListFineTuningJobCheckpointsResponse.");
+                throw new JsonException("Property is not nullable for class ListFineTuningJobCheckpointsResponse: data.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListFineTuningJobCheckpointsResponse.");
+                throw new JsonException("Property is not nullable for class ListFineTuningJobCheckpointsResponse: object.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListFineTuningJobCheckpointsResponse.");
+                throw new JsonException("Property is not nullable for class ListFineTuningJobCheckpointsResponse: has_more.");
 
             return new ListFineTuningJobCheckpointsResponse(data.Value!, varObject.Value!.Value!, hasMore.Value!.Value!, firstId, lastId);
         }
@@ -279,7 +284,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listFineTuningJobCheckpointsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListFineTuningJobCheckpointsResponse listFineTuningJobCheckpointsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -294,12 +298,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listFineTuningJobCheckpointsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListFineTuningJobCheckpointsResponse listFineTuningJobCheckpointsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listFineTuningJobCheckpointsResponse.Data == null)
-                throw new ArgumentNullException(nameof(listFineTuningJobCheckpointsResponse.Data), "Property is required for class ListFineTuningJobCheckpointsResponse.");
-
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listFineTuningJobCheckpointsResponse.Data, jsonSerializerOptions);
             var varObjectRawValue = ListFineTuningJobCheckpointsResponse.ObjectEnumToJsonValue(listFineTuningJobCheckpointsResponse.Object);

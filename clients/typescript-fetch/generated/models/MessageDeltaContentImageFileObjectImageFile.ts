@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageDeltaContentImageFileObjectImageFile {
     /**
      * The [File](/docs/api-reference/files) ID of the image in the message content. Set `purpose="vision"` when uploading the File if you need to later display the file content.
-     * @type {string}
-     * @memberof MessageDeltaContentImageFileObjectImageFile
      */
     fileId?: string;
     /**
      * Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-     * @type {MessageDeltaContentImageFileObjectImageFileDetailEnum}
-     * @memberof MessageDeltaContentImageFileObjectImageFile
      */
     detail?: MessageDeltaContentImageFileObjectImageFileDetailEnum;
 }
@@ -40,7 +36,7 @@ export interface MessageDeltaContentImageFileObjectImageFile {
 export const MessageDeltaContentImageFileObjectImageFileDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 export type MessageDeltaContentImageFileObjectImageFileDetailEnum = typeof MessageDeltaContentImageFileObjectImageFileDetailEnum[keyof typeof MessageDeltaContentImageFileObjectImageFileDetailEnum];
 

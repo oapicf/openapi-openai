@@ -238,7 +238,12 @@ namespace Org.OpenAPITools.Model
                         case "finish_reason":
                             string? finishReasonRawValue = utf8JsonReader.GetString();
                             if (finishReasonRawValue != null)
-                                finishReason = new Option<CreateCompletionResponseChoicesInner.FinishReasonEnum?>(CreateCompletionResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue));
+                            {
+                                CreateCompletionResponseChoicesInner.FinishReasonEnum? finishReasonValue = CreateCompletionResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue);
+                                if (finishReasonValue == null)
+                                    throw new JsonException();
+                                finishReason = new Option<CreateCompletionResponseChoicesInner.FinishReasonEnum?>(finishReasonValue);
+                            }
                             break;
                         case "index":
                             index = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -256,25 +261,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!finishReason.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionResponseChoicesInner.", nameof(finishReason));
+                throw new JsonException("Property is required for class CreateCompletionResponseChoicesInner: finish_reason.");
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionResponseChoicesInner.", nameof(index));
+                throw new JsonException("Property is required for class CreateCompletionResponseChoicesInner: index.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionResponseChoicesInner.", nameof(text));
+                throw new JsonException("Property is required for class CreateCompletionResponseChoicesInner: text.");
 
             if (!logprobs.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionResponseChoicesInner.", nameof(logprobs));
+                throw new JsonException("Property is required for class CreateCompletionResponseChoicesInner: logprobs.");
 
             if (finishReason.IsSet && finishReason.Value == null)
-                throw new ArgumentNullException(nameof(finishReason), "Property is not nullable for class CreateCompletionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInner: finish_reason.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class CreateCompletionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInner: index.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class CreateCompletionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInner: text.");
 
             return new CreateCompletionResponseChoicesInner(finishReason.Value!.Value!, index.Value!.Value!, text.Value!, logprobs.Value!);
         }
@@ -285,7 +290,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -300,12 +304,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCompletionResponseChoicesInner createCompletionResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createCompletionResponseChoicesInner.Text == null)
-                throw new ArgumentNullException(nameof(createCompletionResponseChoicesInner.Text), "Property is required for class CreateCompletionResponseChoicesInner.");
-
             var finishReasonRawValue = CreateCompletionResponseChoicesInner.FinishReasonEnumToJsonValue(createCompletionResponseChoicesInner.FinishReason);
             writer.WriteString("finish_reason", finishReasonRawValue);
             writer.WriteNumber("index", createCompletionResponseChoicesInner.Index);

@@ -391,7 +391,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<Upload.StatusEnum?>(Upload.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                Upload.StatusEnum? statusValue = Upload.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<Upload.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "expires_at":
                             expiresAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -399,7 +404,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<Upload.ObjectEnum?>(Upload.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                Upload.ObjectEnum? varObjectValue = Upload.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<Upload.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "file":
                             file = new Option<OpenAIFile?>(JsonSerializer.Deserialize<OpenAIFile>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -411,52 +421,52 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(id));
+                throw new JsonException("Property is required for class Upload: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(createdAt));
+                throw new JsonException("Property is required for class Upload: created_at.");
 
             if (!filename.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(filename));
+                throw new JsonException("Property is required for class Upload: filename.");
 
             if (!bytes.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(bytes));
+                throw new JsonException("Property is required for class Upload: bytes.");
 
             if (!purpose.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(purpose));
+                throw new JsonException("Property is required for class Upload: purpose.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(status));
+                throw new JsonException("Property is required for class Upload: status.");
 
             if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class Upload.", nameof(expiresAt));
+                throw new JsonException("Property is required for class Upload: expires_at.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: created_at.");
 
             if (filename.IsSet && filename.Value == null)
-                throw new ArgumentNullException(nameof(filename), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: filename.");
 
             if (bytes.IsSet && bytes.Value == null)
-                throw new ArgumentNullException(nameof(bytes), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: bytes.");
 
             if (purpose.IsSet && purpose.Value == null)
-                throw new ArgumentNullException(nameof(purpose), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: purpose.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: status.");
 
             if (expiresAt.IsSet && expiresAt.Value == null)
-                throw new ArgumentNullException(nameof(expiresAt), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: expires_at.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: object.");
 
             if (file.IsSet && file.Value == null)
-                throw new ArgumentNullException(nameof(file), "Property is not nullable for class Upload.");
+                throw new JsonException("Property is not nullable for class Upload: file.");
 
             return new Upload(id.Value!, createdAt.Value!.Value!, filename.Value!, bytes.Value!.Value!, purpose.Value!, status.Value!.Value!, expiresAt.Value!.Value!, varObject, file);
         }
@@ -467,7 +477,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="upload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Upload upload, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -482,20 +491,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="upload"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Upload upload, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (upload.Id == null)
-                throw new ArgumentNullException(nameof(upload.Id), "Property is required for class Upload.");
-
-            if (upload.Filename == null)
-                throw new ArgumentNullException(nameof(upload.Filename), "Property is required for class Upload.");
-
-            if (upload.Purpose == null)
-                throw new ArgumentNullException(nameof(upload.Purpose), "Property is required for class Upload.");
+            if (upload.ObjectOption.IsSet && upload.Object == null)
+                throw new JsonException("Cannot write null property Upload.Object to non-nullable JSON property 'object'.");
 
             if (upload.FileOption.IsSet && upload.File == null)
-                throw new ArgumentNullException(nameof(upload.File), "Property is required for class Upload.");
+                throw new JsonException("Cannot write null property Upload.File to non-nullable JSON property 'file'.");
 
             writer.WriteString("id", upload.Id);
 

@@ -53,7 +53,7 @@ import javax.validation.Valid;
   CreateRunRequest.JSON_PROPERTY_PARALLEL_TOOL_CALLS,
   CreateRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequest   {
   public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
   @JsonProperty(JSON_PROPERTY_ASSISTANT_ID)
@@ -77,7 +77,7 @@ public class CreateRunRequest   {
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
-  private List<AssistantObjectToolsInner> tools;
+  private List<@Valid AssistantObjectToolsInner> tools;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @JsonProperty(JSON_PROPERTY_METADATA)
@@ -218,7 +218,7 @@ public class CreateRunRequest   {
    **/
   @JsonProperty(value = "additional_messages")
   @ApiModelProperty(value = "Adds additional messages to the thread before creating the run.")
-  @Valid 
+  
   public List<@Valid CreateMessageRequest> getAdditionalMessages() {
     return additionalMessages;
   }
@@ -227,7 +227,7 @@ public class CreateRunRequest   {
     this.additionalMessages = additionalMessages;
   }
 
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -246,12 +246,12 @@ public class CreateRunRequest   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  @Valid  @Size(max=20)
-  public List<AssistantObjectToolsInner> getTools() {
+   @Size(max=20)
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

@@ -171,6 +171,7 @@ class _$ProjectRateLimitListResponseSerializer implements PrimitiveSerializer<Pr
   }
 }
 
+
 class ProjectRateLimitListResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

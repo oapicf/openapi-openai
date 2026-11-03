@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "A URL for the file that's generated when the assistant used the `code_interpreter` tool to generate a file.")
 @JsonTypeName("MessageDeltaContentTextAnnotationsFilePathObject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaContentTextAnnotationsFilePathObject   {
   private Integer index;
   public enum TypeEnum {

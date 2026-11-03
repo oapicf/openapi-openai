@@ -26,7 +26,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents an `assistant` that can call the model and use tools.")
 @JsonTypeName("AssistantObject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantObject   {
   private String id;
   public enum ObjectEnum {
@@ -82,7 +82,7 @@ public class AssistantObject   {
   private String description;
   private String model;
   private String instructions;
-  private @Valid List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
   private AssistantObjectToolResources toolResources;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
@@ -258,7 +258,7 @@ public class AssistantObject   {
   /**
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    **/
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -266,12 +266,12 @@ public class AssistantObject   {
   
   @ApiModelProperty(required = true, value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   @JsonProperty(required = true, value = "tools")
-  @NotNull @Valid  @Size(max=128)public List<@Valid AssistantObjectToolsInner> getTools() {
+  @NotNull  @Size(max=128)public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty(required = true, value = "tools")
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

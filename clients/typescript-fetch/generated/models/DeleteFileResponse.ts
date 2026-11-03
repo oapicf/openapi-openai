@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface DeleteFileResponse {
     /**
      * 
-     * @type {string}
-     * @memberof DeleteFileResponse
      */
     id: string;
     /**
      * 
-     * @type {DeleteFileResponseObjectEnum}
-     * @memberof DeleteFileResponse
      */
     object: DeleteFileResponseObjectEnum;
     /**
      * 
-     * @type {boolean}
-     * @memberof DeleteFileResponse
      */
     deleted: boolean;
 }
@@ -44,7 +38,7 @@ export interface DeleteFileResponse {
  * @export
  */
 export const DeleteFileResponseObjectEnum = {
-    File: 'file'
+    File: 'file',
 } as const;
 export type DeleteFileResponseObjectEnum = typeof DeleteFileResponseObjectEnum[keyof typeof DeleteFileResponseObjectEnum];
 

@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an individual API key in a project.
- * @param &#x60;object&#x60; The object type, which is always `organization.project.api_key`
+ * @param `object` The object type, which is always `organization.project.api_key`
  * @param redactedValue The redacted value of the API key
  * @param name The name of the API key
  * @param createdAt The Unix timestamp (in seconds) of when the API key was created

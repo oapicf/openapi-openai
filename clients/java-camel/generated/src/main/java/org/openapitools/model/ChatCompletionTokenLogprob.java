@@ -23,17 +23,15 @@ import jakarta.annotation.Generated;
  * ChatCompletionTokenLogprob
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionTokenLogprob {
 
   private String token;
 
   private BigDecimal logprob;
 
-  @Valid
   private JsonNullable<List<Integer>> bytes = JsonNullable.<List<Integer>>undefined();
 
-  @Valid
   private List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> topLogprobs = new ArrayList<>();
 
   public ChatCompletionTokenLogprob() {
@@ -107,7 +105,7 @@ public class ChatCompletionTokenLogprob {
    * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
    * @return bytes
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "bytes", description = "A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("bytes")
   public JsonNullable<List<Integer>> getBytes() {
@@ -135,7 +133,7 @@ public class ChatCompletionTokenLogprob {
    * List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.
    * @return topLogprobs
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "top_logprobs", description = "List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("top_logprobs")
   public List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> getTopLogprobs() {

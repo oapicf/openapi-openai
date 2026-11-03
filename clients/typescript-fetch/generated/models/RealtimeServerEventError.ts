@@ -32,20 +32,14 @@ import {
 export interface RealtimeServerEventError {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventError
      */
     eventId: string;
     /**
      * The event type, must be `error`.
-     * @type {RealtimeServerEventErrorTypeEnum}
-     * @memberof RealtimeServerEventError
      */
     type: RealtimeServerEventErrorTypeEnum;
     /**
      * 
-     * @type {RealtimeServerEventErrorError}
-     * @memberof RealtimeServerEventError
      */
     error: RealtimeServerEventErrorError;
 }
@@ -55,7 +49,7 @@ export interface RealtimeServerEventError {
  * @export
  */
 export const RealtimeServerEventErrorTypeEnum = {
-    Error: 'error'
+    Error: 'error',
 } as const;
 export type RealtimeServerEventErrorTypeEnum = typeof RealtimeServerEventErrorTypeEnum[keyof typeof RealtimeServerEventErrorTypeEnum];
 

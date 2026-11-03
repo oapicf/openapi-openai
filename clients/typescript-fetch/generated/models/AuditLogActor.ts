@@ -36,20 +36,14 @@ import {
 export interface AuditLogActor {
     /**
      * The type of actor. Is either `session` or `api_key`.
-     * @type {AuditLogActorTypeEnum}
-     * @memberof AuditLogActor
      */
     type?: AuditLogActorTypeEnum;
     /**
      * 
-     * @type {AuditLogActorSession}
-     * @memberof AuditLogActor
      */
     session?: AuditLogActorSession;
     /**
      * 
-     * @type {AuditLogActorApiKey}
-     * @memberof AuditLogActor
      */
     apiKey?: AuditLogActorApiKey;
 }
@@ -60,7 +54,7 @@ export interface AuditLogActor {
  */
 export const AuditLogActorTypeEnum = {
     Session: 'session',
-    ApiKey: 'api_key'
+    ApiKey: 'api_key',
 } as const;
 export type AuditLogActorTypeEnum = typeof AuditLogActorTypeEnum[keyof typeof AuditLogActorTypeEnum];
 

@@ -32,7 +32,7 @@ public class CreateImageRequest  {
   **/
   private String prompt;
 
-  private CreateImageRequestModel model;
+  private CreateImageRequestModel model = dall-e-2;
 
  /**
    * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.

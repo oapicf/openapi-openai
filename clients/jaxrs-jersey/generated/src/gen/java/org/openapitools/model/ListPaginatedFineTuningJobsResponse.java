@@ -35,7 +35,7 @@ import javax.validation.Valid;
   ListPaginatedFineTuningJobsResponse.JSON_PROPERTY_HAS_MORE,
   ListPaginatedFineTuningJobsResponse.JSON_PROPERTY_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ListPaginatedFineTuningJobsResponse   {
   public static final String JSON_PROPERTY_DATA = "data";
   @JsonProperty(JSON_PROPERTY_DATA)
@@ -101,7 +101,7 @@ public class ListPaginatedFineTuningJobsResponse   {
    **/
   @JsonProperty(value = "data")
   @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid FineTuningJob> getData() {
     return data;
   }

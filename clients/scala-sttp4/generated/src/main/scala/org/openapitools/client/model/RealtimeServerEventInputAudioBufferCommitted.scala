@@ -29,7 +29,7 @@ object RealtimeServerEventInputAudioBufferCommittedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object InputAudioBufferCommitted extends `Type`
+    case object InputAudioBufferCommitted extends `Type` { override def toString: String = "input_audio_buffer.committed" }
 
     import org.json4s._
 

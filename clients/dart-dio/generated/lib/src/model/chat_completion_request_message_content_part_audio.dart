@@ -124,9 +124,10 @@ class _$ChatCompletionRequestMessageContentPartAudioSerializer implements Primit
   }
 }
 
+
+/// The type of the content part. Always `input_audio`.
 class ChatCompletionRequestMessageContentPartAudioTypeEnum extends EnumClass {
 
-  /// The type of the content part. Always `input_audio`.
   @BuiltValueEnumConst(wireName: r'input_audio')
   static const ChatCompletionRequestMessageContentPartAudioTypeEnum inputAudio = _$chatCompletionRequestMessageContentPartAudioTypeEnum_inputAudio;
 

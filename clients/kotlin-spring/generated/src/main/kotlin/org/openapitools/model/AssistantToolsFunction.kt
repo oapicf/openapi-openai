@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.FunctionObject
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -27,12 +24,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class AssistantToolsFunction(
 
     @Schema(required = true, description = "The type of tool being defined: `function`")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: AssistantToolsFunction.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("function")
+    @param:JsonProperty("function", required = true)
     @get:JsonProperty("function", required = true) val function: FunctionObject
 ) : AssistantObjectToolsInner, CreateThreadAndRunRequestToolsInner {
 
@@ -43,12 +40,12 @@ data class AssistantToolsFunction(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         function("function");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

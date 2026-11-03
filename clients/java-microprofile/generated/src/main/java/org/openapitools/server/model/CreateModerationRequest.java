@@ -37,7 +37,7 @@ public class CreateModerationRequest  {
   protected CreateModerationRequestInput input;
 
   @JsonbProperty("model")
-  protected CreateModerationRequestModel model;
+  protected CreateModerationRequestModel model = omni-moderation-latest;
 
 
   /**

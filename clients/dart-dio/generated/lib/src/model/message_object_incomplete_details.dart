@@ -107,21 +107,18 @@ class _$MessageObjectIncompleteDetailsSerializer implements PrimitiveSerializer<
   }
 }
 
+
+/// The reason the message is incomplete.
 class MessageObjectIncompleteDetailsReasonEnum extends EnumClass {
 
-  /// The reason the message is incomplete.
   @BuiltValueEnumConst(wireName: r'content_filter')
   static const MessageObjectIncompleteDetailsReasonEnum contentFilter = _$messageObjectIncompleteDetailsReasonEnum_contentFilter;
-  /// The reason the message is incomplete.
   @BuiltValueEnumConst(wireName: r'max_tokens')
   static const MessageObjectIncompleteDetailsReasonEnum maxTokens = _$messageObjectIncompleteDetailsReasonEnum_maxTokens;
-  /// The reason the message is incomplete.
   @BuiltValueEnumConst(wireName: r'run_cancelled')
   static const MessageObjectIncompleteDetailsReasonEnum runCancelled = _$messageObjectIncompleteDetailsReasonEnum_runCancelled;
-  /// The reason the message is incomplete.
   @BuiltValueEnumConst(wireName: r'run_expired')
   static const MessageObjectIncompleteDetailsReasonEnum runExpired = _$messageObjectIncompleteDetailsReasonEnum_runExpired;
-  /// The reason the message is incomplete.
   @BuiltValueEnumConst(wireName: r'run_failed')
   static const MessageObjectIncompleteDetailsReasonEnum runFailed = _$messageObjectIncompleteDetailsReasonEnum_runFailed;
 

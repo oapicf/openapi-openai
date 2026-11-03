@@ -76,15 +76,13 @@ class CreateChatCompletionResponseChoicesInnerLogprobs(BaseModel):
         _items = []
         if self.content:
             for _item_content in self.content:
-                if _item_content:
-                    _items.append(_item_content.to_dict())
+                _items.append(_item_content.to_dict() if _item_content is not None else None)
             _dict['content'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in refusal (list)
         _items = []
         if self.refusal:
             for _item_refusal in self.refusal:
-                if _item_refusal:
-                    _items.append(_item_refusal.to_dict())
+                _items.append(_item_refusal.to_dict() if _item_refusal is not None else None)
             _dict['refusal'] = _items
         # set to None if content (nullable) is None
         # and model_fields_set contains the field

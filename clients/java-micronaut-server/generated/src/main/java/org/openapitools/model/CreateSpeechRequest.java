@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateSpeechRequest.JSON_PROPERTY_SPEED
 })
 @JsonTypeName("CreateSpeechRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateSpeechRequest {
     public static final String JSON_PROPERTY_MODEL = "model";

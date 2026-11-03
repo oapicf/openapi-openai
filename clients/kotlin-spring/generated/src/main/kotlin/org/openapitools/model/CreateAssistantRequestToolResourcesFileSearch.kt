@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateAssistantRequestToolResourcesFileSearchVectorStoresInner
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -26,16 +23,12 @@ data class CreateAssistantRequestToolResourcesFileSearch(
 
     @get:Size(max=1)
     @Schema(description = "The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("vector_store_ids")
     @get:JsonProperty("vector_store_ids") val vectorStoreIds: kotlin.collections.List<kotlin.String>? = null,
 
     @field:Valid
     @get:Size(max=1)
     @Schema(description = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("vector_stores")
     @get:JsonProperty("vector_stores") val vectorStores: kotlin.collections.List<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>? = null
 ) {

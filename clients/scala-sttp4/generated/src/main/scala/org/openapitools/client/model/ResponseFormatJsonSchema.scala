@@ -21,7 +21,7 @@ object ResponseFormatJsonSchemaEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object JsonSchema extends `Type`
+    case object JsonSchema extends `Type` { override def toString: String = "json_schema" }
 
     import org.json4s._
 

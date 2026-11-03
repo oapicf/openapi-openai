@@ -271,7 +271,12 @@ namespace Org.OpenAPITools.Model
                         case "encoding_format":
                             string? encodingFormatRawValue = utf8JsonReader.GetString();
                             if (encodingFormatRawValue != null)
-                                encodingFormat = new Option<CreateEmbeddingRequest.EncodingFormatEnum?>(CreateEmbeddingRequest.EncodingFormatEnumFromStringOrDefault(encodingFormatRawValue));
+                            {
+                                CreateEmbeddingRequest.EncodingFormatEnum? encodingFormatValue = CreateEmbeddingRequest.EncodingFormatEnumFromStringOrDefault(encodingFormatRawValue);
+                                if (encodingFormatValue == null)
+                                    throw new JsonException();
+                                encodingFormat = new Option<CreateEmbeddingRequest.EncodingFormatEnum?>(encodingFormatValue);
+                            }
                             break;
                         case "dimensions":
                             dimensions = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -286,25 +291,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!input.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingRequest.", nameof(input));
+                throw new JsonException("Property is required for class CreateEmbeddingRequest: input.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateEmbeddingRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateEmbeddingRequest: model.");
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class CreateEmbeddingRequest.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingRequest: input.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateEmbeddingRequest.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingRequest: model.");
 
             if (encodingFormat.IsSet && encodingFormat.Value == null)
-                throw new ArgumentNullException(nameof(encodingFormat), "Property is not nullable for class CreateEmbeddingRequest.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingRequest: encoding_format.");
 
             if (dimensions.IsSet && dimensions.Value == null)
-                throw new ArgumentNullException(nameof(dimensions), "Property is not nullable for class CreateEmbeddingRequest.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingRequest: dimensions.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class CreateEmbeddingRequest.");
+                throw new JsonException("Property is not nullable for class CreateEmbeddingRequest: user.");
 
             return new CreateEmbeddingRequest(input.Value!, model.Value!, encodingFormat, dimensions, user);
         }
@@ -315,7 +320,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateEmbeddingRequest createEmbeddingRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -330,17 +334,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createEmbeddingRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateEmbeddingRequest createEmbeddingRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createEmbeddingRequest.Input == null)
-                throw new ArgumentNullException(nameof(createEmbeddingRequest.Input), "Property is required for class CreateEmbeddingRequest.");
+            if (createEmbeddingRequest.EncodingFormatOption.IsSet && createEmbeddingRequest.EncodingFormat == null)
+                throw new JsonException("Cannot write null property CreateEmbeddingRequest.EncodingFormat to non-nullable JSON property 'encoding_format'.");
 
-            if (createEmbeddingRequest.Model == null)
-                throw new ArgumentNullException(nameof(createEmbeddingRequest.Model), "Property is required for class CreateEmbeddingRequest.");
+            if (createEmbeddingRequest.DimensionsOption.IsSet && createEmbeddingRequest.Dimensions == null)
+                throw new JsonException("Cannot write null property CreateEmbeddingRequest.Dimensions to non-nullable JSON property 'dimensions'.");
 
             if (createEmbeddingRequest.UserOption.IsSet && createEmbeddingRequest.User == null)
-                throw new ArgumentNullException(nameof(createEmbeddingRequest.User), "Property is required for class CreateEmbeddingRequest.");
+                throw new JsonException("Cannot write null property CreateEmbeddingRequest.User to non-nullable JSON property 'user'.");
 
             writer.WritePropertyName("input");
             JsonSerializer.Serialize(writer, createEmbeddingRequest.Input, jsonSerializerOptions);

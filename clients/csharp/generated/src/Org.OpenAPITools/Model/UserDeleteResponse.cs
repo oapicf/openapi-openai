@@ -198,7 +198,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UserDeleteResponse.ObjectEnum?>(UserDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UserDeleteResponse.ObjectEnum? varObjectValue = UserDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UserDeleteResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UserDeleteResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class UserDeleteResponse: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UserDeleteResponse.", nameof(id));
+                throw new JsonException("Property is required for class UserDeleteResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class UserDeleteResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class UserDeleteResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UserDeleteResponse.");
+                throw new JsonException("Property is not nullable for class UserDeleteResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class UserDeleteResponse.");
+                throw new JsonException("Property is not nullable for class UserDeleteResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class UserDeleteResponse.");
+                throw new JsonException("Property is not nullable for class UserDeleteResponse: deleted.");
 
             return new UserDeleteResponse(varObject.Value!.Value!, id.Value!, deleted.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="userDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UserDeleteResponse userDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="userDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UserDeleteResponse userDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (userDeleteResponse.Id == null)
-                throw new ArgumentNullException(nameof(userDeleteResponse.Id), "Property is required for class UserDeleteResponse.");
-
             var varObjectRawValue = UserDeleteResponse.ObjectEnumToJsonValue(userDeleteResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", userDeleteResponse.Id);

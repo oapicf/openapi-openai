@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface VectorStoreFileBatchObjectFileCounts {
     /**
      * The number of files that are currently being processed.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObjectFileCounts
      */
     inProgress: number;
     /**
      * The number of files that have been processed.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObjectFileCounts
      */
     completed: number;
     /**
      * The number of files that have failed to process.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObjectFileCounts
      */
     failed: number;
     /**
      * The number of files that where cancelled.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObjectFileCounts
      */
     cancelled: number;
     /**
      * The total number of files.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObjectFileCounts
      */
     total: number;
 }

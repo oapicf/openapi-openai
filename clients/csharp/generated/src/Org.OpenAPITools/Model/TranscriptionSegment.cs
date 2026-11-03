@@ -260,64 +260,64 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(id));
+                throw new JsonException("Property is required for class TranscriptionSegment: id.");
 
             if (!seek.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(seek));
+                throw new JsonException("Property is required for class TranscriptionSegment: seek.");
 
             if (!start.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(start));
+                throw new JsonException("Property is required for class TranscriptionSegment: start.");
 
             if (!end.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(end));
+                throw new JsonException("Property is required for class TranscriptionSegment: end.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(text));
+                throw new JsonException("Property is required for class TranscriptionSegment: text.");
 
             if (!tokens.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(tokens));
+                throw new JsonException("Property is required for class TranscriptionSegment: tokens.");
 
             if (!temperature.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(temperature));
+                throw new JsonException("Property is required for class TranscriptionSegment: temperature.");
 
             if (!avgLogprob.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(avgLogprob));
+                throw new JsonException("Property is required for class TranscriptionSegment: avg_logprob.");
 
             if (!compressionRatio.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(compressionRatio));
+                throw new JsonException("Property is required for class TranscriptionSegment: compression_ratio.");
 
             if (!noSpeechProb.IsSet)
-                throw new ArgumentException("Property is required for class TranscriptionSegment.", nameof(noSpeechProb));
+                throw new JsonException("Property is required for class TranscriptionSegment: no_speech_prob.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: id.");
 
             if (seek.IsSet && seek.Value == null)
-                throw new ArgumentNullException(nameof(seek), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: seek.");
 
             if (start.IsSet && start.Value == null)
-                throw new ArgumentNullException(nameof(start), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: start.");
 
             if (end.IsSet && end.Value == null)
-                throw new ArgumentNullException(nameof(end), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: end.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: text.");
 
             if (tokens.IsSet && tokens.Value == null)
-                throw new ArgumentNullException(nameof(tokens), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: tokens.");
 
             if (temperature.IsSet && temperature.Value == null)
-                throw new ArgumentNullException(nameof(temperature), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: temperature.");
 
             if (avgLogprob.IsSet && avgLogprob.Value == null)
-                throw new ArgumentNullException(nameof(avgLogprob), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: avg_logprob.");
 
             if (compressionRatio.IsSet && compressionRatio.Value == null)
-                throw new ArgumentNullException(nameof(compressionRatio), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: compression_ratio.");
 
             if (noSpeechProb.IsSet && noSpeechProb.Value == null)
-                throw new ArgumentNullException(nameof(noSpeechProb), "Property is not nullable for class TranscriptionSegment.");
+                throw new JsonException("Property is not nullable for class TranscriptionSegment: no_speech_prob.");
 
             return new TranscriptionSegment(id.Value!.Value!, seek.Value!.Value!, start.Value!.Value!, end.Value!.Value!, text.Value!, tokens.Value!, temperature.Value!.Value!, avgLogprob.Value!.Value!, compressionRatio.Value!.Value!, noSpeechProb.Value!.Value!);
         }
@@ -328,7 +328,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="transcriptionSegment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TranscriptionSegment transcriptionSegment, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -343,15 +342,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="transcriptionSegment"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TranscriptionSegment transcriptionSegment, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (transcriptionSegment.Text == null)
-                throw new ArgumentNullException(nameof(transcriptionSegment.Text), "Property is required for class TranscriptionSegment.");
-
-            if (transcriptionSegment.Tokens == null)
-                throw new ArgumentNullException(nameof(transcriptionSegment.Tokens), "Property is required for class TranscriptionSegment.");
-
             writer.WriteNumber("id", transcriptionSegment.Id);
 
             writer.WriteNumber("seek", transcriptionSegment.Seek);

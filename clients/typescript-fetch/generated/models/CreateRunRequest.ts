@@ -64,52 +64,36 @@ import {
 export interface CreateRunRequest {
     /**
      * The ID of the [assistant](/docs/api-reference/assistants) to use to execute this run.
-     * @type {string}
-     * @memberof CreateRunRequest
      */
     assistantId: string;
     /**
      * 
-     * @type {CreateRunRequestModel}
-     * @memberof CreateRunRequest
      */
     model?: CreateRunRequestModel | null;
     /**
      * Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.
-     * @type {string}
-     * @memberof CreateRunRequest
      */
     instructions?: string | null;
     /**
      * Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.
-     * @type {string}
-     * @memberof CreateRunRequest
      */
     additionalInstructions?: string | null;
     /**
      * Adds additional messages to the thread before creating the run.
-     * @type {Array<CreateMessageRequest>}
-     * @memberof CreateRunRequest
      */
     additionalMessages?: Array<CreateMessageRequest> | null;
     /**
      * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
-     * @type {Array<AssistantObjectToolsInner>}
-     * @memberof CreateRunRequest
      */
     tools?: Array<AssistantObjectToolsInner> | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof CreateRunRequest
      */
     metadata?: object | null;
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
      * 
-     * @type {number}
-     * @memberof CreateRunRequest
      */
     temperature?: number | null;
     /**
@@ -117,53 +101,37 @@ export interface CreateRunRequest {
      * 
      * We generally recommend altering this or temperature but not both.
      * 
-     * @type {number}
-     * @memberof CreateRunRequest
      */
     topP?: number | null;
     /**
      * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
      * 
-     * @type {boolean}
-     * @memberof CreateRunRequest
      */
     stream?: boolean | null;
     /**
      * The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
      * 
-     * @type {number}
-     * @memberof CreateRunRequest
      */
     maxPromptTokens?: number | null;
     /**
      * The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info.
      * 
-     * @type {number}
-     * @memberof CreateRunRequest
      */
     maxCompletionTokens?: number | null;
     /**
      * 
-     * @type {TruncationObject}
-     * @memberof CreateRunRequest
      */
     truncationStrategy?: TruncationObject;
     /**
      * 
-     * @type {AssistantsApiToolChoiceOption}
-     * @memberof CreateRunRequest
      */
     toolChoice?: AssistantsApiToolChoiceOption;
     /**
      * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-     * @type {boolean}
-     * @memberof CreateRunRequest
      */
     parallelToolCalls?: boolean;
     /**
      * 
-     * @type {AssistantsApiResponseFormatOption}
-     * @memberof CreateRunRequest
      */
     responseFormat?: AssistantsApiResponseFormatOption;
 }

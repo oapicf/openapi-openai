@@ -22,7 +22,7 @@ data class ErrorResponse(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("error")
+    @param:JsonProperty("error", required = true)
     @get:JsonProperty("error", required = true) val error: Error
 ) {
 

@@ -128,3 +128,4 @@ class _$CostsResultAmountSerializer implements PrimitiveSerializer<CostsResultAm
   }
 }
 
+

@@ -14,7 +14,7 @@ import org.openapitools.model.UsageTimeBucketResultInner;
 /**
  * UsageTimeBucket
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageTimeBucket   {
   /**
    * Gets or Sets _object
@@ -55,7 +55,7 @@ public class UsageTimeBucket   {
   private Integer endTime;
 
   @JsonProperty("result")
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   public UsageTimeBucket _object(ObjectEnum _object) {
     this._object = _object;
@@ -111,7 +111,7 @@ public class UsageTimeBucket   {
     this.endTime = endTime;
   }
 
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }
@@ -126,11 +126,11 @@ public class UsageTimeBucket   {
    * @return result
   **/
   @ApiModelProperty(required = true, value = "")
-  public List<UsageTimeBucketResultInner> getResult() {
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
 
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

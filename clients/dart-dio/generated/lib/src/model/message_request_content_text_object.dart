@@ -124,9 +124,10 @@ class _$MessageRequestContentTextObjectSerializer implements PrimitiveSerializer
   }
 }
 
+
+/// Always `text`.
 class MessageRequestContentTextObjectTypeEnum extends EnumClass {
 
-  /// Always `text`.
   @BuiltValueEnumConst(wireName: r'text')
   static const MessageRequestContentTextObjectTypeEnum text = _$messageRequestContentTextObjectTypeEnum_text;
 

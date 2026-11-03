@@ -177,6 +177,7 @@ class _$ListBatchesResponseSerializer implements PrimitiveSerializer<ListBatches
   }
 }
 
+
 class ListBatchesResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (messageId.IsSet && messageId.Value == null)
-                throw new ArgumentNullException(nameof(messageId), "Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObjectMessageCreation.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObjectMessageCreation: message_id.");
 
             return new RunStepDeltaStepDetailsMessageCreationObjectMessageCreation(messageId);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsMessageCreationObjectMessageCreation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsMessageCreationObjectMessageCreation runStepDeltaStepDetailsMessageCreationObjectMessageCreation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsMessageCreationObjectMessageCreation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsMessageCreationObjectMessageCreation runStepDeltaStepDetailsMessageCreationObjectMessageCreation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageIdOption.IsSet && runStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageId == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageId), "Property is required for class RunStepDeltaStepDetailsMessageCreationObjectMessageCreation.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageId to non-nullable JSON property 'message_id'.");
 
             if (runStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageIdOption.IsSet)
                 writer.WriteString("message_id", runStepDeltaStepDetailsMessageCreationObjectMessageCreation.MessageId);

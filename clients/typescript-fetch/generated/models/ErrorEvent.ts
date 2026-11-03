@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ErrorEvent {
     /**
      * 
-     * @type {ErrorEventEventEnum}
-     * @memberof ErrorEvent
      */
     event: ErrorEventEventEnum;
     /**
      * 
-     * @type {Error}
-     * @memberof ErrorEvent
      */
     data: Error;
 }
@@ -38,7 +34,7 @@ export interface ErrorEvent {
  * @export
  */
 export const ErrorEventEventEnum = {
-    Error: 'error'
+    Error: 'error',
 } as const;
 export type ErrorEventEventEnum = typeof ErrorEventEventEnum[keyof typeof ErrorEventEventEnum];
 

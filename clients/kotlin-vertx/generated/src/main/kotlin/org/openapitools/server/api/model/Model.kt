@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * Describes an OpenAI model offering that can be used with the API.
  * @param id The model identifier, which can be referenced in the API endpoints.
  * @param created The Unix timestamp (in seconds) when the model was created.
- * @param &#x60;object&#x60; The object type, which is always \"model\".
+ * @param `object` The object type, which is always \"model\".
  * @param ownedBy The organization that owns the model.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

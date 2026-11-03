@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -25,13 +24,11 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("CreateThreadRequest_tool_resources_file_search")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequestToolResourcesFileSearch {
 
-  @Valid
   private List<String> vectorStoreIds = new ArrayList<>();
 
-  @Valid
   private List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
 
   public CreateThreadRequestToolResourcesFileSearch vectorStoreIds(List<String> vectorStoreIds) {
@@ -79,7 +76,7 @@ public class CreateThreadRequestToolResourcesFileSearch {
    * A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. 
    * @return vectorStores
    */
-  @Valid @Size(max = 1) 
+  @Size(max = 1) 
   @Schema(name = "vector_stores", description = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("vector_stores")
   public List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {

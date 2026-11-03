@@ -168,3 +168,4 @@ class _$BatchErrorsDataInnerSerializer implements PrimitiveSerializer<BatchError
   }
 }
 
+

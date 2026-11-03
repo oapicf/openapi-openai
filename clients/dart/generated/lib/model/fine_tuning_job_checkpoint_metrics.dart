@@ -157,13 +157,27 @@ class FineTuningJobCheckpointMetrics {
       }());
 
       return FineTuningJobCheckpointMetrics(
-        step: num.parse('${json[r'step']}'),
-        trainLoss: num.parse('${json[r'train_loss']}'),
-        trainMeanTokenAccuracy: num.parse('${json[r'train_mean_token_accuracy']}'),
-        validLoss: num.parse('${json[r'valid_loss']}'),
-        validMeanTokenAccuracy: num.parse('${json[r'valid_mean_token_accuracy']}'),
-        fullValidLoss: num.parse('${json[r'full_valid_loss']}'),
-        fullValidMeanTokenAccuracy: num.parse('${json[r'full_valid_mean_token_accuracy']}'),
+        step: json[r'step'] == null
+            ? null
+            : num.parse('${json[r'step']}'),
+        trainLoss: json[r'train_loss'] == null
+            ? null
+            : num.parse('${json[r'train_loss']}'),
+        trainMeanTokenAccuracy: json[r'train_mean_token_accuracy'] == null
+            ? null
+            : num.parse('${json[r'train_mean_token_accuracy']}'),
+        validLoss: json[r'valid_loss'] == null
+            ? null
+            : num.parse('${json[r'valid_loss']}'),
+        validMeanTokenAccuracy: json[r'valid_mean_token_accuracy'] == null
+            ? null
+            : num.parse('${json[r'valid_mean_token_accuracy']}'),
+        fullValidLoss: json[r'full_valid_loss'] == null
+            ? null
+            : num.parse('${json[r'full_valid_loss']}'),
+        fullValidMeanTokenAccuracy: json[r'full_valid_mean_token_accuracy'] == null
+            ? null
+            : num.parse('${json[r'full_valid_mean_token_accuracy']}'),
       );
     }
     return null;

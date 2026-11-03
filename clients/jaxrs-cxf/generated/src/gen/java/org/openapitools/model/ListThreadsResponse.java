@@ -20,8 +20,6 @@ public class ListThreadsResponse  {
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid ThreadObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "asst_abc123", required = true, value = "")

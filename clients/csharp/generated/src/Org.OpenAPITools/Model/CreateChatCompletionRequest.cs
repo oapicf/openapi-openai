@@ -952,7 +952,12 @@ namespace Org.OpenAPITools.Model
                         case "reasoning_effort":
                             string? reasoningEffortRawValue = utf8JsonReader.GetString();
                             if (reasoningEffortRawValue != null)
-                                reasoningEffort = new Option<CreateChatCompletionRequest.ReasoningEffortEnum?>(CreateChatCompletionRequest.ReasoningEffortEnumFromStringOrDefault(reasoningEffortRawValue));
+                            {
+                                CreateChatCompletionRequest.ReasoningEffortEnum? reasoningEffortValue = CreateChatCompletionRequest.ReasoningEffortEnumFromStringOrDefault(reasoningEffortRawValue);
+                                if (reasoningEffortValue == null)
+                                    throw new JsonException();
+                                reasoningEffort = new Option<CreateChatCompletionRequest.ReasoningEffortEnum?>(reasoningEffortValue);
+                            }
                             break;
                         case "metadata":
                             metadata = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -998,7 +1003,15 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "service_tier":
                             string? serviceTierRawValue = utf8JsonReader.GetString();
-                            serviceTier = new Option<CreateChatCompletionRequest.ServiceTierEnum?>(serviceTierRawValue == null ? null : CreateChatCompletionRequest.ServiceTierEnumFromStringOrDefault(serviceTierRawValue));
+                            if (serviceTierRawValue == null)
+                                serviceTier = new Option<CreateChatCompletionRequest.ServiceTierEnum?>(null);
+                            else
+                            {
+                                CreateChatCompletionRequest.ServiceTierEnum? serviceTierValue = CreateChatCompletionRequest.ServiceTierEnumFromStringOrDefault(serviceTierRawValue);
+                                if (serviceTierValue == null)
+                                    throw new JsonException();
+                                serviceTier = new Option<CreateChatCompletionRequest.ServiceTierEnum?>(serviceTierValue);
+                            }
                             break;
                         case "stop":
                             stop = new Option<CreateChatCompletionRequestStop?>(JsonSerializer.Deserialize<CreateChatCompletionRequestStop>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -1040,43 +1053,43 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!messages.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionRequest.", nameof(messages));
+                throw new JsonException("Property is required for class CreateChatCompletionRequest: messages.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateChatCompletionRequest: model.");
 
             if (messages.IsSet && messages.Value == null)
-                throw new ArgumentNullException(nameof(messages), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: messages.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: model.");
 
             if (reasoningEffort.IsSet && reasoningEffort.Value == null)
-                throw new ArgumentNullException(nameof(reasoningEffort), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: reasoning_effort.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: response_format.");
 
             if (stop.IsSet && stop.Value == null)
-                throw new ArgumentNullException(nameof(stop), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: stop.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: tools.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: tool_choice.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: parallel_tool_calls.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: user.");
 
             if (functionCall.IsSet && functionCall.Value == null)
-                throw new ArgumentNullException(nameof(functionCall), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: function_call.");
 
             if (functions.IsSet && functions.Value == null)
-                throw new ArgumentNullException(nameof(functions), "Property is not nullable for class CreateChatCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequest: functions.");
 
             return new CreateChatCompletionRequest(messages.Value!, model.Value!, store, reasoningEffort, metadata, frequencyPenalty, logitBias, logprobs, topLogprobs, maxTokens, maxCompletionTokens, n, modalities, prediction, audio, presencePenalty, responseFormat, seed, serviceTier, stop, stream, streamOptions, temperature, topP, tools, toolChoice, parallelToolCalls, user, functionCall, functions);
         }
@@ -1087,7 +1100,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionRequest createChatCompletionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -1102,35 +1114,34 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionRequest createChatCompletionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createChatCompletionRequest.Messages == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.Messages), "Property is required for class CreateChatCompletionRequest.");
-
-            if (createChatCompletionRequest.Model == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.Model), "Property is required for class CreateChatCompletionRequest.");
+            if (createChatCompletionRequest.ReasoningEffortOption.IsSet && createChatCompletionRequest.ReasoningEffort == null)
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.ReasoningEffort to non-nullable JSON property 'reasoning_effort'.");
 
             if (createChatCompletionRequest.ResponseFormatOption.IsSet && createChatCompletionRequest.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.ResponseFormat), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             if (createChatCompletionRequest.StopOption.IsSet && createChatCompletionRequest.Stop == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.Stop), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.Stop to non-nullable JSON property 'stop'.");
 
             if (createChatCompletionRequest.ToolsOption.IsSet && createChatCompletionRequest.Tools == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.Tools), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.Tools to non-nullable JSON property 'tools'.");
 
             if (createChatCompletionRequest.ToolChoiceOption.IsSet && createChatCompletionRequest.ToolChoice == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.ToolChoice), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.ToolChoice to non-nullable JSON property 'tool_choice'.");
+
+            if (createChatCompletionRequest.ParallelToolCallsOption.IsSet && createChatCompletionRequest.ParallelToolCalls == null)
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.ParallelToolCalls to non-nullable JSON property 'parallel_tool_calls'.");
 
             if (createChatCompletionRequest.UserOption.IsSet && createChatCompletionRequest.User == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.User), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.User to non-nullable JSON property 'user'.");
 
             if (createChatCompletionRequest.FunctionCallOption.IsSet && createChatCompletionRequest.FunctionCall == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.FunctionCall), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.FunctionCall to non-nullable JSON property 'function_call'.");
 
             if (createChatCompletionRequest.FunctionsOption.IsSet && createChatCompletionRequest.Functions == null)
-                throw new ArgumentNullException(nameof(createChatCompletionRequest.Functions), "Property is required for class CreateChatCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateChatCompletionRequest.Functions to non-nullable JSON property 'functions'.");
 
             writer.WritePropertyName("messages");
             JsonSerializer.Serialize(writer, createChatCompletionRequest.Messages, jsonSerializerOptions);

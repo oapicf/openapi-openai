@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **deleteUser**
 ```swift
-    open class func deleteUser(userId: String, completion: @escaping (_ data: UserDeleteResponse?, _ error: Error?) -> Void)
+    open class func deleteUser(userId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UserDeleteResponse
 ```
 
 Deletes a user from the organization.
@@ -25,15 +25,11 @@ import OpenAPIClient
 let userId = "userId_example" // String | The ID of the user.
 
 // Deletes a user from the organization.
-UsersAPI.deleteUser(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsersAPI.deleteUser(userId: userId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **listUsers**
 ```swift
-    open class func listUsers(limit: Int? = nil, after: String? = nil, completion: @escaping (_ data: UserListResponse?, _ error: Error?) -> Void)
+    open class func listUsers(limit: Int? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UserListResponse
 ```
 
 Lists all of the users in the organization.
@@ -74,15 +70,11 @@ let limit = 987 // Int | A limit on the number of objects to be returned. Limit 
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Lists all of the users in the organization.
-UsersAPI.listUsers(limit: limit, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsersAPI.listUsers(limit: limit, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -110,7 +102,7 @@ Name | Type | Description  | Notes
 
 # **modifyUser**
 ```swift
-    open class func modifyUser(userId: String, userRoleUpdateRequest: UserRoleUpdateRequest, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func modifyUser(userId: String, userRoleUpdateRequest: UserRoleUpdateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> User
 ```
 
 Modifies a user's role in the organization.
@@ -124,15 +116,11 @@ let userId = "userId_example" // String | The ID of the user.
 let userRoleUpdateRequest = UserRoleUpdateRequest(role: "role_example") // UserRoleUpdateRequest | The new user role to modify. This must be one of `owner` or `member`.
 
 // Modifies a user's role in the organization.
-UsersAPI.modifyUser(userId: userId, userRoleUpdateRequest: userRoleUpdateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsersAPI.modifyUser(userId: userId, userRoleUpdateRequest: userRoleUpdateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -160,7 +148,7 @@ Name | Type | Description  | Notes
 
 # **retrieveUser**
 ```swift
-    open class func retrieveUser(userId: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func retrieveUser(userId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> User
 ```
 
 Retrieves a user by their identifier.
@@ -173,15 +161,11 @@ import OpenAPIClient
 let userId = "userId_example" // String | The ID of the user.
 
 // Retrieves a user by their identifier.
-UsersAPI.retrieveUser(userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsersAPI.retrieveUser(userId: userId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

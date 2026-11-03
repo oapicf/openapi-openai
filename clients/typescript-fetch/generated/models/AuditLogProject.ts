@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AuditLogProject {
     /**
      * The project ID.
-     * @type {string}
-     * @memberof AuditLogProject
      */
     id?: string;
     /**
      * The project title.
-     * @type {string}
-     * @memberof AuditLogProject
      */
     name?: string;
 }

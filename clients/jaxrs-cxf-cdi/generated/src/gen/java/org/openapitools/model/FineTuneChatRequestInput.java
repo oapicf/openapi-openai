@@ -24,7 +24,7 @@ import java.util.Objects;
 @ApiModel(description = "The per-line training example of a fine-tuning input file for chat models using the supervised method.")
 public class FineTuneChatRequestInput   {
   
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class FineTuneChatRequestInput   {
 
   /**
    **/
-  public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTuneChatRequestInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -42,10 +42,10 @@ public class FineTuneChatRequestInput   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("messages")
- @Size(min=1)  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+ @Size(min=1)  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 

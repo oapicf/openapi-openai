@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MessageObjectIncompleteDetails {
     /**
      * The reason the message is incomplete.
-     * @type {MessageObjectIncompleteDetailsReasonEnum}
-     * @memberof MessageObjectIncompleteDetails
      */
     reason: MessageObjectIncompleteDetailsReasonEnum;
 }
@@ -36,7 +34,7 @@ export const MessageObjectIncompleteDetailsReasonEnum = {
     MaxTokens: 'max_tokens',
     RunCancelled: 'run_cancelled',
     RunExpired: 'run_expired',
-    RunFailed: 'run_failed'
+    RunFailed: 'run_failed',
 } as const;
 export type MessageObjectIncompleteDetailsReasonEnum = typeof MessageObjectIncompleteDetailsReasonEnum[keyof typeof MessageObjectIncompleteDetailsReasonEnum];
 

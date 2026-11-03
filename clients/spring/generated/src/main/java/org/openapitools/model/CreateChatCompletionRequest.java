@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -40,14 +39,13 @@ import jakarta.annotation.Generated;
  * CreateChatCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest {
 
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   private CreateChatCompletionRequestModel model;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> store = JsonNullable.<Boolean>undefined();
 
   /**
@@ -87,32 +85,23 @@ public class CreateChatCompletionRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, String>> metadata = JsonNullable.<Map<String, String>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> logprobs = JsonNullable.<Boolean>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 20) Integer> topLogprobs = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   @Deprecated
   private JsonNullable<Integer> maxTokens = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> maxCompletionTokens = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 128) Integer> n = JsonNullable.<Integer>undefined();
 
   /**
@@ -150,22 +139,16 @@ public class CreateChatCompletionRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<ModalitiesEnum>> modalities = JsonNullable.<List<ModalitiesEnum>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<PredictionContent> prediction = JsonNullable.<PredictionContent>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateChatCompletionRequestAudio> audio = JsonNullable.<CreateChatCompletionRequestAudio>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> presencePenalty = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CreateChatCompletionRequestResponseFormat responseFormat;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> seed = JsonNullable.<Integer>undefined();
 
   /**
@@ -203,41 +186,29 @@ public class CreateChatCompletionRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private @Nullable CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ChatCompletionStreamOptions> streamOptions = JsonNullable.<ChatCompletionStreamOptions>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ChatCompletionToolChoiceOption toolChoice;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean parallelToolCalls = true;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private @Nullable CreateChatCompletionRequestFunctionCall functionCall;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
@@ -248,12 +219,12 @@ public class CreateChatCompletionRequest {
   /**
    * Constructor with only required parameters
    */
-  public CreateChatCompletionRequest(List<ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
+  public CreateChatCompletionRequest(List<@Valid ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
     this.messages = messages;
     this.model = model;
   }
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -270,15 +241,15 @@ public class CreateChatCompletionRequest {
    * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    * @return messages
    */
-  @NotNull @Valid @Size(min = 1) 
+  @NotNull @Size(min = 1) 
   @Schema(name = "messages", description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("messages")
-  public List<ChatCompletionRequestMessage> getMessages() {
+  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
   @JsonProperty("messages")
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
@@ -313,7 +284,7 @@ public class CreateChatCompletionRequest {
    * @return store
    */
   
-  @Schema(name = "store", description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "store", description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("store")
   public JsonNullable<Boolean> getStore() {
     return store;
@@ -350,7 +321,7 @@ public class CreateChatCompletionRequest {
   }
 
   public CreateChatCompletionRequest putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null || !this.metadata.isPresent()) {
+    if (this.metadata == null || !this.metadata.isPresent() || this.metadata.get() == null) {
       this.metadata = JsonNullable.of(new HashMap<>());
     }
     this.metadata.get().put(key, metadataItem);
@@ -362,7 +333,7 @@ public class CreateChatCompletionRequest {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Developer-defined tags and values used for filtering completions in the [dashboard](https://platform.openai.com/chat-completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Map<String, String>> getMetadata() {
     return metadata;
@@ -384,7 +355,7 @@ public class CreateChatCompletionRequest {
    * @return frequencyPenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "frequency_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("frequency_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getFrequencyPenalty() {
     return frequencyPenalty;
@@ -400,7 +371,7 @@ public class CreateChatCompletionRequest {
   }
 
   public CreateChatCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
-    if (this.logitBias == null || !this.logitBias.isPresent()) {
+    if (this.logitBias == null || !this.logitBias.isPresent() || this.logitBias.get() == null) {
       this.logitBias = JsonNullable.of(new HashMap<>());
     }
     this.logitBias.get().put(key, logitBiasItem);
@@ -412,7 +383,7 @@ public class CreateChatCompletionRequest {
    * @return logitBias
    */
   
-  @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logit_bias", description = "Modify the likelihood of specified tokens appearing in the completion.  Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("logit_bias")
   public JsonNullable<Map<String, Integer>> getLogitBias() {
     return logitBias;
@@ -432,7 +403,7 @@ public class CreateChatCompletionRequest {
    * @return logprobs
    */
   
-  @Schema(name = "logprobs", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logprobs", description = "Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("logprobs")
   public JsonNullable<Boolean> getLogprobs() {
     return logprobs;
@@ -454,7 +425,7 @@ public class CreateChatCompletionRequest {
    * @return topLogprobs
    */
   @Min(value = 0) @Max(value = 20) 
-  @Schema(name = "top_logprobs", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_logprobs", description = "An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. `logprobs` must be set to `true` if this parameter is used. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("top_logprobs")
   public JsonNullable<@Min(value = 0) @Max(value = 20) Integer> getTopLogprobs() {
     return topLogprobs;
@@ -475,7 +446,7 @@ public class CreateChatCompletionRequest {
    * @deprecated
    */
   
-  @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_tokens", description = "The maximum number of [tokens](/tokenizer) that can be generated in the chat completion. This value can be used to control [costs](https://openai.com/api/pricing/) for text generated via API.  This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with [o1 series models](/docs/guides/reasoning). ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @Deprecated
   @JsonProperty("max_tokens")
   public JsonNullable<Integer> getMaxTokens() {
@@ -500,7 +471,7 @@ public class CreateChatCompletionRequest {
    * @return maxCompletionTokens
    */
   
-  @Schema(name = "max_completion_tokens", description = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_completion_tokens", description = "An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and [reasoning tokens](/docs/guides/reasoning). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("max_completion_tokens")
   public JsonNullable<Integer> getMaxCompletionTokens() {
     return maxCompletionTokens;
@@ -522,7 +493,7 @@ public class CreateChatCompletionRequest {
    * @return n
    */
   @Min(value = 1) @Max(value = 128) 
-  @Schema(name = "n", example = "1", description = "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "n", example = "1", description = "How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("n")
   public JsonNullable<@Min(value = 1) @Max(value = 128) Integer> getN() {
     return n;
@@ -538,7 +509,7 @@ public class CreateChatCompletionRequest {
   }
 
   public CreateChatCompletionRequest addModalitiesItem(ModalitiesEnum modalitiesItem) {
-    if (this.modalities == null || !this.modalities.isPresent()) {
+    if (this.modalities == null || !this.modalities.isPresent() || this.modalities.get() == null) {
       this.modalities = JsonNullable.of(new ArrayList<>());
     }
     this.modalities.get().add(modalitiesItem);
@@ -550,7 +521,7 @@ public class CreateChatCompletionRequest {
    * @return modalities
    */
   
-  @Schema(name = "modalities", description = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "modalities", description = "Output types that you would like the model to generate for this request. Most models are capable of generating text, which is the default:  `[\"text\"]`  The `gpt-4o-audio-preview` model can also be used to [generate audio](/docs/guides/audio). To request that this model generate both text and audio responses, you can use:  `[\"text\", \"audio\"]` ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("modalities")
   public JsonNullable<List<ModalitiesEnum>> getModalities() {
     return modalities;
@@ -570,7 +541,7 @@ public class CreateChatCompletionRequest {
    * @return prediction
    */
   @Valid 
-  @Schema(name = "prediction", description = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "prediction", description = "Configuration for a [Predicted Output](/docs/guides/predicted-outputs), which can greatly improve response times when large parts of the model response are known ahead of time. This is most common when you are regenerating a file with only minor changes to most of the content. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("prediction")
   public JsonNullable<PredictionContent> getPrediction() {
     return prediction;
@@ -590,7 +561,7 @@ public class CreateChatCompletionRequest {
    * @return audio
    */
   @Valid 
-  @Schema(name = "audio", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "audio", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("audio")
   public JsonNullable<CreateChatCompletionRequestAudio> getAudio() {
     return audio;
@@ -612,7 +583,7 @@ public class CreateChatCompletionRequest {
    * @return presencePenalty
    */
   @Valid @DecimalMin(value = "-2") @DecimalMax(value = "2") 
-  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "presence_penalty", description = "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("presence_penalty")
   public JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> getPresencePenalty() {
     return presencePenalty;
@@ -655,7 +626,7 @@ public class CreateChatCompletionRequest {
    * @return seed
    */
   @Min(value = -9223372036854776000) @Max(value = 9223372036854776000) 
-  @Schema(name = "seed", description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "seed", description = "This feature is in Beta. If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("seed")
   public JsonNullable<@Min(value = -9223372036854776000) @Max(value = 9223372036854776000) Integer> getSeed() {
     return seed;
@@ -675,7 +646,7 @@ public class CreateChatCompletionRequest {
    * @return serviceTier
    */
   
-  @Schema(name = "service_tier", description = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "service_tier", description = "Specifies the latency tier to use for processing the request. This parameter is relevant for customers subscribed to the scale tier service:    - If set to 'auto', and the Project is Scale tier enabled, the system will utilize scale tier credits until they are exhausted.   - If set to 'auto', and the Project is not Scale tier enabled, the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - If set to 'default', the request will be processed using the default service tier with a lower uptime SLA and no latency guarentee.   - When not set, the default behavior is 'auto'.    When this parameter is set, the response body will include the `service_tier` utilized. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("service_tier")
   public JsonNullable<ServiceTierEnum> getServiceTier() {
     return serviceTier;
@@ -685,7 +656,7 @@ public class CreateChatCompletionRequest {
     this.serviceTier = serviceTier;
   }
 
-  public CreateChatCompletionRequest stop(@Nullable CreateChatCompletionRequestStop stop) {
+  public CreateChatCompletionRequest stop(CreateChatCompletionRequestStop stop) {
     this.stop = stop;
     return this;
   }
@@ -697,12 +668,12 @@ public class CreateChatCompletionRequest {
   @Valid 
   @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stop")
-  public @Nullable CreateChatCompletionRequestStop getStop() {
+  public CreateChatCompletionRequestStop getStop() {
     return stop;
   }
 
   @JsonProperty("stop")
-  public void setStop(@Nullable CreateChatCompletionRequestStop stop) {
+  public void setStop(CreateChatCompletionRequestStop stop) {
     this.stop = stop;
   }
 
@@ -716,7 +687,7 @@ public class CreateChatCompletionRequest {
    * @return stream
    */
   
-  @Schema(name = "stream", description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream", description = "If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream")
   public JsonNullable<Boolean> getStream() {
     return stream;
@@ -736,7 +707,7 @@ public class CreateChatCompletionRequest {
    * @return streamOptions
    */
   @Valid 
-  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream_options", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream_options")
   public JsonNullable<ChatCompletionStreamOptions> getStreamOptions() {
     return streamOptions;
@@ -758,7 +729,7 @@ public class CreateChatCompletionRequest {
    * @return temperature
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
-  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("temperature")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
     return temperature;
@@ -780,7 +751,7 @@ public class CreateChatCompletionRequest {
    * @return topP
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
-  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or `temperature` but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("top_p")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
     return topP;
@@ -807,7 +778,7 @@ public class CreateChatCompletionRequest {
    * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid ChatCompletionTool> getTools() {
@@ -927,7 +898,7 @@ public class CreateChatCompletionRequest {
    * @return functions
    * @deprecated
    */
-  @Valid @Size(min = 1, max = 128) 
+  @Size(min = 1, max = 128) 
   @Schema(name = "functions", description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @Deprecated
   @JsonProperty("functions")

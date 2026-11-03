@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 import java.time.*;
 import java.math.*;
-@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.26.0")
 
 /**
  * The hyperparameters used for the fine-tuning job.
@@ -19,16 +19,16 @@ public class FineTuneDPOMethodHyperparameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("beta")
-  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
 
   @JsonProperty("batch_size")
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   @JsonProperty("learning_rate_multiplier")
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonProperty("n_epochs")
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   /**
    * 

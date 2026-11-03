@@ -12,7 +12,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.
  */
 @ApiModel(description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class TruncationObject   {
   /**
    * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.

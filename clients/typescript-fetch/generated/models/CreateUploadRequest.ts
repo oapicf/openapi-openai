@@ -22,8 +22,6 @@ export interface CreateUploadRequest {
     /**
      * The name of the file to upload.
      * 
-     * @type {string}
-     * @memberof CreateUploadRequest
      */
     filename: string;
     /**
@@ -31,15 +29,11 @@ export interface CreateUploadRequest {
      * 
      * See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose).
      * 
-     * @type {CreateUploadRequestPurposeEnum}
-     * @memberof CreateUploadRequest
      */
     purpose: CreateUploadRequestPurposeEnum;
     /**
      * The number of bytes in the file you are uploading.
      * 
-     * @type {number}
-     * @memberof CreateUploadRequest
      */
     bytes: number;
     /**
@@ -47,8 +41,6 @@ export interface CreateUploadRequest {
      * 
      * This must fall within the supported MIME types for your file purpose. See the supported MIME types for assistants and vision.
      * 
-     * @type {string}
-     * @memberof CreateUploadRequest
      */
     mimeType: string;
 }
@@ -61,7 +53,7 @@ export const CreateUploadRequestPurposeEnum = {
     Assistants: 'assistants',
     Batch: 'batch',
     FineTune: 'fine-tune',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 export type CreateUploadRequestPurposeEnum = typeof CreateUploadRequestPurposeEnum[keyof typeof CreateUploadRequestPurposeEnum];
 

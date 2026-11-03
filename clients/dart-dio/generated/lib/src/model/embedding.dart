@@ -141,9 +141,10 @@ class _$EmbeddingSerializer implements PrimitiveSerializer<Embedding> {
   }
 }
 
+
+/// The object type, which is always \"embedding\".
 class EmbeddingObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"embedding\".
   @BuiltValueEnumConst(wireName: r'embedding')
   static const EmbeddingObjectEnum embedding = _$embeddingObjectEnum_embedding;
 

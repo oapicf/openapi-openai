@@ -123,6 +123,7 @@ class _$RunStepStreamEventOneOf1Serializer implements PrimitiveSerializer<RunSte
   }
 }
 
+
 class RunStepStreamEventOneOf1EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.run.step.in_progress')

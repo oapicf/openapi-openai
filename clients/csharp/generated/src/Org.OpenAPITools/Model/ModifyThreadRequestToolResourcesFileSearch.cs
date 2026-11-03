@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (vectorStoreIds.IsSet && vectorStoreIds.Value == null)
-                throw new ArgumentNullException(nameof(vectorStoreIds), "Property is not nullable for class ModifyThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Property is not nullable for class ModifyThreadRequestToolResourcesFileSearch: vector_store_ids.");
 
             return new ModifyThreadRequestToolResourcesFileSearch(vectorStoreIds);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequestToolResourcesFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyThreadRequestToolResourcesFileSearch modifyThreadRequestToolResourcesFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyThreadRequestToolResourcesFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyThreadRequestToolResourcesFileSearch modifyThreadRequestToolResourcesFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modifyThreadRequestToolResourcesFileSearch.VectorStoreIdsOption.IsSet && modifyThreadRequestToolResourcesFileSearch.VectorStoreIds == null)
-                throw new ArgumentNullException(nameof(modifyThreadRequestToolResourcesFileSearch.VectorStoreIds), "Property is required for class ModifyThreadRequestToolResourcesFileSearch.");
+                throw new JsonException("Cannot write null property ModifyThreadRequestToolResourcesFileSearch.VectorStoreIds to non-nullable JSON property 'vector_store_ids'.");
 
             if (modifyThreadRequestToolResourcesFileSearch.VectorStoreIdsOption.IsSet)
             {

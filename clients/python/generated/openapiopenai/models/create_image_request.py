@@ -161,11 +161,11 @@ class CreateImageRequest(BaseModel):
         _obj = cls.model_validate({
             "prompt": obj.get("prompt"),
             "model": CreateImageRequestModel.from_dict(obj["model"]) if obj.get("model") is not None else None,
-            "n": obj.get("n") if obj.get("n") is not None else 1,
+            "n": obj.get("n") if "n" in obj else 1,
             "quality": obj.get("quality") if obj.get("quality") is not None else 'standard',
-            "response_format": obj.get("response_format") if obj.get("response_format") is not None else 'url',
-            "size": obj.get("size") if obj.get("size") is not None else '1024x1024',
-            "style": obj.get("style") if obj.get("style") is not None else 'vivid',
+            "response_format": obj.get("response_format") if "response_format" in obj else 'url',
+            "size": obj.get("size") if "size" in obj else '1024x1024',
+            "style": obj.get("style") if "style" in obj else 'vivid',
             "user": obj.get("user")
         })
         return _obj

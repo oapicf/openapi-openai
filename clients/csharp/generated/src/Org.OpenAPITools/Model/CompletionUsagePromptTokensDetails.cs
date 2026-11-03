@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (audioTokens.IsSet && audioTokens.Value == null)
-                throw new ArgumentNullException(nameof(audioTokens), "Property is not nullable for class CompletionUsagePromptTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsagePromptTokensDetails: audio_tokens.");
 
             if (cachedTokens.IsSet && cachedTokens.Value == null)
-                throw new ArgumentNullException(nameof(cachedTokens), "Property is not nullable for class CompletionUsagePromptTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsagePromptTokensDetails: cached_tokens.");
 
             return new CompletionUsagePromptTokensDetails(audioTokens, cachedTokens);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsagePromptTokensDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompletionUsagePromptTokensDetails completionUsagePromptTokensDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,9 +190,14 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsagePromptTokensDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompletionUsagePromptTokensDetails completionUsagePromptTokensDetails, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (completionUsagePromptTokensDetails.AudioTokensOption.IsSet && completionUsagePromptTokensDetails.AudioTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsagePromptTokensDetails.AudioTokens to non-nullable JSON property 'audio_tokens'.");
+
+            if (completionUsagePromptTokensDetails.CachedTokensOption.IsSet && completionUsagePromptTokensDetails.CachedTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsagePromptTokensDetails.CachedTokens to non-nullable JSON property 'cached_tokens'.");
+
             if (completionUsagePromptTokensDetails.AudioTokensOption.IsSet)
                 writer.WriteNumber("audio_tokens", completionUsagePromptTokensDetails.AudioTokensOption.Value!.Value);
 

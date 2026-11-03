@@ -24,7 +24,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "MessageStreamEvent_oneOf_1", description = "Occurs when a [message](/docs/api-reference/messages/object) moves to an `in_progress` state.")
 @JsonTypeName("MessageStreamEvent_oneOf_1")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageStreamEventOneOf1 implements MessageStreamEvent {
 
   /**

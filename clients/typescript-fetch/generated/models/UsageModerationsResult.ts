@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UsageModerationsResult {
     /**
      * 
-     * @type {UsageModerationsResultObjectEnum}
-     * @memberof UsageModerationsResult
      */
     object: UsageModerationsResultObjectEnum;
     /**
      * The aggregated number of input tokens used.
-     * @type {number}
-     * @memberof UsageModerationsResult
      */
     inputTokens: number;
     /**
      * The count of requests made to the model.
-     * @type {number}
-     * @memberof UsageModerationsResult
      */
     numModelRequests: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageModerationsResult
      */
     projectId?: string | null;
     /**
      * When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageModerationsResult
      */
     userId?: string | null;
     /**
      * When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageModerationsResult
      */
     apiKeyId?: string | null;
     /**
      * When `group_by=model`, this field provides the model name of the grouped usage result.
-     * @type {string}
-     * @memberof UsageModerationsResult
      */
     model?: string | null;
 }
@@ -68,7 +54,7 @@ export interface UsageModerationsResult {
  * @export
  */
 export const UsageModerationsResultObjectEnum = {
-    OrganizationUsageModerationsResult: 'organization.usage.moderations.result'
+    OrganizationUsageModerationsResult: 'organization.usage.moderations.result',
 } as const;
 export type UsageModerationsResultObjectEnum = typeof UsageModerationsResultObjectEnum[keyof typeof UsageModerationsResultObjectEnum];
 

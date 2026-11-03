@@ -7,7 +7,7 @@ export interface DeleteVectorStoreResponse {
 }
 export namespace DeleteVectorStoreResponse {
   export const ObjectEnum = {
-    VectorStoreDeleted: 'vector_store.deleted'
+    VectorStoreDeleted: 'vector_store.deleted',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

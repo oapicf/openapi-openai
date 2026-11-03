@@ -34,7 +34,7 @@ import javax.validation.Valid;
   MessageContentTextObjectText.JSON_PROPERTY_VALUE,
   MessageContentTextObjectText.JSON_PROPERTY_ANNOTATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageContentTextObjectText   {
   public static final String JSON_PROPERTY_VALUE = "value";
   @JsonProperty(JSON_PROPERTY_VALUE)
@@ -42,7 +42,7 @@ public class MessageContentTextObjectText   {
 
   public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageContentTextObjectText value(String value) {
     this.value = value;
@@ -64,7 +64,7 @@ public class MessageContentTextObjectText   {
     this.value = value;
   }
 
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -83,12 +83,12 @@ public class MessageContentTextObjectText   {
    **/
   @JsonProperty(value = "annotations")
   @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
-  public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  @NotNull 
+  public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

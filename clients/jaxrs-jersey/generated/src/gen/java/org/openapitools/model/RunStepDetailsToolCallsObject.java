@@ -35,7 +35,7 @@ import javax.validation.Valid;
   RunStepDetailsToolCallsObject.JSON_PROPERTY_TYPE,
   RunStepDetailsToolCallsObject.JSON_PROPERTY_TOOL_CALLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsObject   {
   /**
    * Always &#x60;tool_calls&#x60;.
@@ -76,7 +76,7 @@ public class RunStepDetailsToolCallsObject   {
 
   public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
   @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
-  private List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+  private List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
 
   public RunStepDetailsToolCallsObject type(TypeEnum type) {
     this.type = type;
@@ -98,7 +98,7 @@ public class RunStepDetailsToolCallsObject   {
     this.type = type;
   }
 
-  public RunStepDetailsToolCallsObject toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepDetailsToolCallsObject toolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
   }
@@ -117,12 +117,12 @@ public class RunStepDetailsToolCallsObject   {
    **/
   @JsonProperty(value = "tool_calls")
   @ApiModelProperty(required = true, value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
-  @NotNull @Valid 
-  public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+  @NotNull 
+  public List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;
   }
 
-  public void setToolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public void setToolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
   }
 

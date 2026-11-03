@@ -20,9 +20,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("AssistantObject_tool_resources_code_interpreter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantObjectToolResourcesCodeInterpreter   {
-  private @Valid List<String> fileIds = new ArrayList<>();
+  private List<String> fileIds = new ArrayList<>();
 
   public AssistantObjectToolResourcesCodeInterpreter() {
   }

@@ -15,7 +15,7 @@ import org.openapitools.model.RealtimeSession;
  **/
 
 @ApiModel(description = "Returned when a Session is created. Emitted automatically when a new  connection is established as the first server event. This event will contain  the default Session configuration. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventSessionCreated   {
   @JsonProperty("event_id")
   private String eventId;

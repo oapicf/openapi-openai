@@ -32,7 +32,7 @@ export interface RealtimeSessionTurnDetection {
 }
 export namespace RealtimeSessionTurnDetection {
     export const TypeEnum = {
-        ServerVad: 'server_vad'
+        ServerVad: 'server_vad',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

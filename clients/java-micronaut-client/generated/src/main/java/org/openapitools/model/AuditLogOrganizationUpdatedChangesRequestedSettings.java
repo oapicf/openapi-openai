@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   AuditLogOrganizationUpdatedChangesRequestedSettings.JSON_PROPERTY_USAGE_DASHBOARD_VISIBILITY
 })
 @JsonTypeName("AuditLog_organization_updated_changes_requested_settings")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class AuditLogOrganizationUpdatedChangesRequestedSettings {
     public static final String JSON_PROPERTY_THREADS_UI_VISIBILITY = "threads_ui_visibility";

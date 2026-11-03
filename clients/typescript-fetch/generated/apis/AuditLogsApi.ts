@@ -30,14 +30,44 @@ import {
 } from '../models/ListAuditLogsResponse';
 
 export interface ListAuditLogsRequest {
+    /**
+     * Return only events whose `effective_at` (Unix seconds) is in this range.
+     */
     effectiveAt?: ListAuditLogsEffectiveAtParameter;
+    /**
+     * Return only events for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only events with a `type` in one of these values. For example, `project.created`. For all options, see the documentation for the [audit log object](/docs/api-reference/audit-logs/object).
+     */
     eventTypes?: Array<AuditLogEventType>;
+    /**
+     * Return only events performed by these actors. Can be a user ID, a service account ID, or an api key tracking ID.
+     */
     actorIds?: Array<string>;
+    /**
+     * Return only events performed by users with these emails.
+     */
     actorEmails?: Array<string>;
+    /**
+     * Return only events performed on these targets. For example, a project ID updated.
+     */
     resourceIds?: Array<string>;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
 }
 

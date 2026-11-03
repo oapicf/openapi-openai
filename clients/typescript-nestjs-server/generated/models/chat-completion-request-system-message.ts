@@ -17,7 +17,7 @@ export interface ChatCompletionRequestSystemMessage {
 }
 export namespace ChatCompletionRequestSystemMessage {
   export const RoleEnum = {
-    System: 'system'
+    System: 'system',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

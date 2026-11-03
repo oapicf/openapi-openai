@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -27,16 +26,13 @@ import jakarta.annotation.Generated;
  * CreateThreadRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequest {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateThreadRequestToolResources> toolResources = JsonNullable.<CreateThreadRequestToolResources>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   public CreateThreadRequest messages(List<@Valid CreateMessageRequest> messages) {
@@ -56,7 +52,7 @@ public class CreateThreadRequest {
    * A list of [messages](/docs/api-reference/messages) to start the thread with.
    * @return messages
    */
-  @Valid 
+  
   @Schema(name = "messages", description = "A list of [messages](/docs/api-reference/messages) to start the thread with.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("messages")
   public List<@Valid CreateMessageRequest> getMessages() {
@@ -78,7 +74,7 @@ public class CreateThreadRequest {
    * @return toolResources
    */
   @Valid 
-  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("tool_resources")
   public JsonNullable<CreateThreadRequestToolResources> getToolResources() {
     return toolResources;
@@ -98,7 +94,7 @@ public class CreateThreadRequest {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;

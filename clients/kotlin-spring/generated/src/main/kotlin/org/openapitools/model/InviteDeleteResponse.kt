@@ -17,22 +17,22 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; The object type, which is always `organization.invite.deleted`
+ * @param `object` The object type, which is always `organization.invite.deleted`
  * @param id 
  * @param deleted 
  */
 data class InviteDeleteResponse(
 
     @Schema(required = true, description = "The object type, which is always `organization.invite.deleted`")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: InviteDeleteResponse.`Object`,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("deleted")
+    @param:JsonProperty("deleted", required = true)
     @get:JsonProperty("deleted", required = true) val deleted: kotlin.Boolean
 ) {
 
@@ -43,12 +43,12 @@ data class InviteDeleteResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodInvitePeriodDeleted("organization.invite.deleted");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

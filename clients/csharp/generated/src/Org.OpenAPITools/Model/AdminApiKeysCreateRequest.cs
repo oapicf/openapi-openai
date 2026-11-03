@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AdminApiKeysCreateRequest.", nameof(name));
+                throw new JsonException("Property is required for class AdminApiKeysCreateRequest: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AdminApiKeysCreateRequest.");
+                throw new JsonException("Property is not nullable for class AdminApiKeysCreateRequest: name.");
 
             return new AdminApiKeysCreateRequest(name.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeysCreateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdminApiKeysCreateRequest adminApiKeysCreateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeysCreateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdminApiKeysCreateRequest adminApiKeysCreateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (adminApiKeysCreateRequest.Name == null)
-                throw new ArgumentNullException(nameof(adminApiKeysCreateRequest.Name), "Property is required for class AdminApiKeysCreateRequest.");
-
             writer.WriteString("name", adminApiKeysCreateRequest.Name);
         }
     }

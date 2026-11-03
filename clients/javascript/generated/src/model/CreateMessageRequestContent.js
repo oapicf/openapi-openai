@@ -17,7 +17,7 @@ import ArrayOfContentPartsInner from './ArrayOfContentPartsInner';
 /**
  * The CreateMessageRequestContent model module.
  * @module model/CreateMessageRequestContent
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateMessageRequestContent {
     /**

@@ -23,7 +23,7 @@ public class CreateRunRequest   {
     private String instructions;
     private String additionalInstructions;
     private List<@Valid CreateMessageRequest> additionalMessages;
-    private List<AssistantObjectToolsInner> tools;
+    private List<@Valid AssistantObjectToolsInner> tools;
     private Object metadata;
     private BigDecimal temperature = new BigDecimal("1");
     private BigDecimal topP = new BigDecimal("1");
@@ -68,7 +68,7 @@ public class CreateRunRequest   {
         String instructions, 
         String additionalInstructions, 
         List<@Valid CreateMessageRequest> additionalMessages, 
-        List<AssistantObjectToolsInner> tools, 
+        List<@Valid AssistantObjectToolsInner> tools, 
         Object metadata, 
         BigDecimal temperature, 
         BigDecimal topP, 
@@ -164,11 +164,11 @@ public class CreateRunRequest   {
      * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
      * @return tools
      */
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

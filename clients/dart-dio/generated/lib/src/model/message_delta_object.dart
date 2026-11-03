@@ -141,9 +141,10 @@ class _$MessageDeltaObjectSerializer implements PrimitiveSerializer<MessageDelta
   }
 }
 
+
+/// The object type, which is always `thread.message.delta`.
 class MessageDeltaObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread.message.delta`.
   @BuiltValueEnumConst(wireName: r'thread.message.delta')
   static const MessageDeltaObjectObjectEnum threadPeriodMessagePeriodDelta = _$messageDeltaObjectObjectEnum_threadPeriodMessagePeriodDelta;
 

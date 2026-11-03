@@ -15,7 +15,7 @@ export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject {
 }
 export namespace RunStepDetailsToolCallsFileSearchRankingOptionsObject {
   export const RankerEnum = {
-    Default20240821: 'default_2024_08_21'
+    Default20240821: 'default_2024_08_21',
   } as const;
   export type RankerEnum = typeof RankerEnum[keyof typeof RankerEnum];
 }

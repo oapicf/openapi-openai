@@ -26,23 +26,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventConversationItemTruncated(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `conversation.item.truncated`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemTruncated.Type,
 
     @Schema(required = true, description = "The ID of the assistant message item that was truncated.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the content part that was truncated.")
-    @param:JsonProperty("content_index")
+    @param:JsonProperty("content_index", required = true)
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @Schema(required = true, description = "The duration up to which the audio was truncated, in milliseconds. ")
-    @param:JsonProperty("audio_end_ms")
+    @param:JsonProperty("audio_end_ms", required = true)
     @get:JsonProperty("audio_end_ms", required = true) val audioEndMs: kotlin.Int
 ) {
 
@@ -53,12 +53,12 @@ data class RealtimeServerEventConversationItemTruncated(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         conversationPeriodItemPeriodTruncated("conversation.item.truncated");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

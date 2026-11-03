@@ -631,7 +631,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<Batch.ObjectEnum?>(Batch.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                Batch.ObjectEnum? varObjectValue = Batch.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<Batch.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "endpoint":
                             endpoint = new Option<string?>(utf8JsonReader.GetString()!);
@@ -645,7 +650,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<Batch.StatusEnum?>(Batch.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                Batch.StatusEnum? statusValue = Batch.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<Batch.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -696,82 +706,82 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(id));
+                throw new JsonException("Property is required for class Batch: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(varObject));
+                throw new JsonException("Property is required for class Batch: object.");
 
             if (!endpoint.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(endpoint));
+                throw new JsonException("Property is required for class Batch: endpoint.");
 
             if (!inputFileId.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(inputFileId));
+                throw new JsonException("Property is required for class Batch: input_file_id.");
 
             if (!completionWindow.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(completionWindow));
+                throw new JsonException("Property is required for class Batch: completion_window.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(status));
+                throw new JsonException("Property is required for class Batch: status.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class Batch.", nameof(createdAt));
+                throw new JsonException("Property is required for class Batch: created_at.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: object.");
 
             if (endpoint.IsSet && endpoint.Value == null)
-                throw new ArgumentNullException(nameof(endpoint), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: endpoint.");
 
             if (inputFileId.IsSet && inputFileId.Value == null)
-                throw new ArgumentNullException(nameof(inputFileId), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: input_file_id.");
 
             if (completionWindow.IsSet && completionWindow.Value == null)
-                throw new ArgumentNullException(nameof(completionWindow), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: completion_window.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: status.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: created_at.");
 
             if (errors.IsSet && errors.Value == null)
-                throw new ArgumentNullException(nameof(errors), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: errors.");
 
             if (outputFileId.IsSet && outputFileId.Value == null)
-                throw new ArgumentNullException(nameof(outputFileId), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: output_file_id.");
 
             if (errorFileId.IsSet && errorFileId.Value == null)
-                throw new ArgumentNullException(nameof(errorFileId), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: error_file_id.");
 
             if (inProgressAt.IsSet && inProgressAt.Value == null)
-                throw new ArgumentNullException(nameof(inProgressAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: in_progress_at.");
 
             if (expiresAt.IsSet && expiresAt.Value == null)
-                throw new ArgumentNullException(nameof(expiresAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: expires_at.");
 
             if (finalizingAt.IsSet && finalizingAt.Value == null)
-                throw new ArgumentNullException(nameof(finalizingAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: finalizing_at.");
 
             if (completedAt.IsSet && completedAt.Value == null)
-                throw new ArgumentNullException(nameof(completedAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: completed_at.");
 
             if (failedAt.IsSet && failedAt.Value == null)
-                throw new ArgumentNullException(nameof(failedAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: failed_at.");
 
             if (expiredAt.IsSet && expiredAt.Value == null)
-                throw new ArgumentNullException(nameof(expiredAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: expired_at.");
 
             if (cancellingAt.IsSet && cancellingAt.Value == null)
-                throw new ArgumentNullException(nameof(cancellingAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: cancelling_at.");
 
             if (cancelledAt.IsSet && cancelledAt.Value == null)
-                throw new ArgumentNullException(nameof(cancelledAt), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: cancelled_at.");
 
             if (requestCounts.IsSet && requestCounts.Value == null)
-                throw new ArgumentNullException(nameof(requestCounts), "Property is not nullable for class Batch.");
+                throw new JsonException("Property is not nullable for class Batch: request_counts.");
 
             return new Batch(id.Value!, varObject.Value!.Value!, endpoint.Value!, inputFileId.Value!, completionWindow.Value!, status.Value!.Value!, createdAt.Value!.Value!, errors, outputFileId, errorFileId, inProgressAt, expiresAt, finalizingAt, completedAt, failedAt, expiredAt, cancellingAt, cancelledAt, requestCounts, metadata);
         }
@@ -782,7 +792,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Batch batch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -797,32 +806,43 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Batch batch, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (batch.Id == null)
-                throw new ArgumentNullException(nameof(batch.Id), "Property is required for class Batch.");
-
-            if (batch.Endpoint == null)
-                throw new ArgumentNullException(nameof(batch.Endpoint), "Property is required for class Batch.");
-
-            if (batch.InputFileId == null)
-                throw new ArgumentNullException(nameof(batch.InputFileId), "Property is required for class Batch.");
-
-            if (batch.CompletionWindow == null)
-                throw new ArgumentNullException(nameof(batch.CompletionWindow), "Property is required for class Batch.");
-
             if (batch.ErrorsOption.IsSet && batch.Errors == null)
-                throw new ArgumentNullException(nameof(batch.Errors), "Property is required for class Batch.");
+                throw new JsonException("Cannot write null property Batch.Errors to non-nullable JSON property 'errors'.");
 
             if (batch.OutputFileIdOption.IsSet && batch.OutputFileId == null)
-                throw new ArgumentNullException(nameof(batch.OutputFileId), "Property is required for class Batch.");
+                throw new JsonException("Cannot write null property Batch.OutputFileId to non-nullable JSON property 'output_file_id'.");
 
             if (batch.ErrorFileIdOption.IsSet && batch.ErrorFileId == null)
-                throw new ArgumentNullException(nameof(batch.ErrorFileId), "Property is required for class Batch.");
+                throw new JsonException("Cannot write null property Batch.ErrorFileId to non-nullable JSON property 'error_file_id'.");
+
+            if (batch.InProgressAtOption.IsSet && batch.InProgressAt == null)
+                throw new JsonException("Cannot write null property Batch.InProgressAt to non-nullable JSON property 'in_progress_at'.");
+
+            if (batch.ExpiresAtOption.IsSet && batch.ExpiresAt == null)
+                throw new JsonException("Cannot write null property Batch.ExpiresAt to non-nullable JSON property 'expires_at'.");
+
+            if (batch.FinalizingAtOption.IsSet && batch.FinalizingAt == null)
+                throw new JsonException("Cannot write null property Batch.FinalizingAt to non-nullable JSON property 'finalizing_at'.");
+
+            if (batch.CompletedAtOption.IsSet && batch.CompletedAt == null)
+                throw new JsonException("Cannot write null property Batch.CompletedAt to non-nullable JSON property 'completed_at'.");
+
+            if (batch.FailedAtOption.IsSet && batch.FailedAt == null)
+                throw new JsonException("Cannot write null property Batch.FailedAt to non-nullable JSON property 'failed_at'.");
+
+            if (batch.ExpiredAtOption.IsSet && batch.ExpiredAt == null)
+                throw new JsonException("Cannot write null property Batch.ExpiredAt to non-nullable JSON property 'expired_at'.");
+
+            if (batch.CancellingAtOption.IsSet && batch.CancellingAt == null)
+                throw new JsonException("Cannot write null property Batch.CancellingAt to non-nullable JSON property 'cancelling_at'.");
+
+            if (batch.CancelledAtOption.IsSet && batch.CancelledAt == null)
+                throw new JsonException("Cannot write null property Batch.CancelledAt to non-nullable JSON property 'cancelled_at'.");
 
             if (batch.RequestCountsOption.IsSet && batch.RequestCounts == null)
-                throw new ArgumentNullException(nameof(batch.RequestCounts), "Property is required for class Batch.");
+                throw new JsonException("Cannot write null property Batch.RequestCounts to non-nullable JSON property 'request_counts'.");
 
             writer.WriteString("id", batch.Id);
 

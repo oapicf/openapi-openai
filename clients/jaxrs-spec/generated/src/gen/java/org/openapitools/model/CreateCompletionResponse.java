@@ -23,10 +23,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). ")
 @JsonTypeName("CreateCompletionResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionResponse   {
   private String id;
-  private @Valid List<@Valid CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
+  private List<@Valid CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
   private Integer created;
   private String model;
   private String systemFingerprint;
@@ -129,7 +129,7 @@ public class CreateCompletionResponse   {
   
   @ApiModelProperty(required = true, value = "The list of completion choices the model generated for the input prompt.")
   @JsonProperty(required = true, value = "choices")
-  @NotNull @Valid public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {
+  @NotNull public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {
     return choices;
   }
 

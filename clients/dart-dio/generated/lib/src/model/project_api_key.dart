@@ -192,9 +192,10 @@ class _$ProjectApiKeySerializer implements PrimitiveSerializer<ProjectApiKey> {
   }
 }
 
+
+/// The object type, which is always `organization.project.api_key`
 class ProjectApiKeyObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.project.api_key`
   @BuiltValueEnumConst(wireName: r'organization.project.api_key')
   static const ProjectApiKeyObjectEnum organizationPeriodProjectPeriodApiKey = _$projectApiKeyObjectEnum_organizationPeriodProjectPeriodApiKey;
 

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -31,7 +30,7 @@ import jakarta.annotation.Generated;
  * CreateRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequest {
 
   private String assistantId;
@@ -42,11 +41,9 @@ public class CreateRunRequest {
 
   private JsonNullable<String> additionalInstructions = JsonNullable.<String>undefined();
 
-  @Valid
   private JsonNullable<List<@Valid CreateMessageRequest>> additionalMessages = JsonNullable.<List<@Valid CreateMessageRequest>>undefined();
 
-  @Valid
-  private JsonNullable<List<AssistantObjectToolsInner>> tools = JsonNullable.<List<AssistantObjectToolsInner>>undefined();
+  private JsonNullable<List<@Valid AssistantObjectToolsInner>> tools = JsonNullable.<List<@Valid AssistantObjectToolsInner>>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
@@ -176,7 +173,7 @@ public class CreateRunRequest {
    * Adds additional messages to the thread before creating the run.
    * @return additionalMessages
    */
-  @Valid 
+  
   @Schema(name = "additional_messages", description = "Adds additional messages to the thread before creating the run.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("additional_messages")
   public JsonNullable<List<@Valid CreateMessageRequest>> getAdditionalMessages() {
@@ -187,7 +184,7 @@ public class CreateRunRequest {
     this.additionalMessages = additionalMessages;
   }
 
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = JsonNullable.of(tools);
     return this;
   }
@@ -204,14 +201,14 @@ public class CreateRunRequest {
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    * @return tools
    */
-  @Valid @Size(max = 20) 
+  @Size(max = 20) 
   @Schema(name = "tools", description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
-  public JsonNullable<List<AssistantObjectToolsInner>> getTools() {
+  public JsonNullable<List<@Valid AssistantObjectToolsInner>> getTools() {
     return tools;
   }
 
-  public void setTools(JsonNullable<List<AssistantObjectToolsInner>> tools) {
+  public void setTools(JsonNullable<List<@Valid AssistantObjectToolsInner>> tools) {
     this.tools = tools;
   }
 

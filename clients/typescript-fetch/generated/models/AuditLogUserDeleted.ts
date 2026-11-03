@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogUserDeleted {
     /**
      * The user ID.
-     * @type {string}
-     * @memberof AuditLogUserDeleted
      */
     id?: string;
 }

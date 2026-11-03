@@ -19,7 +19,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
 }
 export namespace RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject {
   export const TypeEnum = {
-    Logs: 'logs'
+    Logs: 'logs',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

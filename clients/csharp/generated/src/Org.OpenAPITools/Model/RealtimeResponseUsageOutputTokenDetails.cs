@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (textTokens.IsSet && textTokens.Value == null)
-                throw new ArgumentNullException(nameof(textTokens), "Property is not nullable for class RealtimeResponseUsageOutputTokenDetails.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsageOutputTokenDetails: text_tokens.");
 
             if (audioTokens.IsSet && audioTokens.Value == null)
-                throw new ArgumentNullException(nameof(audioTokens), "Property is not nullable for class RealtimeResponseUsageOutputTokenDetails.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsageOutputTokenDetails: audio_tokens.");
 
             return new RealtimeResponseUsageOutputTokenDetails(textTokens, audioTokens);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsageOutputTokenDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseUsageOutputTokenDetails realtimeResponseUsageOutputTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,9 +190,14 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsageOutputTokenDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseUsageOutputTokenDetails realtimeResponseUsageOutputTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeResponseUsageOutputTokenDetails.TextTokensOption.IsSet && realtimeResponseUsageOutputTokenDetails.TextTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsageOutputTokenDetails.TextTokens to non-nullable JSON property 'text_tokens'.");
+
+            if (realtimeResponseUsageOutputTokenDetails.AudioTokensOption.IsSet && realtimeResponseUsageOutputTokenDetails.AudioTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsageOutputTokenDetails.AudioTokens to non-nullable JSON property 'audio_tokens'.");
+
             if (realtimeResponseUsageOutputTokenDetails.TextTokensOption.IsSet)
                 writer.WriteNumber("text_tokens", realtimeResponseUsageOutputTokenDetails.TextTokensOption.Value!.Value);
 

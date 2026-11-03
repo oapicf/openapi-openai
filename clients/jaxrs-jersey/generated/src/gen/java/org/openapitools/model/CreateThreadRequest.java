@@ -35,7 +35,7 @@ import javax.validation.Valid;
   CreateThreadRequest.JSON_PROPERTY_TOOL_RESOURCES,
   CreateThreadRequest.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequest   {
   public static final String JSON_PROPERTY_MESSAGES = "messages";
   @JsonProperty(JSON_PROPERTY_MESSAGES)
@@ -68,7 +68,7 @@ public class CreateThreadRequest   {
    **/
   @JsonProperty(value = "messages")
   @ApiModelProperty(value = "A list of [messages](/docs/api-reference/messages) to start the thread with.")
-  @Valid 
+  
   public List<@Valid CreateMessageRequest> getMessages() {
     return messages;
   }

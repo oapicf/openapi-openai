@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface TruncationObject {
     /**
      * The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
-     * @type {TruncationObjectTypeEnum}
-     * @memberof TruncationObject
      */
     type: TruncationObjectTypeEnum;
     /**
      * The number of most recent messages from the thread when constructing the context for the run.
-     * @type {number}
-     * @memberof TruncationObject
      */
     lastMessages?: number | null;
 }
@@ -39,7 +35,7 @@ export interface TruncationObject {
  */
 export const TruncationObjectTypeEnum = {
     Auto: 'auto',
-    LastMessages: 'last_messages'
+    LastMessages: 'last_messages',
 } as const;
 export type TruncationObjectTypeEnum = typeof TruncationObjectTypeEnum[keyof typeof TruncationObjectTypeEnum];
 

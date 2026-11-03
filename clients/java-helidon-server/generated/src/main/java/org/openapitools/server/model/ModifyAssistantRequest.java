@@ -19,7 +19,7 @@ public class ModifyAssistantRequest   {
     private String name;
     private String description;
     private String instructions;
-    private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+    private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
     private ModifyAssistantRequestToolResources toolResources;
     private Object metadata;
     private BigDecimal temperature = new BigDecimal("1");
@@ -52,7 +52,7 @@ public class ModifyAssistantRequest   {
         String name, 
         String description, 
         String instructions, 
-        List<AssistantObjectToolsInner> tools, 
+        List<@Valid AssistantObjectToolsInner> tools, 
         ModifyAssistantRequestToolResources toolResources, 
         Object metadata, 
         BigDecimal temperature, 
@@ -125,11 +125,11 @@ public class ModifyAssistantRequest   {
      * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
      * @return tools
      */
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

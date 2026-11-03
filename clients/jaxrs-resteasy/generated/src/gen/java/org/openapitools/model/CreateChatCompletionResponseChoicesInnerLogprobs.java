@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Log probability information for the choice.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Log probability information for the choice.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   
   private List<@Valid ChatCompletionTokenLogprob> content;
@@ -28,7 +28,6 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   @ApiModelProperty(required = true, value = "A list of message content tokens with log probability information.")
   @JsonProperty("content")
   @NotNull
-  @Valid
   public List<@Valid ChatCompletionTokenLogprob> getContent() {
     return content;
   }
@@ -43,7 +42,6 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
   @JsonProperty("refusal")
   @NotNull
-  @Valid
   public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
     return refusal;
   }

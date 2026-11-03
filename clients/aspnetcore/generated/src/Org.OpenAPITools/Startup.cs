@@ -75,7 +75,7 @@ namespace Org.OpenAPITools
                     c.SwaggerDoc("2.3.0", new OpenApiInfo
                     {
                         Title = "OpenAI API",
-                        Description = "OpenAI API (ASP.NET Core 8.0)",
+                        Description = "OpenAI API (ASP.NET Core 10.0)",
                         TermsOfService = new Uri("https://openai.com/policies/terms-of-use"),
                         Contact = new OpenApiContact
                         {

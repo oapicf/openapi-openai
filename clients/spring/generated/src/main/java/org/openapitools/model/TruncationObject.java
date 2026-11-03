@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -25,7 +24,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "TruncationObject", description = "Controls for how a thread will be truncated prior to the run. Use this to control the intial context window of the run.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class TruncationObject {
 
   /**
@@ -65,7 +64,6 @@ public class TruncationObject {
 
   private TypeEnum type;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) Integer> lastMessages = JsonNullable.<Integer>undefined();
 
   public TruncationObject() {
@@ -111,7 +109,7 @@ public class TruncationObject {
    * @return lastMessages
    */
   @Min(value = 1) 
-  @Schema(name = "last_messages", description = "The number of most recent messages from the thread when constructing the context for the run.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "last_messages", description = "The number of most recent messages from the thread when constructing the context for the run.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("last_messages")
   public JsonNullable<@Min(value = 1) Integer> getLastMessages() {
     return lastMessages;

@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogProjectUpdated.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectUpdated: id.");
 
             if (changesRequested.IsSet && changesRequested.Value == null)
-                throw new ArgumentNullException(nameof(changesRequested), "Property is not nullable for class AuditLogProjectUpdated.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectUpdated: changes_requested.");
 
             return new AuditLogProjectUpdated(id, changesRequested);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogProjectUpdated auditLogProjectUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogProjectUpdated auditLogProjectUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogProjectUpdated.IdOption.IsSet && auditLogProjectUpdated.Id == null)
-                throw new ArgumentNullException(nameof(auditLogProjectUpdated.Id), "Property is required for class AuditLogProjectUpdated.");
+                throw new JsonException("Cannot write null property AuditLogProjectUpdated.Id to non-nullable JSON property 'id'.");
 
             if (auditLogProjectUpdated.ChangesRequestedOption.IsSet && auditLogProjectUpdated.ChangesRequested == null)
-                throw new ArgumentNullException(nameof(auditLogProjectUpdated.ChangesRequested), "Property is required for class AuditLogProjectUpdated.");
+                throw new JsonException("Cannot write null property AuditLogProjectUpdated.ChangesRequested to non-nullable JSON property 'changes_requested'.");
 
             if (auditLogProjectUpdated.IdOption.IsSet)
                 writer.WriteString("id", auditLogProjectUpdated.Id);

@@ -70,75 +70,191 @@ import {
 } from '../models/VectorStoreObject';
 
 export interface CancelVectorStoreFileBatchRequest {
+    /**
+     * The ID of the vector store that the file batch belongs to.
+     */
     vectorStoreId: string;
+    /**
+     * The ID of the file batch to cancel.
+     */
     batchId: string;
 }
 
 export interface CreateVectorStoreOperationRequest {
+    /**
+     * 
+     */
     createVectorStoreRequest: CreateVectorStoreRequest;
 }
 
 export interface CreateVectorStoreFileOperationRequest {
+    /**
+     * The ID of the vector store for which to create a File.
+     * 
+     */
     vectorStoreId: string;
+    /**
+     * 
+     */
     createVectorStoreFileRequest: CreateVectorStoreFileRequest;
 }
 
 export interface CreateVectorStoreFileBatchOperationRequest {
+    /**
+     * The ID of the vector store for which to create a File Batch.
+     * 
+     */
     vectorStoreId: string;
+    /**
+     * 
+     */
     createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest;
 }
 
 export interface DeleteVectorStoreRequest {
+    /**
+     * The ID of the vector store to delete.
+     */
     vectorStoreId: string;
 }
 
 export interface DeleteVectorStoreFileRequest {
+    /**
+     * The ID of the vector store that the file belongs to.
+     */
     vectorStoreId: string;
+    /**
+     * The ID of the file to delete.
+     */
     fileId: string;
 }
 
 export interface GetVectorStoreRequest {
+    /**
+     * The ID of the vector store to retrieve.
+     */
     vectorStoreId: string;
 }
 
 export interface GetVectorStoreFileRequest {
+    /**
+     * The ID of the vector store that the file belongs to.
+     */
     vectorStoreId: string;
+    /**
+     * The ID of the file being retrieved.
+     */
     fileId: string;
 }
 
 export interface GetVectorStoreFileBatchRequest {
+    /**
+     * The ID of the vector store that the file batch belongs to.
+     */
     vectorStoreId: string;
+    /**
+     * The ID of the file batch being retrieved.
+     */
     batchId: string;
 }
 
 export interface ListFilesInVectorStoreBatchRequest {
+    /**
+     * The ID of the vector store that the files belong to.
+     */
     vectorStoreId: string;
+    /**
+     * The ID of the file batch that the files belong to.
+     */
     batchId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListFilesInVectorStoreBatchOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
+    /**
+     * Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
+     */
     filter?: ListFilesInVectorStoreBatchFilterEnum;
 }
 
 export interface ListVectorStoreFilesRequest {
+    /**
+     * The ID of the vector store that the files belong to.
+     */
     vectorStoreId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListVectorStoreFilesOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
+    /**
+     * Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
+     */
     filter?: ListVectorStoreFilesFilterEnum;
 }
 
 export interface ListVectorStoresRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListVectorStoresOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
 }
 
 export interface ModifyVectorStoreRequest {
+    /**
+     * The ID of the vector store to modify.
+     */
     vectorStoreId: string;
+    /**
+     * 
+     */
     updateVectorStoreRequest: UpdateVectorStoreRequest;
 }
 
@@ -963,7 +1079,7 @@ export class VectorStoresApi extends runtime.BaseAPI {
  */
 export const ListFilesInVectorStoreBatchOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListFilesInVectorStoreBatchOrderEnum = typeof ListFilesInVectorStoreBatchOrderEnum[keyof typeof ListFilesInVectorStoreBatchOrderEnum];
 /**
@@ -973,7 +1089,7 @@ export const ListFilesInVectorStoreBatchFilterEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ListFilesInVectorStoreBatchFilterEnum = typeof ListFilesInVectorStoreBatchFilterEnum[keyof typeof ListFilesInVectorStoreBatchFilterEnum];
 /**
@@ -981,7 +1097,7 @@ export type ListFilesInVectorStoreBatchFilterEnum = typeof ListFilesInVectorStor
  */
 export const ListVectorStoreFilesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListVectorStoreFilesOrderEnum = typeof ListVectorStoreFilesOrderEnum[keyof typeof ListVectorStoreFilesOrderEnum];
 /**
@@ -991,7 +1107,7 @@ export const ListVectorStoreFilesFilterEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type ListVectorStoreFilesFilterEnum = typeof ListVectorStoreFilesFilterEnum[keyof typeof ListVectorStoreFilesFilterEnum];
 /**
@@ -999,6 +1115,6 @@ export type ListVectorStoreFilesFilterEnum = typeof ListVectorStoreFilesFilterEn
  */
 export const ListVectorStoresOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListVectorStoresOrderEnum = typeof ListVectorStoresOrderEnum[keyof typeof ListVectorStoresOrderEnum];

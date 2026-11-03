@@ -180,7 +180,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ResponseFormatJsonObject.TypeEnum?>(ResponseFormatJsonObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ResponseFormatJsonObject.TypeEnum? typeValue = ResponseFormatJsonObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ResponseFormatJsonObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         default:
                             break;
@@ -189,10 +194,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ResponseFormatJsonObject.", nameof(type));
+                throw new JsonException("Property is required for class ResponseFormatJsonObject: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ResponseFormatJsonObject.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonObject: type.");
 
             return new ResponseFormatJsonObject(type.Value!.Value!);
         }
@@ -203,7 +208,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ResponseFormatJsonObject responseFormatJsonObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -218,7 +222,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ResponseFormatJsonObject responseFormatJsonObject, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = ResponseFormatJsonObject.TypeEnumToJsonValue(responseFormatJsonObject.Type);

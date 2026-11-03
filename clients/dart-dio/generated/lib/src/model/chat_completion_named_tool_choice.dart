@@ -124,9 +124,10 @@ class _$ChatCompletionNamedToolChoiceSerializer implements PrimitiveSerializer<C
   }
 }
 
+
+/// The type of the tool. Currently, only `function` is supported.
 class ChatCompletionNamedToolChoiceTypeEnum extends EnumClass {
 
-  /// The type of the tool. Currently, only `function` is supported.
   @BuiltValueEnumConst(wireName: r'function')
   static const ChatCompletionNamedToolChoiceTypeEnum function_ = _$chatCompletionNamedToolChoiceTypeEnum_function_;
 

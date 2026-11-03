@@ -139,9 +139,10 @@ class _$InviteDeleteResponseSerializer implements PrimitiveSerializer<InviteDele
   }
 }
 
+
+/// The object type, which is always `organization.invite.deleted`
 class InviteDeleteResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.invite.deleted`
   @BuiltValueEnumConst(wireName: r'organization.invite.deleted')
   static const InviteDeleteResponseObjectEnum organizationPeriodInvitePeriodDeleted = _$inviteDeleteResponseObjectEnum_organizationPeriodInvitePeriodDeleted;
 

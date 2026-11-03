@@ -29,43 +29,43 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class TranscriptionSegment(
 
     @Schema(required = true, description = "Unique identifier of the segment.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.Int,
 
     @Schema(required = true, description = "Seek offset of the segment.")
-    @param:JsonProperty("seek")
+    @param:JsonProperty("seek", required = true)
     @get:JsonProperty("seek", required = true) val seek: kotlin.Int,
 
     @Schema(required = true, description = "Start time of the segment in seconds.")
-    @param:JsonProperty("start")
+    @param:JsonProperty("start", required = true)
     @get:JsonProperty("start", required = true) val start: kotlin.Float,
 
     @Schema(required = true, description = "End time of the segment in seconds.")
-    @param:JsonProperty("end")
+    @param:JsonProperty("end", required = true)
     @get:JsonProperty("end", required = true) val end: kotlin.Float,
 
     @Schema(required = true, description = "Text content of the segment.")
-    @param:JsonProperty("text")
+    @param:JsonProperty("text", required = true)
     @get:JsonProperty("text", required = true) val text: kotlin.String,
 
     @Schema(required = true, description = "Array of token IDs for the text content.")
-    @param:JsonProperty("tokens")
+    @param:JsonProperty("tokens", required = true)
     @get:JsonProperty("tokens", required = true) val tokens: kotlin.collections.List<kotlin.Int>,
 
     @Schema(required = true, description = "Temperature parameter used for generating the segment.")
-    @param:JsonProperty("temperature")
+    @param:JsonProperty("temperature", required = true)
     @get:JsonProperty("temperature", required = true) val temperature: kotlin.Float,
 
     @Schema(required = true, description = "Average logprob of the segment. If the value is lower than -1, consider the logprobs failed.")
-    @param:JsonProperty("avg_logprob")
+    @param:JsonProperty("avg_logprob", required = true)
     @get:JsonProperty("avg_logprob", required = true) val avgLogprob: kotlin.Float,
 
     @Schema(required = true, description = "Compression ratio of the segment. If the value is greater than 2.4, consider the compression failed.")
-    @param:JsonProperty("compression_ratio")
+    @param:JsonProperty("compression_ratio", required = true)
     @get:JsonProperty("compression_ratio", required = true) val compressionRatio: kotlin.Float,
 
     @Schema(required = true, description = "Probability of no speech in the segment. If the value is higher than 1.0 and the `avg_logprob` is below -1, consider this segment silent.")
-    @param:JsonProperty("no_speech_prob")
+    @param:JsonProperty("no_speech_prob", required = true)
     @get:JsonProperty("no_speech_prob", required = true) val noSpeechProb: kotlin.Float
 ) {
 

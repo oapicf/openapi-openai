@@ -17,7 +17,7 @@ export const AudioResponseFormat = {
     Text: 'text',
     Srt: 'srt',
     VerboseJson: 'verbose_json',
-    Vtt: 'vtt'
+    Vtt: 'vtt',
 } as const;
 export type AudioResponseFormat = typeof AudioResponseFormat[keyof typeof AudioResponseFormat];
 

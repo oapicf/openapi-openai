@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateMessageRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateMessageRequest   {
   public enum RoleEnum {
 
@@ -73,7 +73,7 @@ public class CreateMessageRequest   {
 
   private RoleEnum role;
   private CreateMessageRequestContent content;
-  private @Valid List<@Valid CreateMessageRequestAttachmentsInner> attachments;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
   private Object metadata;
 
   public CreateMessageRequest() {
@@ -138,7 +138,7 @@ public class CreateMessageRequest   {
   
   @ApiModelProperty(value = "A list of files attached to the message, and the tools they should be added to.")
   @JsonProperty("attachments")
-  @Valid public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
+  public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
     return attachments;
   }
 

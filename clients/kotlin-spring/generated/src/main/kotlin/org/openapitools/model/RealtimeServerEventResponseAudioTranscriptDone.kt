@@ -28,31 +28,31 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventResponseAudioTranscriptDone(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `response.audio_transcript.done`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseAudioTranscriptDone.Type,
 
     @Schema(required = true, description = "The ID of the response.")
-    @param:JsonProperty("response_id")
+    @param:JsonProperty("response_id", required = true)
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
     @Schema(required = true, description = "The ID of the item.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the output item in the response.")
-    @param:JsonProperty("output_index")
+    @param:JsonProperty("output_index", required = true)
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
     @Schema(required = true, description = "The index of the content part in the item's content array.")
-    @param:JsonProperty("content_index")
+    @param:JsonProperty("content_index", required = true)
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @Schema(required = true, description = "The final transcript of the audio.")
-    @param:JsonProperty("transcript")
+    @param:JsonProperty("transcript", required = true)
     @get:JsonProperty("transcript", required = true) val transcript: kotlin.String
 ) {
 
@@ -63,12 +63,12 @@ data class RealtimeServerEventResponseAudioTranscriptDone(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         responsePeriodAudio_transcriptPeriodDone("response.audio_transcript.done");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

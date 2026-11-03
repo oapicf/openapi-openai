@@ -25,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("ChatCompletionTokenLogprob_top_logprobs_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionTokenLogprobTopLogprobsInner {
 
   private String token;
@@ -95,7 +95,7 @@ public class ChatCompletionTokenLogprobTopLogprobsInner {
   }
 
   public ChatCompletionTokenLogprobTopLogprobsInner addBytesItem(Integer bytesItem) {
-    if (this.bytes == null || !this.bytes.isPresent()) {
+    if (this.bytes == null || !this.bytes.isPresent() || this.bytes.get() == null) {
       this.bytes = JsonNullable.of(new ArrayList<>());
     }
     this.bytes.get().add(bytesItem);
@@ -106,8 +106,8 @@ public class ChatCompletionTokenLogprobTopLogprobsInner {
    * A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.
    * @return bytes
    */
-  @NotNull 
-  @Schema(name = "bytes", description = "A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "bytes", description = "A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("bytes")
   public JsonNullable<List<Integer>> getBytes() {
     return bytes;

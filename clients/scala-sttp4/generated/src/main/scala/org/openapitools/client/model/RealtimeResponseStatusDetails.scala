@@ -26,10 +26,10 @@ object RealtimeResponseStatusDetailsEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Completed extends `Type`
-    case object Cancelled extends `Type`
-    case object Failed extends `Type`
-    case object Incomplete extends `Type`
+    case object Completed extends `Type` { override def toString: String = "completed" }
+    case object Cancelled extends `Type` { override def toString: String = "cancelled" }
+    case object Failed extends `Type` { override def toString: String = "failed" }
+    case object Incomplete extends `Type` { override def toString: String = "incomplete" }
 
     import org.json4s._
 
@@ -56,10 +56,10 @@ object RealtimeResponseStatusDetailsEnums {
 
   sealed trait Reason
   object Reason {
-    case object TurnDetected extends Reason
-    case object ClientCancelled extends Reason
-    case object MaxOutputTokens extends Reason
-    case object ContentFilter extends Reason
+    case object TurnDetected extends Reason { override def toString: String = "turn_detected" }
+    case object ClientCancelled extends Reason { override def toString: String = "client_cancelled" }
+    case object MaxOutputTokens extends Reason { override def toString: String = "max_output_tokens" }
+    case object ContentFilter extends Reason { override def toString: String = "content_filter" }
 
     import org.json4s._
 

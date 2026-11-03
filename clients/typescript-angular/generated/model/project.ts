@@ -40,12 +40,12 @@ export interface Project {
 }
 export namespace Project {
     export const ObjectEnum = {
-        OrganizationProject: 'organization.project'
+        OrganizationProject: 'organization.project',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
         Active: 'active',
-        Archived: 'archived'
+        Archived: 'archived',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

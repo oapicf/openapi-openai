@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -22,7 +21,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "OpenAIFile", description = "The `File` object represents a document that has been uploaded to OpenAI.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class OpenAIFile {
 
   private String id;
@@ -117,7 +116,9 @@ public class OpenAIFile {
 
   /**
    * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
+   * @deprecated deprecated
    */
+  @Deprecated
   public enum StatusEnum {
     UPLOADED("uploaded"),
     
@@ -155,7 +156,6 @@ public class OpenAIFile {
   @Deprecated
   private StatusEnum status;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private @Nullable String statusDetails;
 

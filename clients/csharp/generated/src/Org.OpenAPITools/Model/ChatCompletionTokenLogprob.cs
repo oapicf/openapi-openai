@@ -176,25 +176,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!token.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTokenLogprob.", nameof(token));
+                throw new JsonException("Property is required for class ChatCompletionTokenLogprob: token.");
 
             if (!logprob.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTokenLogprob.", nameof(logprob));
+                throw new JsonException("Property is required for class ChatCompletionTokenLogprob: logprob.");
 
             if (!topLogprobs.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTokenLogprob.", nameof(topLogprobs));
+                throw new JsonException("Property is required for class ChatCompletionTokenLogprob: top_logprobs.");
 
             if (!bytes.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTokenLogprob.", nameof(bytes));
+                throw new JsonException("Property is required for class ChatCompletionTokenLogprob: bytes.");
 
             if (token.IsSet && token.Value == null)
-                throw new ArgumentNullException(nameof(token), "Property is not nullable for class ChatCompletionTokenLogprob.");
+                throw new JsonException("Property is not nullable for class ChatCompletionTokenLogprob: token.");
 
             if (logprob.IsSet && logprob.Value == null)
-                throw new ArgumentNullException(nameof(logprob), "Property is not nullable for class ChatCompletionTokenLogprob.");
+                throw new JsonException("Property is not nullable for class ChatCompletionTokenLogprob: logprob.");
 
             if (topLogprobs.IsSet && topLogprobs.Value == null)
-                throw new ArgumentNullException(nameof(topLogprobs), "Property is not nullable for class ChatCompletionTokenLogprob.");
+                throw new JsonException("Property is not nullable for class ChatCompletionTokenLogprob: top_logprobs.");
 
             return new ChatCompletionTokenLogprob(token.Value!, logprob.Value!.Value!, topLogprobs.Value!, bytes.Value!);
         }
@@ -205,7 +205,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionTokenLogprob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionTokenLogprob chatCompletionTokenLogprob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -220,15 +219,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionTokenLogprob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionTokenLogprob chatCompletionTokenLogprob, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionTokenLogprob.Token == null)
-                throw new ArgumentNullException(nameof(chatCompletionTokenLogprob.Token), "Property is required for class ChatCompletionTokenLogprob.");
-
-            if (chatCompletionTokenLogprob.TopLogprobs == null)
-                throw new ArgumentNullException(nameof(chatCompletionTokenLogprob.TopLogprobs), "Property is required for class ChatCompletionTokenLogprob.");
-
             writer.WriteString("token", chatCompletionTokenLogprob.Token);
 
             writer.WriteNumber("logprob", chatCompletionTokenLogprob.Logprob);

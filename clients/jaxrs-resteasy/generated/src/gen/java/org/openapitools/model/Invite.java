@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Represents an individual `invite` to the organization.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Represents an individual `invite` to the organization.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Invite   {
   
 
@@ -208,7 +208,6 @@ public class Invite   {
   
   @ApiModelProperty(value = "The projects that were granted membership upon acceptance of the invite.")
   @JsonProperty("projects")
-  @Valid
   public List<@Valid InviteProjectsInner> getProjects() {
     return projects;
   }

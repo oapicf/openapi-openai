@@ -93,7 +93,7 @@ class ResponseFormatJsonSchemaJsonSchema(BaseModel):
             "description": obj.get("description"),
             "name": obj.get("name"),
             "schema": obj.get("schema"),
-            "strict": obj.get("strict") if obj.get("strict") is not None else False
+            "strict": obj.get("strict") if "strict" in obj else False
         })
         return _obj
 

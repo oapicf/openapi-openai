@@ -26,7 +26,7 @@ import PredictionContent from './PredictionContent';
 /**
  * The CreateChatCompletionRequest model module.
  * @module model/CreateChatCompletionRequest
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateChatCompletionRequest {
     /**

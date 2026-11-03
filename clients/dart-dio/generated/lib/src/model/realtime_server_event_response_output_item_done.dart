@@ -175,9 +175,10 @@ class _$RealtimeServerEventResponseOutputItemDoneSerializer implements Primitive
   }
 }
 
+
+/// The event type, must be `response.output_item.done`.
 class RealtimeServerEventResponseOutputItemDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.output_item.done`.
   @BuiltValueEnumConst(wireName: r'response.output_item.done')
   static const RealtimeServerEventResponseOutputItemDoneTypeEnum responsePeriodOutputItemPeriodDone = _$realtimeServerEventResponseOutputItemDoneTypeEnum_responsePeriodOutputItemPeriodDone;
 

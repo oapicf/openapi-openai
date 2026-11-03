@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunStepDetailsToolCallsFunctionObject_function", description = "The definition of the function that was called.")
 @JsonTypeName("RunStepDetailsToolCallsFunctionObject_function")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFunctionObjectFunction {
 
   private String name;
@@ -92,7 +92,7 @@ public class RunStepDetailsToolCallsFunctionObjectFunction {
    * The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
    * @return output
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "output", description = "The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("output")
   public JsonNullable<String> getOutput() {

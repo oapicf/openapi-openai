@@ -219,7 +219,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<MessageDeltaObjectDelta.RoleEnum?>(MessageDeltaObjectDelta.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                MessageDeltaObjectDelta.RoleEnum? roleValue = MessageDeltaObjectDelta.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<MessageDeltaObjectDelta.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<List<MessageDeltaObjectDeltaContentInner>?>(JsonSerializer.Deserialize<List<MessageDeltaObjectDeltaContentInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -231,10 +236,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class MessageDeltaObjectDelta.");
+                throw new JsonException("Property is not nullable for class MessageDeltaObjectDelta: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class MessageDeltaObjectDelta.");
+                throw new JsonException("Property is not nullable for class MessageDeltaObjectDelta: content.");
 
             return new MessageDeltaObjectDelta(role, content);
         }
@@ -245,7 +250,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObjectDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaObjectDelta messageDeltaObjectDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +264,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObjectDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaObjectDelta messageDeltaObjectDelta, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (messageDeltaObjectDelta.RoleOption.IsSet && messageDeltaObjectDelta.Role == null)
+                throw new JsonException("Cannot write null property MessageDeltaObjectDelta.Role to non-nullable JSON property 'role'.");
+
             if (messageDeltaObjectDelta.ContentOption.IsSet && messageDeltaObjectDelta.Content == null)
-                throw new ArgumentNullException(nameof(messageDeltaObjectDelta.Content), "Property is required for class MessageDeltaObjectDelta.");
+                throw new JsonException("Cannot write null property MessageDeltaObjectDelta.Content to non-nullable JSON property 'content'.");
 
             var roleRawValue = MessageDeltaObjectDelta.RoleEnumToJsonValue(messageDeltaObjectDelta.RoleOption.Value!.Value);
             writer.WriteString("role", roleRawValue);

@@ -29,32 +29,22 @@ import {
 export interface ListAuditLogsResponse {
     /**
      * 
-     * @type {ListAuditLogsResponseObjectEnum}
-     * @memberof ListAuditLogsResponse
      */
     object: ListAuditLogsResponseObjectEnum;
     /**
      * 
-     * @type {Array<AuditLog>}
-     * @memberof ListAuditLogsResponse
      */
     data: Array<AuditLog>;
     /**
      * 
-     * @type {string}
-     * @memberof ListAuditLogsResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListAuditLogsResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListAuditLogsResponse
      */
     hasMore: boolean;
 }
@@ -64,7 +54,7 @@ export interface ListAuditLogsResponse {
  * @export
  */
 export const ListAuditLogsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListAuditLogsResponseObjectEnum = typeof ListAuditLogsResponseObjectEnum[keyof typeof ListAuditLogsResponseObjectEnum];
 

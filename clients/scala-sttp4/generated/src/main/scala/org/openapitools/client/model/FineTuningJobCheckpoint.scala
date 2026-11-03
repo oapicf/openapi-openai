@@ -35,7 +35,7 @@ object FineTuningJobCheckpointEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object FineTuningJobCheckpoint extends `Object`
+    case object FineTuningJobCheckpoint extends `Object` { override def toString: String = "fine_tuning.job.checkpoint" }
 
     import org.json4s._
 

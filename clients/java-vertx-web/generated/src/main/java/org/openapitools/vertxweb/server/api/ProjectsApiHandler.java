@@ -104,7 +104,7 @@ public class ProjectsApiHandler {
         RequestParameter body = requestParameters.body();
         ProjectCreateRequest projectCreateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ProjectCreateRequest>(){}) : null;
 
-        logger.debug("Parameter projectCreateRequest is {}", projectCreateRequest);
+        logger.debug("Parameter projectCreateRequest is (body omitted)");
 
         api.createProject(projectCreateRequest)
             .onSuccess(apiResponse -> {
@@ -129,7 +129,7 @@ public class ProjectsApiHandler {
         ProjectServiceAccountCreateRequest projectServiceAccountCreateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ProjectServiceAccountCreateRequest>(){}) : null;
 
         logger.debug("Parameter projectId is {}", projectId);
-        logger.debug("Parameter projectServiceAccountCreateRequest is {}", projectServiceAccountCreateRequest);
+        logger.debug("Parameter projectServiceAccountCreateRequest is (body omitted)");
 
         api.createProjectServiceAccount(projectId, projectServiceAccountCreateRequest)
             .onSuccess(apiResponse -> {
@@ -154,7 +154,7 @@ public class ProjectsApiHandler {
         ProjectUserCreateRequest projectUserCreateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ProjectUserCreateRequest>(){}) : null;
 
         logger.debug("Parameter projectId is {}", projectId);
-        logger.debug("Parameter projectUserCreateRequest is {}", projectUserCreateRequest);
+        logger.debug("Parameter projectUserCreateRequest is (body omitted)");
 
         api.createProjectUser(projectId, projectUserCreateRequest)
             .onSuccess(apiResponse -> {
@@ -383,7 +383,7 @@ public class ProjectsApiHandler {
         ProjectUpdateRequest projectUpdateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ProjectUpdateRequest>(){}) : null;
 
         logger.debug("Parameter projectId is {}", projectId);
-        logger.debug("Parameter projectUpdateRequest is {}", projectUpdateRequest);
+        logger.debug("Parameter projectUpdateRequest is (body omitted)");
 
         api.modifyProject(projectId, projectUpdateRequest)
             .onSuccess(apiResponse -> {
@@ -410,7 +410,7 @@ public class ProjectsApiHandler {
 
         logger.debug("Parameter projectId is {}", projectId);
         logger.debug("Parameter userId is {}", userId);
-        logger.debug("Parameter projectUserUpdateRequest is {}", projectUserUpdateRequest);
+        logger.debug("Parameter projectUserUpdateRequest is (body omitted)");
 
         api.modifyProjectUser(projectId, userId, projectUserUpdateRequest)
             .onSuccess(apiResponse -> {
@@ -531,7 +531,7 @@ public class ProjectsApiHandler {
 
         logger.debug("Parameter projectId is {}", projectId);
         logger.debug("Parameter rateLimitId is {}", rateLimitId);
-        logger.debug("Parameter projectRateLimitUpdateRequest is {}", projectRateLimitUpdateRequest);
+        logger.debug("Parameter projectRateLimitUpdateRequest is (body omitted)");
 
         api.updateProjectRateLimits(projectId, rateLimitId, projectRateLimitUpdateRequest)
             .onSuccess(apiResponse -> {

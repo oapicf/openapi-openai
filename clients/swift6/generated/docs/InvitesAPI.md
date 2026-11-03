@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **deleteInvite**
 ```swift
-    open class func deleteInvite(inviteId: String, completion: @escaping (_ data: InviteDeleteResponse?, _ error: Error?) -> Void)
+    open class func deleteInvite(inviteId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> InviteDeleteResponse
 ```
 
 Delete an invite. If the invite has already been accepted, it cannot be deleted.
@@ -25,15 +25,11 @@ import OpenAPIClient
 let inviteId = "inviteId_example" // String | The ID of the invite to delete.
 
 // Delete an invite. If the invite has already been accepted, it cannot be deleted.
-InvitesAPI.deleteInvite(inviteId: inviteId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await InvitesAPI.deleteInvite(inviteId: inviteId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **inviteUser**
 ```swift
-    open class func inviteUser(inviteRequest: InviteRequest, completion: @escaping (_ data: Invite?, _ error: Error?) -> Void)
+    open class func inviteUser(inviteRequest: InviteRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Invite
 ```
 
 Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
@@ -73,15 +69,11 @@ import OpenAPIClient
 let inviteRequest = InviteRequest(email: "email_example", role: "role_example", projects: [InviteRequest_projects_inner(id: "id_example", role: "role_example")]) // InviteRequest | The invite request payload.
 
 // Create an invite for a user to the organization. The invite must be accepted by the user before they have access to the organization.
-InvitesAPI.inviteUser(inviteRequest: inviteRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await InvitesAPI.inviteUser(inviteRequest: inviteRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -108,7 +100,7 @@ Name | Type | Description  | Notes
 
 # **listInvites**
 ```swift
-    open class func listInvites(limit: Int? = nil, after: String? = nil, completion: @escaping (_ data: InviteListResponse?, _ error: Error?) -> Void)
+    open class func listInvites(limit: Int? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> InviteListResponse
 ```
 
 Returns a list of invites in the organization.
@@ -122,15 +114,11 @@ let limit = 987 // Int | A limit on the number of objects to be returned. Limit 
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Returns a list of invites in the organization.
-InvitesAPI.listInvites(limit: limit, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await InvitesAPI.listInvites(limit: limit, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -158,7 +146,7 @@ Name | Type | Description  | Notes
 
 # **retrieveInvite**
 ```swift
-    open class func retrieveInvite(inviteId: String, completion: @escaping (_ data: Invite?, _ error: Error?) -> Void)
+    open class func retrieveInvite(inviteId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Invite
 ```
 
 Retrieves an invite.
@@ -171,15 +159,11 @@ import OpenAPIClient
 let inviteId = "inviteId_example" // String | The ID of the invite to retrieve.
 
 // Retrieves an invite.
-InvitesAPI.retrieveInvite(inviteId: inviteId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await InvitesAPI.retrieveInvite(inviteId: inviteId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

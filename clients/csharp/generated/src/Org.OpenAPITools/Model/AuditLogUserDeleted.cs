@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogUserDeleted.");
+                throw new JsonException("Property is not nullable for class AuditLogUserDeleted: id.");
 
             return new AuditLogUserDeleted(id);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogUserDeleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogUserDeleted auditLogUserDeleted, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogUserDeleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogUserDeleted auditLogUserDeleted, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogUserDeleted.IdOption.IsSet && auditLogUserDeleted.Id == null)
-                throw new ArgumentNullException(nameof(auditLogUserDeleted.Id), "Property is required for class AuditLogUserDeleted.");
+                throw new JsonException("Cannot write null property AuditLogUserDeleted.Id to non-nullable JSON property 'id'.");
 
             if (auditLogUserDeleted.IdOption.IsSet)
                 writer.WriteString("id", auditLogUserDeleted.Id);

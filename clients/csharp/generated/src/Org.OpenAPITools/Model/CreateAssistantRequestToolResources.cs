@@ -160,7 +160,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class CreateAssistantRequestToolResources.");
+                throw new JsonException("Property is not nullable for class CreateAssistantRequestToolResources: code_interpreter.");
 
             return new CreateAssistantRequestToolResources(codeInterpreter, fileSearch);
         }
@@ -171,7 +171,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateAssistantRequestToolResources createAssistantRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -186,11 +185,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateAssistantRequestToolResources createAssistantRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createAssistantRequestToolResources.CodeInterpreterOption.IsSet && createAssistantRequestToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(createAssistantRequestToolResources.CodeInterpreter), "Property is required for class CreateAssistantRequestToolResources.");
+                throw new JsonException("Cannot write null property CreateAssistantRequestToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (createAssistantRequestToolResources.CodeInterpreterOption.IsSet)
             {

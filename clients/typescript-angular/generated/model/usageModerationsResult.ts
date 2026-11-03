@@ -41,7 +41,7 @@ export interface UsageModerationsResult {
 }
 export namespace UsageModerationsResult {
     export const ObjectEnum = {
-        OrganizationUsageModerationsResult: 'organization.usage.moderations.result'
+        OrganizationUsageModerationsResult: 'organization.usage.moderations.result',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

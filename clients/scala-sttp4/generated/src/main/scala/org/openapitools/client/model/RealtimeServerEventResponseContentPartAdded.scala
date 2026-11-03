@@ -34,7 +34,7 @@ object RealtimeServerEventResponseContentPartAddedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseContentPartAdded extends `Type`
+    case object ResponseContentPartAdded extends `Type` { override def toString: String = "response.content_part.added" }
 
     import org.json4s._
 

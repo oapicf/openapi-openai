@@ -107,12 +107,12 @@ class _$UserRoleUpdateRequestSerializer implements PrimitiveSerializer<UserRoleU
   }
 }
 
+
+/// `owner` or `reader`
 class UserRoleUpdateRequestRoleEnum extends EnumClass {
 
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'owner')
   static const UserRoleUpdateRequestRoleEnum owner = _$userRoleUpdateRequestRoleEnum_owner;
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'reader')
   static const UserRoleUpdateRequestRoleEnum reader = _$userRoleUpdateRequestRoleEnum_reader;
 

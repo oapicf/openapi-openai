@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class AuditLogActorSession.");
+                throw new JsonException("Property is not nullable for class AuditLogActorSession: user.");
 
             if (ipAddress.IsSet && ipAddress.Value == null)
-                throw new ArgumentNullException(nameof(ipAddress), "Property is not nullable for class AuditLogActorSession.");
+                throw new JsonException("Property is not nullable for class AuditLogActorSession: ip_address.");
 
             return new AuditLogActorSession(user, ipAddress);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActorSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogActorSession auditLogActorSession, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActorSession"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogActorSession auditLogActorSession, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogActorSession.UserOption.IsSet && auditLogActorSession.User == null)
-                throw new ArgumentNullException(nameof(auditLogActorSession.User), "Property is required for class AuditLogActorSession.");
+                throw new JsonException("Cannot write null property AuditLogActorSession.User to non-nullable JSON property 'user'.");
 
             if (auditLogActorSession.IpAddressOption.IsSet && auditLogActorSession.IpAddress == null)
-                throw new ArgumentNullException(nameof(auditLogActorSession.IpAddress), "Property is required for class AuditLogActorSession.");
+                throw new JsonException("Cannot write null property AuditLogActorSession.IpAddress to non-nullable JSON property 'ip_address'.");
 
             if (auditLogActorSession.UserOption.IsSet)
             {

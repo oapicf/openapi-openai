@@ -17,25 +17,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  * 
  * @param code 
  * @param message 
- * @param &#x60;param&#x60; 
+ * @param `param` 
  * @param type 
  */
 data class Error(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("code")
+    @param:JsonProperty("code", required = true)
     @get:JsonProperty("code", required = true) val code: kotlin.String?,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("message")
+    @param:JsonProperty("message", required = true)
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("param")
+    @param:JsonProperty("param", required = true)
     @get:JsonProperty("param", required = true) val `param`: kotlin.String?,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: kotlin.String
 ) {
 

@@ -616,12 +616,22 @@ namespace Org.OpenAPITools.Model
                         case "voice":
                             string? voiceRawValue = utf8JsonReader.GetString();
                             if (voiceRawValue != null)
-                                voice = new Option<RealtimeResponseCreateParams.VoiceEnum?>(RealtimeResponseCreateParams.VoiceEnumFromStringOrDefault(voiceRawValue));
+                            {
+                                RealtimeResponseCreateParams.VoiceEnum? voiceValue = RealtimeResponseCreateParams.VoiceEnumFromStringOrDefault(voiceRawValue);
+                                if (voiceValue == null)
+                                    throw new JsonException();
+                                voice = new Option<RealtimeResponseCreateParams.VoiceEnum?>(voiceValue);
+                            }
                             break;
                         case "output_audio_format":
                             string? outputAudioFormatRawValue = utf8JsonReader.GetString();
                             if (outputAudioFormatRawValue != null)
-                                outputAudioFormat = new Option<RealtimeResponseCreateParams.OutputAudioFormatEnum?>(RealtimeResponseCreateParams.OutputAudioFormatEnumFromStringOrDefault(outputAudioFormatRawValue));
+                            {
+                                RealtimeResponseCreateParams.OutputAudioFormatEnum? outputAudioFormatValue = RealtimeResponseCreateParams.OutputAudioFormatEnumFromStringOrDefault(outputAudioFormatRawValue);
+                                if (outputAudioFormatValue == null)
+                                    throw new JsonException();
+                                outputAudioFormat = new Option<RealtimeResponseCreateParams.OutputAudioFormatEnum?>(outputAudioFormatValue);
+                            }
                             break;
                         case "tools":
                             tools = new Option<List<RealtimeResponseCreateParamsToolsInner>?>(JsonSerializer.Deserialize<List<RealtimeResponseCreateParamsToolsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -651,34 +661,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (modalities.IsSet && modalities.Value == null)
-                throw new ArgumentNullException(nameof(modalities), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: modalities.");
 
             if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: instructions.");
 
             if (voice.IsSet && voice.Value == null)
-                throw new ArgumentNullException(nameof(voice), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: voice.");
 
             if (outputAudioFormat.IsSet && outputAudioFormat.Value == null)
-                throw new ArgumentNullException(nameof(outputAudioFormat), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: output_audio_format.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: tools.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: tool_choice.");
 
             if (temperature.IsSet && temperature.Value == null)
-                throw new ArgumentNullException(nameof(temperature), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: temperature.");
 
             if (maxResponseOutputTokens.IsSet && maxResponseOutputTokens.Value == null)
-                throw new ArgumentNullException(nameof(maxResponseOutputTokens), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: max_response_output_tokens.");
 
             if (conversation.IsSet && conversation.Value == null)
-                throw new ArgumentNullException(nameof(conversation), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: conversation.");
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class RealtimeResponseCreateParams.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParams: input.");
 
             return new RealtimeResponseCreateParams(modalities, instructions, voice, outputAudioFormat, tools, toolChoice, temperature, maxResponseOutputTokens, conversation, metadata, input);
         }
@@ -689,7 +699,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseCreateParams realtimeResponseCreateParams, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -704,29 +713,37 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParams"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseCreateParams realtimeResponseCreateParams, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeResponseCreateParams.ModalitiesOption.IsSet && realtimeResponseCreateParams.Modalities == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.Modalities), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Modalities to non-nullable JSON property 'modalities'.");
 
             if (realtimeResponseCreateParams.InstructionsOption.IsSet && realtimeResponseCreateParams.Instructions == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.Instructions), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Instructions to non-nullable JSON property 'instructions'.");
+
+            if (realtimeResponseCreateParams.VoiceOption.IsSet && realtimeResponseCreateParams.Voice == null)
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Voice to non-nullable JSON property 'voice'.");
+
+            if (realtimeResponseCreateParams.OutputAudioFormatOption.IsSet && realtimeResponseCreateParams.OutputAudioFormat == null)
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.OutputAudioFormat to non-nullable JSON property 'output_audio_format'.");
 
             if (realtimeResponseCreateParams.ToolsOption.IsSet && realtimeResponseCreateParams.Tools == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.Tools), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Tools to non-nullable JSON property 'tools'.");
 
             if (realtimeResponseCreateParams.ToolChoiceOption.IsSet && realtimeResponseCreateParams.ToolChoice == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.ToolChoice), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.ToolChoice to non-nullable JSON property 'tool_choice'.");
+
+            if (realtimeResponseCreateParams.TemperatureOption.IsSet && realtimeResponseCreateParams.Temperature == null)
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Temperature to non-nullable JSON property 'temperature'.");
 
             if (realtimeResponseCreateParams.MaxResponseOutputTokensOption.IsSet && realtimeResponseCreateParams.MaxResponseOutputTokens == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.MaxResponseOutputTokens), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.MaxResponseOutputTokens to non-nullable JSON property 'max_response_output_tokens'.");
 
             if (realtimeResponseCreateParams.ConversationOption.IsSet && realtimeResponseCreateParams.Conversation == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.Conversation), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Conversation to non-nullable JSON property 'conversation'.");
 
             if (realtimeResponseCreateParams.InputOption.IsSet && realtimeResponseCreateParams.Input == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParams.Input), "Property is required for class RealtimeResponseCreateParams.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParams.Input to non-nullable JSON property 'input'.");
 
             if (realtimeResponseCreateParams.ModalitiesOption.IsSet)
             {

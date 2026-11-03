@@ -36,32 +36,22 @@ import {
 export interface CreateChatCompletionResponse {
     /**
      * A unique identifier for the chat completion.
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
      */
     id: string;
     /**
      * A list of chat completion choices. Can be more than one if `n` is greater than 1.
-     * @type {Array<CreateChatCompletionResponseChoicesInner>}
-     * @memberof CreateChatCompletionResponse
      */
     choices: Array<CreateChatCompletionResponseChoicesInner>;
     /**
      * The Unix timestamp (in seconds) of when the chat completion was created.
-     * @type {number}
-     * @memberof CreateChatCompletionResponse
      */
     created: number;
     /**
      * The model used for the chat completion.
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
      */
     model: string;
     /**
      * The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
-     * @type {CreateChatCompletionResponseServiceTierEnum}
-     * @memberof CreateChatCompletionResponse
      */
     serviceTier?: CreateChatCompletionResponseServiceTierEnum | null;
     /**
@@ -69,20 +59,14 @@ export interface CreateChatCompletionResponse {
      * 
      * Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
      * 
-     * @type {string}
-     * @memberof CreateChatCompletionResponse
      */
     systemFingerprint?: string;
     /**
      * The object type, which is always `chat.completion`.
-     * @type {CreateChatCompletionResponseObjectEnum}
-     * @memberof CreateChatCompletionResponse
      */
     object: CreateChatCompletionResponseObjectEnum;
     /**
      * 
-     * @type {CompletionUsage}
-     * @memberof CreateChatCompletionResponse
      */
     usage?: CompletionUsage;
 }
@@ -93,7 +77,7 @@ export interface CreateChatCompletionResponse {
  */
 export const CreateChatCompletionResponseServiceTierEnum = {
     Scale: 'scale',
-    Default: 'default'
+    Default: 'default',
 } as const;
 export type CreateChatCompletionResponseServiceTierEnum = typeof CreateChatCompletionResponseServiceTierEnum[keyof typeof CreateChatCompletionResponseServiceTierEnum];
 
@@ -101,7 +85,7 @@ export type CreateChatCompletionResponseServiceTierEnum = typeof CreateChatCompl
  * @export
  */
 export const CreateChatCompletionResponseObjectEnum = {
-    ChatCompletion: 'chat.completion'
+    ChatCompletion: 'chat.completion',
 } as const;
 export type CreateChatCompletionResponseObjectEnum = typeof CreateChatCompletionResponseObjectEnum[keyof typeof CreateChatCompletionResponseObjectEnum];
 

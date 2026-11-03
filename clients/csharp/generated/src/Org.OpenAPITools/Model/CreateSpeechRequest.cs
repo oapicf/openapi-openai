@@ -454,12 +454,22 @@ namespace Org.OpenAPITools.Model
                         case "voice":
                             string? voiceRawValue = utf8JsonReader.GetString();
                             if (voiceRawValue != null)
-                                voice = new Option<CreateSpeechRequest.VoiceEnum?>(CreateSpeechRequest.VoiceEnumFromStringOrDefault(voiceRawValue));
+                            {
+                                CreateSpeechRequest.VoiceEnum? voiceValue = CreateSpeechRequest.VoiceEnumFromStringOrDefault(voiceRawValue);
+                                if (voiceValue == null)
+                                    throw new JsonException();
+                                voice = new Option<CreateSpeechRequest.VoiceEnum?>(voiceValue);
+                            }
                             break;
                         case "response_format":
                             string? responseFormatRawValue = utf8JsonReader.GetString();
                             if (responseFormatRawValue != null)
-                                responseFormat = new Option<CreateSpeechRequest.ResponseFormatEnum?>(CreateSpeechRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue));
+                            {
+                                CreateSpeechRequest.ResponseFormatEnum? responseFormatValue = CreateSpeechRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue);
+                                if (responseFormatValue == null)
+                                    throw new JsonException();
+                                responseFormat = new Option<CreateSpeechRequest.ResponseFormatEnum?>(responseFormatValue);
+                            }
                             break;
                         case "speed":
                             speed = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -471,28 +481,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateSpeechRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateSpeechRequest: model.");
 
             if (!input.IsSet)
-                throw new ArgumentException("Property is required for class CreateSpeechRequest.", nameof(input));
+                throw new JsonException("Property is required for class CreateSpeechRequest: input.");
 
             if (!voice.IsSet)
-                throw new ArgumentException("Property is required for class CreateSpeechRequest.", nameof(voice));
+                throw new JsonException("Property is required for class CreateSpeechRequest: voice.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateSpeechRequest.");
+                throw new JsonException("Property is not nullable for class CreateSpeechRequest: model.");
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class CreateSpeechRequest.");
+                throw new JsonException("Property is not nullable for class CreateSpeechRequest: input.");
 
             if (voice.IsSet && voice.Value == null)
-                throw new ArgumentNullException(nameof(voice), "Property is not nullable for class CreateSpeechRequest.");
+                throw new JsonException("Property is not nullable for class CreateSpeechRequest: voice.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class CreateSpeechRequest.");
+                throw new JsonException("Property is not nullable for class CreateSpeechRequest: response_format.");
 
             if (speed.IsSet && speed.Value == null)
-                throw new ArgumentNullException(nameof(speed), "Property is not nullable for class CreateSpeechRequest.");
+                throw new JsonException("Property is not nullable for class CreateSpeechRequest: speed.");
 
             return new CreateSpeechRequest(model.Value!, input.Value!, voice.Value!.Value!, responseFormat, speed);
         }
@@ -503,7 +513,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createSpeechRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateSpeechRequest createSpeechRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -518,14 +527,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createSpeechRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateSpeechRequest createSpeechRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createSpeechRequest.Model == null)
-                throw new ArgumentNullException(nameof(createSpeechRequest.Model), "Property is required for class CreateSpeechRequest.");
+            if (createSpeechRequest.ResponseFormatOption.IsSet && createSpeechRequest.ResponseFormat == null)
+                throw new JsonException("Cannot write null property CreateSpeechRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
-            if (createSpeechRequest.Input == null)
-                throw new ArgumentNullException(nameof(createSpeechRequest.Input), "Property is required for class CreateSpeechRequest.");
+            if (createSpeechRequest.SpeedOption.IsSet && createSpeechRequest.Speed == null)
+                throw new JsonException("Cannot write null property CreateSpeechRequest.Speed to non-nullable JSON property 'speed'.");
 
             writer.WritePropertyName("model");
             JsonSerializer.Serialize(writer, createSpeechRequest.Model, jsonSerializerOptions);

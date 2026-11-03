@@ -22,13 +22,13 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import StrictInt, StrictStr, field_validator
+from pydantic import field_validator
 from typing import Optional
 from openapi_server.models.admin_api_key import AdminApiKey
 from openapi_server.models.admin_api_keys_create_request import AdminApiKeysCreateRequest
 from openapi_server.models.admin_api_keys_delete200_response import AdminApiKeysDelete200Response
 from openapi_server.models.api_key_list import ApiKeyList
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -48,9 +48,9 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def admin_api_keys_list(
-    after: Optional[StrictStr] = Query(None, description="", alias="after"),
-    order: Optional[StrictStr] = Query('asc', description="", alias="order"),
-    limit: Optional[StrictInt] = Query(20, description="", alias="limit"),
+    after: Optional[str] = Query(None, description="", alias="after"),
+    order: Optional[str] = Query('asc', description="", alias="order"),
+    limit: Optional[int] = Query(20, description="", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -71,7 +71,7 @@ async def admin_api_keys_list(
     response_model_by_alias=True,
 )
 async def admin_api_keys_create(
-    admin_api_keys_create_request: AdminApiKeysCreateRequest = Body(None, description=""),
+    admin_api_keys_create_request: AdminApiKeysCreateRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -92,7 +92,7 @@ async def admin_api_keys_create(
     response_model_by_alias=True,
 )
 async def admin_api_keys_get(
-    key_id: StrictStr = Path(..., description=""),
+    key_id: str = Path(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -113,7 +113,7 @@ async def admin_api_keys_get(
     response_model_by_alias=True,
 )
 async def admin_api_keys_delete(
-    key_id: StrictStr = Path(..., description=""),
+    key_id: str = Path(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

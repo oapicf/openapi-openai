@@ -216,9 +216,10 @@ class _$CreateCompletionResponseSerializer implements PrimitiveSerializer<Create
   }
 }
 
+
+/// The object type, which is always \"text_completion\"
 class CreateCompletionResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"text_completion\"
   @BuiltValueEnumConst(wireName: r'text_completion')
   static const CreateCompletionResponseObjectEnum textCompletion = _$createCompletionResponseObjectEnum_textCompletion;
 

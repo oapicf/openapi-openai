@@ -22,10 +22,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents an embedding vector returned by embedding endpoint. ")
 @JsonTypeName("Embedding")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Embedding   {
   private Integer index;
-  private @Valid List<BigDecimal> embedding = new ArrayList<>();
+  private List<BigDecimal> embedding = new ArrayList<>();
   public enum ObjectEnum {
 
     EMBEDDING(String.valueOf("embedding"));
@@ -120,7 +120,7 @@ public class Embedding   {
   
   @ApiModelProperty(required = true, value = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ")
   @JsonProperty(required = true, value = "embedding")
-  @NotNull @Valid public List<@Valid BigDecimal> getEmbedding() {
+  @NotNull public List<@Valid BigDecimal> getEmbedding() {
     return embedding;
   }
 

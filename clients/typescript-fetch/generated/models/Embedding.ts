@@ -22,21 +22,15 @@ import { mapValues } from '../runtime';
 export interface Embedding {
     /**
      * The index of the embedding in the list of embeddings.
-     * @type {number}
-     * @memberof Embedding
      */
     index: number;
     /**
      * The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings).
      * 
-     * @type {Array<number>}
-     * @memberof Embedding
      */
     embedding: Array<number>;
     /**
      * The object type, which is always "embedding".
-     * @type {EmbeddingObjectEnum}
-     * @memberof Embedding
      */
     object: EmbeddingObjectEnum;
 }
@@ -46,7 +40,7 @@ export interface Embedding {
  * @export
  */
 export const EmbeddingObjectEnum = {
-    Embedding: 'embedding'
+    Embedding: 'embedding',
 } as const;
 export type EmbeddingObjectEnum = typeof EmbeddingObjectEnum[keyof typeof EmbeddingObjectEnum];
 

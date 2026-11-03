@@ -39,11 +39,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FineTuneChatRequestInput.JSON_PROPERTY_FUNCTIONS
 })
 @JsonTypeName("FineTuneChatRequestInput")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FineTuneChatRequestInput {
     public static final String JSON_PROPERTY_MESSAGES = "messages";
-    private List<FineTuneChatRequestInputMessagesInner> messages = null;
+    private List<@Valid FineTuneChatRequestInputMessagesInner> messages = null;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
     private List<@Valid ChatCompletionTool> tools = null;
@@ -57,7 +57,7 @@ public class FineTuneChatRequestInput {
     public FineTuneChatRequestInput() {
     }
 
-    public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+    public FineTuneChatRequestInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
         this.messages = messages;
         return this;
     }
@@ -79,13 +79,13 @@ public class FineTuneChatRequestInput {
     @Schema(name = "messages", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_MESSAGES)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+    public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
         return messages;
     }
 
     @JsonProperty(JSON_PROPERTY_MESSAGES)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+    public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
         this.messages = messages;
     }
 

@@ -29,8 +29,6 @@ import {
 export interface FineTuneSupervisedMethod {
     /**
      * 
-     * @type {FineTuneSupervisedMethodHyperparameters}
-     * @memberof FineTuneSupervisedMethod
      */
     hyperparameters?: FineTuneSupervisedMethodHyperparameters;
 }

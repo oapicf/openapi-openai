@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ProjectUpdateRequest {
     /**
      * The updated name of the project, this name appears in reports.
-     * @type {string}
-     * @memberof ProjectUpdateRequest
      */
     name: string;
 }

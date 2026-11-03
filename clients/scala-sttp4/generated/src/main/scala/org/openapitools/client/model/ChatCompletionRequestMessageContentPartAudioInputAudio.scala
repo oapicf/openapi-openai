@@ -22,8 +22,8 @@ object ChatCompletionRequestMessageContentPartAudioInputAudioEnums {
 
   sealed trait Format
   object Format {
-    case object Wav extends Format
-    case object Mp3 extends Format
+    case object Wav extends Format { override def toString: String = "wav" }
+    case object Mp3 extends Format { override def toString: String = "mp3" }
 
     import org.json4s._
 

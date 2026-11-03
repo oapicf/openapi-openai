@@ -28,10 +28,10 @@ object RealtimeConversationItemContentInnerEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object InputAudio extends `Type`
-    case object InputText extends `Type`
-    case object ItemReference extends `Type`
-    case object Text extends `Type`
+    case object InputAudio extends `Type` { override def toString: String = "input_audio" }
+    case object InputText extends `Type` { override def toString: String = "input_text" }
+    case object ItemReference extends `Type` { override def toString: String = "item_reference" }
+    case object Text extends `Type` { override def toString: String = "text" }
 
     import org.json4s._
 

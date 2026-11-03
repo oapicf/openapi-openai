@@ -131,15 +131,14 @@ class _$MessageDeltaContentImageFileObjectImageFileSerializer implements Primiti
   }
 }
 
+
+/// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 class MessageDeltaContentImageFileObjectImageFileDetailEnum extends EnumClass {
 
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const MessageDeltaContentImageFileObjectImageFileDetailEnum auto = _$messageDeltaContentImageFileObjectImageFileDetailEnum_auto;
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'low')
   static const MessageDeltaContentImageFileObjectImageFileDetailEnum low = _$messageDeltaContentImageFileObjectImageFileDetailEnum_low;
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'high')
   static const MessageDeltaContentImageFileObjectImageFileDetailEnum high = _$messageDeltaContentImageFileObjectImageFileDetailEnum_high;
 

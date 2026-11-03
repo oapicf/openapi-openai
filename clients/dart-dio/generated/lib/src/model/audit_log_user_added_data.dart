@@ -108,3 +108,4 @@ class _$AuditLogUserAddedDataSerializer implements PrimitiveSerializer<AuditLogU
   }
 }
 
+

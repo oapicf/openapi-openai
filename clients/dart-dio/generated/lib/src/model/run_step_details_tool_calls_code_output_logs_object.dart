@@ -124,9 +124,10 @@ class _$RunStepDetailsToolCallsCodeOutputLogsObjectSerializer implements Primiti
   }
 }
 
+
+/// Always `logs`.
 class RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum extends EnumClass {
 
-  /// Always `logs`.
   @BuiltValueEnumConst(wireName: r'logs')
   static const RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum logs = _$runStepDetailsToolCallsCodeOutputLogsObjectTypeEnum_logs;
 

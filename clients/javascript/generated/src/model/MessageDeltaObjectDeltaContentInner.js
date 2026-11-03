@@ -23,7 +23,7 @@ import MessageDeltaContentTextObjectText from './MessageDeltaContentTextObjectTe
 /**
  * The MessageDeltaObjectDeltaContentInner model module.
  * @module model/MessageDeltaObjectDeltaContentInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageDeltaObjectDeltaContentInner {
     /**

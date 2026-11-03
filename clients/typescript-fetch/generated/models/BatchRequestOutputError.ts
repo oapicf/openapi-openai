@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface BatchRequestOutputError {
     /**
      * A machine-readable error code.
-     * @type {string}
-     * @memberof BatchRequestOutputError
      */
     code?: string;
     /**
      * A human-readable error message.
-     * @type {string}
-     * @memberof BatchRequestOutputError
      */
     message?: string;
 }

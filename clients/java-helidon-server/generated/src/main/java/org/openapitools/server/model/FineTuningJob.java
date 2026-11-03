@@ -110,7 +110,7 @@ public class FineTuningJob   {
     private Integer trainedTokens;
     private String trainingFile;
     private String validationFile;
-    private List<FineTuningJobIntegrationsInner> integrations;
+    private List<@Valid FineTuningJobIntegrationsInner> integrations;
     private Integer seed;
     private Integer estimatedFinish;
     private FineTuneMethod method;
@@ -159,7 +159,7 @@ public class FineTuningJob   {
         Integer trainedTokens, 
         String trainingFile, 
         String validationFile, 
-        List<FineTuningJobIntegrationsInner> integrations, 
+        List<@Valid FineTuningJobIntegrationsInner> integrations, 
         Integer seed, 
         Integer estimatedFinish, 
         FineTuneMethod method
@@ -358,11 +358,11 @@ public class FineTuningJob   {
      * A list of integrations to enable for this fine-tuning job.
      * @return integrations
      */
-    public List<FineTuningJobIntegrationsInner> getIntegrations() {
+    public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
         return integrations;
     }
 
-    public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+    public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
         this.integrations = integrations;
     }
 

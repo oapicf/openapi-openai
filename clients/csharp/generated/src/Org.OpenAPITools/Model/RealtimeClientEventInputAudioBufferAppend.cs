@@ -209,7 +209,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeClientEventInputAudioBufferAppend.TypeEnum?>(RealtimeClientEventInputAudioBufferAppend.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeClientEventInputAudioBufferAppend.TypeEnum? typeValue = RealtimeClientEventInputAudioBufferAppend.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeClientEventInputAudioBufferAppend.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "audio":
                             audio = new Option<string?>(utf8JsonReader.GetString()!);
@@ -224,19 +229,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventInputAudioBufferAppend.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeClientEventInputAudioBufferAppend: type.");
 
             if (!audio.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventInputAudioBufferAppend.", nameof(audio));
+                throw new JsonException("Property is required for class RealtimeClientEventInputAudioBufferAppend: audio.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeClientEventInputAudioBufferAppend.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventInputAudioBufferAppend: type.");
 
             if (audio.IsSet && audio.Value == null)
-                throw new ArgumentNullException(nameof(audio), "Property is not nullable for class RealtimeClientEventInputAudioBufferAppend.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventInputAudioBufferAppend: audio.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeClientEventInputAudioBufferAppend.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventInputAudioBufferAppend: event_id.");
 
             return new RealtimeClientEventInputAudioBufferAppend(type.Value!.Value!, audio.Value!, eventId);
         }
@@ -247,7 +252,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventInputAudioBufferAppend"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeClientEventInputAudioBufferAppend realtimeClientEventInputAudioBufferAppend, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,14 +266,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventInputAudioBufferAppend"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeClientEventInputAudioBufferAppend realtimeClientEventInputAudioBufferAppend, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeClientEventInputAudioBufferAppend.Audio == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventInputAudioBufferAppend.Audio), "Property is required for class RealtimeClientEventInputAudioBufferAppend.");
-
             if (realtimeClientEventInputAudioBufferAppend.EventIdOption.IsSet && realtimeClientEventInputAudioBufferAppend.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventInputAudioBufferAppend.EventId), "Property is required for class RealtimeClientEventInputAudioBufferAppend.");
+                throw new JsonException("Cannot write null property RealtimeClientEventInputAudioBufferAppend.EventId to non-nullable JSON property 'event_id'.");
 
             var typeRawValue = RealtimeClientEventInputAudioBufferAppend.TypeEnumToJsonValue(realtimeClientEventInputAudioBufferAppend.Type);
             writer.WriteString("type", typeRawValue);

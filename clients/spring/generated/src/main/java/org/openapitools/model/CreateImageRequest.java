@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -25,15 +24,13 @@ import jakarta.annotation.Generated;
  * CreateImageRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateImageRequest {
 
   private String prompt;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateImageRequestModel> model = JsonNullable.<CreateImageRequestModel>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 1) @Max(value = 10) Integer> n = JsonNullable.<Integer>undefined();
 
   /**
@@ -71,7 +68,6 @@ public class CreateImageRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private QualityEnum quality = QualityEnum.STANDARD;
 
   /**
@@ -109,7 +105,6 @@ public class CreateImageRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ResponseFormatEnum> responseFormat = JsonNullable.<ResponseFormatEnum>undefined();
 
   /**
@@ -153,7 +148,6 @@ public class CreateImageRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<SizeEnum> size = JsonNullable.<SizeEnum>undefined();
 
   /**
@@ -191,10 +185,8 @@ public class CreateImageRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<StyleEnum> style = JsonNullable.<StyleEnum>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String user;
 
   public CreateImageRequest() {
@@ -239,7 +231,7 @@ public class CreateImageRequest {
    * @return model
    */
   @Valid 
-  @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("model")
   public JsonNullable<CreateImageRequestModel> getModel() {
     return model;
@@ -261,7 +253,7 @@ public class CreateImageRequest {
    * @return n
    */
   @Min(value = 1) @Max(value = 10) 
-  @Schema(name = "n", example = "1", description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "n", example = "1", description = "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("n")
   public JsonNullable<@Min(value = 1) @Max(value = 10) Integer> getN() {
     return n;
@@ -302,7 +294,7 @@ public class CreateImageRequest {
    * @return responseFormat
    */
   
-  @Schema(name = "response_format", example = "url", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "response_format", example = "url", description = "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("response_format")
   public JsonNullable<ResponseFormatEnum> getResponseFormat() {
     return responseFormat;
@@ -322,7 +314,7 @@ public class CreateImageRequest {
    * @return size
    */
   
-  @Schema(name = "size", example = "1024x1024", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "size", example = "1024x1024", description = "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`. Must be one of `1024x1024`, `1792x1024`, or `1024x1792` for `dall-e-3` models.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("size")
   public JsonNullable<SizeEnum> getSize() {
     return size;
@@ -342,7 +334,7 @@ public class CreateImageRequest {
    * @return style
    */
   
-  @Schema(name = "style", example = "vivid", description = "The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "style", example = "vivid", description = "The style of the generated images. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images. This param is only supported for `dall-e-3`.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("style")
   public JsonNullable<StyleEnum> getStyle() {
     return style;

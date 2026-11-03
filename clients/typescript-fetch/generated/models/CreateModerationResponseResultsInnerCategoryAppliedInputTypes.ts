@@ -21,80 +21,54 @@ import { mapValues } from '../runtime';
 export interface CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     /**
      * The applied input type(s) for the category 'hate'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     hate: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum>;
     /**
      * The applied input type(s) for the category 'hate/threatening'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     hateThreatening: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum>;
     /**
      * The applied input type(s) for the category 'harassment'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     harassment: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum>;
     /**
      * The applied input type(s) for the category 'harassment/threatening'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     harassmentThreatening: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum>;
     /**
      * The applied input type(s) for the category 'illicit'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     illicit: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum>;
     /**
      * The applied input type(s) for the category 'illicit/violent'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     illicitViolent: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum>;
     /**
      * The applied input type(s) for the category 'self-harm'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     selfHarm: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum>;
     /**
      * The applied input type(s) for the category 'self-harm/intent'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     selfHarmIntent: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum>;
     /**
      * The applied input type(s) for the category 'self-harm/instructions'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     selfHarmInstructions: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum>;
     /**
      * The applied input type(s) for the category 'sexual'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     sexual: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum>;
     /**
      * The applied input type(s) for the category 'sexual/minors'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     sexualMinors: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum>;
     /**
      * The applied input type(s) for the category 'violence'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     violence: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum>;
     /**
      * The applied input type(s) for the category 'violence/graphic'.
-     * @type {Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum>}
-     * @memberof CreateModerationResponseResultsInnerCategoryAppliedInputTypes
      */
     violenceGraphic: Array<CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum>;
 }
@@ -104,7 +78,7 @@ export interface CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum];
 
@@ -112,7 +86,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnu
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThreateningEnum];
 
@@ -120,7 +94,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateThr
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentEnum];
 
@@ -128,7 +102,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassm
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassmentThreateningEnum];
 
@@ -136,7 +110,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesHarassm
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitEnum];
 
@@ -144,7 +118,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicit
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicitViolentEnum];
 
@@ -153,7 +127,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesIllicit
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmEnum];
 
@@ -162,7 +136,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHar
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmIntentEnum];
 
@@ -171,7 +145,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHar
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHarmInstructionsEnum];
 
@@ -180,7 +154,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSelfHar
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualEnum];
 
@@ -188,7 +162,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualE
  * @export
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualMinorsEnum];
 
@@ -197,7 +171,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesSexualM
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceEnum];
 
@@ -206,7 +180,7 @@ export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenc
  */
 export const CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum = {
     Text: 'text',
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum = typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum[keyof typeof CreateModerationResponseResultsInnerCategoryAppliedInputTypesViolenceGraphicEnum];
 

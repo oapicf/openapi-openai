@@ -125,30 +125,24 @@ class _$CreateChatCompletionRequestAudioSerializer implements PrimitiveSerialize
   }
 }
 
+
+/// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
 class CreateChatCompletionRequestAudioVoiceEnum extends EnumClass {
 
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'alloy')
   static const CreateChatCompletionRequestAudioVoiceEnum alloy = _$createChatCompletionRequestAudioVoiceEnum_alloy;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'ash')
   static const CreateChatCompletionRequestAudioVoiceEnum ash = _$createChatCompletionRequestAudioVoiceEnum_ash;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'ballad')
   static const CreateChatCompletionRequestAudioVoiceEnum ballad = _$createChatCompletionRequestAudioVoiceEnum_ballad;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'coral')
   static const CreateChatCompletionRequestAudioVoiceEnum coral = _$createChatCompletionRequestAudioVoiceEnum_coral;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'echo')
   static const CreateChatCompletionRequestAudioVoiceEnum echo = _$createChatCompletionRequestAudioVoiceEnum_echo;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'sage')
   static const CreateChatCompletionRequestAudioVoiceEnum sage = _$createChatCompletionRequestAudioVoiceEnum_sage;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'shimmer')
   static const CreateChatCompletionRequestAudioVoiceEnum shimmer = _$createChatCompletionRequestAudioVoiceEnum_shimmer;
-  /// The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). 
   @BuiltValueEnumConst(wireName: r'verse')
   static const CreateChatCompletionRequestAudioVoiceEnum verse = _$createChatCompletionRequestAudioVoiceEnum_verse;
 
@@ -160,21 +154,17 @@ class CreateChatCompletionRequestAudioVoiceEnum extends EnumClass {
   static CreateChatCompletionRequestAudioVoiceEnum valueOf(String name) => _$createChatCompletionRequestAudioVoiceEnumValueOf(name);
 }
 
+/// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
 class CreateChatCompletionRequestAudioFormatEnum extends EnumClass {
 
-  /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   @BuiltValueEnumConst(wireName: r'wav')
   static const CreateChatCompletionRequestAudioFormatEnum wav = _$createChatCompletionRequestAudioFormatEnum_wav;
-  /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   @BuiltValueEnumConst(wireName: r'mp3')
   static const CreateChatCompletionRequestAudioFormatEnum mp3 = _$createChatCompletionRequestAudioFormatEnum_mp3;
-  /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   @BuiltValueEnumConst(wireName: r'flac')
   static const CreateChatCompletionRequestAudioFormatEnum flac = _$createChatCompletionRequestAudioFormatEnum_flac;
-  /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   @BuiltValueEnumConst(wireName: r'opus')
   static const CreateChatCompletionRequestAudioFormatEnum opus = _$createChatCompletionRequestAudioFormatEnum_opus;
-  /// Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. 
   @BuiltValueEnumConst(wireName: r'pcm16')
   static const CreateChatCompletionRequestAudioFormatEnum pcm16 = _$createChatCompletionRequestAudioFormatEnum_pcm16;
 

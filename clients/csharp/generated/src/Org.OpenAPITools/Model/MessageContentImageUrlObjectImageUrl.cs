@@ -229,7 +229,12 @@ namespace Org.OpenAPITools.Model
                         case "detail":
                             string? detailRawValue = utf8JsonReader.GetString();
                             if (detailRawValue != null)
-                                detail = new Option<MessageContentImageUrlObjectImageUrl.DetailEnum?>(MessageContentImageUrlObjectImageUrl.DetailEnumFromStringOrDefault(detailRawValue));
+                            {
+                                MessageContentImageUrlObjectImageUrl.DetailEnum? detailValue = MessageContentImageUrlObjectImageUrl.DetailEnumFromStringOrDefault(detailRawValue);
+                                if (detailValue == null)
+                                    throw new JsonException();
+                                detail = new Option<MessageContentImageUrlObjectImageUrl.DetailEnum?>(detailValue);
+                            }
                             break;
                         default:
                             break;
@@ -238,13 +243,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentImageUrlObjectImageUrl.", nameof(url));
+                throw new JsonException("Property is required for class MessageContentImageUrlObjectImageUrl: url.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class MessageContentImageUrlObjectImageUrl.");
+                throw new JsonException("Property is not nullable for class MessageContentImageUrlObjectImageUrl: url.");
 
             if (detail.IsSet && detail.Value == null)
-                throw new ArgumentNullException(nameof(detail), "Property is not nullable for class MessageContentImageUrlObjectImageUrl.");
+                throw new JsonException("Property is not nullable for class MessageContentImageUrlObjectImageUrl: detail.");
 
             return new MessageContentImageUrlObjectImageUrl(url.Value!, detail);
         }
@@ -255,7 +260,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentImageUrlObjectImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentImageUrlObjectImageUrl messageContentImageUrlObjectImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -270,11 +274,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentImageUrlObjectImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentImageUrlObjectImageUrl messageContentImageUrlObjectImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentImageUrlObjectImageUrl.Url == null)
-                throw new ArgumentNullException(nameof(messageContentImageUrlObjectImageUrl.Url), "Property is required for class MessageContentImageUrlObjectImageUrl.");
+            if (messageContentImageUrlObjectImageUrl.DetailOption.IsSet && messageContentImageUrlObjectImageUrl.Detail == null)
+                throw new JsonException("Cannot write null property MessageContentImageUrlObjectImageUrl.Detail to non-nullable JSON property 'detail'.");
 
             writer.WriteString("url", messageContentImageUrlObjectImageUrl.Url);
 

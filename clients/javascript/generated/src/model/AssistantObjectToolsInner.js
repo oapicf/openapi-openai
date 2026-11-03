@@ -21,7 +21,7 @@ import FunctionObject from './FunctionObject';
 /**
  * The AssistantObjectToolsInner model module.
  * @module model/AssistantObjectToolsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class AssistantObjectToolsInner {
     /**

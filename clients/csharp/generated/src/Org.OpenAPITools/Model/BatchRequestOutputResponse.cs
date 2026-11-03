@@ -183,13 +183,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (statusCode.IsSet && statusCode.Value == null)
-                throw new ArgumentNullException(nameof(statusCode), "Property is not nullable for class BatchRequestOutputResponse.");
+                throw new JsonException("Property is not nullable for class BatchRequestOutputResponse: status_code.");
 
             if (requestId.IsSet && requestId.Value == null)
-                throw new ArgumentNullException(nameof(requestId), "Property is not nullable for class BatchRequestOutputResponse.");
+                throw new JsonException("Property is not nullable for class BatchRequestOutputResponse: request_id.");
 
             if (body.IsSet && body.Value == null)
-                throw new ArgumentNullException(nameof(body), "Property is not nullable for class BatchRequestOutputResponse.");
+                throw new JsonException("Property is not nullable for class BatchRequestOutputResponse: body.");
 
             return new BatchRequestOutputResponse(statusCode, requestId, body);
         }
@@ -200,7 +200,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestOutputResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchRequestOutputResponse batchRequestOutputResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -215,14 +214,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestOutputResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchRequestOutputResponse batchRequestOutputResponse, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (batchRequestOutputResponse.StatusCodeOption.IsSet && batchRequestOutputResponse.StatusCode == null)
+                throw new JsonException("Cannot write null property BatchRequestOutputResponse.StatusCode to non-nullable JSON property 'status_code'.");
+
             if (batchRequestOutputResponse.RequestIdOption.IsSet && batchRequestOutputResponse.RequestId == null)
-                throw new ArgumentNullException(nameof(batchRequestOutputResponse.RequestId), "Property is required for class BatchRequestOutputResponse.");
+                throw new JsonException("Cannot write null property BatchRequestOutputResponse.RequestId to non-nullable JSON property 'request_id'.");
 
             if (batchRequestOutputResponse.BodyOption.IsSet && batchRequestOutputResponse.Body == null)
-                throw new ArgumentNullException(nameof(batchRequestOutputResponse.Body), "Property is required for class BatchRequestOutputResponse.");
+                throw new JsonException("Cannot write null property BatchRequestOutputResponse.Body to non-nullable JSON property 'body'.");
 
             if (batchRequestOutputResponse.StatusCodeOption.IsSet)
                 writer.WriteNumber("status_code", batchRequestOutputResponse.StatusCodeOption.Value!.Value);

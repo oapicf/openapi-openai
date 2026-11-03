@@ -124,9 +124,10 @@ class _$ChatCompletionRequestMessageContentPartImageSerializer implements Primit
   }
 }
 
+
+/// The type of the content part.
 class ChatCompletionRequestMessageContentPartImageTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const ChatCompletionRequestMessageContentPartImageTypeEnum imageUrl = _$chatCompletionRequestMessageContentPartImageTypeEnum_imageUrl;
 

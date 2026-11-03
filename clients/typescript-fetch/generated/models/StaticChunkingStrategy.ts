@@ -29,14 +29,10 @@ import {
 export interface StaticChunkingStrategy {
     /**
      * Always `static`.
-     * @type {StaticChunkingStrategyTypeEnum}
-     * @memberof StaticChunkingStrategy
      */
     type: StaticChunkingStrategyTypeEnum;
     /**
      * 
-     * @type {StaticChunkingStrategyStatic}
-     * @memberof StaticChunkingStrategy
      */
     _static: StaticChunkingStrategyStatic;
 }
@@ -46,7 +42,7 @@ export interface StaticChunkingStrategy {
  * @export
  */
 export const StaticChunkingStrategyTypeEnum = {
-    Static: 'static'
+    Static: 'static',
 } as const;
 export type StaticChunkingStrategyTypeEnum = typeof StaticChunkingStrategyTypeEnum[keyof typeof StaticChunkingStrategyTypeEnum];
 

@@ -22,13 +22,13 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_server.models.batch import Batch
 from openapi_server.models.create_batch_request import CreateBatchRequest
 from openapi_server.models.list_batches_response import ListBatchesResponse
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -48,8 +48,8 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_batches(
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -69,7 +69,7 @@ async def list_batches(
     response_model_by_alias=True,
 )
 async def create_batch(
-    create_batch_request: CreateBatchRequest = Body(None, description=""),
+    create_batch_request: CreateBatchRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -89,7 +89,7 @@ async def create_batch(
     response_model_by_alias=True,
 )
 async def retrieve_batch(
-    batch_id: Annotated[StrictStr, Field(description="The ID of the batch to retrieve.")] = Path(..., description="The ID of the batch to retrieve."),
+    batch_id: Annotated[str, Field(description="The ID of the batch to retrieve.")] = Path(..., description="The ID of the batch to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -109,7 +109,7 @@ async def retrieve_batch(
     response_model_by_alias=True,
 )
 async def cancel_batch(
-    batch_id: Annotated[StrictStr, Field(description="The ID of the batch to cancel.")] = Path(..., description="The ID of the batch to cancel."),
+    batch_id: Annotated[str, Field(description="The ID of the batch to cancel.")] = Path(..., description="The ID of the batch to cancel."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

@@ -25,9 +25,9 @@ object RunObjectLastErrorEnums {
 
   sealed trait Code
   object Code {
-    case object ServerError extends Code
-    case object RateLimitExceeded extends Code
-    case object InvalidPrompt extends Code
+    case object ServerError extends Code { override def toString: String = "server_error" }
+    case object RateLimitExceeded extends Code { override def toString: String = "rate_limit_exceeded" }
+    case object InvalidPrompt extends Code { override def toString: String = "invalid_prompt" }
 
     import org.json4s._
 

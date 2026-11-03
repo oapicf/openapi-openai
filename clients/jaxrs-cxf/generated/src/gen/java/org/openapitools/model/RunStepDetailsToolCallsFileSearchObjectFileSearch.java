@@ -32,8 +32,6 @@ public class RunStepDetailsToolCallsFileSearchObjectFileSearch  {
   */
   @ApiModelProperty(value = "The results of the file search.")
 
-  @Valid
-
   private List<@Valid RunStepDetailsToolCallsFileSearchResultObject> results = new ArrayList<>();
  /**
    * Get rankingOptions

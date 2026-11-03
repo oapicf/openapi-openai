@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersLearningRateMultiplier" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal FineTuneDPOMethodHyperparametersLearningRateMultiplier(string @string)
+        public FineTuneDPOMethodHyperparametersLearningRateMultiplier(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersLearningRateMultiplier" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal FineTuneDPOMethodHyperparametersLearningRateMultiplier(decimal @decimal)
+        public FineTuneDPOMethodHyperparametersLearningRateMultiplier(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersLearningRateMultiplier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersLearningRateMultiplier fineTuneDPOMethodHyperparametersLearningRateMultiplier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersLearningRateMultiplier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersLearningRateMultiplier fineTuneDPOMethodHyperparametersLearningRateMultiplier, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -32,8 +32,6 @@ export interface RealtimeResponseStatusDetails {
      * with the `status` field (`completed`, `cancelled`, `incomplete`, 
      * `failed`).
      * 
-     * @type {RealtimeResponseStatusDetailsTypeEnum}
-     * @memberof RealtimeResponseStatusDetails
      */
     type?: RealtimeResponseStatusDetailsTypeEnum;
     /**
@@ -43,14 +41,10 @@ export interface RealtimeResponseStatusDetails {
      * `incomplete` Response, one of `max_output_tokens` or `content_filter` 
      * (the server-side safety filter activated and cut off the response).
      * 
-     * @type {RealtimeResponseStatusDetailsReasonEnum}
-     * @memberof RealtimeResponseStatusDetails
      */
     reason?: RealtimeResponseStatusDetailsReasonEnum;
     /**
      * 
-     * @type {RealtimeResponseStatusDetailsError}
-     * @memberof RealtimeResponseStatusDetails
      */
     error?: RealtimeResponseStatusDetailsError;
 }
@@ -63,7 +57,7 @@ export const RealtimeResponseStatusDetailsTypeEnum = {
     Completed: 'completed',
     Cancelled: 'cancelled',
     Failed: 'failed',
-    Incomplete: 'incomplete'
+    Incomplete: 'incomplete',
 } as const;
 export type RealtimeResponseStatusDetailsTypeEnum = typeof RealtimeResponseStatusDetailsTypeEnum[keyof typeof RealtimeResponseStatusDetailsTypeEnum];
 
@@ -74,7 +68,7 @@ export const RealtimeResponseStatusDetailsReasonEnum = {
     TurnDetected: 'turn_detected',
     ClientCancelled: 'client_cancelled',
     MaxOutputTokens: 'max_output_tokens',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
 } as const;
 export type RealtimeResponseStatusDetailsReasonEnum = typeof RealtimeResponseStatusDetailsReasonEnum[keyof typeof RealtimeResponseStatusDetailsReasonEnum];
 

@@ -38,11 +38,11 @@ import javax.validation.Valid;
   FineTuneChatRequestInput.JSON_PROPERTY_PARALLEL_TOOL_CALLS,
   FineTuneChatRequestInput.JSON_PROPERTY_FUNCTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneChatRequestInput   {
   public static final String JSON_PROPERTY_MESSAGES = "messages";
   @JsonProperty(JSON_PROPERTY_MESSAGES)
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
@@ -56,7 +56,7 @@ public class FineTuneChatRequestInput   {
   @JsonProperty(JSON_PROPERTY_FUNCTIONS)
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
-  public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTuneChatRequestInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -75,12 +75,12 @@ public class FineTuneChatRequestInput   {
    **/
   @JsonProperty(value = "messages")
   @ApiModelProperty(value = "")
-  @Valid  @Size(min=1)
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+   @Size(min=1)
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
@@ -103,7 +103,7 @@ public class FineTuneChatRequestInput   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "A list of tools the model may generate JSON inputs for.")
-  @Valid 
+  
   public List<@Valid ChatCompletionTool> getTools() {
     return tools;
   }
@@ -151,7 +151,7 @@ public class FineTuneChatRequestInput   {
    **/
   @JsonProperty(value = "functions")
   @ApiModelProperty(value = "A list of functions the model may generate JSON inputs for.")
-  @Valid  @Size(min=1,max=128)
+   @Size(min=1,max=128)
   public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }

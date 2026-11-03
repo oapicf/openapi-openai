@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionStreamResponse   {
   
   private String id;
@@ -90,7 +90,6 @@ public class CreateChatCompletionStreamResponse   {
   @ApiModelProperty(required = true, value = "A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. ")
   @JsonProperty("choices")
   @NotNull
-  @Valid
   public List<@Valid CreateChatCompletionStreamResponseChoicesInner> getChoices() {
     return choices;
   }

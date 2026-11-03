@@ -29,32 +29,22 @@ import {
 export interface CreateSpeechRequest {
     /**
      * 
-     * @type {CreateSpeechRequestModel}
-     * @memberof CreateSpeechRequest
      */
     model: CreateSpeechRequestModel;
     /**
      * The text to generate audio for. The maximum length is 4096 characters.
-     * @type {string}
-     * @memberof CreateSpeechRequest
      */
     input: string;
     /**
      * The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
-     * @type {CreateSpeechRequestVoiceEnum}
-     * @memberof CreateSpeechRequest
      */
     voice: CreateSpeechRequestVoiceEnum;
     /**
      * The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
-     * @type {CreateSpeechRequestResponseFormatEnum}
-     * @memberof CreateSpeechRequest
      */
     responseFormat?: CreateSpeechRequestResponseFormatEnum;
     /**
      * The speed of the generated audio. Select a value from `0.25` to `4.0`. `1.0` is the default.
-     * @type {number}
-     * @memberof CreateSpeechRequest
      */
     speed?: number;
 }
@@ -69,7 +59,7 @@ export const CreateSpeechRequestVoiceEnum = {
     Fable: 'fable',
     Onyx: 'onyx',
     Nova: 'nova',
-    Shimmer: 'shimmer'
+    Shimmer: 'shimmer',
 } as const;
 export type CreateSpeechRequestVoiceEnum = typeof CreateSpeechRequestVoiceEnum[keyof typeof CreateSpeechRequestVoiceEnum];
 
@@ -82,7 +72,7 @@ export const CreateSpeechRequestResponseFormatEnum = {
     Aac: 'aac',
     Flac: 'flac',
     Wav: 'wav',
-    Pcm: 'pcm'
+    Pcm: 'pcm',
 } as const;
 export type CreateSpeechRequestResponseFormatEnum = typeof CreateSpeechRequestResponseFormatEnum[keyof typeof CreateSpeechRequestResponseFormatEnum];
 

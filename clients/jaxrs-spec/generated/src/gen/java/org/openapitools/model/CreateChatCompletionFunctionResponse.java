@@ -23,10 +23,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents a chat completion response returned by model, based on the provided input.")
 @JsonTypeName("CreateChatCompletionFunctionResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionFunctionResponse   {
   private String id;
-  private @Valid List<@Valid CreateChatCompletionFunctionResponseChoicesInner> choices = new ArrayList<>();
+  private List<@Valid CreateChatCompletionFunctionResponseChoicesInner> choices = new ArrayList<>();
   private Integer created;
   private String model;
   private String systemFingerprint;
@@ -129,7 +129,7 @@ public class CreateChatCompletionFunctionResponse   {
   
   @ApiModelProperty(required = true, value = "A list of chat completion choices. Can be more than one if `n` is greater than 1.")
   @JsonProperty(required = true, value = "choices")
-  @NotNull @Valid public List<@Valid CreateChatCompletionFunctionResponseChoicesInner> getChoices() {
+  @NotNull public List<@Valid CreateChatCompletionFunctionResponseChoicesInner> getChoices() {
     return choices;
   }
 

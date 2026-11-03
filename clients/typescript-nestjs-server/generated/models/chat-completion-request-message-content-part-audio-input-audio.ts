@@ -13,7 +13,7 @@ export interface ChatCompletionRequestMessageContentPartAudioInputAudio {
 export namespace ChatCompletionRequestMessageContentPartAudioInputAudio {
   export const FormatEnum = {
     Wav: 'wav',
-    Mp3: 'mp3'
+    Mp3: 'mp3',
   } as const;
   export type FormatEnum = typeof FormatEnum[keyof typeof FormatEnum];
 }

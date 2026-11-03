@@ -21,7 +21,7 @@ import FunctionObject from './FunctionObject';
 /**
  * The CreateThreadAndRunRequestToolsInner model module.
  * @module model/CreateThreadAndRunRequestToolsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateThreadAndRunRequestToolsInner {
     /**

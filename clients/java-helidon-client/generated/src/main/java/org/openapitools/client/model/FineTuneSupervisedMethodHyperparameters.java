@@ -29,11 +29,11 @@ import org.openapitools.client.model.FineTuneDPOMethodHyperparametersNEpochs;
 
 public class FineTuneSupervisedMethodHyperparameters  {
   
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
  /**
    * Get batchSize

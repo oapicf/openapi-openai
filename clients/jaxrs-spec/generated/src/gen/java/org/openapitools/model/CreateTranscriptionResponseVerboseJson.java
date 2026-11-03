@@ -23,13 +23,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents a verbose json transcription response returned by model, based on the provided input.")
 @JsonTypeName("CreateTranscriptionResponseVerboseJson")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscriptionResponseVerboseJson   {
   private String language;
   private String duration;
   private String text;
-  private @Valid List<@Valid TranscriptionWord> words = new ArrayList<>();
-  private @Valid List<@Valid TranscriptionSegment> segments = new ArrayList<>();
+  private List<@Valid TranscriptionWord> words = new ArrayList<>();
+  private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
 
   public CreateTranscriptionResponseVerboseJson() {
   }
@@ -116,7 +116,7 @@ public class CreateTranscriptionResponseVerboseJson   {
   
   @ApiModelProperty(value = "Extracted words and their corresponding timestamps.")
   @JsonProperty("words")
-  @Valid public List<@Valid TranscriptionWord> getWords() {
+  public List<@Valid TranscriptionWord> getWords() {
     return words;
   }
 
@@ -152,7 +152,7 @@ public class CreateTranscriptionResponseVerboseJson   {
   
   @ApiModelProperty(value = "Segments of the transcribed text and their corresponding details.")
   @JsonProperty("segments")
-  @Valid public List<@Valid TranscriptionSegment> getSegments() {
+  public List<@Valid TranscriptionSegment> getSegments() {
     return segments;
   }
 

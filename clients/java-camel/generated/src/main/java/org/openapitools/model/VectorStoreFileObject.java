@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,7 +22,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "VectorStoreFileObject", description = "A list of files attached to a vector store.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class VectorStoreFileObject {
 
   private String id;
@@ -260,7 +259,7 @@ public class VectorStoreFileObject {
    * Get lastError
    * @return lastError
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "last_error", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("last_error")
   public JsonNullable<VectorStoreFileObjectLastError> getLastError() {

@@ -29,6 +29,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +49,7 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * Returned when an earlier assistant audio message item is truncated by the  client with a &#x60;conversation.item.truncate&#x60; event. This event is used to  synchronize the server&#39;s understanding of the audio with the client&#39;s playback.  This action will truncate the audio and remove the server-side text transcript  to ensure there is no text in the context that hasn&#39;t been heard by the user. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T06:32:49.309140381Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventConversationItemTruncated {
   public static final String SERIALIZED_NAME_EVENT_ID = "event_id";
   @SerializedName(SERIALIZED_NAME_EVENT_ID)

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -27,12 +26,11 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunStepDetailsToolCallsFileSearchObject_file_search", description = "For now, this is always going to be an empty object.")
 @JsonTypeName("RunStepDetailsToolCallsFileSearchObject_file_search")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFileSearchObjectFileSearch {
 
   private RunStepDetailsToolCallsFileSearchRankingOptionsObject rankingOptions;
 
-  @Valid
   private List<@Valid RunStepDetailsToolCallsFileSearchResultObject> results = new ArrayList<>();
 
   public RunStepDetailsToolCallsFileSearchObjectFileSearch rankingOptions(RunStepDetailsToolCallsFileSearchRankingOptionsObject rankingOptions) {
@@ -72,7 +70,7 @@ public class RunStepDetailsToolCallsFileSearchObjectFileSearch {
    * The results of the file search.
    * @return results
    */
-  @Valid 
+  
   @Schema(name = "results", description = "The results of the file search.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("results")
   public List<@Valid RunStepDetailsToolCallsFileSearchResultObject> getResults() {

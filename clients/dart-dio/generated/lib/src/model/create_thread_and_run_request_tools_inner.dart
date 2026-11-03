@@ -76,15 +76,14 @@ class _$CreateThreadAndRunRequestToolsInnerSerializer implements PrimitiveSerial
   }
 }
 
+
+/// The type of tool being defined: `code_interpreter`
 class CreateThreadAndRunRequestToolsInnerTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const CreateThreadAndRunRequestToolsInnerTypeEnum codeInterpreter = _$createThreadAndRunRequestToolsInnerTypeEnum_codeInterpreter;
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'file_search')
   static const CreateThreadAndRunRequestToolsInnerTypeEnum fileSearch = _$createThreadAndRunRequestToolsInnerTypeEnum_fileSearch;
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'function')
   static const CreateThreadAndRunRequestToolsInnerTypeEnum function_ = _$createThreadAndRunRequestToolsInnerTypeEnum_function_;
 

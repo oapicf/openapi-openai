@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("UsageResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageResponse   {
   public enum ObjectEnum {
 
@@ -70,7 +70,7 @@ public class UsageResponse   {
 }
 
   private ObjectEnum _object;
-  private @Valid List<@Valid UsageTimeBucket> data = new ArrayList<>();
+  private List<@Valid UsageTimeBucket> data = new ArrayList<>();
   private Boolean hasMore;
   private String nextPage;
 
@@ -119,7 +119,7 @@ public class UsageResponse   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "data")
-  @NotNull @Valid public List<@Valid UsageTimeBucket> getData() {
+  @NotNull public List<@Valid UsageTimeBucket> getData() {
     return data;
   }
 

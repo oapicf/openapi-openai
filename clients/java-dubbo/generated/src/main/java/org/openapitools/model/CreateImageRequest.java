@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 import java.time.*;
 import java.math.*;
-@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.26.0")
 
 public class CreateImageRequest implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -20,7 +20,7 @@ public class CreateImageRequest implements Serializable {
   private String prompt;
 
   @JsonProperty("model")
-  private CreateImageRequestModel model;
+  private CreateImageRequestModel model = dall-e-2;
 
   /**
    * The number of images to generate. Must be between 1 and 10. For &#x60;dall-e-3&#x60;, only &#x60;n&#x3D;1&#x60; is supported.

@@ -90,7 +90,7 @@ public class VectorStoresApiHandler {
         RequestParameter body = requestParameters.body();
         CreateVectorStoreRequest createVectorStoreRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateVectorStoreRequest>(){}) : null;
 
-        logger.debug("Parameter createVectorStoreRequest is {}", createVectorStoreRequest);
+        logger.debug("Parameter createVectorStoreRequest is (body omitted)");
 
         api.createVectorStore(createVectorStoreRequest)
             .onSuccess(apiResponse -> {
@@ -115,7 +115,7 @@ public class VectorStoresApiHandler {
         CreateVectorStoreFileRequest createVectorStoreFileRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateVectorStoreFileRequest>(){}) : null;
 
         logger.debug("Parameter vectorStoreId is {}", vectorStoreId);
-        logger.debug("Parameter createVectorStoreFileRequest is {}", createVectorStoreFileRequest);
+        logger.debug("Parameter createVectorStoreFileRequest is (body omitted)");
 
         api.createVectorStoreFile(vectorStoreId, createVectorStoreFileRequest)
             .onSuccess(apiResponse -> {
@@ -140,7 +140,7 @@ public class VectorStoresApiHandler {
         CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateVectorStoreFileBatchRequest>(){}) : null;
 
         logger.debug("Parameter vectorStoreId is {}", vectorStoreId);
-        logger.debug("Parameter createVectorStoreFileBatchRequest is {}", createVectorStoreFileBatchRequest);
+        logger.debug("Parameter createVectorStoreFileBatchRequest is (body omitted)");
 
         api.createVectorStoreFileBatch(vectorStoreId, createVectorStoreFileBatchRequest)
             .onSuccess(apiResponse -> {
@@ -375,7 +375,7 @@ public class VectorStoresApiHandler {
         UpdateVectorStoreRequest updateVectorStoreRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<UpdateVectorStoreRequest>(){}) : null;
 
         logger.debug("Parameter vectorStoreId is {}", vectorStoreId);
-        logger.debug("Parameter updateVectorStoreRequest is {}", updateVectorStoreRequest);
+        logger.debug("Parameter updateVectorStoreRequest is (body omitted)");
 
         api.modifyVectorStore(vectorStoreId, updateVectorStoreRequest)
             .onSuccess(apiResponse -> {

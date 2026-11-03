@@ -22,9 +22,9 @@ object MessageDeltaContentImageUrlObjectImageUrlEnums {
 
   sealed trait Detail
   object Detail {
-    case object Auto extends Detail
-    case object Low extends Detail
-    case object High extends Detail
+    case object Auto extends Detail { override def toString: String = "auto" }
+    case object Low extends Detail { override def toString: String = "low" }
+    case object High extends Detail { override def toString: String = "high" }
 
     import org.json4s._
 

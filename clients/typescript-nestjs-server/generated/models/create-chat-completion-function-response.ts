@@ -34,7 +34,7 @@ export interface CreateChatCompletionFunctionResponse {
 }
 export namespace CreateChatCompletionFunctionResponse {
   export const ObjectEnum = {
-    ChatCompletion: 'chat.completion'
+    ChatCompletion: 'chat.completion',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

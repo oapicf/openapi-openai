@@ -78,167 +78,113 @@ import {
 export interface RunObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof RunObject
      */
     id: string;
     /**
      * The object type, which is always `thread.run`.
-     * @type {RunObjectObjectEnum}
-     * @memberof RunObject
      */
     object: RunObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the run was created.
-     * @type {number}
-     * @memberof RunObject
      */
     createdAt: number;
     /**
      * The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
-     * @type {string}
-     * @memberof RunObject
      */
     threadId: string;
     /**
      * The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.
-     * @type {string}
-     * @memberof RunObject
      */
     assistantId: string;
     /**
      * The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
-     * @type {RunObjectStatusEnum}
-     * @memberof RunObject
      */
     status: RunObjectStatusEnum;
     /**
      * 
-     * @type {RunObjectRequiredAction}
-     * @memberof RunObject
      */
     requiredAction: RunObjectRequiredAction | null;
     /**
      * 
-     * @type {RunObjectLastError}
-     * @memberof RunObject
      */
     lastError: RunObjectLastError | null;
     /**
      * The Unix timestamp (in seconds) for when the run will expire.
-     * @type {number}
-     * @memberof RunObject
      */
     expiresAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run was started.
-     * @type {number}
-     * @memberof RunObject
      */
     startedAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run was cancelled.
-     * @type {number}
-     * @memberof RunObject
      */
     cancelledAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run failed.
-     * @type {number}
-     * @memberof RunObject
      */
     failedAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run was completed.
-     * @type {number}
-     * @memberof RunObject
      */
     completedAt: number | null;
     /**
      * 
-     * @type {RunObjectIncompleteDetails}
-     * @memberof RunObject
      */
     incompleteDetails: RunObjectIncompleteDetails | null;
     /**
      * The model that the [assistant](/docs/api-reference/assistants) used for this run.
-     * @type {string}
-     * @memberof RunObject
      */
     model: string;
     /**
      * The instructions that the [assistant](/docs/api-reference/assistants) used for this run.
-     * @type {string}
-     * @memberof RunObject
      */
     instructions: string;
     /**
      * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
-     * @type {Array<AssistantObjectToolsInner>}
-     * @memberof RunObject
      */
     tools: Array<AssistantObjectToolsInner>;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof RunObject
      */
     metadata: object | null;
     /**
      * 
-     * @type {RunCompletionUsage}
-     * @memberof RunObject
      */
     usage: RunCompletionUsage | null;
     /**
      * The sampling temperature used for this run. If not set, defaults to 1.
-     * @type {number}
-     * @memberof RunObject
      */
     temperature?: number | null;
     /**
      * The nucleus sampling value used for this run. If not set, defaults to 1.
-     * @type {number}
-     * @memberof RunObject
      */
     topP?: number | null;
     /**
      * The maximum number of prompt tokens specified to have been used over the course of the run.
      * 
-     * @type {number}
-     * @memberof RunObject
      */
     maxPromptTokens: number | null;
     /**
      * The maximum number of completion tokens specified to have been used over the course of the run.
      * 
-     * @type {number}
-     * @memberof RunObject
      */
     maxCompletionTokens: number | null;
     /**
      * 
-     * @type {TruncationObject}
-     * @memberof RunObject
      */
     truncationStrategy: TruncationObject;
     /**
      * 
-     * @type {AssistantsApiToolChoiceOption}
-     * @memberof RunObject
      */
     toolChoice: AssistantsApiToolChoiceOption;
     /**
      * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-     * @type {boolean}
-     * @memberof RunObject
      */
     parallelToolCalls: boolean;
     /**
      * 
-     * @type {AssistantsApiResponseFormatOption}
-     * @memberof RunObject
      */
     responseFormat: AssistantsApiResponseFormatOption;
 }
@@ -248,7 +194,7 @@ export interface RunObject {
  * @export
  */
 export const RunObjectObjectEnum = {
-    ThreadRun: 'thread.run'
+    ThreadRun: 'thread.run',
 } as const;
 export type RunObjectObjectEnum = typeof RunObjectObjectEnum[keyof typeof RunObjectObjectEnum];
 
@@ -264,7 +210,7 @@ export const RunObjectStatusEnum = {
     Failed: 'failed',
     Completed: 'completed',
     Incomplete: 'incomplete',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type RunObjectStatusEnum = typeof RunObjectStatusEnum[keyof typeof RunObjectStatusEnum];
 

@@ -16,7 +16,7 @@ export interface ProjectUserDeleteResponse {
 }
 export namespace ProjectUserDeleteResponse {
     export const ObjectEnum = {
-        OrganizationProjectUserDeleted: 'organization.project.user.deleted'
+        OrganizationProjectUserDeleted: 'organization.project.user.deleted',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

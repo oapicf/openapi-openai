@@ -124,9 +124,10 @@ class _$RunStepDetailsMessageCreationObjectSerializer implements PrimitiveSerial
   }
 }
 
+
+/// Always `message_creation`.
 class RunStepDetailsMessageCreationObjectTypeEnum extends EnumClass {
 
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'message_creation')
   static const RunStepDetailsMessageCreationObjectTypeEnum messageCreation = _$runStepDetailsMessageCreationObjectTypeEnum_messageCreation;
 

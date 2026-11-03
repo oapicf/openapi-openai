@@ -80,15 +80,14 @@ class _$RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerSerializer implement
   }
 }
 
+
+/// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 class RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum codeInterpreter = _$runStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum_codeInterpreter;
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'file_search')
   static const RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum fileSearch = _$runStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum_fileSearch;
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'function')
   static const RunStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum function_ = _$runStepDeltaStepDetailsToolCallsObjectToolCallsInnerTypeEnum_function_;
 

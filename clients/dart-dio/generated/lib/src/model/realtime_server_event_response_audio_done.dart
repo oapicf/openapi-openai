@@ -192,9 +192,10 @@ class _$RealtimeServerEventResponseAudioDoneSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The event type, must be `response.audio.done`.
 class RealtimeServerEventResponseAudioDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.audio.done`.
   @BuiltValueEnumConst(wireName: r'response.audio.done')
   static const RealtimeServerEventResponseAudioDoneTypeEnum responsePeriodAudioPeriodDone = _$realtimeServerEventResponseAudioDoneTypeEnum_responsePeriodAudioPeriodDone;
 

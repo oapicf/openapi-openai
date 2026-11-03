@@ -317,6 +317,7 @@ class _$UsageCompletionsResultSerializer implements PrimitiveSerializer<UsageCom
   }
 }
 
+
 class UsageCompletionsResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.completions.result')

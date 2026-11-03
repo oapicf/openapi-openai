@@ -23,16 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateModerationResponse(
 
     @Schema(required = true, description = "The unique identifier for the moderation request.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The model used to generate the moderation results.")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "A list of moderation objects.")
-    @param:JsonProperty("results")
+    @param:JsonProperty("results", required = true)
     @get:JsonProperty("results", required = true) val results: kotlin.collections.List<CreateModerationResponseResultsInner>
 ) {
 

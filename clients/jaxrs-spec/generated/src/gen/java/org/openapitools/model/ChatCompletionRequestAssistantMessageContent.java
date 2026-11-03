@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The contents of the assistant message. Required unless `tool_calls` or `function_call` is specified. ")
 @JsonTypeName("ChatCompletionRequestAssistantMessage_content")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionRequestAssistantMessageContent   {
 
   public ChatCompletionRequestAssistantMessageContent() {

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an individual service account in a project.
- * @param &#x60;object&#x60; The object type, which is always `organization.project.service_account`
+ * @param `object` The object type, which is always `organization.project.service_account`
  * @param id The identifier, which can be referenced in API endpoints
  * @param name The name of the service account
  * @param role `owner` or `member`

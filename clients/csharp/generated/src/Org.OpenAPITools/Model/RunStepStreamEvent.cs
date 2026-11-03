@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf runStepStreamEventOneOf)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf runStepStreamEventOneOf)
         {
             RunStepStreamEventOneOf = runStepStreamEventOneOf;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf1"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf1 runStepStreamEventOneOf1)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf1 runStepStreamEventOneOf1)
         {
             RunStepStreamEventOneOf1 = runStepStreamEventOneOf1;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf2"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf2 runStepStreamEventOneOf2)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf2 runStepStreamEventOneOf2)
         {
             RunStepStreamEventOneOf2 = runStepStreamEventOneOf2;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf3"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf3 runStepStreamEventOneOf3)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf3 runStepStreamEventOneOf3)
         {
             RunStepStreamEventOneOf3 = runStepStreamEventOneOf3;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf4"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf4 runStepStreamEventOneOf4)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf4 runStepStreamEventOneOf4)
         {
             RunStepStreamEventOneOf4 = runStepStreamEventOneOf4;
             OnCreated();
@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf5"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf5 runStepStreamEventOneOf5)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf5 runStepStreamEventOneOf5)
         {
             RunStepStreamEventOneOf5 = runStepStreamEventOneOf5;
             OnCreated();
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEventOneOf6"></param>
-        public RunStepStreamEvent(RunStepStreamEventOneOf6 runStepStreamEventOneOf6)
+        internal RunStepStreamEvent(RunStepStreamEventOneOf6 runStepStreamEventOneOf6)
         {
             RunStepStreamEventOneOf6 = runStepStreamEventOneOf6;
             OnCreated();
@@ -286,7 +286,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepStreamEvent runStepStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -301,7 +300,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepStreamEvent runStepStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
 

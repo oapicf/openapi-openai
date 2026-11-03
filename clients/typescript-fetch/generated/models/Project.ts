@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface Project {
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof Project
      */
     id: string;
     /**
      * The object type, which is always `organization.project`
-     * @type {ProjectObjectEnum}
-     * @memberof Project
      */
     object: ProjectObjectEnum;
     /**
      * The name of the project. This appears in reporting.
-     * @type {string}
-     * @memberof Project
      */
     name: string;
     /**
      * The Unix timestamp (in seconds) of when the project was created.
-     * @type {number}
-     * @memberof Project
      */
     createdAt: number;
     /**
      * The Unix timestamp (in seconds) of when the project was archived or `null`.
-     * @type {number}
-     * @memberof Project
      */
     archivedAt?: number | null;
     /**
      * `active` or `archived`
-     * @type {ProjectStatusEnum}
-     * @memberof Project
      */
     status: ProjectStatusEnum;
 }
@@ -62,7 +50,7 @@ export interface Project {
  * @export
  */
 export const ProjectObjectEnum = {
-    OrganizationProject: 'organization.project'
+    OrganizationProject: 'organization.project',
 } as const;
 export type ProjectObjectEnum = typeof ProjectObjectEnum[keyof typeof ProjectObjectEnum];
 
@@ -71,7 +59,7 @@ export type ProjectObjectEnum = typeof ProjectObjectEnum[keyof typeof ProjectObj
  */
 export const ProjectStatusEnum = {
     Active: 'active',
-    Archived: 'archived'
+    Archived: 'archived',
 } as const;
 export type ProjectStatusEnum = typeof ProjectStatusEnum[keyof typeof ProjectStatusEnum];
 

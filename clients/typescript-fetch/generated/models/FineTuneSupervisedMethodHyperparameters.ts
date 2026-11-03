@@ -43,20 +43,14 @@ import {
 export interface FineTuneSupervisedMethodHyperparameters {
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersBatchSize}
-     * @memberof FineTuneSupervisedMethodHyperparameters
      */
     batchSize?: FineTuneDPOMethodHyperparametersBatchSize;
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersLearningRateMultiplier}
-     * @memberof FineTuneSupervisedMethodHyperparameters
      */
     learningRateMultiplier?: FineTuneDPOMethodHyperparametersLearningRateMultiplier;
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersNEpochs}
-     * @memberof FineTuneSupervisedMethodHyperparameters
      */
     nEpochs?: FineTuneDPOMethodHyperparametersNEpochs;
 }

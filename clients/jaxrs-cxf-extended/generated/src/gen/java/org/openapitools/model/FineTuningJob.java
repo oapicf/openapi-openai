@@ -172,8 +172,7 @@ public enum StatusEnum {
   * A list of integrations to enable for this fine-tuning job.
   */
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
-  @Valid
-  private List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
 
  /**
   * The seed used for the fine-tuning job.
@@ -553,21 +552,21 @@ public enum StatusEnum {
   * @return integrations
   */
   @JsonProperty("integrations")
- @Size(max=5)  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+ @Size(max=5)  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
   /**
    * Sets the <code>integrations</code> property.
    */
- public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+ public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 
   /**
    * Sets the <code>integrations</code> property.
    */
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }

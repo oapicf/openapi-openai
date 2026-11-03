@@ -19,7 +19,7 @@ import org.openapitools.model.FineTuningJobIntegrationsInner;
  * The &#x60;fine_tuning.job&#x60; object represents a fine-tuning job that has been created through the API. 
  */
 @ApiModel(description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJob   {
   @JsonProperty("id")
   private String id;
@@ -132,7 +132,7 @@ public class FineTuningJob   {
   private String validationFile;
 
   @JsonProperty("integrations")
-  private List<FineTuningJobIntegrationsInner> integrations = null;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations = null;
 
   @JsonProperty("seed")
   private Integer seed;
@@ -400,14 +400,14 @@ public class FineTuningJob   {
     this.validationFile = validationFile;
   }
 
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }
 
   public FineTuningJob addIntegrationsItem(FineTuningJobIntegrationsInner integrationsItem) {
     if (this.integrations == null) {
-      this.integrations = ;
+      this.integrations = new ArrayList<>();
     }
     this.integrations.add(integrationsItem);
     return this;
@@ -418,11 +418,11 @@ public class FineTuningJob   {
    * @return integrations
   **/
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
-  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

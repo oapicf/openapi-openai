@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AuditLogActorUser {
     /**
      * The user id.
-     * @type {string}
-     * @memberof AuditLogActorUser
      */
     id?: string;
     /**
      * The user email.
-     * @type {string}
-     * @memberof AuditLogActorUser
      */
     email?: string;
 }

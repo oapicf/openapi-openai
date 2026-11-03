@@ -26,7 +26,7 @@ object RealtimeServerEventSessionCreatedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object SessionCreated extends `Type`
+    case object SessionCreated extends `Type` { override def toString: String = "session.created" }
 
     import org.json4s._
 

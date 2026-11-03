@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogRateLimitUpdated.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdated: id.");
 
             if (changesRequested.IsSet && changesRequested.Value == null)
-                throw new ArgumentNullException(nameof(changesRequested), "Property is not nullable for class AuditLogRateLimitUpdated.");
+                throw new JsonException("Property is not nullable for class AuditLogRateLimitUpdated: changes_requested.");
 
             return new AuditLogRateLimitUpdated(id, changesRequested);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogRateLimitUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogRateLimitUpdated auditLogRateLimitUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogRateLimitUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogRateLimitUpdated auditLogRateLimitUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogRateLimitUpdated.IdOption.IsSet && auditLogRateLimitUpdated.Id == null)
-                throw new ArgumentNullException(nameof(auditLogRateLimitUpdated.Id), "Property is required for class AuditLogRateLimitUpdated.");
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdated.Id to non-nullable JSON property 'id'.");
 
             if (auditLogRateLimitUpdated.ChangesRequestedOption.IsSet && auditLogRateLimitUpdated.ChangesRequested == null)
-                throw new ArgumentNullException(nameof(auditLogRateLimitUpdated.ChangesRequested), "Property is required for class AuditLogRateLimitUpdated.");
+                throw new JsonException("Cannot write null property AuditLogRateLimitUpdated.ChangesRequested to non-nullable JSON property 'changes_requested'.");
 
             if (auditLogRateLimitUpdated.IdOption.IsSet)
                 writer.WriteString("id", auditLogRateLimitUpdated.Id);

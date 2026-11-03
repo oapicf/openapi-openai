@@ -212,7 +212,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.TypeEnum?>(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.TypeEnum? typeValue = RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "logs":
                             logs = new Option<string?>(utf8JsonReader.GetString()!);
@@ -224,19 +229,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.", nameof(index));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject: type.");
 
             if (logs.IsSet && logs.Value == null)
-                throw new ArgumentNullException(nameof(logs), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject: logs.");
 
             return new RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject(index.Value!.Value!, type.Value!.Value!, logs);
         }
@@ -247,7 +252,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputLogsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject runStepDeltaStepDetailsToolCallsCodeOutputLogsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,11 +266,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputLogsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject runStepDeltaStepDetailsToolCallsCodeOutputLogsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsCodeOutputLogsObject.LogsOption.IsSet && runStepDeltaStepDetailsToolCallsCodeOutputLogsObject.Logs == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeOutputLogsObject.Logs), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject.Logs to non-nullable JSON property 'logs'.");
 
             writer.WriteNumber("index", runStepDeltaStepDetailsToolCallsCodeOutputLogsObject.Index);
 

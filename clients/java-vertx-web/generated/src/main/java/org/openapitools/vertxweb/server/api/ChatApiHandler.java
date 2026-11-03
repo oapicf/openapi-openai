@@ -45,7 +45,7 @@ public class ChatApiHandler {
         RequestParameter body = requestParameters.body();
         CreateChatCompletionRequest createChatCompletionRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateChatCompletionRequest>(){}) : null;
 
-        logger.debug("Parameter createChatCompletionRequest is {}", createChatCompletionRequest);
+        logger.debug("Parameter createChatCompletionRequest is (body omitted)");
 
         api.createChatCompletion(createChatCompletionRequest)
             .onSuccess(apiResponse -> {

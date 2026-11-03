@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.Generated;
 import java.time.*;
 import java.math.*;
-@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.26.0")
 
 /**
  * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
@@ -18,13 +18,13 @@ public class FineTuningJobHyperparameters implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("batch_size")
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   @JsonProperty("learning_rate_multiplier")
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @JsonProperty("n_epochs")
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   /**
    * 

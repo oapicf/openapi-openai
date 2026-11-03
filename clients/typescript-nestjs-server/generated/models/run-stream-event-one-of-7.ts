@@ -10,7 +10,7 @@ export interface RunStreamEventOneOf7 {
 }
 export namespace RunStreamEventOneOf7 {
   export const EventEnum = {
-    ThreadRunCancelling: 'thread.run.cancelling'
+    ThreadRunCancelling: 'thread.run.cancelling',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

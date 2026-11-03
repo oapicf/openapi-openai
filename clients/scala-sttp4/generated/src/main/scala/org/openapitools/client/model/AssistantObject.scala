@@ -47,7 +47,7 @@ object AssistantObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Assistant extends `Object`
+    case object Assistant extends `Object` { override def toString: String = "assistant" }
 
     import org.json4s._
 

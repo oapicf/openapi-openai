@@ -182,13 +182,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (messages.IsSet && messages.Value == null)
-                throw new ArgumentNullException(nameof(messages), "Property is not nullable for class FineTunePreferenceRequestInputInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInputInput: messages.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class FineTunePreferenceRequestInputInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInputInput: tools.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class FineTunePreferenceRequestInputInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInputInput: parallel_tool_calls.");
 
             return new FineTunePreferenceRequestInputInput(messages, tools, parallelToolCalls);
         }
@@ -199,7 +199,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInputInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTunePreferenceRequestInputInput fineTunePreferenceRequestInputInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -214,14 +213,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInputInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTunePreferenceRequestInputInput fineTunePreferenceRequestInputInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTunePreferenceRequestInputInput.MessagesOption.IsSet && fineTunePreferenceRequestInputInput.Messages == null)
-                throw new ArgumentNullException(nameof(fineTunePreferenceRequestInputInput.Messages), "Property is required for class FineTunePreferenceRequestInputInput.");
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInputInput.Messages to non-nullable JSON property 'messages'.");
 
             if (fineTunePreferenceRequestInputInput.ToolsOption.IsSet && fineTunePreferenceRequestInputInput.Tools == null)
-                throw new ArgumentNullException(nameof(fineTunePreferenceRequestInputInput.Tools), "Property is required for class FineTunePreferenceRequestInputInput.");
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInputInput.Tools to non-nullable JSON property 'tools'.");
+
+            if (fineTunePreferenceRequestInputInput.ParallelToolCallsOption.IsSet && fineTunePreferenceRequestInputInput.ParallelToolCalls == null)
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInputInput.ParallelToolCalls to non-nullable JSON property 'parallel_tool_calls'.");
 
             if (fineTunePreferenceRequestInputInput.MessagesOption.IsSet)
             {

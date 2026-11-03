@@ -81,22 +81,19 @@ class FineTuneChatRequestInput(BaseModel):
         _items = []
         if self.messages:
             for _item_messages in self.messages:
-                if _item_messages:
-                    _items.append(_item_messages.to_dict())
+                _items.append(_item_messages.to_dict() if _item_messages is not None else None)
             _dict['messages'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in tools (list)
         _items = []
         if self.tools:
             for _item_tools in self.tools:
-                if _item_tools:
-                    _items.append(_item_tools.to_dict())
+                _items.append(_item_tools.to_dict() if _item_tools is not None else None)
             _dict['tools'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in functions (list)
         _items = []
         if self.functions:
             for _item_functions in self.functions:
-                if _item_functions:
-                    _items.append(_item_functions.to_dict())
+                _items.append(_item_functions.to_dict() if _item_functions is not None else None)
             _dict['functions'] = _items
         return _dict
 

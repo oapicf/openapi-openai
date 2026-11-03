@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface ProjectServiceAccount {
     /**
      * The object type, which is always `organization.project.service_account`
-     * @type {ProjectServiceAccountObjectEnum}
-     * @memberof ProjectServiceAccount
      */
     object: ProjectServiceAccountObjectEnum;
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof ProjectServiceAccount
      */
     id: string;
     /**
      * The name of the service account
-     * @type {string}
-     * @memberof ProjectServiceAccount
      */
     name: string;
     /**
      * `owner` or `member`
-     * @type {ProjectServiceAccountRoleEnum}
-     * @memberof ProjectServiceAccount
      */
     role: ProjectServiceAccountRoleEnum;
     /**
      * The Unix timestamp (in seconds) of when the service account was created
-     * @type {number}
-     * @memberof ProjectServiceAccount
      */
     createdAt: number;
 }
@@ -56,7 +46,7 @@ export interface ProjectServiceAccount {
  * @export
  */
 export const ProjectServiceAccountObjectEnum = {
-    OrganizationProjectServiceAccount: 'organization.project.service_account'
+    OrganizationProjectServiceAccount: 'organization.project.service_account',
 } as const;
 export type ProjectServiceAccountObjectEnum = typeof ProjectServiceAccountObjectEnum[keyof typeof ProjectServiceAccountObjectEnum];
 
@@ -65,7 +55,7 @@ export type ProjectServiceAccountObjectEnum = typeof ProjectServiceAccountObject
  */
 export const ProjectServiceAccountRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 export type ProjectServiceAccountRoleEnum = typeof ProjectServiceAccountRoleEnum[keyof typeof ProjectServiceAccountRoleEnum];
 

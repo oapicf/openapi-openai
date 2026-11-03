@@ -178,8 +178,6 @@ ACCEPTED(String.valueOf("accepted")), EXPIRED(String.valueOf("expired")), PENDIN
   */
   @ApiModelProperty(value = "The projects that were granted membership upon acceptance of the invite.")
 
-  @Valid
-
   private List<@Valid InviteProjectsInner> projects = new ArrayList<>();
  /**
    * The object type, which is always &#x60;organization.invite&#x60;

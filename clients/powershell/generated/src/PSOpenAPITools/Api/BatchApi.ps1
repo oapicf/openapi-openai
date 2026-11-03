@@ -57,7 +57,7 @@ function Stop-Batch {
         if (!$BatchId) {
             throw "Error! The required parameter `BatchId` missing when calling cancelBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Web.HTTPUtility]::UrlEncode($BatchId))
+        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Uri]::EscapeDataString([string]$BatchId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -306,7 +306,7 @@ function Invoke-RetrieveBatch {
         if (!$BatchId) {
             throw "Error! The required parameter `BatchId` missing when calling retrieveBatch."
         }
-        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Web.HTTPUtility]::UrlEncode($BatchId))
+        $LocalVarUri = $LocalVarUri.replace('{batch_id}', [System.Uri]::EscapeDataString([string]$BatchId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

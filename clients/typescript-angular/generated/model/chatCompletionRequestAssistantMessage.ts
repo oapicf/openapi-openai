@@ -40,7 +40,7 @@ export interface ChatCompletionRequestAssistantMessage {
 }
 export namespace ChatCompletionRequestAssistantMessage {
     export const RoleEnum = {
-        Assistant: 'assistant'
+        Assistant: 'assistant',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

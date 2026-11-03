@@ -30,14 +30,10 @@ import {
 export interface ChatCompletionRequestMessageContentPartImage {
     /**
      * The type of the content part.
-     * @type {ChatCompletionRequestMessageContentPartImageTypeEnum}
-     * @memberof ChatCompletionRequestMessageContentPartImage
      */
     type: ChatCompletionRequestMessageContentPartImageTypeEnum;
     /**
      * 
-     * @type {ChatCompletionRequestMessageContentPartImageImageUrl}
-     * @memberof ChatCompletionRequestMessageContentPartImage
      */
     imageUrl: ChatCompletionRequestMessageContentPartImageImageUrl;
 }
@@ -47,7 +43,7 @@ export interface ChatCompletionRequestMessageContentPartImage {
  * @export
  */
 export const ChatCompletionRequestMessageContentPartImageTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 export type ChatCompletionRequestMessageContentPartImageTypeEnum = typeof ChatCompletionRequestMessageContentPartImageTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartImageTypeEnum];
 

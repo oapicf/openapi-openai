@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaObjectDeltaStepDetails" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsMessageCreationObject"></param>
-        public RunStepDeltaObjectDeltaStepDetails(RunStepDeltaStepDetailsMessageCreationObject runStepDeltaStepDetailsMessageCreationObject)
+        internal RunStepDeltaObjectDeltaStepDetails(RunStepDeltaStepDetailsMessageCreationObject runStepDeltaStepDetailsMessageCreationObject)
         {
             RunStepDeltaStepDetailsMessageCreationObject = runStepDeltaStepDetailsMessageCreationObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaObjectDeltaStepDetails" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsObject"></param>
-        public RunStepDeltaObjectDeltaStepDetails(RunStepDeltaStepDetailsToolCallsObject runStepDeltaStepDetailsToolCallsObject)
+        internal RunStepDeltaObjectDeltaStepDetails(RunStepDeltaStepDetailsToolCallsObject runStepDeltaStepDetailsToolCallsObject)
         {
             RunStepDeltaStepDetailsToolCallsObject = runStepDeltaStepDetailsToolCallsObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObjectDeltaStepDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaObjectDeltaStepDetails runStepDeltaObjectDeltaStepDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObjectDeltaStepDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaObjectDeltaStepDetails runStepDeltaObjectDeltaStepDetails, JsonSerializerOptions jsonSerializerOptions)
         {
 

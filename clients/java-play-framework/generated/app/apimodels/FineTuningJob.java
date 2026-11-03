@@ -17,7 +17,7 @@ import javax.validation.Valid;
 /**
  * The &#x60;fine_tuning.job&#x60; object represents a fine-tuning job that has been created through the API. 
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FineTuningJob   {
   @JsonProperty("id")
@@ -164,7 +164,7 @@ public class FineTuningJob   {
   @Size(max=5)
 @Valid
 
-  private List<FineTuningJobIntegrationsInner> integrations = null;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations = null;
 
   @JsonProperty("seed")
   @NotNull
@@ -426,7 +426,7 @@ public class FineTuningJob   {
     this.validationFile = validationFile;
   }
 
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }
@@ -443,11 +443,11 @@ public class FineTuningJob   {
    * A list of integrations to enable for this fine-tuning job.
    * @return integrations
   **/
-  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

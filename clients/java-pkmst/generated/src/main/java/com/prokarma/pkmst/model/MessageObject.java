@@ -22,7 +22,7 @@ import java.util.List;
  */
 @ApiModel(description = "Represents a message within a [thread](/docs/api-reference/threads).")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageObject   {
   @JsonProperty("id")
   private String id;
@@ -156,7 +156,7 @@ public class MessageObject   {
 
   @JsonProperty("attachments")
   
-  private List<CreateMessageRequestAttachmentsInner> attachments = ;
+  private List<CreateMessageRequestAttachmentsInner> attachments = null;
 
   @JsonProperty("metadata")
   private Object metadata;

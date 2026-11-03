@@ -29,14 +29,10 @@ import {
 export interface MessageStreamEventOneOf {
     /**
      * 
-     * @type {MessageStreamEventOneOfEventEnum}
-     * @memberof MessageStreamEventOneOf
      */
     event: MessageStreamEventOneOfEventEnum;
     /**
      * 
-     * @type {MessageObject}
-     * @memberof MessageStreamEventOneOf
      */
     data: MessageObject;
 }
@@ -46,7 +42,7 @@ export interface MessageStreamEventOneOf {
  * @export
  */
 export const MessageStreamEventOneOfEventEnum = {
-    ThreadMessageCreated: 'thread.message.created'
+    ThreadMessageCreated: 'thread.message.created',
 } as const;
 export type MessageStreamEventOneOfEventEnum = typeof MessageStreamEventOneOfEventEnum[keyof typeof MessageStreamEventOneOfEventEnum];
 

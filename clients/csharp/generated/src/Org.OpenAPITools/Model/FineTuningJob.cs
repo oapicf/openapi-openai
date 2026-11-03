@@ -520,7 +520,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<FineTuningJob.ObjectEnum?>(FineTuningJob.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                FineTuningJob.ObjectEnum? varObjectValue = FineTuningJob.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<FineTuningJob.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "organization_id":
                             organizationId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -531,7 +536,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<FineTuningJob.StatusEnum?>(FineTuningJob.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                FineTuningJob.StatusEnum? statusValue = FineTuningJob.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<FineTuningJob.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "training_file":
                             trainingFile = new Option<string?>(utf8JsonReader.GetString()!);
@@ -570,82 +580,82 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(id));
+                throw new JsonException("Property is required for class FineTuningJob: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(createdAt));
+                throw new JsonException("Property is required for class FineTuningJob: created_at.");
 
             if (!hyperparameters.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(hyperparameters));
+                throw new JsonException("Property is required for class FineTuningJob: hyperparameters.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(model));
+                throw new JsonException("Property is required for class FineTuningJob: model.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(varObject));
+                throw new JsonException("Property is required for class FineTuningJob: object.");
 
             if (!organizationId.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(organizationId));
+                throw new JsonException("Property is required for class FineTuningJob: organization_id.");
 
             if (!resultFiles.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(resultFiles));
+                throw new JsonException("Property is required for class FineTuningJob: result_files.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(status));
+                throw new JsonException("Property is required for class FineTuningJob: status.");
 
             if (!trainingFile.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(trainingFile));
+                throw new JsonException("Property is required for class FineTuningJob: training_file.");
 
             if (!seed.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(seed));
+                throw new JsonException("Property is required for class FineTuningJob: seed.");
 
             if (!error.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(error));
+                throw new JsonException("Property is required for class FineTuningJob: error.");
 
             if (!fineTunedModel.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(fineTunedModel));
+                throw new JsonException("Property is required for class FineTuningJob: fine_tuned_model.");
 
             if (!finishedAt.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(finishedAt));
+                throw new JsonException("Property is required for class FineTuningJob: finished_at.");
 
             if (!trainedTokens.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(trainedTokens));
+                throw new JsonException("Property is required for class FineTuningJob: trained_tokens.");
 
             if (!validationFile.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJob.", nameof(validationFile));
+                throw new JsonException("Property is required for class FineTuningJob: validation_file.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: created_at.");
 
             if (hyperparameters.IsSet && hyperparameters.Value == null)
-                throw new ArgumentNullException(nameof(hyperparameters), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: hyperparameters.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: model.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: object.");
 
             if (organizationId.IsSet && organizationId.Value == null)
-                throw new ArgumentNullException(nameof(organizationId), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: organization_id.");
 
             if (resultFiles.IsSet && resultFiles.Value == null)
-                throw new ArgumentNullException(nameof(resultFiles), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: result_files.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: status.");
 
             if (trainingFile.IsSet && trainingFile.Value == null)
-                throw new ArgumentNullException(nameof(trainingFile), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: training_file.");
 
             if (seed.IsSet && seed.Value == null)
-                throw new ArgumentNullException(nameof(seed), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: seed.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class FineTuningJob.");
+                throw new JsonException("Property is not nullable for class FineTuningJob: method.");
 
             return new FineTuningJob(id.Value!, createdAt.Value!.Value!, hyperparameters.Value!, model.Value!, varObject.Value!.Value!, organizationId.Value!, resultFiles.Value!, status.Value!.Value!, trainingFile.Value!, seed.Value!.Value!, error.Value!, fineTunedModel.Value!, finishedAt.Value!, trainedTokens.Value!, validationFile.Value!, integrations, estimatedFinish, method);
         }
@@ -656,7 +666,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJob fineTuningJob, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -671,29 +680,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJob"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJob fineTuningJob, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fineTuningJob.Id == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.Id), "Property is required for class FineTuningJob.");
-
-            if (fineTuningJob.Hyperparameters == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.Hyperparameters), "Property is required for class FineTuningJob.");
-
-            if (fineTuningJob.Model == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.Model), "Property is required for class FineTuningJob.");
-
-            if (fineTuningJob.OrganizationId == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.OrganizationId), "Property is required for class FineTuningJob.");
-
-            if (fineTuningJob.ResultFiles == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.ResultFiles), "Property is required for class FineTuningJob.");
-
-            if (fineTuningJob.TrainingFile == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.TrainingFile), "Property is required for class FineTuningJob.");
-
             if (fineTuningJob.MethodOption.IsSet && fineTuningJob.Method == null)
-                throw new ArgumentNullException(nameof(fineTuningJob.Method), "Property is required for class FineTuningJob.");
+                throw new JsonException("Cannot write null property FineTuningJob.Method to non-nullable JSON property 'method'.");
 
             writer.WriteString("id", fineTuningJob.Id);
 

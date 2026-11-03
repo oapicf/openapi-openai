@@ -36,7 +36,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   AuditLogRateLimitUpdatedChangesRequested.JSON_PROPERTY_BATCH1_DAY_MAX_INPUT_TOKENS
 })
 @JsonTypeName("AuditLog_rate_limit_updated_changes_requested")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class AuditLogRateLimitUpdatedChangesRequested {
     public static final String JSON_PROPERTY_MAX_REQUESTS_PER1_MINUTE = "max_requests_per_1_minute";

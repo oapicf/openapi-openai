@@ -138,6 +138,7 @@ class _$DeleteMessageResponseSerializer implements PrimitiveSerializer<DeleteMes
   }
 }
 
+
 class DeleteMessageResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.message.deleted')

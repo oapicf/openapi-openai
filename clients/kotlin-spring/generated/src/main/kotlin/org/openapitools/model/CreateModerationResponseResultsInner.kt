@@ -26,22 +26,22 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateModerationResponseResultsInner(
 
     @Schema(required = true, description = "Whether any of the below categories are flagged.")
-    @param:JsonProperty("flagged")
+    @param:JsonProperty("flagged", required = true)
     @get:JsonProperty("flagged", required = true) val flagged: kotlin.Boolean,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("categories")
+    @param:JsonProperty("categories", required = true)
     @get:JsonProperty("categories", required = true) val categories: CreateModerationResponseResultsInnerCategories,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("category_scores")
+    @param:JsonProperty("category_scores", required = true)
     @get:JsonProperty("category_scores", required = true) val categoryScores: CreateModerationResponseResultsInnerCategoryScores,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("category_applied_input_types")
+    @param:JsonProperty("category_applied_input_types", required = true)
     @get:JsonProperty("category_applied_input_types", required = true) val categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes
 ) {
 

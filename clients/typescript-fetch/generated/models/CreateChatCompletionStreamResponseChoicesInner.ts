@@ -36,14 +36,10 @@ import {
 export interface CreateChatCompletionStreamResponseChoicesInner {
     /**
      * 
-     * @type {ChatCompletionStreamResponseDelta}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
     delta: ChatCompletionStreamResponseDelta;
     /**
      * 
-     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
     logprobs?: CreateChatCompletionResponseChoicesInnerLogprobs | null;
     /**
@@ -52,14 +48,10 @@ export interface CreateChatCompletionStreamResponseChoicesInner {
      * `content_filter` if content was omitted due to a flag from our content filters,
      * `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      * 
-     * @type {CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
     finishReason: CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum | null;
     /**
      * The index of the choice in the list of choices.
-     * @type {number}
-     * @memberof CreateChatCompletionStreamResponseChoicesInner
      */
     index: number;
 }
@@ -73,7 +65,7 @@ export const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = {
     Length: 'length',
     ToolCalls: 'tool_calls',
     ContentFilter: 'content_filter',
-    FunctionCall: 'function_call'
+    FunctionCall: 'function_call',
 } as const;
 export type CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum];
 

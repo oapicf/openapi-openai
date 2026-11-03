@@ -37,17 +37,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FineTunePreferenceRequestInput.JSON_PROPERTY_NON_PREFERRED_COMPLETION
 })
 @JsonTypeName("FineTunePreferenceRequestInput")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FineTunePreferenceRequestInput {
     public static final String JSON_PROPERTY_INPUT = "input";
     private FineTunePreferenceRequestInputInput input;
 
     public static final String JSON_PROPERTY_PREFERRED_COMPLETION = "preferred_completion";
-    private List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = null;
+    private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = null;
 
     public static final String JSON_PROPERTY_NON_PREFERRED_COMPLETION = "non_preferred_completion";
-    private List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = null;
+    private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = null;
 
     public FineTunePreferenceRequestInput() {
     }
@@ -76,7 +76,7 @@ public class FineTunePreferenceRequestInput {
         this.input = input;
     }
 
-    public FineTunePreferenceRequestInput preferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
+    public FineTunePreferenceRequestInput preferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
         this.preferredCompletion = preferredCompletion;
         return this;
     }
@@ -98,17 +98,17 @@ public class FineTunePreferenceRequestInput {
     @Schema(name = "preferred_completion", description = "The preferred completion message for the output.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_PREFERRED_COMPLETION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
+    public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
         return preferredCompletion;
     }
 
     @JsonProperty(JSON_PROPERTY_PREFERRED_COMPLETION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
+    public void setPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
         this.preferredCompletion = preferredCompletion;
     }
 
-    public FineTunePreferenceRequestInput nonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
+    public FineTunePreferenceRequestInput nonPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
         this.nonPreferredCompletion = nonPreferredCompletion;
         return this;
     }
@@ -130,13 +130,13 @@ public class FineTunePreferenceRequestInput {
     @Schema(name = "non_preferred_completion", description = "The non-preferred completion message for the output.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_NON_PREFERRED_COMPLETION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
+    public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
         return nonPreferredCompletion;
     }
 
     @JsonProperty(JSON_PROPERTY_NON_PREFERRED_COMPLETION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setNonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
+    public void setNonPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
         this.nonPreferredCompletion = nonPreferredCompletion;
     }
 

@@ -154,13 +154,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!fileIds.IsSet)
-                throw new ArgumentException("Property is required for class CreateVectorStoreFileBatchRequest.", nameof(fileIds));
+                throw new JsonException("Property is required for class CreateVectorStoreFileBatchRequest: file_ids.");
 
             if (fileIds.IsSet && fileIds.Value == null)
-                throw new ArgumentNullException(nameof(fileIds), "Property is not nullable for class CreateVectorStoreFileBatchRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreFileBatchRequest: file_ids.");
 
             if (chunkingStrategy.IsSet && chunkingStrategy.Value == null)
-                throw new ArgumentNullException(nameof(chunkingStrategy), "Property is not nullable for class CreateVectorStoreFileBatchRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreFileBatchRequest: chunking_strategy.");
 
             return new CreateVectorStoreFileBatchRequest(fileIds.Value!, chunkingStrategy);
         }
@@ -171,7 +171,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createVectorStoreFileBatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -186,14 +185,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createVectorStoreFileBatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createVectorStoreFileBatchRequest.FileIds == null)
-                throw new ArgumentNullException(nameof(createVectorStoreFileBatchRequest.FileIds), "Property is required for class CreateVectorStoreFileBatchRequest.");
-
             if (createVectorStoreFileBatchRequest.ChunkingStrategyOption.IsSet && createVectorStoreFileBatchRequest.ChunkingStrategy == null)
-                throw new ArgumentNullException(nameof(createVectorStoreFileBatchRequest.ChunkingStrategy), "Property is required for class CreateVectorStoreFileBatchRequest.");
+                throw new JsonException("Cannot write null property CreateVectorStoreFileBatchRequest.ChunkingStrategy to non-nullable JSON property 'chunking_strategy'.");
 
             writer.WritePropertyName("file_ids");
             JsonSerializer.Serialize(writer, createVectorStoreFileBatchRequest.FileIds, jsonSerializerOptions);

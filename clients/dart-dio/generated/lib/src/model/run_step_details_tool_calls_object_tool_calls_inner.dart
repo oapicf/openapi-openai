@@ -79,15 +79,14 @@ class _$RunStepDetailsToolCallsObjectToolCallsInnerSerializer implements Primiti
   }
 }
 
+
+/// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 class RunStepDetailsToolCallsObjectToolCallsInnerTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const RunStepDetailsToolCallsObjectToolCallsInnerTypeEnum codeInterpreter = _$runStepDetailsToolCallsObjectToolCallsInnerTypeEnum_codeInterpreter;
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'file_search')
   static const RunStepDetailsToolCallsObjectToolCallsInnerTypeEnum fileSearch = _$runStepDetailsToolCallsObjectToolCallsInnerTypeEnum_fileSearch;
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'function')
   static const RunStepDetailsToolCallsObjectToolCallsInnerTypeEnum function_ = _$runStepDetailsToolCallsObjectToolCallsInnerTypeEnum_function_;
 

@@ -1,4 +1,4 @@
-.openapi-generator-ignore
+Project.toml
 README.md
 docs/AdminApiKey.md
 docs/AdminApiKeyOwner.md

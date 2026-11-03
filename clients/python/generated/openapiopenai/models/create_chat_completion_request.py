@@ -146,8 +146,7 @@ class CreateChatCompletionRequest(BaseModel):
         _items = []
         if self.messages:
             for _item_messages in self.messages:
-                if _item_messages:
-                    _items.append(_item_messages.to_dict())
+                _items.append(_item_messages.to_dict() if _item_messages is not None else None)
             _dict['messages'] = _items
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
@@ -171,8 +170,7 @@ class CreateChatCompletionRequest(BaseModel):
         _items = []
         if self.tools:
             for _item_tools in self.tools:
-                if _item_tools:
-                    _items.append(_item_tools.to_dict())
+                _items.append(_item_tools.to_dict() if _item_tools is not None else None)
             _dict['tools'] = _items
         # override the default output from pydantic by calling `to_dict()` of tool_choice
         if self.tool_choice:
@@ -184,8 +182,7 @@ class CreateChatCompletionRequest(BaseModel):
         _items = []
         if self.functions:
             for _item_functions in self.functions:
-                if _item_functions:
-                    _items.append(_item_functions.to_dict())
+                _items.append(_item_functions.to_dict() if _item_functions is not None else None)
             _dict['functions'] = _items
         # set to None if store (nullable) is None
         # and model_fields_set contains the field
@@ -296,28 +293,28 @@ class CreateChatCompletionRequest(BaseModel):
         _obj = cls.model_validate({
             "messages": [ChatCompletionRequestMessage.from_dict(_item) for _item in obj["messages"]] if obj.get("messages") is not None else None,
             "model": CreateChatCompletionRequestModel.from_dict(obj["model"]) if obj.get("model") is not None else None,
-            "store": obj.get("store") if obj.get("store") is not None else False,
+            "store": obj.get("store") if "store" in obj else False,
             "reasoning_effort": obj.get("reasoning_effort") if obj.get("reasoning_effort") is not None else 'medium',
             "metadata": obj.get("metadata"),
-            "frequency_penalty": obj.get("frequency_penalty") if obj.get("frequency_penalty") is not None else 0,
+            "frequency_penalty": obj.get("frequency_penalty") if "frequency_penalty" in obj else 0,
             "logit_bias": obj.get("logit_bias"),
-            "logprobs": obj.get("logprobs") if obj.get("logprobs") is not None else False,
+            "logprobs": obj.get("logprobs") if "logprobs" in obj else False,
             "top_logprobs": obj.get("top_logprobs"),
             "max_tokens": obj.get("max_tokens"),
             "max_completion_tokens": obj.get("max_completion_tokens"),
-            "n": obj.get("n") if obj.get("n") is not None else 1,
+            "n": obj.get("n") if "n" in obj else 1,
             "modalities": obj.get("modalities"),
             "prediction": PredictionContent.from_dict(obj["prediction"]) if obj.get("prediction") is not None else None,
             "audio": CreateChatCompletionRequestAudio.from_dict(obj["audio"]) if obj.get("audio") is not None else None,
-            "presence_penalty": obj.get("presence_penalty") if obj.get("presence_penalty") is not None else 0,
+            "presence_penalty": obj.get("presence_penalty") if "presence_penalty" in obj else 0,
             "response_format": CreateChatCompletionRequestResponseFormat.from_dict(obj["response_format"]) if obj.get("response_format") is not None else None,
             "seed": obj.get("seed"),
-            "service_tier": obj.get("service_tier") if obj.get("service_tier") is not None else 'auto',
+            "service_tier": obj.get("service_tier") if "service_tier" in obj else 'auto',
             "stop": CreateChatCompletionRequestStop.from_dict(obj["stop"]) if obj.get("stop") is not None else None,
-            "stream": obj.get("stream") if obj.get("stream") is not None else False,
+            "stream": obj.get("stream") if "stream" in obj else False,
             "stream_options": ChatCompletionStreamOptions.from_dict(obj["stream_options"]) if obj.get("stream_options") is not None else None,
-            "temperature": obj.get("temperature") if obj.get("temperature") is not None else 1,
-            "top_p": obj.get("top_p") if obj.get("top_p") is not None else 1,
+            "temperature": obj.get("temperature") if "temperature" in obj else 1,
+            "top_p": obj.get("top_p") if "top_p" in obj else 1,
             "tools": [ChatCompletionTool.from_dict(_item) for _item in obj["tools"]] if obj.get("tools") is not None else None,
             "tool_choice": ChatCompletionToolChoiceOption.from_dict(obj["tool_choice"]) if obj.get("tool_choice") is not None else None,
             "parallel_tool_calls": obj.get("parallel_tool_calls") if obj.get("parallel_tool_calls") is not None else True,

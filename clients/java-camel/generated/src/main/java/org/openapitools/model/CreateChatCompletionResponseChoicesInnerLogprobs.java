@@ -25,13 +25,11 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateChatCompletionResponse_choices_inner_logprobs", description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs {
 
-  @Valid
   private JsonNullable<List<@Valid ChatCompletionTokenLogprob>> content = JsonNullable.<List<@Valid ChatCompletionTokenLogprob>>undefined();
 
-  @Valid
   private JsonNullable<List<@Valid ChatCompletionTokenLogprob>> refusal = JsonNullable.<List<@Valid ChatCompletionTokenLogprob>>undefined();
 
   public CreateChatCompletionResponseChoicesInnerLogprobs() {
@@ -63,7 +61,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * A list of message content tokens with log probability information.
    * @return content
    */
-  @NotNull @Valid 
+  /* @Present */ 
   @Schema(name = "content", description = "A list of message content tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("content")
   public JsonNullable<List<@Valid ChatCompletionTokenLogprob>> getContent() {
@@ -91,7 +89,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * A list of message refusal tokens with log probability information.
    * @return refusal
    */
-  @NotNull @Valid 
+  /* @Present */ 
   @Schema(name = "refusal", description = "A list of message refusal tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("refusal")
   public JsonNullable<List<@Valid ChatCompletionTokenLogprob>> getRefusal() {

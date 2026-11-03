@@ -27,7 +27,7 @@ export namespace CreateSpeechRequest {
     Fable: 'fable',
     Onyx: 'onyx',
     Nova: 'nova',
-    Shimmer: 'shimmer'
+    Shimmer: 'shimmer',
   } as const;
   export type VoiceEnum = typeof VoiceEnum[keyof typeof VoiceEnum];
   export const ResponseFormatEnum = {
@@ -36,7 +36,7 @@ export namespace CreateSpeechRequest {
     Aac: 'aac',
     Flac: 'flac',
     Wav: 'wav',
-    Pcm: 'pcm'
+    Pcm: 'pcm',
   } as const;
   export type ResponseFormatEnum = typeof ResponseFormatEnum[keyof typeof ResponseFormatEnum];
 }

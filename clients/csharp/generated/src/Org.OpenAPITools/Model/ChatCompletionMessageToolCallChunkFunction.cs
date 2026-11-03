@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionMessageToolCallChunkFunction.");
+                throw new JsonException("Property is not nullable for class ChatCompletionMessageToolCallChunkFunction: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class ChatCompletionMessageToolCallChunkFunction.");
+                throw new JsonException("Property is not nullable for class ChatCompletionMessageToolCallChunkFunction: arguments.");
 
             return new ChatCompletionMessageToolCallChunkFunction(name, arguments);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionMessageToolCallChunkFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionMessageToolCallChunkFunction chatCompletionMessageToolCallChunkFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionMessageToolCallChunkFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionMessageToolCallChunkFunction chatCompletionMessageToolCallChunkFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (chatCompletionMessageToolCallChunkFunction.NameOption.IsSet && chatCompletionMessageToolCallChunkFunction.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionMessageToolCallChunkFunction.Name), "Property is required for class ChatCompletionMessageToolCallChunkFunction.");
+                throw new JsonException("Cannot write null property ChatCompletionMessageToolCallChunkFunction.Name to non-nullable JSON property 'name'.");
 
             if (chatCompletionMessageToolCallChunkFunction.ArgumentsOption.IsSet && chatCompletionMessageToolCallChunkFunction.Arguments == null)
-                throw new ArgumentNullException(nameof(chatCompletionMessageToolCallChunkFunction.Arguments), "Property is required for class ChatCompletionMessageToolCallChunkFunction.");
+                throw new JsonException("Cannot write null property ChatCompletionMessageToolCallChunkFunction.Arguments to non-nullable JSON property 'arguments'.");
 
             if (chatCompletionMessageToolCallChunkFunction.NameOption.IsSet)
                 writer.WriteString("name", chatCompletionMessageToolCallChunkFunction.Name);

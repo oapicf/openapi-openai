@@ -123,3 +123,4 @@ class _$ChatCompletionRequestAssistantMessageFunctionCallSerializer implements P
   }
 }
 
+

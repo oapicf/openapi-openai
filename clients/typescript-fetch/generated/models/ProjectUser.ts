@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface ProjectUser {
     /**
      * The object type, which is always `organization.project.user`
-     * @type {ProjectUserObjectEnum}
-     * @memberof ProjectUser
      */
     object: ProjectUserObjectEnum;
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof ProjectUser
      */
     id: string;
     /**
      * The name of the user
-     * @type {string}
-     * @memberof ProjectUser
      */
     name: string;
     /**
      * The email address of the user
-     * @type {string}
-     * @memberof ProjectUser
      */
     email: string;
     /**
      * `owner` or `member`
-     * @type {ProjectUserRoleEnum}
-     * @memberof ProjectUser
      */
     role: ProjectUserRoleEnum;
     /**
      * The Unix timestamp (in seconds) of when the project was added.
-     * @type {number}
-     * @memberof ProjectUser
      */
     addedAt: number;
 }
@@ -62,7 +50,7 @@ export interface ProjectUser {
  * @export
  */
 export const ProjectUserObjectEnum = {
-    OrganizationProjectUser: 'organization.project.user'
+    OrganizationProjectUser: 'organization.project.user',
 } as const;
 export type ProjectUserObjectEnum = typeof ProjectUserObjectEnum[keyof typeof ProjectUserObjectEnum];
 
@@ -71,7 +59,7 @@ export type ProjectUserObjectEnum = typeof ProjectUserObjectEnum[keyof typeof Pr
  */
 export const ProjectUserRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 export type ProjectUserRoleEnum = typeof ProjectUserRoleEnum[keyof typeof ProjectUserRoleEnum];
 

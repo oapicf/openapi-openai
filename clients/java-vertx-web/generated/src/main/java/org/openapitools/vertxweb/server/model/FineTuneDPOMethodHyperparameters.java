@@ -14,10 +14,10 @@ import org.openapitools.vertxweb.server.model.FineTuneDPOMethodHyperparametersNE
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FineTuneDPOMethodHyperparameters   {
   
-  private FineTuneDPOMethodHyperparametersBeta beta;
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   public FineTuneDPOMethodHyperparameters () {
 

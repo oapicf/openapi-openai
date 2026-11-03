@@ -44,11 +44,11 @@ export namespace Upload {
     Pending: 'pending',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Expired: 'expired'
+    Expired: 'expired',
   } as const;
   export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
   export const ObjectEnum = {
-    Upload: 'upload'
+    Upload: 'upload',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

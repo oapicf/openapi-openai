@@ -184,24 +184,20 @@ class _$CreateSpeechRequestSerializer implements PrimitiveSerializer<CreateSpeec
   }
 }
 
+
+/// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
 class CreateSpeechRequestVoiceEnum extends EnumClass {
 
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'alloy')
   static const CreateSpeechRequestVoiceEnum alloy = _$createSpeechRequestVoiceEnum_alloy;
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'echo')
   static const CreateSpeechRequestVoiceEnum echo = _$createSpeechRequestVoiceEnum_echo;
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'fable')
   static const CreateSpeechRequestVoiceEnum fable = _$createSpeechRequestVoiceEnum_fable;
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'onyx')
   static const CreateSpeechRequestVoiceEnum onyx = _$createSpeechRequestVoiceEnum_onyx;
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'nova')
   static const CreateSpeechRequestVoiceEnum nova = _$createSpeechRequestVoiceEnum_nova;
-  /// The voice to use when generating the audio. Supported voices are `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. Previews of the voices are available in the [Text to speech guide](/docs/guides/text-to-speech#voice-options).
   @BuiltValueEnumConst(wireName: r'shimmer')
   static const CreateSpeechRequestVoiceEnum shimmer = _$createSpeechRequestVoiceEnum_shimmer;
 
@@ -213,24 +209,19 @@ class CreateSpeechRequestVoiceEnum extends EnumClass {
   static CreateSpeechRequestVoiceEnum valueOf(String name) => _$createSpeechRequestVoiceEnumValueOf(name);
 }
 
+/// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
 class CreateSpeechRequestResponseFormatEnum extends EnumClass {
 
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'mp3')
   static const CreateSpeechRequestResponseFormatEnum mp3 = _$createSpeechRequestResponseFormatEnum_mp3;
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'opus')
   static const CreateSpeechRequestResponseFormatEnum opus = _$createSpeechRequestResponseFormatEnum_opus;
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'aac')
   static const CreateSpeechRequestResponseFormatEnum aac = _$createSpeechRequestResponseFormatEnum_aac;
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'flac')
   static const CreateSpeechRequestResponseFormatEnum flac = _$createSpeechRequestResponseFormatEnum_flac;
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'wav')
   static const CreateSpeechRequestResponseFormatEnum wav = _$createSpeechRequestResponseFormatEnum_wav;
-  /// The format to audio in. Supported formats are `mp3`, `opus`, `aac`, `flac`, `wav`, and `pcm`.
   @BuiltValueEnumConst(wireName: r'pcm')
   static const CreateSpeechRequestResponseFormatEnum pcm = _$createSpeechRequestResponseFormatEnum_pcm;
 

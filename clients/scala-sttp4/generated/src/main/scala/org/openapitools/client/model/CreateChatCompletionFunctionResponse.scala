@@ -34,7 +34,7 @@ object CreateChatCompletionFunctionResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ChatCompletion extends `Object`
+    case object ChatCompletion extends `Object` { override def toString: String = "chat.completion" }
 
     import org.json4s._
 

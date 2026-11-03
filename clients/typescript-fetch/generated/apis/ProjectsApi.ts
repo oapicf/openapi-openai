@@ -120,102 +120,242 @@ import {
 } from '../models/ProjectUserUpdateRequest';
 
 export interface ArchiveProjectRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
 }
 
 export interface CreateProjectRequest {
+    /**
+     * 
+     */
     projectCreateRequest: ProjectCreateRequest;
 }
 
 export interface CreateProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * 
+     */
     projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest;
 }
 
 export interface CreateProjectUserRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * 
+     */
     projectUserCreateRequest: ProjectUserCreateRequest;
 }
 
 export interface DeleteProjectApiKeyRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the API key.
+     */
     keyId: string;
 }
 
 export interface DeleteProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the service account.
+     */
     serviceAccountId: string;
 }
 
 export interface DeleteProjectUserRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the user.
+     */
     userId: string;
 }
 
 export interface ListProjectApiKeysRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
 }
 
 export interface ListProjectRateLimitsRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * A limit on the number of objects to be returned. The default is 100.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
 }
 
 export interface ListProjectServiceAccountsRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
 }
 
 export interface ListProjectUsersRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
 }
 
 export interface ListProjectsRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.
+     */
     includeArchived?: boolean;
 }
 
 export interface ModifyProjectRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * 
+     */
     projectUpdateRequest: ProjectUpdateRequest;
 }
 
 export interface ModifyProjectUserRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the user.
+     */
     userId: string;
+    /**
+     * 
+     */
     projectUserUpdateRequest: ProjectUserUpdateRequest;
 }
 
 export interface RetrieveProjectRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
 }
 
 export interface RetrieveProjectApiKeyRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the API key.
+     */
     keyId: string;
 }
 
 export interface RetrieveProjectServiceAccountRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the service account.
+     */
     serviceAccountId: string;
 }
 
 export interface RetrieveProjectUserRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the user.
+     */
     userId: string;
 }
 
 export interface UpdateProjectRateLimitsRequest {
+    /**
+     * The ID of the project.
+     */
     projectId: string;
+    /**
+     * The ID of the rate limit.
+     */
     rateLimitId: string;
+    /**
+     * 
+     */
     projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest;
 }
 

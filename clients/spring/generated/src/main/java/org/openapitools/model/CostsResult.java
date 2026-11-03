@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -27,7 +26,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "CostsResult", description = "The aggregated costs details of the specific time bucket.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CostsResult implements UsageTimeBucketResultInner {
 
   /**
@@ -65,13 +64,10 @@ public class CostsResult implements UsageTimeBucketResultInner {
 
   private ObjectEnum _object;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CostsResultAmount amount;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> lineItem = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> projectId = JsonNullable.<String>undefined();
 
   public CostsResult() {
@@ -137,7 +133,7 @@ public class CostsResult implements UsageTimeBucketResultInner {
    * @return lineItem
    */
   
-  @Schema(name = "line_item", description = "When `group_by=line_item`, this field provides the line item of the grouped costs result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "line_item", description = "When `group_by=line_item`, this field provides the line item of the grouped costs result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("line_item")
   public JsonNullable<String> getLineItem() {
     return lineItem;
@@ -157,7 +153,7 @@ public class CostsResult implements UsageTimeBucketResultInner {
    * @return projectId
    */
   
-  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped costs result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped costs result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("project_id")
   public JsonNullable<String> getProjectId() {
     return projectId;

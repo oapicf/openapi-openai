@@ -73,12 +73,12 @@ class _$VectorStoreFileObjectChunkingStrategySerializer implements PrimitiveSeri
   }
 }
 
+
+/// Always `static`.
 class VectorStoreFileObjectChunkingStrategyTypeEnum extends EnumClass {
 
-  /// Always `static`.
   @BuiltValueEnumConst(wireName: r'static')
   static const VectorStoreFileObjectChunkingStrategyTypeEnum static_ = _$vectorStoreFileObjectChunkingStrategyTypeEnum_static_;
-  /// Always `static`.
   @BuiltValueEnumConst(wireName: r'other')
   static const VectorStoreFileObjectChunkingStrategyTypeEnum other = _$vectorStoreFileObjectChunkingStrategyTypeEnum_other;
 

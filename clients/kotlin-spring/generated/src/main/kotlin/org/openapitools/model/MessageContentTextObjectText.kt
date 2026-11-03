@@ -16,18 +16,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;value&#x60; The data that makes up the text.
+ * @param `value` The data that makes up the text.
  * @param annotations 
  */
 data class MessageContentTextObjectText(
 
     @Schema(required = true, description = "The data that makes up the text.")
-    @param:JsonProperty("value")
+    @param:JsonProperty("value", required = true)
     @get:JsonProperty("value", required = true) val `value`: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("annotations")
+    @param:JsonProperty("annotations", required = true)
     @get:JsonProperty("annotations", required = true) val annotations: kotlin.collections.List<MessageContentTextObjectTextAnnotationsInner>
 ) {
 

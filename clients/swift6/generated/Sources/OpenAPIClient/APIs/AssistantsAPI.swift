@@ -180,9 +180,10 @@ open class AssistantsAPI {
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createRunRequest, codableHelper: apiConfiguration.codableHelper)
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "include[]": (wrappedValue: include?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
@@ -589,9 +590,10 @@ open class AssistantsAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "include[]": (wrappedValue: include?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -687,12 +689,13 @@ open class AssistantsAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "order": (wrappedValue: order?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "after": (wrappedValue: after?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "before": (wrappedValue: before?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -753,13 +756,14 @@ open class AssistantsAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "order": (wrappedValue: order?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "after": (wrappedValue: after?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "before": (wrappedValue: before?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "run_id": (wrappedValue: runId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -832,13 +836,14 @@ open class AssistantsAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "order": (wrappedValue: order?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "after": (wrappedValue: after?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "before": (wrappedValue: before?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "include[]": (wrappedValue: include?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
@@ -897,12 +902,13 @@ open class AssistantsAPI {
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryParameters: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "order": (wrappedValue: order?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "after": (wrappedValue: after?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "before": (wrappedValue: before?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryParameters)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :

@@ -25,7 +25,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateModerationResponse_results_inner_category_applied_input_types", description = "A list of the categories along with the input type(s) that the score applies to.")
 @JsonTypeName("CreateModerationResponse_results_inner_category_applied_input_types")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
 
   /**
@@ -61,7 +61,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HateEnum> hate = new ArrayList<>();
 
   /**
@@ -97,7 +96,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HateThreateningEnum> hateThreatening = new ArrayList<>();
 
   /**
@@ -133,7 +131,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HarassmentEnum> harassment = new ArrayList<>();
 
   /**
@@ -169,7 +166,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<HarassmentThreateningEnum> harassmentThreatening = new ArrayList<>();
 
   /**
@@ -205,7 +201,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<IllicitEnum> illicit = new ArrayList<>();
 
   /**
@@ -241,7 +236,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<IllicitViolentEnum> illicitViolent = new ArrayList<>();
 
   /**
@@ -279,7 +273,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmEnum> selfHarm = new ArrayList<>();
 
   /**
@@ -317,7 +310,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmIntentEnum> selfHarmIntent = new ArrayList<>();
 
   /**
@@ -355,7 +347,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SelfHarmInstructionsEnum> selfHarmInstructions = new ArrayList<>();
 
   /**
@@ -393,7 +384,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SexualEnum> sexual = new ArrayList<>();
 
   /**
@@ -429,7 +419,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<SexualMinorsEnum> sexualMinors = new ArrayList<>();
 
   /**
@@ -467,7 +456,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<ViolenceEnum> violence = new ArrayList<>();
 
   /**
@@ -505,7 +493,6 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     }
   }
 
-  @Valid
   private List<ViolenceGraphicEnum> violenceGraphic = new ArrayList<>();
 
   public CreateModerationResponseResultsInnerCategoryAppliedInputTypes() {

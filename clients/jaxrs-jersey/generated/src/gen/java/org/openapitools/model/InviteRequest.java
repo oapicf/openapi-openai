@@ -35,7 +35,7 @@ import javax.validation.Valid;
   InviteRequest.JSON_PROPERTY_ROLE,
   InviteRequest.JSON_PROPERTY_PROJECTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class InviteRequest   {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @JsonProperty(JSON_PROPERTY_EMAIL)
@@ -143,7 +143,7 @@ public class InviteRequest   {
    **/
   @JsonProperty(value = "projects")
   @ApiModelProperty(value = "An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.")
-  @Valid 
+  
   public List<@Valid InviteRequestProjectsInner> getProjects() {
     return projects;
   }

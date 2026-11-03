@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestHyperparametersLearningRateMultiplier" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(string @string)
+        public CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestHyperparametersLearningRateMultiplier" /> class.
         /// </summary>
         /// <param name="decimal"></param>
-        internal CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(decimal @decimal)
+        public CreateFineTuningJobRequestHyperparametersLearningRateMultiplier(decimal @decimal)
         {
             Decimal = @decimal;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparametersLearningRateMultiplier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparametersLearningRateMultiplier createFineTuningJobRequestHyperparametersLearningRateMultiplier, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparametersLearningRateMultiplier"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparametersLearningRateMultiplier createFineTuningJobRequestHyperparametersLearningRateMultiplier, JsonSerializerOptions jsonSerializerOptions)
         {
 

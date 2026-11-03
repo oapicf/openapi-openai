@@ -22,7 +22,7 @@ object RunStepDetailsToolCallsFileSearchResultObjectContentInnerEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Text extends `Type`
+    case object Text extends `Type` { override def toString: String = "text" }
 
     import org.json4s._
 

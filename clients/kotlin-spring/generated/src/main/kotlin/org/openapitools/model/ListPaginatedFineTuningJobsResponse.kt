@@ -18,23 +18,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  * @param hasMore 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  */
 data class ListPaginatedFineTuningJobsResponse(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<FineTuningJob>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("has_more")
+    @param:JsonProperty("has_more", required = true)
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ListPaginatedFineTuningJobsResponse.`Object`
 ) {
 
@@ -45,12 +45,12 @@ data class ListPaginatedFineTuningJobsResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         list("list");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

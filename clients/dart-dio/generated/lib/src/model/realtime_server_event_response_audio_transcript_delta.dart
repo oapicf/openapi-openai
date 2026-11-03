@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseAudioTranscriptDeltaSerializer implements Pri
   }
 }
 
+
+/// The event type, must be `response.audio_transcript.delta`.
 class RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.audio_transcript.delta`.
   @BuiltValueEnumConst(wireName: r'response.audio_transcript.delta')
   static const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum responsePeriodAudioTranscriptPeriodDelta = _$realtimeServerEventResponseAudioTranscriptDeltaTypeEnum_responsePeriodAudioTranscriptPeriodDelta;
 

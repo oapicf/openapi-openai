@@ -241,7 +241,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeSessionTurnDetection.TypeEnum?>(RealtimeSessionTurnDetection.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeSessionTurnDetection.TypeEnum? typeValue = RealtimeSessionTurnDetection.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeSessionTurnDetection.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "threshold":
                             threshold = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -259,16 +264,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeSessionTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionTurnDetection: type.");
 
             if (threshold.IsSet && threshold.Value == null)
-                throw new ArgumentNullException(nameof(threshold), "Property is not nullable for class RealtimeSessionTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionTurnDetection: threshold.");
 
             if (prefixPaddingMs.IsSet && prefixPaddingMs.Value == null)
-                throw new ArgumentNullException(nameof(prefixPaddingMs), "Property is not nullable for class RealtimeSessionTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionTurnDetection: prefix_padding_ms.");
 
             if (silenceDurationMs.IsSet && silenceDurationMs.Value == null)
-                throw new ArgumentNullException(nameof(silenceDurationMs), "Property is not nullable for class RealtimeSessionTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionTurnDetection: silence_duration_ms.");
 
             return new RealtimeSessionTurnDetection(type, threshold, prefixPaddingMs, silenceDurationMs);
         }
@@ -279,7 +284,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionTurnDetection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeSessionTurnDetection realtimeSessionTurnDetection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -294,9 +298,20 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionTurnDetection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeSessionTurnDetection realtimeSessionTurnDetection, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeSessionTurnDetection.TypeOption.IsSet && realtimeSessionTurnDetection.Type == null)
+                throw new JsonException("Cannot write null property RealtimeSessionTurnDetection.Type to non-nullable JSON property 'type'.");
+
+            if (realtimeSessionTurnDetection.ThresholdOption.IsSet && realtimeSessionTurnDetection.Threshold == null)
+                throw new JsonException("Cannot write null property RealtimeSessionTurnDetection.Threshold to non-nullable JSON property 'threshold'.");
+
+            if (realtimeSessionTurnDetection.PrefixPaddingMsOption.IsSet && realtimeSessionTurnDetection.PrefixPaddingMs == null)
+                throw new JsonException("Cannot write null property RealtimeSessionTurnDetection.PrefixPaddingMs to non-nullable JSON property 'prefix_padding_ms'.");
+
+            if (realtimeSessionTurnDetection.SilenceDurationMsOption.IsSet && realtimeSessionTurnDetection.SilenceDurationMs == null)
+                throw new JsonException("Cannot write null property RealtimeSessionTurnDetection.SilenceDurationMs to non-nullable JSON property 'silence_duration_ms'.");
+
             var typeRawValue = RealtimeSessionTurnDetection.TypeEnumToJsonValue(realtimeSessionTurnDetection.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);
             if (realtimeSessionTurnDetection.ThresholdOption.IsSet)

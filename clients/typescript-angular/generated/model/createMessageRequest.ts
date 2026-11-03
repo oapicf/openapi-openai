@@ -29,7 +29,7 @@ export interface CreateMessageRequest {
 export namespace CreateMessageRequest {
     export const RoleEnum = {
         User: 'user',
-        Assistant: 'assistant'
+        Assistant: 'assistant',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

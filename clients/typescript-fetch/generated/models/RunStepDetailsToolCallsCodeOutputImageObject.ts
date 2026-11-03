@@ -29,14 +29,10 @@ import {
 export interface RunStepDetailsToolCallsCodeOutputImageObject {
     /**
      * Always `image`.
-     * @type {RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum}
-     * @memberof RunStepDetailsToolCallsCodeOutputImageObject
      */
     type: RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDetailsToolCallsCodeOutputImageObjectImage}
-     * @memberof RunStepDetailsToolCallsCodeOutputImageObject
      */
     image: RunStepDetailsToolCallsCodeOutputImageObjectImage;
 }
@@ -46,7 +42,7 @@ export interface RunStepDetailsToolCallsCodeOutputImageObject {
  * @export
  */
 export const RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
 

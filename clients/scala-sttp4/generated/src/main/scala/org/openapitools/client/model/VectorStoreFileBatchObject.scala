@@ -33,7 +33,7 @@ object VectorStoreFileBatchObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object VectorStoreFilesBatch extends `Object`
+    case object VectorStoreFilesBatch extends `Object` { override def toString: String = "vector_store.files_batch" }
 
     import org.json4s._
 
@@ -54,10 +54,10 @@ object VectorStoreFileBatchObjectEnums {
 
   sealed trait Status
   object Status {
-    case object InProgress extends Status
-    case object Completed extends Status
-    case object Cancelled extends Status
-    case object Failed extends Status
+    case object InProgress extends Status { override def toString: String = "in_progress" }
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
+    case object Failed extends Status { override def toString: String = "failed" }
 
     import org.json4s._
 

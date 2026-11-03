@@ -141,9 +141,10 @@ class _$RealtimeServerEventResponseDoneSerializer implements PrimitiveSerializer
   }
 }
 
+
+/// The event type, must be `response.done`.
 class RealtimeServerEventResponseDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.done`.
   @BuiltValueEnumConst(wireName: r'response.done')
   static const RealtimeServerEventResponseDoneTypeEnum responsePeriodDone = _$realtimeServerEventResponseDoneTypeEnum_responsePeriodDone;
 

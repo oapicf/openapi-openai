@@ -33,7 +33,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * CreateChatCompletionRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest   {
   @JsonProperty("messages")
   
@@ -192,7 +192,7 @@ public class CreateChatCompletionRequest   {
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
 
   @JsonProperty("stop")
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   @JsonProperty("stream")
   private Boolean stream = false;
@@ -313,7 +313,7 @@ public class CreateChatCompletionRequest   {
 
   public CreateChatCompletionRequest putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = new HashMap<>());
+      this.metadata = new HashMap<>();
     }
     this.metadata.put(key, metadataItem);
     return this;
@@ -359,7 +359,7 @@ public class CreateChatCompletionRequest   {
 
   public CreateChatCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
     if (this.logitBias == null) {
-      this.logitBias = new HashMap<>());
+      this.logitBias = new HashMap<>();
     }
     this.logitBias.put(key, logitBiasItem);
     return this;

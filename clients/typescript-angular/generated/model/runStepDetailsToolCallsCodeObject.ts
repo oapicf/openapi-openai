@@ -26,7 +26,7 @@ export interface RunStepDetailsToolCallsCodeObject {
 }
 export namespace RunStepDetailsToolCallsCodeObject {
     export const TypeEnum = {
-        CodeInterpreter: 'code_interpreter'
+        CodeInterpreter: 'code_interpreter',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

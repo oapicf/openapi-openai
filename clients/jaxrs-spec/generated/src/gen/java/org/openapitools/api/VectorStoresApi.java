@@ -28,7 +28,7 @@ import javax.validation.Valid;
 */
 @Path("/vector_stores")
 @Api(description = "the vector_stores API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class VectorStoresApi {
 
     @POST
@@ -41,7 +41,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreFileBatchObject.class)
     })
-    public Response cancelVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file batch belongs to.") String vectorStoreId,@PathParam("batch_id") @ApiParam("The ID of the file batch to cancel.") String batchId) {
+    public Response cancelVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file batch belongs to.") String vectorStoreId
+,@PathParam("batch_id") @ApiParam("The ID of the file batch to cancel.") String batchId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -55,7 +57,8 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreObject.class)
     })
-    public Response createVectorStore(@Valid @NotNull CreateVectorStoreRequest createVectorStoreRequest) {
+    public Response createVectorStore(@Valid @NotNull CreateVectorStoreRequest createVectorStoreRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -70,7 +73,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreFileObject.class)
     })
-    public Response createVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store for which to create a File. ") String vectorStoreId,@Valid @NotNull CreateVectorStoreFileRequest createVectorStoreFileRequest) {
+    public Response createVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store for which to create a File. ") String vectorStoreId
+,@Valid @NotNull CreateVectorStoreFileRequest createVectorStoreFileRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -85,7 +90,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreFileBatchObject.class)
     })
-    public Response createVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store for which to create a File Batch. ") String vectorStoreId,@Valid @NotNull CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest) {
+    public Response createVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store for which to create a File Batch. ") String vectorStoreId
+,@Valid @NotNull CreateVectorStoreFileBatchRequest createVectorStoreFileBatchRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -99,7 +106,8 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = DeleteVectorStoreResponse.class)
     })
-    public Response deleteVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to delete.") String vectorStoreId) {
+    public Response deleteVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to delete.") String vectorStoreId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -113,7 +121,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = DeleteVectorStoreFileResponse.class)
     })
-    public Response deleteVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file belongs to.") String vectorStoreId,@PathParam("file_id") @ApiParam("The ID of the file to delete.") String fileId) {
+    public Response deleteVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file belongs to.") String vectorStoreId
+,@PathParam("file_id") @ApiParam("The ID of the file to delete.") String fileId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -127,7 +137,8 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreObject.class)
     })
-    public Response getVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to retrieve.") String vectorStoreId) {
+    public Response getVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to retrieve.") String vectorStoreId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -141,7 +152,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreFileObject.class)
     })
-    public Response getVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file belongs to.") String vectorStoreId,@PathParam("file_id") @ApiParam("The ID of the file being retrieved.") String fileId) {
+    public Response getVectorStoreFile(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file belongs to.") String vectorStoreId
+,@PathParam("file_id") @ApiParam("The ID of the file being retrieved.") String fileId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -155,7 +168,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreFileBatchObject.class)
     })
-    public Response getVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file batch belongs to.") String vectorStoreId,@PathParam("batch_id") @ApiParam("The ID of the file batch being retrieved.") String batchId) {
+    public Response getVectorStoreFileBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the file batch belongs to.") String vectorStoreId
+,@PathParam("batch_id") @ApiParam("The ID of the file batch being retrieved.") String batchId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -169,7 +184,14 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListVectorStoreFilesResponse.class)
     })
-    public Response listFilesInVectorStoreBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the files belong to.") String vectorStoreId,@PathParam("batch_id") @ApiParam("The ID of the file batch that the files belong to.") String batchId,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before,@QueryParam("filter")  @ApiParam("Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.")  String filter) {
+    public Response listFilesInVectorStoreBatch(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the files belong to.") String vectorStoreId
+,@PathParam("batch_id") @ApiParam("The ID of the file batch that the files belong to.") String batchId
+,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit
+,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order
+,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after
+,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before
+,@QueryParam("filter")  @ApiParam("Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.")  String filter
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -183,7 +205,13 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListVectorStoreFilesResponse.class)
     })
-    public Response listVectorStoreFiles(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the files belong to.") String vectorStoreId,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before,@QueryParam("filter")  @ApiParam("Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.")  String filter) {
+    public Response listVectorStoreFiles(@PathParam("vector_store_id") @ApiParam("The ID of the vector store that the files belong to.") String vectorStoreId
+,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit
+,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order
+,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after
+,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before
+,@QueryParam("filter")  @ApiParam("Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;.")  String filter
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -196,7 +224,11 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListVectorStoresResponse.class)
     })
-    public Response listVectorStores(@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before) {
+    public Response listVectorStores(@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit
+,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order
+,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after
+,@QueryParam("before")  @ApiParam("A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ")  String before
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -211,7 +243,9 @@ public class VectorStoresApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = VectorStoreObject.class)
     })
-    public Response modifyVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to modify.") String vectorStoreId,@Valid @NotNull UpdateVectorStoreRequest updateVectorStoreRequest) {
+    public Response modifyVectorStore(@PathParam("vector_store_id") @ApiParam("The ID of the vector store to modify.") String vectorStoreId
+,@Valid @NotNull UpdateVectorStoreRequest updateVectorStoreRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 }

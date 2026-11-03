@@ -255,9 +255,10 @@ class _$ProjectRateLimitSerializer implements PrimitiveSerializer<ProjectRateLim
   }
 }
 
+
+/// The object type, which is always `project.rate_limit`
 class ProjectRateLimitObjectEnum extends EnumClass {
 
-  /// The object type, which is always `project.rate_limit`
   @BuiltValueEnumConst(wireName: r'project.rate_limit')
   static const ProjectRateLimitObjectEnum projectPeriodRateLimit = _$projectRateLimitObjectEnum_projectPeriodRateLimit;
 

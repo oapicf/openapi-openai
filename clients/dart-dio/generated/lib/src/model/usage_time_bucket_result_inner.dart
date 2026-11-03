@@ -99,6 +99,7 @@ class _$UsageTimeBucketResultInnerSerializer implements PrimitiveSerializer<Usag
   }
 }
 
+
 class UsageTimeBucketResultInnerObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.costs.result')

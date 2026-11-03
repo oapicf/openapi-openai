@@ -198,7 +198,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectApiKeyDeleteResponse.ObjectEnum?>(ProjectApiKeyDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectApiKeyDeleteResponse.ObjectEnum? varObjectValue = ProjectApiKeyDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectApiKeyDeleteResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyDeleteResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectApiKeyDeleteResponse: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyDeleteResponse.", nameof(id));
+                throw new JsonException("Property is required for class ProjectApiKeyDeleteResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyDeleteResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class ProjectApiKeyDeleteResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectApiKeyDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyDeleteResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectApiKeyDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyDeleteResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class ProjectApiKeyDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyDeleteResponse: deleted.");
 
             return new ProjectApiKeyDeleteResponse(varObject.Value!.Value!, id.Value!, deleted.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectApiKeyDeleteResponse projectApiKeyDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectApiKeyDeleteResponse projectApiKeyDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectApiKeyDeleteResponse.Id == null)
-                throw new ArgumentNullException(nameof(projectApiKeyDeleteResponse.Id), "Property is required for class ProjectApiKeyDeleteResponse.");
-
             var varObjectRawValue = ProjectApiKeyDeleteResponse.ObjectEnumToJsonValue(projectApiKeyDeleteResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", projectApiKeyDeleteResponse.Id);

@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   MessageDeltaObjectDelta.JSON_PROPERTY_CONTENT
 })
 @JsonTypeName("MessageDeltaObject_delta")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class MessageDeltaObjectDelta {
     /**
@@ -74,7 +74,7 @@ public class MessageDeltaObjectDelta {
     private RoleEnum role;
 
     public static final String JSON_PROPERTY_CONTENT = "content";
-    private List<MessageDeltaObjectDeltaContentInner> content = null;
+    private List<@Valid MessageDeltaObjectDeltaContentInner> content = null;
 
     public MessageDeltaObjectDelta() {
     }
@@ -101,7 +101,7 @@ public class MessageDeltaObjectDelta {
         this.role = role;
     }
 
-    public MessageDeltaObjectDelta content(List<MessageDeltaObjectDeltaContentInner> content) {
+    public MessageDeltaObjectDelta content(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
         this.content = content;
         return this;
     }
@@ -121,13 +121,13 @@ public class MessageDeltaObjectDelta {
     @Nullable
     @JsonProperty(JSON_PROPERTY_CONTENT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<MessageDeltaObjectDeltaContentInner> getContent() {
+    public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
         return content;
     }
 
     @JsonProperty(JSON_PROPERTY_CONTENT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+    public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
         this.content = content;
     }
 

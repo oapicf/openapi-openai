@@ -22,9 +22,9 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.models.create_moderation_request import CreateModerationRequest
 from openapi_server.models.create_moderation_response import CreateModerationResponse
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -44,7 +44,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def create_moderation(
-    create_moderation_request: CreateModerationRequest = Body(None, description=""),
+    create_moderation_request: CreateModerationRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

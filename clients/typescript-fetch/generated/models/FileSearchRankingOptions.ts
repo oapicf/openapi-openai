@@ -24,14 +24,10 @@ import { mapValues } from '../runtime';
 export interface FileSearchRankingOptions {
     /**
      * The ranker to use for the file search. If not specified will use the `auto` ranker.
-     * @type {FileSearchRankingOptionsRankerEnum}
-     * @memberof FileSearchRankingOptions
      */
     ranker?: FileSearchRankingOptionsRankerEnum;
     /**
      * The score threshold for the file search. All values must be a floating point number between 0 and 1.
-     * @type {number}
-     * @memberof FileSearchRankingOptions
      */
     scoreThreshold: number;
 }
@@ -42,7 +38,7 @@ export interface FileSearchRankingOptions {
  */
 export const FileSearchRankingOptionsRankerEnum = {
     Auto: 'auto',
-    Default20240821: 'default_2024_08_21'
+    Default20240821: 'default_2024_08_21',
 } as const;
 export type FileSearchRankingOptionsRankerEnum = typeof FileSearchRankingOptionsRankerEnum[keyof typeof FileSearchRankingOptionsRankerEnum];
 

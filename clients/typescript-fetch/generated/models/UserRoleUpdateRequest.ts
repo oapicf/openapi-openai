@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface UserRoleUpdateRequest {
     /**
      * `owner` or `reader`
-     * @type {UserRoleUpdateRequestRoleEnum}
-     * @memberof UserRoleUpdateRequest
      */
     role: UserRoleUpdateRequestRoleEnum;
 }
@@ -33,7 +31,7 @@ export interface UserRoleUpdateRequest {
  */
 export const UserRoleUpdateRequestRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 export type UserRoleUpdateRequestRoleEnum = typeof UserRoleUpdateRequestRoleEnum[keyof typeof UserRoleUpdateRequestRoleEnum];
 

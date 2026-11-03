@@ -22,7 +22,7 @@ object UsageResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Page extends `Object`
+    case object Page extends `Object` { override def toString: String = "page" }
 
     import org.json4s._
 

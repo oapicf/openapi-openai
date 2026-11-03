@@ -29,8 +29,6 @@ import {
 export interface RunObjectRequiredActionSubmitToolOutputs {
     /**
      * A list of the relevant tool calls.
-     * @type {Array<RunToolCallObject>}
-     * @memberof RunObjectRequiredActionSubmitToolOutputs
      */
     toolCalls: Array<RunToolCallObject>;
 }

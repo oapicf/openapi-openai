@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Details about the output tokens used in the Response.
  */
 @ApiModel(description = "Details about the output tokens used in the Response.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseUsageOutputTokenDetails   {
   @JsonProperty("text_tokens")
   private Integer textTokens;

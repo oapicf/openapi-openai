@@ -32,55 +32,55 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateModerationResponseResultsInnerCategories(
 
     @Schema(required = true, description = "Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.")
-    @param:JsonProperty("hate")
+    @param:JsonProperty("hate", required = true)
     @get:JsonProperty("hate", required = true) val hate: kotlin.Boolean,
 
     @Schema(required = true, description = "Hateful content that also includes violence or serious harm towards the targeted group based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste.")
-    @param:JsonProperty("hate/threatening")
+    @param:JsonProperty("hate/threatening", required = true)
     @get:JsonProperty("hate/threatening", required = true) val hateThreatening: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that expresses, incites, or promotes harassing language towards any target.")
-    @param:JsonProperty("harassment")
+    @param:JsonProperty("harassment", required = true)
     @get:JsonProperty("harassment", required = true) val harassment: kotlin.Boolean,
 
     @Schema(required = true, description = "Harassment content that also includes violence or serious harm towards any target.")
-    @param:JsonProperty("harassment/threatening")
+    @param:JsonProperty("harassment/threatening", required = true)
     @get:JsonProperty("harassment/threatening", required = true) val harassmentThreatening: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that includes instructions or advice that facilitate the planning or execution of wrongdoing, or that gives advice or instruction on how to commit illicit acts. For example, \"how to shoplift\" would fit this category.")
-    @param:JsonProperty("illicit")
+    @param:JsonProperty("illicit", required = true)
     @get:JsonProperty("illicit", required = true) val illicit: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that includes instructions or advice that facilitate the planning or execution of wrongdoing that also includes violence, or that gives advice or instruction on the procurement of any weapon.")
-    @param:JsonProperty("illicit/violent")
+    @param:JsonProperty("illicit/violent", required = true)
     @get:JsonProperty("illicit/violent", required = true) val illicitViolent: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that promotes, encourages, or depicts acts of self-harm, such as suicide, cutting, and eating disorders.")
-    @param:JsonProperty("self-harm")
+    @param:JsonProperty("self-harm", required = true)
     @get:JsonProperty("self-harm", required = true) val selfHarm: kotlin.Boolean,
 
     @Schema(required = true, description = "Content where the speaker expresses that they are engaging or intend to engage in acts of self-harm, such as suicide, cutting, and eating disorders.")
-    @param:JsonProperty("self-harm/intent")
+    @param:JsonProperty("self-harm/intent", required = true)
     @get:JsonProperty("self-harm/intent", required = true) val selfHarmIntent: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that encourages performing acts of self-harm, such as suicide, cutting, and eating disorders, or that gives instructions or advice on how to commit such acts.")
-    @param:JsonProperty("self-harm/instructions")
+    @param:JsonProperty("self-harm/instructions", required = true)
     @get:JsonProperty("self-harm/instructions", required = true) val selfHarmInstructions: kotlin.Boolean,
 
     @Schema(required = true, description = "Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).")
-    @param:JsonProperty("sexual")
+    @param:JsonProperty("sexual", required = true)
     @get:JsonProperty("sexual", required = true) val sexual: kotlin.Boolean,
 
     @Schema(required = true, description = "Sexual content that includes an individual who is under 18 years old.")
-    @param:JsonProperty("sexual/minors")
+    @param:JsonProperty("sexual/minors", required = true)
     @get:JsonProperty("sexual/minors", required = true) val sexualMinors: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that depicts death, violence, or physical injury.")
-    @param:JsonProperty("violence")
+    @param:JsonProperty("violence", required = true)
     @get:JsonProperty("violence", required = true) val violence: kotlin.Boolean,
 
     @Schema(required = true, description = "Content that depicts death, violence, or physical injury in graphic detail.")
-    @param:JsonProperty("violence/graphic")
+    @param:JsonProperty("violence/graphic", required = true)
     @get:JsonProperty("violence/graphic", required = true) val violenceGraphic: kotlin.Boolean
 ) {
 

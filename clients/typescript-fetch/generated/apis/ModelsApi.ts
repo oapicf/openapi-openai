@@ -30,10 +30,16 @@ import {
 } from '../models/Model';
 
 export interface DeleteModelRequest {
+    /**
+     * The model to delete
+     */
     model: string;
 }
 
 export interface RetrieveModelRequest {
+    /**
+     * The ID of the model to use for this request
+     */
     model: string;
 }
 

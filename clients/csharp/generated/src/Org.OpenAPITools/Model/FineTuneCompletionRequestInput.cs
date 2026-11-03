@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (prompt.IsSet && prompt.Value == null)
-                throw new ArgumentNullException(nameof(prompt), "Property is not nullable for class FineTuneCompletionRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneCompletionRequestInput: prompt.");
 
             if (completion.IsSet && completion.Value == null)
-                throw new ArgumentNullException(nameof(completion), "Property is not nullable for class FineTuneCompletionRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneCompletionRequestInput: completion.");
 
             return new FineTuneCompletionRequestInput(prompt, completion);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneCompletionRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneCompletionRequestInput fineTuneCompletionRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneCompletionRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneCompletionRequestInput fineTuneCompletionRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTuneCompletionRequestInput.PromptOption.IsSet && fineTuneCompletionRequestInput.Prompt == null)
-                throw new ArgumentNullException(nameof(fineTuneCompletionRequestInput.Prompt), "Property is required for class FineTuneCompletionRequestInput.");
+                throw new JsonException("Cannot write null property FineTuneCompletionRequestInput.Prompt to non-nullable JSON property 'prompt'.");
 
             if (fineTuneCompletionRequestInput.CompletionOption.IsSet && fineTuneCompletionRequestInput.Completion == null)
-                throw new ArgumentNullException(nameof(fineTuneCompletionRequestInput.Completion), "Property is required for class FineTuneCompletionRequestInput.");
+                throw new JsonException("Cannot write null property FineTuneCompletionRequestInput.Completion to non-nullable JSON property 'completion'.");
 
             if (fineTuneCompletionRequestInput.PromptOption.IsSet)
                 writer.WriteString("prompt", fineTuneCompletionRequestInput.Prompt);

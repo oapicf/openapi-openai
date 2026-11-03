@@ -19,17 +19,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Occurs when a [message](/docs/api-reference/messages/object) ends before it is completed.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class MessageStreamEventOneOf4(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("event")
+    @param:JsonProperty("event", required = true)
     @get:JsonProperty("event", required = true) val event: MessageStreamEventOneOf4.Event,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: MessageObject
 ) : MessageStreamEvent {
 
@@ -40,12 +40,12 @@ data class MessageStreamEventOneOf4(
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
         threadPeriodMessagePeriodIncomplete("thread.message.incomplete");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }

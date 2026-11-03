@@ -216,9 +216,10 @@ class _$CreateChatCompletionFunctionResponseSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The object type, which is always `chat.completion`.
 class CreateChatCompletionFunctionResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always `chat.completion`.
   @BuiltValueEnumConst(wireName: r'chat.completion')
   static const CreateChatCompletionFunctionResponseObjectEnum chatPeriodCompletion = _$createChatCompletionFunctionResponseObjectEnum_chatPeriodCompletion;
 

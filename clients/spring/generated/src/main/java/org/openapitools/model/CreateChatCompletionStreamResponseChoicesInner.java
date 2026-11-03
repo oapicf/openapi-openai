@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -28,12 +27,11 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("CreateChatCompletionStreamResponse_choices_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionStreamResponseChoicesInner {
 
   private ChatCompletionStreamResponseDelta delta;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> logprobs = JsonNullable.<CreateChatCompletionResponseChoicesInnerLogprobs>undefined();
 
   /**
@@ -125,7 +123,7 @@ public class CreateChatCompletionStreamResponseChoicesInner {
    * @return logprobs
    */
   @Valid 
-  @Schema(name = "logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "logprobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("logprobs")
   public JsonNullable<CreateChatCompletionResponseChoicesInnerLogprobs> getLogprobs() {
     return logprobs;
@@ -144,8 +142,8 @@ public class CreateChatCompletionStreamResponseChoicesInner {
    * The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
    * @return finishReason
    */
-  @NotNull 
-  @Schema(name = "finish_reason", description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "finish_reason", description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("finish_reason")
   public JsonNullable<FinishReasonEnum> getFinishReason() {
     return finishReason;

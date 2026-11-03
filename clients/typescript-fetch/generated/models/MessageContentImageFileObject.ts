@@ -29,14 +29,10 @@ import {
 export interface MessageContentImageFileObject {
     /**
      * Always `image_file`.
-     * @type {MessageContentImageFileObjectTypeEnum}
-     * @memberof MessageContentImageFileObject
      */
     type: MessageContentImageFileObjectTypeEnum;
     /**
      * 
-     * @type {MessageContentImageFileObjectImageFile}
-     * @memberof MessageContentImageFileObject
      */
     imageFile: MessageContentImageFileObjectImageFile;
 }
@@ -46,7 +42,7 @@ export interface MessageContentImageFileObject {
  * @export
  */
 export const MessageContentImageFileObjectTypeEnum = {
-    ImageFile: 'image_file'
+    ImageFile: 'image_file',
 } as const;
 export type MessageContentImageFileObjectTypeEnum = typeof MessageContentImageFileObjectTypeEnum[keyof typeof MessageContentImageFileObjectTypeEnum];
 

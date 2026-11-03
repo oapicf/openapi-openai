@@ -34,7 +34,6 @@ public class ChatCompletionStreamResponseDelta  {
   private ChatCompletionStreamResponseDeltaFunctionCall functionCall;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid ChatCompletionMessageToolCallChunk> toolCalls = new ArrayList<>();
 
 public enum RoleEnum {

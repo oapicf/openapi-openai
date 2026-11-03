@@ -25,7 +25,7 @@ import ChatCompletionRequestUserMessage from './ChatCompletionRequestUserMessage
 /**
  * The ChatCompletionRequestMessage model module.
  * @module model/ChatCompletionRequestMessage
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class ChatCompletionRequestMessage {
     /**

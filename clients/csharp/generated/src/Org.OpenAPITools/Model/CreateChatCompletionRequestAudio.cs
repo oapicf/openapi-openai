@@ -398,12 +398,22 @@ namespace Org.OpenAPITools.Model
                         case "voice":
                             string? voiceRawValue = utf8JsonReader.GetString();
                             if (voiceRawValue != null)
-                                voice = new Option<CreateChatCompletionRequestAudio.VoiceEnum?>(CreateChatCompletionRequestAudio.VoiceEnumFromStringOrDefault(voiceRawValue));
+                            {
+                                CreateChatCompletionRequestAudio.VoiceEnum? voiceValue = CreateChatCompletionRequestAudio.VoiceEnumFromStringOrDefault(voiceRawValue);
+                                if (voiceValue == null)
+                                    throw new JsonException();
+                                voice = new Option<CreateChatCompletionRequestAudio.VoiceEnum?>(voiceValue);
+                            }
                             break;
                         case "format":
                             string? formatRawValue = utf8JsonReader.GetString();
                             if (formatRawValue != null)
-                                format = new Option<CreateChatCompletionRequestAudio.FormatEnum?>(CreateChatCompletionRequestAudio.FormatEnumFromStringOrDefault(formatRawValue));
+                            {
+                                CreateChatCompletionRequestAudio.FormatEnum? formatValue = CreateChatCompletionRequestAudio.FormatEnumFromStringOrDefault(formatRawValue);
+                                if (formatValue == null)
+                                    throw new JsonException();
+                                format = new Option<CreateChatCompletionRequestAudio.FormatEnum?>(formatValue);
+                            }
                             break;
                         default:
                             break;
@@ -412,16 +422,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!voice.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionRequestAudio.", nameof(voice));
+                throw new JsonException("Property is required for class CreateChatCompletionRequestAudio: voice.");
 
             if (!format.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionRequestAudio.", nameof(format));
+                throw new JsonException("Property is required for class CreateChatCompletionRequestAudio: format.");
 
             if (voice.IsSet && voice.Value == null)
-                throw new ArgumentNullException(nameof(voice), "Property is not nullable for class CreateChatCompletionRequestAudio.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequestAudio: voice.");
 
             if (format.IsSet && format.Value == null)
-                throw new ArgumentNullException(nameof(format), "Property is not nullable for class CreateChatCompletionRequestAudio.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionRequestAudio: format.");
 
             return new CreateChatCompletionRequestAudio(voice.Value!.Value!, format.Value!.Value!);
         }
@@ -432,7 +442,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionRequestAudio createChatCompletionRequestAudio, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -447,7 +456,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionRequestAudio createChatCompletionRequestAudio, JsonSerializerOptions jsonSerializerOptions)
         {
             var voiceRawValue = CreateChatCompletionRequestAudio.VoiceEnumToJsonValue(createChatCompletionRequestAudio.Voice);

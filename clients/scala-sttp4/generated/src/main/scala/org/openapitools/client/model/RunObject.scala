@@ -70,7 +70,7 @@ object RunObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ThreadRun extends `Object`
+    case object ThreadRun extends `Object` { override def toString: String = "thread.run" }
 
     import org.json4s._
 
@@ -91,15 +91,15 @@ object RunObjectEnums {
 
   sealed trait Status
   object Status {
-    case object Queued extends Status
-    case object InProgress extends Status
-    case object RequiresAction extends Status
-    case object Cancelling extends Status
-    case object Cancelled extends Status
-    case object Failed extends Status
-    case object Completed extends Status
-    case object Incomplete extends Status
-    case object Expired extends Status
+    case object Queued extends Status { override def toString: String = "queued" }
+    case object InProgress extends Status { override def toString: String = "in_progress" }
+    case object RequiresAction extends Status { override def toString: String = "requires_action" }
+    case object Cancelling extends Status { override def toString: String = "cancelling" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
+    case object Failed extends Status { override def toString: String = "failed" }
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Incomplete extends Status { override def toString: String = "incomplete" }
+    case object Expired extends Status { override def toString: String = "expired" }
 
     import org.json4s._
 

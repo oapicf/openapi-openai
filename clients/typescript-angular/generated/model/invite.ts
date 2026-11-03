@@ -53,18 +53,18 @@ export interface Invite {
 }
 export namespace Invite {
     export const ObjectEnum = {
-        OrganizationInvite: 'organization.invite'
+        OrganizationInvite: 'organization.invite',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const RoleEnum = {
         Owner: 'owner',
-        Reader: 'reader'
+        Reader: 'reader',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
     export const StatusEnum = {
         Accepted: 'accepted',
         Expired: 'expired',
-        Pending: 'pending'
+        Pending: 'pending',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

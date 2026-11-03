@@ -183,13 +183,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AdminApiKeysDelete200Response.");
+                throw new JsonException("Property is not nullable for class AdminApiKeysDelete200Response: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class AdminApiKeysDelete200Response.");
+                throw new JsonException("Property is not nullable for class AdminApiKeysDelete200Response: object.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class AdminApiKeysDelete200Response.");
+                throw new JsonException("Property is not nullable for class AdminApiKeysDelete200Response: deleted.");
 
             return new AdminApiKeysDelete200Response(id, varObject, deleted);
         }
@@ -200,7 +200,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeysDelete200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdminApiKeysDelete200Response adminApiKeysDelete200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -215,14 +214,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeysDelete200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdminApiKeysDelete200Response adminApiKeysDelete200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             if (adminApiKeysDelete200Response.IdOption.IsSet && adminApiKeysDelete200Response.Id == null)
-                throw new ArgumentNullException(nameof(adminApiKeysDelete200Response.Id), "Property is required for class AdminApiKeysDelete200Response.");
+                throw new JsonException("Cannot write null property AdminApiKeysDelete200Response.Id to non-nullable JSON property 'id'.");
 
             if (adminApiKeysDelete200Response.ObjectOption.IsSet && adminApiKeysDelete200Response.Object == null)
-                throw new ArgumentNullException(nameof(adminApiKeysDelete200Response.Object), "Property is required for class AdminApiKeysDelete200Response.");
+                throw new JsonException("Cannot write null property AdminApiKeysDelete200Response.Object to non-nullable JSON property 'object'.");
+
+            if (adminApiKeysDelete200Response.DeletedOption.IsSet && adminApiKeysDelete200Response.Deleted == null)
+                throw new JsonException("Cannot write null property AdminApiKeysDelete200Response.Deleted to non-nullable JSON property 'deleted'.");
 
             if (adminApiKeysDelete200Response.IdOption.IsSet)
                 writer.WriteString("id", adminApiKeysDelete200Response.Id);

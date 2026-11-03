@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage: file_id.");
 
             return new RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage(fileId);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileIdOption.IsSet && runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileId == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileId), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileId to non-nullable JSON property 'file_id'.");
 
             if (runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileIdOption.IsSet)
                 writer.WriteString("file_id", runStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage.FileId);

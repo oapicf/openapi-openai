@@ -119,17 +119,17 @@ export namespace CreateChatCompletionRequest {
   export const ReasoningEffortEnum = {
     Low: 'low',
     Medium: 'medium',
-    High: 'high'
+    High: 'high',
   } as const;
   export type ReasoningEffortEnum = typeof ReasoningEffortEnum[keyof typeof ReasoningEffortEnum];
   export const ModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
   } as const;
   export type ModalitiesEnum = typeof ModalitiesEnum[keyof typeof ModalitiesEnum];
   export const ServiceTierEnum = {
     Auto: 'auto',
-    Default: 'default'
+    Default: 'default',
   } as const;
   export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
 }

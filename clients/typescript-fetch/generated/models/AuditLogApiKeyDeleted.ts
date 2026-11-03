@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogApiKeyDeleted {
     /**
      * The tracking ID of the API key.
-     * @type {string}
-     * @memberof AuditLogApiKeyDeleted
      */
     id?: string;
 }

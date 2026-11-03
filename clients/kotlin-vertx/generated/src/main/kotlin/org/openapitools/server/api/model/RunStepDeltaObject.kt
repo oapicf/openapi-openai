@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents a run step delta i.e. any changed fields on a run step during streaming. 
  * @param id The identifier of the run step, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.run.step.delta`.
+ * @param `object` The object type, which is always `thread.run.step.delta`.
  * @param delta 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

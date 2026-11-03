@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ChatCompletionMessageToolCall.TypeEnum?>(ChatCompletionMessageToolCall.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ChatCompletionMessageToolCall.TypeEnum? typeValue = ChatCompletionMessageToolCall.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ChatCompletionMessageToolCall.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "function":
                             function = new Option<ChatCompletionMessageToolCallFunction?>(JsonSerializer.Deserialize<ChatCompletionMessageToolCallFunction>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionMessageToolCall.", nameof(id));
+                throw new JsonException("Property is required for class ChatCompletionMessageToolCall: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionMessageToolCall.", nameof(type));
+                throw new JsonException("Property is required for class ChatCompletionMessageToolCall: type.");
 
             if (!function.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionMessageToolCall.", nameof(function));
+                throw new JsonException("Property is required for class ChatCompletionMessageToolCall: function.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ChatCompletionMessageToolCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionMessageToolCall: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ChatCompletionMessageToolCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionMessageToolCall: type.");
 
             if (function.IsSet && function.Value == null)
-                throw new ArgumentNullException(nameof(function), "Property is not nullable for class ChatCompletionMessageToolCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionMessageToolCall: function.");
 
             return new ChatCompletionMessageToolCall(id.Value!, type.Value!.Value!, function.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionMessageToolCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionMessageToolCall chatCompletionMessageToolCall, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionMessageToolCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionMessageToolCall chatCompletionMessageToolCall, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionMessageToolCall.Id == null)
-                throw new ArgumentNullException(nameof(chatCompletionMessageToolCall.Id), "Property is required for class ChatCompletionMessageToolCall.");
-
-            if (chatCompletionMessageToolCall.Function == null)
-                throw new ArgumentNullException(nameof(chatCompletionMessageToolCall.Function), "Property is required for class ChatCompletionMessageToolCall.");
-
             writer.WriteString("id", chatCompletionMessageToolCall.Id);
 
             var typeRawValue = ChatCompletionMessageToolCall.TypeEnumToJsonValue(chatCompletionMessageToolCall.Type);

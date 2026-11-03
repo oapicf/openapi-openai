@@ -218,7 +218,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<TruncationObject.TypeEnum?>(TruncationObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                TruncationObject.TypeEnum? typeValue = TruncationObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<TruncationObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "last_messages":
                             lastMessages = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -230,10 +235,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TruncationObject.", nameof(type));
+                throw new JsonException("Property is required for class TruncationObject: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class TruncationObject.");
+                throw new JsonException("Property is not nullable for class TruncationObject: type.");
 
             return new TruncationObject(type.Value!.Value!, lastMessages);
         }
@@ -244,7 +249,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="truncationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TruncationObject truncationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -259,7 +263,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="truncationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TruncationObject truncationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = TruncationObject.TypeEnumToJsonValue(truncationObject.Type);

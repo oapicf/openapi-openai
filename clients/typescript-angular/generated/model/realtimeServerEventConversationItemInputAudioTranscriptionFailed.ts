@@ -34,7 +34,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionFaile
 }
 export namespace RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     export const TypeEnum = {
-        ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed'
+        ConversationItemInputAudioTranscriptionFailed: 'conversation.item.input_audio_transcription.failed',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

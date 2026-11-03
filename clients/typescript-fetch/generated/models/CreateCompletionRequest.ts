@@ -50,14 +50,10 @@ import {
 export interface CreateCompletionRequest {
     /**
      * 
-     * @type {CreateCompletionRequestModel}
-     * @memberof CreateCompletionRequest
      */
     model: CreateCompletionRequestModel;
     /**
      * 
-     * @type {CreateCompletionRequestPrompt}
-     * @memberof CreateCompletionRequest
      */
     prompt: CreateCompletionRequestPrompt | null;
     /**
@@ -67,15 +63,11 @@ export interface CreateCompletionRequest {
      * 
      * **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     bestOf?: number | null;
     /**
      * Echo back the prompt in addition to the completion
      * 
-     * @type {boolean}
-     * @memberof CreateCompletionRequest
      */
     echo?: boolean | null;
     /**
@@ -83,8 +75,6 @@ export interface CreateCompletionRequest {
      * 
      * [See more information about frequency and presence penalties.](/docs/guides/text-generation)
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     frequencyPenalty?: number | null;
     /**
@@ -94,8 +84,6 @@ export interface CreateCompletionRequest {
      * 
      * As an example, you can pass `{"50256": -100}` to prevent the <|endoftext|> token from being generated.
      * 
-     * @type {{ [key: string]: number; }}
-     * @memberof CreateCompletionRequest
      */
     logitBias?: { [key: string]: number; } | null;
     /**
@@ -103,8 +91,6 @@ export interface CreateCompletionRequest {
      * 
      * The maximum value for `logprobs` is 5.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     logprobs?: number | null;
     /**
@@ -112,8 +98,6 @@ export interface CreateCompletionRequest {
      * 
      * The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     maxTokens?: number | null;
     /**
@@ -121,8 +105,6 @@ export interface CreateCompletionRequest {
      * 
      * **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     n?: number | null;
     /**
@@ -130,8 +112,6 @@ export interface CreateCompletionRequest {
      * 
      * [See more information about frequency and presence penalties.](/docs/guides/text-generation)
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     presencePenalty?: number | null;
     /**
@@ -139,27 +119,19 @@ export interface CreateCompletionRequest {
      * 
      * Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     seed?: number | null;
     /**
      * 
-     * @type {CreateCompletionRequestStop}
-     * @memberof CreateCompletionRequest
      */
     stop?: CreateCompletionRequestStop | null;
     /**
      * Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions).
      * 
-     * @type {boolean}
-     * @memberof CreateCompletionRequest
      */
     stream?: boolean | null;
     /**
      * 
-     * @type {ChatCompletionStreamOptions}
-     * @memberof CreateCompletionRequest
      */
     streamOptions?: ChatCompletionStreamOptions | null;
     /**
@@ -167,8 +139,6 @@ export interface CreateCompletionRequest {
      * 
      * This parameter is only supported for `gpt-3.5-turbo-instruct`.
      * 
-     * @type {string}
-     * @memberof CreateCompletionRequest
      */
     suffix?: string | null;
     /**
@@ -176,8 +146,6 @@ export interface CreateCompletionRequest {
      * 
      * We generally recommend altering this or `top_p` but not both.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     temperature?: number | null;
     /**
@@ -185,15 +153,11 @@ export interface CreateCompletionRequest {
      * 
      * We generally recommend altering this or `temperature` but not both.
      * 
-     * @type {number}
-     * @memberof CreateCompletionRequest
      */
     topP?: number | null;
     /**
      * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).
      * 
-     * @type {string}
-     * @memberof CreateCompletionRequest
      */
     user?: string;
 }

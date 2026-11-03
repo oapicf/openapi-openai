@@ -32,7 +32,7 @@ export interface Model {
 }
 export namespace Model {
     export const ObjectEnum = {
-        Model: 'model'
+        Model: 'model',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

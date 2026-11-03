@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **addUploadPart**
 ```swift
-    open class func addUploadPart(uploadId: String, data: URL, completion: @escaping (_ data: UploadPart?, _ error: Error?) -> Void)
+    open class func addUploadPart(uploadId: String, data: URL, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UploadPart
 ```
 
 Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
@@ -26,15 +26,11 @@ let uploadId = "uploadId_example" // String | The ID of the Upload.
 let data = URL(string: "https://example.com")! // URL | The chunk of bytes for this Part. 
 
 // Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload.   Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB.  It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete). 
-UploadsAPI.addUploadPart(uploadId: uploadId, data: data) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UploadsAPI.addUploadPart(uploadId: uploadId, data: data)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -62,7 +58,7 @@ Name | Type | Description  | Notes
 
 # **cancelUpload**
 ```swift
-    open class func cancelUpload(uploadId: String, completion: @escaping (_ data: Upload?, _ error: Error?) -> Void)
+    open class func cancelUpload(uploadId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Upload
 ```
 
 Cancels the Upload. No Parts may be added after an Upload is cancelled. 
@@ -75,15 +71,11 @@ import OpenAPIClient
 let uploadId = "uploadId_example" // String | The ID of the Upload. 
 
 // Cancels the Upload. No Parts may be added after an Upload is cancelled. 
-UploadsAPI.cancelUpload(uploadId: uploadId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UploadsAPI.cancelUpload(uploadId: uploadId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -110,7 +102,7 @@ Name | Type | Description  | Notes
 
 # **completeUpload**
 ```swift
-    open class func completeUpload(uploadId: String, completeUploadRequest: CompleteUploadRequest, completion: @escaping (_ data: Upload?, _ error: Error?) -> Void)
+    open class func completeUpload(uploadId: String, completeUploadRequest: CompleteUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Upload
 ```
 
 Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
@@ -124,15 +116,11 @@ let uploadId = "uploadId_example" // String | The ID of the Upload.
 let completeUploadRequest = CompleteUploadRequest(partIds: ["partIds_example"], md5: "md5_example") // CompleteUploadRequest | 
 
 // Completes the [Upload](/docs/api-reference/uploads/object).   Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform.  You can specify the order of the Parts by passing in an ordered list of the Part IDs.  The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. 
-UploadsAPI.completeUpload(uploadId: uploadId, completeUploadRequest: completeUploadRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UploadsAPI.completeUpload(uploadId: uploadId, completeUploadRequest: completeUploadRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -160,7 +148,7 @@ Name | Type | Description  | Notes
 
 # **createUpload**
 ```swift
-    open class func createUpload(createUploadRequest: CreateUploadRequest, completion: @escaping (_ data: Upload?, _ error: Error?) -> Void)
+    open class func createUpload(createUploadRequest: CreateUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Upload
 ```
 
 Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
@@ -173,15 +161,11 @@ import OpenAPIClient
 let createUploadRequest = CreateUploadRequest(filename: "filename_example", purpose: "purpose_example", bytes: 123, mimeType: "mimeType_example") // CreateUploadRequest | 
 
 // Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it.  Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object.  For certain `purpose`s, the correct `mime_type` must be specified. Please refer to documentation for the supported MIME types for your use case: - [Assistants](/docs/assistants/tools/file-search#supported-files)  For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). 
-UploadsAPI.createUpload(createUploadRequest: createUploadRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UploadsAPI.createUpload(createUploadRequest: createUploadRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

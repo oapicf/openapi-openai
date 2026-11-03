@@ -13,7 +13,7 @@ export interface InviteProjectsInner {
 export namespace InviteProjectsInner {
   export const RoleEnum = {
     Member: 'member',
-    Owner: 'owner'
+    Owner: 'owner',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

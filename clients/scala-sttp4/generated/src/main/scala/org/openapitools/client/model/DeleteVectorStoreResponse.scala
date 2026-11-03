@@ -21,7 +21,7 @@ object DeleteVectorStoreResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object VectorStoreDeleted extends `Object`
+    case object VectorStoreDeleted extends `Object` { override def toString: String = "vector_store.deleted" }
 
     import org.json4s._
 

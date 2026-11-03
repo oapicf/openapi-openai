@@ -21,7 +21,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequest   {
   
   private String assistantId;
@@ -29,7 +29,7 @@ public class CreateRunRequest   {
   private String instructions;
   private String additionalInstructions;
   private List<@Valid CreateMessageRequest> additionalMessages;
-  private List<AssistantObjectToolsInner> tools;
+  private List<@Valid AssistantObjectToolsInner> tools;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
   private BigDecimal topP = new BigDecimal("1");
@@ -100,7 +100,6 @@ public class CreateRunRequest   {
   
   @ApiModelProperty(value = "Adds additional messages to the thread before creating the run.")
   @JsonProperty("additional_messages")
-  @Valid
   public List<@Valid CreateMessageRequest> getAdditionalMessages() {
     return additionalMessages;
   }
@@ -114,11 +113,10 @@ public class CreateRunRequest   {
   
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
   @JsonProperty("tools")
- @Size(max=20)  @Valid
-  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

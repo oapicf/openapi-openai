@@ -148,16 +148,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RunToolCallObjectFunction.", nameof(name));
+                throw new JsonException("Property is required for class RunToolCallObjectFunction: name.");
 
             if (!arguments.IsSet)
-                throw new ArgumentException("Property is required for class RunToolCallObjectFunction.", nameof(arguments));
+                throw new JsonException("Property is required for class RunToolCallObjectFunction: arguments.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RunToolCallObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunToolCallObjectFunction: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class RunToolCallObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunToolCallObjectFunction: arguments.");
 
             return new RunToolCallObjectFunction(name.Value!, arguments.Value!);
         }
@@ -168,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runToolCallObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunToolCallObjectFunction runToolCallObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -183,15 +182,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runToolCallObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunToolCallObjectFunction runToolCallObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runToolCallObjectFunction.Name == null)
-                throw new ArgumentNullException(nameof(runToolCallObjectFunction.Name), "Property is required for class RunToolCallObjectFunction.");
-
-            if (runToolCallObjectFunction.Arguments == null)
-                throw new ArgumentNullException(nameof(runToolCallObjectFunction.Arguments), "Property is required for class RunToolCallObjectFunction.");
-
             writer.WriteString("name", runToolCallObjectFunction.Name);
 
             writer.WriteString("arguments", runToolCallObjectFunction.Arguments);

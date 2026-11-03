@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface UsageImagesResult {
     /**
      * 
-     * @type {UsageImagesResultObjectEnum}
-     * @memberof UsageImagesResult
      */
     object: UsageImagesResultObjectEnum;
     /**
      * The number of images processed.
-     * @type {number}
-     * @memberof UsageImagesResult
      */
     images: number;
     /**
      * The count of requests made to the model.
-     * @type {number}
-     * @memberof UsageImagesResult
      */
     numModelRequests: number;
     /**
      * When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     source?: string | null;
     /**
      * When `group_by=size`, this field provides the image size of the grouped usage result.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     size?: string | null;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     projectId?: string | null;
     /**
      * When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     userId?: string | null;
     /**
      * When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     apiKeyId?: string | null;
     /**
      * When `group_by=model`, this field provides the model name of the grouped usage result.
-     * @type {string}
-     * @memberof UsageImagesResult
      */
     model?: string | null;
 }
@@ -80,7 +62,7 @@ export interface UsageImagesResult {
  * @export
  */
 export const UsageImagesResultObjectEnum = {
-    OrganizationUsageImagesResult: 'organization.usage.images.result'
+    OrganizationUsageImagesResult: 'organization.usage.images.result',
 } as const;
 export type UsageImagesResultObjectEnum = typeof UsageImagesResultObjectEnum[keyof typeof UsageImagesResultObjectEnum];
 

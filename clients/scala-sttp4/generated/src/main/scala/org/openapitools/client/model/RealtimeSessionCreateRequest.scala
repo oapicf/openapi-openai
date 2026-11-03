@@ -42,8 +42,8 @@ object RealtimeSessionCreateRequestEnums {
 
   sealed trait Modalities
   object Modalities {
-    case object Text extends Modalities
-    case object Audio extends Modalities
+    case object Text extends Modalities { override def toString: String = "text" }
+    case object Audio extends Modalities { override def toString: String = "audio" }
 
     import org.json4s._
 
@@ -66,11 +66,11 @@ object RealtimeSessionCreateRequestEnums {
 
   sealed trait Model
   object Model {
-    case object Gpt4oRealtimePreview extends Model
-    case object Gpt4oRealtimePreview20241001 extends Model
-    case object Gpt4oRealtimePreview20241217 extends Model
-    case object Gpt4oMiniRealtimePreview extends Model
-    case object Gpt4oMiniRealtimePreview20241217 extends Model
+    case object Gpt4oRealtimePreview extends Model { override def toString: String = "gpt-4o-realtime-preview" }
+    case object Gpt4oRealtimePreview20241001 extends Model { override def toString: String = "gpt-4o-realtime-preview-2024-10-01" }
+    case object Gpt4oRealtimePreview20241217 extends Model { override def toString: String = "gpt-4o-realtime-preview-2024-12-17" }
+    case object Gpt4oMiniRealtimePreview extends Model { override def toString: String = "gpt-4o-mini-realtime-preview" }
+    case object Gpt4oMiniRealtimePreview20241217 extends Model { override def toString: String = "gpt-4o-mini-realtime-preview-2024-12-17" }
 
     import org.json4s._
 
@@ -99,14 +99,14 @@ object RealtimeSessionCreateRequestEnums {
 
   sealed trait Voice
   object Voice {
-    case object Alloy extends Voice
-    case object Ash extends Voice
-    case object Ballad extends Voice
-    case object Coral extends Voice
-    case object Echo extends Voice
-    case object Sage extends Voice
-    case object Shimmer extends Voice
-    case object Verse extends Voice
+    case object Alloy extends Voice { override def toString: String = "alloy" }
+    case object Ash extends Voice { override def toString: String = "ash" }
+    case object Ballad extends Voice { override def toString: String = "ballad" }
+    case object Coral extends Voice { override def toString: String = "coral" }
+    case object Echo extends Voice { override def toString: String = "echo" }
+    case object Sage extends Voice { override def toString: String = "sage" }
+    case object Shimmer extends Voice { override def toString: String = "shimmer" }
+    case object Verse extends Voice { override def toString: String = "verse" }
 
     import org.json4s._
 
@@ -141,9 +141,9 @@ object RealtimeSessionCreateRequestEnums {
 
   sealed trait InputAudioFormat
   object InputAudioFormat {
-    case object Pcm16 extends InputAudioFormat
-    case object G711Ulaw extends InputAudioFormat
-    case object G711Alaw extends InputAudioFormat
+    case object Pcm16 extends InputAudioFormat { override def toString: String = "pcm16" }
+    case object G711Ulaw extends InputAudioFormat { override def toString: String = "g711_ulaw" }
+    case object G711Alaw extends InputAudioFormat { override def toString: String = "g711_alaw" }
 
     import org.json4s._
 
@@ -168,9 +168,9 @@ object RealtimeSessionCreateRequestEnums {
 
   sealed trait OutputAudioFormat
   object OutputAudioFormat {
-    case object Pcm16 extends OutputAudioFormat
-    case object G711Ulaw extends OutputAudioFormat
-    case object G711Alaw extends OutputAudioFormat
+    case object Pcm16 extends OutputAudioFormat { override def toString: String = "pcm16" }
+    case object G711Ulaw extends OutputAudioFormat { override def toString: String = "g711_ulaw" }
+    case object G711Alaw extends OutputAudioFormat { override def toString: String = "g711_alaw" }
 
     import org.json4s._
 

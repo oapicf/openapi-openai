@@ -46,7 +46,7 @@ import javax.annotation.Generated;
   CreateAssistantRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("CreateAssistantRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateAssistantRequest {
     public static final String JSON_PROPERTY_MODEL = "model";
@@ -62,7 +62,7 @@ public class CreateAssistantRequest {
     private String instructions;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = null;
+    private List<@Valid AssistantObjectToolsInner> tools = null;
 
     public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
     private CreateAssistantRequestToolResources toolResources;
@@ -175,7 +175,7 @@ public class CreateAssistantRequest {
         this.instructions = instructions;
     }
 
-    public CreateAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+    public CreateAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -196,13 +196,13 @@ public class CreateAssistantRequest {
     @Size(max=128)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

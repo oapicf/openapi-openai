@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents a message within a [thread](/docs/api-reference/threads).
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.message`.
+ * @param `object` The object type, which is always `thread.message`.
  * @param createdAt The Unix timestamp (in seconds) for when the message was created.
  * @param threadId The [thread](/docs/api-reference/threads) ID that this message belongs to.
  * @param status The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.

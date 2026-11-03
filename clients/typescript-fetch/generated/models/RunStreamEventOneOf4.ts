@@ -29,14 +29,10 @@ import {
 export interface RunStreamEventOneOf4 {
     /**
      * 
-     * @type {RunStreamEventOneOf4EventEnum}
-     * @memberof RunStreamEventOneOf4
      */
     event: RunStreamEventOneOf4EventEnum;
     /**
      * 
-     * @type {RunObject}
-     * @memberof RunStreamEventOneOf4
      */
     data: RunObject;
 }
@@ -46,7 +42,7 @@ export interface RunStreamEventOneOf4 {
  * @export
  */
 export const RunStreamEventOneOf4EventEnum = {
-    ThreadRunCompleted: 'thread.run.completed'
+    ThreadRunCompleted: 'thread.run.completed',
 } as const;
 export type RunStreamEventOneOf4EventEnum = typeof RunStreamEventOneOf4EventEnum[keyof typeof RunStreamEventOneOf4EventEnum];
 

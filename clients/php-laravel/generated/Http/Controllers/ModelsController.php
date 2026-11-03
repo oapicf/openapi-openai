@@ -51,10 +51,10 @@ class ModelsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     'model' => $model,
                 ],
-                $request->all(),
             ),
             [
                 'model' => [
@@ -90,10 +90,10 @@ class ModelsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -124,10 +124,10 @@ class ModelsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     'model' => $model,
                 ],
-                $request->all(),
             ),
             [
                 'model' => [

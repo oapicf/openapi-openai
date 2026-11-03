@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RunStepDetailsToolCallsFileSearchResultObject", description = "A result instance of the file search.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFileSearchResultObject {
 
   private String fileId;
@@ -35,7 +34,6 @@ public class RunStepDetailsToolCallsFileSearchResultObject {
 
   private BigDecimal score;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RunStepDetailsToolCallsFileSearchResultObjectContentInner> content = new ArrayList<>();
 
   public RunStepDetailsToolCallsFileSearchResultObject() {
@@ -133,7 +131,7 @@ public class RunStepDetailsToolCallsFileSearchResultObject {
    * The content of the result that was found. The content is only included if requested via the include query parameter.
    * @return content
    */
-  @Valid 
+  
   @Schema(name = "content", description = "The content of the result that was found. The content is only included if requested via the include query parameter.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("content")
   public List<@Valid RunStepDetailsToolCallsFileSearchResultObjectContentInner> getContent() {

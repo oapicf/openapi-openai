@@ -15,10 +15,10 @@ import org.openapitools.model.FineTuneChatRequestInputMessagesInner;
 /**
  * FineTunePreferenceRequestInputInput
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTunePreferenceRequestInputInput   {
   @JsonProperty("messages")
-  private List<FineTuneChatRequestInputMessagesInner> messages = null;
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = null;
 
   @JsonProperty("tools")
   private List<@Valid ChatCompletionTool> tools = null;
@@ -26,7 +26,7 @@ public class FineTunePreferenceRequestInputInput   {
   @JsonProperty("parallel_tool_calls")
   private Boolean parallelToolCalls = true;
 
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -44,11 +44,11 @@ public class FineTunePreferenceRequestInputInput   {
    * @return messages
   **/
   @ApiModelProperty(value = "")
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 

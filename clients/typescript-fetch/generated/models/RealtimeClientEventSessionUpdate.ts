@@ -35,20 +35,14 @@ import {
 export interface RealtimeClientEventSessionUpdate {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventSessionUpdate
      */
     eventId?: string;
     /**
      * The event type, must be `session.update`.
-     * @type {RealtimeClientEventSessionUpdateTypeEnum}
-     * @memberof RealtimeClientEventSessionUpdate
      */
     type: RealtimeClientEventSessionUpdateTypeEnum;
     /**
      * 
-     * @type {RealtimeSessionCreateRequest}
-     * @memberof RealtimeClientEventSessionUpdate
      */
     session: RealtimeSessionCreateRequest;
 }
@@ -58,7 +52,7 @@ export interface RealtimeClientEventSessionUpdate {
  * @export
  */
 export const RealtimeClientEventSessionUpdateTypeEnum = {
-    SessionUpdate: 'session.update'
+    SessionUpdate: 'session.update',
 } as const;
 export type RealtimeClientEventSessionUpdateTypeEnum = typeof RealtimeClientEventSessionUpdateTypeEnum[keyof typeof RealtimeClientEventSessionUpdateTypeEnum];
 

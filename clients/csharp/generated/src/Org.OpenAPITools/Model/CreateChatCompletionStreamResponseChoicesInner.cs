@@ -285,7 +285,15 @@ namespace Org.OpenAPITools.Model
                             break;
                         case "finish_reason":
                             string? finishReasonRawValue = utf8JsonReader.GetString();
-                            finishReason = new Option<CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum?>(finishReasonRawValue == null ? null : CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue));
+                            if (finishReasonRawValue == null)
+                                finishReason = new Option<CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum?>(null);
+                            else
+                            {
+                                CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum? finishReasonValue = CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue);
+                                if (finishReasonValue == null)
+                                    throw new JsonException();
+                                finishReason = new Option<CreateChatCompletionStreamResponseChoicesInner.FinishReasonEnum?>(finishReasonValue);
+                            }
                             break;
                         default:
                             break;
@@ -294,19 +302,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!delta.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponseChoicesInner.", nameof(delta));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponseChoicesInner: delta.");
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponseChoicesInner.", nameof(index));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponseChoicesInner: index.");
 
             if (!finishReason.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionStreamResponseChoicesInner.", nameof(finishReason));
+                throw new JsonException("Property is required for class CreateChatCompletionStreamResponseChoicesInner: finish_reason.");
 
             if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class CreateChatCompletionStreamResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponseChoicesInner: delta.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class CreateChatCompletionStreamResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionStreamResponseChoicesInner: index.");
 
             return new CreateChatCompletionStreamResponseChoicesInner(delta.Value!, index.Value!.Value!, logprobs, finishReason.Value!);
         }
@@ -317,7 +325,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionStreamResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -332,12 +339,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionStreamResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionStreamResponseChoicesInner createChatCompletionStreamResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createChatCompletionStreamResponseChoicesInner.Delta == null)
-                throw new ArgumentNullException(nameof(createChatCompletionStreamResponseChoicesInner.Delta), "Property is required for class CreateChatCompletionStreamResponseChoicesInner.");
-
             writer.WritePropertyName("delta");
             JsonSerializer.Serialize(writer, createChatCompletionStreamResponseChoicesInner.Delta, jsonSerializerOptions);
             writer.WriteNumber("index", createChatCompletionStreamResponseChoicesInner.Index);

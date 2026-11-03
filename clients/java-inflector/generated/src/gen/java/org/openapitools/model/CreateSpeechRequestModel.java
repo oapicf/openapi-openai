@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModel;
  **/
 
 @ApiModel(description = "One of the available [TTS models](/docs/models#tts): `tts-1` or `tts-1-hd` ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateSpeechRequestModel   {
 
   @Override

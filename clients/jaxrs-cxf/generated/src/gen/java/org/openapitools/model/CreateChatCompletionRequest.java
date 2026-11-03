@@ -35,9 +35,7 @@ public class CreateChatCompletionRequest  {
   */
   @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
 
-  @Valid
-
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")
 
@@ -268,7 +266,7 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
 
   @Valid
 
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
  /**
   * If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions). 
@@ -306,8 +304,6 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
   */
   @ApiModelProperty(value = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
 
-  @Valid
-
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
   @ApiModelProperty(value = "")
@@ -341,8 +337,6 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
   */
   @ApiModelProperty(value = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
 
-  @Valid
-
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
  /**
    * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
@@ -350,15 +344,15 @@ AUTO(String.valueOf("auto")), DEFAULT(String.valueOf("default"));
   **/
   @JsonProperty("messages")
   @NotNull
- @Size(min=1)  public List<ChatCompletionRequestMessage> getMessages() {
+ @Size(min=1)  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }

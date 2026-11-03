@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsCodeOutputLogsObject {
     /**
      * Always `logs`.
-     * @type {RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum}
-     * @memberof RunStepDetailsToolCallsCodeOutputLogsObject
      */
     type: RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum;
     /**
      * The text output from the Code Interpreter tool call.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsCodeOutputLogsObject
      */
     logs: string;
 }
@@ -38,7 +34,7 @@ export interface RunStepDetailsToolCallsCodeOutputLogsObject {
  * @export
  */
 export const RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = {
-    Logs: 'logs'
+    Logs: 'logs',
 } as const;
 export type RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum = typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum[keyof typeof RunStepDetailsToolCallsCodeOutputLogsObjectTypeEnum];
 

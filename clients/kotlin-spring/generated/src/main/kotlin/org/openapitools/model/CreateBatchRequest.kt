@@ -25,15 +25,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateBatchRequest(
 
     @Schema(required = true, description = "The ID of an uploaded file that contains requests for the new batch.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size. ")
-    @param:JsonProperty("input_file_id")
+    @param:JsonProperty("input_file_id", required = true)
     @get:JsonProperty("input_file_id", required = true) val inputFileId: kotlin.String,
 
     @Schema(required = true, description = "The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.")
-    @param:JsonProperty("endpoint")
+    @param:JsonProperty("endpoint", required = true)
     @get:JsonProperty("endpoint", required = true) val endpoint: CreateBatchRequest.Endpoint,
 
     @Schema(required = true, description = "The time frame within which the batch should be processed. Currently only `24h` is supported.")
-    @param:JsonProperty("completion_window")
+    @param:JsonProperty("completion_window", required = true)
     @get:JsonProperty("completion_window", required = true) val completionWindow: CreateBatchRequest.CompletionWindow,
 
     @Schema(description = "Optional custom metadata for the batch.")
@@ -50,12 +50,12 @@ data class CreateBatchRequest(
         SlashV1SlashChatSlashCompletions("/v1/chat/completions"),
         SlashV1SlashEmbeddings("/v1/embeddings"),
         SlashV1SlashCompletions("/v1/completions");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Endpoint {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Endpoint'")
             }
         }
@@ -68,12 +68,12 @@ data class CreateBatchRequest(
     enum class CompletionWindow(@get:JsonValue val value: kotlin.String) {
 
         _24h("24h");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): CompletionWindow {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'CompletionWindow'")
             }
         }

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  * Batch
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Batch {
 
   private String id;
@@ -68,7 +67,6 @@ public class Batch {
 
   private String endpoint;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BatchErrors errors;
 
   private String inputFileId;
@@ -124,42 +122,30 @@ public class Batch {
 
   private StatusEnum status;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String outputFileId;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String errorFileId;
 
   private Integer createdAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inProgressAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer expiresAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer finalizingAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer completedAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer failedAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer expiredAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer cancellingAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer cancelledAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BatchRequestCounts requestCounts;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   public Batch() {
@@ -588,7 +574,7 @@ public class Batch {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;

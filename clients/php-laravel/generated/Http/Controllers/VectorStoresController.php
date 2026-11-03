@@ -51,17 +51,17 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,'batchId' => $batchId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,'batch_id' => $batchId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
-                'batchId' => [
+                'batch_id' => [
                     'required',
                     'string',
                 ],
@@ -95,10 +95,10 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -131,10 +131,10 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
             ],
@@ -168,10 +168,10 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
             ],
@@ -205,13 +205,13 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
@@ -244,17 +244,17 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,'fileId' => $fileId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,'file_id' => $fileId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
-                'fileId' => [
+                'file_id' => [
                     'required',
                     'string',
                 ],
@@ -288,13 +288,13 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
@@ -327,17 +327,17 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,'fileId' => $fileId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,'file_id' => $fileId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
-                'fileId' => [
+                'file_id' => [
                     'required',
                     'string',
                 ],
@@ -371,17 +371,17 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,'batchId' => $batchId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,'batch_id' => $batchId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
-                'batchId' => [
+                'batch_id' => [
                     'required',
                     'string',
                 ],
@@ -415,17 +415,17 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,'batchId' => $batchId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,'batch_id' => $batchId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
-                'batchId' => [
+                'batch_id' => [
                     'required',
                     'string',
                 ],
@@ -482,13 +482,13 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
-                'vectorStoreId' => [
+                'vector_store_id' => [
                     'required',
                     'string',
                 ],
@@ -544,10 +544,10 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'limit' => [
@@ -597,10 +597,10 @@ class VectorStoresController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'vectorStoreId' => $vectorStoreId,
-                ],
                 $request->all(),
+                [
+                    'vector_store_id' => $vectorStoreId,
+                ],
             ),
             [
             ],

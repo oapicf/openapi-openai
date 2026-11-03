@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param purpose The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.
  * @param status The status of the Upload.
  * @param expiresAt The Unix timestamp (in seconds) for when the Upload was created.
- * @param &#x60;object&#x60; The object type, which is always \"upload\".
+ * @param `object` The object type, which is always \"upload\".
  * @param file 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface StaticChunkingStrategyStatic {
     /**
      * The maximum number of tokens in each chunk. The default value is `800`. The minimum value is `100` and the maximum value is `4096`.
-     * @type {number}
-     * @memberof StaticChunkingStrategyStatic
      */
     maxChunkSizeTokens: number;
     /**
@@ -30,8 +28,6 @@ export interface StaticChunkingStrategyStatic {
      * 
      * Note that the overlap must not exceed half of `max_chunk_size_tokens`.
      * 
-     * @type {number}
-     * @memberof StaticChunkingStrategyStatic
      */
     chunkOverlapTokens: number;
 }

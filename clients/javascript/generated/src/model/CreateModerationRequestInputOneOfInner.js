@@ -19,7 +19,7 @@ import CreateModerationRequestInputOneOfInnerOneOfImageUrl from './CreateModerat
 /**
  * The CreateModerationRequestInputOneOfInner model module.
  * @module model/CreateModerationRequestInputOneOfInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateModerationRequestInputOneOfInner {
     /**

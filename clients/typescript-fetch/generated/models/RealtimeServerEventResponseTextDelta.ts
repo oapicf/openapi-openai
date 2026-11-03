@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseTextDelta {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     eventId: string;
     /**
      * The event type, must be `response.text.delta`.
-     * @type {RealtimeServerEventResponseTextDeltaTypeEnum}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     type: RealtimeServerEventResponseTextDeltaTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     contentIndex: number;
     /**
      * The text delta.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDelta
      */
     delta: string;
 }
@@ -68,7 +54,7 @@ export interface RealtimeServerEventResponseTextDelta {
  * @export
  */
 export const RealtimeServerEventResponseTextDeltaTypeEnum = {
-    ResponseTextDelta: 'response.text.delta'
+    ResponseTextDelta: 'response.text.delta',
 } as const;
 export type RealtimeServerEventResponseTextDeltaTypeEnum = typeof RealtimeServerEventResponseTextDeltaTypeEnum[keyof typeof RealtimeServerEventResponseTextDeltaTypeEnum];
 

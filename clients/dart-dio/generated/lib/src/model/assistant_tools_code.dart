@@ -107,9 +107,10 @@ class _$AssistantToolsCodeSerializer implements PrimitiveSerializer<AssistantToo
   }
 }
 
+
+/// The type of tool being defined: `code_interpreter`
 class AssistantToolsCodeTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const AssistantToolsCodeTypeEnum codeInterpreter = _$assistantToolsCodeTypeEnum_codeInterpreter;
 

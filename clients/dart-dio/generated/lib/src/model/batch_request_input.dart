@@ -150,9 +150,10 @@ class _$BatchRequestInputSerializer implements PrimitiveSerializer<BatchRequestI
   }
 }
 
+
+/// The HTTP method to be used for the request. Currently only `POST` is supported.
 class BatchRequestInputMethodEnum extends EnumClass {
 
-  /// The HTTP method to be used for the request. Currently only `POST` is supported.
   @BuiltValueEnumConst(wireName: r'POST')
   static const BatchRequestInputMethodEnum POST = _$batchRequestInputMethodEnum_POST;
 

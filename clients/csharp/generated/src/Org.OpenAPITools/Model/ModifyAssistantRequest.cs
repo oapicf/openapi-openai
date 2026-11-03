@@ -372,13 +372,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class ModifyAssistantRequest.");
+                throw new JsonException("Property is not nullable for class ModifyAssistantRequest: model.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class ModifyAssistantRequest.");
+                throw new JsonException("Property is not nullable for class ModifyAssistantRequest: tools.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class ModifyAssistantRequest.");
+                throw new JsonException("Property is not nullable for class ModifyAssistantRequest: response_format.");
 
             return new ModifyAssistantRequest(model, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
         }
@@ -389,7 +389,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyAssistantRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyAssistantRequest modifyAssistantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -404,17 +403,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="modifyAssistantRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyAssistantRequest modifyAssistantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (modifyAssistantRequest.ModelOption.IsSet && modifyAssistantRequest.Model == null)
-                throw new ArgumentNullException(nameof(modifyAssistantRequest.Model), "Property is required for class ModifyAssistantRequest.");
+                throw new JsonException("Cannot write null property ModifyAssistantRequest.Model to non-nullable JSON property 'model'.");
 
             if (modifyAssistantRequest.ToolsOption.IsSet && modifyAssistantRequest.Tools == null)
-                throw new ArgumentNullException(nameof(modifyAssistantRequest.Tools), "Property is required for class ModifyAssistantRequest.");
+                throw new JsonException("Cannot write null property ModifyAssistantRequest.Tools to non-nullable JSON property 'tools'.");
 
             if (modifyAssistantRequest.ResponseFormatOption.IsSet && modifyAssistantRequest.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(modifyAssistantRequest.ResponseFormat), "Property is required for class ModifyAssistantRequest.");
+                throw new JsonException("Cannot write null property ModifyAssistantRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             if (modifyAssistantRequest.ModelOption.IsSet)
                 writer.WriteString("model", modifyAssistantRequest.Model);

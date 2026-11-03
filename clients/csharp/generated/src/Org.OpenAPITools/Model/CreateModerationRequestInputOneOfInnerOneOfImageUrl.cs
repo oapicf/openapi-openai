@@ -135,10 +135,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationRequestInputOneOfInnerOneOfImageUrl.", nameof(url));
+                throw new JsonException("Property is required for class CreateModerationRequestInputOneOfInnerOneOfImageUrl: url.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOfImageUrl.");
+                throw new JsonException("Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOfImageUrl: url.");
 
             return new CreateModerationRequestInputOneOfInnerOneOfImageUrl(url.Value!);
         }
@@ -149,7 +149,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInputOneOfInnerOneOfImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationRequestInputOneOfInnerOneOfImageUrl createModerationRequestInputOneOfInnerOneOfImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -164,12 +163,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInputOneOfInnerOneOfImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationRequestInputOneOfInnerOneOfImageUrl createModerationRequestInputOneOfInnerOneOfImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationRequestInputOneOfInnerOneOfImageUrl.Url == null)
-                throw new ArgumentNullException(nameof(createModerationRequestInputOneOfInnerOneOfImageUrl.Url), "Property is required for class CreateModerationRequestInputOneOfInnerOneOfImageUrl.");
-
             writer.WriteString("url", createModerationRequestInputOneOfInnerOneOfImageUrl.Url);
         }
     }

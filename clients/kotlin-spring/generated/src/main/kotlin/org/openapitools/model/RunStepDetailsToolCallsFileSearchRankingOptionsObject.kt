@@ -23,13 +23,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunStepDetailsToolCallsFileSearchRankingOptionsObject(
 
     @Schema(required = true, description = "The ranker used for the file search.")
-    @param:JsonProperty("ranker")
+    @param:JsonProperty("ranker", required = true)
     @get:JsonProperty("ranker", required = true) val ranker: RunStepDetailsToolCallsFileSearchRankingOptionsObject.Ranker,
 
     @get:DecimalMin(value="0")
     @get:DecimalMax(value="1")
     @Schema(required = true, description = "The score threshold for the file search. All values must be a floating point number between 0 and 1.")
-    @param:JsonProperty("score_threshold")
+    @param:JsonProperty("score_threshold", required = true)
     @get:JsonProperty("score_threshold", required = true) val scoreThreshold: java.math.BigDecimal
 ) {
 
@@ -40,12 +40,12 @@ data class RunStepDetailsToolCallsFileSearchRankingOptionsObject(
     enum class Ranker(@get:JsonValue val value: kotlin.String) {
 
         default_2024_08_21("default_2024_08_21");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Ranker {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Ranker'")
             }
         }

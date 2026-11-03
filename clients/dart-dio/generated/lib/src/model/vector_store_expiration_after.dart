@@ -124,9 +124,10 @@ class _$VectorStoreExpirationAfterSerializer implements PrimitiveSerializer<Vect
   }
 }
 
+
+/// Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
 class VectorStoreExpirationAfterAnchorEnum extends EnumClass {
 
-  /// Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
   @BuiltValueEnumConst(wireName: r'last_active_at')
   static const VectorStoreExpirationAfterAnchorEnum lastActiveAt = _$vectorStoreExpirationAfterAnchorEnum_lastActiveAt;
 

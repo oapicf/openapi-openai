@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageContentTextObjectTextAnnotationsInner" /> class.
         /// </summary>
         /// <param name="messageContentTextAnnotationsFileCitationObject"></param>
-        public MessageContentTextObjectTextAnnotationsInner(MessageContentTextAnnotationsFileCitationObject messageContentTextAnnotationsFileCitationObject)
+        internal MessageContentTextObjectTextAnnotationsInner(MessageContentTextAnnotationsFileCitationObject messageContentTextAnnotationsFileCitationObject)
         {
             MessageContentTextAnnotationsFileCitationObject = messageContentTextAnnotationsFileCitationObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageContentTextObjectTextAnnotationsInner" /> class.
         /// </summary>
         /// <param name="messageContentTextAnnotationsFilePathObject"></param>
-        public MessageContentTextObjectTextAnnotationsInner(MessageContentTextAnnotationsFilePathObject messageContentTextAnnotationsFilePathObject)
+        internal MessageContentTextObjectTextAnnotationsInner(MessageContentTextAnnotationsFilePathObject messageContentTextAnnotationsFilePathObject)
         {
             MessageContentTextAnnotationsFilePathObject = messageContentTextAnnotationsFilePathObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextObjectTextAnnotationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentTextObjectTextAnnotationsInner messageContentTextObjectTextAnnotationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextObjectTextAnnotationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentTextObjectTextAnnotationsInner messageContentTextObjectTextAnnotationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

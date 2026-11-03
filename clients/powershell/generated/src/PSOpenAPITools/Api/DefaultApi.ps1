@@ -140,7 +140,7 @@ function Invoke-AdminApiKeysDelete {
         if (!$KeyId) {
             throw "Error! The required parameter `KeyId` missing when calling adminApiKeysDelete."
         }
-        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Web.HTTPUtility]::UrlEncode($KeyId))
+        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Uri]::EscapeDataString([string]$KeyId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -218,7 +218,7 @@ function Invoke-AdminApiKeysGet {
         if (!$KeyId) {
             throw "Error! The required parameter `KeyId` missing when calling adminApiKeysGet."
         }
-        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Web.HTTPUtility]::UrlEncode($KeyId))
+        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Uri]::EscapeDataString([string]$KeyId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

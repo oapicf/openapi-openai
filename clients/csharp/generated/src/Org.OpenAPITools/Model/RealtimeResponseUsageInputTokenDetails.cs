@@ -183,13 +183,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (cachedTokens.IsSet && cachedTokens.Value == null)
-                throw new ArgumentNullException(nameof(cachedTokens), "Property is not nullable for class RealtimeResponseUsageInputTokenDetails.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsageInputTokenDetails: cached_tokens.");
 
             if (textTokens.IsSet && textTokens.Value == null)
-                throw new ArgumentNullException(nameof(textTokens), "Property is not nullable for class RealtimeResponseUsageInputTokenDetails.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsageInputTokenDetails: text_tokens.");
 
             if (audioTokens.IsSet && audioTokens.Value == null)
-                throw new ArgumentNullException(nameof(audioTokens), "Property is not nullable for class RealtimeResponseUsageInputTokenDetails.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsageInputTokenDetails: audio_tokens.");
 
             return new RealtimeResponseUsageInputTokenDetails(cachedTokens, textTokens, audioTokens);
         }
@@ -200,7 +200,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsageInputTokenDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseUsageInputTokenDetails realtimeResponseUsageInputTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -215,9 +214,17 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsageInputTokenDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseUsageInputTokenDetails realtimeResponseUsageInputTokenDetails, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeResponseUsageInputTokenDetails.CachedTokensOption.IsSet && realtimeResponseUsageInputTokenDetails.CachedTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsageInputTokenDetails.CachedTokens to non-nullable JSON property 'cached_tokens'.");
+
+            if (realtimeResponseUsageInputTokenDetails.TextTokensOption.IsSet && realtimeResponseUsageInputTokenDetails.TextTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsageInputTokenDetails.TextTokens to non-nullable JSON property 'text_tokens'.");
+
+            if (realtimeResponseUsageInputTokenDetails.AudioTokensOption.IsSet && realtimeResponseUsageInputTokenDetails.AudioTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsageInputTokenDetails.AudioTokens to non-nullable JSON property 'audio_tokens'.");
+
             if (realtimeResponseUsageInputTokenDetails.CachedTokensOption.IsSet)
                 writer.WriteNumber("cached_tokens", realtimeResponseUsageInputTokenDetails.CachedTokensOption.Value!.Value);
 

@@ -73,12 +73,12 @@ class _$CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingSt
   }
 }
 
+
+/// Always `auto`.
 class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum extends EnumClass {
 
-  /// Always `auto`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum auto = _$createAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum_auto;
-  /// Always `auto`.
   @BuiltValueEnumConst(wireName: r'static')
   static const CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum static_ = _$createAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategyTypeEnum_static_;
 

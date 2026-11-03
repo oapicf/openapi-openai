@@ -22,7 +22,7 @@ import javax.validation.Valid;
 */
 @Path("/fine_tuning/jobs")
 @Api(description = "the fine_tuning API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningApi {
 
     @POST
@@ -35,7 +35,8 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = FineTuningJob.class)
     })
-    public Response cancelFineTuningJob(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to cancel. ") String fineTuningJobId) {
+    public Response cancelFineTuningJob(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to cancel. ") String fineTuningJobId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -49,7 +50,8 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = FineTuningJob.class)
     })
-    public Response createFineTuningJob(@Valid @NotNull CreateFineTuningJobRequest createFineTuningJobRequest) {
+    public Response createFineTuningJob(@Valid @NotNull CreateFineTuningJobRequest createFineTuningJobRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -63,7 +65,10 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListFineTuningJobEventsResponse.class)
     })
-    public Response listFineTuningEvents(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to get events for. ") String fineTuningJobId,@QueryParam("after")  @ApiParam("Identifier for the last event from the previous pagination request.")  String after,@QueryParam("limit") @DefaultValue("20")  @ApiParam("Number of events to retrieve.")  Integer limit) {
+    public Response listFineTuningEvents(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to get events for. ") String fineTuningJobId
+,@QueryParam("after")  @ApiParam("Identifier for the last event from the previous pagination request.")  String after
+,@QueryParam("limit") @DefaultValue("20")  @ApiParam("Number of events to retrieve.")  Integer limit
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -77,7 +82,10 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListFineTuningJobCheckpointsResponse.class)
     })
-    public Response listFineTuningJobCheckpoints(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to get checkpoints for. ") String fineTuningJobId,@QueryParam("after")  @ApiParam("Identifier for the last checkpoint ID from the previous pagination request.")  String after,@QueryParam("limit") @DefaultValue("10")  @ApiParam("Number of checkpoints to retrieve.")  Integer limit) {
+    public Response listFineTuningJobCheckpoints(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job to get checkpoints for. ") String fineTuningJobId
+,@QueryParam("after")  @ApiParam("Identifier for the last checkpoint ID from the previous pagination request.")  String after
+,@QueryParam("limit") @DefaultValue("10")  @ApiParam("Number of checkpoints to retrieve.")  Integer limit
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -90,7 +98,9 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListPaginatedFineTuningJobsResponse.class)
     })
-    public Response listPaginatedFineTuningJobs(@QueryParam("after")  @ApiParam("Identifier for the last job from the previous pagination request.")  String after,@QueryParam("limit") @DefaultValue("20")  @ApiParam("Number of fine-tuning jobs to retrieve.")  Integer limit) {
+    public Response listPaginatedFineTuningJobs(@QueryParam("after")  @ApiParam("Identifier for the last job from the previous pagination request.")  String after
+,@QueryParam("limit") @DefaultValue("20")  @ApiParam("Number of fine-tuning jobs to retrieve.")  Integer limit
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -104,7 +114,8 @@ public class FineTuningApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = FineTuningJob.class)
     })
-    public Response retrieveFineTuningJob(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job. ") String fineTuningJobId) {
+    public Response retrieveFineTuningJob(@PathParam("fine_tuning_job_id") @ApiParam("The ID of the fine-tuning job. ") String fineTuningJobId
+) {
         return Response.ok().entity("magic!").build();
     }
 }

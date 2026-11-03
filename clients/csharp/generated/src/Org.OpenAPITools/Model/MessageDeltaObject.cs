@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<MessageDeltaObject.ObjectEnum?>(MessageDeltaObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                MessageDeltaObject.ObjectEnum? varObjectValue = MessageDeltaObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<MessageDeltaObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "delta":
                             delta = new Option<MessageDeltaObjectDelta?>(JsonSerializer.Deserialize<MessageDeltaObjectDelta>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaObject.", nameof(id));
+                throw new JsonException("Property is required for class MessageDeltaObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaObject.", nameof(varObject));
+                throw new JsonException("Property is required for class MessageDeltaObject: object.");
 
             if (!delta.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaObject.", nameof(delta));
+                throw new JsonException("Property is required for class MessageDeltaObject: delta.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MessageDeltaObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class MessageDeltaObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaObject: object.");
 
             if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class MessageDeltaObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaObject: delta.");
 
             return new MessageDeltaObject(id.Value!, varObject.Value!.Value!, delta.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaObject messageDeltaObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaObject messageDeltaObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageDeltaObject.Id == null)
-                throw new ArgumentNullException(nameof(messageDeltaObject.Id), "Property is required for class MessageDeltaObject.");
-
-            if (messageDeltaObject.Delta == null)
-                throw new ArgumentNullException(nameof(messageDeltaObject.Delta), "Property is required for class MessageDeltaObject.");
-
             writer.WriteString("id", messageDeltaObject.Id);
 
             var varObjectRawValue = MessageDeltaObject.ObjectEnumToJsonValue(messageDeltaObject.Object);

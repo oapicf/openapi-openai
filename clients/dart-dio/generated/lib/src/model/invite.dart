@@ -252,9 +252,10 @@ class _$InviteSerializer implements PrimitiveSerializer<Invite> {
   }
 }
 
+
+/// The object type, which is always `organization.invite`
 class InviteObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.invite`
   @BuiltValueEnumConst(wireName: r'organization.invite')
   static const InviteObjectEnum organizationPeriodInvite = _$inviteObjectEnum_organizationPeriodInvite;
 
@@ -266,12 +267,11 @@ class InviteObjectEnum extends EnumClass {
   static InviteObjectEnum valueOf(String name) => _$inviteObjectEnumValueOf(name);
 }
 
+/// `owner` or `reader`
 class InviteRoleEnum extends EnumClass {
 
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'owner')
   static const InviteRoleEnum owner = _$inviteRoleEnum_owner;
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'reader')
   static const InviteRoleEnum reader = _$inviteRoleEnum_reader;
 
@@ -283,15 +283,13 @@ class InviteRoleEnum extends EnumClass {
   static InviteRoleEnum valueOf(String name) => _$inviteRoleEnumValueOf(name);
 }
 
+/// `accepted`,`expired`, or `pending`
 class InviteStatusEnum extends EnumClass {
 
-  /// `accepted`,`expired`, or `pending`
   @BuiltValueEnumConst(wireName: r'accepted')
   static const InviteStatusEnum accepted = _$inviteStatusEnum_accepted;
-  /// `accepted`,`expired`, or `pending`
   @BuiltValueEnumConst(wireName: r'expired')
   static const InviteStatusEnum expired = _$inviteStatusEnum_expired;
-  /// `accepted`,`expired`, or `pending`
   @BuiltValueEnumConst(wireName: r'pending')
   static const InviteStatusEnum pending = _$inviteStatusEnum_pending;
 

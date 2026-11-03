@@ -16,9 +16,9 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
-* Values: json,text,srt,verbose_json,vtt
-*/
+ * The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
+ * Values: json,text,srt,verbose_json,vtt
+ */
 enum class AudioResponseFormat(@get:JsonValue val value: kotlin.String) {
 
     json("json"),
@@ -31,9 +31,8 @@ enum class AudioResponseFormat(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): AudioResponseFormat {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AudioResponseFormat'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AudioResponseFormat'")
         }
     }
 }
-

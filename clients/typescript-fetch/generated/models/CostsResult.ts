@@ -29,26 +29,18 @@ import {
 export interface CostsResult {
     /**
      * 
-     * @type {CostsResultObjectEnum}
-     * @memberof CostsResult
      */
     object: CostsResultObjectEnum;
     /**
      * 
-     * @type {CostsResultAmount}
-     * @memberof CostsResult
      */
     amount?: CostsResultAmount;
     /**
      * When `group_by=line_item`, this field provides the line item of the grouped costs result.
-     * @type {string}
-     * @memberof CostsResult
      */
     lineItem?: string | null;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped costs result.
-     * @type {string}
-     * @memberof CostsResult
      */
     projectId?: string | null;
 }
@@ -58,7 +50,7 @@ export interface CostsResult {
  * @export
  */
 export const CostsResultObjectEnum = {
-    OrganizationCostsResult: 'organization.costs.result'
+    OrganizationCostsResult: 'organization.costs.result',
 } as const;
 export type CostsResultObjectEnum = typeof CostsResultObjectEnum[keyof typeof CostsResultObjectEnum];
 

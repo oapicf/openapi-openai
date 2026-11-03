@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UsageEmbeddingsResult {
     /**
      * 
-     * @type {UsageEmbeddingsResultObjectEnum}
-     * @memberof UsageEmbeddingsResult
      */
     object: UsageEmbeddingsResultObjectEnum;
     /**
      * The aggregated number of input tokens used.
-     * @type {number}
-     * @memberof UsageEmbeddingsResult
      */
     inputTokens: number;
     /**
      * The count of requests made to the model.
-     * @type {number}
-     * @memberof UsageEmbeddingsResult
      */
     numModelRequests: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageEmbeddingsResult
      */
     projectId?: string | null;
     /**
      * When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageEmbeddingsResult
      */
     userId?: string | null;
     /**
      * When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageEmbeddingsResult
      */
     apiKeyId?: string | null;
     /**
      * When `group_by=model`, this field provides the model name of the grouped usage result.
-     * @type {string}
-     * @memberof UsageEmbeddingsResult
      */
     model?: string | null;
 }
@@ -68,7 +54,7 @@ export interface UsageEmbeddingsResult {
  * @export
  */
 export const UsageEmbeddingsResultObjectEnum = {
-    OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result'
+    OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result',
 } as const;
 export type UsageEmbeddingsResultObjectEnum = typeof UsageEmbeddingsResultObjectEnum[keyof typeof UsageEmbeddingsResultObjectEnum];
 

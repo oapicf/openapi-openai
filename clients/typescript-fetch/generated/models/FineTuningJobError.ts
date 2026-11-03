@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface FineTuningJobError {
     /**
      * A machine-readable error code.
-     * @type {string}
-     * @memberof FineTuningJobError
      */
     code: string;
     /**
      * A human-readable error message.
-     * @type {string}
-     * @memberof FineTuningJobError
      */
     message: string;
     /**
      * The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
-     * @type {string}
-     * @memberof FineTuningJobError
      */
     param: string | null;
 }

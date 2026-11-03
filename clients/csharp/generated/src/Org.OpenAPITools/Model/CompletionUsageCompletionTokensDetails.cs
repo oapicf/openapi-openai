@@ -204,16 +204,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (acceptedPredictionTokens.IsSet && acceptedPredictionTokens.Value == null)
-                throw new ArgumentNullException(nameof(acceptedPredictionTokens), "Property is not nullable for class CompletionUsageCompletionTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsageCompletionTokensDetails: accepted_prediction_tokens.");
 
             if (audioTokens.IsSet && audioTokens.Value == null)
-                throw new ArgumentNullException(nameof(audioTokens), "Property is not nullable for class CompletionUsageCompletionTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsageCompletionTokensDetails: audio_tokens.");
 
             if (reasoningTokens.IsSet && reasoningTokens.Value == null)
-                throw new ArgumentNullException(nameof(reasoningTokens), "Property is not nullable for class CompletionUsageCompletionTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsageCompletionTokensDetails: reasoning_tokens.");
 
             if (rejectedPredictionTokens.IsSet && rejectedPredictionTokens.Value == null)
-                throw new ArgumentNullException(nameof(rejectedPredictionTokens), "Property is not nullable for class CompletionUsageCompletionTokensDetails.");
+                throw new JsonException("Property is not nullable for class CompletionUsageCompletionTokensDetails: rejected_prediction_tokens.");
 
             return new CompletionUsageCompletionTokensDetails(acceptedPredictionTokens, audioTokens, reasoningTokens, rejectedPredictionTokens);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsageCompletionTokensDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompletionUsageCompletionTokensDetails completionUsageCompletionTokensDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,9 +238,20 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsageCompletionTokensDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompletionUsageCompletionTokensDetails completionUsageCompletionTokensDetails, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (completionUsageCompletionTokensDetails.AcceptedPredictionTokensOption.IsSet && completionUsageCompletionTokensDetails.AcceptedPredictionTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsageCompletionTokensDetails.AcceptedPredictionTokens to non-nullable JSON property 'accepted_prediction_tokens'.");
+
+            if (completionUsageCompletionTokensDetails.AudioTokensOption.IsSet && completionUsageCompletionTokensDetails.AudioTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsageCompletionTokensDetails.AudioTokens to non-nullable JSON property 'audio_tokens'.");
+
+            if (completionUsageCompletionTokensDetails.ReasoningTokensOption.IsSet && completionUsageCompletionTokensDetails.ReasoningTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsageCompletionTokensDetails.ReasoningTokens to non-nullable JSON property 'reasoning_tokens'.");
+
+            if (completionUsageCompletionTokensDetails.RejectedPredictionTokensOption.IsSet && completionUsageCompletionTokensDetails.RejectedPredictionTokens == null)
+                throw new JsonException("Cannot write null property CompletionUsageCompletionTokensDetails.RejectedPredictionTokens to non-nullable JSON property 'rejected_prediction_tokens'.");
+
             if (completionUsageCompletionTokensDetails.AcceptedPredictionTokensOption.IsSet)
                 writer.WriteNumber("accepted_prediction_tokens", completionUsageCompletionTokensDetails.AcceptedPredictionTokensOption.Value!.Value);
 

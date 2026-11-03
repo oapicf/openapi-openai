@@ -12,7 +12,7 @@ import org.openapitools.model.RealtimeResponse;
  * Returned when a new Response is created. The first event of response creation, where the response is in an initial state of &#x60;in_progress&#x60;. 
  */
 @ApiModel(description = "Returned when a new Response is created. The first event of response creation, where the response is in an initial state of `in_progress`. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventResponseCreated   {
   @JsonProperty("event_id")
   private String eventId;

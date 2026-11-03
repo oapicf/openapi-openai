@@ -11,7 +11,7 @@ import javax.validation.Valid;
 /**
  * CreateModerationRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateModerationRequest   {
   @JsonProperty("input")
@@ -23,7 +23,7 @@ public class CreateModerationRequest   {
   @JsonProperty("model")
   @Valid
 
-  private CreateModerationRequestModel model;
+  private CreateModerationRequestModel model = omni-moderation-latest;
 
   public CreateModerationRequest input(CreateModerationRequestInput input) {
     this.input = input;

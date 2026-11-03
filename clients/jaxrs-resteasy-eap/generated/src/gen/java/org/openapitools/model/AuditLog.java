@@ -32,7 +32,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="A log of a user action or configuration change within this organization.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="A log of a user action or configuration change within this organization.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AuditLog   {
   
   private String id;

@@ -31,32 +31,22 @@ import {
 export interface RealtimeServerEventResponseOutputItemDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseOutputItemDone
      */
     eventId: string;
     /**
      * The event type, must be `response.output_item.done`.
-     * @type {RealtimeServerEventResponseOutputItemDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseOutputItemDone
      */
     type: RealtimeServerEventResponseOutputItemDoneTypeEnum;
     /**
      * The ID of the Response to which the item belongs.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseOutputItemDone
      */
     responseId: string;
     /**
      * The index of the output item in the Response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseOutputItemDone
      */
     outputIndex: number;
     /**
      * 
-     * @type {RealtimeConversationItem}
-     * @memberof RealtimeServerEventResponseOutputItemDone
      */
     item: RealtimeConversationItem;
 }
@@ -66,7 +56,7 @@ export interface RealtimeServerEventResponseOutputItemDone {
  * @export
  */
 export const RealtimeServerEventResponseOutputItemDoneTypeEnum = {
-    ResponseOutputItemDone: 'response.output_item.done'
+    ResponseOutputItemDone: 'response.output_item.done',
 } as const;
 export type RealtimeServerEventResponseOutputItemDoneTypeEnum = typeof RealtimeServerEventResponseOutputItemDoneTypeEnum[keyof typeof RealtimeServerEventResponseOutputItemDoneTypeEnum];
 

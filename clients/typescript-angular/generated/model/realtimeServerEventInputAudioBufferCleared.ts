@@ -24,7 +24,7 @@ export interface RealtimeServerEventInputAudioBufferCleared {
 }
 export namespace RealtimeServerEventInputAudioBufferCleared {
     export const TypeEnum = {
-        InputAudioBufferCleared: 'input_audio_buffer.cleared'
+        InputAudioBufferCleared: 'input_audio_buffer.cleared',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

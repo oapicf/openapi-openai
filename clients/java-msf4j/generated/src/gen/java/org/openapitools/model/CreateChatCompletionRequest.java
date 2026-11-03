@@ -28,10 +28,10 @@ import org.openapitools.model.PredictionContent;
 /**
  * CreateChatCompletionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest   {
   @JsonProperty("messages")
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   @JsonProperty("model")
   private CreateChatCompletionRequestModel model;
@@ -183,7 +183,7 @@ public class CreateChatCompletionRequest   {
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
 
   @JsonProperty("stop")
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   @JsonProperty("stream")
   private Boolean stream = false;
@@ -215,7 +215,7 @@ public class CreateChatCompletionRequest   {
   @JsonProperty("functions")
   private List<@Valid ChatCompletionFunctions> functions = null;
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -230,11 +230,11 @@ public class CreateChatCompletionRequest   {
    * @return messages
   **/
   @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
-  public List<ChatCompletionRequestMessage> getMessages() {
+  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
@@ -299,7 +299,7 @@ public class CreateChatCompletionRequest   {
 
   public CreateChatCompletionRequest putMetadataItem(String key, String metadataItem) {
     if (this.metadata == null) {
-      this.metadata = ;
+      this.metadata = new HashMap<>();
     }
     this.metadata.put(key, metadataItem);
     return this;
@@ -345,7 +345,7 @@ public class CreateChatCompletionRequest   {
 
   public CreateChatCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
     if (this.logitBias == null) {
-      this.logitBias = ;
+      this.logitBias = new HashMap<>();
     }
     this.logitBias.put(key, logitBiasItem);
     return this;
@@ -465,7 +465,7 @@ public class CreateChatCompletionRequest   {
 
   public CreateChatCompletionRequest addModalitiesItem(ModalitiesEnum modalitiesItem) {
     if (this.modalities == null) {
-      this.modalities = ;
+      this.modalities = new ArrayList<>();
     }
     this.modalities.add(modalitiesItem);
     return this;

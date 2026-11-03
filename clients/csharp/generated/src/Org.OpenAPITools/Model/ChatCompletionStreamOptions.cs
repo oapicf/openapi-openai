@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (includeUsage.IsSet && includeUsage.Value == null)
-                throw new ArgumentNullException(nameof(includeUsage), "Property is not nullable for class ChatCompletionStreamOptions.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamOptions: include_usage.");
 
             return new ChatCompletionStreamOptions(includeUsage);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamOptions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionStreamOptions chatCompletionStreamOptions, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,9 +166,11 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamOptions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionStreamOptions chatCompletionStreamOptions, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (chatCompletionStreamOptions.IncludeUsageOption.IsSet && chatCompletionStreamOptions.IncludeUsage == null)
+                throw new JsonException("Cannot write null property ChatCompletionStreamOptions.IncludeUsage to non-nullable JSON property 'include_usage'.");
+
             if (chatCompletionStreamOptions.IncludeUsageOption.IsSet)
                 writer.WriteBoolean("include_usage", chatCompletionStreamOptions.IncludeUsageOption.Value!.Value);
         }

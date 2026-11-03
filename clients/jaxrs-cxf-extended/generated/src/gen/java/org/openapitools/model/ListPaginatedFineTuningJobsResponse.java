@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListPaginatedFineTuningJobsResponse  {
   
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid FineTuningJob> data = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")

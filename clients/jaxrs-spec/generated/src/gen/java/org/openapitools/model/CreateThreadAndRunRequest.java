@@ -28,13 +28,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateThreadAndRunRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequest   {
   private String assistantId;
   private CreateThreadRequest thread;
   private CreateRunRequestModel model;
   private String instructions;
-  private @Valid List<CreateThreadAndRunRequestToolsInner> tools;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools;
   private CreateThreadAndRunRequestToolResources toolResources;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
@@ -138,7 +138,7 @@ public class CreateThreadAndRunRequest   {
   /**
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    **/
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -146,12 +146,12 @@ public class CreateThreadAndRunRequest   {
   
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
   @JsonProperty("tools")
-  @Valid  @Size(max=20)public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
+   @Size(max=20)public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty("tools")
-  public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **createImage**
 ```swift
-    open class func createImage(createImageRequest: CreateImageRequest, completion: @escaping (_ data: ImagesResponse?, _ error: Error?) -> Void)
+    open class func createImage(createImageRequest: CreateImageRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ImagesResponse
 ```
 
 Creates an image given a prompt.
@@ -24,15 +24,11 @@ import OpenAPIClient
 let createImageRequest = CreateImageRequest(prompt: "prompt_example", model: CreateImageRequest_model(), n: 123, quality: "quality_example", responseFormat: "responseFormat_example", size: "size_example", style: "style_example", user: "user_example") // CreateImageRequest | 
 
 // Creates an image given a prompt.
-ImagesAPI.createImage(createImageRequest: createImageRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ImagesAPI.createImage(createImageRequest: createImageRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 # **createImageEdit**
 ```swift
-    open class func createImageEdit(image: URL, prompt: String, mask: URL? = nil, model: CreateImageEditRequestModel? = nil, n: Int? = nil, size: Size_createImageEdit? = nil, responseFormat: ResponseFormat_createImageEdit? = nil, user: String? = nil, completion: @escaping (_ data: ImagesResponse?, _ error: Error?) -> Void)
+    open class func createImageEdit(image: URL, prompt: String, mask: URL? = nil, model: CreateImageEditRequestModel? = nil, n: Int? = nil, size: Size_createImageEdit? = nil, responseFormat: ResponseFormat_createImageEdit? = nil, user: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ImagesResponse
 ```
 
 Creates an edited or extended image given an original image and a prompt.
@@ -79,15 +75,11 @@ let responseFormat = "responseFormat_example" // String | The format in which th
 let user = "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 
 // Creates an edited or extended image given an original image and a prompt.
-ImagesAPI.createImageEdit(image: image, prompt: prompt, mask: mask, model: model, n: n, size: size, responseFormat: responseFormat, user: user) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ImagesAPI.createImageEdit(image: image, prompt: prompt, mask: mask, model: model, n: n, size: size, responseFormat: responseFormat, user: user)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -121,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **createImageVariation**
 ```swift
-    open class func createImageVariation(image: URL, model: CreateImageEditRequestModel? = nil, n: Int? = nil, responseFormat: ResponseFormat_createImageVariation? = nil, size: Size_createImageVariation? = nil, user: String? = nil, completion: @escaping (_ data: ImagesResponse?, _ error: Error?) -> Void)
+    open class func createImageVariation(image: URL, model: CreateImageEditRequestModel? = nil, n: Int? = nil, responseFormat: ResponseFormat_createImageVariation? = nil, size: Size_createImageVariation? = nil, user: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ImagesResponse
 ```
 
 Creates a variation of a given image.
@@ -139,15 +131,11 @@ let size = "size_example" // String | The size of the generated images. Must be 
 let user = "user_example" // String | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids).  (optional)
 
 // Creates a variation of a given image.
-ImagesAPI.createImageVariation(image: image, model: model, n: n, responseFormat: responseFormat, size: size, user: user) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ImagesAPI.createImageVariation(image: image, model: model, n: n, responseFormat: responseFormat, size: size, user: user)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

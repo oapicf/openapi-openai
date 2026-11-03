@@ -13,9 +13,9 @@ import jakarta.validation.Valid;
  */
 public class CreateFineTuningJobRequestHyperparameters   {
 
-    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
-    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
-    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
     /**
      * Default constructor.

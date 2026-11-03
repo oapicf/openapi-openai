@@ -123,9 +123,10 @@ class _$MessageContentRefusalObjectSerializer implements PrimitiveSerializer<Mes
   }
 }
 
+
+/// Always `refusal`.
 class MessageContentRefusalObjectTypeEnum extends EnumClass {
 
-  /// Always `refusal`.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const MessageContentRefusalObjectTypeEnum refusal = _$messageContentRefusalObjectTypeEnum_refusal;
 

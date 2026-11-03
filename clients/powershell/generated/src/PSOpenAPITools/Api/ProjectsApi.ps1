@@ -57,7 +57,7 @@ function Invoke-ArchiveProject {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling archiveProject."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -227,7 +227,7 @@ function New-ProjectServiceAccount {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling createProjectServiceAccount."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if (!$ProjectServiceAccountCreateRequest) {
             throw "Error! The required parameter `ProjectServiceAccountCreateRequest` missing when calling createProjectServiceAccount."
@@ -320,7 +320,7 @@ function New-ProjectUser {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling createProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if (!$ProjectUserCreateRequest) {
             throw "Error! The required parameter `ProjectUserCreateRequest` missing when calling createProjectUser."
@@ -410,11 +410,11 @@ function Invoke-DeleteProjectApiKey {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling deleteProjectApiKey."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$KeyId) {
             throw "Error! The required parameter `KeyId` missing when calling deleteProjectApiKey."
         }
-        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Web.HTTPUtility]::UrlEncode($KeyId))
+        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Uri]::EscapeDataString([string]$KeyId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -498,11 +498,11 @@ function Invoke-DeleteProjectServiceAccount {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling deleteProjectServiceAccount."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$ServiceAccountId) {
             throw "Error! The required parameter `ServiceAccountId` missing when calling deleteProjectServiceAccount."
         }
-        $LocalVarUri = $LocalVarUri.replace('{service_account_id}', [System.Web.HTTPUtility]::UrlEncode($ServiceAccountId))
+        $LocalVarUri = $LocalVarUri.replace('{service_account_id}', [System.Uri]::EscapeDataString([string]$ServiceAccountId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -586,11 +586,11 @@ function Invoke-DeleteProjectUser {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling deleteProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling deleteProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -680,7 +680,7 @@ function Invoke-ListProjectApiKeys {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling listProjectApiKeys."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -784,7 +784,7 @@ function Invoke-ListProjectRateLimits {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling listProjectRateLimits."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -886,7 +886,7 @@ function Invoke-ListProjectServiceAccounts {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling listProjectServiceAccounts."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -984,7 +984,7 @@ function Invoke-ListProjectUsers {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling listProjectUsers."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1177,7 +1177,7 @@ function Edit-Project {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling modifyProject."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if (!$ProjectUpdateRequest) {
             throw "Error! The required parameter `ProjectUpdateRequest` missing when calling modifyProject."
@@ -1276,11 +1276,11 @@ function Edit-ProjectUser {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling modifyProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling modifyProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if (!$ProjectUserUpdateRequest) {
             throw "Error! The required parameter `ProjectUserUpdateRequest` missing when calling modifyProjectUser."
@@ -1364,7 +1364,7 @@ function Invoke-RetrieveProject {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling retrieveProject."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1448,11 +1448,11 @@ function Invoke-RetrieveProjectApiKey {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling retrieveProjectApiKey."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$KeyId) {
             throw "Error! The required parameter `KeyId` missing when calling retrieveProjectApiKey."
         }
-        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Web.HTTPUtility]::UrlEncode($KeyId))
+        $LocalVarUri = $LocalVarUri.replace('{key_id}', [System.Uri]::EscapeDataString([string]$KeyId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1536,11 +1536,11 @@ function Invoke-RetrieveProjectServiceAccount {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling retrieveProjectServiceAccount."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$ServiceAccountId) {
             throw "Error! The required parameter `ServiceAccountId` missing when calling retrieveProjectServiceAccount."
         }
-        $LocalVarUri = $LocalVarUri.replace('{service_account_id}', [System.Web.HTTPUtility]::UrlEncode($ServiceAccountId))
+        $LocalVarUri = $LocalVarUri.replace('{service_account_id}', [System.Uri]::EscapeDataString([string]$ServiceAccountId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1624,11 +1624,11 @@ function Invoke-RetrieveProjectUser {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling retrieveProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling retrieveProjectUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1721,11 +1721,11 @@ function Update-ProjectRateLimits {
         if (!$ProjectId) {
             throw "Error! The required parameter `ProjectId` missing when calling updateProjectRateLimits."
         }
-        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Web.HTTPUtility]::UrlEncode($ProjectId))
+        $LocalVarUri = $LocalVarUri.replace('{project_id}', [System.Uri]::EscapeDataString([string]$ProjectId))
         if (!$RateLimitId) {
             throw "Error! The required parameter `RateLimitId` missing when calling updateProjectRateLimits."
         }
-        $LocalVarUri = $LocalVarUri.replace('{rate_limit_id}', [System.Web.HTTPUtility]::UrlEncode($RateLimitId))
+        $LocalVarUri = $LocalVarUri.replace('{rate_limit_id}', [System.Uri]::EscapeDataString([string]$RateLimitId))
 
         if (!$ProjectRateLimitUpdateRequest) {
             throw "Error! The required parameter `ProjectRateLimitUpdateRequest` missing when calling updateProjectRateLimits."

@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RealtimeServerEventConversationCreatedConversation.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationCreatedConversation: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RealtimeServerEventConversationCreatedConversation.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationCreatedConversation: object.");
 
             return new RealtimeServerEventConversationCreatedConversation(id, varObject);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationCreatedConversation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationCreatedConversation realtimeServerEventConversationCreatedConversation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationCreatedConversation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationCreatedConversation realtimeServerEventConversationCreatedConversation, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeServerEventConversationCreatedConversation.IdOption.IsSet && realtimeServerEventConversationCreatedConversation.Id == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationCreatedConversation.Id), "Property is required for class RealtimeServerEventConversationCreatedConversation.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationCreatedConversation.Id to non-nullable JSON property 'id'.");
 
             if (realtimeServerEventConversationCreatedConversation.ObjectOption.IsSet && realtimeServerEventConversationCreatedConversation.Object == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationCreatedConversation.Object), "Property is required for class RealtimeServerEventConversationCreatedConversation.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationCreatedConversation.Object to non-nullable JSON property 'object'.");
 
             if (realtimeServerEventConversationCreatedConversation.IdOption.IsSet)
                 writer.WriteString("id", realtimeServerEventConversationCreatedConversation.Id);

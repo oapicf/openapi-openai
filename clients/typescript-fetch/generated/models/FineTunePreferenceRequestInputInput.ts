@@ -36,20 +36,14 @@ import {
 export interface FineTunePreferenceRequestInputInput {
     /**
      * 
-     * @type {Array<FineTuneChatRequestInputMessagesInner>}
-     * @memberof FineTunePreferenceRequestInputInput
      */
     messages?: Array<FineTuneChatRequestInputMessagesInner>;
     /**
      * A list of tools the model may generate JSON inputs for.
-     * @type {Array<ChatCompletionTool>}
-     * @memberof FineTunePreferenceRequestInputInput
      */
     tools?: Array<ChatCompletionTool>;
     /**
      * Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
-     * @type {boolean}
-     * @memberof FineTunePreferenceRequestInputInput
      */
     parallelToolCalls?: boolean;
 }

@@ -169,8 +169,7 @@ public enum RoleEnum {
   * The content of the message in array of text and/or images.
   */
   @ApiModelProperty(required = true, value = "The content of the message in array of text and/or images.")
-  @Valid
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
  /**
   * If applicable, the ID of the [assistant](/docs/api-reference/assistants) that authored this message.
@@ -188,7 +187,6 @@ public enum RoleEnum {
   * A list of files attached to the message, and the tools they were added to.
   */
   @ApiModelProperty(required = true, value = "A list of files attached to the message, and the tools they were added to.")
-  @Valid
   private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
 
  /**
@@ -427,21 +425,21 @@ public enum RoleEnum {
   */
   @JsonProperty("content")
   @NotNull
-  public List<MessageObjectContentInner> getContent() {
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
- public void setContent(List<MessageObjectContentInner> content) {
+ public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 
   /**
    * Sets the <code>content</code> property.
    */
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }

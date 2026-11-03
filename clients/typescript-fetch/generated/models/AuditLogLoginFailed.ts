@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AuditLogLoginFailed {
     /**
      * The error code of the failure.
-     * @type {string}
-     * @memberof AuditLogLoginFailed
      */
     errorCode?: string;
     /**
      * The error message of the failure.
-     * @type {string}
-     * @memberof AuditLogLoginFailed
      */
     errorMessage?: string;
 }

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MessageDeltaContentTextAnnotationsFilePathObjectFilePath {
     /**
      * The ID of the file that was generated.
-     * @type {string}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObjectFilePath
      */
     fileId?: string;
 }

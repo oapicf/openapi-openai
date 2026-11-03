@@ -233,9 +233,10 @@ class _$OpenAIFileSerializer implements PrimitiveSerializer<OpenAIFile> {
   }
 }
 
+
+/// The object type, which is always `file`.
 class OpenAIFileObjectEnum extends EnumClass {
 
-  /// The object type, which is always `file`.
   @BuiltValueEnumConst(wireName: r'file')
   static const OpenAIFileObjectEnum file = _$openAIFileObjectEnum_file;
 
@@ -247,27 +248,21 @@ class OpenAIFileObjectEnum extends EnumClass {
   static OpenAIFileObjectEnum valueOf(String name) => _$openAIFileObjectEnumValueOf(name);
 }
 
+/// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
 class OpenAIFilePurposeEnum extends EnumClass {
 
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'assistants')
   static const OpenAIFilePurposeEnum assistants = _$openAIFilePurposeEnum_assistants;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'assistants_output')
   static const OpenAIFilePurposeEnum assistantsOutput = _$openAIFilePurposeEnum_assistantsOutput;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'batch')
   static const OpenAIFilePurposeEnum batch = _$openAIFilePurposeEnum_batch;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'batch_output')
   static const OpenAIFilePurposeEnum batchOutput = _$openAIFilePurposeEnum_batchOutput;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'fine-tune')
   static const OpenAIFilePurposeEnum fineTune = _$openAIFilePurposeEnum_fineTune;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'fine-tune-results')
   static const OpenAIFilePurposeEnum fineTuneResults = _$openAIFilePurposeEnum_fineTuneResults;
-  /// The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
   @BuiltValueEnumConst(wireName: r'vision')
   static const OpenAIFilePurposeEnum vision = _$openAIFilePurposeEnum_vision;
 
@@ -279,15 +274,13 @@ class OpenAIFilePurposeEnum extends EnumClass {
   static OpenAIFilePurposeEnum valueOf(String name) => _$openAIFilePurposeEnumValueOf(name);
 }
 
+/// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
 class OpenAIFileStatusEnum extends EnumClass {
 
-  /// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
   @BuiltValueEnumConst(wireName: r'uploaded')
   static const OpenAIFileStatusEnum uploaded = _$openAIFileStatusEnum_uploaded;
-  /// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
   @BuiltValueEnumConst(wireName: r'processed')
   static const OpenAIFileStatusEnum processed = _$openAIFileStatusEnum_processed;
-  /// Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
   @BuiltValueEnumConst(wireName: r'error')
   static const OpenAIFileStatusEnum error = _$openAIFileStatusEnum_error;
 

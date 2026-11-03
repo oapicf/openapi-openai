@@ -29,14 +29,10 @@ import {
 export interface RunStepStreamEventOneOf6 {
     /**
      * 
-     * @type {RunStepStreamEventOneOf6EventEnum}
-     * @memberof RunStepStreamEventOneOf6
      */
     event: RunStepStreamEventOneOf6EventEnum;
     /**
      * 
-     * @type {RunStepObject}
-     * @memberof RunStepStreamEventOneOf6
      */
     data: RunStepObject;
 }
@@ -46,7 +42,7 @@ export interface RunStepStreamEventOneOf6 {
  * @export
  */
 export const RunStepStreamEventOneOf6EventEnum = {
-    ThreadRunStepExpired: 'thread.run.step.expired'
+    ThreadRunStepExpired: 'thread.run.step.expired',
 } as const;
 export type RunStepStreamEventOneOf6EventEnum = typeof RunStepStreamEventOneOf6EventEnum[keyof typeof RunStepStreamEventOneOf6EventEnum];
 

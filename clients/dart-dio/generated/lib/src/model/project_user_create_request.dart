@@ -124,12 +124,12 @@ class _$ProjectUserCreateRequestSerializer implements PrimitiveSerializer<Projec
   }
 }
 
+
+/// `owner` or `member`
 class ProjectUserCreateRequestRoleEnum extends EnumClass {
 
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'owner')
   static const ProjectUserCreateRequestRoleEnum owner = _$projectUserCreateRequestRoleEnum_owner;
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'member')
   static const ProjectUserCreateRequestRoleEnum member = _$projectUserCreateRequestRoleEnum_member;
 

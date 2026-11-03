@@ -136,6 +136,7 @@ class _$ChatCompletionRequestAssistantMessageSerializer implements PrimitiveSeri
   }
 }
 
+
 /// a concrete implementation of [ChatCompletionRequestAssistantMessage], since [ChatCompletionRequestAssistantMessage] is not instantiable
 @BuiltValue(instantiable: true)
 abstract class $ChatCompletionRequestAssistantMessage implements ChatCompletionRequestAssistantMessage, Built<$ChatCompletionRequestAssistantMessage, $ChatCompletionRequestAssistantMessageBuilder> {
@@ -262,9 +263,9 @@ class _$$ChatCompletionRequestAssistantMessageSerializer implements PrimitiveSer
   }
 }
 
+/// The role of the messages author, in this case `assistant`.
 class ChatCompletionRequestAssistantMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const ChatCompletionRequestAssistantMessageRoleEnum assistant = _$chatCompletionRequestAssistantMessageRoleEnum_assistant;
 

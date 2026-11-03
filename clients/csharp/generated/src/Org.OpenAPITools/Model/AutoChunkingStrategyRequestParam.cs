@@ -180,7 +180,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AutoChunkingStrategyRequestParam.TypeEnum?>(AutoChunkingStrategyRequestParam.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AutoChunkingStrategyRequestParam.TypeEnum? typeValue = AutoChunkingStrategyRequestParam.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AutoChunkingStrategyRequestParam.TypeEnum?>(typeValue);
+                            }
                             break;
                         default:
                             break;
@@ -189,10 +194,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AutoChunkingStrategyRequestParam.", nameof(type));
+                throw new JsonException("Property is required for class AutoChunkingStrategyRequestParam: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AutoChunkingStrategyRequestParam.");
+                throw new JsonException("Property is not nullable for class AutoChunkingStrategyRequestParam: type.");
 
             return new AutoChunkingStrategyRequestParam(type.Value!.Value!);
         }
@@ -203,7 +208,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="autoChunkingStrategyRequestParam"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AutoChunkingStrategyRequestParam autoChunkingStrategyRequestParam, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -218,7 +222,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="autoChunkingStrategyRequestParam"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AutoChunkingStrategyRequestParam autoChunkingStrategyRequestParam, JsonSerializerOptions jsonSerializerOptions)
         {
             var typeRawValue = AutoChunkingStrategyRequestParam.TypeEnumToJsonValue(autoChunkingStrategyRequestParam.Type);

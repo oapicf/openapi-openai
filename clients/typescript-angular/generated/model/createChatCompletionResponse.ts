@@ -48,11 +48,11 @@ export interface CreateChatCompletionResponse {
 export namespace CreateChatCompletionResponse {
     export const ServiceTierEnum = {
         Scale: 'scale',
-        Default: 'default'
+        Default: 'default',
     } as const;
     export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
     export const ObjectEnum = {
-        ChatCompletion: 'chat.completion'
+        ChatCompletion: 'chat.completion',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

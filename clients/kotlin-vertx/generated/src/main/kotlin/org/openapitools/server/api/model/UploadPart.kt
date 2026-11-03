@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param id The upload Part unique identifier, which can be referenced in API endpoints.
  * @param createdAt The Unix timestamp (in seconds) for when the Part was created.
  * @param uploadId The ID of the Upload object that this Part was added to.
- * @param &#x60;object&#x60; The object type, which is always `upload.part`.
+ * @param `object` The object type, which is always `upload.part`.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

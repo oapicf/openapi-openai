@@ -15,11 +15,11 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaContentTextObjectText   {
   
   private String value;
-  private List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   /**
    * The data that makes up the text.
@@ -39,10 +39,10 @@ public class MessageDeltaContentTextObjectText   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("annotations")
-  public List<MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
-  public void setAnnotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

@@ -40,8 +40,6 @@ public class CreateTranslationResponseVerboseJson  {
   */
   @ApiModelProperty(value = "Segments of the translated text and their corresponding details.")
 
-  @Valid
-
   private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
  /**
    * The language of the output translation (always &#x60;english&#x60;).

@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantObjectToolResources
 import org.openapitools.model.AssistantObjectToolsInner
 import org.openapitools.model.AssistantsApiResponseFormatOption
@@ -24,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Represents an `assistant` that can call the model and use tools.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `assistant`.
+ * @param `object` The object type, which is always `assistant`.
  * @param createdAt The Unix timestamp (in seconds) for when the assistant was created.
  * @param name The name of the assistant. The maximum length is 256 characters. 
  * @param description The description of the assistant. The maximum length is 512 characters. 
@@ -40,45 +37,45 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class AssistantObject(
 
     @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `assistant`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: AssistantObject.`Object`,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the assistant was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @get:Size(max=256)
     @Schema(required = true, description = "The name of the assistant. The maximum length is 256 characters. ")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String?,
 
     @get:Size(max=512)
     @Schema(required = true, description = "The description of the assistant. The maximum length is 512 characters. ")
-    @param:JsonProperty("description")
+    @param:JsonProperty("description", required = true)
     @get:JsonProperty("description", required = true) val description: kotlin.String?,
 
     @Schema(required = true, description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: kotlin.String,
 
     @get:Size(max=256000)
     @Schema(required = true, description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ")
-    @param:JsonProperty("instructions")
+    @param:JsonProperty("instructions", required = true)
     @get:JsonProperty("instructions", required = true) val instructions: kotlin.String?,
 
     @field:Valid
     @get:Size(max=128)
     @Schema(required = true, description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-    @param:JsonProperty("tools")
+    @param:JsonProperty("tools", required = true)
     @get:JsonProperty("tools", required = true) val tools: kotlin.collections.List<AssistantObjectToolsInner> = arrayListOf(),
 
     @field:Valid
     @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
-    @param:JsonProperty("metadata")
+    @param:JsonProperty("metadata", required = true)
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?,
 
     @field:Valid
@@ -100,8 +97,6 @@ data class AssistantObject(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: AssistantsApiResponseFormatOption? = null
 ) {
@@ -113,12 +108,12 @@ data class AssistantObject(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         assistant("assistant");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

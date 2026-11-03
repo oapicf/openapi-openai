@@ -124,9 +124,10 @@ class _$RunStepDetailsToolCallsFileSearchRankingOptionsObjectSerializer implemen
   }
 }
 
+
+/// The ranker used for the file search.
 class RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum extends EnumClass {
 
-  /// The ranker used for the file search.
   @BuiltValueEnumConst(wireName: r'default_2024_08_21')
   static const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum default20240821 = _$runStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum_default20240821;
 

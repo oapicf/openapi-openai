@@ -128,15 +128,14 @@ class _$MessageContentImageFileObjectImageFileSerializer implements PrimitiveSer
   }
 }
 
+
+/// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 class MessageContentImageFileObjectImageFileDetailEnum extends EnumClass {
 
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const MessageContentImageFileObjectImageFileDetailEnum auto = _$messageContentImageFileObjectImageFileDetailEnum_auto;
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'low')
   static const MessageContentImageFileObjectImageFileDetailEnum low = _$messageContentImageFileObjectImageFileDetailEnum_low;
-  /// Specifies the detail level of the image if specified by the user. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'high')
   static const MessageContentImageFileObjectImageFileDetailEnum high = _$messageContentImageFileObjectImageFileDetailEnum_high;
 

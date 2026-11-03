@@ -24,22 +24,16 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventResponseCancel {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventResponseCancel
      */
     eventId?: string;
     /**
      * The event type, must be `response.cancel`.
-     * @type {RealtimeClientEventResponseCancelTypeEnum}
-     * @memberof RealtimeClientEventResponseCancel
      */
     type: RealtimeClientEventResponseCancelTypeEnum;
     /**
      * A specific response ID to cancel - if not provided, will cancel an 
      * in-progress response in the default conversation.
      * 
-     * @type {string}
-     * @memberof RealtimeClientEventResponseCancel
      */
     responseId?: string;
 }
@@ -49,7 +43,7 @@ export interface RealtimeClientEventResponseCancel {
  * @export
  */
 export const RealtimeClientEventResponseCancelTypeEnum = {
-    ResponseCancel: 'response.cancel'
+    ResponseCancel: 'response.cancel',
 } as const;
 export type RealtimeClientEventResponseCancelTypeEnum = typeof RealtimeClientEventResponseCancelTypeEnum[keyof typeof RealtimeClientEventResponseCancelTypeEnum];
 

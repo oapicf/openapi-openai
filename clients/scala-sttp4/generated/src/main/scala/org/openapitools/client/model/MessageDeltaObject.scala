@@ -27,7 +27,7 @@ object MessageDeltaObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ThreadMessageDelta extends `Object`
+    case object ThreadMessageDelta extends `Object` { override def toString: String = "thread.message.delta" }
 
     import org.json4s._
 

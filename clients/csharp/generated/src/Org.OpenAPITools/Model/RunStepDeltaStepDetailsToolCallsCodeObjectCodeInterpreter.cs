@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter: input.");
 
             if (outputs.IsSet && outputs.Value == null)
-                throw new ArgumentNullException(nameof(outputs), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter: outputs.");
 
             return new RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter(input, outputs);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.InputOption.IsSet && runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Input == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Input), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Input to non-nullable JSON property 'input'.");
 
             if (runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.OutputsOption.IsSet && runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Outputs == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Outputs), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Outputs to non-nullable JSON property 'outputs'.");
 
             if (runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.InputOption.IsSet)
                 writer.WriteString("input", runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter.Input);

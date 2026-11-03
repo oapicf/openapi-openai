@@ -20,9 +20,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ListFineTuningJobEventsResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ListFineTuningJobEventsResponse   {
-  private @Valid List<@Valid FineTuningJobEvent> data = new ArrayList<>();
+  private List<@Valid FineTuningJobEvent> data = new ArrayList<>();
   public enum ObjectEnum {
 
     LIST(String.valueOf("list"));
@@ -94,7 +94,7 @@ public class ListFineTuningJobEventsResponse   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "data")
-  @NotNull @Valid public List<@Valid FineTuningJobEvent> getData() {
+  @NotNull public List<@Valid FineTuningJobEvent> getData() {
     return data;
   }
 

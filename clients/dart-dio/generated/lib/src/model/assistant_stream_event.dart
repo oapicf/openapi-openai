@@ -77,6 +77,7 @@ class _$AssistantStreamEventSerializer implements PrimitiveSerializer<AssistantS
   }
 }
 
+
 class AssistantStreamEventEventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'done')

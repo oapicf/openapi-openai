@@ -120,7 +120,7 @@ public class RunObject   {
     private RunObjectIncompleteDetails incompleteDetails;
     private String model;
     private String instructions;
-    private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+    private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
     private Object metadata;
     private RunCompletionUsage usage;
     private BigDecimal temperature;
@@ -187,7 +187,7 @@ public class RunObject   {
         RunObjectIncompleteDetails incompleteDetails, 
         String model, 
         String instructions, 
-        List<AssistantObjectToolsInner> tools, 
+        List<@Valid AssistantObjectToolsInner> tools, 
         Object metadata, 
         RunCompletionUsage usage, 
         BigDecimal temperature, 
@@ -426,11 +426,11 @@ public class RunObject   {
      * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
      * @return tools
      */
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

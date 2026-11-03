@@ -44,7 +44,7 @@ export interface RealtimeServerEventResponseTextDelta {
 }
 export namespace RealtimeServerEventResponseTextDelta {
     export const TypeEnum = {
-        ResponseTextDelta: 'response.text.delta'
+        ResponseTextDelta: 'response.text.delta',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

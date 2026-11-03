@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventSessionUpdated.TypeEnum?>(RealtimeServerEventSessionUpdated.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventSessionUpdated.TypeEnum? typeValue = RealtimeServerEventSessionUpdated.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventSessionUpdated.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "session":
                             session = new Option<RealtimeSession?>(JsonSerializer.Deserialize<RealtimeSession>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventSessionUpdated.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventSessionUpdated: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventSessionUpdated.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventSessionUpdated: type.");
 
             if (!session.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventSessionUpdated.", nameof(session));
+                throw new JsonException("Property is required for class RealtimeServerEventSessionUpdated: session.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventSessionUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventSessionUpdated: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventSessionUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventSessionUpdated: type.");
 
             if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class RealtimeServerEventSessionUpdated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventSessionUpdated: session.");
 
             return new RealtimeServerEventSessionUpdated(eventId.Value!, type.Value!.Value!, session.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventSessionUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventSessionUpdated realtimeServerEventSessionUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventSessionUpdated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventSessionUpdated realtimeServerEventSessionUpdated, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventSessionUpdated.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventSessionUpdated.EventId), "Property is required for class RealtimeServerEventSessionUpdated.");
-
-            if (realtimeServerEventSessionUpdated.Session == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventSessionUpdated.Session), "Property is required for class RealtimeServerEventSessionUpdated.");
-
             writer.WriteString("event_id", realtimeServerEventSessionUpdated.EventId);
 
             var typeRawValue = RealtimeServerEventSessionUpdated.TypeEnumToJsonValue(realtimeServerEventSessionUpdated.Type);

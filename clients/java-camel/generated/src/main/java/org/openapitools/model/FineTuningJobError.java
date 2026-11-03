@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "FineTuningJob_error", description = "For fine-tuning jobs that have `failed`, this will contain more information on the cause of the failure.")
 @JsonTypeName("FineTuningJob_error")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJobError {
 
   private String code;
@@ -92,7 +92,7 @@ public class FineTuningJobError {
    * The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
    * @return param
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "param", description = "The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("param")
   public JsonNullable<String> getParam() {

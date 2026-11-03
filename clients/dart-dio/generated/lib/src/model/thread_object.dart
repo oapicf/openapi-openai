@@ -178,9 +178,10 @@ class _$ThreadObjectSerializer implements PrimitiveSerializer<ThreadObject> {
   }
 }
 
+
+/// The object type, which is always `thread`.
 class ThreadObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread`.
   @BuiltValueEnumConst(wireName: r'thread')
   static const ThreadObjectObjectEnum thread = _$threadObjectObjectEnum_thread;
 

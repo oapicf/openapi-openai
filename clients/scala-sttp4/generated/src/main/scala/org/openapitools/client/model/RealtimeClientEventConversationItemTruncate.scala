@@ -31,7 +31,7 @@ object RealtimeClientEventConversationItemTruncateEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ConversationItemTruncate extends `Type`
+    case object ConversationItemTruncate extends `Type` { override def toString: String = "conversation.item.truncate" }
 
     import org.json4s._
 

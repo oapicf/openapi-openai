@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionResponse   {
   
   private String id;
@@ -67,7 +67,6 @@ public class CreateCompletionResponse   {
   @ApiModelProperty(required = true, value = "The list of completion choices the model generated for the input prompt.")
   @JsonProperty("choices")
   @NotNull
-  @Valid
   public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {
     return choices;
   }

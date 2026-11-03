@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.Error
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -22,17 +19,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Occurs when an [error](/docs/guides/error-codes#api-errors) occurs. This can happen due to an internal server error or a timeout.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class ErrorEvent(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("event")
+    @param:JsonProperty("event", required = true)
     @get:JsonProperty("event", required = true) val event: ErrorEvent.Event,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: Error
 ) : AssistantStreamEvent {
 
@@ -43,12 +40,12 @@ data class ErrorEvent(
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
         error("error");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }

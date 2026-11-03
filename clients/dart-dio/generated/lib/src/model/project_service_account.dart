@@ -176,9 +176,10 @@ class _$ProjectServiceAccountSerializer implements PrimitiveSerializer<ProjectSe
   }
 }
 
+
+/// The object type, which is always `organization.project.service_account`
 class ProjectServiceAccountObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.project.service_account`
   @BuiltValueEnumConst(wireName: r'organization.project.service_account')
   static const ProjectServiceAccountObjectEnum organizationPeriodProjectPeriodServiceAccount = _$projectServiceAccountObjectEnum_organizationPeriodProjectPeriodServiceAccount;
 
@@ -190,12 +191,11 @@ class ProjectServiceAccountObjectEnum extends EnumClass {
   static ProjectServiceAccountObjectEnum valueOf(String name) => _$projectServiceAccountObjectEnumValueOf(name);
 }
 
+/// `owner` or `member`
 class ProjectServiceAccountRoleEnum extends EnumClass {
 
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'owner')
   static const ProjectServiceAccountRoleEnum owner = _$projectServiceAccountRoleEnum_owner;
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'member')
   static const ProjectServiceAccountRoleEnum member = _$projectServiceAccountRoleEnum_member;
 

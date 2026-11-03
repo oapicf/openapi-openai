@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The beta value for the DPO method. A higher beta value will increase the weight of the penalty between the policy and reference model. ")
 @JsonTypeName("FineTuneDPOMethod_hyperparameters_beta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparametersBeta   {
 
   public FineTuneDPOMethodHyperparametersBeta() {

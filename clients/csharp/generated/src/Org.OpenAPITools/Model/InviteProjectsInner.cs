@@ -222,7 +222,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<InviteProjectsInner.RoleEnum?>(InviteProjectsInner.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                InviteProjectsInner.RoleEnum? roleValue = InviteProjectsInner.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<InviteProjectsInner.RoleEnum?>(roleValue);
+                            }
                             break;
                         default:
                             break;
@@ -231,10 +236,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class InviteProjectsInner.");
+                throw new JsonException("Property is not nullable for class InviteProjectsInner: id.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class InviteProjectsInner.");
+                throw new JsonException("Property is not nullable for class InviteProjectsInner: role.");
 
             return new InviteProjectsInner(id, role);
         }
@@ -245,7 +250,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteProjectsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InviteProjectsInner inviteProjectsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -260,11 +264,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteProjectsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InviteProjectsInner inviteProjectsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (inviteProjectsInner.IdOption.IsSet && inviteProjectsInner.Id == null)
-                throw new ArgumentNullException(nameof(inviteProjectsInner.Id), "Property is required for class InviteProjectsInner.");
+                throw new JsonException("Cannot write null property InviteProjectsInner.Id to non-nullable JSON property 'id'.");
+
+            if (inviteProjectsInner.RoleOption.IsSet && inviteProjectsInner.Role == null)
+                throw new JsonException("Cannot write null property InviteProjectsInner.Role to non-nullable JSON property 'role'.");
 
             if (inviteProjectsInner.IdOption.IsSet)
                 writer.WriteString("id", inviteProjectsInner.Id);

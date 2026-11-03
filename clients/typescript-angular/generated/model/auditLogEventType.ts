@@ -34,7 +34,7 @@ export const AuditLogEventType = {
     RateLimitDeleted: 'rate_limit.deleted',
     UserAdded: 'user.added',
     UserUpdated: 'user.updated',
-    UserDeleted: 'user.deleted'
+    UserDeleted: 'user.deleted',
 } as const;
 export type AuditLogEventType = typeof AuditLogEventType[keyof typeof AuditLogEventType];
 

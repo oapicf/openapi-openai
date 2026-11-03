@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface BatchErrorsDataInner {
     /**
      * An error code identifying the error type.
-     * @type {string}
-     * @memberof BatchErrorsDataInner
      */
     code?: string;
     /**
      * A human-readable message providing more details about the error.
-     * @type {string}
-     * @memberof BatchErrorsDataInner
      */
     message?: string;
     /**
      * The name of the parameter that caused the error, if applicable.
-     * @type {string}
-     * @memberof BatchErrorsDataInner
      */
     param?: string | null;
     /**
      * The line number of the input file where the error occurred, if applicable.
-     * @type {number}
-     * @memberof BatchErrorsDataInner
      */
     line?: number | null;
 }

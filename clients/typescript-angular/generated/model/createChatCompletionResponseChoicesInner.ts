@@ -29,7 +29,7 @@ export namespace CreateChatCompletionResponseChoicesInner {
         Length: 'length',
         ToolCalls: 'tool_calls',
         ContentFilter: 'content_filter',
-        FunctionCall: 'function_call'
+        FunctionCall: 'function_call',
     } as const;
     export type FinishReasonEnum = typeof FinishReasonEnum[keyof typeof FinishReasonEnum];
 }

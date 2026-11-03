@@ -29,26 +29,18 @@ import {
 export interface UsageTimeBucket {
     /**
      * 
-     * @type {UsageTimeBucketObjectEnum}
-     * @memberof UsageTimeBucket
      */
     object: UsageTimeBucketObjectEnum;
     /**
      * 
-     * @type {number}
-     * @memberof UsageTimeBucket
      */
     startTime: number;
     /**
      * 
-     * @type {number}
-     * @memberof UsageTimeBucket
      */
     endTime: number;
     /**
      * 
-     * @type {Array<UsageTimeBucketResultInner>}
-     * @memberof UsageTimeBucket
      */
     result: Array<UsageTimeBucketResultInner>;
 }
@@ -58,7 +50,7 @@ export interface UsageTimeBucket {
  * @export
  */
 export const UsageTimeBucketObjectEnum = {
-    Bucket: 'bucket'
+    Bucket: 'bucket',
 } as const;
 export type UsageTimeBucketObjectEnum = typeof UsageTimeBucketObjectEnum[keyof typeof UsageTimeBucketObjectEnum];
 

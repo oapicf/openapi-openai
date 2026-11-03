@@ -22,7 +22,6 @@ public class BatchErrors  {
   private String _object;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid BatchErrorsDataInner> data = new ArrayList<>();
  /**
   * The object type, which is always &#x60;list&#x60;.

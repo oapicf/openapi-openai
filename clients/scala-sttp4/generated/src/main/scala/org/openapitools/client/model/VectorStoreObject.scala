@@ -43,7 +43,7 @@ object VectorStoreObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object VectorStore extends `Object`
+    case object VectorStore extends `Object` { override def toString: String = "vector_store" }
 
     import org.json4s._
 
@@ -64,9 +64,9 @@ object VectorStoreObjectEnums {
 
   sealed trait Status
   object Status {
-    case object Expired extends Status
-    case object InProgress extends Status
-    case object Completed extends Status
+    case object Expired extends Status { override def toString: String = "expired" }
+    case object InProgress extends Status { override def toString: String = "in_progress" }
+    case object Completed extends Status { override def toString: String = "completed" }
 
     import org.json4s._
 

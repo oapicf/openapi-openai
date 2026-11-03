@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (toolCallId.IsSet && toolCallId.Value == null)
-                throw new ArgumentNullException(nameof(toolCallId), "Property is not nullable for class SubmitToolOutputsRunRequestToolOutputsInner.");
+                throw new JsonException("Property is not nullable for class SubmitToolOutputsRunRequestToolOutputsInner: tool_call_id.");
 
             if (output.IsSet && output.Value == null)
-                throw new ArgumentNullException(nameof(output), "Property is not nullable for class SubmitToolOutputsRunRequestToolOutputsInner.");
+                throw new JsonException("Property is not nullable for class SubmitToolOutputsRunRequestToolOutputsInner: output.");
 
             return new SubmitToolOutputsRunRequestToolOutputsInner(toolCallId, output);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="submitToolOutputsRunRequestToolOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SubmitToolOutputsRunRequestToolOutputsInner submitToolOutputsRunRequestToolOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="submitToolOutputsRunRequestToolOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SubmitToolOutputsRunRequestToolOutputsInner submitToolOutputsRunRequestToolOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (submitToolOutputsRunRequestToolOutputsInner.ToolCallIdOption.IsSet && submitToolOutputsRunRequestToolOutputsInner.ToolCallId == null)
-                throw new ArgumentNullException(nameof(submitToolOutputsRunRequestToolOutputsInner.ToolCallId), "Property is required for class SubmitToolOutputsRunRequestToolOutputsInner.");
+                throw new JsonException("Cannot write null property SubmitToolOutputsRunRequestToolOutputsInner.ToolCallId to non-nullable JSON property 'tool_call_id'.");
 
             if (submitToolOutputsRunRequestToolOutputsInner.OutputOption.IsSet && submitToolOutputsRunRequestToolOutputsInner.Output == null)
-                throw new ArgumentNullException(nameof(submitToolOutputsRunRequestToolOutputsInner.Output), "Property is required for class SubmitToolOutputsRunRequestToolOutputsInner.");
+                throw new JsonException("Cannot write null property SubmitToolOutputsRunRequestToolOutputsInner.Output to non-nullable JSON property 'output'.");
 
             if (submitToolOutputsRunRequestToolOutputsInner.ToolCallIdOption.IsSet)
                 writer.WriteString("tool_call_id", submitToolOutputsRunRequestToolOutputsInner.ToolCallId);

@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateChatCompletionRequestStop" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateChatCompletionRequestStop(string @string)
+        public CreateChatCompletionRequestStop(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateChatCompletionRequestStop" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal CreateChatCompletionRequestStop(List<string> list)
+        public CreateChatCompletionRequestStop(List<string> list)
         {
             List = list;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestStop"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionRequestStop createChatCompletionRequestStop, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestStop"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionRequestStop createChatCompletionRequestStop, JsonSerializerOptions jsonSerializerOptions)
         {
 

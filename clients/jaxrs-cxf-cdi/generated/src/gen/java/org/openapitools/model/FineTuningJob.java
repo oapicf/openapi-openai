@@ -116,7 +116,7 @@ public enum StatusEnum {
 
   private String validationFile;
 
-  private List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
 
   private Integer seed;
 
@@ -413,7 +413,7 @@ public enum StatusEnum {
   /**
    * A list of integrations to enable for this fine-tuning job.
    **/
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }
@@ -421,10 +421,10 @@ public enum StatusEnum {
   
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
   @JsonProperty("integrations")
- @Size(max=5)  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+ @Size(max=5)  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

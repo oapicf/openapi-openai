@@ -36,7 +36,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateModerationResponseResultsInner.JSON_PROPERTY_CATEGORY_APPLIED_INPUT_TYPES
 })
 @JsonTypeName("CreateModerationResponse_results_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateModerationResponseResultsInner {
     public static final String JSON_PROPERTY_FLAGGED = "flagged";

@@ -124,9 +124,10 @@ class _$ChatCompletionRequestMessageContentPartRefusalSerializer implements Prim
   }
 }
 
+
+/// The type of the content part.
 class ChatCompletionRequestMessageContentPartRefusalTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const ChatCompletionRequestMessageContentPartRefusalTypeEnum refusal = _$chatCompletionRequestMessageContentPartRefusalTypeEnum_refusal;
 

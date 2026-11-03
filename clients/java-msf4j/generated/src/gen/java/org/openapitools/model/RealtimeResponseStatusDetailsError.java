@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * A description of the error that caused the response to fail,  populated when the &#x60;status&#x60; is &#x60;failed&#x60;. 
  */
 @ApiModel(description = "A description of the error that caused the response to fail,  populated when the `status` is `failed`. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseStatusDetailsError   {
   @JsonProperty("type")
   private String type;

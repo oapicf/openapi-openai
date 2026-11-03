@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantObjectToolsInner
 import org.openapitools.model.AssistantsApiResponseFormatOption
 import org.openapitools.model.CreateAssistantRequestModel
@@ -37,7 +34,7 @@ data class CreateAssistantRequest(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: CreateAssistantRequestModel,
 
     @get:Size(max=256)
@@ -58,8 +55,6 @@ data class CreateAssistantRequest(
     @field:Valid
     @get:Size(max=128)
     @Schema(description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<AssistantObjectToolsInner>? = arrayListOf(),
 
@@ -87,8 +82,6 @@ data class CreateAssistantRequest(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: AssistantsApiResponseFormatOption? = null
 ) {

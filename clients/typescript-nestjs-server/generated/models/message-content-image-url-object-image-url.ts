@@ -14,7 +14,7 @@ export namespace MessageContentImageUrlObjectImageUrl {
   export const DetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
   } as const;
   export type DetailEnum = typeof DetailEnum[keyof typeof DetailEnum];
 }

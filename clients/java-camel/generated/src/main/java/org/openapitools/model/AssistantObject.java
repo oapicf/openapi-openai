@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -30,7 +29,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "AssistantObject", description = "Represents an `assistant` that can call the model and use tools.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantObject {
 
   private String id;
@@ -80,8 +79,7 @@ public class AssistantObject {
 
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   private JsonNullable<AssistantObjectToolResources> toolResources = JsonNullable.<AssistantObjectToolResources>undefined();
 
@@ -100,7 +98,7 @@ public class AssistantObject {
   /**
    * Constructor with only required parameters
    */
-  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata) {
+  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<@Valid AssistantObjectToolsInner> tools, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -181,7 +179,7 @@ public class AssistantObject {
    * The name of the assistant. The maximum length is 256 characters. 
    * @return name
    */
-  @NotNull @Size(max = 256) 
+  /* @Present */ @Size(max = 256) 
   @Schema(name = "name", description = "The name of the assistant. The maximum length is 256 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
   public JsonNullable<@Size(max = 256) String> getName() {
@@ -201,7 +199,7 @@ public class AssistantObject {
    * The description of the assistant. The maximum length is 512 characters. 
    * @return description
    */
-  @NotNull @Size(max = 512) 
+  /* @Present */ @Size(max = 512) 
   @Schema(name = "description", description = "The description of the assistant. The maximum length is 512 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("description")
   public JsonNullable<@Size(max = 512) String> getDescription() {
@@ -241,7 +239,7 @@ public class AssistantObject {
    * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
    * @return instructions
    */
-  @NotNull @Size(max = 256000) 
+  /* @Present */ @Size(max = 256000) 
   @Schema(name = "instructions", description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("instructions")
   public JsonNullable<@Size(max = 256000) String> getInstructions() {
@@ -252,7 +250,7 @@ public class AssistantObject {
     this.instructions = instructions;
   }
 
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -269,14 +267,14 @@ public class AssistantObject {
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
    */
-  @NotNull @Valid @Size(max = 128) 
+  @NotNull @Size(max = 128) 
   @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tools")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
@@ -309,7 +307,7 @@ public class AssistantObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {

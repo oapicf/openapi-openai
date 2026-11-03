@@ -69,7 +69,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   RunObject.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("RunObject")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class RunObject {
     public static final String JSON_PROPERTY_ID = "id";
@@ -193,7 +193,7 @@ public class RunObject {
     private String instructions;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+    private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
     public static final String JSON_PROPERTY_METADATA = "metadata";
     private Object metadata;
@@ -225,7 +225,7 @@ public class RunObject {
     public static final String JSON_PROPERTY_RESPONSE_FORMAT = "response_format";
     private AssistantsApiResponseFormatOption responseFormat;
 
-    public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
+    public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<@Valid AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
         this.id = id;
         this._object = _object;
         this.createdAt = createdAt;
@@ -624,7 +624,7 @@ public class RunObject {
         this.instructions = instructions;
     }
 
-    public RunObject tools(List<AssistantObjectToolsInner> tools) {
+    public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -643,13 +643,13 @@ public class RunObject {
     @Schema(name = "tools", description = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

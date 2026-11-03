@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface UsageAudioSpeechesResult {
     /**
      * 
-     * @type {UsageAudioSpeechesResultObjectEnum}
-     * @memberof UsageAudioSpeechesResult
      */
     object: UsageAudioSpeechesResultObjectEnum;
     /**
      * The number of characters processed.
-     * @type {number}
-     * @memberof UsageAudioSpeechesResult
      */
     characters: number;
     /**
      * The count of requests made to the model.
-     * @type {number}
-     * @memberof UsageAudioSpeechesResult
      */
     numModelRequests: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageAudioSpeechesResult
      */
     projectId?: string | null;
     /**
      * When `group_by=user_id`, this field provides the user ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageAudioSpeechesResult
      */
     userId?: string | null;
     /**
      * When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageAudioSpeechesResult
      */
     apiKeyId?: string | null;
     /**
      * When `group_by=model`, this field provides the model name of the grouped usage result.
-     * @type {string}
-     * @memberof UsageAudioSpeechesResult
      */
     model?: string | null;
 }
@@ -68,7 +54,7 @@ export interface UsageAudioSpeechesResult {
  * @export
  */
 export const UsageAudioSpeechesResultObjectEnum = {
-    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result'
+    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result',
 } as const;
 export type UsageAudioSpeechesResultObjectEnum = typeof UsageAudioSpeechesResultObjectEnum[keyof typeof UsageAudioSpeechesResultObjectEnum];
 

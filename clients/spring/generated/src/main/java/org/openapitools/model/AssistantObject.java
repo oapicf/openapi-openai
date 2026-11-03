@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -31,7 +30,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "AssistantObject", description = "Represents an `assistant` that can call the model and use tools.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantObject {
 
   private String id;
@@ -81,20 +80,16 @@ public class AssistantObject {
 
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<AssistantObjectToolResources> toolResources = JsonNullable.<AssistantObjectToolResources>undefined();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public AssistantObject() {
@@ -104,7 +99,7 @@ public class AssistantObject {
   /**
    * Constructor with only required parameters
    */
-  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata) {
+  public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<@Valid AssistantObjectToolsInner> tools, Object metadata) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -188,8 +183,8 @@ public class AssistantObject {
    * The name of the assistant. The maximum length is 256 characters. 
    * @return name
    */
-  @NotNull @Size(max = 256) 
-  @Schema(name = "name", description = "The name of the assistant. The maximum length is 256 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Size(max = 256) 
+  @Schema(name = "name", description = "The name of the assistant. The maximum length is 256 characters. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("name")
   public JsonNullable<@Size(max = 256) String> getName() {
     return name;
@@ -209,8 +204,8 @@ public class AssistantObject {
    * The description of the assistant. The maximum length is 512 characters. 
    * @return description
    */
-  @NotNull @Size(max = 512) 
-  @Schema(name = "description", description = "The description of the assistant. The maximum length is 512 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Size(max = 512) 
+  @Schema(name = "description", description = "The description of the assistant. The maximum length is 512 characters. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("description")
   public JsonNullable<@Size(max = 512) String> getDescription() {
     return description;
@@ -251,8 +246,8 @@ public class AssistantObject {
    * The system instructions that the assistant uses. The maximum length is 256,000 characters. 
    * @return instructions
    */
-  @NotNull @Size(max = 256000) 
-  @Schema(name = "instructions", description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Size(max = 256000) 
+  @Schema(name = "instructions", description = "The system instructions that the assistant uses. The maximum length is 256,000 characters. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("instructions")
   public JsonNullable<@Size(max = 256000) String> getInstructions() {
     return instructions;
@@ -263,7 +258,7 @@ public class AssistantObject {
     this.instructions = instructions;
   }
 
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -280,15 +275,15 @@ public class AssistantObject {
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
    */
-  @NotNull @Valid @Size(max = 128) 
+  @NotNull @Size(max = 128) 
   @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tools")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty("tools")
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
@@ -302,7 +297,7 @@ public class AssistantObject {
    * @return toolResources
    */
   @Valid 
-  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("tool_resources")
   public JsonNullable<AssistantObjectToolResources> getToolResources() {
     return toolResources;
@@ -321,8 +316,8 @@ public class AssistantObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -345,7 +340,7 @@ public class AssistantObject {
    * @return temperature
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
-  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("temperature")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
     return temperature;
@@ -367,7 +362,7 @@ public class AssistantObject {
    * @return topP
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
-  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("top_p")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
     return topP;

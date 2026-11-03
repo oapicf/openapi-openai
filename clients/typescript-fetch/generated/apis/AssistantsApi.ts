@@ -125,130 +125,333 @@ import {
 } from '../models/ThreadObject';
 
 export interface CancelRunRequest {
+    /**
+     * The ID of the thread to which this run belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the run to cancel.
+     */
     runId: string;
 }
 
 export interface CreateAssistantOperationRequest {
+    /**
+     * 
+     */
     createAssistantRequest: CreateAssistantRequest;
 }
 
 export interface CreateMessageOperationRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) to create a message for.
+     */
     threadId: string;
+    /**
+     * 
+     */
     createMessageRequest: CreateMessageRequest;
 }
 
 export interface CreateRunOperationRequest {
+    /**
+     * The ID of the thread to run.
+     */
     threadId: string;
+    /**
+     * 
+     */
     createRunRequest: CreateRunRequest;
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+     * 
+     * See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
+     * 
+     */
     include?: Array<CreateRunOperationIncludeEnum>;
 }
 
 export interface CreateThreadOperationRequest {
+    /**
+     * 
+     */
     createThreadRequest?: CreateThreadRequest;
 }
 
 export interface CreateThreadAndRunOperationRequest {
+    /**
+     * 
+     */
     createThreadAndRunRequest: CreateThreadAndRunRequest;
 }
 
 export interface DeleteAssistantRequest {
+    /**
+     * The ID of the assistant to delete.
+     */
     assistantId: string;
 }
 
 export interface DeleteMessageRequest {
+    /**
+     * The ID of the thread to which this message belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the message to delete.
+     */
     messageId: string;
 }
 
 export interface DeleteThreadRequest {
+    /**
+     * The ID of the thread to delete.
+     */
     threadId: string;
 }
 
 export interface GetAssistantRequest {
+    /**
+     * The ID of the assistant to retrieve.
+     */
     assistantId: string;
 }
 
 export interface GetMessageRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the message to retrieve.
+     */
     messageId: string;
 }
 
 export interface GetRunRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) that was run.
+     */
     threadId: string;
+    /**
+     * The ID of the run to retrieve.
+     */
     runId: string;
 }
 
 export interface GetRunStepRequest {
+    /**
+     * The ID of the thread to which the run and run step belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the run to which the run step belongs.
+     */
     runId: string;
+    /**
+     * The ID of the run step to retrieve.
+     */
     stepId: string;
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+     * 
+     * See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
+     * 
+     */
     include?: Array<GetRunStepIncludeEnum>;
 }
 
 export interface GetThreadRequest {
+    /**
+     * The ID of the thread to retrieve.
+     */
     threadId: string;
 }
 
 export interface ListAssistantsRequest {
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListAssistantsOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
 }
 
 export interface ListMessagesRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) the messages belong to.
+     */
     threadId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListMessagesOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
+    /**
+     * Filter messages by the run ID that generated them.
+     * 
+     */
     runId?: string;
 }
 
 export interface ListRunStepsRequest {
+    /**
+     * The ID of the thread the run and run steps belong to.
+     */
     threadId: string;
+    /**
+     * The ID of the run the run steps belong to.
+     */
     runId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListRunStepsOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
+    /**
+     * A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.
+     * 
+     * See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
+     * 
+     */
     include?: Array<ListRunStepsIncludeEnum>;
 }
 
 export interface ListRunsRequest {
+    /**
+     * The ID of the thread the run belongs to.
+     */
     threadId: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListRunsOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
+    /**
+     * A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.
+     * 
+     */
     before?: string;
 }
 
 export interface ModifyAssistantOperationRequest {
+    /**
+     * The ID of the assistant to modify.
+     */
     assistantId: string;
+    /**
+     * 
+     */
     modifyAssistantRequest: ModifyAssistantRequest;
 }
 
 export interface ModifyMessageOperationRequest {
+    /**
+     * The ID of the thread to which this message belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the message to modify.
+     */
     messageId: string;
+    /**
+     * 
+     */
     modifyMessageRequest: ModifyMessageRequest;
 }
 
 export interface ModifyRunOperationRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) that was run.
+     */
     threadId: string;
+    /**
+     * The ID of the run to modify.
+     */
     runId: string;
+    /**
+     * 
+     */
     modifyRunRequest: ModifyRunRequest;
 }
 
 export interface ModifyThreadOperationRequest {
+    /**
+     * The ID of the thread to modify. Only the `metadata` can be modified.
+     */
     threadId: string;
+    /**
+     * 
+     */
     modifyThreadRequest: ModifyThreadRequest;
 }
 
 export interface SubmitToolOuputsToRunRequest {
+    /**
+     * The ID of the [thread](/docs/api-reference/threads) to which this run belongs.
+     */
     threadId: string;
+    /**
+     * The ID of the run that requires the tool output submission.
+     */
     runId: string;
+    /**
+     * 
+     */
     submitToolOutputsRunRequest: SubmitToolOutputsRunRequest;
 }
 
@@ -1703,14 +1906,14 @@ export class AssistantsApi extends runtime.BaseAPI {
  * @export
  */
 export const CreateRunOperationIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type CreateRunOperationIncludeEnum = typeof CreateRunOperationIncludeEnum[keyof typeof CreateRunOperationIncludeEnum];
 /**
  * @export
  */
 export const GetRunStepIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type GetRunStepIncludeEnum = typeof GetRunStepIncludeEnum[keyof typeof GetRunStepIncludeEnum];
 /**
@@ -1718,7 +1921,7 @@ export type GetRunStepIncludeEnum = typeof GetRunStepIncludeEnum[keyof typeof Ge
  */
 export const ListAssistantsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListAssistantsOrderEnum = typeof ListAssistantsOrderEnum[keyof typeof ListAssistantsOrderEnum];
 /**
@@ -1726,7 +1929,7 @@ export type ListAssistantsOrderEnum = typeof ListAssistantsOrderEnum[keyof typeo
  */
 export const ListMessagesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListMessagesOrderEnum = typeof ListMessagesOrderEnum[keyof typeof ListMessagesOrderEnum];
 /**
@@ -1734,14 +1937,14 @@ export type ListMessagesOrderEnum = typeof ListMessagesOrderEnum[keyof typeof Li
  */
 export const ListRunStepsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListRunStepsOrderEnum = typeof ListRunStepsOrderEnum[keyof typeof ListRunStepsOrderEnum];
 /**
  * @export
  */
 export const ListRunStepsIncludeEnum = {
-    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content'
+    StepDetailsToolCallsFileSearchResultsContent: 'step_details.tool_calls[*].file_search.results[*].content',
 } as const;
 export type ListRunStepsIncludeEnum = typeof ListRunStepsIncludeEnum[keyof typeof ListRunStepsIncludeEnum];
 /**
@@ -1749,6 +1952,6 @@ export type ListRunStepsIncludeEnum = typeof ListRunStepsIncludeEnum[keyof typeo
  */
 export const ListRunsOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListRunsOrderEnum = typeof ListRunsOrderEnum[keyof typeof ListRunsOrderEnum];

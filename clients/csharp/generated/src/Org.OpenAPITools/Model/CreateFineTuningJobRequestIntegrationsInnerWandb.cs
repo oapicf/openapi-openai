@@ -198,13 +198,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!project.IsSet)
-                throw new ArgumentException("Property is required for class CreateFineTuningJobRequestIntegrationsInnerWandb.", nameof(project));
+                throw new JsonException("Property is required for class CreateFineTuningJobRequestIntegrationsInnerWandb: project.");
 
             if (project.IsSet && project.Value == null)
-                throw new ArgumentNullException(nameof(project), "Property is not nullable for class CreateFineTuningJobRequestIntegrationsInnerWandb.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequestIntegrationsInnerWandb: project.");
 
             if (tags.IsSet && tags.Value == null)
-                throw new ArgumentNullException(nameof(tags), "Property is not nullable for class CreateFineTuningJobRequestIntegrationsInnerWandb.");
+                throw new JsonException("Property is not nullable for class CreateFineTuningJobRequestIntegrationsInnerWandb: tags.");
 
             return new CreateFineTuningJobRequestIntegrationsInnerWandb(project.Value!, name, entity, tags);
         }
@@ -215,7 +215,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestIntegrationsInnerWandb"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateFineTuningJobRequestIntegrationsInnerWandb createFineTuningJobRequestIntegrationsInnerWandb, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -230,14 +229,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestIntegrationsInnerWandb"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateFineTuningJobRequestIntegrationsInnerWandb createFineTuningJobRequestIntegrationsInnerWandb, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createFineTuningJobRequestIntegrationsInnerWandb.Project == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequestIntegrationsInnerWandb.Project), "Property is required for class CreateFineTuningJobRequestIntegrationsInnerWandb.");
-
             if (createFineTuningJobRequestIntegrationsInnerWandb.TagsOption.IsSet && createFineTuningJobRequestIntegrationsInnerWandb.Tags == null)
-                throw new ArgumentNullException(nameof(createFineTuningJobRequestIntegrationsInnerWandb.Tags), "Property is required for class CreateFineTuningJobRequestIntegrationsInnerWandb.");
+                throw new JsonException("Cannot write null property CreateFineTuningJobRequestIntegrationsInnerWandb.Tags to non-nullable JSON property 'tags'.");
 
             writer.WriteString("project", createFineTuningJobRequestIntegrationsInnerWandb.Project);
 

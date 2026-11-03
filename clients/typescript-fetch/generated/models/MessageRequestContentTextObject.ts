@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageRequestContentTextObject {
     /**
      * Always `text`.
-     * @type {MessageRequestContentTextObjectTypeEnum}
-     * @memberof MessageRequestContentTextObject
      */
     type: MessageRequestContentTextObjectTypeEnum;
     /**
      * Text content to be sent to the model
-     * @type {string}
-     * @memberof MessageRequestContentTextObject
      */
     text: string;
 }
@@ -38,7 +34,7 @@ export interface MessageRequestContentTextObject {
  * @export
  */
 export const MessageRequestContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type MessageRequestContentTextObjectTypeEnum = typeof MessageRequestContentTextObjectTypeEnum[keyof typeof MessageRequestContentTextObjectTypeEnum];
 

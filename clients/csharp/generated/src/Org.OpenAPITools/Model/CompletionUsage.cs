@@ -202,28 +202,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!completionTokens.IsSet)
-                throw new ArgumentException("Property is required for class CompletionUsage.", nameof(completionTokens));
+                throw new JsonException("Property is required for class CompletionUsage: completion_tokens.");
 
             if (!promptTokens.IsSet)
-                throw new ArgumentException("Property is required for class CompletionUsage.", nameof(promptTokens));
+                throw new JsonException("Property is required for class CompletionUsage: prompt_tokens.");
 
             if (!totalTokens.IsSet)
-                throw new ArgumentException("Property is required for class CompletionUsage.", nameof(totalTokens));
+                throw new JsonException("Property is required for class CompletionUsage: total_tokens.");
 
             if (completionTokens.IsSet && completionTokens.Value == null)
-                throw new ArgumentNullException(nameof(completionTokens), "Property is not nullable for class CompletionUsage.");
+                throw new JsonException("Property is not nullable for class CompletionUsage: completion_tokens.");
 
             if (promptTokens.IsSet && promptTokens.Value == null)
-                throw new ArgumentNullException(nameof(promptTokens), "Property is not nullable for class CompletionUsage.");
+                throw new JsonException("Property is not nullable for class CompletionUsage: prompt_tokens.");
 
             if (totalTokens.IsSet && totalTokens.Value == null)
-                throw new ArgumentNullException(nameof(totalTokens), "Property is not nullable for class CompletionUsage.");
+                throw new JsonException("Property is not nullable for class CompletionUsage: total_tokens.");
 
             if (completionTokensDetails.IsSet && completionTokensDetails.Value == null)
-                throw new ArgumentNullException(nameof(completionTokensDetails), "Property is not nullable for class CompletionUsage.");
+                throw new JsonException("Property is not nullable for class CompletionUsage: completion_tokens_details.");
 
             if (promptTokensDetails.IsSet && promptTokensDetails.Value == null)
-                throw new ArgumentNullException(nameof(promptTokensDetails), "Property is not nullable for class CompletionUsage.");
+                throw new JsonException("Property is not nullable for class CompletionUsage: prompt_tokens_details.");
 
             return new CompletionUsage(completionTokens.Value!.Value!, promptTokens.Value!.Value!, totalTokens.Value!.Value!, completionTokensDetails, promptTokensDetails);
         }
@@ -234,7 +234,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompletionUsage completionUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -249,14 +248,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completionUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompletionUsage completionUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (completionUsage.CompletionTokensDetailsOption.IsSet && completionUsage.CompletionTokensDetails == null)
-                throw new ArgumentNullException(nameof(completionUsage.CompletionTokensDetails), "Property is required for class CompletionUsage.");
+                throw new JsonException("Cannot write null property CompletionUsage.CompletionTokensDetails to non-nullable JSON property 'completion_tokens_details'.");
 
             if (completionUsage.PromptTokensDetailsOption.IsSet && completionUsage.PromptTokensDetails == null)
-                throw new ArgumentNullException(nameof(completionUsage.PromptTokensDetails), "Property is required for class CompletionUsage.");
+                throw new JsonException("Cannot write null property CompletionUsage.PromptTokensDetails to non-nullable JSON property 'prompt_tokens_details'.");
 
             writer.WriteNumber("completion_tokens", completionUsage.CompletionTokens);
 

@@ -22,26 +22,18 @@ import { mapValues } from '../runtime';
 export interface UploadPart {
     /**
      * The upload Part unique identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof UploadPart
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) for when the Part was created.
-     * @type {number}
-     * @memberof UploadPart
      */
     createdAt: number;
     /**
      * The ID of the Upload object that this Part was added to.
-     * @type {string}
-     * @memberof UploadPart
      */
     uploadId: string;
     /**
      * The object type, which is always `upload.part`.
-     * @type {UploadPartObjectEnum}
-     * @memberof UploadPart
      */
     object: UploadPartObjectEnum;
 }
@@ -51,7 +43,7 @@ export interface UploadPart {
  * @export
  */
 export const UploadPartObjectEnum = {
-    UploadPart: 'upload.part'
+    UploadPart: 'upload.part',
 } as const;
 export type UploadPartObjectEnum = typeof UploadPartObjectEnum[keyof typeof UploadPartObjectEnum];
 

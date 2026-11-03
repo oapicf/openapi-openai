@@ -29,14 +29,10 @@ import {
 export interface MessageStreamEventOneOf2 {
     /**
      * 
-     * @type {MessageStreamEventOneOf2EventEnum}
-     * @memberof MessageStreamEventOneOf2
      */
     event: MessageStreamEventOneOf2EventEnum;
     /**
      * 
-     * @type {MessageDeltaObject}
-     * @memberof MessageStreamEventOneOf2
      */
     data: MessageDeltaObject;
 }
@@ -46,7 +42,7 @@ export interface MessageStreamEventOneOf2 {
  * @export
  */
 export const MessageStreamEventOneOf2EventEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
 } as const;
 export type MessageStreamEventOneOf2EventEnum = typeof MessageStreamEventOneOf2EventEnum[keyof typeof MessageStreamEventOneOf2EventEnum];
 

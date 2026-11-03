@@ -25,12 +25,11 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunStepDetailsToolCallsCodeObject_code_interpreter", description = "The Code Interpreter tool call definition.")
 @JsonTypeName("RunStepDetailsToolCallsCodeObject_code_interpreter")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
 
   private String input;
 
-  @Valid
   private List<@Valid RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> outputs = new ArrayList<>();
 
   public RunStepDetailsToolCallsCodeObjectCodeInterpreter() {
@@ -82,7 +81,7 @@ public class RunStepDetailsToolCallsCodeObjectCodeInterpreter {
    * The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
    * @return outputs
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "outputs", description = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("outputs")
   public List<@Valid RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> getOutputs() {

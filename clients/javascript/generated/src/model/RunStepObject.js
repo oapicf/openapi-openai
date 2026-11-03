@@ -19,7 +19,7 @@ import RunStepObjectStepDetails from './RunStepObjectStepDetails';
 /**
  * The RunStepObject model module.
  * @module model/RunStepObject
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class RunStepObject {
     /**

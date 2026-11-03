@@ -55,7 +55,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FineTuningJob.JSON_PROPERTY_METHOD
 })
 @JsonTypeName("FineTuningJob")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FineTuningJob {
     public static final String JSON_PROPERTY_ID = "id";
@@ -170,7 +170,7 @@ public class FineTuningJob {
     private String validationFile;
 
     public static final String JSON_PROPERTY_INTEGRATIONS = "integrations";
-    private List<FineTuningJobIntegrationsInner> integrations = null;
+    private List<@Valid FineTuningJobIntegrationsInner> integrations = null;
 
     public static final String JSON_PROPERTY_SEED = "seed";
     private Integer seed;
@@ -528,7 +528,7 @@ public class FineTuningJob {
         this.validationFile = validationFile;
     }
 
-    public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+    public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
         this.integrations = integrations;
         return this;
     }
@@ -550,13 +550,13 @@ public class FineTuningJob {
     @Schema(name = "integrations", description = "A list of integrations to enable for this fine-tuning job.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @JsonProperty(JSON_PROPERTY_INTEGRATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<FineTuningJobIntegrationsInner> getIntegrations() {
+    public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
         return integrations;
     }
 
     @JsonProperty(JSON_PROPERTY_INTEGRATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+    public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
         this.integrations = integrations;
     }
 

@@ -193,9 +193,10 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
   }
 }
 
+
+/// The object type, which is always `organization.user`
 class UserObjectEnum extends EnumClass {
 
-  /// The object type, which is always `organization.user`
   @BuiltValueEnumConst(wireName: r'organization.user')
   static const UserObjectEnum organizationPeriodUser = _$userObjectEnum_organizationPeriodUser;
 
@@ -207,12 +208,11 @@ class UserObjectEnum extends EnumClass {
   static UserObjectEnum valueOf(String name) => _$userObjectEnumValueOf(name);
 }
 
+/// `owner` or `reader`
 class UserRoleEnum extends EnumClass {
 
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'owner')
   static const UserRoleEnum owner = _$userRoleEnum_owner;
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'reader')
   static const UserRoleEnum reader = _$userRoleEnum_reader;
 

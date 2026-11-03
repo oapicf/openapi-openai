@@ -133,10 +133,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!error.IsSet)
-                throw new ArgumentException("Property is required for class ErrorResponse.", nameof(error));
+                throw new JsonException("Property is required for class ErrorResponse: error.");
 
             if (error.IsSet && error.Value == null)
-                throw new ArgumentNullException(nameof(error), "Property is not nullable for class ErrorResponse.");
+                throw new JsonException("Property is not nullable for class ErrorResponse: error.");
 
             return new ErrorResponse(error.Value!);
         }
@@ -147,7 +147,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="errorResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ErrorResponse errorResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -162,12 +161,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="errorResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ErrorResponse errorResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (errorResponse.Error == null)
-                throw new ArgumentNullException(nameof(errorResponse.Error), "Property is required for class ErrorResponse.");
-
             writer.WritePropertyName("error");
             JsonSerializer.Serialize(writer, errorResponse.Error, jsonSerializerOptions);
         }

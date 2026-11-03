@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateTranscriptionResponseJson
 import org.openapitools.model.CreateTranscriptionResponseVerboseJson
 import org.openapitools.model.TranscriptionSegment

@@ -107,12 +107,12 @@ class _$ProjectUserUpdateRequestSerializer implements PrimitiveSerializer<Projec
   }
 }
 
+
+/// `owner` or `member`
 class ProjectUserUpdateRequestRoleEnum extends EnumClass {
 
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'owner')
   static const ProjectUserUpdateRequestRoleEnum owner = _$projectUserUpdateRequestRoleEnum_owner;
-  /// `owner` or `member`
   @BuiltValueEnumConst(wireName: r'member')
   static const ProjectUserUpdateRequestRoleEnum member = _$projectUserUpdateRequestRoleEnum_member;
 

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RunStepDeltaStepDetailsToolCallsFileSearchObject {
     /**
      * The index of the tool call in the tool calls array.
-     * @type {number}
-     * @memberof RunStepDeltaStepDetailsToolCallsFileSearchObject
      */
     index: number;
     /**
      * The ID of the tool call object.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsFileSearchObject
      */
     id?: string;
     /**
      * The type of tool call. This is always going to be `file_search` for this type of tool call.
-     * @type {RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum}
-     * @memberof RunStepDeltaStepDetailsToolCallsFileSearchObject
      */
     type: RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum;
     /**
      * For now, this is always going to be an empty object.
-     * @type {object}
-     * @memberof RunStepDeltaStepDetailsToolCallsFileSearchObject
      */
     fileSearch: object;
 }
@@ -50,7 +42,7 @@ export interface RunStepDeltaStepDetailsToolCallsFileSearchObject {
  * @export
  */
 export const RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 export type RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsFileSearchObjectTypeEnum];
 

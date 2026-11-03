@@ -6,7 +6,6 @@ It is never instantiated directly — use one of the concrete types.
 ## oneOf
 
 - **string**
-- **string[]**
-- [**\OpenAPI\Client\Model\CreateModerationRequestInputOneOfInner[]**](CreateModerationRequestInputOneOfInner.md)
+- **array**
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

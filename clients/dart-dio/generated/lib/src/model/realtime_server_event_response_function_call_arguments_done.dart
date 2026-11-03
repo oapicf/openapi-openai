@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseFunctionCallArgumentsDoneSerializer implement
   }
 }
 
+
+/// The event type, must be `response.function_call_arguments.done`. 
 class RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.function_call_arguments.done`. 
   @BuiltValueEnumConst(wireName: r'response.function_call_arguments.done')
   static const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum responsePeriodFunctionCallArgumentsPeriodDone = _$realtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum_responsePeriodFunctionCallArgumentsPeriodDone;
 

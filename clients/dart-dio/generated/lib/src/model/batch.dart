@@ -470,9 +470,10 @@ class _$BatchSerializer implements PrimitiveSerializer<Batch> {
   }
 }
 
+
+/// The object type, which is always `batch`.
 class BatchObjectEnum extends EnumClass {
 
-  /// The object type, which is always `batch`.
   @BuiltValueEnumConst(wireName: r'batch')
   static const BatchObjectEnum batch = _$batchObjectEnum_batch;
 
@@ -484,30 +485,23 @@ class BatchObjectEnum extends EnumClass {
   static BatchObjectEnum valueOf(String name) => _$batchObjectEnumValueOf(name);
 }
 
+/// The current status of the batch.
 class BatchStatusEnum extends EnumClass {
 
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'validating')
   static const BatchStatusEnum validating = _$batchStatusEnum_validating;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'failed')
   static const BatchStatusEnum failed = _$batchStatusEnum_failed;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const BatchStatusEnum inProgress = _$batchStatusEnum_inProgress;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'finalizing')
   static const BatchStatusEnum finalizing = _$batchStatusEnum_finalizing;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'completed')
   static const BatchStatusEnum completed = _$batchStatusEnum_completed;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'expired')
   static const BatchStatusEnum expired = _$batchStatusEnum_expired;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'cancelling')
   static const BatchStatusEnum cancelling = _$batchStatusEnum_cancelling;
-  /// The current status of the batch.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const BatchStatusEnum cancelled = _$batchStatusEnum_cancelled;
 

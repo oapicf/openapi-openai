@@ -287,9 +287,10 @@ class _$VectorStoreObjectSerializer implements PrimitiveSerializer<VectorStoreOb
   }
 }
 
+
+/// The object type, which is always `vector_store`.
 class VectorStoreObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `vector_store`.
   @BuiltValueEnumConst(wireName: r'vector_store')
   static const VectorStoreObjectObjectEnum vectorStore = _$vectorStoreObjectObjectEnum_vectorStore;
 
@@ -301,15 +302,13 @@ class VectorStoreObjectObjectEnum extends EnumClass {
   static VectorStoreObjectObjectEnum valueOf(String name) => _$vectorStoreObjectObjectEnumValueOf(name);
 }
 
+/// The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
 class VectorStoreObjectStatusEnum extends EnumClass {
 
-  /// The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
   @BuiltValueEnumConst(wireName: r'expired')
   static const VectorStoreObjectStatusEnum expired = _$vectorStoreObjectStatusEnum_expired;
-  /// The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const VectorStoreObjectStatusEnum inProgress = _$vectorStoreObjectStatusEnum_inProgress;
-  /// The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.
   @BuiltValueEnumConst(wireName: r'completed')
   static const VectorStoreObjectStatusEnum completed = _$vectorStoreObjectStatusEnum_completed;
 

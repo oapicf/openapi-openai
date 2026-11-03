@@ -29,20 +29,14 @@ import {
 export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
     /**
      * The index of the output in the outputs array.
-     * @type {number}
-     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      */
     index: number;
     /**
      * Always `image`.
-     * @type {RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum}
-     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      */
     type: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage}
-     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
      */
     image?: RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage;
 }
@@ -52,7 +46,7 @@ export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObject {
  * @export
  */
 export const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = {
-    Image: 'image'
+    Image: 'image',
 } as const;
 export type RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum];
 

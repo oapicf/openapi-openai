@@ -12,7 +12,7 @@ export interface ProjectServiceAccountApiKey {
 }
 export namespace ProjectServiceAccountApiKey {
   export const ObjectEnum = {
-    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key'
+    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

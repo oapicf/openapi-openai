@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateTranslation200Response" /> class.
         /// </summary>
         /// <param name="createTranslationResponseJson"></param>
-        public CreateTranslation200Response(CreateTranslationResponseJson createTranslationResponseJson)
+        internal CreateTranslation200Response(CreateTranslationResponseJson createTranslationResponseJson)
         {
             CreateTranslationResponseJson = createTranslationResponseJson;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateTranslation200Response" /> class.
         /// </summary>
         /// <param name="createTranslationResponseVerboseJson"></param>
-        public CreateTranslation200Response(CreateTranslationResponseVerboseJson createTranslationResponseVerboseJson)
+        internal CreateTranslation200Response(CreateTranslationResponseVerboseJson createTranslationResponseVerboseJson)
         {
             CreateTranslationResponseVerboseJson = createTranslationResponseVerboseJson;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranslation200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTranslation200Response createTranslation200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranslation200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTranslation200Response createTranslation200Response, JsonSerializerOptions jsonSerializerOptions)
         {
 

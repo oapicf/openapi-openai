@@ -26,8 +26,8 @@ object CreateEmbeddingRequestEnums {
 
   sealed trait EncodingFormat
   object EncodingFormat {
-    case object Float extends EncodingFormat
-    case object Base64 extends EncodingFormat
+    case object Float extends EncodingFormat { override def toString: String = "float" }
+    case object Base64 extends EncodingFormat { override def toString: String = "base64" }
 
     import org.json4s._
 

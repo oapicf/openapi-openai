@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.FineTuneDPOMethodHyperparametersBatchSize
 import org.openapitools.model.FineTuneDPOMethodHyperparametersBeta
 import org.openapitools.model.FineTuneDPOMethodHyperparametersLearningRateMultiplier
@@ -31,29 +28,21 @@ data class FineTuneDPOMethodHyperparameters(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("beta")
     @get:JsonProperty("beta") val beta: FineTuneDPOMethodHyperparametersBeta? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("batch_size")
     @get:JsonProperty("batch_size") val batchSize: FineTuneDPOMethodHyperparametersBatchSize? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("learning_rate_multiplier")
     @get:JsonProperty("learning_rate_multiplier") val learningRateMultiplier: FineTuneDPOMethodHyperparametersLearningRateMultiplier? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("n_epochs")
     @get:JsonProperty("n_epochs") val nEpochs: FineTuneDPOMethodHyperparametersNEpochs? = null
 ) {

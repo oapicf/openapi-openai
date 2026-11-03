@@ -157,15 +157,14 @@ class _$CreateCompletionResponseChoicesInnerSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
 class CreateCompletionResponseChoicesInnerFinishReasonEnum extends EnumClass {
 
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
   @BuiltValueEnumConst(wireName: r'stop')
   static const CreateCompletionResponseChoicesInnerFinishReasonEnum stop = _$createCompletionResponseChoicesInnerFinishReasonEnum_stop;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
   @BuiltValueEnumConst(wireName: r'length')
   static const CreateCompletionResponseChoicesInnerFinishReasonEnum length = _$createCompletionResponseChoicesInnerFinishReasonEnum_length;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. 
   @BuiltValueEnumConst(wireName: r'content_filter')
   static const CreateCompletionResponseChoicesInnerFinishReasonEnum contentFilter = _$createCompletionResponseChoicesInnerFinishReasonEnum_contentFilter;
 

@@ -36,17 +36,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FineTuningJobHyperparameters.JSON_PROPERTY_N_EPOCHS
 })
 @JsonTypeName("FineTuningJob_hyperparameters")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FineTuningJobHyperparameters {
     public static final String JSON_PROPERTY_BATCH_SIZE = "batch_size";
-    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+    private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
     public static final String JSON_PROPERTY_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
-    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+    private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
     public static final String JSON_PROPERTY_N_EPOCHS = "n_epochs";
-    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+    private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
     public FineTuningJobHyperparameters() {
     }

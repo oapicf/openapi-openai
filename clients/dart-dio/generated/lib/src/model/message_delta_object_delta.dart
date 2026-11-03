@@ -131,12 +131,12 @@ class _$MessageDeltaObjectDeltaSerializer implements PrimitiveSerializer<Message
   }
 }
 
+
+/// The entity that produced the message. One of `user` or `assistant`.
 class MessageDeltaObjectDeltaRoleEnum extends EnumClass {
 
-  /// The entity that produced the message. One of `user` or `assistant`.
   @BuiltValueEnumConst(wireName: r'user')
   static const MessageDeltaObjectDeltaRoleEnum user = _$messageDeltaObjectDeltaRoleEnum_user;
-  /// The entity that produced the message. One of `user` or `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const MessageDeltaObjectDeltaRoleEnum assistant = _$messageDeltaObjectDeltaRoleEnum_assistant;
 

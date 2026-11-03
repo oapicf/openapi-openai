@@ -43,20 +43,14 @@ import {
 export interface FineTuningJobHyperparameters {
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersBatchSize}
-     * @memberof FineTuningJobHyperparameters
      */
     batchSize?: CreateFineTuningJobRequestHyperparametersBatchSize;
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersLearningRateMultiplier}
-     * @memberof FineTuningJobHyperparameters
      */
     learningRateMultiplier?: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersNEpochs}
-     * @memberof FineTuningJobHyperparameters
      */
     nEpochs?: CreateFineTuningJobRequestHyperparametersNEpochs;
 }

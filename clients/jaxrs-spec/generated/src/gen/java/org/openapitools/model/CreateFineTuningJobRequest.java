@@ -24,7 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateFineTuningJobRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequest   {
   private CreateFineTuningJobRequestModel model;
   private String trainingFile;
@@ -32,7 +32,7 @@ public class CreateFineTuningJobRequest   {
   private CreateFineTuningJobRequestHyperparameters hyperparameters;
   private String suffix;
   private String validationFile;
-  private @Valid List<@Valid CreateFineTuningJobRequestIntegrationsInner> integrations;
+  private List<@Valid CreateFineTuningJobRequestIntegrationsInner> integrations;
   private Integer seed;
   private FineTuneMethod method;
 
@@ -167,7 +167,7 @@ public class CreateFineTuningJobRequest   {
   
   @ApiModelProperty(value = "A list of integrations to enable for your fine-tuning job.")
   @JsonProperty("integrations")
-  @Valid public List<@Valid CreateFineTuningJobRequestIntegrationsInner> getIntegrations() {
+  public List<@Valid CreateFineTuningJobRequestIntegrationsInner> getIntegrations() {
     return integrations;
   }
 

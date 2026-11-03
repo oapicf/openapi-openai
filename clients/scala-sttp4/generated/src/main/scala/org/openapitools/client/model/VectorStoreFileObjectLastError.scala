@@ -25,9 +25,9 @@ object VectorStoreFileObjectLastErrorEnums {
 
   sealed trait Code
   object Code {
-    case object ServerError extends Code
-    case object UnsupportedFile extends Code
-    case object InvalidFile extends Code
+    case object ServerError extends Code { override def toString: String = "server_error" }
+    case object UnsupportedFile extends Code { override def toString: String = "unsupported_file" }
+    case object InvalidFile extends Code { override def toString: String = "invalid_file" }
 
     import org.json4s._
 

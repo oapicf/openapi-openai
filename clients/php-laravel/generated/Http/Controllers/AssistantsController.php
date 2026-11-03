@@ -51,17 +51,17 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'runId' => [
+                'run_id' => [
                     'required',
                     'string',
                 ],
@@ -95,10 +95,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -131,10 +131,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
             ],
@@ -168,10 +168,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
             ],
@@ -184,7 +184,7 @@ class AssistantsController extends Controller
 
         $createRunRequest = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\CreateRunRequest::class);
 
-        $include = $request->get('include');
+        $include = $request->get('include[]');
 
 
         $apiResult = $this->api->createRun($threadId, $createRunRequest, $include);
@@ -207,10 +207,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -243,10 +243,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -279,13 +279,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'assistantId' => $assistantId,
-                ],
                 $request->all(),
+                [
+                    'assistant_id' => $assistantId,
+                ],
             ),
             [
-                'assistantId' => [
+                'assistant_id' => [
                     'required',
                     'string',
                 ],
@@ -318,17 +318,17 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'messageId' => $messageId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'message_id' => $messageId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'messageId' => [
+                'message_id' => [
                     'required',
                     'string',
                 ],
@@ -362,13 +362,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
@@ -401,13 +401,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'assistantId' => $assistantId,
-                ],
                 $request->all(),
+                [
+                    'assistant_id' => $assistantId,
+                ],
             ),
             [
-                'assistantId' => [
+                'assistant_id' => [
                     'required',
                     'string',
                 ],
@@ -440,17 +440,17 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'messageId' => $messageId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'message_id' => $messageId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'messageId' => [
+                'message_id' => [
                     'required',
                     'string',
                 ],
@@ -484,17 +484,17 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'runId' => [
+                'run_id' => [
                     'required',
                     'string',
                 ],
@@ -528,25 +528,25 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,'stepId' => $stepId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,'step_id' => $stepId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'runId' => [
+                'run_id' => [
                     'required',
                     'string',
                 ],
-                'stepId' => [
+                'step_id' => [
                     'required',
                     'string',
                 ],
-                'include' => [
+                'include[]' => [
                     'array',
                 ],
             ],
@@ -559,7 +559,7 @@ class AssistantsController extends Controller
 
 
 
-        $include = $request->get('include');
+        $include = $request->get('include[]');
 
 
         $apiResult = $this->api->getRunStep($threadId, $runId, $stepId, $include);
@@ -582,13 +582,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
@@ -621,10 +621,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'limit' => [
@@ -674,13 +674,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
@@ -695,7 +695,7 @@ class AssistantsController extends Controller
                 'before' => [
                     'string',
                 ],
-                'runId' => [
+                'run_id' => [
                     'string',
                 ],
             ],
@@ -714,7 +714,7 @@ class AssistantsController extends Controller
 
         $before = $request->string('before')->value();
 
-        $runId = $request->string('runId')->value();
+        $runId = $request->string('run_id')->value();
 
 
         $apiResult = $this->api->listMessages($threadId, $limit, $order, $after, $before, $runId);
@@ -737,17 +737,17 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
-                'runId' => [
+                'run_id' => [
                     'required',
                     'string',
                 ],
@@ -762,7 +762,7 @@ class AssistantsController extends Controller
                 'before' => [
                     'string',
                 ],
-                'include' => [
+                'include[]' => [
                     'array',
                 ],
             ],
@@ -782,7 +782,7 @@ class AssistantsController extends Controller
 
         $before = $request->string('before')->value();
 
-        $include = $request->get('include');
+        $include = $request->get('include[]');
 
 
         $apiResult = $this->api->listRunSteps($threadId, $runId, $limit, $order, $after, $before, $include);
@@ -805,13 +805,13 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
-                'threadId' => [
+                'thread_id' => [
                     'required',
                     'string',
                 ],
@@ -863,10 +863,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'assistantId' => $assistantId,
-                ],
                 $request->all(),
+                [
+                    'assistant_id' => $assistantId,
+                ],
             ),
             [
             ],
@@ -900,10 +900,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'messageId' => $messageId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'message_id' => $messageId,
+                ],
             ),
             [
             ],
@@ -938,10 +938,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,
+                ],
             ),
             [
             ],
@@ -976,10 +976,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,
+                ],
             ),
             [
             ],
@@ -1013,10 +1013,10 @@ class AssistantsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'threadId' => $threadId,'runId' => $runId,
-                ],
                 $request->all(),
+                [
+                    'thread_id' => $threadId,'run_id' => $runId,
+                ],
             ),
             [
             ],

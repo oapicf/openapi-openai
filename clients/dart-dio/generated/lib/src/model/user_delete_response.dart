@@ -138,6 +138,7 @@ class _$UserDeleteResponseSerializer implements PrimitiveSerializer<UserDeleteRe
   }
 }
 
+
 class UserDeleteResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.user.deleted')

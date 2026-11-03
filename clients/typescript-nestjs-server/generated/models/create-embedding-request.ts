@@ -21,7 +21,7 @@ export interface CreateEmbeddingRequest {
 export namespace CreateEmbeddingRequest {
   export const EncodingFormatEnum = {
     Float: 'float',
-    Base64: 'base64'
+    Base64: 'base64',
   } as const;
   export type EncodingFormatEnum = typeof EncodingFormatEnum[keyof typeof EncodingFormatEnum];
 }

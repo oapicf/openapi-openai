@@ -35,19 +35,19 @@ import javax.validation.Valid;
   CreateFineTuningJobRequestHyperparameters.JSON_PROPERTY_LEARNING_RATE_MULTIPLIER,
   CreateFineTuningJobRequestHyperparameters.JSON_PROPERTY_N_EPOCHS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequestHyperparameters   {
   public static final String JSON_PROPERTY_BATCH_SIZE = "batch_size";
   @JsonProperty(JSON_PROPERTY_BATCH_SIZE)
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   public static final String JSON_PROPERTY_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @JsonProperty(JSON_PROPERTY_LEARNING_RATE_MULTIPLIER)
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   public static final String JSON_PROPERTY_N_EPOCHS = "n_epochs";
   @JsonProperty(JSON_PROPERTY_N_EPOCHS)
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   public CreateFineTuningJobRequestHyperparameters batchSize(CreateFineTuningJobRequestHyperparametersBatchSize batchSize) {
     this.batchSize = batchSize;

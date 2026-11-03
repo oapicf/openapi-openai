@@ -79,7 +79,9 @@ class CostsResultAmount {
       }());
 
       return CostsResultAmount(
-        value: num.parse('${json[r'value']}'),
+        value: json[r'value'] == null
+            ? null
+            : num.parse('${json[r'value']}'),
         currency: mapValueOfType<String>(json, r'currency'),
       );
     }

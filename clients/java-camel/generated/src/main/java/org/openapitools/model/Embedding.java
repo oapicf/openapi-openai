@@ -24,12 +24,11 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "Embedding", description = "Represents an embedding vector returned by embedding endpoint. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Embedding {
 
   private Integer index;
 
-  @Valid
   private List<BigDecimal> embedding = new ArrayList<>();
 
   /**
@@ -117,7 +116,7 @@ public class Embedding {
    * The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
    * @return embedding
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "embedding", description = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("embedding")
   public List<BigDecimal> getEmbedding() {

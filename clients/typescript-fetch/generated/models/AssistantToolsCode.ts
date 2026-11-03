@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AssistantToolsCode {
     /**
      * The type of tool being defined: `code_interpreter`
-     * @type {AssistantToolsCodeTypeEnum}
-     * @memberof AssistantToolsCode
      */
     type: AssistantToolsCodeTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface AssistantToolsCode {
  * @export
  */
 export const AssistantToolsCodeTypeEnum = {
-    CodeInterpreter: 'code_interpreter'
+    CodeInterpreter: 'code_interpreter',
 } as const;
 export type AssistantToolsCodeTypeEnum = typeof AssistantToolsCodeTypeEnum[keyof typeof AssistantToolsCodeTypeEnum];
 

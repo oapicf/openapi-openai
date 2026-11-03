@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogServiceAccountCreatedData {
     /**
      * The role of the service account. Is either `owner` or `member`.
-     * @type {string}
-     * @memberof AuditLogServiceAccountCreatedData
      */
     role?: string;
 }

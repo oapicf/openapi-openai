@@ -29,38 +29,26 @@ import {
 export interface VectorStoreFileBatchObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof VectorStoreFileBatchObject
      */
     id: string;
     /**
      * The object type, which is always `vector_store.file_batch`.
-     * @type {VectorStoreFileBatchObjectObjectEnum}
-     * @memberof VectorStoreFileBatchObject
      */
     object: VectorStoreFileBatchObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the vector store files batch was created.
-     * @type {number}
-     * @memberof VectorStoreFileBatchObject
      */
     createdAt: number;
     /**
      * The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
-     * @type {string}
-     * @memberof VectorStoreFileBatchObject
      */
     vectorStoreId: string;
     /**
      * The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
-     * @type {VectorStoreFileBatchObjectStatusEnum}
-     * @memberof VectorStoreFileBatchObject
      */
     status: VectorStoreFileBatchObjectStatusEnum;
     /**
      * 
-     * @type {VectorStoreFileBatchObjectFileCounts}
-     * @memberof VectorStoreFileBatchObject
      */
     fileCounts: VectorStoreFileBatchObjectFileCounts;
 }
@@ -70,7 +58,7 @@ export interface VectorStoreFileBatchObject {
  * @export
  */
 export const VectorStoreFileBatchObjectObjectEnum = {
-    VectorStoreFilesBatch: 'vector_store.files_batch'
+    VectorStoreFilesBatch: 'vector_store.files_batch',
 } as const;
 export type VectorStoreFileBatchObjectObjectEnum = typeof VectorStoreFileBatchObjectObjectEnum[keyof typeof VectorStoreFileBatchObjectObjectEnum];
 
@@ -81,7 +69,7 @@ export const VectorStoreFileBatchObjectStatusEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Failed: 'failed'
+    Failed: 'failed',
 } as const;
 export type VectorStoreFileBatchObjectStatusEnum = typeof VectorStoreFileBatchObjectStatusEnum[keyof typeof VectorStoreFileBatchObjectStatusEnum];
 

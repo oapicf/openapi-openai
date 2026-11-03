@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface VectorStoreExpirationAfter {
     /**
      * Anchor timestamp after which the expiration policy applies. Supported anchors: `last_active_at`.
-     * @type {VectorStoreExpirationAfterAnchorEnum}
-     * @memberof VectorStoreExpirationAfter
      */
     anchor: VectorStoreExpirationAfterAnchorEnum;
     /**
      * The number of days after the anchor time that the vector store will expire.
-     * @type {number}
-     * @memberof VectorStoreExpirationAfter
      */
     days: number;
 }
@@ -38,7 +34,7 @@ export interface VectorStoreExpirationAfter {
  * @export
  */
 export const VectorStoreExpirationAfterAnchorEnum = {
-    LastActiveAt: 'last_active_at'
+    LastActiveAt: 'last_active_at',
 } as const;
 export type VectorStoreExpirationAfterAnchorEnum = typeof VectorStoreExpirationAfterAnchorEnum[keyof typeof VectorStoreExpirationAfterAnchorEnum];
 

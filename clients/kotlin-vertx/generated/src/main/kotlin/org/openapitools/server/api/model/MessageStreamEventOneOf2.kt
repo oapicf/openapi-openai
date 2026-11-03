@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Occurs when parts of a [Message](/docs/api-reference/messages/object) are being streamed.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

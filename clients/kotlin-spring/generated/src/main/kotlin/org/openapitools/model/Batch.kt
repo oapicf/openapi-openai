@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.BatchErrors
 import org.openapitools.model.BatchRequestCounts
 import javax.validation.constraints.DecimalMax
@@ -23,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param id 
- * @param &#x60;object&#x60; The object type, which is always `batch`.
+ * @param `object` The object type, which is always `batch`.
  * @param endpoint The OpenAI API endpoint used by the batch.
  * @param inputFileId The ID of the input file for the batch.
  * @param completionWindow The time frame within which the batch should be processed.
@@ -46,104 +43,80 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Batch(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `batch`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: Batch.`Object`,
 
     @Schema(required = true, description = "The OpenAI API endpoint used by the batch.")
-    @param:JsonProperty("endpoint")
+    @param:JsonProperty("endpoint", required = true)
     @get:JsonProperty("endpoint", required = true) val endpoint: kotlin.String,
 
     @Schema(required = true, description = "The ID of the input file for the batch.")
-    @param:JsonProperty("input_file_id")
+    @param:JsonProperty("input_file_id", required = true)
     @get:JsonProperty("input_file_id", required = true) val inputFileId: kotlin.String,
 
     @Schema(required = true, description = "The time frame within which the batch should be processed.")
-    @param:JsonProperty("completion_window")
+    @param:JsonProperty("completion_window", required = true)
     @get:JsonProperty("completion_window", required = true) val completionWindow: kotlin.String,
 
     @Schema(required = true, description = "The current status of the batch.")
-    @param:JsonProperty("status")
+    @param:JsonProperty("status", required = true)
     @get:JsonProperty("status", required = true) val status: Batch.Status,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the batch was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("errors")
     @get:JsonProperty("errors") val errors: BatchErrors? = null,
 
     @Schema(description = "The ID of the file containing the outputs of successfully executed requests.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("output_file_id")
     @get:JsonProperty("output_file_id") val outputFileId: kotlin.String? = null,
 
     @Schema(description = "The ID of the file containing the outputs of requests with errors.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("error_file_id")
     @get:JsonProperty("error_file_id") val errorFileId: kotlin.String? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch started processing.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("in_progress_at")
     @get:JsonProperty("in_progress_at") val inProgressAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch will expire.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("expires_at")
     @get:JsonProperty("expires_at") val expiresAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch started finalizing.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("finalizing_at")
     @get:JsonProperty("finalizing_at") val finalizingAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch was completed.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("completed_at")
     @get:JsonProperty("completed_at") val completedAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch failed.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("failed_at")
     @get:JsonProperty("failed_at") val failedAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch expired.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("expired_at")
     @get:JsonProperty("expired_at") val expiredAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch started cancelling.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("cancelling_at")
     @get:JsonProperty("cancelling_at") val cancellingAt: kotlin.Int? = null,
 
     @Schema(description = "The Unix timestamp (in seconds) for when the batch was cancelled.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("cancelled_at")
     @get:JsonProperty("cancelled_at") val cancelledAt: kotlin.Int? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("request_counts")
     @get:JsonProperty("request_counts") val requestCounts: BatchRequestCounts? = null,
 
@@ -160,12 +133,12 @@ data class Batch(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         batch("batch");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -185,12 +158,12 @@ data class Batch(
         expired("expired"),
         cancelling("cancelling"),
         cancelled("cancelled");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

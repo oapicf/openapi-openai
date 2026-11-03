@@ -39,11 +39,11 @@ export interface CreateChatCompletionStreamResponse {
 export namespace CreateChatCompletionStreamResponse {
   export const ServiceTierEnum = {
     Scale: 'scale',
-    Default: 'default'
+    Default: 'default',
   } as const;
   export type ServiceTierEnum = typeof ServiceTierEnum[keyof typeof ServiceTierEnum];
   export const ObjectEnum = {
-    ChatCompletionChunk: 'chat.completion.chunk'
+    ChatCompletionChunk: 'chat.completion.chunk',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

@@ -124,9 +124,10 @@ class _$FineTuningIntegrationSerializer implements PrimitiveSerializer<FineTunin
   }
 }
 
+
+/// The type of the integration being enabled for the fine-tuning job
 class FineTuningIntegrationTypeEnum extends EnumClass {
 
-  /// The type of the integration being enabled for the fine-tuning job
   @BuiltValueEnumConst(wireName: r'wandb')
   static const FineTuningIntegrationTypeEnum wandb = _$fineTuningIntegrationTypeEnum_wandb;
 

@@ -138,6 +138,7 @@ class _$ProjectServiceAccountDeleteResponseSerializer implements PrimitiveSerial
   }
 }
 
+
 class ProjectServiceAccountDeleteResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.project.service_account.deleted')

@@ -158,9 +158,10 @@ class _$RealtimeServerEventInputAudioBufferSpeechStartedSerializer implements Pr
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.speech_started`.
 class RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.speech_started`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.speech_started')
   static const RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum inputAudioBufferPeriodSpeechStarted = _$realtimeServerEventInputAudioBufferSpeechStartedTypeEnum_inputAudioBufferPeriodSpeechStarted;
 

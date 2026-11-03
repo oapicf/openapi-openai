@@ -26,7 +26,7 @@ object RealtimeClientEventSessionUpdateEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object SessionUpdate extends `Type`
+    case object SessionUpdate extends `Type` { override def toString: String = "session.update" }
 
     import org.json4s._
 

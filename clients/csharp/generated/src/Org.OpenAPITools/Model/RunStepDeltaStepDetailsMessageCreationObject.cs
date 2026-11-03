@@ -197,7 +197,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsMessageCreationObject.TypeEnum?>(RunStepDeltaStepDetailsMessageCreationObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsMessageCreationObject.TypeEnum? typeValue = RunStepDeltaStepDetailsMessageCreationObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsMessageCreationObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "message_creation":
                             messageCreation = new Option<RunStepDeltaStepDetailsMessageCreationObjectMessageCreation?>(JsonSerializer.Deserialize<RunStepDeltaStepDetailsMessageCreationObjectMessageCreation>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -209,13 +214,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsMessageCreationObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsMessageCreationObject: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObject: type.");
 
             if (messageCreation.IsSet && messageCreation.Value == null)
-                throw new ArgumentNullException(nameof(messageCreation), "Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsMessageCreationObject: message_creation.");
 
             return new RunStepDeltaStepDetailsMessageCreationObject(type.Value!.Value!, messageCreation);
         }
@@ -226,7 +231,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsMessageCreationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsMessageCreationObject runStepDeltaStepDetailsMessageCreationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +245,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsMessageCreationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsMessageCreationObject runStepDeltaStepDetailsMessageCreationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsMessageCreationObject.MessageCreationOption.IsSet && runStepDeltaStepDetailsMessageCreationObject.MessageCreation == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsMessageCreationObject.MessageCreation), "Property is required for class RunStepDeltaStepDetailsMessageCreationObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsMessageCreationObject.MessageCreation to non-nullable JSON property 'message_creation'.");
 
             var typeRawValue = RunStepDeltaStepDetailsMessageCreationObject.TypeEnumToJsonValue(runStepDeltaStepDetailsMessageCreationObject.Type);
             writer.WriteString("type", typeRawValue);

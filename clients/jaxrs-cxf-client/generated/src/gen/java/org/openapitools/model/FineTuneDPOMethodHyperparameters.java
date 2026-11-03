@@ -19,19 +19,19 @@ public class FineTuneDPOMethodHyperparameters  {
   
   @ApiModelProperty(value = "")
 
-  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
 
   @ApiModelProperty(value = "")
 
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   @ApiModelProperty(value = "")
 
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @ApiModelProperty(value = "")
 
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
  /**
    * Get beta
    * @return beta

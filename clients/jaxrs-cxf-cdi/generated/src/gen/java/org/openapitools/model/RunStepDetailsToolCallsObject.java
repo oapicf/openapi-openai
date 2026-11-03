@@ -55,7 +55,7 @@ public enum TypeEnum {
 
   private TypeEnum type;
 
-  private List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+  private List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
 
   /**
    * Always &#x60;tool_calls&#x60;.
@@ -80,7 +80,7 @@ public enum TypeEnum {
   /**
    * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    **/
-  public RunStepDetailsToolCallsObject toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepDetailsToolCallsObject toolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
   }
@@ -89,10 +89,10 @@ public enum TypeEnum {
   @ApiModelProperty(required = true, value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
   @JsonProperty("tool_calls")
   @NotNull
-  public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+  public List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;
   }
-  public void setToolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public void setToolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
   }
 

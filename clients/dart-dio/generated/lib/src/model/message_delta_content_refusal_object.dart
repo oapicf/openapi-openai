@@ -143,9 +143,10 @@ class _$MessageDeltaContentRefusalObjectSerializer implements PrimitiveSerialize
   }
 }
 
+
+/// Always `refusal`.
 class MessageDeltaContentRefusalObjectTypeEnum extends EnumClass {
 
-  /// Always `refusal`.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const MessageDeltaContentRefusalObjectTypeEnum refusal = _$messageDeltaContentRefusalObjectTypeEnum_refusal;
 

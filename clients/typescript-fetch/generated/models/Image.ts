@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface Image {
     /**
      * The base64-encoded JSON of the generated image, if `response_format` is `b64_json`.
-     * @type {string}
-     * @memberof Image
      */
     b64Json?: string;
     /**
      * The URL of the generated image, if `response_format` is `url` (default).
-     * @type {string}
-     * @memberof Image
      */
     url?: string;
     /**
      * The prompt that was used to generate the image, if there was any revision to the prompt.
-     * @type {string}
-     * @memberof Image
      */
     revisedPrompt?: string;
 }

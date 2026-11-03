@@ -31,7 +31,7 @@ Method | HTTP request | Description
 
 # **cancelRun**
 ```swift
-    open class func cancelRun(threadId: String, runId: String, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func cancelRun(threadId: String, runId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 Cancels a run that is `in_progress`.
@@ -45,15 +45,11 @@ let threadId = "threadId_example" // String | The ID of the thread to which this
 let runId = "runId_example" // String | The ID of the run to cancel.
 
 // Cancels a run that is `in_progress`.
-AssistantsAPI.cancelRun(threadId: threadId, runId: runId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.cancelRun(threadId: threadId, runId: runId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -81,7 +77,7 @@ Name | Type | Description  | Notes
 
 # **createAssistant**
 ```swift
-    open class func createAssistant(createAssistantRequest: CreateAssistantRequest, completion: @escaping (_ data: AssistantObject?, _ error: Error?) -> Void)
+    open class func createAssistant(createAssistantRequest: CreateAssistantRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AssistantObject
 ```
 
 Create an assistant with a model and instructions.
@@ -94,15 +90,11 @@ import OpenAPIClient
 let createAssistantRequest = CreateAssistantRequest(model: CreateAssistantRequest_model(), name: "name_example", description: "description_example", instructions: "instructions_example", tools: [AssistantObject_tools_inner(type: "type_example", fileSearch: AssistantToolsFileSearch_file_search(maxNumResults: 123, rankingOptions: FileSearchRankingOptions(ranker: "ranker_example", scoreThreshold: 123)), function: FunctionObject(description: "description_example", name: "name_example", parameters: "TODO", strict: false))], toolResources: CreateAssistantRequest_tool_resources(codeInterpreter: CreateAssistantRequest_tool_resources_code_interpreter(fileIds: ["fileIds_example"]), fileSearch: CreateAssistantRequest_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"], vectorStores: [CreateAssistantRequest_tool_resources_file_search_vector_stores_inner(fileIds: ["fileIds_example"], chunkingStrategy: CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123)), metadata: 123)])), metadata: 123, temperature: 123, topP: 123, responseFormat: AssistantsApiResponseFormatOption(type: "type_example", jsonSchema: ResponseFormatJsonSchema_json_schema(description: "description_example", name: "name_example", schema: "TODO", strict: false))) // CreateAssistantRequest | 
 
 // Create an assistant with a model and instructions.
-AssistantsAPI.createAssistant(createAssistantRequest: createAssistantRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.createAssistant(createAssistantRequest: createAssistantRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -129,7 +121,7 @@ Name | Type | Description  | Notes
 
 # **createMessage**
 ```swift
-    open class func createMessage(threadId: String, createMessageRequest: CreateMessageRequest, completion: @escaping (_ data: MessageObject?, _ error: Error?) -> Void)
+    open class func createMessage(threadId: String, createMessageRequest: CreateMessageRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MessageObject
 ```
 
 Create a message.
@@ -143,15 +135,11 @@ let threadId = "threadId_example" // String | The ID of the [thread](/docs/api-r
 let createMessageRequest = CreateMessageRequest(role: "role_example", content: CreateMessageRequest_content(), attachments: [CreateMessageRequest_attachments_inner(fileId: "fileId_example", tools: [CreateMessageRequest_attachments_inner_tools_inner(type: "type_example")])], metadata: 123) // CreateMessageRequest | 
 
 // Create a message.
-AssistantsAPI.createMessage(threadId: threadId, createMessageRequest: createMessageRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.createMessage(threadId: threadId, createMessageRequest: createMessageRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -179,7 +167,7 @@ Name | Type | Description  | Notes
 
 # **createRun**
 ```swift
-    open class func createRun(threadId: String, createRunRequest: CreateRunRequest, include: [Include_createRun]? = nil, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func createRun(threadId: String, createRunRequest: CreateRunRequest, include: [Include_createRun]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 Create a run.
@@ -194,15 +182,11 @@ let createRunRequest = CreateRunRequest(assistantId: "assistantId_example", mode
 let include = ["include_example"] // [String] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 // Create a run.
-AssistantsAPI.createRun(threadId: threadId, createRunRequest: createRunRequest, include: include) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.createRun(threadId: threadId, createRunRequest: createRunRequest, include: include)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -231,7 +215,7 @@ Name | Type | Description  | Notes
 
 # **createThread**
 ```swift
-    open class func createThread(createThreadRequest: CreateThreadRequest? = nil, completion: @escaping (_ data: ThreadObject?, _ error: Error?) -> Void)
+    open class func createThread(createThreadRequest: CreateThreadRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThreadObject
 ```
 
 Create a thread.
@@ -244,15 +228,11 @@ import OpenAPIClient
 let createThreadRequest = CreateThreadRequest(messages: [CreateMessageRequest(role: "role_example", content: CreateMessageRequest_content(), attachments: [CreateMessageRequest_attachments_inner(fileId: "fileId_example", tools: [CreateMessageRequest_attachments_inner_tools_inner(type: "type_example")])], metadata: 123)], toolResources: CreateThreadRequest_tool_resources(codeInterpreter: CreateAssistantRequest_tool_resources_code_interpreter(fileIds: ["fileIds_example"]), fileSearch: CreateThreadRequest_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"], vectorStores: [CreateThreadRequest_tool_resources_file_search_vector_stores_inner(fileIds: ["fileIds_example"], chunkingStrategy: CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123)), metadata: 123)])), metadata: 123) // CreateThreadRequest |  (optional)
 
 // Create a thread.
-AssistantsAPI.createThread(createThreadRequest: createThreadRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.createThread(createThreadRequest: createThreadRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -279,7 +259,7 @@ Name | Type | Description  | Notes
 
 # **createThreadAndRun**
 ```swift
-    open class func createThreadAndRun(createThreadAndRunRequest: CreateThreadAndRunRequest, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func createThreadAndRun(createThreadAndRunRequest: CreateThreadAndRunRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 Create a thread and run it in one request.
@@ -292,15 +272,11 @@ import OpenAPIClient
 let createThreadAndRunRequest = CreateThreadAndRunRequest(assistantId: "assistantId_example", thread: CreateThreadRequest(messages: [CreateMessageRequest(role: "role_example", content: CreateMessageRequest_content(), attachments: [CreateMessageRequest_attachments_inner(fileId: "fileId_example", tools: [CreateMessageRequest_attachments_inner_tools_inner(type: "type_example")])], metadata: 123)], toolResources: CreateThreadRequest_tool_resources(codeInterpreter: CreateAssistantRequest_tool_resources_code_interpreter(fileIds: ["fileIds_example"]), fileSearch: CreateThreadRequest_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"], vectorStores: [CreateThreadRequest_tool_resources_file_search_vector_stores_inner(fileIds: ["fileIds_example"], chunkingStrategy: CreateAssistantRequest_tool_resources_file_search_vector_stores_inner_chunking_strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123)), metadata: 123)])), metadata: 123), model: CreateRunRequest_model(), instructions: "instructions_example", tools: [CreateThreadAndRunRequest_tools_inner(type: "type_example", fileSearch: AssistantToolsFileSearch_file_search(maxNumResults: 123, rankingOptions: FileSearchRankingOptions(ranker: "ranker_example", scoreThreshold: 123)), function: FunctionObject(description: "description_example", name: "name_example", parameters: "TODO", strict: false))], toolResources: CreateThreadAndRunRequest_tool_resources(codeInterpreter: nil, fileSearch: AssistantObject_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"])), metadata: 123, temperature: 123, topP: 123, stream: false, maxPromptTokens: 123, maxCompletionTokens: 123, truncationStrategy: TruncationObject(type: "type_example", lastMessages: 123), toolChoice: AssistantsApiToolChoiceOption(type: "type_example", function: AssistantsNamedToolChoice_function(name: "name_example")), parallelToolCalls: false, responseFormat: AssistantsApiResponseFormatOption(type: "type_example", jsonSchema: ResponseFormatJsonSchema_json_schema(description: "description_example", name: "name_example", schema: "TODO", strict: false))) // CreateThreadAndRunRequest | 
 
 // Create a thread and run it in one request.
-AssistantsAPI.createThreadAndRun(createThreadAndRunRequest: createThreadAndRunRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.createThreadAndRun(createThreadAndRunRequest: createThreadAndRunRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -327,7 +303,7 @@ Name | Type | Description  | Notes
 
 # **deleteAssistant**
 ```swift
-    open class func deleteAssistant(assistantId: String, completion: @escaping (_ data: DeleteAssistantResponse?, _ error: Error?) -> Void)
+    open class func deleteAssistant(assistantId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteAssistantResponse
 ```
 
 Delete an assistant.
@@ -340,15 +316,11 @@ import OpenAPIClient
 let assistantId = "assistantId_example" // String | The ID of the assistant to delete.
 
 // Delete an assistant.
-AssistantsAPI.deleteAssistant(assistantId: assistantId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.deleteAssistant(assistantId: assistantId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -375,7 +347,7 @@ Name | Type | Description  | Notes
 
 # **deleteMessage**
 ```swift
-    open class func deleteMessage(threadId: String, messageId: String, completion: @escaping (_ data: DeleteMessageResponse?, _ error: Error?) -> Void)
+    open class func deleteMessage(threadId: String, messageId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteMessageResponse
 ```
 
 Deletes a message.
@@ -389,15 +361,11 @@ let threadId = "threadId_example" // String | The ID of the thread to which this
 let messageId = "messageId_example" // String | The ID of the message to delete.
 
 // Deletes a message.
-AssistantsAPI.deleteMessage(threadId: threadId, messageId: messageId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.deleteMessage(threadId: threadId, messageId: messageId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -425,7 +393,7 @@ Name | Type | Description  | Notes
 
 # **deleteThread**
 ```swift
-    open class func deleteThread(threadId: String, completion: @escaping (_ data: DeleteThreadResponse?, _ error: Error?) -> Void)
+    open class func deleteThread(threadId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteThreadResponse
 ```
 
 Delete a thread.
@@ -438,15 +406,11 @@ import OpenAPIClient
 let threadId = "threadId_example" // String | The ID of the thread to delete.
 
 // Delete a thread.
-AssistantsAPI.deleteThread(threadId: threadId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.deleteThread(threadId: threadId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -473,7 +437,7 @@ Name | Type | Description  | Notes
 
 # **getAssistant**
 ```swift
-    open class func getAssistant(assistantId: String, completion: @escaping (_ data: AssistantObject?, _ error: Error?) -> Void)
+    open class func getAssistant(assistantId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AssistantObject
 ```
 
 Retrieves an assistant.
@@ -486,15 +450,11 @@ import OpenAPIClient
 let assistantId = "assistantId_example" // String | The ID of the assistant to retrieve.
 
 // Retrieves an assistant.
-AssistantsAPI.getAssistant(assistantId: assistantId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.getAssistant(assistantId: assistantId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -521,7 +481,7 @@ Name | Type | Description  | Notes
 
 # **getMessage**
 ```swift
-    open class func getMessage(threadId: String, messageId: String, completion: @escaping (_ data: MessageObject?, _ error: Error?) -> Void)
+    open class func getMessage(threadId: String, messageId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MessageObject
 ```
 
 Retrieve a message.
@@ -535,15 +495,11 @@ let threadId = "threadId_example" // String | The ID of the [thread](/docs/api-r
 let messageId = "messageId_example" // String | The ID of the message to retrieve.
 
 // Retrieve a message.
-AssistantsAPI.getMessage(threadId: threadId, messageId: messageId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.getMessage(threadId: threadId, messageId: messageId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -571,7 +527,7 @@ Name | Type | Description  | Notes
 
 # **getRun**
 ```swift
-    open class func getRun(threadId: String, runId: String, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func getRun(threadId: String, runId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 Retrieves a run.
@@ -585,15 +541,11 @@ let threadId = "threadId_example" // String | The ID of the [thread](/docs/api-r
 let runId = "runId_example" // String | The ID of the run to retrieve.
 
 // Retrieves a run.
-AssistantsAPI.getRun(threadId: threadId, runId: runId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.getRun(threadId: threadId, runId: runId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -621,7 +573,7 @@ Name | Type | Description  | Notes
 
 # **getRunStep**
 ```swift
-    open class func getRunStep(threadId: String, runId: String, stepId: String, include: [Include_getRunStep]? = nil, completion: @escaping (_ data: RunStepObject?, _ error: Error?) -> Void)
+    open class func getRunStep(threadId: String, runId: String, stepId: String, include: [Include_getRunStep]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunStepObject
 ```
 
 Retrieves a run step.
@@ -637,15 +589,11 @@ let stepId = "stepId_example" // String | The ID of the run step to retrieve.
 let include = ["include_example"] // [String] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 // Retrieves a run step.
-AssistantsAPI.getRunStep(threadId: threadId, runId: runId, stepId: stepId, include: include) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.getRunStep(threadId: threadId, runId: runId, stepId: stepId, include: include)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -675,7 +623,7 @@ Name | Type | Description  | Notes
 
 # **getThread**
 ```swift
-    open class func getThread(threadId: String, completion: @escaping (_ data: ThreadObject?, _ error: Error?) -> Void)
+    open class func getThread(threadId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThreadObject
 ```
 
 Retrieves a thread.
@@ -688,15 +636,11 @@ import OpenAPIClient
 let threadId = "threadId_example" // String | The ID of the thread to retrieve.
 
 // Retrieves a thread.
-AssistantsAPI.getThread(threadId: threadId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.getThread(threadId: threadId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -723,7 +667,7 @@ Name | Type | Description  | Notes
 
 # **listAssistants**
 ```swift
-    open class func listAssistants(limit: Int? = nil, order: Order_listAssistants? = nil, after: String? = nil, before: String? = nil, completion: @escaping (_ data: ListAssistantsResponse?, _ error: Error?) -> Void)
+    open class func listAssistants(limit: Int? = nil, order: Order_listAssistants? = nil, after: String? = nil, before: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListAssistantsResponse
 ```
 
 Returns a list of assistants.
@@ -739,15 +683,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let before = "before_example" // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 // Returns a list of assistants.
-AssistantsAPI.listAssistants(limit: limit, order: order, after: after, before: before) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.listAssistants(limit: limit, order: order, after: after, before: before)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -777,7 +717,7 @@ Name | Type | Description  | Notes
 
 # **listMessages**
 ```swift
-    open class func listMessages(threadId: String, limit: Int? = nil, order: Order_listMessages? = nil, after: String? = nil, before: String? = nil, runId: String? = nil, completion: @escaping (_ data: ListMessagesResponse?, _ error: Error?) -> Void)
+    open class func listMessages(threadId: String, limit: Int? = nil, order: Order_listMessages? = nil, after: String? = nil, before: String? = nil, runId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListMessagesResponse
 ```
 
 Returns a list of messages for a given thread.
@@ -795,15 +735,11 @@ let before = "before_example" // String | A cursor for use in pagination. `befor
 let runId = "runId_example" // String | Filter messages by the run ID that generated them.  (optional)
 
 // Returns a list of messages for a given thread.
-AssistantsAPI.listMessages(threadId: threadId, limit: limit, order: order, after: after, before: before, runId: runId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.listMessages(threadId: threadId, limit: limit, order: order, after: after, before: before, runId: runId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -835,7 +771,7 @@ Name | Type | Description  | Notes
 
 # **listRunSteps**
 ```swift
-    open class func listRunSteps(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil, include: [Include_listRunSteps]? = nil, completion: @escaping (_ data: ListRunStepsResponse?, _ error: Error?) -> Void)
+    open class func listRunSteps(threadId: String, runId: String, limit: Int? = nil, order: Order_listRunSteps? = nil, after: String? = nil, before: String? = nil, include: [Include_listRunSteps]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListRunStepsResponse
 ```
 
 Returns a list of run steps belonging to a run.
@@ -854,15 +790,11 @@ let before = "before_example" // String | A cursor for use in pagination. `befor
 let include = ["include_example"] // [String] | A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  (optional)
 
 // Returns a list of run steps belonging to a run.
-AssistantsAPI.listRunSteps(threadId: threadId, runId: runId, limit: limit, order: order, after: after, before: before, include: include) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.listRunSteps(threadId: threadId, runId: runId, limit: limit, order: order, after: after, before: before, include: include)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -895,7 +827,7 @@ Name | Type | Description  | Notes
 
 # **listRuns**
 ```swift
-    open class func listRuns(threadId: String, limit: Int? = nil, order: Order_listRuns? = nil, after: String? = nil, before: String? = nil, completion: @escaping (_ data: ListRunsResponse?, _ error: Error?) -> Void)
+    open class func listRuns(threadId: String, limit: Int? = nil, order: Order_listRuns? = nil, after: String? = nil, before: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListRunsResponse
 ```
 
 Returns a list of runs belonging to a thread.
@@ -912,15 +844,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let before = "before_example" // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 // Returns a list of runs belonging to a thread.
-AssistantsAPI.listRuns(threadId: threadId, limit: limit, order: order, after: after, before: before) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.listRuns(threadId: threadId, limit: limit, order: order, after: after, before: before)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -951,7 +879,7 @@ Name | Type | Description  | Notes
 
 # **modifyAssistant**
 ```swift
-    open class func modifyAssistant(assistantId: String, modifyAssistantRequest: ModifyAssistantRequest, completion: @escaping (_ data: AssistantObject?, _ error: Error?) -> Void)
+    open class func modifyAssistant(assistantId: String, modifyAssistantRequest: ModifyAssistantRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AssistantObject
 ```
 
 Modifies an assistant.
@@ -965,15 +893,11 @@ let assistantId = "assistantId_example" // String | The ID of the assistant to m
 let modifyAssistantRequest = ModifyAssistantRequest(model: "model_example", name: "name_example", description: "description_example", instructions: "instructions_example", tools: [AssistantObject_tools_inner(type: "type_example", fileSearch: AssistantToolsFileSearch_file_search(maxNumResults: 123, rankingOptions: FileSearchRankingOptions(ranker: "ranker_example", scoreThreshold: 123)), function: FunctionObject(description: "description_example", name: "name_example", parameters: "TODO", strict: false))], toolResources: ModifyAssistantRequest_tool_resources(codeInterpreter: ModifyAssistantRequest_tool_resources_code_interpreter(fileIds: ["fileIds_example"]), fileSearch: ModifyAssistantRequest_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"])), metadata: 123, temperature: 123, topP: 123, responseFormat: AssistantsApiResponseFormatOption(type: "type_example", jsonSchema: ResponseFormatJsonSchema_json_schema(description: "description_example", name: "name_example", schema: "TODO", strict: false))) // ModifyAssistantRequest | 
 
 // Modifies an assistant.
-AssistantsAPI.modifyAssistant(assistantId: assistantId, modifyAssistantRequest: modifyAssistantRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.modifyAssistant(assistantId: assistantId, modifyAssistantRequest: modifyAssistantRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1001,7 +925,7 @@ Name | Type | Description  | Notes
 
 # **modifyMessage**
 ```swift
-    open class func modifyMessage(threadId: String, messageId: String, modifyMessageRequest: ModifyMessageRequest, completion: @escaping (_ data: MessageObject?, _ error: Error?) -> Void)
+    open class func modifyMessage(threadId: String, messageId: String, modifyMessageRequest: ModifyMessageRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MessageObject
 ```
 
 Modifies a message.
@@ -1016,15 +940,11 @@ let messageId = "messageId_example" // String | The ID of the message to modify.
 let modifyMessageRequest = ModifyMessageRequest(metadata: 123) // ModifyMessageRequest | 
 
 // Modifies a message.
-AssistantsAPI.modifyMessage(threadId: threadId, messageId: messageId, modifyMessageRequest: modifyMessageRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.modifyMessage(threadId: threadId, messageId: messageId, modifyMessageRequest: modifyMessageRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1053,7 +973,7 @@ Name | Type | Description  | Notes
 
 # **modifyRun**
 ```swift
-    open class func modifyRun(threadId: String, runId: String, modifyRunRequest: ModifyRunRequest, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func modifyRun(threadId: String, runId: String, modifyRunRequest: ModifyRunRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 Modifies a run.
@@ -1068,15 +988,11 @@ let runId = "runId_example" // String | The ID of the run to modify.
 let modifyRunRequest = ModifyRunRequest(metadata: 123) // ModifyRunRequest | 
 
 // Modifies a run.
-AssistantsAPI.modifyRun(threadId: threadId, runId: runId, modifyRunRequest: modifyRunRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.modifyRun(threadId: threadId, runId: runId, modifyRunRequest: modifyRunRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1105,7 +1021,7 @@ Name | Type | Description  | Notes
 
 # **modifyThread**
 ```swift
-    open class func modifyThread(threadId: String, modifyThreadRequest: ModifyThreadRequest, completion: @escaping (_ data: ThreadObject?, _ error: Error?) -> Void)
+    open class func modifyThread(threadId: String, modifyThreadRequest: ModifyThreadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThreadObject
 ```
 
 Modifies a thread.
@@ -1119,15 +1035,11 @@ let threadId = "threadId_example" // String | The ID of the thread to modify. On
 let modifyThreadRequest = ModifyThreadRequest(toolResources: ModifyThreadRequest_tool_resources(codeInterpreter: CreateAssistantRequest_tool_resources_code_interpreter(fileIds: ["fileIds_example"]), fileSearch: ModifyThreadRequest_tool_resources_file_search(vectorStoreIds: ["vectorStoreIds_example"])), metadata: 123) // ModifyThreadRequest | 
 
 // Modifies a thread.
-AssistantsAPI.modifyThread(threadId: threadId, modifyThreadRequest: modifyThreadRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.modifyThread(threadId: threadId, modifyThreadRequest: modifyThreadRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1155,7 +1067,7 @@ Name | Type | Description  | Notes
 
 # **submitToolOuputsToRun**
 ```swift
-    open class func submitToolOuputsToRun(threadId: String, runId: String, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, completion: @escaping (_ data: RunObject?, _ error: Error?) -> Void)
+    open class func submitToolOuputsToRun(threadId: String, runId: String, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RunObject
 ```
 
 When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
@@ -1170,15 +1082,11 @@ let runId = "runId_example" // String | The ID of the run that requires the tool
 let submitToolOutputsRunRequest = SubmitToolOutputsRunRequest(toolOutputs: [SubmitToolOutputsRunRequest_tool_outputs_inner(toolCallId: "toolCallId_example", output: "output_example")], stream: false) // SubmitToolOutputsRunRequest | 
 
 // When a run has the `status: \"requires_action\"` and `required_action.type` is `submit_tool_outputs`, this endpoint can be used to submit the outputs from the tool calls once they're all completed. All outputs must be submitted in a single request. 
-AssistantsAPI.submitToolOuputsToRun(threadId: threadId, runId: runId, submitToolOutputsRunRequest: submitToolOutputsRunRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AssistantsAPI.submitToolOuputsToRun(threadId: threadId, runId: runId, submitToolOutputsRunRequest: submitToolOutputsRunRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class BatchErrors.");
+                throw new JsonException("Property is not nullable for class BatchErrors: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class BatchErrors.");
+                throw new JsonException("Property is not nullable for class BatchErrors: data.");
 
             return new BatchErrors(varObject, data);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchErrors"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchErrors batchErrors, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchErrors"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchErrors batchErrors, JsonSerializerOptions jsonSerializerOptions)
         {
             if (batchErrors.ObjectOption.IsSet && batchErrors.Object == null)
-                throw new ArgumentNullException(nameof(batchErrors.Object), "Property is required for class BatchErrors.");
+                throw new JsonException("Cannot write null property BatchErrors.Object to non-nullable JSON property 'object'.");
 
             if (batchErrors.DataOption.IsSet && batchErrors.Data == null)
-                throw new ArgumentNullException(nameof(batchErrors.Data), "Property is required for class BatchErrors.");
+                throw new JsonException("Cannot write null property BatchErrors.Data to non-nullable JSON property 'data'.");
 
             if (batchErrors.ObjectOption.IsSet)
                 writer.WriteString("object", batchErrors.Object);

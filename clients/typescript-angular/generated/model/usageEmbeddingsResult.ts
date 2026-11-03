@@ -41,7 +41,7 @@ export interface UsageEmbeddingsResult {
 }
 export namespace UsageEmbeddingsResult {
     export const ObjectEnum = {
-        OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result'
+        OrganizationUsageEmbeddingsResult: 'organization.usage.embeddings.result',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

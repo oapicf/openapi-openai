@@ -205,7 +205,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventConversationItemDeleted.TypeEnum?>(RealtimeServerEventConversationItemDeleted.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventConversationItemDeleted.TypeEnum? typeValue = RealtimeServerEventConversationItemDeleted.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventConversationItemDeleted.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "item_id":
                             itemId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -217,22 +222,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemDeleted.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemDeleted: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemDeleted.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemDeleted: type.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemDeleted.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemDeleted: item_id.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventConversationItemDeleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemDeleted: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventConversationItemDeleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemDeleted: type.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventConversationItemDeleted.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemDeleted: item_id.");
 
             return new RealtimeServerEventConversationItemDeleted(eventId.Value!, type.Value!.Value!, itemId.Value!);
         }
@@ -243,7 +248,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemDeleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationItemDeleted realtimeServerEventConversationItemDeleted, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,15 +262,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemDeleted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationItemDeleted realtimeServerEventConversationItemDeleted, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventConversationItemDeleted.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemDeleted.EventId), "Property is required for class RealtimeServerEventConversationItemDeleted.");
-
-            if (realtimeServerEventConversationItemDeleted.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemDeleted.ItemId), "Property is required for class RealtimeServerEventConversationItemDeleted.");
-
             writer.WriteString("event_id", realtimeServerEventConversationItemDeleted.EventId);
 
             var typeRawValue = RealtimeServerEventConversationItemDeleted.TypeEnumToJsonValue(realtimeServerEventConversationItemDeleted.Type);

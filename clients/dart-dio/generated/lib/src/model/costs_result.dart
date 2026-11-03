@@ -166,6 +166,7 @@ class _$CostsResultSerializer implements PrimitiveSerializer<CostsResult> {
   }
 }
 
+
 class CostsResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.costs.result')

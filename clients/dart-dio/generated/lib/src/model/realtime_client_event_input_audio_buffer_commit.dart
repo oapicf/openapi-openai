@@ -127,9 +127,10 @@ class _$RealtimeClientEventInputAudioBufferCommitSerializer implements Primitive
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.commit`.
 class RealtimeClientEventInputAudioBufferCommitTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.commit`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.commit')
   static const RealtimeClientEventInputAudioBufferCommitTypeEnum inputAudioBufferPeriodCommit = _$realtimeClientEventInputAudioBufferCommitTypeEnum_inputAudioBufferPeriodCommit;
 

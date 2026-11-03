@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface RunCompletionUsage {
     /**
      * Number of completion tokens used over the course of the run.
-     * @type {number}
-     * @memberof RunCompletionUsage
      */
     completionTokens: number;
     /**
      * Number of prompt tokens used over the course of the run.
-     * @type {number}
-     * @memberof RunCompletionUsage
      */
     promptTokens: number;
     /**
      * Total number of tokens used (prompt + completion).
-     * @type {number}
-     * @memberof RunCompletionUsage
      */
     totalTokens: number;
 }

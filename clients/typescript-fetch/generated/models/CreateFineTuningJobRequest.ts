@@ -50,8 +50,6 @@ import {
 export interface CreateFineTuningJobRequest {
     /**
      * 
-     * @type {CreateFineTuningJobRequestModel}
-     * @memberof CreateFineTuningJobRequest
      */
     model: CreateFineTuningJobRequestModel;
     /**
@@ -65,14 +63,10 @@ export interface CreateFineTuningJobRequest {
      * 
      * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
      * 
-     * @type {string}
-     * @memberof CreateFineTuningJobRequest
      */
     trainingFile: string;
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparameters}
-     * @memberof CreateFineTuningJobRequest
      * @deprecated
      */
     hyperparameters?: CreateFineTuningJobRequestHyperparameters;
@@ -81,8 +75,6 @@ export interface CreateFineTuningJobRequest {
      * 
      * For example, a `suffix` of "custom-model-name" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`.
      * 
-     * @type {string}
-     * @memberof CreateFineTuningJobRequest
      */
     suffix?: string | null;
     /**
@@ -97,28 +89,20 @@ export interface CreateFineTuningJobRequest {
      * 
      * See the [fine-tuning guide](/docs/guides/fine-tuning) for more details.
      * 
-     * @type {string}
-     * @memberof CreateFineTuningJobRequest
      */
     validationFile?: string | null;
     /**
      * A list of integrations to enable for your fine-tuning job.
-     * @type {Array<CreateFineTuningJobRequestIntegrationsInner>}
-     * @memberof CreateFineTuningJobRequest
      */
     integrations?: Array<CreateFineTuningJobRequestIntegrationsInner> | null;
     /**
      * The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases.
      * If a seed is not specified, one will be generated for you.
      * 
-     * @type {number}
-     * @memberof CreateFineTuningJobRequest
      */
     seed?: number | null;
     /**
      * 
-     * @type {FineTuneMethod}
-     * @memberof CreateFineTuningJobRequest
      */
     method?: FineTuneMethod;
 }

@@ -27,7 +27,7 @@ object RealtimeServerEventRateLimitsUpdatedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object RateLimitsUpdated extends `Type`
+    case object RateLimitsUpdated extends `Type` { override def toString: String = "rate_limits.updated" }
 
     import org.json4s._
 

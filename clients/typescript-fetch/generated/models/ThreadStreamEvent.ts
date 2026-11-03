@@ -29,20 +29,14 @@ import {
 export interface ThreadStreamEvent {
     /**
      * Whether to enable input audio transcription.
-     * @type {boolean}
-     * @memberof ThreadStreamEvent
      */
     enabled?: boolean;
     /**
      * 
-     * @type {ThreadStreamEventEventEnum}
-     * @memberof ThreadStreamEvent
      */
     event: ThreadStreamEventEventEnum;
     /**
      * 
-     * @type {ThreadObject}
-     * @memberof ThreadStreamEvent
      */
     data: ThreadObject;
 }
@@ -52,7 +46,7 @@ export interface ThreadStreamEvent {
  * @export
  */
 export const ThreadStreamEventEventEnum = {
-    ThreadCreated: 'thread.created'
+    ThreadCreated: 'thread.created',
 } as const;
 export type ThreadStreamEventEventEnum = typeof ThreadStreamEventEventEnum[keyof typeof ThreadStreamEventEventEnum];
 

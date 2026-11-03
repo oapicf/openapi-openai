@@ -224,9 +224,10 @@ class _$FineTuneChatCompletionRequestAssistantMessageSerializer implements Primi
   }
 }
 
+
+/// The role of the messages author, in this case `assistant`.
 class FineTuneChatCompletionRequestAssistantMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const FineTuneChatCompletionRequestAssistantMessageRoleEnum assistant = _$fineTuneChatCompletionRequestAssistantMessageRoleEnum_assistant;
 
@@ -238,12 +239,11 @@ class FineTuneChatCompletionRequestAssistantMessageRoleEnum extends EnumClass {
   static FineTuneChatCompletionRequestAssistantMessageRoleEnum valueOf(String name) => _$fineTuneChatCompletionRequestAssistantMessageRoleEnumValueOf(name);
 }
 
+/// Controls whether the assistant message is trained against (0 or 1)
 class FineTuneChatCompletionRequestAssistantMessageWeightEnum extends EnumClass {
 
-  /// Controls whether the assistant message is trained against (0 or 1)
   @BuiltValueEnumConst(wireNumber: 0)
   static const FineTuneChatCompletionRequestAssistantMessageWeightEnum number0 = _$fineTuneChatCompletionRequestAssistantMessageWeightEnum_number0;
-  /// Controls whether the assistant message is trained against (0 or 1)
   @BuiltValueEnumConst(wireNumber: 1)
   static const FineTuneChatCompletionRequestAssistantMessageWeightEnum number1 = _$fineTuneChatCompletionRequestAssistantMessageWeightEnum_number1;
 

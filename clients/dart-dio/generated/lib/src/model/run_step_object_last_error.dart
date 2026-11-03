@@ -124,12 +124,12 @@ class _$RunStepObjectLastErrorSerializer implements PrimitiveSerializer<RunStepO
   }
 }
 
+
+/// One of `server_error` or `rate_limit_exceeded`.
 class RunStepObjectLastErrorCodeEnum extends EnumClass {
 
-  /// One of `server_error` or `rate_limit_exceeded`.
   @BuiltValueEnumConst(wireName: r'server_error')
   static const RunStepObjectLastErrorCodeEnum serverError = _$runStepObjectLastErrorCodeEnum_serverError;
-  /// One of `server_error` or `rate_limit_exceeded`.
   @BuiltValueEnumConst(wireName: r'rate_limit_exceeded')
   static const RunStepObjectLastErrorCodeEnum rateLimitExceeded = _$runStepObjectLastErrorCodeEnum_rateLimitExceeded;
 

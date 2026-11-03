@@ -127,9 +127,10 @@ class _$RunStepDeltaStepDetailsMessageCreationObjectSerializer implements Primit
   }
 }
 
+
+/// Always `message_creation`.
 class RunStepDeltaStepDetailsMessageCreationObjectTypeEnum extends EnumClass {
 
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'message_creation')
   static const RunStepDeltaStepDetailsMessageCreationObjectTypeEnum messageCreation = _$runStepDeltaStepDetailsMessageCreationObjectTypeEnum_messageCreation;
 

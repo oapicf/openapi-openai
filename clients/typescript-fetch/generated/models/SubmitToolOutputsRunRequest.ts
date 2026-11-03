@@ -29,15 +29,11 @@ import {
 export interface SubmitToolOutputsRunRequest {
     /**
      * A list of tools for which the outputs are being submitted.
-     * @type {Array<SubmitToolOutputsRunRequestToolOutputsInner>}
-     * @memberof SubmitToolOutputsRunRequest
      */
     toolOutputs: Array<SubmitToolOutputsRunRequestToolOutputsInner>;
     /**
      * If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message.
      * 
-     * @type {boolean}
-     * @memberof SubmitToolOutputsRunRequest
      */
     stream?: boolean | null;
 }

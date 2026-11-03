@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="VectorStoreFileObjectChunkingStrategy" /> class.
         /// </summary>
         /// <param name="staticChunkingStrategyRequestParam"></param>
-        public VectorStoreFileObjectChunkingStrategy(StaticChunkingStrategyRequestParam staticChunkingStrategyRequestParam)
+        internal VectorStoreFileObjectChunkingStrategy(StaticChunkingStrategyRequestParam staticChunkingStrategyRequestParam)
         {
             StaticChunkingStrategyRequestParam = staticChunkingStrategyRequestParam;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="VectorStoreFileObjectChunkingStrategy" /> class.
         /// </summary>
         /// <param name="otherChunkingStrategyResponseParam"></param>
-        public VectorStoreFileObjectChunkingStrategy(OtherChunkingStrategyResponseParam otherChunkingStrategyResponseParam)
+        internal VectorStoreFileObjectChunkingStrategy(OtherChunkingStrategyResponseParam otherChunkingStrategyResponseParam)
         {
             OtherChunkingStrategyResponseParam = otherChunkingStrategyResponseParam;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObjectChunkingStrategy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreFileObjectChunkingStrategy vectorStoreFileObjectChunkingStrategy, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileObjectChunkingStrategy"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreFileObjectChunkingStrategy vectorStoreFileObjectChunkingStrategy, JsonSerializerOptions jsonSerializerOptions)
         {
 

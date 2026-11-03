@@ -106,8 +106,7 @@ class RealtimeResponse(BaseModel):
         _items = []
         if self.output:
             for _item_output in self.output:
-                if _item_output:
-                    _items.append(_item_output.to_dict())
+                _items.append(_item_output.to_dict() if _item_output is not None else None)
             _dict['output'] = _items
         # override the default output from pydantic by calling `to_dict()` of usage
         if self.usage:

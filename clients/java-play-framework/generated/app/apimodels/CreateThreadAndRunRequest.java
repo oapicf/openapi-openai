@@ -21,7 +21,7 @@ import javax.validation.Valid;
 /**
  * CreateThreadAndRunRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateThreadAndRunRequest   {
   @JsonProperty("assistant_id")
@@ -47,7 +47,7 @@ public class CreateThreadAndRunRequest   {
   @Size(max=20)
 @Valid
 
-  private List<CreateThreadAndRunRequestToolsInner> tools = null;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools = null;
 
   @JsonProperty("tool_resources")
   @Valid
@@ -173,7 +173,7 @@ public class CreateThreadAndRunRequest   {
     this.instructions = instructions;
   }
 
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -190,11 +190,11 @@ public class CreateThreadAndRunRequest   {
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    * @return tools
   **/
-  public List<CreateThreadAndRunRequestToolsInner> getTools() {
+  public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 

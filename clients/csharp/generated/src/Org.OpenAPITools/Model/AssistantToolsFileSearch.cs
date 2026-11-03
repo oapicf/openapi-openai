@@ -197,7 +197,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AssistantToolsFileSearch.TypeEnum?>(AssistantToolsFileSearch.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AssistantToolsFileSearch.TypeEnum? typeValue = AssistantToolsFileSearch.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AssistantToolsFileSearch.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "file_search":
                             fileSearch = new Option<AssistantToolsFileSearchFileSearch?>(JsonSerializer.Deserialize<AssistantToolsFileSearchFileSearch>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -209,13 +214,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AssistantToolsFileSearch.", nameof(type));
+                throw new JsonException("Property is required for class AssistantToolsFileSearch: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AssistantToolsFileSearch.");
+                throw new JsonException("Property is not nullable for class AssistantToolsFileSearch: type.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class AssistantToolsFileSearch.");
+                throw new JsonException("Property is not nullable for class AssistantToolsFileSearch: file_search.");
 
             return new AssistantToolsFileSearch(type.Value!.Value!, fileSearch);
         }
@@ -226,7 +231,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantToolsFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantToolsFileSearch assistantToolsFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -241,11 +245,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantToolsFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantToolsFileSearch assistantToolsFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             if (assistantToolsFileSearch.FileSearchOption.IsSet && assistantToolsFileSearch.FileSearch == null)
-                throw new ArgumentNullException(nameof(assistantToolsFileSearch.FileSearch), "Property is required for class AssistantToolsFileSearch.");
+                throw new JsonException("Cannot write null property AssistantToolsFileSearch.FileSearch to non-nullable JSON property 'file_search'.");
 
             var typeRawValue = AssistantToolsFileSearch.TypeEnumToJsonValue(assistantToolsFileSearch.Type);
             writer.WriteString("type", typeRawValue);

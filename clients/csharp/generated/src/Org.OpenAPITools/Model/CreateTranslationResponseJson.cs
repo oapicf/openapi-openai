@@ -133,10 +133,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class CreateTranslationResponseJson.", nameof(text));
+                throw new JsonException("Property is required for class CreateTranslationResponseJson: text.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class CreateTranslationResponseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranslationResponseJson: text.");
 
             return new CreateTranslationResponseJson(text.Value!);
         }
@@ -147,7 +147,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranslationResponseJson"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTranslationResponseJson createTranslationResponseJson, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -162,12 +161,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranslationResponseJson"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTranslationResponseJson createTranslationResponseJson, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createTranslationResponseJson.Text == null)
-                throw new ArgumentNullException(nameof(createTranslationResponseJson.Text), "Property is required for class CreateTranslationResponseJson.");
-
             writer.WriteString("text", createTranslationResponseJson.Text);
         }
     }

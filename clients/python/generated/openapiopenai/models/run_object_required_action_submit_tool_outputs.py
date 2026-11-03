@@ -75,8 +75,7 @@ class RunObjectRequiredActionSubmitToolOutputs(BaseModel):
         _items = []
         if self.tool_calls:
             for _item_tool_calls in self.tool_calls:
-                if _item_tool_calls:
-                    _items.append(_item_tool_calls.to_dict())
+                _items.append(_item_tool_calls.to_dict() if _item_tool_calls is not None else None)
             _dict['tool_calls'] = _items
         return _dict
 

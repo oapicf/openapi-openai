@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
 import org.openapitools.model.ChatCompletionRequestToolMessageContent
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -28,16 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ChatCompletionRequestToolMessage(
 
     @Schema(required = true, description = "The role of the messages author, in this case `tool`.")
-    @param:JsonProperty("role")
+    @param:JsonProperty("role", required = true)
     @get:JsonProperty("role", required = true) val role: ChatCompletionRequestToolMessage.Role,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("content")
+    @param:JsonProperty("content", required = true)
     @get:JsonProperty("content", required = true) val content: ChatCompletionRequestToolMessageContent,
 
     @Schema(required = true, description = "Tool call that this message is responding to.")
-    @param:JsonProperty("tool_call_id")
+    @param:JsonProperty("tool_call_id", required = true)
     @get:JsonProperty("tool_call_id", required = true) val toolCallId: kotlin.String
 ) : ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
@@ -48,12 +45,12 @@ data class ChatCompletionRequestToolMessage(
     enum class Role(@get:JsonValue val value: kotlin.String) {
 
         tool("tool");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }

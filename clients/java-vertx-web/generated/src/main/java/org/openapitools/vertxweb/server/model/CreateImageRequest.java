@@ -11,7 +11,7 @@ import org.openapitools.vertxweb.server.model.CreateImageRequestModel;
 public class CreateImageRequest   {
   
   private String prompt;
-  private CreateImageRequestModel model;
+  private CreateImageRequestModel model = dall-e-2;
   private Integer n = 1;
 
 

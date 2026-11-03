@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!fileId.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObjectFileCitation.", nameof(fileId));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObjectFileCitation: file_id.");
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObjectFileCitation.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObjectFileCitation: file_id.");
 
             return new MessageContentTextAnnotationsFileCitationObjectFileCitation(fileId.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFileCitationObjectFileCitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFileCitationObjectFileCitation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentTextAnnotationsFileCitationObjectFileCitation messageContentTextAnnotationsFileCitationObjectFileCitation, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentTextAnnotationsFileCitationObjectFileCitation.FileId == null)
-                throw new ArgumentNullException(nameof(messageContentTextAnnotationsFileCitationObjectFileCitation.FileId), "Property is required for class MessageContentTextAnnotationsFileCitationObjectFileCitation.");
-
             writer.WriteString("file_id", messageContentTextAnnotationsFileCitationObjectFileCitation.FileId);
         }
     }

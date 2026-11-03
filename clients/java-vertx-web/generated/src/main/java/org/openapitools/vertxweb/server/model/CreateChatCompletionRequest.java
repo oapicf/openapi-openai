@@ -103,7 +103,7 @@ public class CreateChatCompletionRequest   {
   }
 
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
   private Boolean stream = false;
   private ChatCompletionStreamOptions streamOptions;
   private BigDecimal temperature = new BigDecimal("1");

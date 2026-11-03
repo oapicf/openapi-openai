@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface CreateTranslationResponseJson {
     /**
      * 
-     * @type {string}
-     * @memberof CreateTranslationResponseJson
      */
     text: string;
 }

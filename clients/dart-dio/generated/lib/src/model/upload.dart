@@ -250,18 +250,16 @@ class _$UploadSerializer implements PrimitiveSerializer<Upload> {
   }
 }
 
+
+/// The status of the Upload.
 class UploadStatusEnum extends EnumClass {
 
-  /// The status of the Upload.
   @BuiltValueEnumConst(wireName: r'pending')
   static const UploadStatusEnum pending = _$uploadStatusEnum_pending;
-  /// The status of the Upload.
   @BuiltValueEnumConst(wireName: r'completed')
   static const UploadStatusEnum completed = _$uploadStatusEnum_completed;
-  /// The status of the Upload.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const UploadStatusEnum cancelled = _$uploadStatusEnum_cancelled;
-  /// The status of the Upload.
   @BuiltValueEnumConst(wireName: r'expired')
   static const UploadStatusEnum expired = _$uploadStatusEnum_expired;
 
@@ -273,9 +271,9 @@ class UploadStatusEnum extends EnumClass {
   static UploadStatusEnum valueOf(String name) => _$uploadStatusEnumValueOf(name);
 }
 
+/// The object type, which is always \"upload\".
 class UploadObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"upload\".
   @BuiltValueEnumConst(wireName: r'upload')
   static const UploadObjectEnum upload = _$uploadObjectEnum_upload;
 

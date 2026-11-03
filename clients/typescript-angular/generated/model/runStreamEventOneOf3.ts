@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf3 {
 }
 export namespace RunStreamEventOneOf3 {
     export const EventEnum = {
-        ThreadRunRequiresAction: 'thread.run.requires_action'
+        ThreadRunRequiresAction: 'thread.run.requires_action',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

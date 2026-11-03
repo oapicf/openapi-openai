@@ -248,7 +248,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventResponseContentPartAdded.TypeEnum?>(RealtimeServerEventResponseContentPartAdded.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventResponseContentPartAdded.TypeEnum? typeValue = RealtimeServerEventResponseContentPartAdded.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventResponseContentPartAdded.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "response_id":
                             responseId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -272,46 +277,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: type.");
 
             if (!responseId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(responseId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: response_id.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: item_id.");
 
             if (!outputIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(outputIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: output_index.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: content_index.");
 
             if (!part.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventResponseContentPartAdded.", nameof(part));
+                throw new JsonException("Property is required for class RealtimeServerEventResponseContentPartAdded: part.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: type.");
 
             if (responseId.IsSet && responseId.Value == null)
-                throw new ArgumentNullException(nameof(responseId), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: response_id.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: item_id.");
 
             if (outputIndex.IsSet && outputIndex.Value == null)
-                throw new ArgumentNullException(nameof(outputIndex), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: output_index.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: content_index.");
 
             if (part.IsSet && part.Value == null)
-                throw new ArgumentNullException(nameof(part), "Property is not nullable for class RealtimeServerEventResponseContentPartAdded.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAdded: part.");
 
             return new RealtimeServerEventResponseContentPartAdded(eventId.Value!, type.Value!.Value!, responseId.Value!, itemId.Value!, outputIndex.Value!.Value!, contentIndex.Value!.Value!, part.Value!);
         }
@@ -322,7 +327,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseContentPartAdded"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventResponseContentPartAdded realtimeServerEventResponseContentPartAdded, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -337,21 +341,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseContentPartAdded"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventResponseContentPartAdded realtimeServerEventResponseContentPartAdded, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventResponseContentPartAdded.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAdded.EventId), "Property is required for class RealtimeServerEventResponseContentPartAdded.");
-
-            if (realtimeServerEventResponseContentPartAdded.ResponseId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAdded.ResponseId), "Property is required for class RealtimeServerEventResponseContentPartAdded.");
-
-            if (realtimeServerEventResponseContentPartAdded.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAdded.ItemId), "Property is required for class RealtimeServerEventResponseContentPartAdded.");
-
-            if (realtimeServerEventResponseContentPartAdded.Part == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAdded.Part), "Property is required for class RealtimeServerEventResponseContentPartAdded.");
-
             writer.WriteString("event_id", realtimeServerEventResponseContentPartAdded.EventId);
 
             var typeRawValue = RealtimeServerEventResponseContentPartAdded.TypeEnumToJsonValue(realtimeServerEventResponseContentPartAdded.Type);

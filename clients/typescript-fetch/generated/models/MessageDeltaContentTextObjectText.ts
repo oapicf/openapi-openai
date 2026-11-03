@@ -29,14 +29,10 @@ import {
 export interface MessageDeltaContentTextObjectText {
     /**
      * The data that makes up the text.
-     * @type {string}
-     * @memberof MessageDeltaContentTextObjectText
      */
     value?: string;
     /**
      * 
-     * @type {Array<MessageDeltaContentTextObjectTextAnnotationsInner>}
-     * @memberof MessageDeltaContentTextObjectText
      */
     annotations?: Array<MessageDeltaContentTextObjectTextAnnotationsInner>;
 }

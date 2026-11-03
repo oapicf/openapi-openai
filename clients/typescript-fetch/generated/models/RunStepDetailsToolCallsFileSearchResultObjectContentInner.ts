@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsFileSearchResultObjectContentInner {
     /**
      * The type of the content.
-     * @type {RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum}
-     * @memberof RunStepDetailsToolCallsFileSearchResultObjectContentInner
      */
     type?: RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum;
     /**
      * The text content of the file.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsFileSearchResultObjectContentInner
      */
     text?: string;
 }
@@ -38,7 +34,7 @@ export interface RunStepDetailsToolCallsFileSearchResultObjectContentInner {
  * @export
  */
 export const RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum = typeof RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum[keyof typeof RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum];
 

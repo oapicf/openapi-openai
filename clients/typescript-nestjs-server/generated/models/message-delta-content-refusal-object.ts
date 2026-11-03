@@ -16,7 +16,7 @@ export interface MessageDeltaContentRefusalObject {
 }
 export namespace MessageDeltaContentRefusalObject {
   export const TypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

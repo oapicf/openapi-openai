@@ -12,7 +12,7 @@ import org.openapitools.model.RealtimeServerEventConversationCreatedConversation
  * Returned when a conversation is created. Emitted right after session creation. 
  */
 @ApiModel(description = "Returned when a conversation is created. Emitted right after session creation. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventConversationCreated   {
   @JsonProperty("event_id")
   private String eventId;

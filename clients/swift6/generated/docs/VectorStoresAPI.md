@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 # **cancelVectorStoreFileBatch**
 ```swift
-    open class func cancelVectorStoreFileBatch(vectorStoreId: String, batchId: String, completion: @escaping (_ data: VectorStoreFileBatchObject?, _ error: Error?) -> Void)
+    open class func cancelVectorStoreFileBatch(vectorStoreId: String, batchId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreFileBatchObject
 ```
 
 Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
@@ -35,15 +35,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let batchId = "batchId_example" // String | The ID of the file batch to cancel.
 
 // Cancel a vector store file batch. This attempts to cancel the processing of files in this batch as soon as possible.
-VectorStoresAPI.cancelVectorStoreFileBatch(vectorStoreId: vectorStoreId, batchId: batchId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.cancelVectorStoreFileBatch(vectorStoreId: vectorStoreId, batchId: batchId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -71,7 +67,7 @@ Name | Type | Description  | Notes
 
 # **createVectorStore**
 ```swift
-    open class func createVectorStore(createVectorStoreRequest: CreateVectorStoreRequest, completion: @escaping (_ data: VectorStoreObject?, _ error: Error?) -> Void)
+    open class func createVectorStore(createVectorStoreRequest: CreateVectorStoreRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreObject
 ```
 
 Create a vector store.
@@ -84,15 +80,11 @@ import OpenAPIClient
 let createVectorStoreRequest = CreateVectorStoreRequest(fileIds: ["fileIds_example"], name: "name_example", expiresAfter: VectorStoreExpirationAfter(anchor: "anchor_example", days: 123), chunkingStrategy: CreateVectorStoreRequest_chunking_strategy(type: "type_example", _static: Static_Chunking_Strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123))), metadata: 123) // CreateVectorStoreRequest | 
 
 // Create a vector store.
-VectorStoresAPI.createVectorStore(createVectorStoreRequest: createVectorStoreRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.createVectorStore(createVectorStoreRequest: createVectorStoreRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -119,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **createVectorStoreFile**
 ```swift
-    open class func createVectorStoreFile(vectorStoreId: String, createVectorStoreFileRequest: CreateVectorStoreFileRequest, completion: @escaping (_ data: VectorStoreFileObject?, _ error: Error?) -> Void)
+    open class func createVectorStoreFile(vectorStoreId: String, createVectorStoreFileRequest: CreateVectorStoreFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreFileObject
 ```
 
 Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
@@ -133,15 +125,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let createVectorStoreFileRequest = CreateVectorStoreFileRequest(fileId: "fileId_example", chunkingStrategy: ChunkingStrategyRequestParam(type: "type_example", _static: Static_Chunking_Strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123)))) // CreateVectorStoreFileRequest | 
 
 // Create a vector store file by attaching a [File](/docs/api-reference/files) to a [vector store](/docs/api-reference/vector-stores/object).
-VectorStoresAPI.createVectorStoreFile(vectorStoreId: vectorStoreId, createVectorStoreFileRequest: createVectorStoreFileRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.createVectorStoreFile(vectorStoreId: vectorStoreId, createVectorStoreFileRequest: createVectorStoreFileRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -169,7 +157,7 @@ Name | Type | Description  | Notes
 
 # **createVectorStoreFileBatch**
 ```swift
-    open class func createVectorStoreFileBatch(vectorStoreId: String, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest, completion: @escaping (_ data: VectorStoreFileBatchObject?, _ error: Error?) -> Void)
+    open class func createVectorStoreFileBatch(vectorStoreId: String, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreFileBatchObject
 ```
 
 Create a vector store file batch.
@@ -183,15 +171,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let createVectorStoreFileBatchRequest = CreateVectorStoreFileBatchRequest(fileIds: ["fileIds_example"], chunkingStrategy: ChunkingStrategyRequestParam(type: "type_example", _static: Static_Chunking_Strategy(type: "type_example", _static: Static_Chunking_Strategy_static(maxChunkSizeTokens: 123, chunkOverlapTokens: 123)))) // CreateVectorStoreFileBatchRequest | 
 
 // Create a vector store file batch.
-VectorStoresAPI.createVectorStoreFileBatch(vectorStoreId: vectorStoreId, createVectorStoreFileBatchRequest: createVectorStoreFileBatchRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.createVectorStoreFileBatch(vectorStoreId: vectorStoreId, createVectorStoreFileBatchRequest: createVectorStoreFileBatchRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -219,7 +203,7 @@ Name | Type | Description  | Notes
 
 # **deleteVectorStore**
 ```swift
-    open class func deleteVectorStore(vectorStoreId: String, completion: @escaping (_ data: DeleteVectorStoreResponse?, _ error: Error?) -> Void)
+    open class func deleteVectorStore(vectorStoreId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteVectorStoreResponse
 ```
 
 Delete a vector store.
@@ -232,15 +216,11 @@ import OpenAPIClient
 let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector store to delete.
 
 // Delete a vector store.
-VectorStoresAPI.deleteVectorStore(vectorStoreId: vectorStoreId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.deleteVectorStore(vectorStoreId: vectorStoreId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -267,7 +247,7 @@ Name | Type | Description  | Notes
 
 # **deleteVectorStoreFile**
 ```swift
-    open class func deleteVectorStoreFile(vectorStoreId: String, fileId: String, completion: @escaping (_ data: DeleteVectorStoreFileResponse?, _ error: Error?) -> Void)
+    open class func deleteVectorStoreFile(vectorStoreId: String, fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteVectorStoreFileResponse
 ```
 
 Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
@@ -281,15 +261,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let fileId = "fileId_example" // String | The ID of the file to delete.
 
 // Delete a vector store file. This will remove the file from the vector store but the file itself will not be deleted. To delete the file, use the [delete file](/docs/api-reference/files/delete) endpoint.
-VectorStoresAPI.deleteVectorStoreFile(vectorStoreId: vectorStoreId, fileId: fileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.deleteVectorStoreFile(vectorStoreId: vectorStoreId, fileId: fileId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -317,7 +293,7 @@ Name | Type | Description  | Notes
 
 # **getVectorStore**
 ```swift
-    open class func getVectorStore(vectorStoreId: String, completion: @escaping (_ data: VectorStoreObject?, _ error: Error?) -> Void)
+    open class func getVectorStore(vectorStoreId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreObject
 ```
 
 Retrieves a vector store.
@@ -330,15 +306,11 @@ import OpenAPIClient
 let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector store to retrieve.
 
 // Retrieves a vector store.
-VectorStoresAPI.getVectorStore(vectorStoreId: vectorStoreId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.getVectorStore(vectorStoreId: vectorStoreId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -365,7 +337,7 @@ Name | Type | Description  | Notes
 
 # **getVectorStoreFile**
 ```swift
-    open class func getVectorStoreFile(vectorStoreId: String, fileId: String, completion: @escaping (_ data: VectorStoreFileObject?, _ error: Error?) -> Void)
+    open class func getVectorStoreFile(vectorStoreId: String, fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreFileObject
 ```
 
 Retrieves a vector store file.
@@ -379,15 +351,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let fileId = "fileId_example" // String | The ID of the file being retrieved.
 
 // Retrieves a vector store file.
-VectorStoresAPI.getVectorStoreFile(vectorStoreId: vectorStoreId, fileId: fileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.getVectorStoreFile(vectorStoreId: vectorStoreId, fileId: fileId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -415,7 +383,7 @@ Name | Type | Description  | Notes
 
 # **getVectorStoreFileBatch**
 ```swift
-    open class func getVectorStoreFileBatch(vectorStoreId: String, batchId: String, completion: @escaping (_ data: VectorStoreFileBatchObject?, _ error: Error?) -> Void)
+    open class func getVectorStoreFileBatch(vectorStoreId: String, batchId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreFileBatchObject
 ```
 
 Retrieves a vector store file batch.
@@ -429,15 +397,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let batchId = "batchId_example" // String | The ID of the file batch being retrieved.
 
 // Retrieves a vector store file batch.
-VectorStoresAPI.getVectorStoreFileBatch(vectorStoreId: vectorStoreId, batchId: batchId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.getVectorStoreFileBatch(vectorStoreId: vectorStoreId, batchId: batchId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -465,7 +429,7 @@ Name | Type | Description  | Notes
 
 # **listFilesInVectorStoreBatch**
 ```swift
-    open class func listFilesInVectorStoreBatch(vectorStoreId: String, batchId: String, limit: Int? = nil, order: Order_listFilesInVectorStoreBatch? = nil, after: String? = nil, before: String? = nil, filter: Filter_listFilesInVectorStoreBatch? = nil, completion: @escaping (_ data: ListVectorStoreFilesResponse?, _ error: Error?) -> Void)
+    open class func listFilesInVectorStoreBatch(vectorStoreId: String, batchId: String, limit: Int? = nil, order: Order_listFilesInVectorStoreBatch? = nil, after: String? = nil, before: String? = nil, filter: Filter_listFilesInVectorStoreBatch? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListVectorStoreFilesResponse
 ```
 
 Returns a list of vector store files in a batch.
@@ -484,15 +448,11 @@ let before = "before_example" // String | A cursor for use in pagination. `befor
 let filter = "filter_example" // String | Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`. (optional)
 
 // Returns a list of vector store files in a batch.
-VectorStoresAPI.listFilesInVectorStoreBatch(vectorStoreId: vectorStoreId, batchId: batchId, limit: limit, order: order, after: after, before: before, filter: filter) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.listFilesInVectorStoreBatch(vectorStoreId: vectorStoreId, batchId: batchId, limit: limit, order: order, after: after, before: before, filter: filter)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -525,7 +485,7 @@ Name | Type | Description  | Notes
 
 # **listVectorStoreFiles**
 ```swift
-    open class func listVectorStoreFiles(vectorStoreId: String, limit: Int? = nil, order: Order_listVectorStoreFiles? = nil, after: String? = nil, before: String? = nil, filter: Filter_listVectorStoreFiles? = nil, completion: @escaping (_ data: ListVectorStoreFilesResponse?, _ error: Error?) -> Void)
+    open class func listVectorStoreFiles(vectorStoreId: String, limit: Int? = nil, order: Order_listVectorStoreFiles? = nil, after: String? = nil, before: String? = nil, filter: Filter_listVectorStoreFiles? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListVectorStoreFilesResponse
 ```
 
 Returns a list of vector store files.
@@ -543,15 +503,11 @@ let before = "before_example" // String | A cursor for use in pagination. `befor
 let filter = "filter_example" // String | Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`. (optional)
 
 // Returns a list of vector store files.
-VectorStoresAPI.listVectorStoreFiles(vectorStoreId: vectorStoreId, limit: limit, order: order, after: after, before: before, filter: filter) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.listVectorStoreFiles(vectorStoreId: vectorStoreId, limit: limit, order: order, after: after, before: before, filter: filter)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -583,7 +539,7 @@ Name | Type | Description  | Notes
 
 # **listVectorStores**
 ```swift
-    open class func listVectorStores(limit: Int? = nil, order: Order_listVectorStores? = nil, after: String? = nil, before: String? = nil, completion: @escaping (_ data: ListVectorStoresResponse?, _ error: Error?) -> Void)
+    open class func listVectorStores(limit: Int? = nil, order: Order_listVectorStores? = nil, after: String? = nil, before: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListVectorStoresResponse
 ```
 
 Returns a list of vector stores.
@@ -599,15 +555,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let before = "before_example" // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 // Returns a list of vector stores.
-VectorStoresAPI.listVectorStores(limit: limit, order: order, after: after, before: before) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.listVectorStores(limit: limit, order: order, after: after, before: before)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -637,7 +589,7 @@ Name | Type | Description  | Notes
 
 # **modifyVectorStore**
 ```swift
-    open class func modifyVectorStore(vectorStoreId: String, updateVectorStoreRequest: UpdateVectorStoreRequest, completion: @escaping (_ data: VectorStoreObject?, _ error: Error?) -> Void)
+    open class func modifyVectorStore(vectorStoreId: String, updateVectorStoreRequest: UpdateVectorStoreRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> VectorStoreObject
 ```
 
 Modifies a vector store.
@@ -651,15 +603,11 @@ let vectorStoreId = "vectorStoreId_example" // String | The ID of the vector sto
 let updateVectorStoreRequest = UpdateVectorStoreRequest(name: "name_example", expiresAfter: VectorStoreExpirationAfter(anchor: "anchor_example", days: 123), metadata: 123) // UpdateVectorStoreRequest | 
 
 // Modifies a vector store.
-VectorStoresAPI.modifyVectorStore(vectorStoreId: vectorStoreId, updateVectorStoreRequest: updateVectorStoreRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await VectorStoresAPI.modifyVectorStore(vectorStoreId: vectorStoreId, updateVectorStoreRequest: updateVectorStoreRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

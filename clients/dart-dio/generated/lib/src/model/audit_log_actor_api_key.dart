@@ -170,12 +170,12 @@ class _$AuditLogActorApiKeySerializer implements PrimitiveSerializer<AuditLogAct
   }
 }
 
+
+/// The type of API key. Can be either `user` or `service_account`.
 class AuditLogActorApiKeyTypeEnum extends EnumClass {
 
-  /// The type of API key. Can be either `user` or `service_account`.
   @BuiltValueEnumConst(wireName: r'user')
   static const AuditLogActorApiKeyTypeEnum user = _$auditLogActorApiKeyTypeEnum_user;
-  /// The type of API key. Can be either `user` or `service_account`.
   @BuiltValueEnumConst(wireName: r'service_account')
   static const AuditLogActorApiKeyTypeEnum serviceAccount = _$auditLogActorApiKeyTypeEnum_serviceAccount;
 

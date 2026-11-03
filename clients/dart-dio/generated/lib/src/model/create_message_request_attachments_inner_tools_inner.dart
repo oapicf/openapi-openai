@@ -71,12 +71,12 @@ class _$CreateMessageRequestAttachmentsInnerToolsInnerSerializer implements Prim
   }
 }
 
+
+/// The type of tool being defined: `code_interpreter`
 class CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum codeInterpreter = _$createMessageRequestAttachmentsInnerToolsInnerTypeEnum_codeInterpreter;
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'file_search')
   static const CreateMessageRequestAttachmentsInnerToolsInnerTypeEnum fileSearch = _$createMessageRequestAttachmentsInnerToolsInnerTypeEnum_fileSearch;
 

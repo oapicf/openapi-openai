@@ -588,16 +588,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateCompletionRequest: model.");
 
             if (!prompt.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompletionRequest.", nameof(prompt));
+                throw new JsonException("Property is required for class CreateCompletionRequest: prompt.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateCompletionRequest: model.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class CreateCompletionRequest.");
+                throw new JsonException("Property is not nullable for class CreateCompletionRequest: user.");
 
             return new CreateCompletionRequest(model.Value!, prompt.Value!, bestOf, echo, frequencyPenalty, logitBias, logprobs, maxTokens, n, presencePenalty, seed, stop, stream, streamOptions, suffix, temperature, topP, user);
         }
@@ -608,7 +608,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCompletionRequest createCompletionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -623,14 +622,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCompletionRequest createCompletionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createCompletionRequest.Model == null)
-                throw new ArgumentNullException(nameof(createCompletionRequest.Model), "Property is required for class CreateCompletionRequest.");
-
             if (createCompletionRequest.UserOption.IsSet && createCompletionRequest.User == null)
-                throw new ArgumentNullException(nameof(createCompletionRequest.User), "Property is required for class CreateCompletionRequest.");
+                throw new JsonException("Cannot write null property CreateCompletionRequest.User to non-nullable JSON property 'user'.");
 
             writer.WritePropertyName("model");
             JsonSerializer.Serialize(writer, createCompletionRequest.Model, jsonSerializerOptions);

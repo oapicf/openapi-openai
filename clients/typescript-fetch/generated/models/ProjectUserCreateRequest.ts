@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ProjectUserCreateRequest {
     /**
      * The ID of the user.
-     * @type {string}
-     * @memberof ProjectUserCreateRequest
      */
     userId: string;
     /**
      * `owner` or `member`
-     * @type {ProjectUserCreateRequestRoleEnum}
-     * @memberof ProjectUserCreateRequest
      */
     role: ProjectUserCreateRequestRoleEnum;
 }
@@ -39,7 +35,7 @@ export interface ProjectUserCreateRequest {
  */
 export const ProjectUserCreateRequestRoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
 } as const;
 export type ProjectUserCreateRequestRoleEnum = typeof ProjectUserCreateRequestRoleEnum[keyof typeof ProjectUserCreateRequestRoleEnum];
 

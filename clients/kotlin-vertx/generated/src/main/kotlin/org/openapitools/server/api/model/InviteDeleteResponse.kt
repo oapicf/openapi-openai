@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;object&#x60; The object type, which is always `organization.invite.deleted`
+ * @param `object` The object type, which is always `organization.invite.deleted`
  * @param id 
  * @param deleted 
  */

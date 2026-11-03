@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param type The type of error.
  * @param code Error code, if any.
  * @param message A human-readable error message.
- * @param &#x60;param&#x60; Parameter related to the error, if any.
+ * @param `param` Parameter related to the error, if any.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

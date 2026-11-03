@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * The aggregated embeddings usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param inputTokens The aggregated number of input tokens used.
  * @param numModelRequests The count of requests made to the model.
  * @param projectId When `group_by=project_id`, this field provides the project ID of the grouped usage result.

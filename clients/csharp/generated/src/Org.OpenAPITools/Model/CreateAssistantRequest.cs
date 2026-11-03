@@ -364,16 +364,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateAssistantRequest.", nameof(model));
+                throw new JsonException("Property is required for class CreateAssistantRequest: model.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateAssistantRequest.");
+                throw new JsonException("Property is not nullable for class CreateAssistantRequest: model.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class CreateAssistantRequest.");
+                throw new JsonException("Property is not nullable for class CreateAssistantRequest: tools.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class CreateAssistantRequest.");
+                throw new JsonException("Property is not nullable for class CreateAssistantRequest: response_format.");
 
             return new CreateAssistantRequest(model.Value!, name, description, instructions, tools, toolResources, metadata, temperature, topP, responseFormat);
         }
@@ -384,7 +384,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateAssistantRequest createAssistantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -399,17 +398,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createAssistantRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateAssistantRequest createAssistantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createAssistantRequest.Model == null)
-                throw new ArgumentNullException(nameof(createAssistantRequest.Model), "Property is required for class CreateAssistantRequest.");
-
             if (createAssistantRequest.ToolsOption.IsSet && createAssistantRequest.Tools == null)
-                throw new ArgumentNullException(nameof(createAssistantRequest.Tools), "Property is required for class CreateAssistantRequest.");
+                throw new JsonException("Cannot write null property CreateAssistantRequest.Tools to non-nullable JSON property 'tools'.");
 
             if (createAssistantRequest.ResponseFormatOption.IsSet && createAssistantRequest.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(createAssistantRequest.ResponseFormat), "Property is required for class CreateAssistantRequest.");
+                throw new JsonException("Cannot write null property CreateAssistantRequest.ResponseFormat to non-nullable JSON property 'response_format'.");
 
             writer.WritePropertyName("model");
             JsonSerializer.Serialize(writer, createAssistantRequest.Model, jsonSerializerOptions);

@@ -23,12 +23,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("createTranslation_200_response")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranslation200Response   {
   private String text;
   private String language;
   private String duration;
-  private @Valid List<@Valid TranscriptionSegment> segments = new ArrayList<>();
+  private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
 
   public CreateTranslation200Response() {
   }
@@ -115,7 +115,7 @@ public class CreateTranslation200Response   {
   
   @ApiModelProperty(value = "Segments of the translated text and their corresponding details.")
   @JsonProperty("segments")
-  @Valid public List<@Valid TranscriptionSegment> getSegments() {
+  public List<@Valid TranscriptionSegment> getSegments() {
     return segments;
   }
 

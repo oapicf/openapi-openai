@@ -202,7 +202,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ChatCompletionRequestFunctionMessage.RoleEnum?>(ChatCompletionRequestFunctionMessage.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ChatCompletionRequestFunctionMessage.RoleEnum? roleValue = ChatCompletionRequestFunctionMessage.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ChatCompletionRequestFunctionMessage.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
@@ -217,19 +222,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestFunctionMessage.", nameof(role));
+                throw new JsonException("Property is required for class ChatCompletionRequestFunctionMessage: role.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestFunctionMessage.", nameof(name));
+                throw new JsonException("Property is required for class ChatCompletionRequestFunctionMessage: name.");
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestFunctionMessage.", nameof(content));
+                throw new JsonException("Property is required for class ChatCompletionRequestFunctionMessage: content.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ChatCompletionRequestFunctionMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestFunctionMessage: role.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionRequestFunctionMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestFunctionMessage: name.");
 
             return new ChatCompletionRequestFunctionMessage(role.Value!.Value!, name.Value!, content.Value!);
         }
@@ -240,7 +245,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestFunctionMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestFunctionMessage chatCompletionRequestFunctionMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -255,12 +259,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestFunctionMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestFunctionMessage chatCompletionRequestFunctionMessage, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestFunctionMessage.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestFunctionMessage.Name), "Property is required for class ChatCompletionRequestFunctionMessage.");
-
             var roleRawValue = ChatCompletionRequestFunctionMessage.RoleEnumToJsonValue(chatCompletionRequestFunctionMessage.Role);
             writer.WriteString("role", roleRawValue);
             writer.WriteString("name", chatCompletionRequestFunctionMessage.Name);

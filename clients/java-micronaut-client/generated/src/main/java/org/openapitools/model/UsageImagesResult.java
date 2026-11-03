@@ -37,7 +37,7 @@ import javax.annotation.Generated;
   UsageImagesResult.JSON_PROPERTY_MODEL
 })
 @JsonTypeName("UsageImagesResult")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class UsageImagesResult {
     /**

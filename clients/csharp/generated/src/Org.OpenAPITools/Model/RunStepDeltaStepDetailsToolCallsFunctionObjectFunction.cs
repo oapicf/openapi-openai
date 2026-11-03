@@ -183,10 +183,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction: arguments.");
 
             return new RunStepDeltaStepDetailsToolCallsFunctionObjectFunction(name, arguments, output);
         }
@@ -197,7 +197,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsFunctionObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsFunctionObjectFunction runStepDeltaStepDetailsToolCallsFunctionObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -212,14 +211,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsFunctionObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsFunctionObjectFunction runStepDeltaStepDetailsToolCallsFunctionObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsFunctionObjectFunction.NameOption.IsSet && runStepDeltaStepDetailsToolCallsFunctionObjectFunction.Name == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsFunctionObjectFunction.Name), "Property is required for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.Name to non-nullable JSON property 'name'.");
 
             if (runStepDeltaStepDetailsToolCallsFunctionObjectFunction.ArgumentsOption.IsSet && runStepDeltaStepDetailsToolCallsFunctionObjectFunction.Arguments == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsFunctionObjectFunction.Arguments), "Property is required for class RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsFunctionObjectFunction.Arguments to non-nullable JSON property 'arguments'.");
 
             if (runStepDeltaStepDetailsToolCallsFunctionObjectFunction.NameOption.IsSet)
                 writer.WriteString("name", runStepDeltaStepDetailsToolCallsFunctionObjectFunction.Name);

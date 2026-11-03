@@ -16,7 +16,7 @@ export interface RunStepObjectLastError {
 export namespace RunStepObjectLastError {
   export const CodeEnum = {
     ServerError: 'server_error',
-    RateLimitExceeded: 'rate_limit_exceeded'
+    RateLimitExceeded: 'rate_limit_exceeded',
   } as const;
   export type CodeEnum = typeof CodeEnum[keyof typeof CodeEnum];
 }

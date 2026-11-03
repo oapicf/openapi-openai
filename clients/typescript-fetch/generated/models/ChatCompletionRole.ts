@@ -22,7 +22,7 @@ export const ChatCompletionRole = {
     User: 'user',
     Assistant: 'assistant',
     Tool: 'tool',
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type ChatCompletionRole = typeof ChatCompletionRole[keyof typeof ChatCompletionRole];
 

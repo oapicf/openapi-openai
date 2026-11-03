@@ -17,20 +17,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  * For fine-tuning jobs that have `failed`, this will contain more information on the cause of the failure.
  * @param code A machine-readable error code.
  * @param message A human-readable error message.
- * @param &#x60;param&#x60; The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
+ * @param `param` The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.
  */
 data class FineTuningJobError(
 
     @Schema(required = true, description = "A machine-readable error code.")
-    @param:JsonProperty("code")
+    @param:JsonProperty("code", required = true)
     @get:JsonProperty("code", required = true) val code: kotlin.String,
 
     @Schema(required = true, description = "A human-readable error message.")
-    @param:JsonProperty("message")
+    @param:JsonProperty("message", required = true)
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
     @Schema(required = true, description = "The parameter that was invalid, usually `training_file` or `validation_file`. This field will be null if the failure was not parameter-specific.")
-    @param:JsonProperty("param")
+    @param:JsonProperty("param", required = true)
     @get:JsonProperty("param", required = true) val `param`: kotlin.String?
 ) {
 

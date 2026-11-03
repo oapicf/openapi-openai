@@ -123,6 +123,7 @@ class _$RunStreamEventOneOf2Serializer implements PrimitiveSerializer<RunStreamE
   }
 }
 
+
 class RunStreamEventOneOf2EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.run.in_progress')

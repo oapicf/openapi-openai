@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsCodeObject"></param>
-        public RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsCodeObject runStepDetailsToolCallsCodeObject)
+        internal RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsCodeObject runStepDetailsToolCallsCodeObject)
         {
             RunStepDetailsToolCallsCodeObject = runStepDetailsToolCallsCodeObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsFileSearchObject"></param>
-        public RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsFileSearchObject runStepDetailsToolCallsFileSearchObject)
+        internal RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsFileSearchObject runStepDetailsToolCallsFileSearchObject)
         {
             RunStepDetailsToolCallsFileSearchObject = runStepDetailsToolCallsFileSearchObject;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsFunctionObject"></param>
-        public RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsFunctionObject runStepDetailsToolCallsFunctionObject)
+        internal RunStepDetailsToolCallsObjectToolCallsInner(RunStepDetailsToolCallsFunctionObject runStepDetailsToolCallsFunctionObject)
         {
             RunStepDetailsToolCallsFunctionObject = runStepDetailsToolCallsFunctionObject;
             OnCreated();
@@ -198,7 +198,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsObjectToolCallsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsObjectToolCallsInner runStepDetailsToolCallsObjectToolCallsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -213,7 +212,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsObjectToolCallsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsObjectToolCallsInner runStepDetailsToolCallsObjectToolCallsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateMessageRequest
 import org.openapitools.model.CreateThreadRequestToolResources
 import javax.validation.constraints.DecimalMax
@@ -28,8 +25,6 @@ data class CreateThreadRequest(
 
     @field:Valid
     @Schema(description = "A list of [messages](/docs/api-reference/messages) to start the thread with.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("messages")
     @get:JsonProperty("messages") val messages: kotlin.collections.List<CreateMessageRequest>? = null,
 

@@ -52,7 +52,7 @@ public class UsageTimeBucket   {
     private ObjectEnum _object;
     private Integer startTime;
     private Integer endTime;
-    private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+    private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -73,7 +73,7 @@ public class UsageTimeBucket   {
         ObjectEnum _object, 
         Integer startTime, 
         Integer endTime, 
-        List<UsageTimeBucketResultInner> result
+        List<@Valid UsageTimeBucketResultInner> result
     ) {
         this._object = _object;
         this.startTime = startTime;
@@ -123,11 +123,11 @@ public class UsageTimeBucket   {
      * Get result
      * @return result
      */
-    public List<UsageTimeBucketResultInner> getResult() {
+    public List<@Valid UsageTimeBucketResultInner> getResult() {
         return result;
     }
 
-    public void setResult(List<UsageTimeBucketResultInner> result) {
+    public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
         this.result = result;
     }
 

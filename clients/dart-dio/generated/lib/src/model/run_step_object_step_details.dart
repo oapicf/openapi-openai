@@ -75,12 +75,12 @@ class _$RunStepObjectStepDetailsSerializer implements PrimitiveSerializer<RunSte
   }
 }
 
+
+/// Always `message_creation`.
 class RunStepObjectStepDetailsTypeEnum extends EnumClass {
 
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'message_creation')
   static const RunStepObjectStepDetailsTypeEnum messageCreation = _$runStepObjectStepDetailsTypeEnum_messageCreation;
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const RunStepObjectStepDetailsTypeEnum toolCalls = _$runStepObjectStepDetailsTypeEnum_toolCalls;
 

@@ -266,25 +266,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: name.");
 
             if (redactedValue.IsSet && redactedValue.Value == null)
-                throw new ArgumentNullException(nameof(redactedValue), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: redacted_value.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: value.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: created_at.");
 
             if (owner.IsSet && owner.Value == null)
-                throw new ArgumentNullException(nameof(owner), "Property is not nullable for class AdminApiKey.");
+                throw new JsonException("Property is not nullable for class AdminApiKey: owner.");
 
             return new AdminApiKey(varObject, id, name, redactedValue, value, createdAt, owner);
         }
@@ -295,7 +295,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdminApiKey adminApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -310,26 +309,28 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdminApiKey adminApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             if (adminApiKey.ObjectOption.IsSet && adminApiKey.Object == null)
-                throw new ArgumentNullException(nameof(adminApiKey.Object), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.Object to non-nullable JSON property 'object'.");
 
             if (adminApiKey.IdOption.IsSet && adminApiKey.Id == null)
-                throw new ArgumentNullException(nameof(adminApiKey.Id), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.Id to non-nullable JSON property 'id'.");
 
             if (adminApiKey.NameOption.IsSet && adminApiKey.Name == null)
-                throw new ArgumentNullException(nameof(adminApiKey.Name), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.Name to non-nullable JSON property 'name'.");
 
             if (adminApiKey.RedactedValueOption.IsSet && adminApiKey.RedactedValue == null)
-                throw new ArgumentNullException(nameof(adminApiKey.RedactedValue), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.RedactedValue to non-nullable JSON property 'redacted_value'.");
 
             if (adminApiKey.ValueOption.IsSet && adminApiKey.Value == null)
-                throw new ArgumentNullException(nameof(adminApiKey.Value), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.Value to non-nullable JSON property 'value'.");
+
+            if (adminApiKey.CreatedAtOption.IsSet && adminApiKey.CreatedAt == null)
+                throw new JsonException("Cannot write null property AdminApiKey.CreatedAt to non-nullable JSON property 'created_at'.");
 
             if (adminApiKey.OwnerOption.IsSet && adminApiKey.Owner == null)
-                throw new ArgumentNullException(nameof(adminApiKey.Owner), "Property is required for class AdminApiKey.");
+                throw new JsonException("Cannot write null property AdminApiKey.Owner to non-nullable JSON property 'owner'.");
 
             if (adminApiKey.ObjectOption.IsSet)
                 writer.WriteString("object", adminApiKey.Object);

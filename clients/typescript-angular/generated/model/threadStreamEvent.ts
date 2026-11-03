@@ -23,7 +23,7 @@ export interface ThreadStreamEvent {
 }
 export namespace ThreadStreamEvent {
     export const EventEnum = {
-        ThreadCreated: 'thread.created'
+        ThreadCreated: 'thread.created',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

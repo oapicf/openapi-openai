@@ -29,10 +29,10 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest   {
   
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
   private CreateChatCompletionRequestModel model;
   private Boolean store = false;
 
@@ -116,7 +116,7 @@ public class CreateChatCompletionRequest   {
   }
 
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
   private Boolean stream = false;
   private ChatCompletionStreamOptions streamOptions;
   private BigDecimal temperature = new BigDecimal("1");
@@ -135,11 +135,10 @@ public class CreateChatCompletionRequest   {
   @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
   @JsonProperty("messages")
   @NotNull
- @Size(min=1)  @Valid
-  public List<ChatCompletionRequestMessage> getMessages() {
+ @Size(min=1)  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
@@ -468,7 +467,6 @@ public class CreateChatCompletionRequest   {
   
   @ApiModelProperty(value = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
   @JsonProperty("tools")
-  @Valid
   public List<@Valid ChatCompletionTool> getTools() {
     return tools;
   }
@@ -534,8 +532,7 @@ public class CreateChatCompletionRequest   {
   
   @ApiModelProperty(value = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
   @JsonProperty("functions")
- @Size(min=1,max=128)  @Valid
-  public List<@Valid ChatCompletionFunctions> getFunctions() {
+ @Size(min=1,max=128)  public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {

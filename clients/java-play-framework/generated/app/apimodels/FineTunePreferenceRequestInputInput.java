@@ -15,14 +15,14 @@ import javax.validation.Valid;
 /**
  * FineTunePreferenceRequestInputInput
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FineTunePreferenceRequestInputInput   {
   @JsonProperty("messages")
   @Size(min=1)
 @Valid
 
-  private List<FineTuneChatRequestInputMessagesInner> messages = null;
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = null;
 
   @JsonProperty("tools")
   @Valid
@@ -33,7 +33,7 @@ public class FineTunePreferenceRequestInputInput   {
   
   private Boolean parallelToolCalls = true;
 
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -50,11 +50,11 @@ public class FineTunePreferenceRequestInputInput   {
    * Get messages
    * @return messages
   **/
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 

@@ -201,7 +201,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<DeleteFileResponse.ObjectEnum?>(DeleteFileResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                DeleteFileResponse.ObjectEnum? varObjectValue = DeleteFileResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<DeleteFileResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "deleted":
                             deleted = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class DeleteFileResponse.", nameof(id));
+                throw new JsonException("Property is required for class DeleteFileResponse: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class DeleteFileResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class DeleteFileResponse: object.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class DeleteFileResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class DeleteFileResponse: deleted.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class DeleteFileResponse.");
+                throw new JsonException("Property is not nullable for class DeleteFileResponse: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class DeleteFileResponse.");
+                throw new JsonException("Property is not nullable for class DeleteFileResponse: object.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class DeleteFileResponse.");
+                throw new JsonException("Property is not nullable for class DeleteFileResponse: deleted.");
 
             return new DeleteFileResponse(id.Value!, varObject.Value!.Value!, deleted.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteFileResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteFileResponse deleteFileResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteFileResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteFileResponse deleteFileResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deleteFileResponse.Id == null)
-                throw new ArgumentNullException(nameof(deleteFileResponse.Id), "Property is required for class DeleteFileResponse.");
-
             writer.WriteString("id", deleteFileResponse.Id);
 
             var varObjectRawValue = DeleteFileResponse.ObjectEnumToJsonValue(deleteFileResponse.Object);

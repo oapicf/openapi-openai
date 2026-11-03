@@ -19,7 +19,7 @@ export interface RunStreamEventOneOf {
 }
 export namespace RunStreamEventOneOf {
     export const EventEnum = {
-        ThreadRunCreated: 'thread.run.created'
+        ThreadRunCreated: 'thread.run.created',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

@@ -29,20 +29,14 @@ import {
 export interface InviteRequest {
     /**
      * Send an email to this address
-     * @type {string}
-     * @memberof InviteRequest
      */
     email: string;
     /**
      * `owner` or `reader`
-     * @type {InviteRequestRoleEnum}
-     * @memberof InviteRequest
      */
     role: InviteRequestRoleEnum;
     /**
      * An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.
-     * @type {Array<InviteRequestProjectsInner>}
-     * @memberof InviteRequest
      */
     projects?: Array<InviteRequestProjectsInner>;
 }
@@ -53,7 +47,7 @@ export interface InviteRequest {
  */
 export const InviteRequestRoleEnum = {
     Reader: 'reader',
-    Owner: 'owner'
+    Owner: 'owner',
 } as const;
 export type InviteRequestRoleEnum = typeof InviteRequestRoleEnum[keyof typeof InviteRequestRoleEnum];
 

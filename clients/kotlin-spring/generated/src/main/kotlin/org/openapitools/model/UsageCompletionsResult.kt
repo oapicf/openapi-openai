@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,7 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The aggregated completions usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param inputTokens The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.
  * @param outputTokens The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
  * @param numModelRequests The count of requests made to the model.
@@ -36,36 +33,30 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class UsageCompletionsResult(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageCompletionsResult.`Object`,
 
     @Schema(required = true, description = "The aggregated number of text input tokens used, including cached tokens. For customers subscribe to scale tier, this includes scale tier tokens.")
-    @param:JsonProperty("input_tokens")
+    @param:JsonProperty("input_tokens", required = true)
     @get:JsonProperty("input_tokens", required = true) val inputTokens: kotlin.Int,
 
     @Schema(required = true, description = "The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.")
-    @param:JsonProperty("output_tokens")
+    @param:JsonProperty("output_tokens", required = true)
     @get:JsonProperty("output_tokens", required = true) val outputTokens: kotlin.Int,
 
     @Schema(required = true, description = "The count of requests made to the model.")
-    @param:JsonProperty("num_model_requests")
+    @param:JsonProperty("num_model_requests", required = true)
     @get:JsonProperty("num_model_requests", required = true) val numModelRequests: kotlin.Int,
 
     @Schema(description = "The aggregated number of text input tokens that has been cached from previous requests. For customers subscribe to scale tier, this includes scale tier tokens.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("input_cached_tokens")
     @get:JsonProperty("input_cached_tokens") val inputCachedTokens: kotlin.Int? = null,
 
     @Schema(description = "The aggregated number of audio input tokens used, including cached tokens.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("input_audio_tokens")
     @get:JsonProperty("input_audio_tokens") val inputAudioTokens: kotlin.Int? = null,
 
     @Schema(description = "The aggregated number of audio output tokens used.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("output_audio_tokens")
     @get:JsonProperty("output_audio_tokens") val outputAudioTokens: kotlin.Int? = null,
 
@@ -97,12 +88,12 @@ data class UsageCompletionsResult(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUsagePeriodCompletionsPeriodResult("organization.usage.completions.result");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

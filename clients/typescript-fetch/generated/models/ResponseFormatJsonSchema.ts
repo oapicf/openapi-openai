@@ -29,14 +29,10 @@ import {
 export interface ResponseFormatJsonSchema {
     /**
      * The type of response format being defined: `json_schema`
-     * @type {ResponseFormatJsonSchemaTypeEnum}
-     * @memberof ResponseFormatJsonSchema
      */
     type: ResponseFormatJsonSchemaTypeEnum;
     /**
      * 
-     * @type {ResponseFormatJsonSchemaJsonSchema}
-     * @memberof ResponseFormatJsonSchema
      */
     jsonSchema: ResponseFormatJsonSchemaJsonSchema;
 }
@@ -46,7 +42,7 @@ export interface ResponseFormatJsonSchema {
  * @export
  */
 export const ResponseFormatJsonSchemaTypeEnum = {
-    JsonSchema: 'json_schema'
+    JsonSchema: 'json_schema',
 } as const;
 export type ResponseFormatJsonSchemaTypeEnum = typeof ResponseFormatJsonSchemaTypeEnum[keyof typeof ResponseFormatJsonSchemaTypeEnum];
 

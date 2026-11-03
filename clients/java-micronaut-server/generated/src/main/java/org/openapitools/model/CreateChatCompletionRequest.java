@@ -76,11 +76,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateChatCompletionRequest.JSON_PROPERTY_FUNCTIONS
 })
 @JsonTypeName("CreateChatCompletionRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateChatCompletionRequest {
     public static final String JSON_PROPERTY_MESSAGES = "messages";
-    private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+    private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
     public static final String JSON_PROPERTY_MODEL = "model";
     private CreateChatCompletionRequestModel model;
@@ -237,7 +237,7 @@ public class CreateChatCompletionRequest {
     private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
 
     public static final String JSON_PROPERTY_STOP = "stop";
-    private CreateChatCompletionRequestStop stop;
+    private CreateChatCompletionRequestStop stop = null;
 
     public static final String JSON_PROPERTY_STREAM = "stream";
     private Boolean stream = false;
@@ -269,12 +269,12 @@ public class CreateChatCompletionRequest {
     public static final String JSON_PROPERTY_FUNCTIONS = "functions";
     private List<@Valid ChatCompletionFunctions> functions = null;
 
-    public CreateChatCompletionRequest(List<ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
+    public CreateChatCompletionRequest(List<@Valid ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
         this.messages = messages;
         this.model = model;
     }
 
-    public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+    public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
         this.messages = messages;
         return this;
     }
@@ -293,13 +293,13 @@ public class CreateChatCompletionRequest {
     @Schema(name = "messages", description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_MESSAGES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<ChatCompletionRequestMessage> getMessages() {
+    public List<@Valid ChatCompletionRequestMessage> getMessages() {
         return messages;
     }
 
     @JsonProperty(JSON_PROPERTY_MESSAGES)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setMessages(List<ChatCompletionRequestMessage> messages) {
+    public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
         this.messages = messages;
     }
 

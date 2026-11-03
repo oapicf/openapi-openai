@@ -189,34 +189,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListRunsResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListRunsResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListRunsResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListRunsResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class ListRunsResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class ListRunsResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class ListRunsResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class ListRunsResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ListRunsResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ListRunsResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListRunsResponse.");
+                throw new JsonException("Property is not nullable for class ListRunsResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListRunsResponse.");
+                throw new JsonException("Property is not nullable for class ListRunsResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ListRunsResponse.");
+                throw new JsonException("Property is not nullable for class ListRunsResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ListRunsResponse.");
+                throw new JsonException("Property is not nullable for class ListRunsResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListRunsResponse.");
+                throw new JsonException("Property is not nullable for class ListRunsResponse: has_more.");
 
             return new ListRunsResponse(varObject.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -227,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listRunsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListRunsResponse listRunsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,21 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listRunsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListRunsResponse listRunsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listRunsResponse.Object == null)
-                throw new ArgumentNullException(nameof(listRunsResponse.Object), "Property is required for class ListRunsResponse.");
-
-            if (listRunsResponse.Data == null)
-                throw new ArgumentNullException(nameof(listRunsResponse.Data), "Property is required for class ListRunsResponse.");
-
-            if (listRunsResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(listRunsResponse.FirstId), "Property is required for class ListRunsResponse.");
-
-            if (listRunsResponse.LastId == null)
-                throw new ArgumentNullException(nameof(listRunsResponse.LastId), "Property is required for class ListRunsResponse.");
-
             writer.WriteString("object", listRunsResponse.Object);
 
             writer.WritePropertyName("data");

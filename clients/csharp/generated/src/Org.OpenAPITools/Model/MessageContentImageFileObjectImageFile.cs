@@ -229,7 +229,12 @@ namespace Org.OpenAPITools.Model
                         case "detail":
                             string? detailRawValue = utf8JsonReader.GetString();
                             if (detailRawValue != null)
-                                detail = new Option<MessageContentImageFileObjectImageFile.DetailEnum?>(MessageContentImageFileObjectImageFile.DetailEnumFromStringOrDefault(detailRawValue));
+                            {
+                                MessageContentImageFileObjectImageFile.DetailEnum? detailValue = MessageContentImageFileObjectImageFile.DetailEnumFromStringOrDefault(detailRawValue);
+                                if (detailValue == null)
+                                    throw new JsonException();
+                                detail = new Option<MessageContentImageFileObjectImageFile.DetailEnum?>(detailValue);
+                            }
                             break;
                         default:
                             break;
@@ -238,13 +243,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!fileId.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentImageFileObjectImageFile.", nameof(fileId));
+                throw new JsonException("Property is required for class MessageContentImageFileObjectImageFile: file_id.");
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class MessageContentImageFileObjectImageFile.");
+                throw new JsonException("Property is not nullable for class MessageContentImageFileObjectImageFile: file_id.");
 
             if (detail.IsSet && detail.Value == null)
-                throw new ArgumentNullException(nameof(detail), "Property is not nullable for class MessageContentImageFileObjectImageFile.");
+                throw new JsonException("Property is not nullable for class MessageContentImageFileObjectImageFile: detail.");
 
             return new MessageContentImageFileObjectImageFile(fileId.Value!, detail);
         }
@@ -255,7 +260,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentImageFileObjectImageFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentImageFileObjectImageFile messageContentImageFileObjectImageFile, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -270,11 +274,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentImageFileObjectImageFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentImageFileObjectImageFile messageContentImageFileObjectImageFile, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentImageFileObjectImageFile.FileId == null)
-                throw new ArgumentNullException(nameof(messageContentImageFileObjectImageFile.FileId), "Property is required for class MessageContentImageFileObjectImageFile.");
+            if (messageContentImageFileObjectImageFile.DetailOption.IsSet && messageContentImageFileObjectImageFile.Detail == null)
+                throw new JsonException("Cannot write null property MessageContentImageFileObjectImageFile.Detail to non-nullable JSON property 'detail'.");
 
             writer.WriteString("file_id", messageContentImageFileObjectImageFile.FileId);
 

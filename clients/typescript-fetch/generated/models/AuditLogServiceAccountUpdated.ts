@@ -29,14 +29,10 @@ import {
 export interface AuditLogServiceAccountUpdated {
     /**
      * The service account ID.
-     * @type {string}
-     * @memberof AuditLogServiceAccountUpdated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogServiceAccountUpdatedChangesRequested}
-     * @memberof AuditLogServiceAccountUpdated
      */
     changesRequested?: AuditLogServiceAccountUpdatedChangesRequested;
 }

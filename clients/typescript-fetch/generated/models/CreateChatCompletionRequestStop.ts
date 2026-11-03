@@ -12,13 +12,14 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * @type CreateChatCompletionRequestStop
  * Up to 4 sequences where the API will stop generating further tokens.
  * 
  * @export
  */
-export type CreateChatCompletionRequestStop = Array<string> | string;
+export type CreateChatCompletionRequestStop = Array<string> | null | string;
 
 export function CreateChatCompletionRequestStopFromJSON(json: any): CreateChatCompletionRequestStop {
     return CreateChatCompletionRequestStopFromJSONTyped(json, false);

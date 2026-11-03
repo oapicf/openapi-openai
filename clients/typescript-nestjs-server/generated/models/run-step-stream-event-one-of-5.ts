@@ -10,7 +10,7 @@ export interface RunStepStreamEventOneOf5 {
 }
 export namespace RunStepStreamEventOneOf5 {
   export const EventEnum = {
-    ThreadRunStepCancelled: 'thread.run.step.cancelled'
+    ThreadRunStepCancelled: 'thread.run.step.cancelled',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

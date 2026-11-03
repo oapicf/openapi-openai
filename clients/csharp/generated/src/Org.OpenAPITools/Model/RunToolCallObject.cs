@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunToolCallObject.TypeEnum?>(RunToolCallObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunToolCallObject.TypeEnum? typeValue = RunToolCallObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunToolCallObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "function":
                             function = new Option<RunToolCallObjectFunction?>(JsonSerializer.Deserialize<RunToolCallObjectFunction>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunToolCallObject.", nameof(id));
+                throw new JsonException("Property is required for class RunToolCallObject: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunToolCallObject.", nameof(type));
+                throw new JsonException("Property is required for class RunToolCallObject: type.");
 
             if (!function.IsSet)
-                throw new ArgumentException("Property is required for class RunToolCallObject.", nameof(function));
+                throw new JsonException("Property is required for class RunToolCallObject: function.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunToolCallObject.");
+                throw new JsonException("Property is not nullable for class RunToolCallObject: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunToolCallObject.");
+                throw new JsonException("Property is not nullable for class RunToolCallObject: type.");
 
             if (function.IsSet && function.Value == null)
-                throw new ArgumentNullException(nameof(function), "Property is not nullable for class RunToolCallObject.");
+                throw new JsonException("Property is not nullable for class RunToolCallObject: function.");
 
             return new RunToolCallObject(id.Value!, type.Value!.Value!, function.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runToolCallObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunToolCallObject runToolCallObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runToolCallObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunToolCallObject runToolCallObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runToolCallObject.Id == null)
-                throw new ArgumentNullException(nameof(runToolCallObject.Id), "Property is required for class RunToolCallObject.");
-
-            if (runToolCallObject.Function == null)
-                throw new ArgumentNullException(nameof(runToolCallObject.Function), "Property is required for class RunToolCallObject.");
-
             writer.WriteString("id", runToolCallObject.Id);
 
             var typeRawValue = RunToolCallObject.TypeEnumToJsonValue(runToolCallObject.Type);

@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscription200Response   {
   
   private String text;
@@ -75,7 +75,6 @@ public class CreateTranscription200Response   {
   
   @ApiModelProperty(value = "Extracted words and their corresponding timestamps.")
   @JsonProperty("words")
-  @Valid
   public List<@Valid TranscriptionWord> getWords() {
     return words;
   }
@@ -89,7 +88,6 @@ public class CreateTranscription200Response   {
   
   @ApiModelProperty(value = "Segments of the transcribed text and their corresponding details.")
   @JsonProperty("segments")
-  @Valid
   public List<@Valid TranscriptionSegment> getSegments() {
     return segments;
   }

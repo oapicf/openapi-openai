@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ProjectUserDeleteResponse {
     /**
      * 
-     * @type {ProjectUserDeleteResponseObjectEnum}
-     * @memberof ProjectUserDeleteResponse
      */
     object: ProjectUserDeleteResponseObjectEnum;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectUserDeleteResponse
      */
     id: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ProjectUserDeleteResponse
      */
     deleted: boolean;
 }
@@ -44,7 +38,7 @@ export interface ProjectUserDeleteResponse {
  * @export
  */
 export const ProjectUserDeleteResponseObjectEnum = {
-    OrganizationProjectUserDeleted: 'organization.project.user.deleted'
+    OrganizationProjectUserDeleted: 'organization.project.user.deleted',
 } as const;
 export type ProjectUserDeleteResponseObjectEnum = typeof ProjectUserDeleteResponseObjectEnum[keyof typeof ProjectUserDeleteResponseObjectEnum];
 

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents a step in execution of a run. 
  * @param id The identifier of the run step, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.run.step`.
+ * @param `object` The object type, which is always `thread.run.step`.
  * @param createdAt The Unix timestamp (in seconds) for when the run step was created.
  * @param assistantId The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
  * @param threadId The ID of the [thread](/docs/api-reference/threads) that was run.

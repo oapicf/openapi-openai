@@ -72,8 +72,6 @@ RATE_LIMITS_UPDATED(String.valueOf("rate_limits.updated"));
   */
   @ApiModelProperty(required = true, value = "List of rate limit information.")
 
-  @Valid
-
   private List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits = new ArrayList<>();
  /**
    * The unique ID of the server event.

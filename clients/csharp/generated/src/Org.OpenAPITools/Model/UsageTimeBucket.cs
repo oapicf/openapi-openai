@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageTimeBucket.ObjectEnum?>(UsageTimeBucket.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageTimeBucket.ObjectEnum? varObjectValue = UsageTimeBucket.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageTimeBucket.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "start_time":
                             startTime = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -226,28 +231,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageTimeBucket.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageTimeBucket: object.");
 
             if (!startTime.IsSet)
-                throw new ArgumentException("Property is required for class UsageTimeBucket.", nameof(startTime));
+                throw new JsonException("Property is required for class UsageTimeBucket: start_time.");
 
             if (!endTime.IsSet)
-                throw new ArgumentException("Property is required for class UsageTimeBucket.", nameof(endTime));
+                throw new JsonException("Property is required for class UsageTimeBucket: end_time.");
 
             if (!result.IsSet)
-                throw new ArgumentException("Property is required for class UsageTimeBucket.", nameof(result));
+                throw new JsonException("Property is required for class UsageTimeBucket: result.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageTimeBucket.");
+                throw new JsonException("Property is not nullable for class UsageTimeBucket: object.");
 
             if (startTime.IsSet && startTime.Value == null)
-                throw new ArgumentNullException(nameof(startTime), "Property is not nullable for class UsageTimeBucket.");
+                throw new JsonException("Property is not nullable for class UsageTimeBucket: start_time.");
 
             if (endTime.IsSet && endTime.Value == null)
-                throw new ArgumentNullException(nameof(endTime), "Property is not nullable for class UsageTimeBucket.");
+                throw new JsonException("Property is not nullable for class UsageTimeBucket: end_time.");
 
             if (result.IsSet && result.Value == null)
-                throw new ArgumentNullException(nameof(result), "Property is not nullable for class UsageTimeBucket.");
+                throw new JsonException("Property is not nullable for class UsageTimeBucket: result.");
 
             return new UsageTimeBucket(varObject.Value!.Value!, startTime.Value!.Value!, endTime.Value!.Value!, result.Value!);
         }
@@ -258,7 +263,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageTimeBucket"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageTimeBucket usageTimeBucket, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -273,12 +277,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageTimeBucket"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageTimeBucket usageTimeBucket, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (usageTimeBucket.Result == null)
-                throw new ArgumentNullException(nameof(usageTimeBucket.Result), "Property is required for class UsageTimeBucket.");
-
             var varObjectRawValue = UsageTimeBucket.ObjectEnumToJsonValue(usageTimeBucket.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteNumber("start_time", usageTimeBucket.StartTime);

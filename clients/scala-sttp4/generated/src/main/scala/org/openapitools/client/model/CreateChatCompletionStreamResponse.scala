@@ -36,8 +36,8 @@ object CreateChatCompletionStreamResponseEnums {
 
   sealed trait ServiceTier
   object ServiceTier {
-    case object Scale extends ServiceTier
-    case object Default extends ServiceTier
+    case object Scale extends ServiceTier { override def toString: String = "scale" }
+    case object Default extends ServiceTier { override def toString: String = "default" }
 
     import org.json4s._
 
@@ -60,7 +60,7 @@ object CreateChatCompletionStreamResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ChatCompletionChunk extends `Object`
+    case object ChatCompletionChunk extends `Object` { override def toString: String = "chat.completion.chunk" }
 
     import org.json4s._
 

@@ -30,26 +30,56 @@ import {
 } from '../models/OpenAIFile';
 
 export interface CreateFileRequest {
+    /**
+     * The File object (not file name) to be uploaded. 
+     */
     file: Blob;
+    /**
+     * The intended purpose of the uploaded file.  Use \"assistants\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \"vision\" for Assistants image file inputs, \"batch\" for [Batch API](/docs/guides/batch), and \"fine-tune\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
+     */
     purpose: CreateFilePurposeEnum;
 }
 
 export interface DeleteFileRequest {
+    /**
+     * The ID of the file to use for this request.
+     */
     fileId: string;
 }
 
 export interface DownloadFileRequest {
+    /**
+     * The ID of the file to use for this request.
+     */
     fileId: string;
 }
 
 export interface ListFilesRequest {
+    /**
+     * Only return files with the given purpose.
+     */
     purpose?: string;
+    /**
+     * A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000.
+     * 
+     */
     limit?: number;
+    /**
+     * Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order.
+     * 
+     */
     order?: ListFilesOrderEnum;
+    /**
+     * A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.
+     * 
+     */
     after?: string;
 }
 
 export interface RetrieveFileRequest {
+    /**
+     * The ID of the file to use for this request.
+     */
     fileId: string;
 }
 
@@ -375,7 +405,7 @@ export const CreateFilePurposeEnum = {
     Assistants: 'assistants',
     Batch: 'batch',
     FineTune: 'fine-tune',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 export type CreateFilePurposeEnum = typeof CreateFilePurposeEnum[keyof typeof CreateFilePurposeEnum];
 /**
@@ -383,6 +413,6 @@ export type CreateFilePurposeEnum = typeof CreateFilePurposeEnum[keyof typeof Cr
  */
 export const ListFilesOrderEnum = {
     Asc: 'asc',
-    Desc: 'desc'
+    Desc: 'desc',
 } as const;
 export type ListFilesOrderEnum = typeof ListFilesOrderEnum[keyof typeof ListFilesOrderEnum];

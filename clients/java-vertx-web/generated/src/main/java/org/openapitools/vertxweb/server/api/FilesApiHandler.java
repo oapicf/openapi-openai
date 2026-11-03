@@ -48,7 +48,13 @@ public class FilesApiHandler {
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        FileUpload _file = routingContext.fileUploads().iterator().next();
+        FileUpload _file = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            _file = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter _file is {}", _file);
 

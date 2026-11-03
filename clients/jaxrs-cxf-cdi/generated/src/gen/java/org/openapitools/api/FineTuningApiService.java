@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-26T05:16:04.319549348Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-11-03T06:33:55.768045576Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public interface FineTuningApiService {
       public Response cancelFineTuningJob(String fineTuningJobId, SecurityContext securityContext);
       public Response createFineTuningJob(CreateFineTuningJobRequest createFineTuningJobRequest, SecurityContext securityContext);

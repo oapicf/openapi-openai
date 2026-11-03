@@ -116,9 +116,9 @@ class DefaultApiSimulation extends Simulation {
         .feed(admin-api-keys-listQUERYFeeder)
         .exec(http("adminApiKeysList")
         .httpRequest("GET","/organization/admin_api_keys")
-        .queryParam("after","${after}")
         .queryParam("order","${order}")
         .queryParam("limit","${limit}")
+        .queryParam("after","${after}")
 )
 
     // Run scnadminApiKeysList with warm up and reach a constant rate for entire duration

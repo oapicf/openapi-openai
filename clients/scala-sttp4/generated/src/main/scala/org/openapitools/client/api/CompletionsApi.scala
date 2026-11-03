@@ -32,7 +32,7 @@ class CompletionsApi(baseUrl: String) {
    * 
    * @param createCompletionRequest 
    */
-  def createCompletion(bearerToken: String)(createCompletionRequest: CreateCompletionRequest): Request[Either[ResponseException[String], CreateCompletionResponse]] =
+  def createCompletion(bearerToken: String)(createCompletionRequest: CreateCompletionRequest): sttp.client4.Request[Either[ResponseException[String], CreateCompletionResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/completions")
       .contentType("application/json")

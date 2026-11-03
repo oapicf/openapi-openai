@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="For now, this is always going to be an empty object.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="For now, this is always going to be an empty object.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFileSearchObjectFileSearch   {
   
   private RunStepDetailsToolCallsFileSearchRankingOptionsObject rankingOptions;
@@ -41,7 +41,6 @@ public class RunStepDetailsToolCallsFileSearchObjectFileSearch   {
   
   @ApiModelProperty(value = "The results of the file search.")
   @JsonProperty("results")
-  @Valid
   public List<@Valid RunStepDetailsToolCallsFileSearchResultObject> getResults() {
     return results;
   }

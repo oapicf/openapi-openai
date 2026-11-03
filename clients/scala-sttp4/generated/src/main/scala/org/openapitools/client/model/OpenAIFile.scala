@@ -38,7 +38,7 @@ object OpenAIFileEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object File extends `Object`
+    case object File extends `Object` { override def toString: String = "file" }
 
     import org.json4s._
 
@@ -59,13 +59,13 @@ object OpenAIFileEnums {
 
   sealed trait Purpose
   object Purpose {
-    case object Assistants extends Purpose
-    case object AssistantsOutput extends Purpose
-    case object Batch extends Purpose
-    case object BatchOutput extends Purpose
-    case object FineTune extends Purpose
-    case object FineTuneResults extends Purpose
-    case object Vision extends Purpose
+    case object Assistants extends Purpose { override def toString: String = "assistants" }
+    case object AssistantsOutput extends Purpose { override def toString: String = "assistants_output" }
+    case object Batch extends Purpose { override def toString: String = "batch" }
+    case object BatchOutput extends Purpose { override def toString: String = "batch_output" }
+    case object FineTune extends Purpose { override def toString: String = "fine-tune" }
+    case object FineTuneResults extends Purpose { override def toString: String = "fine-tune-results" }
+    case object Vision extends Purpose { override def toString: String = "vision" }
 
     import org.json4s._
 
@@ -98,9 +98,9 @@ object OpenAIFileEnums {
 
   sealed trait Status
   object Status {
-    case object Uploaded extends Status
-    case object Processed extends Status
-    case object Error extends Status
+    case object Uploaded extends Status { override def toString: String = "uploaded" }
+    case object Processed extends Status { override def toString: String = "processed" }
+    case object Error extends Status { override def toString: String = "error" }
 
     import org.json4s._
 

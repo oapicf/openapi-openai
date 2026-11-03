@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
     /**
      * The type of error.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      */
     type?: string;
     /**
      * Error code, if any.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      */
     code?: string;
     /**
      * A human-readable error message.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      */
     message?: string;
     /**
      * Parameter related to the error, if any.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
      */
     param?: string;
 }

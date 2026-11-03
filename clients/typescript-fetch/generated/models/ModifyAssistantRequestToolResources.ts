@@ -37,14 +37,10 @@ import {
 export interface ModifyAssistantRequestToolResources {
     /**
      * 
-     * @type {ModifyAssistantRequestToolResourcesCodeInterpreter}
-     * @memberof ModifyAssistantRequestToolResources
      */
     codeInterpreter?: ModifyAssistantRequestToolResourcesCodeInterpreter;
     /**
      * 
-     * @type {ModifyAssistantRequestToolResourcesFileSearch}
-     * @memberof ModifyAssistantRequestToolResources
      */
     fileSearch?: ModifyAssistantRequestToolResourcesFileSearch;
 }

@@ -164,9 +164,10 @@ class _$RunStepDeltaStepDetailsToolCallsCodeObjectSerializer implements Primitiv
   }
 }
 
+
+/// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 class RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const RunStepDeltaStepDetailsToolCallsCodeObjectTypeEnum codeInterpreter = _$runStepDeltaStepDetailsToolCallsCodeObjectTypeEnum_codeInterpreter;
 

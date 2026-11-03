@@ -29,14 +29,10 @@ import {
 export interface AuditLogInviteSent {
     /**
      * The ID of the invite.
-     * @type {string}
-     * @memberof AuditLogInviteSent
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogInviteSentData}
-     * @memberof AuditLogInviteSent
      */
     data?: AuditLogInviteSentData;
 }

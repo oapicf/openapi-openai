@@ -29,20 +29,14 @@ import {
 export interface ListPaginatedFineTuningJobsResponse {
     /**
      * 
-     * @type {Array<FineTuningJob>}
-     * @memberof ListPaginatedFineTuningJobsResponse
      */
     data: Array<FineTuningJob>;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListPaginatedFineTuningJobsResponse
      */
     hasMore: boolean;
     /**
      * 
-     * @type {ListPaginatedFineTuningJobsResponseObjectEnum}
-     * @memberof ListPaginatedFineTuningJobsResponse
      */
     object: ListPaginatedFineTuningJobsResponseObjectEnum;
 }
@@ -52,7 +46,7 @@ export interface ListPaginatedFineTuningJobsResponse {
  * @export
  */
 export const ListPaginatedFineTuningJobsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListPaginatedFineTuningJobsResponseObjectEnum = typeof ListPaginatedFineTuningJobsResponseObjectEnum[keyof typeof ListPaginatedFineTuningJobsResponseObjectEnum];
 

@@ -51,9 +51,7 @@ public class ModifyAssistantRequest  {
   */
   @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
 
-  @Valid
-
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   @ApiModelProperty(value = "")
 
@@ -168,15 +166,15 @@ public class ModifyAssistantRequest  {
    * @return tools
   **/
   @JsonProperty("tools")
- @Size(max=128)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=128)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
-  public ModifyAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+  public ModifyAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }

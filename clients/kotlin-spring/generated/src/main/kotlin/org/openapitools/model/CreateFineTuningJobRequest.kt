@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateFineTuningJobRequestHyperparameters
 import org.openapitools.model.CreateFineTuningJobRequestIntegrationsInner
 import org.openapitools.model.CreateFineTuningJobRequestModel
@@ -35,18 +32,16 @@ data class CreateFineTuningJobRequest(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: CreateFineTuningJobRequestModel,
 
     @Schema(example = "file-abc123", required = true, description = "The ID of an uploaded file that contains training data.  See [upload file](/docs/api-reference/files/create) for how to upload a file.  Your dataset must be formatted as a JSONL file. Additionally, you must upload your file with the purpose `fine-tune`.  The contents of the file should differ depending on if the model uses the [chat](/docs/api-reference/fine-tuning/chat-input), [completions](/docs/api-reference/fine-tuning/completions-input) format, or if the fine-tuning method uses the [preference](/docs/api-reference/fine-tuning/preference-input) format.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ")
-    @param:JsonProperty("training_file")
+    @param:JsonProperty("training_file", required = true)
     @get:JsonProperty("training_file", required = true) val trainingFile: kotlin.String,
 
     @field:Valid
     @Schema(description = "")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hyperparameters")
     @get:JsonProperty("hyperparameters") val hyperparameters: CreateFineTuningJobRequestHyperparameters? = null,
 
@@ -72,8 +67,6 @@ data class CreateFineTuningJobRequest(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("method")
     @get:JsonProperty("method") val method: FineTuneMethod? = null
 ) {

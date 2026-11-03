@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **createSpeech**
 ```swift
-    open class func createSpeech(createSpeechRequest: CreateSpeechRequest, completion: @escaping (_ data: URL?, _ error: Error?) -> Void)
+    open class func createSpeech(createSpeechRequest: CreateSpeechRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> URL
 ```
 
 Generates audio from the input text.
@@ -24,15 +24,11 @@ import OpenAPIClient
 let createSpeechRequest = CreateSpeechRequest(model: CreateSpeechRequest_model(), input: "input_example", voice: "voice_example", responseFormat: "responseFormat_example", speed: 123) // CreateSpeechRequest | 
 
 // Generates audio from the input text.
-AudioAPI.createSpeech(createSpeechRequest: createSpeechRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AudioAPI.createSpeech(createSpeechRequest: createSpeechRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 # **createTranscription**
 ```swift
-    open class func createTranscription(file: URL, model: CreateTranscriptionRequestModel, language: String? = nil, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, timestampGranularities: [TimestampGranularities_createTranscription]? = nil, completion: @escaping (_ data: CreateTranscription200Response?, _ error: Error?) -> Void)
+    open class func createTranscription(file: URL, model: CreateTranscriptionRequestModel, language: String? = nil, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, timestampGranularities: [TimestampGranularities_createTranscription]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CreateTranscription200Response
 ```
 
 Transcribes audio into the input language.
@@ -78,15 +74,11 @@ let temperature = 987 // Double | The sampling temperature, between 0 and 1. Hig
 let timestampGranularities = ["inner_example"] // [String] | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.  (optional)
 
 // Transcribes audio into the input language.
-AudioAPI.createTranscription(file: file, model: model, language: language, prompt: prompt, responseFormat: responseFormat, temperature: temperature, timestampGranularities: timestampGranularities) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AudioAPI.createTranscription(file: file, model: model, language: language, prompt: prompt, responseFormat: responseFormat, temperature: temperature, timestampGranularities: timestampGranularities)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -119,7 +111,7 @@ Name | Type | Description  | Notes
 
 # **createTranslation**
 ```swift
-    open class func createTranslation(file: URL, model: CreateTranscriptionRequestModel, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, completion: @escaping (_ data: CreateTranslation200Response?, _ error: Error?) -> Void)
+    open class func createTranslation(file: URL, model: CreateTranscriptionRequestModel, prompt: String? = nil, responseFormat: AudioResponseFormat? = nil, temperature: Double? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CreateTranslation200Response
 ```
 
 Translates audio into English.
@@ -136,15 +128,11 @@ let responseFormat = AudioResponseFormat() // AudioResponseFormat |  (optional)
 let temperature = 987 // Double | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.  (optional) (default to 0)
 
 // Translates audio into English.
-AudioAPI.createTranslation(file: file, model: model, prompt: prompt, responseFormat: responseFormat, temperature: temperature) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AudioAPI.createTranslation(file: file, model: model, prompt: prompt, responseFormat: responseFormat, temperature: temperature)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

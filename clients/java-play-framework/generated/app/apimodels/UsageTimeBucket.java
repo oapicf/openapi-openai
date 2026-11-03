@@ -13,7 +13,7 @@ import javax.validation.Valid;
 /**
  * UsageTimeBucket
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class UsageTimeBucket   {
   /**
@@ -64,7 +64,7 @@ public class UsageTimeBucket   {
   @NotNull
 @Valid
 
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   public UsageTimeBucket _object(ObjectEnum _object) {
     this._object = _object;
@@ -117,7 +117,7 @@ public class UsageTimeBucket   {
     this.endTime = endTime;
   }
 
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }
@@ -134,11 +134,11 @@ public class UsageTimeBucket   {
    * Get result
    * @return result
   **/
-  public List<UsageTimeBucketResultInner> getResult() {
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
 
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.RunStepDetailsToolCallsFileSearchRankingOptionsObject
 import org.openapitools.model.RunStepDetailsToolCallsFileSearchResultObject
 import javax.validation.constraints.DecimalMax
@@ -27,15 +24,11 @@ data class RunStepDetailsToolCallsFileSearchObjectFileSearch(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("ranking_options")
     @get:JsonProperty("ranking_options") val rankingOptions: RunStepDetailsToolCallsFileSearchRankingOptionsObject? = null,
 
     @field:Valid
     @Schema(description = "The results of the file search.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("results")
     @get:JsonProperty("results") val results: kotlin.collections.List<RunStepDetailsToolCallsFileSearchResultObject>? = null
 ) {

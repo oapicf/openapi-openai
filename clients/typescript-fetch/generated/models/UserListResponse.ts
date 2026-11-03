@@ -29,32 +29,22 @@ import {
 export interface UserListResponse {
     /**
      * 
-     * @type {UserListResponseObjectEnum}
-     * @memberof UserListResponse
      */
     object: UserListResponseObjectEnum;
     /**
      * 
-     * @type {Array<User>}
-     * @memberof UserListResponse
      */
     data: Array<User>;
     /**
      * 
-     * @type {string}
-     * @memberof UserListResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof UserListResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof UserListResponse
      */
     hasMore: boolean;
 }
@@ -64,7 +54,7 @@ export interface UserListResponse {
  * @export
  */
 export const UserListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type UserListResponseObjectEnum = typeof UserListResponseObjectEnum[keyof typeof UserListResponseObjectEnum];
 

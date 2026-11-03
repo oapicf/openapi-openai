@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventConversationCreatedConversation {
     /**
      * The unique ID of the conversation.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationCreatedConversation
      */
     id?: string;
     /**
      * The object type, must be `realtime.conversation`.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationCreatedConversation
      */
     object?: string;
 }

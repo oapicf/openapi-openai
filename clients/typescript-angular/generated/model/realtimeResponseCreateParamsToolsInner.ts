@@ -29,7 +29,7 @@ export interface RealtimeResponseCreateParamsToolsInner {
 }
 export namespace RealtimeResponseCreateParamsToolsInner {
     export const TypeEnum = {
-        Function: 'function'
+        Function: 'function',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

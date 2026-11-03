@@ -22,7 +22,7 @@ data class RunObjectRequiredActionSubmitToolOutputs(
 
     @field:Valid
     @Schema(required = true, description = "A list of the relevant tool calls.")
-    @param:JsonProperty("tool_calls")
+    @param:JsonProperty("tool_calls", required = true)
     @get:JsonProperty("tool_calls", required = true) val toolCalls: kotlin.collections.List<RunToolCallObject>
 ) {
 

@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeResponseStatusDetailsError.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseStatusDetailsError: type.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class RealtimeResponseStatusDetailsError.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseStatusDetailsError: code.");
 
             return new RealtimeResponseStatusDetailsError(type, code);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseStatusDetailsError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseStatusDetailsError realtimeResponseStatusDetailsError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseStatusDetailsError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseStatusDetailsError realtimeResponseStatusDetailsError, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeResponseStatusDetailsError.TypeOption.IsSet && realtimeResponseStatusDetailsError.Type == null)
-                throw new ArgumentNullException(nameof(realtimeResponseStatusDetailsError.Type), "Property is required for class RealtimeResponseStatusDetailsError.");
+                throw new JsonException("Cannot write null property RealtimeResponseStatusDetailsError.Type to non-nullable JSON property 'type'.");
 
             if (realtimeResponseStatusDetailsError.CodeOption.IsSet && realtimeResponseStatusDetailsError.Code == null)
-                throw new ArgumentNullException(nameof(realtimeResponseStatusDetailsError.Code), "Property is required for class RealtimeResponseStatusDetailsError.");
+                throw new JsonException("Cannot write null property RealtimeResponseStatusDetailsError.Code to non-nullable JSON property 'code'.");
 
             if (realtimeResponseStatusDetailsError.TypeOption.IsSet)
                 writer.WriteString("type", realtimeResponseStatusDetailsError.Type);

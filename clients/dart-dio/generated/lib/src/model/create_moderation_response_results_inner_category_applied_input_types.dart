@@ -323,6 +323,7 @@ class _$CreateModerationResponseResultsInnerCategoryAppliedInputTypesSerializer 
   }
 }
 
+
 class CreateModerationResponseResultsInnerCategoryAppliedInputTypesHateEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'text')

@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 public class CreateMessageRequestAttachmentsInner   {
 
     private String fileId;
-    private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
+    private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -30,7 +30,7 @@ public class CreateMessageRequestAttachmentsInner   {
      */
     public CreateMessageRequestAttachmentsInner(
         String fileId, 
-        List<CreateMessageRequestAttachmentsInnerToolsInner> tools
+        List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools
     ) {
         this.fileId = fileId;
         this.tools = tools;
@@ -54,11 +54,11 @@ public class CreateMessageRequestAttachmentsInner   {
      * The tools to add this file to.
      * @return tools
      */
-    public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+    public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+    public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
         this.tools = tools;
     }
 

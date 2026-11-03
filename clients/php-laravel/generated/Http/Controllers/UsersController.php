@@ -51,13 +51,13 @@ class UsersController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'user_id' => $userId,
+                ],
             ),
             [
-                'userId' => [
+                'user_id' => [
                     'required',
                     'string',
                 ],
@@ -90,10 +90,10 @@ class UsersController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'limit' => [
@@ -134,10 +134,10 @@ class UsersController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'user_id' => $userId,
+                ],
             ),
             [
             ],
@@ -171,13 +171,13 @@ class UsersController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'user_id' => $userId,
+                ],
             ),
             [
-                'userId' => [
+                'user_id' => [
                     'required',
                     'string',
                 ],

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogInviteAccepted {
     /**
      * The ID of the invite.
-     * @type {string}
-     * @memberof AuditLogInviteAccepted
      */
     id?: string;
 }

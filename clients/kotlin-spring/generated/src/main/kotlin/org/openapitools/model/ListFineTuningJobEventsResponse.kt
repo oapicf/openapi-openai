@@ -18,18 +18,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;data&#x60; 
- * @param &#x60;object&#x60; 
+ * @param `data` 
+ * @param `object` 
  */
 data class ListFineTuningJobEventsResponse(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<FineTuningJobEvent>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ListFineTuningJobEventsResponse.`Object`
 ) {
 
@@ -40,12 +40,12 @@ data class ListFineTuningJobEventsResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         list("list");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

@@ -241,7 +241,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeResponseCreateParamsToolsInner.TypeEnum?>(RealtimeResponseCreateParamsToolsInner.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeResponseCreateParamsToolsInner.TypeEnum? typeValue = RealtimeResponseCreateParamsToolsInner.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeResponseCreateParamsToolsInner.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
@@ -259,16 +264,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParamsToolsInner: type.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParamsToolsInner: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParamsToolsInner: description.");
 
             if (parameters.IsSet && parameters.Value == null)
-                throw new ArgumentNullException(nameof(parameters), "Property is not nullable for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseCreateParamsToolsInner: parameters.");
 
             return new RealtimeResponseCreateParamsToolsInner(type, name, description, parameters);
         }
@@ -279,7 +284,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParamsToolsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseCreateParamsToolsInner realtimeResponseCreateParamsToolsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -294,17 +298,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParamsToolsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseCreateParamsToolsInner realtimeResponseCreateParamsToolsInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeResponseCreateParamsToolsInner.TypeOption.IsSet && realtimeResponseCreateParamsToolsInner.Type == null)
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParamsToolsInner.Type to non-nullable JSON property 'type'.");
+
             if (realtimeResponseCreateParamsToolsInner.NameOption.IsSet && realtimeResponseCreateParamsToolsInner.Name == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParamsToolsInner.Name), "Property is required for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParamsToolsInner.Name to non-nullable JSON property 'name'.");
 
             if (realtimeResponseCreateParamsToolsInner.DescriptionOption.IsSet && realtimeResponseCreateParamsToolsInner.Description == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParamsToolsInner.Description), "Property is required for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParamsToolsInner.Description to non-nullable JSON property 'description'.");
 
             if (realtimeResponseCreateParamsToolsInner.ParametersOption.IsSet && realtimeResponseCreateParamsToolsInner.Parameters == null)
-                throw new ArgumentNullException(nameof(realtimeResponseCreateParamsToolsInner.Parameters), "Property is required for class RealtimeResponseCreateParamsToolsInner.");
+                throw new JsonException("Cannot write null property RealtimeResponseCreateParamsToolsInner.Parameters to non-nullable JSON property 'parameters'.");
 
             var typeRawValue = RealtimeResponseCreateParamsToolsInner.TypeEnumToJsonValue(realtimeResponseCreateParamsToolsInner.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

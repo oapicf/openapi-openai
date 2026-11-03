@@ -143,6 +143,7 @@ class _$UsageVectorStoresResultSerializer implements PrimitiveSerializer<UsageVe
   }
 }
 
+
 class UsageVectorStoresResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.vector_stores.result')

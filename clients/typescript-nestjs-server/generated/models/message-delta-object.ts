@@ -17,7 +17,7 @@ export interface MessageDeltaObject {
 }
 export namespace MessageDeltaObject {
   export const ObjectEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

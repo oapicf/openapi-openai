@@ -19,14 +19,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequest   {
   
   private CreateAssistantRequestModel model;
   private String name;
   private String description;
   private String instructions;
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
   private CreateAssistantRequestToolResources toolResources;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
@@ -92,11 +92,10 @@ public class CreateAssistantRequest   {
   
   @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   @JsonProperty("tools")
- @Size(max=128)  @Valid
-  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=128)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

@@ -26,7 +26,7 @@ object RunStepDetailsToolCallsFileSearchRankingOptionsObjectEnums {
 
   sealed trait Ranker
   object Ranker {
-    case object Default20240821 extends Ranker
+    case object Default20240821 extends Ranker { override def toString: String = "default_2024_08_21" }
 
     import org.json4s._
 

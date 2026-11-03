@@ -43,26 +43,18 @@ import {
 export interface CreateModerationResponseResultsInner {
     /**
      * Whether any of the below categories are flagged.
-     * @type {boolean}
-     * @memberof CreateModerationResponseResultsInner
      */
     flagged: boolean;
     /**
      * 
-     * @type {CreateModerationResponseResultsInnerCategories}
-     * @memberof CreateModerationResponseResultsInner
      */
     categories: CreateModerationResponseResultsInnerCategories;
     /**
      * 
-     * @type {CreateModerationResponseResultsInnerCategoryScores}
-     * @memberof CreateModerationResponseResultsInner
      */
     categoryScores: CreateModerationResponseResultsInnerCategoryScores;
     /**
      * 
-     * @type {CreateModerationResponseResultsInnerCategoryAppliedInputTypes}
-     * @memberof CreateModerationResponseResultsInner
      */
     categoryAppliedInputTypes: CreateModerationResponseResultsInnerCategoryAppliedInputTypes;
 }

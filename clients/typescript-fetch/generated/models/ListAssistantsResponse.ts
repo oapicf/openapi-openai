@@ -29,32 +29,22 @@ import {
 export interface ListAssistantsResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListAssistantsResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<AssistantObject>}
-     * @memberof ListAssistantsResponse
      */
     data: Array<AssistantObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListAssistantsResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListAssistantsResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListAssistantsResponse
      */
     hasMore: boolean;
 }

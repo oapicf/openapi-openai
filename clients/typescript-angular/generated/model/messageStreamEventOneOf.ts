@@ -19,7 +19,7 @@ export interface MessageStreamEventOneOf {
 }
 export namespace MessageStreamEventOneOf {
     export const EventEnum = {
-        ThreadMessageCreated: 'thread.message.created'
+        ThreadMessageCreated: 'thread.message.created',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

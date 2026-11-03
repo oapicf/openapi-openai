@@ -6,8 +6,8 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 
 - API version: 2.3.0
 - Package version: 2.3.0
-- Build date: 2026-08-26T05:14:46.727916678Z[Etc/UTC]
-- Generator version: 7.24.0
+- Build date: 2026-11-03T06:32:34.774818906Z[Etc/UTC]
+- Generator version: 7.26.0
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
 For more information, please visit [https://github.com/oapicf/openapi-openai](https://github.com/oapicf/openapi-openai)
 

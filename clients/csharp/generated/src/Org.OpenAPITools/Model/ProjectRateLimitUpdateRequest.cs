@@ -246,22 +246,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (maxRequestsPer1Minute.IsSet && maxRequestsPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Minute), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: max_requests_per_1_minute.");
 
             if (maxTokensPer1Minute.IsSet && maxTokensPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxTokensPer1Minute), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: max_tokens_per_1_minute.");
 
             if (maxImagesPer1Minute.IsSet && maxImagesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxImagesPer1Minute), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: max_images_per_1_minute.");
 
             if (maxAudioMegabytesPer1Minute.IsSet && maxAudioMegabytesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxAudioMegabytesPer1Minute), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: max_audio_megabytes_per_1_minute.");
 
             if (maxRequestsPer1Day.IsSet && maxRequestsPer1Day.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Day), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: max_requests_per_1_day.");
 
             if (batch1DayMaxInputTokens.IsSet && batch1DayMaxInputTokens.Value == null)
-                throw new ArgumentNullException(nameof(batch1DayMaxInputTokens), "Property is not nullable for class ProjectRateLimitUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimitUpdateRequest: batch_1_day_max_input_tokens.");
 
             return new ProjectRateLimitUpdateRequest(maxRequestsPer1Minute, maxTokensPer1Minute, maxImagesPer1Minute, maxAudioMegabytesPer1Minute, maxRequestsPer1Day, batch1DayMaxInputTokens);
         }
@@ -272,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectRateLimitUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -287,9 +286,26 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectRateLimitUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectRateLimitUpdateRequest projectRateLimitUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (projectRateLimitUpdateRequest.MaxRequestsPer1MinuteOption.IsSet && projectRateLimitUpdateRequest.MaxRequestsPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.MaxRequestsPer1Minute to non-nullable JSON property 'max_requests_per_1_minute'.");
+
+            if (projectRateLimitUpdateRequest.MaxTokensPer1MinuteOption.IsSet && projectRateLimitUpdateRequest.MaxTokensPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.MaxTokensPer1Minute to non-nullable JSON property 'max_tokens_per_1_minute'.");
+
+            if (projectRateLimitUpdateRequest.MaxImagesPer1MinuteOption.IsSet && projectRateLimitUpdateRequest.MaxImagesPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.MaxImagesPer1Minute to non-nullable JSON property 'max_images_per_1_minute'.");
+
+            if (projectRateLimitUpdateRequest.MaxAudioMegabytesPer1MinuteOption.IsSet && projectRateLimitUpdateRequest.MaxAudioMegabytesPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.MaxAudioMegabytesPer1Minute to non-nullable JSON property 'max_audio_megabytes_per_1_minute'.");
+
+            if (projectRateLimitUpdateRequest.MaxRequestsPer1DayOption.IsSet && projectRateLimitUpdateRequest.MaxRequestsPer1Day == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.MaxRequestsPer1Day to non-nullable JSON property 'max_requests_per_1_day'.");
+
+            if (projectRateLimitUpdateRequest.Batch1DayMaxInputTokensOption.IsSet && projectRateLimitUpdateRequest.Batch1DayMaxInputTokens == null)
+                throw new JsonException("Cannot write null property ProjectRateLimitUpdateRequest.Batch1DayMaxInputTokens to non-nullable JSON property 'batch_1_day_max_input_tokens'.");
+
             if (projectRateLimitUpdateRequest.MaxRequestsPer1MinuteOption.IsSet)
                 writer.WriteNumber("max_requests_per_1_minute", projectRateLimitUpdateRequest.MaxRequestsPer1MinuteOption.Value!.Value);
 

@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @ApiModel(description = "Usage statistics related to the run. This value will be `null` if the run is not in a terminal state (i.e. `in_progress`, `queued`, etc.).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunCompletionUsage   {
   
   private Integer completionTokens;

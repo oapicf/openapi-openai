@@ -42,13 +42,13 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs  {
   * A list of message content tokens with log probability information.
   */
   @JsonbProperty("content")
-  protected List<ChatCompletionTokenLogprob> content = ;
+  protected List<ChatCompletionTokenLogprob> content = null;
 
  /**
   * A list of message refusal tokens with log probability information.
   */
   @JsonbProperty("refusal")
-  protected List<ChatCompletionTokenLogprob> refusal = ;
+  protected List<ChatCompletionTokenLogprob> refusal = null;
 
 
   /**

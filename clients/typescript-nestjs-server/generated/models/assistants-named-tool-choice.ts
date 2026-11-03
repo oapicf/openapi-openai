@@ -15,7 +15,7 @@ export namespace AssistantsNamedToolChoice {
   export const TypeEnum = {
     Function: 'function',
     CodeInterpreter: 'code_interpreter',
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

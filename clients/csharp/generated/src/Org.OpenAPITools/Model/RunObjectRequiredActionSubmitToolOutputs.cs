@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!toolCalls.IsSet)
-                throw new ArgumentException("Property is required for class RunObjectRequiredActionSubmitToolOutputs.", nameof(toolCalls));
+                throw new JsonException("Property is required for class RunObjectRequiredActionSubmitToolOutputs: tool_calls.");
 
             if (toolCalls.IsSet && toolCalls.Value == null)
-                throw new ArgumentNullException(nameof(toolCalls), "Property is not nullable for class RunObjectRequiredActionSubmitToolOutputs.");
+                throw new JsonException("Property is not nullable for class RunObjectRequiredActionSubmitToolOutputs: tool_calls.");
 
             return new RunObjectRequiredActionSubmitToolOutputs(toolCalls.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectRequiredActionSubmitToolOutputs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunObjectRequiredActionSubmitToolOutputs runObjectRequiredActionSubmitToolOutputs, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectRequiredActionSubmitToolOutputs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunObjectRequiredActionSubmitToolOutputs runObjectRequiredActionSubmitToolOutputs, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runObjectRequiredActionSubmitToolOutputs.ToolCalls == null)
-                throw new ArgumentNullException(nameof(runObjectRequiredActionSubmitToolOutputs.ToolCalls), "Property is required for class RunObjectRequiredActionSubmitToolOutputs.");
-
             writer.WritePropertyName("tool_calls");
             JsonSerializer.Serialize(writer, runObjectRequiredActionSubmitToolOutputs.ToolCalls, jsonSerializerOptions);
         }

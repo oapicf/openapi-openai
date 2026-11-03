@@ -29,8 +29,6 @@ import {
 export interface RunStepDeltaObjectDelta {
     /**
      * 
-     * @type {RunStepDeltaObjectDeltaStepDetails}
-     * @memberof RunStepDeltaObjectDelta
      */
     stepDetails?: RunStepDeltaObjectDeltaStepDetails;
 }

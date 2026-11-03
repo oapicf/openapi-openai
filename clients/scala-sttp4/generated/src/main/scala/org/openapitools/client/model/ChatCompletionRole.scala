@@ -18,11 +18,11 @@ package org.openapitools.client.model
 sealed trait ChatCompletionRole
 
 object ChatCompletionRole {
-  case object System extends ChatCompletionRole
-  case object User extends ChatCompletionRole
-  case object Assistant extends ChatCompletionRole
-  case object Tool extends ChatCompletionRole
-  case object Function extends ChatCompletionRole
+  case object System extends ChatCompletionRole { override def toString: String = "system" }
+  case object User extends ChatCompletionRole { override def toString: String = "user" }
+  case object Assistant extends ChatCompletionRole { override def toString: String = "assistant" }
+  case object Tool extends ChatCompletionRole { override def toString: String = "tool" }
+  case object Function extends ChatCompletionRole { override def toString: String = "function" }
 
   import org.json4s._
 

@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="A result instance of the file search.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="A result instance of the file search.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFileSearchResultObject   {
   
   private String fileId;
@@ -74,7 +74,6 @@ public class RunStepDetailsToolCallsFileSearchResultObject   {
   
   @ApiModelProperty(value = "The content of the result that was found. The content is only included if requested via the include query parameter.")
   @JsonProperty("content")
-  @Valid
   public List<@Valid RunStepDetailsToolCallsFileSearchResultObjectContentInner> getContent() {
     return content;
   }

@@ -75,11 +75,11 @@ import javax.validation.Valid;
   CreateChatCompletionRequest.JSON_PROPERTY_FUNCTION_CALL,
   CreateChatCompletionRequest.JSON_PROPERTY_FUNCTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest   {
   public static final String JSON_PROPERTY_MESSAGES = "messages";
   @JsonProperty(JSON_PROPERTY_MESSAGES)
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   public static final String JSON_PROPERTY_MODEL = "model";
   @JsonProperty(JSON_PROPERTY_MODEL)
@@ -262,7 +262,7 @@ public class CreateChatCompletionRequest   {
 
   public static final String JSON_PROPERTY_STOP = "stop";
   @JsonProperty(JSON_PROPERTY_STOP)
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   public static final String JSON_PROPERTY_STREAM = "stream";
   @JsonProperty(JSON_PROPERTY_STREAM)
@@ -304,7 +304,7 @@ public class CreateChatCompletionRequest   {
   @JsonProperty(JSON_PROPERTY_FUNCTIONS)
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -323,12 +323,12 @@ public class CreateChatCompletionRequest   {
    **/
   @JsonProperty(value = "messages")
   @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
-  @NotNull @Valid  @Size(min=1)
-  public List<ChatCompletionRequestMessage> getMessages() {
+  @NotNull  @Size(min=1)
+  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
@@ -849,7 +849,7 @@ public class CreateChatCompletionRequest   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
-  @Valid 
+  
   public List<@Valid ChatCompletionTool> getTools() {
     return tools;
   }
@@ -957,7 +957,7 @@ public class CreateChatCompletionRequest   {
    **/
   @JsonProperty(value = "functions")
   @ApiModelProperty(value = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
-  @Valid  @Size(min=1,max=128)
+   @Size(min=1,max=128)
   public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }

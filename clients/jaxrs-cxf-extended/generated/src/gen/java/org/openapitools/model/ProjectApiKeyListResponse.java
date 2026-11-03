@@ -49,7 +49,6 @@ public enum ObjectEnum {
   private ObjectEnum _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid ProjectApiKey> data = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")

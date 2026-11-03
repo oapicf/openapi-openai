@@ -71,9 +71,9 @@ object CreateChatCompletionRequestEnums {
 
   sealed trait ReasoningEffort
   object ReasoningEffort {
-    case object Low extends ReasoningEffort
-    case object Medium extends ReasoningEffort
-    case object High extends ReasoningEffort
+    case object Low extends ReasoningEffort { override def toString: String = "low" }
+    case object Medium extends ReasoningEffort { override def toString: String = "medium" }
+    case object High extends ReasoningEffort { override def toString: String = "high" }
 
     import org.json4s._
 
@@ -98,8 +98,8 @@ object CreateChatCompletionRequestEnums {
 
   sealed trait Modalities
   object Modalities {
-    case object Text extends Modalities
-    case object Audio extends Modalities
+    case object Text extends Modalities { override def toString: String = "text" }
+    case object Audio extends Modalities { override def toString: String = "audio" }
 
     import org.json4s._
 
@@ -122,8 +122,8 @@ object CreateChatCompletionRequestEnums {
 
   sealed trait ServiceTier
   object ServiceTier {
-    case object Auto extends ServiceTier
-    case object Default extends ServiceTier
+    case object Auto extends ServiceTier { override def toString: String = "auto" }
+    case object Default extends ServiceTier { override def toString: String = "default" }
 
     import org.json4s._
 

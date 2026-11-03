@@ -234,7 +234,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectApiKey.ObjectEnum?>(ProjectApiKey.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectApiKey.ObjectEnum? varObjectValue = ProjectApiKey.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectApiKey.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "redacted_value":
                             redactedValue = new Option<string?>(utf8JsonReader.GetString()!);
@@ -258,40 +263,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectApiKey: object.");
 
             if (!redactedValue.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(redactedValue));
+                throw new JsonException("Property is required for class ProjectApiKey: redacted_value.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(name));
+                throw new JsonException("Property is required for class ProjectApiKey: name.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(createdAt));
+                throw new JsonException("Property is required for class ProjectApiKey: created_at.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(id));
+                throw new JsonException("Property is required for class ProjectApiKey: id.");
 
             if (!owner.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKey.", nameof(owner));
+                throw new JsonException("Property is required for class ProjectApiKey: owner.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: object.");
 
             if (redactedValue.IsSet && redactedValue.Value == null)
-                throw new ArgumentNullException(nameof(redactedValue), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: redacted_value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: name.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: created_at.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: id.");
 
             if (owner.IsSet && owner.Value == null)
-                throw new ArgumentNullException(nameof(owner), "Property is not nullable for class ProjectApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectApiKey: owner.");
 
             return new ProjectApiKey(varObject.Value!.Value!, redactedValue.Value!, name.Value!, createdAt.Value!.Value!, id.Value!, owner.Value!);
         }
@@ -302,7 +307,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectApiKey projectApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -317,21 +321,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectApiKey projectApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectApiKey.RedactedValue == null)
-                throw new ArgumentNullException(nameof(projectApiKey.RedactedValue), "Property is required for class ProjectApiKey.");
-
-            if (projectApiKey.Name == null)
-                throw new ArgumentNullException(nameof(projectApiKey.Name), "Property is required for class ProjectApiKey.");
-
-            if (projectApiKey.Id == null)
-                throw new ArgumentNullException(nameof(projectApiKey.Id), "Property is required for class ProjectApiKey.");
-
-            if (projectApiKey.Owner == null)
-                throw new ArgumentNullException(nameof(projectApiKey.Owner), "Property is required for class ProjectApiKey.");
-
             var varObjectRawValue = ProjectApiKey.ObjectEnumToJsonValue(projectApiKey.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("redacted_value", projectApiKey.RedactedValue);

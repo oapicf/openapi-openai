@@ -20,7 +20,7 @@ import org.openapitools.model.TruncationObject;
 /**
  * CreateRunRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequest   {
   @JsonProperty("assistant_id")
   private String assistantId;
@@ -38,7 +38,7 @@ public class CreateRunRequest   {
   private List<@Valid CreateMessageRequest> additionalMessages = null;
 
   @JsonProperty("tools")
-  private List<AssistantObjectToolsInner> tools = null;
+  private List<@Valid AssistantObjectToolsInner> tools = null;
 
   @JsonProperty("metadata")
   private Object metadata;
@@ -149,7 +149,7 @@ public class CreateRunRequest   {
 
   public CreateRunRequest addAdditionalMessagesItem(CreateMessageRequest additionalMessagesItem) {
     if (this.additionalMessages == null) {
-      this.additionalMessages = ;
+      this.additionalMessages = new ArrayList<>();
     }
     this.additionalMessages.add(additionalMessagesItem);
     return this;
@@ -168,14 +168,14 @@ public class CreateRunRequest   {
     this.additionalMessages = additionalMessages;
   }
 
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
 
   public CreateRunRequest addToolsItem(AssistantObjectToolsInner toolsItem) {
     if (this.tools == null) {
-      this.tools = ;
+      this.tools = new ArrayList<>();
     }
     this.tools.add(toolsItem);
     return this;
@@ -186,11 +186,11 @@ public class CreateRunRequest   {
    * @return tools
   **/
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

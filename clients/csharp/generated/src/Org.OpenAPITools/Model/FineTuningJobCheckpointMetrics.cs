@@ -260,25 +260,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (step.IsSet && step.Value == null)
-                throw new ArgumentNullException(nameof(step), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: step.");
 
             if (trainLoss.IsSet && trainLoss.Value == null)
-                throw new ArgumentNullException(nameof(trainLoss), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: train_loss.");
 
             if (trainMeanTokenAccuracy.IsSet && trainMeanTokenAccuracy.Value == null)
-                throw new ArgumentNullException(nameof(trainMeanTokenAccuracy), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: train_mean_token_accuracy.");
 
             if (validLoss.IsSet && validLoss.Value == null)
-                throw new ArgumentNullException(nameof(validLoss), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: valid_loss.");
 
             if (validMeanTokenAccuracy.IsSet && validMeanTokenAccuracy.Value == null)
-                throw new ArgumentNullException(nameof(validMeanTokenAccuracy), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: valid_mean_token_accuracy.");
 
             if (fullValidLoss.IsSet && fullValidLoss.Value == null)
-                throw new ArgumentNullException(nameof(fullValidLoss), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: full_valid_loss.");
 
             if (fullValidMeanTokenAccuracy.IsSet && fullValidMeanTokenAccuracy.Value == null)
-                throw new ArgumentNullException(nameof(fullValidMeanTokenAccuracy), "Property is not nullable for class FineTuningJobCheckpointMetrics.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpointMetrics: full_valid_mean_token_accuracy.");
 
             return new FineTuningJobCheckpointMetrics(step, trainLoss, trainMeanTokenAccuracy, validLoss, validMeanTokenAccuracy, fullValidLoss, fullValidMeanTokenAccuracy);
         }
@@ -289,7 +289,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobCheckpointMetrics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJobCheckpointMetrics fineTuningJobCheckpointMetrics, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -304,9 +303,29 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobCheckpointMetrics"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJobCheckpointMetrics fineTuningJobCheckpointMetrics, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (fineTuningJobCheckpointMetrics.StepOption.IsSet && fineTuningJobCheckpointMetrics.Step == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.Step to non-nullable JSON property 'step'.");
+
+            if (fineTuningJobCheckpointMetrics.TrainLossOption.IsSet && fineTuningJobCheckpointMetrics.TrainLoss == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.TrainLoss to non-nullable JSON property 'train_loss'.");
+
+            if (fineTuningJobCheckpointMetrics.TrainMeanTokenAccuracyOption.IsSet && fineTuningJobCheckpointMetrics.TrainMeanTokenAccuracy == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.TrainMeanTokenAccuracy to non-nullable JSON property 'train_mean_token_accuracy'.");
+
+            if (fineTuningJobCheckpointMetrics.ValidLossOption.IsSet && fineTuningJobCheckpointMetrics.ValidLoss == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.ValidLoss to non-nullable JSON property 'valid_loss'.");
+
+            if (fineTuningJobCheckpointMetrics.ValidMeanTokenAccuracyOption.IsSet && fineTuningJobCheckpointMetrics.ValidMeanTokenAccuracy == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.ValidMeanTokenAccuracy to non-nullable JSON property 'valid_mean_token_accuracy'.");
+
+            if (fineTuningJobCheckpointMetrics.FullValidLossOption.IsSet && fineTuningJobCheckpointMetrics.FullValidLoss == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.FullValidLoss to non-nullable JSON property 'full_valid_loss'.");
+
+            if (fineTuningJobCheckpointMetrics.FullValidMeanTokenAccuracyOption.IsSet && fineTuningJobCheckpointMetrics.FullValidMeanTokenAccuracy == null)
+                throw new JsonException("Cannot write null property FineTuningJobCheckpointMetrics.FullValidMeanTokenAccuracy to non-nullable JSON property 'full_valid_mean_token_accuracy'.");
+
             if (fineTuningJobCheckpointMetrics.StepOption.IsSet)
                 writer.WriteNumber("step", fineTuningJobCheckpointMetrics.StepOption.Value!.Value);
 

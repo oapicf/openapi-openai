@@ -50,26 +50,18 @@ import {
 export interface FineTuneDPOMethodHyperparameters {
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersBeta}
-     * @memberof FineTuneDPOMethodHyperparameters
      */
     beta?: FineTuneDPOMethodHyperparametersBeta;
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersBatchSize}
-     * @memberof FineTuneDPOMethodHyperparameters
      */
     batchSize?: FineTuneDPOMethodHyperparametersBatchSize;
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersLearningRateMultiplier}
-     * @memberof FineTuneDPOMethodHyperparameters
      */
     learningRateMultiplier?: FineTuneDPOMethodHyperparametersLearningRateMultiplier;
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparametersNEpochs}
-     * @memberof FineTuneDPOMethodHyperparameters
      */
     nEpochs?: FineTuneDPOMethodHyperparametersNEpochs;
 }

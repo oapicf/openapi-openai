@@ -6,20 +6,3 @@
 */
 #include "AuditLogEventType.h"
 
-namespace models {
-
-AuditLogEventType::AuditLogEventType()
-{
-}
-// =========================================
-// ===== Getters/Setters =====
-// =========================================
-
-
-
-
-
-
-
-} // namespace models
-

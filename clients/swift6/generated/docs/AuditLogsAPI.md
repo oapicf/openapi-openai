@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **listAuditLogs**
 ```swift
-    open class func listAuditLogs(effectiveAt: ListAuditLogsEffectiveAtParameter? = nil, projectIds: [String]? = nil, eventTypes: [AuditLogEventType]? = nil, actorIds: [String]? = nil, actorEmails: [String]? = nil, resourceIds: [String]? = nil, limit: Int? = nil, after: String? = nil, before: String? = nil, completion: @escaping (_ data: ListAuditLogsResponse?, _ error: Error?) -> Void)
+    open class func listAuditLogs(effectiveAt: ListAuditLogsEffectiveAtParameter? = nil, projectIds: [String]? = nil, eventTypes: [AuditLogEventType]? = nil, actorIds: [String]? = nil, actorEmails: [String]? = nil, resourceIds: [String]? = nil, limit: Int? = nil, after: String? = nil, before: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListAuditLogsResponse
 ```
 
 List user actions and configuration changes within this organization.
@@ -30,15 +30,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let before = "before_example" // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 // List user actions and configuration changes within this organization.
-AuditLogsAPI.listAuditLogs(effectiveAt: effectiveAt, projectIds: projectIds, eventTypes: eventTypes, actorIds: actorIds, actorEmails: actorEmails, resourceIds: resourceIds, limit: limit, after: after, before: before) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AuditLogsAPI.listAuditLogs(effectiveAt: effectiveAt, projectIds: projectIds, eventTypes: eventTypes, actorIds: actorIds, actorEmails: actorEmails, resourceIds: resourceIds, limit: limit, after: after, before: before)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

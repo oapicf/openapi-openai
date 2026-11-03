@@ -24,13 +24,12 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("MessageContentTextObject_text")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageContentTextObjectText {
 
   private String value;
 
-  @Valid
-  private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageContentTextObjectText() {
     super();
@@ -39,7 +38,7 @@ public class MessageContentTextObjectText {
   /**
    * Constructor with only required parameters
    */
-  public MessageContentTextObjectText(String value, List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText(String value, List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.value = value;
     this.annotations = annotations;
   }
@@ -64,7 +63,7 @@ public class MessageContentTextObjectText {
     this.value = value;
   }
 
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -81,14 +80,14 @@ public class MessageContentTextObjectText {
    * Get annotations
    * @return annotations
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "annotations", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("annotations")
-  public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

@@ -26,26 +26,18 @@ export interface CreateBatchRequest {
      * 
      * Your input file must be formatted as a [JSONL file](/docs/api-reference/batch/request-input), and must be uploaded with the purpose `batch`. The file can contain up to 50,000 requests, and can be up to 200 MB in size.
      * 
-     * @type {string}
-     * @memberof CreateBatchRequest
      */
     inputFileId: string;
     /**
      * The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-     * @type {CreateBatchRequestEndpointEnum}
-     * @memberof CreateBatchRequest
      */
     endpoint: CreateBatchRequestEndpointEnum;
     /**
      * The time frame within which the batch should be processed. Currently only `24h` is supported.
-     * @type {CreateBatchRequestCompletionWindowEnum}
-     * @memberof CreateBatchRequest
      */
     completionWindow: CreateBatchRequestCompletionWindowEnum;
     /**
      * Optional custom metadata for the batch.
-     * @type {{ [key: string]: string; }}
-     * @memberof CreateBatchRequest
      */
     metadata?: { [key: string]: string; } | null;
 }
@@ -57,7 +49,7 @@ export interface CreateBatchRequest {
 export const CreateBatchRequestEndpointEnum = {
     V1ChatCompletions: '/v1/chat/completions',
     V1Embeddings: '/v1/embeddings',
-    V1Completions: '/v1/completions'
+    V1Completions: '/v1/completions',
 } as const;
 export type CreateBatchRequestEndpointEnum = typeof CreateBatchRequestEndpointEnum[keyof typeof CreateBatchRequestEndpointEnum];
 
@@ -65,7 +57,7 @@ export type CreateBatchRequestEndpointEnum = typeof CreateBatchRequestEndpointEn
  * @export
  */
 export const CreateBatchRequestCompletionWindowEnum = {
-    _24h: '24h'
+    _24h: '24h',
 } as const;
 export type CreateBatchRequestCompletionWindowEnum = typeof CreateBatchRequestCompletionWindowEnum[keyof typeof CreateBatchRequestCompletionWindowEnum];
 

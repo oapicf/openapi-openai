@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="PredictionContentContent" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal PredictionContentContent(string @string)
+        public PredictionContentContent(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="PredictionContentContent" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal PredictionContentContent(List<ChatCompletionRequestMessageContentPartText> list)
+        public PredictionContentContent(List<ChatCompletionRequestMessageContentPartText> list)
         {
             List = list;
             OnCreated();
@@ -178,7 +178,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="predictionContentContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PredictionContentContent predictionContentContent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,7 +192,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="predictionContentContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PredictionContentContent predictionContentContent, JsonSerializerOptions jsonSerializerOptions)
         {
 

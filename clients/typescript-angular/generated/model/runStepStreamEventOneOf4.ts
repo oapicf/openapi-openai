@@ -19,7 +19,7 @@ export interface RunStepStreamEventOneOf4 {
 }
 export namespace RunStepStreamEventOneOf4 {
     export const EventEnum = {
-        ThreadRunStepFailed: 'thread.run.step.failed'
+        ThreadRunStepFailed: 'thread.run.step.failed',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

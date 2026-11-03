@@ -144,9 +144,10 @@ class _$ChatCompletionRequestSystemMessageSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// The role of the messages author, in this case `system`.
 class ChatCompletionRequestSystemMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `system`.
   @BuiltValueEnumConst(wireName: r'system')
   static const ChatCompletionRequestSystemMessageRoleEnum system = _$chatCompletionRequestSystemMessageRoleEnum_system;
 

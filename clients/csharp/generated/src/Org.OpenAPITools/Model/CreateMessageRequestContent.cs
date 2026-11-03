@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateMessageRequestContent" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateMessageRequestContent(string @string)
+        public CreateMessageRequestContent(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateMessageRequestContent" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal CreateMessageRequestContent(List<ArrayOfContentPartsInner> list)
+        public CreateMessageRequestContent(List<ArrayOfContentPartsInner> list)
         {
             List = list;
             OnCreated();
@@ -178,7 +178,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequestContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateMessageRequestContent createMessageRequestContent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,7 +192,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequestContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateMessageRequestContent createMessageRequestContent, JsonSerializerOptions jsonSerializerOptions)
         {
 

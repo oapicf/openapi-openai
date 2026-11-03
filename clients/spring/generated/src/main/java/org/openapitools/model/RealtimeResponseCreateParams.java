@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -32,7 +31,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeResponseCreateParams", description = "Create a new Realtime response with these parameters")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseCreateParams {
 
   /**
@@ -70,10 +69,8 @@ public class RealtimeResponseCreateParams {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ModalitiesEnum> modalities = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String instructions;
 
   /**
@@ -123,7 +120,6 @@ public class RealtimeResponseCreateParams {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VoiceEnum voice;
 
   /**
@@ -163,28 +159,20 @@ public class RealtimeResponseCreateParams {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OutputAudioFormatEnum outputAudioFormat;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String toolChoice;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal temperature;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsConversation conversation;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeConversationItem> input = new ArrayList<>();
 
   public RealtimeResponseCreateParams modalities(List<ModalitiesEnum> modalities) {
@@ -296,7 +284,7 @@ public class RealtimeResponseCreateParams {
    * Tools (functions) available to the model.
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "Tools (functions) available to the model.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
@@ -402,7 +390,7 @@ public class RealtimeResponseCreateParams {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -429,7 +417,7 @@ public class RealtimeResponseCreateParams {
    * Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. 
    * @return input
    */
-  @Valid 
+  
   @Schema(name = "input", description = "Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("input")
   public List<@Valid RealtimeConversationItem> getInput() {

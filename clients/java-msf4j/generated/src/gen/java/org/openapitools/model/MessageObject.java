@@ -17,7 +17,7 @@ import org.openapitools.model.MessageObjectIncompleteDetails;
  * Represents a message within a [thread](/docs/api-reference/threads).
  */
 @ApiModel(description = "Represents a message within a [thread](/docs/api-reference/threads).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageObject   {
   @JsonProperty("id")
   private String id;
@@ -140,7 +140,7 @@ public class MessageObject   {
   private RoleEnum role;
 
   @JsonProperty("content")
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
   @JsonProperty("assistant_id")
   private String assistantId;
@@ -149,7 +149,7 @@ public class MessageObject   {
   private String runId;
 
   @JsonProperty("attachments")
-  private List<@Valid CreateMessageRequestAttachmentsInner> attachments = ;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments = null;
 
   @JsonProperty("metadata")
   private Object metadata;
@@ -316,7 +316,7 @@ public class MessageObject   {
     this.role = role;
   }
 
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -331,11 +331,11 @@ public class MessageObject   {
    * @return content
   **/
   @ApiModelProperty(required = true, value = "The content of the message in array of text and/or images.")
-  public List<MessageObjectContentInner> getContent() {
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 

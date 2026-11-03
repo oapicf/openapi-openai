@@ -496,17 +496,32 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<OpenAIFile.ObjectEnum?>(OpenAIFile.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                OpenAIFile.ObjectEnum? varObjectValue = OpenAIFile.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<OpenAIFile.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "purpose":
                             string? purposeRawValue = utf8JsonReader.GetString();
                             if (purposeRawValue != null)
-                                purpose = new Option<OpenAIFile.PurposeEnum?>(OpenAIFile.PurposeEnumFromStringOrDefault(purposeRawValue));
+                            {
+                                OpenAIFile.PurposeEnum? purposeValue = OpenAIFile.PurposeEnumFromStringOrDefault(purposeRawValue);
+                                if (purposeValue == null)
+                                    throw new JsonException();
+                                purpose = new Option<OpenAIFile.PurposeEnum?>(purposeValue);
+                            }
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<OpenAIFile.StatusEnum?>(OpenAIFile.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                OpenAIFile.StatusEnum? statusValue = OpenAIFile.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<OpenAIFile.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "status_details":
                             statusDetails = new Option<string?>(utf8JsonReader.GetString()!);
@@ -518,49 +533,49 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(id));
+                throw new JsonException("Property is required for class OpenAIFile: id.");
 
             if (!bytes.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(bytes));
+                throw new JsonException("Property is required for class OpenAIFile: bytes.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(createdAt));
+                throw new JsonException("Property is required for class OpenAIFile: created_at.");
 
             if (!filename.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(filename));
+                throw new JsonException("Property is required for class OpenAIFile: filename.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(varObject));
+                throw new JsonException("Property is required for class OpenAIFile: object.");
 
             if (!purpose.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(purpose));
+                throw new JsonException("Property is required for class OpenAIFile: purpose.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class OpenAIFile.", nameof(status));
+                throw new JsonException("Property is required for class OpenAIFile: status.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: id.");
 
             if (bytes.IsSet && bytes.Value == null)
-                throw new ArgumentNullException(nameof(bytes), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: bytes.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: created_at.");
 
             if (filename.IsSet && filename.Value == null)
-                throw new ArgumentNullException(nameof(filename), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: filename.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: object.");
 
             if (purpose.IsSet && purpose.Value == null)
-                throw new ArgumentNullException(nameof(purpose), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: purpose.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: status.");
 
             if (statusDetails.IsSet && statusDetails.Value == null)
-                throw new ArgumentNullException(nameof(statusDetails), "Property is not nullable for class OpenAIFile.");
+                throw new JsonException("Property is not nullable for class OpenAIFile: status_details.");
 
             return new OpenAIFile(id.Value!, bytes.Value!.Value!, createdAt.Value!.Value!, filename.Value!, varObject.Value!.Value!, purpose.Value!.Value!, status.Value!.Value!, statusDetails);
         }
@@ -571,7 +586,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="openAIFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OpenAIFile openAIFile, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -586,17 +600,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="openAIFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OpenAIFile openAIFile, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (openAIFile.Id == null)
-                throw new ArgumentNullException(nameof(openAIFile.Id), "Property is required for class OpenAIFile.");
-
-            if (openAIFile.Filename == null)
-                throw new ArgumentNullException(nameof(openAIFile.Filename), "Property is required for class OpenAIFile.");
-
             if (openAIFile.StatusDetailsOption.IsSet && openAIFile.StatusDetails == null)
-                throw new ArgumentNullException(nameof(openAIFile.StatusDetails), "Property is required for class OpenAIFile.");
+                throw new JsonException("Cannot write null property OpenAIFile.StatusDetails to non-nullable JSON property 'status_details'.");
 
             writer.WriteString("id", openAIFile.Id);
 

@@ -26,8 +26,8 @@ object RealtimeServerEventRateLimitsUpdatedRateLimitsInnerEnums {
 
   sealed trait Name
   object Name {
-    case object Requests extends Name
-    case object Tokens extends Name
+    case object Requests extends Name { override def toString: String = "requests" }
+    case object Tokens extends Name { override def toString: String = "tokens" }
 
     import org.json4s._
 

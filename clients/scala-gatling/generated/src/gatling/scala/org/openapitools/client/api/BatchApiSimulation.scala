@@ -102,8 +102,8 @@ class BatchApiSimulation extends Simulation {
         .feed(listBatchesQUERYFeeder)
         .exec(http("listBatches")
         .httpRequest("GET","/batches")
-        .queryParam("after","${after}")
         .queryParam("limit","${limit}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistBatches with warm up and reach a constant rate for entire duration

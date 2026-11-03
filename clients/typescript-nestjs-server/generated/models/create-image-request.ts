@@ -35,12 +35,12 @@ export interface CreateImageRequest {
 export namespace CreateImageRequest {
   export const QualityEnum = {
     Standard: 'standard',
-    Hd: 'hd'
+    Hd: 'hd',
   } as const;
   export type QualityEnum = typeof QualityEnum[keyof typeof QualityEnum];
   export const ResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
   } as const;
   export type ResponseFormatEnum = typeof ResponseFormatEnum[keyof typeof ResponseFormatEnum];
   export const SizeEnum = {
@@ -48,12 +48,12 @@ export namespace CreateImageRequest {
     _512x512: '512x512',
     _1024x1024: '1024x1024',
     _1792x1024: '1792x1024',
-    _1024x1792: '1024x1792'
+    _1024x1792: '1024x1792',
   } as const;
   export type SizeEnum = typeof SizeEnum[keyof typeof SizeEnum];
   export const StyleEnum = {
     Vivid: 'vivid',
-    Natural: 'natural'
+    Natural: 'natural',
   } as const;
   export type StyleEnum = typeof StyleEnum[keyof typeof StyleEnum];
 }

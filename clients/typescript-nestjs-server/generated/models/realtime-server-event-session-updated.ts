@@ -17,7 +17,7 @@ export interface RealtimeServerEventSessionUpdated {
 }
 export namespace RealtimeServerEventSessionUpdated {
   export const TypeEnum = {
-    SessionUpdated: 'session.updated'
+    SessionUpdated: 'session.updated',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

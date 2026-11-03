@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * MessageContentTextObjectText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MessageContentTextObjectText   {
   @JsonProperty("value")
@@ -26,7 +26,7 @@ public class MessageContentTextObjectText   {
   @NotNull
 @Valid
 
-  private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageContentTextObjectText value(String value) {
     this.value = value;
@@ -45,7 +45,7 @@ public class MessageContentTextObjectText   {
     this.value = value;
   }
 
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -62,11 +62,11 @@ public class MessageContentTextObjectText   {
    * Get annotations
    * @return annotations
   **/
-  public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

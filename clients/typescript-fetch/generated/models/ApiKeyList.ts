@@ -29,32 +29,22 @@ import {
 export interface ApiKeyList {
     /**
      * 
-     * @type {string}
-     * @memberof ApiKeyList
      */
     object?: string;
     /**
      * 
-     * @type {Array<AdminApiKey>}
-     * @memberof ApiKeyList
      */
     data?: Array<AdminApiKey>;
     /**
      * 
-     * @type {boolean}
-     * @memberof ApiKeyList
      */
     hasMore?: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof ApiKeyList
      */
     firstId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ApiKeyList
      */
     lastId?: string;
 }

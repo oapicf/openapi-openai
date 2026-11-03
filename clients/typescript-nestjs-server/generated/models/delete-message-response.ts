@@ -7,7 +7,7 @@ export interface DeleteMessageResponse {
 }
 export namespace DeleteMessageResponse {
   export const ObjectEnum = {
-    ThreadMessageDeleted: 'thread.message.deleted'
+    ThreadMessageDeleted: 'thread.message.deleted',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

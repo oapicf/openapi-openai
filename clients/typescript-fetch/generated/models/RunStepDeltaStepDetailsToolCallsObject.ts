@@ -29,15 +29,11 @@ import {
 export interface RunStepDeltaStepDetailsToolCallsObject {
     /**
      * Always `tool_calls`.
-     * @type {RunStepDeltaStepDetailsToolCallsObjectTypeEnum}
-     * @memberof RunStepDeltaStepDetailsToolCallsObject
      */
     type: RunStepDeltaStepDetailsToolCallsObjectTypeEnum;
     /**
      * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`.
      * 
-     * @type {Array<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>}
-     * @memberof RunStepDeltaStepDetailsToolCallsObject
      */
     toolCalls?: Array<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner>;
 }
@@ -47,7 +43,7 @@ export interface RunStepDeltaStepDetailsToolCallsObject {
  * @export
  */
 export const RunStepDeltaStepDetailsToolCallsObjectTypeEnum = {
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
 } as const;
 export type RunStepDeltaStepDetailsToolCallsObjectTypeEnum = typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsToolCallsObjectTypeEnum];
 

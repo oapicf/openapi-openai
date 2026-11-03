@@ -26,7 +26,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
 @JsonTypeName("FineTuningJob")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJob   {
   private String id;
   private Integer createdAt;
@@ -84,7 +84,7 @@ public class FineTuningJob   {
 
   private ObjectEnum _object;
   private String organizationId;
-  private @Valid List<String> resultFiles = new ArrayList<>();
+  private List<String> resultFiles = new ArrayList<>();
   public enum StatusEnum {
 
     VALIDATING_FILES(String.valueOf("validating_files")), QUEUED(String.valueOf("queued")), RUNNING(String.valueOf("running")), SUCCEEDED(String.valueOf("succeeded")), FAILED(String.valueOf("failed")), CANCELLED(String.valueOf("cancelled"));
@@ -136,7 +136,7 @@ public class FineTuningJob   {
   private Integer trainedTokens;
   private String trainingFile;
   private String validationFile;
-  private @Valid List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
   private Integer seed;
   private Integer estimatedFinish;
   private FineTuneMethod method;
@@ -476,7 +476,7 @@ public class FineTuningJob   {
   /**
    * A list of integrations to enable for this fine-tuning job.
    **/
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }
@@ -484,12 +484,12 @@ public class FineTuningJob   {
   
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
   @JsonProperty("integrations")
-  @Valid  @Size(max=5)public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
+   @Size(max=5)public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
   @JsonProperty("integrations")
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

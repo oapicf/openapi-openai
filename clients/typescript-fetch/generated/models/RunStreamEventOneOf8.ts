@@ -29,14 +29,10 @@ import {
 export interface RunStreamEventOneOf8 {
     /**
      * 
-     * @type {RunStreamEventOneOf8EventEnum}
-     * @memberof RunStreamEventOneOf8
      */
     event: RunStreamEventOneOf8EventEnum;
     /**
      * 
-     * @type {RunObject}
-     * @memberof RunStreamEventOneOf8
      */
     data: RunObject;
 }
@@ -46,7 +42,7 @@ export interface RunStreamEventOneOf8 {
  * @export
  */
 export const RunStreamEventOneOf8EventEnum = {
-    ThreadRunCancelled: 'thread.run.cancelled'
+    ThreadRunCancelled: 'thread.run.cancelled',
 } as const;
 export type RunStreamEventOneOf8EventEnum = typeof RunStreamEventOneOf8EventEnum[keyof typeof RunStreamEventOneOf8EventEnum];
 

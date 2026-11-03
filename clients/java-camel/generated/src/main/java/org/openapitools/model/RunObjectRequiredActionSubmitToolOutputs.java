@@ -25,10 +25,9 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunObject_required_action_submit_tool_outputs", description = "Details on the tool outputs needed for this run to continue.")
 @JsonTypeName("RunObject_required_action_submit_tool_outputs")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObjectRequiredActionSubmitToolOutputs {
 
-  @Valid
   private List<@Valid RunToolCallObject> toolCalls = new ArrayList<>();
 
   public RunObjectRequiredActionSubmitToolOutputs() {
@@ -59,7 +58,7 @@ public class RunObjectRequiredActionSubmitToolOutputs {
    * A list of the relevant tool calls.
    * @return toolCalls
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "tool_calls", description = "A list of the relevant tool calls.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tool_calls")
   public List<@Valid RunToolCallObject> getToolCalls() {

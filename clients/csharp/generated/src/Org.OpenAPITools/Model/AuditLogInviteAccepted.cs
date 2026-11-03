@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogInviteAccepted.");
+                throw new JsonException("Property is not nullable for class AuditLogInviteAccepted: id.");
 
             return new AuditLogInviteAccepted(id);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogInviteAccepted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogInviteAccepted auditLogInviteAccepted, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogInviteAccepted"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogInviteAccepted auditLogInviteAccepted, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogInviteAccepted.IdOption.IsSet && auditLogInviteAccepted.Id == null)
-                throw new ArgumentNullException(nameof(auditLogInviteAccepted.Id), "Property is required for class AuditLogInviteAccepted.");
+                throw new JsonException("Cannot write null property AuditLogInviteAccepted.Id to non-nullable JSON property 'id'.");
 
             if (auditLogInviteAccepted.IdOption.IsSet)
                 writer.WriteString("id", auditLogInviteAccepted.Id);

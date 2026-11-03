@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<DeleteVectorStoreResponse.ObjectEnum?>(DeleteVectorStoreResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                DeleteVectorStoreResponse.ObjectEnum? varObjectValue = DeleteVectorStoreResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<DeleteVectorStoreResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class DeleteVectorStoreResponse.", nameof(id));
+                throw new JsonException("Property is required for class DeleteVectorStoreResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class DeleteVectorStoreResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class DeleteVectorStoreResponse: deleted.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class DeleteVectorStoreResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class DeleteVectorStoreResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class DeleteVectorStoreResponse.");
+                throw new JsonException("Property is not nullable for class DeleteVectorStoreResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class DeleteVectorStoreResponse.");
+                throw new JsonException("Property is not nullable for class DeleteVectorStoreResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class DeleteVectorStoreResponse.");
+                throw new JsonException("Property is not nullable for class DeleteVectorStoreResponse: object.");
 
             return new DeleteVectorStoreResponse(id.Value!, deleted.Value!.Value!, varObject.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteVectorStoreResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteVectorStoreResponse deleteVectorStoreResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteVectorStoreResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteVectorStoreResponse deleteVectorStoreResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deleteVectorStoreResponse.Id == null)
-                throw new ArgumentNullException(nameof(deleteVectorStoreResponse.Id), "Property is required for class DeleteVectorStoreResponse.");
-
             writer.WriteString("id", deleteVectorStoreResponse.Id);
 
             writer.WriteBoolean("deleted", deleteVectorStoreResponse.Deleted);

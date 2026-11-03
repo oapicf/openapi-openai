@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   SubmitToolOutputsRunRequestToolOutputsInner.JSON_PROPERTY_OUTPUT
 })
 @JsonTypeName("SubmitToolOutputsRunRequest_tool_outputs_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class SubmitToolOutputsRunRequestToolOutputsInner {
     public static final String JSON_PROPERTY_TOOL_CALL_ID = "tool_call_id";

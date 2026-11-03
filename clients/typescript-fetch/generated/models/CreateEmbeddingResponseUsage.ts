@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateEmbeddingResponseUsage {
     /**
      * The number of tokens used by the prompt.
-     * @type {number}
-     * @memberof CreateEmbeddingResponseUsage
      */
     promptTokens: number;
     /**
      * The total number of tokens used by the request.
-     * @type {number}
-     * @memberof CreateEmbeddingResponseUsage
      */
     totalTokens: number;
 }

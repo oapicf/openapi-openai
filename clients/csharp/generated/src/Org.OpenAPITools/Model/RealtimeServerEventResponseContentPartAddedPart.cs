@@ -255,7 +255,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventResponseContentPartAddedPart.TypeEnum?>(RealtimeServerEventResponseContentPartAddedPart.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventResponseContentPartAddedPart.TypeEnum? typeValue = RealtimeServerEventResponseContentPartAddedPart.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventResponseContentPartAddedPart.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -273,16 +278,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart: text.");
 
             if (audio.IsSet && audio.Value == null)
-                throw new ArgumentNullException(nameof(audio), "Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart: audio.");
 
             if (transcript.IsSet && transcript.Value == null)
-                throw new ArgumentNullException(nameof(transcript), "Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventResponseContentPartAddedPart: transcript.");
 
             return new RealtimeServerEventResponseContentPartAddedPart(type, text, audio, transcript);
         }
@@ -293,7 +298,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseContentPartAddedPart"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventResponseContentPartAddedPart realtimeServerEventResponseContentPartAddedPart, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -308,17 +312,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventResponseContentPartAddedPart"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventResponseContentPartAddedPart realtimeServerEventResponseContentPartAddedPart, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeServerEventResponseContentPartAddedPart.TypeOption.IsSet && realtimeServerEventResponseContentPartAddedPart.Type == null)
+                throw new JsonException("Cannot write null property RealtimeServerEventResponseContentPartAddedPart.Type to non-nullable JSON property 'type'.");
+
             if (realtimeServerEventResponseContentPartAddedPart.TextOption.IsSet && realtimeServerEventResponseContentPartAddedPart.Text == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAddedPart.Text), "Property is required for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Cannot write null property RealtimeServerEventResponseContentPartAddedPart.Text to non-nullable JSON property 'text'.");
 
             if (realtimeServerEventResponseContentPartAddedPart.AudioOption.IsSet && realtimeServerEventResponseContentPartAddedPart.Audio == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAddedPart.Audio), "Property is required for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Cannot write null property RealtimeServerEventResponseContentPartAddedPart.Audio to non-nullable JSON property 'audio'.");
 
             if (realtimeServerEventResponseContentPartAddedPart.TranscriptOption.IsSet && realtimeServerEventResponseContentPartAddedPart.Transcript == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventResponseContentPartAddedPart.Transcript), "Property is required for class RealtimeServerEventResponseContentPartAddedPart.");
+                throw new JsonException("Cannot write null property RealtimeServerEventResponseContentPartAddedPart.Transcript to non-nullable JSON property 'transcript'.");
 
             var typeRawValue = RealtimeServerEventResponseContentPartAddedPart.TypeEnumToJsonValue(realtimeServerEventResponseContentPartAddedPart.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

@@ -17,7 +17,7 @@ export interface MessageDeltaObjectDelta {
 export namespace MessageDeltaObjectDelta {
   export const RoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

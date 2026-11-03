@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -30,7 +29,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeSessionCreateRequest", description = "Realtime session object configuration.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeSessionCreateRequest {
 
   /**
@@ -68,7 +67,6 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<ModalitiesEnum> modalities = new ArrayList<>();
 
   /**
@@ -114,7 +112,6 @@ public class RealtimeSessionCreateRequest {
 
   private ModelEnum model;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String instructions;
 
   /**
@@ -164,7 +161,6 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VoiceEnum voice;
 
   /**
@@ -204,7 +200,6 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable InputAudioFormatEnum inputAudioFormat;
 
   /**
@@ -244,25 +239,18 @@ public class RealtimeSessionCreateRequest {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable OutputAudioFormatEnum outputAudioFormat;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionInputAudioTranscription inputAudioTranscription;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeSessionCreateRequestTurnDetection turnDetection;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String toolChoice;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BigDecimal temperature;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
 
   public RealtimeSessionCreateRequest() {
@@ -469,7 +457,7 @@ public class RealtimeSessionCreateRequest {
    * Tools (functions) available to the model.
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "Tools (functions) available to the model.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {

@@ -36,7 +36,7 @@ object FineTuningJobEventEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object FineTuningJobEvent extends `Object`
+    case object FineTuningJobEvent extends `Object` { override def toString: String = "fine_tuning.job.event" }
 
     import org.json4s._
 
@@ -57,9 +57,9 @@ object FineTuningJobEventEnums {
 
   sealed trait Level
   object Level {
-    case object Info extends Level
-    case object Warn extends Level
-    case object Error extends Level
+    case object Info extends Level { override def toString: String = "info" }
+    case object Warn extends Level { override def toString: String = "warn" }
+    case object Error extends Level { override def toString: String = "error" }
 
     import org.json4s._
 
@@ -84,8 +84,8 @@ object FineTuningJobEventEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Message extends `Type`
-    case object Metrics extends `Type`
+    case object Message extends `Type` { override def toString: String = "message" }
+    case object Metrics extends `Type` { override def toString: String = "metrics" }
 
     import org.json4s._
 

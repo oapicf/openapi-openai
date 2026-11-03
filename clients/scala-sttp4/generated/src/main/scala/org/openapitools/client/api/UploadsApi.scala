@@ -36,7 +36,7 @@ class UploadsApi(baseUrl: String) {
    * @param uploadId The ID of the Upload. 
    * @param data The chunk of bytes for this Part. 
    */
-  def addUploadPart(bearerToken: String)(uploadId: String, data: File): Request[Either[ResponseException[String], UploadPart]] =
+  def addUploadPart(bearerToken: String)(uploadId: String, data: File): sttp.client4.Request[Either[ResponseException[String], UploadPart]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/uploads/${uploadId}/parts")
       .contentType("multipart/form-data")
@@ -56,7 +56,7 @@ class UploadsApi(baseUrl: String) {
    * 
    * @param uploadId The ID of the Upload. 
    */
-  def cancelUpload(bearerToken: String)(uploadId: String): Request[Either[ResponseException[String], Upload]] =
+  def cancelUpload(bearerToken: String)(uploadId: String): sttp.client4.Request[Either[ResponseException[String], Upload]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/uploads/${uploadId}/cancel")
       .contentType("application/json")
@@ -73,7 +73,7 @@ class UploadsApi(baseUrl: String) {
    * @param uploadId The ID of the Upload. 
    * @param completeUploadRequest 
    */
-  def completeUpload(bearerToken: String)(uploadId: String, completeUploadRequest: CompleteUploadRequest): Request[Either[ResponseException[String], Upload]] =
+  def completeUpload(bearerToken: String)(uploadId: String, completeUploadRequest: CompleteUploadRequest): sttp.client4.Request[Either[ResponseException[String], Upload]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/uploads/${uploadId}/complete")
       .contentType("application/json")
@@ -90,7 +90,7 @@ class UploadsApi(baseUrl: String) {
    * 
    * @param createUploadRequest 
    */
-  def createUpload(bearerToken: String)(createUploadRequest: CreateUploadRequest): Request[Either[ResponseException[String], Upload]] =
+  def createUpload(bearerToken: String)(createUploadRequest: CreateUploadRequest): sttp.client4.Request[Either[ResponseException[String], Upload]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/uploads")
       .contentType("application/json")

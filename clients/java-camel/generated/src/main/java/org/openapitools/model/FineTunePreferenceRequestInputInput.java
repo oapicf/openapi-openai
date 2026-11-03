@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -26,18 +25,16 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("FineTunePreferenceRequestInput_input")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTunePreferenceRequestInputInput {
 
-  @Valid
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
-  @Valid
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
   private Boolean parallelToolCalls = true;
 
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -54,14 +51,14 @@ public class FineTunePreferenceRequestInputInput {
    * Get messages
    * @return messages
    */
-  @Valid @Size(min = 1) 
+  @Size(min = 1) 
   @Schema(name = "messages", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("messages")
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
@@ -82,7 +79,7 @@ public class FineTunePreferenceRequestInputInput {
    * A list of tools the model may generate JSON inputs for.
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "A list of tools the model may generate JSON inputs for.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid ChatCompletionTool> getTools() {

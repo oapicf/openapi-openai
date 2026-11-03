@@ -21,7 +21,7 @@ object DeleteThreadResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ThreadDeleted extends `Object`
+    case object ThreadDeleted extends `Object` { override def toString: String = "thread.deleted" }
 
     import org.json4s._
 

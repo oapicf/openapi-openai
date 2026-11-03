@@ -4,9 +4,6 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,18 +17,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The aggregated vector stores usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param usageBytes The vector stores usage in bytes.
  * @param projectId When `group_by=project_id`, this field provides the project ID of the grouped usage result.
  */
 data class UsageVectorStoresResult(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageVectorStoresResult.`Object`,
 
     @Schema(required = true, description = "The vector stores usage in bytes.")
-    @param:JsonProperty("usage_bytes")
+    @param:JsonProperty("usage_bytes", required = true)
     @get:JsonProperty("usage_bytes", required = true) val usageBytes: kotlin.Int,
 
     @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
@@ -46,12 +43,12 @@ data class UsageVectorStoresResult(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUsagePeriodVector_storesPeriodResult("organization.usage.vector_stores.result");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

@@ -182,3 +182,4 @@ class _$RealtimeServerEventErrorErrorSerializer implements PrimitiveSerializer<R
   }
 }
 
+

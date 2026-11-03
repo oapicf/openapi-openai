@@ -111,7 +111,7 @@ public class AssistantsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateAssistantRequest createAssistantRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateAssistantRequest>(){}) : null;
 
-        logger.debug("Parameter createAssistantRequest is {}", createAssistantRequest);
+        logger.debug("Parameter createAssistantRequest is (body omitted)");
 
         api.createAssistant(createAssistantRequest)
             .onSuccess(apiResponse -> {
@@ -136,7 +136,7 @@ public class AssistantsApiHandler {
         CreateMessageRequest createMessageRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateMessageRequest>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
-        logger.debug("Parameter createMessageRequest is {}", createMessageRequest);
+        logger.debug("Parameter createMessageRequest is (body omitted)");
 
         api.createMessage(threadId, createMessageRequest)
             .onSuccess(apiResponse -> {
@@ -162,7 +162,7 @@ public class AssistantsApiHandler {
         List<String> include = requestParameters.queryParameter("include[]") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("include[]").get(), new TypeReference<List<String>>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
-        logger.debug("Parameter createRunRequest is {}", createRunRequest);
+        logger.debug("Parameter createRunRequest is (body omitted)");
         logger.debug("Parameter include is {}", include);
 
         api.createRun(threadId, createRunRequest, include)
@@ -186,7 +186,7 @@ public class AssistantsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateThreadRequest createThreadRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateThreadRequest>(){}) : null;
 
-        logger.debug("Parameter createThreadRequest is {}", createThreadRequest);
+        logger.debug("Parameter createThreadRequest is (body omitted)");
 
         api.createThread(createThreadRequest)
             .onSuccess(apiResponse -> {
@@ -209,7 +209,7 @@ public class AssistantsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateThreadAndRunRequest createThreadAndRunRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateThreadAndRunRequest>(){}) : null;
 
-        logger.debug("Parameter createThreadAndRunRequest is {}", createThreadAndRunRequest);
+        logger.debug("Parameter createThreadAndRunRequest is (body omitted)");
 
         api.createThreadAndRun(createThreadAndRunRequest)
             .onSuccess(apiResponse -> {
@@ -546,7 +546,7 @@ public class AssistantsApiHandler {
         ModifyAssistantRequest modifyAssistantRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ModifyAssistantRequest>(){}) : null;
 
         logger.debug("Parameter assistantId is {}", assistantId);
-        logger.debug("Parameter modifyAssistantRequest is {}", modifyAssistantRequest);
+        logger.debug("Parameter modifyAssistantRequest is (body omitted)");
 
         api.modifyAssistant(assistantId, modifyAssistantRequest)
             .onSuccess(apiResponse -> {
@@ -573,7 +573,7 @@ public class AssistantsApiHandler {
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter messageId is {}", messageId);
-        logger.debug("Parameter modifyMessageRequest is {}", modifyMessageRequest);
+        logger.debug("Parameter modifyMessageRequest is (body omitted)");
 
         api.modifyMessage(threadId, messageId, modifyMessageRequest)
             .onSuccess(apiResponse -> {
@@ -600,7 +600,7 @@ public class AssistantsApiHandler {
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter runId is {}", runId);
-        logger.debug("Parameter modifyRunRequest is {}", modifyRunRequest);
+        logger.debug("Parameter modifyRunRequest is (body omitted)");
 
         api.modifyRun(threadId, runId, modifyRunRequest)
             .onSuccess(apiResponse -> {
@@ -625,7 +625,7 @@ public class AssistantsApiHandler {
         ModifyThreadRequest modifyThreadRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<ModifyThreadRequest>(){}) : null;
 
         logger.debug("Parameter threadId is {}", threadId);
-        logger.debug("Parameter modifyThreadRequest is {}", modifyThreadRequest);
+        logger.debug("Parameter modifyThreadRequest is (body omitted)");
 
         api.modifyThread(threadId, modifyThreadRequest)
             .onSuccess(apiResponse -> {
@@ -652,7 +652,7 @@ public class AssistantsApiHandler {
 
         logger.debug("Parameter threadId is {}", threadId);
         logger.debug("Parameter runId is {}", runId);
-        logger.debug("Parameter submitToolOutputsRunRequest is {}", submitToolOutputsRunRequest);
+        logger.debug("Parameter submitToolOutputsRunRequest is (body omitted)");
 
         api.submitToolOuputsToRun(threadId, runId, submitToolOutputsRunRequest)
             .onSuccess(apiResponse -> {

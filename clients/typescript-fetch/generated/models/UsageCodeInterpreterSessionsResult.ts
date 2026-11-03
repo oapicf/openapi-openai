@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UsageCodeInterpreterSessionsResult {
     /**
      * 
-     * @type {UsageCodeInterpreterSessionsResultObjectEnum}
-     * @memberof UsageCodeInterpreterSessionsResult
      */
     object: UsageCodeInterpreterSessionsResultObjectEnum;
     /**
      * The number of code interpreter sessions.
-     * @type {number}
-     * @memberof UsageCodeInterpreterSessionsResult
      */
     sessions: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageCodeInterpreterSessionsResult
      */
     projectId?: string | null;
 }
@@ -44,7 +38,7 @@ export interface UsageCodeInterpreterSessionsResult {
  * @export
  */
 export const UsageCodeInterpreterSessionsResultObjectEnum = {
-    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result'
+    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result',
 } as const;
 export type UsageCodeInterpreterSessionsResultObjectEnum = typeof UsageCodeInterpreterSessionsResultObjectEnum[keyof typeof UsageCodeInterpreterSessionsResultObjectEnum];
 

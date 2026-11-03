@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -19,19 +16,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * The conversation resource.
  * @param id The unique ID of the conversation.
- * @param &#x60;object&#x60; The object type, must be `realtime.conversation`.
+ * @param `object` The object type, must be `realtime.conversation`.
  */
 data class RealtimeServerEventConversationCreatedConversation(
 
     @Schema(description = "The unique ID of the conversation.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("id")
     @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(description = "The object type, must be `realtime.conversation`.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("object")
     @get:JsonProperty("object") val `object`: kotlin.String? = null
 ) {

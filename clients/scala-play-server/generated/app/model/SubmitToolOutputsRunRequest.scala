@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param toolOutputs A list of tools for which the outputs are being submitted.
   * @param stream If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class SubmitToolOutputsRunRequest(
   toolOutputs: List[SubmitToolOutputsRunRequestToolOutputsInner],
   stream: Option[Boolean]

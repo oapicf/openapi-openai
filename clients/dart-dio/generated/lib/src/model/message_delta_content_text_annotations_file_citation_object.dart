@@ -202,9 +202,10 @@ class _$MessageDeltaContentTextAnnotationsFileCitationObjectSerializer implement
   }
 }
 
+
+/// Always `file_citation`.
 class MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum extends EnumClass {
 
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_citation')
   static const MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum fileCitation = _$messageDeltaContentTextAnnotationsFileCitationObjectTypeEnum_fileCitation;
 

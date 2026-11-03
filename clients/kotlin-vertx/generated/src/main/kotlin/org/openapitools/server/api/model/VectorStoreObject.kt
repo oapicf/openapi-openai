@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * A vector store is a collection of processed files can be used by the `file_search` tool.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `vector_store`.
+ * @param `object` The object type, which is always `vector_store`.
  * @param createdAt The Unix timestamp (in seconds) for when the vector store was created.
  * @param name The name of the vector store.
  * @param usageBytes The total number of bytes used by the files in the vector store.

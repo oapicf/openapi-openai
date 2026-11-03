@@ -223,19 +223,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (totalTokens.IsSet && totalTokens.Value == null)
-                throw new ArgumentNullException(nameof(totalTokens), "Property is not nullable for class RealtimeResponseUsage.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsage: total_tokens.");
 
             if (inputTokens.IsSet && inputTokens.Value == null)
-                throw new ArgumentNullException(nameof(inputTokens), "Property is not nullable for class RealtimeResponseUsage.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsage: input_tokens.");
 
             if (outputTokens.IsSet && outputTokens.Value == null)
-                throw new ArgumentNullException(nameof(outputTokens), "Property is not nullable for class RealtimeResponseUsage.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsage: output_tokens.");
 
             if (inputTokenDetails.IsSet && inputTokenDetails.Value == null)
-                throw new ArgumentNullException(nameof(inputTokenDetails), "Property is not nullable for class RealtimeResponseUsage.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsage: input_token_details.");
 
             if (outputTokenDetails.IsSet && outputTokenDetails.Value == null)
-                throw new ArgumentNullException(nameof(outputTokenDetails), "Property is not nullable for class RealtimeResponseUsage.");
+                throw new JsonException("Property is not nullable for class RealtimeResponseUsage: output_token_details.");
 
             return new RealtimeResponseUsage(totalTokens, inputTokens, outputTokens, inputTokenDetails, outputTokenDetails);
         }
@@ -246,7 +246,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseUsage realtimeResponseUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,14 +260,22 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseUsage realtimeResponseUsage, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeResponseUsage.TotalTokensOption.IsSet && realtimeResponseUsage.TotalTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsage.TotalTokens to non-nullable JSON property 'total_tokens'.");
+
+            if (realtimeResponseUsage.InputTokensOption.IsSet && realtimeResponseUsage.InputTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsage.InputTokens to non-nullable JSON property 'input_tokens'.");
+
+            if (realtimeResponseUsage.OutputTokensOption.IsSet && realtimeResponseUsage.OutputTokens == null)
+                throw new JsonException("Cannot write null property RealtimeResponseUsage.OutputTokens to non-nullable JSON property 'output_tokens'.");
+
             if (realtimeResponseUsage.InputTokenDetailsOption.IsSet && realtimeResponseUsage.InputTokenDetails == null)
-                throw new ArgumentNullException(nameof(realtimeResponseUsage.InputTokenDetails), "Property is required for class RealtimeResponseUsage.");
+                throw new JsonException("Cannot write null property RealtimeResponseUsage.InputTokenDetails to non-nullable JSON property 'input_token_details'.");
 
             if (realtimeResponseUsage.OutputTokenDetailsOption.IsSet && realtimeResponseUsage.OutputTokenDetails == null)
-                throw new ArgumentNullException(nameof(realtimeResponseUsage.OutputTokenDetails), "Property is required for class RealtimeResponseUsage.");
+                throw new JsonException("Cannot write null property RealtimeResponseUsage.OutputTokenDetails to non-nullable JSON property 'output_token_details'.");
 
             if (realtimeResponseUsage.TotalTokensOption.IsSet)
                 writer.WriteNumber("total_tokens", realtimeResponseUsage.TotalTokensOption.Value!.Value);

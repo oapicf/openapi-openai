@@ -301,7 +301,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeConversationItemContentInner.TypeEnum?>(RealtimeConversationItemContentInner.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeConversationItemContentInner.TypeEnum? typeValue = RealtimeConversationItemContentInner.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeConversationItemContentInner.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -322,19 +327,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItemContentInner: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItemContentInner: text.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItemContentInner: id.");
 
             if (audio.IsSet && audio.Value == null)
-                throw new ArgumentNullException(nameof(audio), "Property is not nullable for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItemContentInner: audio.");
 
             if (transcript.IsSet && transcript.Value == null)
-                throw new ArgumentNullException(nameof(transcript), "Property is not nullable for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItemContentInner: transcript.");
 
             return new RealtimeConversationItemContentInner(type, text, id, audio, transcript);
         }
@@ -345,7 +350,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeConversationItemContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeConversationItemContentInner realtimeConversationItemContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -360,20 +364,22 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeConversationItemContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeConversationItemContentInner realtimeConversationItemContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeConversationItemContentInner.TypeOption.IsSet && realtimeConversationItemContentInner.Type == null)
+                throw new JsonException("Cannot write null property RealtimeConversationItemContentInner.Type to non-nullable JSON property 'type'.");
+
             if (realtimeConversationItemContentInner.TextOption.IsSet && realtimeConversationItemContentInner.Text == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItemContentInner.Text), "Property is required for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Cannot write null property RealtimeConversationItemContentInner.Text to non-nullable JSON property 'text'.");
 
             if (realtimeConversationItemContentInner.IdOption.IsSet && realtimeConversationItemContentInner.Id == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItemContentInner.Id), "Property is required for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Cannot write null property RealtimeConversationItemContentInner.Id to non-nullable JSON property 'id'.");
 
             if (realtimeConversationItemContentInner.AudioOption.IsSet && realtimeConversationItemContentInner.Audio == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItemContentInner.Audio), "Property is required for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Cannot write null property RealtimeConversationItemContentInner.Audio to non-nullable JSON property 'audio'.");
 
             if (realtimeConversationItemContentInner.TranscriptOption.IsSet && realtimeConversationItemContentInner.Transcript == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItemContentInner.Transcript), "Property is required for class RealtimeConversationItemContentInner.");
+                throw new JsonException("Cannot write null property RealtimeConversationItemContentInner.Transcript to non-nullable JSON property 'transcript'.");
 
             var typeRawValue = RealtimeConversationItemContentInner.TypeEnumToJsonValue(realtimeConversationItemContentInner.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

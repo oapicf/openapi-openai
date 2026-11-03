@@ -22,45 +22,31 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseFunctionCallArgumentsDelta {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     eventId: string;
     /**
      * The event type, must be `response.function_call_arguments.delta`.
      * 
-     * @type {RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     type: RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     responseId: string;
     /**
      * The ID of the function call item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     outputIndex: number;
     /**
      * The ID of the function call.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     callId: string;
     /**
      * The arguments delta as a JSON string.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDelta
      */
     delta: string;
 }
@@ -70,7 +56,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDelta {
  * @export
  */
 export const RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum = {
-    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta'
+    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta',
 } as const;
 export type RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum = typeof RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum[keyof typeof RealtimeServerEventResponseFunctionCallArgumentsDeltaTypeEnum];
 

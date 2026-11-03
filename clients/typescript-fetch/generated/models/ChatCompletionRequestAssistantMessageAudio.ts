@@ -24,8 +24,6 @@ export interface ChatCompletionRequestAssistantMessageAudio {
     /**
      * Unique identifier for a previous audio response from the model.
      * 
-     * @type {string}
-     * @memberof ChatCompletionRequestAssistantMessageAudio
      */
     id: string;
 }

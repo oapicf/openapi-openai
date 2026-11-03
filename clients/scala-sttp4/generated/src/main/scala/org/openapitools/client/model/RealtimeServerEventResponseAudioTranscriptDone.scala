@@ -35,7 +35,7 @@ object RealtimeServerEventResponseAudioTranscriptDoneEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseAudioTranscriptDone extends `Type`
+    case object ResponseAudioTranscriptDone extends `Type` { override def toString: String = "response.audio_transcript.done" }
 
     import org.json4s._
 

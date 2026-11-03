@@ -39,7 +39,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateTranslation200Response.JSON_PROPERTY_SEGMENTS
 })
 @JsonTypeName("createTranslation_200_response")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateTranslation200Response {
     public static final String JSON_PROPERTY_TEXT = "text";

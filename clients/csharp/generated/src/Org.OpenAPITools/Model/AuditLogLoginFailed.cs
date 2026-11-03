@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (errorCode.IsSet && errorCode.Value == null)
-                throw new ArgumentNullException(nameof(errorCode), "Property is not nullable for class AuditLogLoginFailed.");
+                throw new JsonException("Property is not nullable for class AuditLogLoginFailed: error_code.");
 
             if (errorMessage.IsSet && errorMessage.Value == null)
-                throw new ArgumentNullException(nameof(errorMessage), "Property is not nullable for class AuditLogLoginFailed.");
+                throw new JsonException("Property is not nullable for class AuditLogLoginFailed: error_message.");
 
             return new AuditLogLoginFailed(errorCode, errorMessage);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogLoginFailed"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogLoginFailed auditLogLoginFailed, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogLoginFailed"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogLoginFailed auditLogLoginFailed, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogLoginFailed.ErrorCodeOption.IsSet && auditLogLoginFailed.ErrorCode == null)
-                throw new ArgumentNullException(nameof(auditLogLoginFailed.ErrorCode), "Property is required for class AuditLogLoginFailed.");
+                throw new JsonException("Cannot write null property AuditLogLoginFailed.ErrorCode to non-nullable JSON property 'error_code'.");
 
             if (auditLogLoginFailed.ErrorMessageOption.IsSet && auditLogLoginFailed.ErrorMessage == null)
-                throw new ArgumentNullException(nameof(auditLogLoginFailed.ErrorMessage), "Property is required for class AuditLogLoginFailed.");
+                throw new JsonException("Cannot write null property AuditLogLoginFailed.ErrorMessage to non-nullable JSON property 'error_message'.");
 
             if (auditLogLoginFailed.ErrorCodeOption.IsSet)
                 writer.WriteString("error_code", auditLogLoginFailed.ErrorCode);

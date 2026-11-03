@@ -42,7 +42,7 @@ import javax.validation.Valid;
   Invite.JSON_PROPERTY_ACCEPTED_AT,
   Invite.JSON_PROPERTY_PROJECTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Invite   {
   /**
    * The object type, which is always &#x60;organization.invite&#x60;
@@ -364,7 +364,7 @@ public class Invite   {
    **/
   @JsonProperty(value = "projects")
   @ApiModelProperty(value = "The projects that were granted membership upon acceptance of the invite.")
-  @Valid 
+  
   public List<@Valid InviteProjectsInner> getProjects() {
     return projects;
   }

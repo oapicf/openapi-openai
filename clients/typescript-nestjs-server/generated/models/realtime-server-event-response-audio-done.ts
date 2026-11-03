@@ -31,7 +31,7 @@ export interface RealtimeServerEventResponseAudioDone {
 }
 export namespace RealtimeServerEventResponseAudioDone {
   export const TypeEnum = {
-    ResponseAudioDone: 'response.audio.done'
+    ResponseAudioDone: 'response.audio.done',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

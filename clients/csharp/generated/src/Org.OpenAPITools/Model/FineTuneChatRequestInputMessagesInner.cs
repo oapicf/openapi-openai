@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneChatRequestInputMessagesInner" /> class.
         /// </summary>
         /// <param name="chatCompletionRequestSystemMessage"></param>
-        public FineTuneChatRequestInputMessagesInner(ChatCompletionRequestSystemMessage chatCompletionRequestSystemMessage)
+        internal FineTuneChatRequestInputMessagesInner(ChatCompletionRequestSystemMessage chatCompletionRequestSystemMessage)
         {
             ChatCompletionRequestSystemMessage = chatCompletionRequestSystemMessage;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneChatRequestInputMessagesInner" /> class.
         /// </summary>
         /// <param name="chatCompletionRequestUserMessage"></param>
-        public FineTuneChatRequestInputMessagesInner(ChatCompletionRequestUserMessage chatCompletionRequestUserMessage)
+        internal FineTuneChatRequestInputMessagesInner(ChatCompletionRequestUserMessage chatCompletionRequestUserMessage)
         {
             ChatCompletionRequestUserMessage = chatCompletionRequestUserMessage;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneChatRequestInputMessagesInner" /> class.
         /// </summary>
         /// <param name="fineTuneChatCompletionRequestAssistantMessage"></param>
-        public FineTuneChatRequestInputMessagesInner(FineTuneChatCompletionRequestAssistantMessage fineTuneChatCompletionRequestAssistantMessage)
+        internal FineTuneChatRequestInputMessagesInner(FineTuneChatCompletionRequestAssistantMessage fineTuneChatCompletionRequestAssistantMessage)
         {
             FineTuneChatCompletionRequestAssistantMessage = fineTuneChatCompletionRequestAssistantMessage;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneChatRequestInputMessagesInner" /> class.
         /// </summary>
         /// <param name="chatCompletionRequestToolMessage"></param>
-        public FineTuneChatRequestInputMessagesInner(ChatCompletionRequestToolMessage chatCompletionRequestToolMessage)
+        internal FineTuneChatRequestInputMessagesInner(ChatCompletionRequestToolMessage chatCompletionRequestToolMessage)
         {
             ChatCompletionRequestToolMessage = chatCompletionRequestToolMessage;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneChatRequestInputMessagesInner" /> class.
         /// </summary>
         /// <param name="chatCompletionRequestFunctionMessage"></param>
-        public FineTuneChatRequestInputMessagesInner(ChatCompletionRequestFunctionMessage chatCompletionRequestFunctionMessage)
+        internal FineTuneChatRequestInputMessagesInner(ChatCompletionRequestFunctionMessage chatCompletionRequestFunctionMessage)
         {
             ChatCompletionRequestFunctionMessage = chatCompletionRequestFunctionMessage;
             OnCreated();
@@ -243,7 +243,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatRequestInputMessagesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneChatRequestInputMessagesInner fineTuneChatRequestInputMessagesInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,7 +257,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatRequestInputMessagesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneChatRequestInputMessagesInner fineTuneChatRequestInputMessagesInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

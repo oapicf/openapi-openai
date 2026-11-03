@@ -74,15 +74,14 @@ class _$CreateChatCompletionRequestResponseFormatSerializer implements Primitive
   }
 }
 
+
+/// The type of response format being defined: `text`
 class CreateChatCompletionRequestResponseFormatTypeEnum extends EnumClass {
 
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'text')
   static const CreateChatCompletionRequestResponseFormatTypeEnum text = _$createChatCompletionRequestResponseFormatTypeEnum_text;
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'json_object')
   static const CreateChatCompletionRequestResponseFormatTypeEnum jsonObject = _$createChatCompletionRequestResponseFormatTypeEnum_jsonObject;
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'json_schema')
   static const CreateChatCompletionRequestResponseFormatTypeEnum jsonSchema = _$createChatCompletionRequestResponseFormatTypeEnum_jsonSchema;
 

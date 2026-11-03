@@ -54,8 +54,6 @@ PAGE(String.valueOf("page"));
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid UsageTimeBucket> data = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")

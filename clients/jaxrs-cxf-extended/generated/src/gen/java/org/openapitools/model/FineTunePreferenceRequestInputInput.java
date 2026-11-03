@@ -17,14 +17,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FineTunePreferenceRequestInputInput  {
   
   @ApiModelProperty(value = "")
-  @Valid
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
  /**
   * A list of tools the model may generate JSON inputs for.
   */
   @ApiModelProperty(value = "A list of tools the model may generate JSON inputs for.")
-  @Valid
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
  /**
@@ -37,21 +35,21 @@ public class FineTunePreferenceRequestInputInput  {
   * @return messages
   */
   @JsonProperty("messages")
- @Size(min=1)  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+ @Size(min=1)  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
   /**
    * Sets the <code>messages</code> property.
    */
- public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+ public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
   /**
    * Sets the <code>messages</code> property.
    */
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }

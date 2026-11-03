@@ -18,7 +18,7 @@ import org.openapitools.model.CreateAssistantRequestToolResources;
 /**
  * CreateAssistantRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequest   {
   @JsonProperty("model")
   private CreateAssistantRequestModel model;
@@ -33,7 +33,7 @@ public class CreateAssistantRequest   {
   private String instructions;
 
   @JsonProperty("tools")
-  private List<AssistantObjectToolsInner> tools = null;
+  private List<@Valid AssistantObjectToolsInner> tools = null;
 
   @JsonProperty("tool_resources")
   private CreateAssistantRequestToolResources toolResources;
@@ -122,7 +122,7 @@ public class CreateAssistantRequest   {
     this.instructions = instructions;
   }
 
-  public CreateAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -140,11 +140,11 @@ public class CreateAssistantRequest   {
    * @return tools
   **/
   @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

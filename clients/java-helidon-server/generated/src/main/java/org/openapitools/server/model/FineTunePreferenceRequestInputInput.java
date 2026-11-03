@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 
 public class FineTunePreferenceRequestInputInput   {
 
-    private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+    private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
     private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
     private Boolean parallelToolCalls = true;
 
@@ -32,7 +32,7 @@ public class FineTunePreferenceRequestInputInput   {
      * @param parallelToolCalls Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.
      */
     public FineTunePreferenceRequestInputInput(
-        List<FineTuneChatRequestInputMessagesInner> messages, 
+        List<@Valid FineTuneChatRequestInputMessagesInner> messages, 
         List<@Valid ChatCompletionTool> tools, 
         Boolean parallelToolCalls
     ) {
@@ -47,11 +47,11 @@ public class FineTunePreferenceRequestInputInput   {
      * Get messages
      * @return messages
      */
-    public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+    public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+    public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
         this.messages = messages;
     }
 

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **createModeration**
 ```swift
-    open class func createModeration(createModerationRequest: CreateModerationRequest, completion: @escaping (_ data: CreateModerationResponse?, _ error: Error?) -> Void)
+    open class func createModeration(createModerationRequest: CreateModerationRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CreateModerationResponse
 ```
 
 Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
@@ -22,15 +22,11 @@ import OpenAPIClient
 let createModerationRequest = CreateModerationRequest(input: CreateModerationRequest_input(), model: CreateModerationRequest_model()) // CreateModerationRequest | 
 
 // Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation). 
-ModerationsAPI.createModeration(createModerationRequest: createModerationRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ModerationsAPI.createModeration(createModerationRequest: createModerationRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

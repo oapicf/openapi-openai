@@ -430,7 +430,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<Invite.ObjectEnum?>(Invite.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                Invite.ObjectEnum? varObjectValue = Invite.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<Invite.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -441,12 +446,22 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<Invite.RoleEnum?>(Invite.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                Invite.RoleEnum? roleValue = Invite.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<Invite.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<Invite.StatusEnum?>(Invite.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                Invite.StatusEnum? statusValue = Invite.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<Invite.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "invited_at":
                             invitedAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -467,52 +482,52 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(varObject));
+                throw new JsonException("Property is required for class Invite: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(id));
+                throw new JsonException("Property is required for class Invite: id.");
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(email));
+                throw new JsonException("Property is required for class Invite: email.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(role));
+                throw new JsonException("Property is required for class Invite: role.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(status));
+                throw new JsonException("Property is required for class Invite: status.");
 
             if (!invitedAt.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(invitedAt));
+                throw new JsonException("Property is required for class Invite: invited_at.");
 
             if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class Invite.", nameof(expiresAt));
+                throw new JsonException("Property is required for class Invite: expires_at.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: id.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: email.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: role.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: status.");
 
             if (invitedAt.IsSet && invitedAt.Value == null)
-                throw new ArgumentNullException(nameof(invitedAt), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: invited_at.");
 
             if (expiresAt.IsSet && expiresAt.Value == null)
-                throw new ArgumentNullException(nameof(expiresAt), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: expires_at.");
 
             if (acceptedAt.IsSet && acceptedAt.Value == null)
-                throw new ArgumentNullException(nameof(acceptedAt), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: accepted_at.");
 
             if (projects.IsSet && projects.Value == null)
-                throw new ArgumentNullException(nameof(projects), "Property is not nullable for class Invite.");
+                throw new JsonException("Property is not nullable for class Invite: projects.");
 
             return new Invite(varObject.Value!.Value!, id.Value!, email.Value!, role.Value!.Value!, status.Value!.Value!, invitedAt.Value!.Value!, expiresAt.Value!.Value!, acceptedAt, projects);
         }
@@ -523,7 +538,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="invite"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Invite invite, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -538,17 +552,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="invite"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Invite invite, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (invite.Id == null)
-                throw new ArgumentNullException(nameof(invite.Id), "Property is required for class Invite.");
-
-            if (invite.Email == null)
-                throw new ArgumentNullException(nameof(invite.Email), "Property is required for class Invite.");
+            if (invite.AcceptedAtOption.IsSet && invite.AcceptedAt == null)
+                throw new JsonException("Cannot write null property Invite.AcceptedAt to non-nullable JSON property 'accepted_at'.");
 
             if (invite.ProjectsOption.IsSet && invite.Projects == null)
-                throw new ArgumentNullException(nameof(invite.Projects), "Property is required for class Invite.");
+                throw new JsonException("Cannot write null property Invite.Projects to non-nullable JSON property 'projects'.");
 
             var varObjectRawValue = Invite.ObjectEnumToJsonValue(invite.Object);
             writer.WriteString("object", varObjectRawValue);

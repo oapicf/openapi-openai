@@ -235,7 +235,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ProjectApiKeyOwner.TypeEnum?>(ProjectApiKeyOwner.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ProjectApiKeyOwner.TypeEnum? typeValue = ProjectApiKeyOwner.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ProjectApiKeyOwner.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "user":
                             user = new Option<ProjectUser?>(JsonSerializer.Deserialize<ProjectUser>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -250,13 +255,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ProjectApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyOwner: type.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class ProjectApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyOwner: user.");
 
             if (serviceAccount.IsSet && serviceAccount.Value == null)
-                throw new ArgumentNullException(nameof(serviceAccount), "Property is not nullable for class ProjectApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyOwner: service_account.");
 
             return new ProjectApiKeyOwner(type, user, serviceAccount);
         }
@@ -267,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyOwner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectApiKeyOwner projectApiKeyOwner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -282,14 +286,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyOwner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectApiKeyOwner projectApiKeyOwner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (projectApiKeyOwner.TypeOption.IsSet && projectApiKeyOwner.Type == null)
+                throw new JsonException("Cannot write null property ProjectApiKeyOwner.Type to non-nullable JSON property 'type'.");
+
             if (projectApiKeyOwner.UserOption.IsSet && projectApiKeyOwner.User == null)
-                throw new ArgumentNullException(nameof(projectApiKeyOwner.User), "Property is required for class ProjectApiKeyOwner.");
+                throw new JsonException("Cannot write null property ProjectApiKeyOwner.User to non-nullable JSON property 'user'.");
 
             if (projectApiKeyOwner.ServiceAccountOption.IsSet && projectApiKeyOwner.ServiceAccount == null)
-                throw new ArgumentNullException(nameof(projectApiKeyOwner.ServiceAccount), "Property is required for class ProjectApiKeyOwner.");
+                throw new JsonException("Cannot write null property ProjectApiKeyOwner.ServiceAccount to non-nullable JSON property 'service_account'.");
 
             var typeRawValue = ProjectApiKeyOwner.TypeEnumToJsonValue(projectApiKeyOwner.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

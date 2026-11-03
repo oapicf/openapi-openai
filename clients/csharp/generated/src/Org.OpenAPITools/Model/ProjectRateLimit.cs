@@ -296,7 +296,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectRateLimit.ObjectEnum?>(ProjectRateLimit.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectRateLimit.ObjectEnum? varObjectValue = ProjectRateLimit.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectRateLimit.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -329,46 +334,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectRateLimit.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectRateLimit: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectRateLimit.", nameof(id));
+                throw new JsonException("Property is required for class ProjectRateLimit: id.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class ProjectRateLimit.", nameof(model));
+                throw new JsonException("Property is required for class ProjectRateLimit: model.");
 
             if (!maxRequestsPer1Minute.IsSet)
-                throw new ArgumentException("Property is required for class ProjectRateLimit.", nameof(maxRequestsPer1Minute));
+                throw new JsonException("Property is required for class ProjectRateLimit: max_requests_per_1_minute.");
 
             if (!maxTokensPer1Minute.IsSet)
-                throw new ArgumentException("Property is required for class ProjectRateLimit.", nameof(maxTokensPer1Minute));
+                throw new JsonException("Property is required for class ProjectRateLimit: max_tokens_per_1_minute.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: id.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: model.");
 
             if (maxRequestsPer1Minute.IsSet && maxRequestsPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Minute), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: max_requests_per_1_minute.");
 
             if (maxTokensPer1Minute.IsSet && maxTokensPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxTokensPer1Minute), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: max_tokens_per_1_minute.");
 
             if (maxImagesPer1Minute.IsSet && maxImagesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxImagesPer1Minute), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: max_images_per_1_minute.");
 
             if (maxAudioMegabytesPer1Minute.IsSet && maxAudioMegabytesPer1Minute.Value == null)
-                throw new ArgumentNullException(nameof(maxAudioMegabytesPer1Minute), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: max_audio_megabytes_per_1_minute.");
 
             if (maxRequestsPer1Day.IsSet && maxRequestsPer1Day.Value == null)
-                throw new ArgumentNullException(nameof(maxRequestsPer1Day), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: max_requests_per_1_day.");
 
             if (batch1DayMaxInputTokens.IsSet && batch1DayMaxInputTokens.Value == null)
-                throw new ArgumentNullException(nameof(batch1DayMaxInputTokens), "Property is not nullable for class ProjectRateLimit.");
+                throw new JsonException("Property is not nullable for class ProjectRateLimit: batch_1_day_max_input_tokens.");
 
             return new ProjectRateLimit(varObject.Value!.Value!, id.Value!, model.Value!, maxRequestsPer1Minute.Value!.Value!, maxTokensPer1Minute.Value!.Value!, maxImagesPer1Minute, maxAudioMegabytesPer1Minute, maxRequestsPer1Day, batch1DayMaxInputTokens);
         }
@@ -379,7 +384,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectRateLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectRateLimit projectRateLimit, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -394,14 +398,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectRateLimit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectRateLimit projectRateLimit, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectRateLimit.Id == null)
-                throw new ArgumentNullException(nameof(projectRateLimit.Id), "Property is required for class ProjectRateLimit.");
+            if (projectRateLimit.MaxImagesPer1MinuteOption.IsSet && projectRateLimit.MaxImagesPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimit.MaxImagesPer1Minute to non-nullable JSON property 'max_images_per_1_minute'.");
 
-            if (projectRateLimit.Model == null)
-                throw new ArgumentNullException(nameof(projectRateLimit.Model), "Property is required for class ProjectRateLimit.");
+            if (projectRateLimit.MaxAudioMegabytesPer1MinuteOption.IsSet && projectRateLimit.MaxAudioMegabytesPer1Minute == null)
+                throw new JsonException("Cannot write null property ProjectRateLimit.MaxAudioMegabytesPer1Minute to non-nullable JSON property 'max_audio_megabytes_per_1_minute'.");
+
+            if (projectRateLimit.MaxRequestsPer1DayOption.IsSet && projectRateLimit.MaxRequestsPer1Day == null)
+                throw new JsonException("Cannot write null property ProjectRateLimit.MaxRequestsPer1Day to non-nullable JSON property 'max_requests_per_1_day'.");
+
+            if (projectRateLimit.Batch1DayMaxInputTokensOption.IsSet && projectRateLimit.Batch1DayMaxInputTokens == null)
+                throw new JsonException("Cannot write null property ProjectRateLimit.Batch1DayMaxInputTokens to non-nullable JSON property 'batch_1_day_max_input_tokens'.");
 
             var varObjectRawValue = ProjectRateLimit.ObjectEnumToJsonValue(projectRateLimit.Object);
             writer.WriteString("object", varObjectRawValue);

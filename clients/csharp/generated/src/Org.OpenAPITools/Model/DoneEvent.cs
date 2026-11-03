@@ -240,12 +240,22 @@ namespace Org.OpenAPITools.Model
                         case "event":
                             string? varEventRawValue = utf8JsonReader.GetString();
                             if (varEventRawValue != null)
-                                varEvent = new Option<DoneEvent.EventEnum?>(DoneEvent.EventEnumFromStringOrDefault(varEventRawValue));
+                            {
+                                DoneEvent.EventEnum? varEventValue = DoneEvent.EventEnumFromStringOrDefault(varEventRawValue);
+                                if (varEventValue == null)
+                                    throw new JsonException();
+                                varEvent = new Option<DoneEvent.EventEnum?>(varEventValue);
+                            }
                             break;
                         case "data":
                             string? dataRawValue = utf8JsonReader.GetString();
                             if (dataRawValue != null)
-                                data = new Option<DoneEvent.DataEnum?>(DoneEvent.DataEnumFromStringOrDefault(dataRawValue));
+                            {
+                                DoneEvent.DataEnum? dataValue = DoneEvent.DataEnumFromStringOrDefault(dataRawValue);
+                                if (dataValue == null)
+                                    throw new JsonException();
+                                data = new Option<DoneEvent.DataEnum?>(dataValue);
+                            }
                             break;
                         default:
                             break;
@@ -254,16 +264,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class DoneEvent.", nameof(varEvent));
+                throw new JsonException("Property is required for class DoneEvent: event.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class DoneEvent.", nameof(data));
+                throw new JsonException("Property is required for class DoneEvent: data.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class DoneEvent.");
+                throw new JsonException("Property is not nullable for class DoneEvent: event.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class DoneEvent.");
+                throw new JsonException("Property is not nullable for class DoneEvent: data.");
 
             return new DoneEvent(varEvent.Value!.Value!, data.Value!.Value!);
         }
@@ -274,7 +284,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="doneEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DoneEvent doneEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -289,7 +298,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="doneEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DoneEvent doneEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             var varEventRawValue = DoneEvent.EventEnumToJsonValue(doneEvent.Event);

@@ -22,15 +22,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ChatCompletionTokenLogprobTopLogprobsInner(
 
     @Schema(required = true, description = "The token.")
-    @param:JsonProperty("token")
+    @param:JsonProperty("token", required = true)
     @get:JsonProperty("token", required = true) val token: kotlin.String,
 
     @Schema(required = true, description = "The log probability of this token, if it is within the top 20 most likely tokens. Otherwise, the value `-9999.0` is used to signify that the token is very unlikely.")
-    @param:JsonProperty("logprob")
+    @param:JsonProperty("logprob", required = true)
     @get:JsonProperty("logprob", required = true) val logprob: java.math.BigDecimal,
 
     @Schema(required = true, description = "A list of integers representing the UTF-8 bytes representation of the token. Useful in instances where characters are represented by multiple tokens and their byte representations must be combined to generate the correct text representation. Can be `null` if there is no bytes representation for the token.")
-    @param:JsonProperty("bytes")
+    @param:JsonProperty("bytes", required = true)
     @get:JsonProperty("bytes", required = true) val bytes: kotlin.collections.List<kotlin.Int>?
 ) {
 

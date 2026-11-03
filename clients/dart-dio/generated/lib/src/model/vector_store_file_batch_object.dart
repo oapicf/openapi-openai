@@ -193,9 +193,10 @@ class _$VectorStoreFileBatchObjectSerializer implements PrimitiveSerializer<Vect
   }
 }
 
+
+/// The object type, which is always `vector_store.file_batch`.
 class VectorStoreFileBatchObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `vector_store.file_batch`.
   @BuiltValueEnumConst(wireName: r'vector_store.files_batch')
   static const VectorStoreFileBatchObjectObjectEnum vectorStorePeriodFilesBatch = _$vectorStoreFileBatchObjectObjectEnum_vectorStorePeriodFilesBatch;
 
@@ -207,18 +208,15 @@ class VectorStoreFileBatchObjectObjectEnum extends EnumClass {
   static VectorStoreFileBatchObjectObjectEnum valueOf(String name) => _$vectorStoreFileBatchObjectObjectEnumValueOf(name);
 }
 
+/// The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
 class VectorStoreFileBatchObjectStatusEnum extends EnumClass {
 
-  /// The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const VectorStoreFileBatchObjectStatusEnum inProgress = _$vectorStoreFileBatchObjectStatusEnum_inProgress;
-  /// The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
   @BuiltValueEnumConst(wireName: r'completed')
   static const VectorStoreFileBatchObjectStatusEnum completed = _$vectorStoreFileBatchObjectStatusEnum_completed;
-  /// The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const VectorStoreFileBatchObjectStatusEnum cancelled = _$vectorStoreFileBatchObjectStatusEnum_cancelled;
-  /// The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
   @BuiltValueEnumConst(wireName: r'failed')
   static const VectorStoreFileBatchObjectStatusEnum failed = _$vectorStoreFileBatchObjectStatusEnum_failed;
 

@@ -19,21 +19,21 @@ import io.swagger.v3.oas.annotations.media.Schema
  * Represents an embedding vector returned by embedding endpoint. 
  * @param index The index of the embedding in the list of embeddings.
  * @param embedding The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). 
- * @param &#x60;object&#x60; The object type, which is always \"embedding\".
+ * @param `object` The object type, which is always \"embedding\".
  */
 data class Embedding(
 
     @Schema(required = true, description = "The index of the embedding in the list of embeddings.")
-    @param:JsonProperty("index")
+    @param:JsonProperty("index", required = true)
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ")
-    @param:JsonProperty("embedding")
+    @param:JsonProperty("embedding", required = true)
     @get:JsonProperty("embedding", required = true) val embedding: kotlin.collections.List<java.math.BigDecimal>,
 
     @Schema(required = true, description = "The object type, which is always \"embedding\".")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: Embedding.`Object`
 ) {
 
@@ -44,12 +44,12 @@ data class Embedding(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         embedding("embedding");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

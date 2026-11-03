@@ -29,8 +29,6 @@ import {
 export interface FineTuneDPOMethod {
     /**
      * 
-     * @type {FineTuneDPOMethodHyperparameters}
-     * @memberof FineTuneDPOMethod
      */
     hyperparameters?: FineTuneDPOMethodHyperparameters;
 }

@@ -24,7 +24,7 @@ import org.openapitools.model.TruncationObject;
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
 @ApiModel(description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObject   {
   @JsonProperty("id")
   private String id;
@@ -149,7 +149,7 @@ public class RunObject   {
   private String instructions;
 
   @JsonProperty("tools")
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   @JsonProperty("metadata")
   private Object metadata;
@@ -469,7 +469,7 @@ public class RunObject   {
     this.instructions = instructions;
   }
 
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -484,11 +484,11 @@ public class RunObject   {
    * @return tools
   **/
   @ApiModelProperty(required = true, value = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

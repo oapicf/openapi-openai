@@ -12,7 +12,7 @@ import org.openapitools.model.MessageDeltaObjectDelta;
  * Represents a message delta i.e. any changed fields on a message during streaming. 
  */
 @ApiModel(description = "Represents a message delta i.e. any changed fields on a message during streaming. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaObject   {
   @JsonProperty("id")
   private String id;

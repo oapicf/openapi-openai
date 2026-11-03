@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class MessageDeltaContentTextObjectText.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextObjectText: value.");
 
             if (annotations.IsSet && annotations.Value == null)
-                throw new ArgumentNullException(nameof(annotations), "Property is not nullable for class MessageDeltaContentTextObjectText.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextObjectText: annotations.");
 
             return new MessageDeltaContentTextObjectText(value, annotations);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextObjectText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentTextObjectText messageDeltaContentTextObjectText, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextObjectText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentTextObjectText messageDeltaContentTextObjectText, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentTextObjectText.ValueOption.IsSet && messageDeltaContentTextObjectText.Value == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextObjectText.Value), "Property is required for class MessageDeltaContentTextObjectText.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextObjectText.Value to non-nullable JSON property 'value'.");
 
             if (messageDeltaContentTextObjectText.AnnotationsOption.IsSet && messageDeltaContentTextObjectText.Annotations == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextObjectText.Annotations), "Property is required for class MessageDeltaContentTextObjectText.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextObjectText.Annotations to non-nullable JSON property 'annotations'.");
 
             if (messageDeltaContentTextObjectText.ValueOption.IsSet)
                 writer.WriteString("value", messageDeltaContentTextObjectText.Value);

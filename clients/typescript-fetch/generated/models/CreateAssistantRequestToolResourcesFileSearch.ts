@@ -30,15 +30,11 @@ export interface CreateAssistantRequestToolResourcesFileSearch {
     /**
      * The [vector store](/docs/api-reference/vector-stores/object) attached to this assistant. There can be a maximum of 1 vector store attached to the assistant.
      * 
-     * @type {Array<string>}
-     * @memberof CreateAssistantRequestToolResourcesFileSearch
      */
     vectorStoreIds?: Array<string>;
     /**
      * A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant.
      * 
-     * @type {Array<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>}
-     * @memberof CreateAssistantRequestToolResourcesFileSearch
      */
     vectorStores?: Array<CreateAssistantRequestToolResourcesFileSearchVectorStoresInner>;
 }

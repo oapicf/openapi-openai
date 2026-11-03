@@ -175,9 +175,10 @@ class _$RealtimeServerEventConversationItemInputAudioTranscriptionCompletedSeria
   }
 }
 
+
+/// The event type, must be `conversation.item.input_audio_transcription.completed`. 
 class RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.input_audio_transcription.completed`. 
   @BuiltValueEnumConst(wireName: r'conversation.item.input_audio_transcription.completed')
   static const RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum conversationPeriodItemPeriodInputAudioTranscriptionPeriodCompleted = _$realtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum_conversationPeriodItemPeriodInputAudioTranscriptionPeriodCompleted;
 

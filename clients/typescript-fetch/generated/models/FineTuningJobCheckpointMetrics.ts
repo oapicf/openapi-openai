@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface FineTuningJobCheckpointMetrics {
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     step?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     trainLoss?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     trainMeanTokenAccuracy?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     validLoss?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     validMeanTokenAccuracy?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     fullValidLoss?: number;
     /**
      * 
-     * @type {number}
-     * @memberof FineTuningJobCheckpointMetrics
      */
     fullValidMeanTokenAccuracy?: number;
 }

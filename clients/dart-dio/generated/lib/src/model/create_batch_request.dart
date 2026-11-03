@@ -162,15 +162,14 @@ class _$CreateBatchRequestSerializer implements PrimitiveSerializer<CreateBatchR
   }
 }
 
+
+/// The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
 class CreateBatchRequestEndpointEnum extends EnumClass {
 
-  /// The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
   @BuiltValueEnumConst(wireName: r'/v1/chat/completions')
   static const CreateBatchRequestEndpointEnum slashV1SlashChatSlashCompletions = _$createBatchRequestEndpointEnum_slashV1SlashChatSlashCompletions;
-  /// The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
   @BuiltValueEnumConst(wireName: r'/v1/embeddings')
   static const CreateBatchRequestEndpointEnum slashV1SlashEmbeddings = _$createBatchRequestEndpointEnum_slashV1SlashEmbeddings;
-  /// The endpoint to be used for all requests in the batch. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
   @BuiltValueEnumConst(wireName: r'/v1/completions')
   static const CreateBatchRequestEndpointEnum slashV1SlashCompletions = _$createBatchRequestEndpointEnum_slashV1SlashCompletions;
 
@@ -182,9 +181,9 @@ class CreateBatchRequestEndpointEnum extends EnumClass {
   static CreateBatchRequestEndpointEnum valueOf(String name) => _$createBatchRequestEndpointEnumValueOf(name);
 }
 
+/// The time frame within which the batch should be processed. Currently only `24h` is supported.
 class CreateBatchRequestCompletionWindowEnum extends EnumClass {
 
-  /// The time frame within which the batch should be processed. Currently only `24h` is supported.
   @BuiltValueEnumConst(wireName: r'24h')
   static const CreateBatchRequestCompletionWindowEnum n24h = _$createBatchRequestCompletionWindowEnum_n24h;
 

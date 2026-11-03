@@ -24,20 +24,14 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventConversationItemDeleted {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemDeleted
      */
     eventId: string;
     /**
      * The event type, must be `conversation.item.deleted`.
-     * @type {RealtimeServerEventConversationItemDeletedTypeEnum}
-     * @memberof RealtimeServerEventConversationItemDeleted
      */
     type: RealtimeServerEventConversationItemDeletedTypeEnum;
     /**
      * The ID of the item that was deleted.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemDeleted
      */
     itemId: string;
 }
@@ -47,7 +41,7 @@ export interface RealtimeServerEventConversationItemDeleted {
  * @export
  */
 export const RealtimeServerEventConversationItemDeletedTypeEnum = {
-    ConversationItemDeleted: 'conversation.item.deleted'
+    ConversationItemDeleted: 'conversation.item.deleted',
 } as const;
 export type RealtimeServerEventConversationItemDeletedTypeEnum = typeof RealtimeServerEventConversationItemDeletedTypeEnum[keyof typeof RealtimeServerEventConversationItemDeletedTypeEnum];
 

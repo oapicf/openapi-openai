@@ -203,7 +203,12 @@ namespace Org.OpenAPITools.Model
                         case "ranker":
                             string? rankerRawValue = utf8JsonReader.GetString();
                             if (rankerRawValue != null)
-                                ranker = new Option<RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnum?>(RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnumFromStringOrDefault(rankerRawValue));
+                            {
+                                RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnum? rankerValue = RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnumFromStringOrDefault(rankerRawValue);
+                                if (rankerValue == null)
+                                    throw new JsonException();
+                                ranker = new Option<RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnum?>(rankerValue);
+                            }
                             break;
                         case "score_threshold":
                             scoreThreshold = new Option<decimal?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (decimal?)null : utf8JsonReader.GetDecimal());
@@ -215,16 +220,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!ranker.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchRankingOptionsObject.", nameof(ranker));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchRankingOptionsObject: ranker.");
 
             if (!scoreThreshold.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchRankingOptionsObject.", nameof(scoreThreshold));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchRankingOptionsObject: score_threshold.");
 
             if (ranker.IsSet && ranker.Value == null)
-                throw new ArgumentNullException(nameof(ranker), "Property is not nullable for class RunStepDetailsToolCallsFileSearchRankingOptionsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchRankingOptionsObject: ranker.");
 
             if (scoreThreshold.IsSet && scoreThreshold.Value == null)
-                throw new ArgumentNullException(nameof(scoreThreshold), "Property is not nullable for class RunStepDetailsToolCallsFileSearchRankingOptionsObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchRankingOptionsObject: score_threshold.");
 
             return new RunStepDetailsToolCallsFileSearchRankingOptionsObject(ranker.Value!.Value!, scoreThreshold.Value!.Value!);
         }
@@ -235,7 +240,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchRankingOptionsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchRankingOptionsObject runStepDetailsToolCallsFileSearchRankingOptionsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -250,7 +254,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchRankingOptionsObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchRankingOptionsObject runStepDetailsToolCallsFileSearchRankingOptionsObject, JsonSerializerOptions jsonSerializerOptions)
         {
             var rankerRawValue = RunStepDetailsToolCallsFileSearchRankingOptionsObject.RankerEnumToJsonValue(runStepDetailsToolCallsFileSearchRankingOptionsObject.Ranker);

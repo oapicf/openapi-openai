@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface DoneEvent {
     /**
      * 
-     * @type {DoneEventEventEnum}
-     * @memberof DoneEvent
      */
     event: DoneEventEventEnum;
     /**
      * 
-     * @type {DoneEventDataEnum}
-     * @memberof DoneEvent
      */
     data: DoneEventDataEnum;
 }
@@ -38,7 +34,7 @@ export interface DoneEvent {
  * @export
  */
 export const DoneEventEventEnum = {
-    Done: 'done'
+    Done: 'done',
 } as const;
 export type DoneEventEventEnum = typeof DoneEventEventEnum[keyof typeof DoneEventEventEnum];
 
@@ -46,7 +42,7 @@ export type DoneEventEventEnum = typeof DoneEventEventEnum[keyof typeof DoneEven
  * @export
  */
 export const DoneEventDataEnum = {
-    Done: '[DONE]'
+    Done: '[DONE]',
 } as const;
 export type DoneEventDataEnum = typeof DoneEventDataEnum[keyof typeof DoneEventDataEnum];
 

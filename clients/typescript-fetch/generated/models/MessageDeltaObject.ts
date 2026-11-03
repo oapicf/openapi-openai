@@ -30,20 +30,14 @@ import {
 export interface MessageDeltaObject {
     /**
      * The identifier of the message, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof MessageDeltaObject
      */
     id: string;
     /**
      * The object type, which is always `thread.message.delta`.
-     * @type {MessageDeltaObjectObjectEnum}
-     * @memberof MessageDeltaObject
      */
     object: MessageDeltaObjectObjectEnum;
     /**
      * 
-     * @type {MessageDeltaObjectDelta}
-     * @memberof MessageDeltaObject
      */
     delta: MessageDeltaObjectDelta;
 }
@@ -53,7 +47,7 @@ export interface MessageDeltaObject {
  * @export
  */
 export const MessageDeltaObjectObjectEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
 } as const;
 export type MessageDeltaObjectObjectEnum = typeof MessageDeltaObjectObjectEnum[keyof typeof MessageDeltaObjectObjectEnum];
 

@@ -48,8 +48,6 @@ public class RunStepDetailsToolCallsFileSearchResultObject  {
   */
   @ApiModelProperty(value = "The content of the result that was found. The content is only included if requested via the include query parameter.")
 
-  @Valid
-
   private List<@Valid RunStepDetailsToolCallsFileSearchResultObjectContentInner> content = new ArrayList<>();
  /**
    * The ID of the file that result was found in.

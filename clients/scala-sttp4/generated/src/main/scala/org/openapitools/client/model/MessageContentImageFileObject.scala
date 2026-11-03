@@ -25,7 +25,7 @@ object MessageContentImageFileObjectEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ImageFile extends `Type`
+    case object ImageFile extends `Type` { override def toString: String = "image_file" }
 
     import org.json4s._
 

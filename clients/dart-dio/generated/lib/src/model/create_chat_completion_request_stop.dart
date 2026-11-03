@@ -67,3 +67,4 @@ class _$CreateChatCompletionRequestStopSerializer implements PrimitiveSerializer
   }
 }
 
+

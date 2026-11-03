@@ -107,9 +107,10 @@ class _$AutoChunkingStrategyRequestParamSerializer implements PrimitiveSerialize
   }
 }
 
+
+/// Always `auto`.
 class AutoChunkingStrategyRequestParamTypeEnum extends EnumClass {
 
-  /// Always `auto`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const AutoChunkingStrategyRequestParamTypeEnum auto = _$autoChunkingStrategyRequestParamTypeEnum_auto;
 

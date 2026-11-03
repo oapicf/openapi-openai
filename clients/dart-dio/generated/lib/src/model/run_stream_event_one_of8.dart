@@ -123,6 +123,7 @@ class _$RunStreamEventOneOf8Serializer implements PrimitiveSerializer<RunStreamE
   }
 }
 
+
 class RunStreamEventOneOf8EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.run.cancelled')

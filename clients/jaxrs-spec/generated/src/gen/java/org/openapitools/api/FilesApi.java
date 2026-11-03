@@ -21,7 +21,7 @@ import javax.validation.Valid;
 */
 @Path("/files")
 @Api(description = "the files API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FilesApi {
 
     @POST
@@ -34,7 +34,9 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = OpenAIFile.class)
     })
-    public Response createFile(@FormParam(value = "file") InputStream _fileInputStream,@FormParam(value = "purpose")  String purpose) {
+    public Response createFile(
+@FormParam(value = "file") InputStream _fileInputStream,
+@FormParam(value = "purpose")  String purpose) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -48,7 +50,8 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = DeleteFileResponse.class)
     })
-    public Response deleteFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId) {
+    public Response deleteFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -62,7 +65,8 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = String.class)
     })
-    public Response downloadFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId) {
+    public Response downloadFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -75,7 +79,11 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ListFilesResponse.class)
     })
-    public Response listFiles(@QueryParam("purpose")  @ApiParam("Only return files with the given purpose.")  String purpose,@QueryParam("limit") @DefaultValue("10000")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")  Integer limit,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after) {
+    public Response listFiles(@QueryParam("purpose")  @ApiParam("Only return files with the given purpose.")  String purpose
+,@QueryParam("limit") @DefaultValue("10000")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")  Integer limit
+,@QueryParam("order") @DefaultValue("desc")  @ApiParam("Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ")  String order
+,@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -89,7 +97,8 @@ public class FilesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = OpenAIFile.class)
     })
-    public Response retrieveFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId) {
+    public Response retrieveFile(@PathParam("file_id") @ApiParam("The ID of the file to use for this request.") String fileId
+) {
         return Response.ok().entity("magic!").build();
     }
 }

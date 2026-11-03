@@ -51,34 +51,34 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -94,21 +94,21 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -135,34 +135,34 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -178,21 +178,21 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -219,25 +219,25 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -253,15 +253,15 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -288,28 +288,28 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
@@ -318,7 +318,7 @@ class UsageController extends Controller
                 'batch' => [
                     'boolean',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -334,23 +334,23 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
         $batch = $request->boolean('batch');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -377,25 +377,25 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -411,15 +411,15 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageCostsBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -446,34 +446,34 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -489,21 +489,21 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -530,20 +530,20 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
                 'sources' => [
                     'array',
@@ -551,19 +551,19 @@ class UsageController extends Controller
                 'sizes' => [
                     'array',
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -579,9 +579,9 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
@@ -589,15 +589,15 @@ class UsageController extends Controller
 
         $sizes = $request->get('sizes');
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -624,34 +624,34 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'userIds' => [
+                'user_ids' => [
                     'array',
                 ],
-                'apiKeyIds' => [
+                'api_key_ids' => [
                     'array',
                 ],
                 'models' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -667,21 +667,21 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $userIds = $request->get('userIds');
+        $userIds = $request->get('user_ids');
 
-        $apiKeyIds = $request->get('apiKeyIds');
+        $apiKeyIds = $request->get('api_key_ids');
 
         $models = $request->get('models');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 
@@ -708,25 +708,25 @@ class UsageController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'startTime' => [
+                'start_time' => [
                     'required',
                     'integer',
                 ],
-                'endTime' => [
+                'end_time' => [
                     'integer',
                 ],
-                'bucketWidth' => [
+                'bucket_width' => [
                 ],
-                'projectIds' => [
+                'project_ids' => [
                     'array',
                 ],
-                'groupBy' => [
+                'group_by' => [
                     'array',
                 ],
                 'limit' => [
@@ -742,15 +742,15 @@ class UsageController extends Controller
             return response()->json(['error' => 'Invalid input'], 400);
         }
 
-        $startTime = $request->integer('startTime');
+        $startTime = $request->integer('start_time');
 
-        $endTime = $request->integer('endTime');
+        $endTime = $request->integer('end_time');
 
         $bucketWidth = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\UsageAudioSpeechesBucketWidthParameter::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids');
 
-        $groupBy = $request->get('groupBy');
+        $groupBy = $request->get('group_by');
 
         $limit = $request->integer('limit');
 

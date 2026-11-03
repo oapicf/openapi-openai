@@ -22,7 +22,7 @@ export interface ProjectApiKeyOwner {
 export namespace ProjectApiKeyOwner {
     export const TypeEnum = {
         User: 'user',
-        ServiceAccount: 'service_account'
+        ServiceAccount: 'service_account',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

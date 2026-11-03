@@ -29,14 +29,10 @@ import {
 export interface AuditLogOrganizationUpdated {
     /**
      * The organization ID.
-     * @type {string}
-     * @memberof AuditLogOrganizationUpdated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogOrganizationUpdatedChangesRequested}
-     * @memberof AuditLogOrganizationUpdated
      */
     changesRequested?: AuditLogOrganizationUpdatedChangesRequested;
 }

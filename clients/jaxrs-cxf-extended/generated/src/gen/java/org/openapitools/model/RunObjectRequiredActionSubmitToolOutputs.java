@@ -24,7 +24,6 @@ public class RunObjectRequiredActionSubmitToolOutputs  {
   * A list of the relevant tool calls.
   */
   @ApiModelProperty(required = true, value = "A list of the relevant tool calls.")
-  @Valid
   private List<@Valid RunToolCallObject> toolCalls = new ArrayList<>();
  /**
   * A list of the relevant tool calls.

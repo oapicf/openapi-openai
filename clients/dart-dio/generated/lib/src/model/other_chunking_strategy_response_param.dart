@@ -107,9 +107,10 @@ class _$OtherChunkingStrategyResponseParamSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// Always `other`.
 class OtherChunkingStrategyResponseParamTypeEnum extends EnumClass {
 
-  /// Always `other`.
   @BuiltValueEnumConst(wireName: r'other')
   static const OtherChunkingStrategyResponseParamTypeEnum other = _$otherChunkingStrategyResponseParamTypeEnum_other;
 

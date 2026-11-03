@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunStepObjectLastError {
     /**
      * One of `server_error` or `rate_limit_exceeded`.
-     * @type {RunStepObjectLastErrorCodeEnum}
-     * @memberof RunStepObjectLastError
      */
     code: RunStepObjectLastErrorCodeEnum;
     /**
      * A human-readable description of the error.
-     * @type {string}
-     * @memberof RunStepObjectLastError
      */
     message: string;
 }
@@ -39,7 +35,7 @@ export interface RunStepObjectLastError {
  */
 export const RunStepObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
-    RateLimitExceeded: 'rate_limit_exceeded'
+    RateLimitExceeded: 'rate_limit_exceeded',
 } as const;
 export type RunStepObjectLastErrorCodeEnum = typeof RunStepObjectLastErrorCodeEnum[keyof typeof RunStepObjectLastErrorCodeEnum];
 

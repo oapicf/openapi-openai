@@ -30,7 +30,7 @@ object RealtimeServerEventResponseOutputItemAddedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseOutputItemAdded extends `Type`
+    case object ResponseOutputItemAdded extends `Type` { override def toString: String = "response.output_item.added" }
 
     import org.json4s._
 

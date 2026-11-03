@@ -37,7 +37,7 @@ import javax.validation.Valid;
   CreateImageRequest.JSON_PROPERTY_STYLE,
   CreateImageRequest.JSON_PROPERTY_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateImageRequest   {
   public static final String JSON_PROPERTY_PROMPT = "prompt";
   @JsonProperty(JSON_PROPERTY_PROMPT)
@@ -45,7 +45,7 @@ public class CreateImageRequest   {
 
   public static final String JSON_PROPERTY_MODEL = "model";
   @JsonProperty(JSON_PROPERTY_MODEL)
-  private CreateImageRequestModel model;
+  private CreateImageRequestModel model = dall-e-2;
 
   public static final String JSON_PROPERTY_N = "n";
   @JsonProperty(JSON_PROPERTY_N)

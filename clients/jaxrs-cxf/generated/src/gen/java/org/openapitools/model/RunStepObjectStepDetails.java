@@ -75,9 +75,7 @@ MESSAGE_CREATION(String.valueOf("message_creation")), TOOL_CALLS(String.valueOf(
   */
   @ApiModelProperty(required = true, value = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ")
 
-  @Valid
-
-  private List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+  private List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
  /**
    * Always &#x60;message_creation&#x60;.
    * @return type
@@ -125,15 +123,15 @@ MESSAGE_CREATION(String.valueOf("message_creation")), TOOL_CALLS(String.valueOf(
   **/
   @JsonProperty("tool_calls")
   @NotNull
-  public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+  public List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;
   }
 
-  public void setToolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public void setToolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
   }
 
-  public RunStepObjectStepDetails toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepObjectStepDetails toolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
   }

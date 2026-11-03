@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.MessageDeltaObjectDeltaContentInner
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -27,15 +24,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class MessageDeltaObjectDelta(
 
     @Schema(description = "The entity that produced the message. One of `user` or `assistant`.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("role")
     @get:JsonProperty("role") val role: MessageDeltaObjectDelta.Role? = null,
 
     @field:Valid
     @Schema(description = "The content of the message in array of text and/or images.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("content")
     @get:JsonProperty("content") val content: kotlin.collections.List<MessageDeltaObjectDeltaContentInner>? = null
 ) {
@@ -48,12 +41,12 @@ data class MessageDeltaObjectDelta(
 
         user("user"),
         assistant("assistant");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }

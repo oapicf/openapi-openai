@@ -59,22 +59,22 @@ export namespace RealtimeConversationItem {
     export const TypeEnum = {
         Message: 'message',
         FunctionCall: 'function_call',
-        FunctionCallOutput: 'function_call_output'
+        FunctionCallOutput: 'function_call_output',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
     export const ObjectEnum = {
-        RealtimeItem: 'realtime.item'
+        RealtimeItem: 'realtime.item',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
         Completed: 'completed',
-        Incomplete: 'incomplete'
+        Incomplete: 'incomplete',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
     export const RoleEnum = {
         User: 'user',
         Assistant: 'assistant',
-        System: 'system'
+        System: 'system',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

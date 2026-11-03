@@ -23,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class VectorStoreFileObjectLastError(
 
     @Schema(required = true, description = "One of `server_error` or `rate_limit_exceeded`.")
-    @param:JsonProperty("code")
+    @param:JsonProperty("code", required = true)
     @get:JsonProperty("code", required = true) val code: VectorStoreFileObjectLastError.Code,
 
     @Schema(required = true, description = "A human-readable description of the error.")
-    @param:JsonProperty("message")
+    @param:JsonProperty("message", required = true)
     @get:JsonProperty("message", required = true) val message: kotlin.String
 ) {
 
@@ -40,12 +40,12 @@ data class VectorStoreFileObjectLastError(
         server_error("server_error"),
         unsupported_file("unsupported_file"),
         invalid_file("invalid_file");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Code {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Code'")
             }
         }

@@ -170,12 +170,12 @@ class _$RealtimeServerEventRateLimitsUpdatedRateLimitsInnerSerializer implements
   }
 }
 
+
+/// The name of the rate limit (`requests`, `tokens`). 
 class RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum extends EnumClass {
 
-  /// The name of the rate limit (`requests`, `tokens`). 
   @BuiltValueEnumConst(wireName: r'requests')
   static const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum requests = _$realtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum_requests;
-  /// The name of the rate limit (`requests`, `tokens`). 
   @BuiltValueEnumConst(wireName: r'tokens')
   static const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum tokens = _$realtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum_tokens;
 

@@ -12,7 +12,7 @@ export interface MessageContentRefusalObject {
 }
 export namespace MessageContentRefusalObject {
   export const TypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -74,12 +74,12 @@ class _$CreateModerationRequestInputOneOfInnerSerializer implements PrimitiveSer
   }
 }
 
+
+/// Always `image_url`.
 class CreateModerationRequestInputOneOfInnerTypeEnum extends EnumClass {
 
-  /// Always `image_url`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const CreateModerationRequestInputOneOfInnerTypeEnum imageUrl = _$createModerationRequestInputOneOfInnerTypeEnum_imageUrl;
-  /// Always `image_url`.
   @BuiltValueEnumConst(wireName: r'text')
   static const CreateModerationRequestInputOneOfInnerTypeEnum text = _$createModerationRequestInputOneOfInnerTypeEnum_text;
 

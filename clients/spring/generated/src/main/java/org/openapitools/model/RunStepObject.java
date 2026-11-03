@@ -24,7 +24,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RunStepObject", description = "Represents a step in execution of a run. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepObject {
 
   private String id;
@@ -392,8 +392,8 @@ public class RunStepObject {
    * Get lastError
    * @return lastError
    */
-  @NotNull @Valid 
-  @Schema(name = "last_error", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Valid 
+  @Schema(name = "last_error", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("last_error")
   public JsonNullable<RunStepObjectLastError> getLastError() {
     return lastError;
@@ -413,8 +413,8 @@ public class RunStepObject {
    * The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
    * @return expiredAt
    */
-  @NotNull 
-  @Schema(name = "expired_at", description = "The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "expired_at", description = "The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("expired_at")
   public JsonNullable<Integer> getExpiredAt() {
     return expiredAt;
@@ -434,8 +434,8 @@ public class RunStepObject {
    * The Unix timestamp (in seconds) for when the run step was cancelled.
    * @return cancelledAt
    */
-  @NotNull 
-  @Schema(name = "cancelled_at", description = "The Unix timestamp (in seconds) for when the run step was cancelled.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "cancelled_at", description = "The Unix timestamp (in seconds) for when the run step was cancelled.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("cancelled_at")
   public JsonNullable<Integer> getCancelledAt() {
     return cancelledAt;
@@ -455,8 +455,8 @@ public class RunStepObject {
    * The Unix timestamp (in seconds) for when the run step failed.
    * @return failedAt
    */
-  @NotNull 
-  @Schema(name = "failed_at", description = "The Unix timestamp (in seconds) for when the run step failed.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "failed_at", description = "The Unix timestamp (in seconds) for when the run step failed.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("failed_at")
   public JsonNullable<Integer> getFailedAt() {
     return failedAt;
@@ -476,8 +476,8 @@ public class RunStepObject {
    * The Unix timestamp (in seconds) for when the run step completed.
    * @return completedAt
    */
-  @NotNull 
-  @Schema(name = "completed_at", description = "The Unix timestamp (in seconds) for when the run step completed.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "completed_at", description = "The Unix timestamp (in seconds) for when the run step completed.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("completed_at")
   public JsonNullable<Integer> getCompletedAt() {
     return completedAt;
@@ -497,8 +497,8 @@ public class RunStepObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -518,8 +518,8 @@ public class RunStepObject {
    * Get usage
    * @return usage
    */
-  @NotNull @Valid 
-  @Schema(name = "usage", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ @Valid 
+  @Schema(name = "usage", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("usage")
   public JsonNullable<RunStepCompletionUsage> getUsage() {
     return usage;

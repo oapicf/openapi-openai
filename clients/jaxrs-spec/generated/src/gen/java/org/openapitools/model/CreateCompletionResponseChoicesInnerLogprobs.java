@@ -22,12 +22,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateCompletionResponse_choices_inner_logprobs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionResponseChoicesInnerLogprobs   {
-  private @Valid List<Integer> textOffset = new ArrayList<>();
-  private @Valid List<BigDecimal> tokenLogprobs = new ArrayList<>();
-  private @Valid List<String> tokens = new ArrayList<>();
-  private @Valid List<Map<String, BigDecimal>> topLogprobs = new ArrayList<>();
+  private List<Integer> textOffset = new ArrayList<>();
+  private List<BigDecimal> tokenLogprobs = new ArrayList<>();
+  private List<String> tokens = new ArrayList<>();
+  private List<Map<String, BigDecimal>> topLogprobs = new ArrayList<>();
 
   public CreateCompletionResponseChoicesInnerLogprobs() {
   }
@@ -77,7 +77,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("token_logprobs")
-  @Valid public List<@Valid BigDecimal> getTokenLogprobs() {
+  public List<@Valid BigDecimal> getTokenLogprobs() {
     return tokenLogprobs;
   }
 
@@ -147,7 +147,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("top_logprobs")
-  @Valid public List<@Valid Map<String, BigDecimal>> getTopLogprobs() {
+  public List<Map<String, BigDecimal>> getTopLogprobs() {
     return topLogprobs;
   }
 

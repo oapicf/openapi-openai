@@ -32,7 +32,7 @@ class ModerationsApi(baseUrl: String) {
    * 
    * @param createModerationRequest 
    */
-  def createModeration(bearerToken: String)(createModerationRequest: CreateModerationRequest): Request[Either[ResponseException[String], CreateModerationResponse]] =
+  def createModeration(bearerToken: String)(createModerationRequest: CreateModerationRequest): sttp.client4.Request[Either[ResponseException[String], CreateModerationResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/moderations")
       .contentType("application/json")

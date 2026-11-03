@@ -27,24 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventConversationItemInputAudioTranscriptionFailed(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `conversation.item.input_audio_transcription.failed`. ")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventConversationItemInputAudioTranscriptionFailed.Type,
 
     @Schema(required = true, description = "The ID of the user message item.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the content part containing the audio.")
-    @param:JsonProperty("content_index")
+    @param:JsonProperty("content_index", required = true)
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("error")
+    @param:JsonProperty("error", required = true)
     @get:JsonProperty("error", required = true) val error: RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
 ) {
 
@@ -55,12 +55,12 @@ data class RealtimeServerEventConversationItemInputAudioTranscriptionFailed(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         conversationPeriodItemPeriodInput_audio_transcriptionPeriodFailed("conversation.item.input_audio_transcription.failed");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

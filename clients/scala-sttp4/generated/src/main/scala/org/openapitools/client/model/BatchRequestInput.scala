@@ -27,7 +27,7 @@ object BatchRequestInputEnums {
 
   sealed trait Method
   object Method {
-    case object POST extends Method
+    case object POST extends Method { override def toString: String = "POST" }
 
     import org.json4s._
 

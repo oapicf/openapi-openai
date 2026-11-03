@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface CreateCompletionResponseChoicesInnerLogprobs {
     /**
      * 
-     * @type {Array<number>}
-     * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
     textOffset?: Array<number>;
     /**
      * 
-     * @type {Array<number>}
-     * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
     tokenLogprobs?: Array<number>;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
     tokens?: Array<string>;
     /**
      * 
-     * @type {Array<{ [key: string]: number; }>}
-     * @memberof CreateCompletionResponseChoicesInnerLogprobs
      */
     topLogprobs?: Array<{ [key: string]: number; }>;
 }

@@ -54,7 +54,7 @@ import javax.annotation.Generated;
   CreateRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("CreateRunRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateRunRequest {
     public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
@@ -73,7 +73,7 @@ public class CreateRunRequest {
     private List<@Valid CreateMessageRequest> additionalMessages = null;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = null;
+    private List<@Valid AssistantObjectToolsInner> tools = null;
 
     public static final String JSON_PROPERTY_METADATA = "metadata";
     private Object metadata;
@@ -228,7 +228,7 @@ public class CreateRunRequest {
         this.additionalMessages = additionalMessages;
     }
 
-    public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+    public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -249,13 +249,13 @@ public class CreateRunRequest {
     @Size(max=20)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

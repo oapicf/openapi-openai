@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface AdminApiKeyOwner {
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeyOwner
      */
     type?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeyOwner
      */
     id?: string;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeyOwner
      */
     name?: string;
     /**
      * 
-     * @type {number}
-     * @memberof AdminApiKeyOwner
      */
     createdAt?: number;
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeyOwner
      */
     role?: string;
 }

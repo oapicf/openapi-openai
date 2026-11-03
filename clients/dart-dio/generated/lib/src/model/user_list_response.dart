@@ -171,6 +171,7 @@ class _$UserListResponseSerializer implements PrimitiveSerializer<UserListRespon
   }
 }
 
+
 class UserListResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

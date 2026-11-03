@@ -124,9 +124,10 @@ class _$MessageContentImageUrlObjectSerializer implements PrimitiveSerializer<Me
   }
 }
 
+
+/// The type of the content part.
 class MessageContentImageUrlObjectTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const MessageContentImageUrlObjectTypeEnum imageUrl = _$messageContentImageUrlObjectTypeEnum_imageUrl;
 

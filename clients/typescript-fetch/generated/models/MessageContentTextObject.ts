@@ -29,14 +29,10 @@ import {
 export interface MessageContentTextObject {
     /**
      * Always `text`.
-     * @type {MessageContentTextObjectTypeEnum}
-     * @memberof MessageContentTextObject
      */
     type: MessageContentTextObjectTypeEnum;
     /**
      * 
-     * @type {MessageContentTextObjectText}
-     * @memberof MessageContentTextObject
      */
     text: MessageContentTextObjectText;
 }
@@ -46,7 +42,7 @@ export interface MessageContentTextObject {
  * @export
  */
 export const MessageContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type MessageContentTextObjectTypeEnum = typeof MessageContentTextObjectTypeEnum[keyof typeof MessageContentTextObjectTypeEnum];
 

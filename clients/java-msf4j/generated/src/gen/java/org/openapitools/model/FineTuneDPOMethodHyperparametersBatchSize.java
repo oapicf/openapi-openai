@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModel;
  * Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. 
  */
 @ApiModel(description = "Number of examples in each batch. A larger batch size means that model parameters are updated less frequently, but with lower variance. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparametersBatchSize   {
 
   @Override

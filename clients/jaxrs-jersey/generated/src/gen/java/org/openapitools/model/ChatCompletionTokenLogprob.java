@@ -36,7 +36,7 @@ import javax.validation.Valid;
   ChatCompletionTokenLogprob.JSON_PROPERTY_BYTES,
   ChatCompletionTokenLogprob.JSON_PROPERTY_TOP_LOGPROBS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionTokenLogprob   {
   public static final String JSON_PROPERTY_TOKEN = "token";
   @JsonProperty(JSON_PROPERTY_TOKEN)
@@ -141,7 +141,7 @@ public class ChatCompletionTokenLogprob   {
    **/
   @JsonProperty(value = "top_logprobs")
   @ApiModelProperty(required = true, value = "List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> getTopLogprobs() {
     return topLogprobs;
   }

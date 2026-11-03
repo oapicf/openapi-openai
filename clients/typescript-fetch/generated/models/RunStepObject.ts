@@ -44,99 +44,67 @@ import {
 export interface RunStepObject {
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof RunStepObject
      */
     id: string;
     /**
      * The object type, which is always `thread.run.step`.
-     * @type {RunStepObjectObjectEnum}
-     * @memberof RunStepObject
      */
     object: RunStepObjectObjectEnum;
     /**
      * The Unix timestamp (in seconds) for when the run step was created.
-     * @type {number}
-     * @memberof RunStepObject
      */
     createdAt: number;
     /**
      * The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
-     * @type {string}
-     * @memberof RunStepObject
      */
     assistantId: string;
     /**
      * The ID of the [thread](/docs/api-reference/threads) that was run.
-     * @type {string}
-     * @memberof RunStepObject
      */
     threadId: string;
     /**
      * The ID of the [run](/docs/api-reference/runs) that this run step is a part of.
-     * @type {string}
-     * @memberof RunStepObject
      */
     runId: string;
     /**
      * The type of run step, which can be either `message_creation` or `tool_calls`.
-     * @type {RunStepObjectTypeEnum}
-     * @memberof RunStepObject
      */
     type: RunStepObjectTypeEnum;
     /**
      * The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.
-     * @type {RunStepObjectStatusEnum}
-     * @memberof RunStepObject
      */
     status: RunStepObjectStatusEnum;
     /**
      * 
-     * @type {RunStepObjectStepDetails}
-     * @memberof RunStepObject
      */
     stepDetails: RunStepObjectStepDetails;
     /**
      * 
-     * @type {RunStepObjectLastError}
-     * @memberof RunStepObject
      */
     lastError: RunStepObjectLastError | null;
     /**
      * The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.
-     * @type {number}
-     * @memberof RunStepObject
      */
     expiredAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run step was cancelled.
-     * @type {number}
-     * @memberof RunStepObject
      */
     cancelledAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run step failed.
-     * @type {number}
-     * @memberof RunStepObject
      */
     failedAt: number | null;
     /**
      * The Unix timestamp (in seconds) for when the run step completed.
-     * @type {number}
-     * @memberof RunStepObject
      */
     completedAt: number | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof RunStepObject
      */
     metadata: object | null;
     /**
      * 
-     * @type {RunStepCompletionUsage}
-     * @memberof RunStepObject
      */
     usage: RunStepCompletionUsage | null;
 }
@@ -146,7 +114,7 @@ export interface RunStepObject {
  * @export
  */
 export const RunStepObjectObjectEnum = {
-    ThreadRunStep: 'thread.run.step'
+    ThreadRunStep: 'thread.run.step',
 } as const;
 export type RunStepObjectObjectEnum = typeof RunStepObjectObjectEnum[keyof typeof RunStepObjectObjectEnum];
 
@@ -155,7 +123,7 @@ export type RunStepObjectObjectEnum = typeof RunStepObjectObjectEnum[keyof typeo
  */
 export const RunStepObjectTypeEnum = {
     MessageCreation: 'message_creation',
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
 } as const;
 export type RunStepObjectTypeEnum = typeof RunStepObjectTypeEnum[keyof typeof RunStepObjectTypeEnum];
 
@@ -167,7 +135,7 @@ export const RunStepObjectStatusEnum = {
     Cancelled: 'cancelled',
     Failed: 'failed',
     Completed: 'completed',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type RunStepObjectStatusEnum = typeof RunStepObjectStatusEnum[keyof typeof RunStepObjectStatusEnum];
 

@@ -521,7 +521,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<RunStepObject.ObjectEnum?>(RunStepObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                RunStepObject.ObjectEnum? varObjectValue = RunStepObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<RunStepObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -538,12 +543,22 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepObject.TypeEnum?>(RunStepObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepObject.TypeEnum? typeValue = RunStepObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<RunStepObject.StatusEnum?>(RunStepObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                RunStepObject.StatusEnum? statusValue = RunStepObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<RunStepObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "step_details":
                             stepDetails = new Option<RunStepObjectStepDetails?>(JsonSerializer.Deserialize<RunStepObjectStepDetails>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -576,79 +591,79 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(id));
+                throw new JsonException("Property is required for class RunStepObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(varObject));
+                throw new JsonException("Property is required for class RunStepObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class RunStepObject: created_at.");
 
             if (!assistantId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(assistantId));
+                throw new JsonException("Property is required for class RunStepObject: assistant_id.");
 
             if (!threadId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(threadId));
+                throw new JsonException("Property is required for class RunStepObject: thread_id.");
 
             if (!runId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(runId));
+                throw new JsonException("Property is required for class RunStepObject: run_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepObject: type.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(status));
+                throw new JsonException("Property is required for class RunStepObject: status.");
 
             if (!stepDetails.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(stepDetails));
+                throw new JsonException("Property is required for class RunStepObject: step_details.");
 
             if (!lastError.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(lastError));
+                throw new JsonException("Property is required for class RunStepObject: last_error.");
 
             if (!expiredAt.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(expiredAt));
+                throw new JsonException("Property is required for class RunStepObject: expired_at.");
 
             if (!cancelledAt.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(cancelledAt));
+                throw new JsonException("Property is required for class RunStepObject: cancelled_at.");
 
             if (!failedAt.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(failedAt));
+                throw new JsonException("Property is required for class RunStepObject: failed_at.");
 
             if (!completedAt.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(completedAt));
+                throw new JsonException("Property is required for class RunStepObject: completed_at.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(metadata));
+                throw new JsonException("Property is required for class RunStepObject: metadata.");
 
             if (!usage.IsSet)
-                throw new ArgumentException("Property is required for class RunStepObject.", nameof(usage));
+                throw new JsonException("Property is required for class RunStepObject: usage.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: created_at.");
 
             if (assistantId.IsSet && assistantId.Value == null)
-                throw new ArgumentNullException(nameof(assistantId), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: assistant_id.");
 
             if (threadId.IsSet && threadId.Value == null)
-                throw new ArgumentNullException(nameof(threadId), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: thread_id.");
 
             if (runId.IsSet && runId.Value == null)
-                throw new ArgumentNullException(nameof(runId), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: run_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: type.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: status.");
 
             if (stepDetails.IsSet && stepDetails.Value == null)
-                throw new ArgumentNullException(nameof(stepDetails), "Property is not nullable for class RunStepObject.");
+                throw new JsonException("Property is not nullable for class RunStepObject: step_details.");
 
             return new RunStepObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, assistantId.Value!, threadId.Value!, runId.Value!, type.Value!.Value!, status.Value!.Value!, stepDetails.Value!, lastError.Value!, expiredAt.Value!, cancelledAt.Value!, failedAt.Value!, completedAt.Value!, metadata.Value!, usage.Value!);
         }
@@ -659,7 +674,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepObject runStepObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -674,24 +688,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepObject runStepObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepObject.Id), "Property is required for class RunStepObject.");
-
-            if (runStepObject.AssistantId == null)
-                throw new ArgumentNullException(nameof(runStepObject.AssistantId), "Property is required for class RunStepObject.");
-
-            if (runStepObject.ThreadId == null)
-                throw new ArgumentNullException(nameof(runStepObject.ThreadId), "Property is required for class RunStepObject.");
-
-            if (runStepObject.RunId == null)
-                throw new ArgumentNullException(nameof(runStepObject.RunId), "Property is required for class RunStepObject.");
-
-            if (runStepObject.StepDetails == null)
-                throw new ArgumentNullException(nameof(runStepObject.StepDetails), "Property is required for class RunStepObject.");
-
             writer.WriteString("id", runStepObject.Id);
 
             var varObjectRawValue = RunStepObject.ObjectEnumToJsonValue(runStepObject.Object);

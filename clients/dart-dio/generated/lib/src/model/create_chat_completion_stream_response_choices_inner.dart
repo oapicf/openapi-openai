@@ -162,21 +162,18 @@ class _$CreateChatCompletionStreamResponseChoicesInnerSerializer implements Prim
   }
 }
 
+
+/// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
 class CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum extends EnumClass {
 
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   @BuiltValueEnumConst(wireName: r'stop')
   static const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum stop = _$createChatCompletionStreamResponseChoicesInnerFinishReasonEnum_stop;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   @BuiltValueEnumConst(wireName: r'length')
   static const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum length = _$createChatCompletionStreamResponseChoicesInnerFinishReasonEnum_length;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum toolCalls = _$createChatCompletionStreamResponseChoicesInnerFinishReasonEnum_toolCalls;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   @BuiltValueEnumConst(wireName: r'content_filter')
   static const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum contentFilter = _$createChatCompletionStreamResponseChoicesInnerFinishReasonEnum_contentFilter;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function. 
   @BuiltValueEnumConst(wireName: r'function_call')
   static const CreateChatCompletionStreamResponseChoicesInnerFinishReasonEnum functionCall = _$createChatCompletionStreamResponseChoicesInnerFinishReasonEnum_functionCall;
 

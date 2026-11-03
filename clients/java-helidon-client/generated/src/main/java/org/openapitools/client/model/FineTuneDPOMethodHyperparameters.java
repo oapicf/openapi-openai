@@ -30,13 +30,13 @@ import org.openapitools.client.model.FineTuneDPOMethodHyperparametersNEpochs;
 
 public class FineTuneDPOMethodHyperparameters  {
   
-  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
 
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
  /**
    * Get beta

@@ -36,7 +36,7 @@ class DefaultApi(baseUrl: String) {
    * 
    * @param adminApiKeysCreateRequest 
    */
-  def adminApiKeysCreate(bearerToken: String)(adminApiKeysCreateRequest: AdminApiKeysCreateRequest): Request[Either[ResponseException[String], AdminApiKey]] =
+  def adminApiKeysCreate(bearerToken: String)(adminApiKeysCreateRequest: AdminApiKeysCreateRequest): sttp.client4.Request[Either[ResponseException[String], AdminApiKey]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/admin_api_keys")
       .contentType("application/json")
@@ -55,7 +55,7 @@ class DefaultApi(baseUrl: String) {
    * 
    * @param keyId 
    */
-  def adminApiKeysDelete(bearerToken: String)(keyId: String): Request[Either[ResponseException[String], AdminApiKeysDelete200Response]] =
+  def adminApiKeysDelete(bearerToken: String)(keyId: String): sttp.client4.Request[Either[ResponseException[String], AdminApiKeysDelete200Response]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/admin_api_keys/${keyId}")
       .contentType("application/json")
@@ -73,7 +73,7 @@ class DefaultApi(baseUrl: String) {
    * 
    * @param keyId 
    */
-  def adminApiKeysGet(bearerToken: String)(keyId: String): Request[Either[ResponseException[String], AdminApiKey]] =
+  def adminApiKeysGet(bearerToken: String)(keyId: String): sttp.client4.Request[Either[ResponseException[String], AdminApiKey]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/admin_api_keys/${keyId}")
       .contentType("application/json")
@@ -93,7 +93,7 @@ class DefaultApi(baseUrl: String) {
    * @param order 
    * @param limit 
    */
-  def adminApiKeysList(bearerToken: String)(after: Option[String] = None, order: Option[String] = None, limit: Option[Int] = None): Request[Either[ResponseException[String], ApiKeyList]] =
+  def adminApiKeysList(bearerToken: String)(after: Option[String] = None, order: Option[String] = None, limit: Option[Int] = None): sttp.client4.Request[Either[ResponseException[String], ApiKeyList]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/admin_api_keys?after=${ after }&order=${ order }&limit=${ limit }")
       .contentType("application/json")

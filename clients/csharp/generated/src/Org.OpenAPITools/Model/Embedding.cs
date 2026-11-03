@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<Embedding.ObjectEnum?>(Embedding.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                Embedding.ObjectEnum? varObjectValue = Embedding.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<Embedding.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -217,22 +222,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class Embedding.", nameof(index));
+                throw new JsonException("Property is required for class Embedding: index.");
 
             if (!varEmbedding.IsSet)
-                throw new ArgumentException("Property is required for class Embedding.", nameof(varEmbedding));
+                throw new JsonException("Property is required for class Embedding: embedding.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class Embedding.", nameof(varObject));
+                throw new JsonException("Property is required for class Embedding: object.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class Embedding.");
+                throw new JsonException("Property is not nullable for class Embedding: index.");
 
             if (varEmbedding.IsSet && varEmbedding.Value == null)
-                throw new ArgumentNullException(nameof(varEmbedding), "Property is not nullable for class Embedding.");
+                throw new JsonException("Property is not nullable for class Embedding: embedding.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class Embedding.");
+                throw new JsonException("Property is not nullable for class Embedding: object.");
 
             return new Embedding(index.Value!.Value!, varEmbedding.Value!, varObject.Value!.Value!);
         }
@@ -243,7 +248,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="embedding"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Embedding embedding, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,12 +262,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="embedding"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Embedding embedding, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (embedding.VarEmbedding == null)
-                throw new ArgumentNullException(nameof(embedding.VarEmbedding), "Property is required for class Embedding.");
-
             writer.WriteNumber("index", embedding.Index);
 
             writer.WritePropertyName("embedding");

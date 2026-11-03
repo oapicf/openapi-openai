@@ -155,10 +155,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!toolOutputs.IsSet)
-                throw new ArgumentException("Property is required for class SubmitToolOutputsRunRequest.", nameof(toolOutputs));
+                throw new JsonException("Property is required for class SubmitToolOutputsRunRequest: tool_outputs.");
 
             if (toolOutputs.IsSet && toolOutputs.Value == null)
-                throw new ArgumentNullException(nameof(toolOutputs), "Property is not nullable for class SubmitToolOutputsRunRequest.");
+                throw new JsonException("Property is not nullable for class SubmitToolOutputsRunRequest: tool_outputs.");
 
             return new SubmitToolOutputsRunRequest(toolOutputs.Value!, stream);
         }
@@ -169,7 +169,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="submitToolOutputsRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SubmitToolOutputsRunRequest submitToolOutputsRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -184,12 +183,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="submitToolOutputsRunRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SubmitToolOutputsRunRequest submitToolOutputsRunRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (submitToolOutputsRunRequest.ToolOutputs == null)
-                throw new ArgumentNullException(nameof(submitToolOutputsRunRequest.ToolOutputs), "Property is required for class SubmitToolOutputsRunRequest.");
-
             writer.WritePropertyName("tool_outputs");
             JsonSerializer.Serialize(writer, submitToolOutputsRunRequest.ToolOutputs, jsonSerializerOptions);
             if (submitToolOutputsRunRequest.StreamOption.IsSet)

@@ -141,9 +141,10 @@ class _$RunToolCallObjectSerializer implements PrimitiveSerializer<RunToolCallOb
   }
 }
 
+
+/// The type of tool call the output is required for. For now, this is always `function`.
 class RunToolCallObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call the output is required for. For now, this is always `function`.
   @BuiltValueEnumConst(wireName: r'function')
   static const RunToolCallObjectTypeEnum function_ = _$runToolCallObjectTypeEnum_function_;
 

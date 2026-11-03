@@ -34,7 +34,7 @@ class UsersApi(baseUrl: String) {
    * 
    * @param userId The ID of the user.
    */
-  def deleteUser(bearerToken: String)(userId: String): Request[Either[ResponseException[String], UserDeleteResponse]] =
+  def deleteUser(bearerToken: String)(userId: String): sttp.client4.Request[Either[ResponseException[String], UserDeleteResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/users/${userId}")
       .contentType("application/json")
@@ -51,7 +51,7 @@ class UsersApi(baseUrl: String) {
    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listUsers(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None): Request[Either[ResponseException[String], UserListResponse]] =
+  def listUsers(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UserListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/users?limit=${ limit }&after=${ after }")
       .contentType("application/json")
@@ -68,7 +68,7 @@ class UsersApi(baseUrl: String) {
    * @param userId The ID of the user.
    * @param userRoleUpdateRequest The new user role to modify. This must be one of `owner` or `member`.
    */
-  def modifyUser(bearerToken: String)(userId: String, userRoleUpdateRequest: UserRoleUpdateRequest): Request[Either[ResponseException[String], User]] =
+  def modifyUser(bearerToken: String)(userId: String, userRoleUpdateRequest: UserRoleUpdateRequest): sttp.client4.Request[Either[ResponseException[String], User]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/users/${userId}")
       .contentType("application/json")
@@ -85,7 +85,7 @@ class UsersApi(baseUrl: String) {
    * 
    * @param userId The ID of the user.
    */
-  def retrieveUser(bearerToken: String)(userId: String): Request[Either[ResponseException[String], User]] =
+  def retrieveUser(bearerToken: String)(userId: String): sttp.client4.Request[Either[ResponseException[String], User]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/users/${userId}")
       .contentType("application/json")

@@ -26,7 +26,7 @@ object RealtimeServerEventErrorEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Error extends `Type`
+    case object Error extends `Type` { override def toString: String = "error" }
 
     import org.json4s._
 

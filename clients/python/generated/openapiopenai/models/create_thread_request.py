@@ -78,8 +78,7 @@ class CreateThreadRequest(BaseModel):
         _items = []
         if self.messages:
             for _item_messages in self.messages:
-                if _item_messages:
-                    _items.append(_item_messages.to_dict())
+                _items.append(_item_messages.to_dict() if _item_messages is not None else None)
             _dict['messages'] = _items
         # override the default output from pydantic by calling `to_dict()` of tool_resources
         if self.tool_resources:

@@ -286,7 +286,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ChatCompletionRequestAssistantMessage.RoleEnum?>(ChatCompletionRequestAssistantMessage.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ChatCompletionRequestAssistantMessage.RoleEnum? roleValue = ChatCompletionRequestAssistantMessage.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ChatCompletionRequestAssistantMessage.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<ChatCompletionRequestAssistantMessageContent?>(JsonSerializer.Deserialize<ChatCompletionRequestAssistantMessageContent>(ref utf8JsonReader, jsonSerializerOptions));
@@ -313,16 +318,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestAssistantMessage.", nameof(role));
+                throw new JsonException("Property is required for class ChatCompletionRequestAssistantMessage: role.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessage: role.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessage: name.");
 
             if (toolCalls.IsSet && toolCalls.Value == null)
-                throw new ArgumentNullException(nameof(toolCalls), "Property is not nullable for class ChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessage: tool_calls.");
 
             return new ChatCompletionRequestAssistantMessage(role.Value!.Value!, content, refusal, name, audio, toolCalls, functionCall);
         }
@@ -333,7 +338,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -348,14 +352,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (chatCompletionRequestAssistantMessage.NameOption.IsSet && chatCompletionRequestAssistantMessage.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestAssistantMessage.Name), "Property is required for class ChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Cannot write null property ChatCompletionRequestAssistantMessage.Name to non-nullable JSON property 'name'.");
 
             if (chatCompletionRequestAssistantMessage.ToolCallsOption.IsSet && chatCompletionRequestAssistantMessage.ToolCalls == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestAssistantMessage.ToolCalls), "Property is required for class ChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Cannot write null property ChatCompletionRequestAssistantMessage.ToolCalls to non-nullable JSON property 'tool_calls'.");
 
             var roleRawValue = ChatCompletionRequestAssistantMessage.RoleEnumToJsonValue(chatCompletionRequestAssistantMessage.Role);
             writer.WriteString("role", roleRawValue);

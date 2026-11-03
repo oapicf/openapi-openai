@@ -54,8 +54,6 @@ LIST(String.valueOf("list"));
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid Model> data = new ArrayList<>();
  /**
    * Get _object

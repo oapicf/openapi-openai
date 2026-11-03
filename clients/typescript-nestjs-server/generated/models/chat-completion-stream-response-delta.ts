@@ -27,7 +27,7 @@ export namespace ChatCompletionStreamResponseDelta {
     System: 'system',
     User: 'user',
     Assistant: 'assistant',
-    Tool: 'tool'
+    Tool: 'tool',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

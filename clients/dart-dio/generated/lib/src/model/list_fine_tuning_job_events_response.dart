@@ -123,6 +123,7 @@ class _$ListFineTuningJobEventsResponseSerializer implements PrimitiveSerializer
   }
 }
 
+
 class ListFineTuningJobEventsResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

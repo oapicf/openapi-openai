@@ -19,7 +19,7 @@ import StaticChunkingStrategyStatic from './StaticChunkingStrategyStatic';
 /**
  * The CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy model module.
  * @module model/CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy {
     /**

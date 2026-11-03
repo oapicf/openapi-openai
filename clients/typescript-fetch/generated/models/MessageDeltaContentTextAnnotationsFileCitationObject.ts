@@ -29,38 +29,26 @@ import {
 export interface MessageDeltaContentTextAnnotationsFileCitationObject {
     /**
      * The index of the annotation in the text content part.
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     index: number;
     /**
      * Always `file_citation`.
-     * @type {MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     type: MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum;
     /**
      * The text in the message content that needs to be replaced.
-     * @type {string}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     text?: string;
     /**
      * 
-     * @type {MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     fileCitation?: MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation;
     /**
      * 
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     startIndex?: number;
     /**
      * 
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObject
      */
     endIndex?: number;
 }
@@ -70,7 +58,7 @@ export interface MessageDeltaContentTextAnnotationsFileCitationObject {
  * @export
  */
 export const MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = {
-    FileCitation: 'file_citation'
+    FileCitation: 'file_citation',
 } as const;
 export type MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFileCitationObjectTypeEnum];
 

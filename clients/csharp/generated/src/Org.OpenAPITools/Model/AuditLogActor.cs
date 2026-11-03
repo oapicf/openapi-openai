@@ -235,7 +235,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<AuditLogActor.TypeEnum?>(AuditLogActor.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                AuditLogActor.TypeEnum? typeValue = AuditLogActor.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<AuditLogActor.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "session":
                             session = new Option<AuditLogActorSession?>(JsonSerializer.Deserialize<AuditLogActorSession>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -250,13 +255,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AuditLogActor.");
+                throw new JsonException("Property is not nullable for class AuditLogActor: type.");
 
             if (session.IsSet && session.Value == null)
-                throw new ArgumentNullException(nameof(session), "Property is not nullable for class AuditLogActor.");
+                throw new JsonException("Property is not nullable for class AuditLogActor: session.");
 
             if (apiKey.IsSet && apiKey.Value == null)
-                throw new ArgumentNullException(nameof(apiKey), "Property is not nullable for class AuditLogActor.");
+                throw new JsonException("Property is not nullable for class AuditLogActor: api_key.");
 
             return new AuditLogActor(type, session, apiKey);
         }
@@ -267,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActor"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogActor auditLogActor, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -282,14 +286,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogActor"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogActor auditLogActor, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (auditLogActor.TypeOption.IsSet && auditLogActor.Type == null)
+                throw new JsonException("Cannot write null property AuditLogActor.Type to non-nullable JSON property 'type'.");
+
             if (auditLogActor.SessionOption.IsSet && auditLogActor.Session == null)
-                throw new ArgumentNullException(nameof(auditLogActor.Session), "Property is required for class AuditLogActor.");
+                throw new JsonException("Cannot write null property AuditLogActor.Session to non-nullable JSON property 'session'.");
 
             if (auditLogActor.ApiKeyOption.IsSet && auditLogActor.ApiKey == null)
-                throw new ArgumentNullException(nameof(auditLogActor.ApiKey), "Property is required for class AuditLogActor.");
+                throw new JsonException("Cannot write null property AuditLogActor.ApiKey to non-nullable JSON property 'api_key'.");
 
             var typeRawValue = AuditLogActor.TypeEnumToJsonValue(auditLogActor.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

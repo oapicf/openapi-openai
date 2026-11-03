@@ -23,7 +23,7 @@ object ListBatchesResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object List extends `Object`
+    case object List extends `Object` { override def toString: String = "list" }
 
     import org.json4s._
 

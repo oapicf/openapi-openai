@@ -14,7 +14,7 @@ export namespace CreateCompletionResponseChoicesInner {
   export const FinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
   } as const;
   export type FinishReasonEnum = typeof FinishReasonEnum[keyof typeof FinishReasonEnum];
 }

@@ -141,3 +141,4 @@ class _$ChatCompletionTokenLogprobTopLogprobsInnerSerializer implements Primitiv
   }
 }
 
+

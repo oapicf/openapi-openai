@@ -53,7 +53,7 @@ export interface RealtimeSession {
 export namespace RealtimeSession {
   export const ModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
   } as const;
   export type ModalitiesEnum = typeof ModalitiesEnum[keyof typeof ModalitiesEnum];
   export const VoiceEnum = {
@@ -64,19 +64,19 @@ export namespace RealtimeSession {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
   } as const;
   export type VoiceEnum = typeof VoiceEnum[keyof typeof VoiceEnum];
   export const InputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
   } as const;
   export type InputAudioFormatEnum = typeof InputAudioFormatEnum[keyof typeof InputAudioFormatEnum];
   export const OutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
   } as const;
   export type OutputAudioFormatEnum = typeof OutputAudioFormatEnum[keyof typeof OutputAudioFormatEnum];
 }

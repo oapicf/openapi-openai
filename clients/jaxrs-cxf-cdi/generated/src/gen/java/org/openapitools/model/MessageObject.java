@@ -135,7 +135,7 @@ public enum RoleEnum {
 
   private RoleEnum role;
 
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
   private String assistantId;
 
@@ -327,7 +327,7 @@ public enum RoleEnum {
   /**
    * The content of the message in array of text and/or images.
    **/
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -336,10 +336,10 @@ public enum RoleEnum {
   @ApiModelProperty(required = true, value = "The content of the message in array of text and/or images.")
   @JsonProperty("content")
   @NotNull
-  public List<MessageObjectContentInner> getContent() {
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 

@@ -47,7 +47,7 @@ import javax.annotation.Generated;
   MessageObject.JSON_PROPERTY_METADATA
 })
 @JsonTypeName("MessageObject")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class MessageObject {
     public static final String JSON_PROPERTY_ID = "id";
@@ -177,7 +177,7 @@ public class MessageObject {
     private RoleEnum role;
 
     public static final String JSON_PROPERTY_CONTENT = "content";
-    private List<MessageObjectContentInner> content = new ArrayList<>();
+    private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
     public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
     private String assistantId;
@@ -191,7 +191,7 @@ public class MessageObject {
     public static final String JSON_PROPERTY_METADATA = "metadata";
     private Object metadata;
 
-    public MessageObject(String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<MessageObjectContentInner> content, String assistantId, String runId, List<@Valid CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
+    public MessageObject(String id, ObjectEnum _object, Integer createdAt, String threadId, StatusEnum status, MessageObjectIncompleteDetails incompleteDetails, Integer completedAt, Integer incompleteAt, RoleEnum role, List<@Valid MessageObjectContentInner> content, String assistantId, String runId, List<@Valid CreateMessageRequestAttachmentsInner> attachments, Object metadata) {
         this.id = id;
         this._object = _object;
         this.createdAt = createdAt;
@@ -407,7 +407,7 @@ public class MessageObject {
         this.role = role;
     }
 
-    public MessageObject content(List<MessageObjectContentInner> content) {
+    public MessageObject content(List<@Valid MessageObjectContentInner> content) {
         this.content = content;
         return this;
     }
@@ -424,13 +424,13 @@ public class MessageObject {
     @NotNull
     @JsonProperty(JSON_PROPERTY_CONTENT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MessageObjectContentInner> getContent() {
+    public List<@Valid MessageObjectContentInner> getContent() {
         return content;
     }
 
     @JsonProperty(JSON_PROPERTY_CONTENT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setContent(List<MessageObjectContentInner> content) {
+    public void setContent(List<@Valid MessageObjectContentInner> content) {
         this.content = content;
     }
 

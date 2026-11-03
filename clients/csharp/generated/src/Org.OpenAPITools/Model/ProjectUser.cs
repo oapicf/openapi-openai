@@ -302,7 +302,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectUser.ObjectEnum?>(ProjectUser.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectUser.ObjectEnum? varObjectValue = ProjectUser.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectUser.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -316,7 +321,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ProjectUser.RoleEnum?>(ProjectUser.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ProjectUser.RoleEnum? roleValue = ProjectUser.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ProjectUser.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "added_at":
                             addedAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -328,40 +338,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectUser: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(id));
+                throw new JsonException("Property is required for class ProjectUser: id.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(name));
+                throw new JsonException("Property is required for class ProjectUser: name.");
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(email));
+                throw new JsonException("Property is required for class ProjectUser: email.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(role));
+                throw new JsonException("Property is required for class ProjectUser: role.");
 
             if (!addedAt.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUser.", nameof(addedAt));
+                throw new JsonException("Property is required for class ProjectUser: added_at.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: name.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: email.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: role.");
 
             if (addedAt.IsSet && addedAt.Value == null)
-                throw new ArgumentNullException(nameof(addedAt), "Property is not nullable for class ProjectUser.");
+                throw new JsonException("Property is not nullable for class ProjectUser: added_at.");
 
             return new ProjectUser(varObject.Value!.Value!, id.Value!, name.Value!, email.Value!, role.Value!.Value!, addedAt.Value!.Value!);
         }
@@ -372,7 +382,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectUser projectUser, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -387,18 +396,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUser"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectUser projectUser, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectUser.Id == null)
-                throw new ArgumentNullException(nameof(projectUser.Id), "Property is required for class ProjectUser.");
-
-            if (projectUser.Name == null)
-                throw new ArgumentNullException(nameof(projectUser.Name), "Property is required for class ProjectUser.");
-
-            if (projectUser.Email == null)
-                throw new ArgumentNullException(nameof(projectUser.Email), "Property is required for class ProjectUser.");
-
             var varObjectRawValue = ProjectUser.ObjectEnumToJsonValue(projectUser.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", projectUser.Id);

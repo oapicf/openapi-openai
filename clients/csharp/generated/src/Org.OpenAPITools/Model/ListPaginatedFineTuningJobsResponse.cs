@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ListPaginatedFineTuningJobsResponse.ObjectEnum?>(ListPaginatedFineTuningJobsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ListPaginatedFineTuningJobsResponse.ObjectEnum? varObjectValue = ListPaginatedFineTuningJobsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ListPaginatedFineTuningJobsResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListPaginatedFineTuningJobsResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListPaginatedFineTuningJobsResponse: data.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ListPaginatedFineTuningJobsResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ListPaginatedFineTuningJobsResponse: has_more.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListPaginatedFineTuningJobsResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListPaginatedFineTuningJobsResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListPaginatedFineTuningJobsResponse.");
+                throw new JsonException("Property is not nullable for class ListPaginatedFineTuningJobsResponse: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListPaginatedFineTuningJobsResponse.");
+                throw new JsonException("Property is not nullable for class ListPaginatedFineTuningJobsResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListPaginatedFineTuningJobsResponse.");
+                throw new JsonException("Property is not nullable for class ListPaginatedFineTuningJobsResponse: object.");
 
             return new ListPaginatedFineTuningJobsResponse(data.Value!, hasMore.Value!.Value!, varObject.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listPaginatedFineTuningJobsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListPaginatedFineTuningJobsResponse listPaginatedFineTuningJobsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listPaginatedFineTuningJobsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListPaginatedFineTuningJobsResponse listPaginatedFineTuningJobsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listPaginatedFineTuningJobsResponse.Data == null)
-                throw new ArgumentNullException(nameof(listPaginatedFineTuningJobsResponse.Data), "Property is required for class ListPaginatedFineTuningJobsResponse.");
-
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listPaginatedFineTuningJobsResponse.Data, jsonSerializerOptions);
             writer.WriteBoolean("has_more", listPaginatedFineTuningJobsResponse.HasMore);

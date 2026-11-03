@@ -29,14 +29,10 @@ import {
 export interface ChatCompletionTool {
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {ChatCompletionToolTypeEnum}
-     * @memberof ChatCompletionTool
      */
     type: ChatCompletionToolTypeEnum;
     /**
      * 
-     * @type {FunctionObject}
-     * @memberof ChatCompletionTool
      */
     _function: FunctionObject;
 }
@@ -46,7 +42,7 @@ export interface ChatCompletionTool {
  * @export
  */
 export const ChatCompletionToolTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type ChatCompletionToolTypeEnum = typeof ChatCompletionToolTypeEnum[keyof typeof ChatCompletionToolTypeEnum];
 

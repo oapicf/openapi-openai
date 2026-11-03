@@ -128,3 +128,4 @@ class _$AuditLogInviteSentDataSerializer implements PrimitiveSerializer<AuditLog
   }
 }
 
+

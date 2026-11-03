@@ -227,7 +227,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventConversationItemTruncated.TypeEnum?>(RealtimeServerEventConversationItemTruncated.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventConversationItemTruncated.TypeEnum? typeValue = RealtimeServerEventConversationItemTruncated.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventConversationItemTruncated.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "item_id":
                             itemId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -245,34 +250,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemTruncated.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemTruncated: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemTruncated.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemTruncated: type.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemTruncated.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemTruncated: item_id.");
 
             if (!contentIndex.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemTruncated.", nameof(contentIndex));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemTruncated: content_index.");
 
             if (!audioEndMs.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemTruncated.", nameof(audioEndMs));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemTruncated: audio_end_ms.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventConversationItemTruncated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemTruncated: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventConversationItemTruncated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemTruncated: type.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventConversationItemTruncated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemTruncated: item_id.");
 
             if (contentIndex.IsSet && contentIndex.Value == null)
-                throw new ArgumentNullException(nameof(contentIndex), "Property is not nullable for class RealtimeServerEventConversationItemTruncated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemTruncated: content_index.");
 
             if (audioEndMs.IsSet && audioEndMs.Value == null)
-                throw new ArgumentNullException(nameof(audioEndMs), "Property is not nullable for class RealtimeServerEventConversationItemTruncated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemTruncated: audio_end_ms.");
 
             return new RealtimeServerEventConversationItemTruncated(eventId.Value!, type.Value!.Value!, itemId.Value!, contentIndex.Value!.Value!, audioEndMs.Value!.Value!);
         }
@@ -283,7 +288,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemTruncated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationItemTruncated realtimeServerEventConversationItemTruncated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -298,15 +302,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemTruncated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationItemTruncated realtimeServerEventConversationItemTruncated, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventConversationItemTruncated.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemTruncated.EventId), "Property is required for class RealtimeServerEventConversationItemTruncated.");
-
-            if (realtimeServerEventConversationItemTruncated.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemTruncated.ItemId), "Property is required for class RealtimeServerEventConversationItemTruncated.");
-
             writer.WriteString("event_id", realtimeServerEventConversationItemTruncated.EventId);
 
             var typeRawValue = RealtimeServerEventConversationItemTruncated.TypeEnumToJsonValue(realtimeServerEventConversationItemTruncated.Type);

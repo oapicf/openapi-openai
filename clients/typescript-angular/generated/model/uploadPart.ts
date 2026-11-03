@@ -32,7 +32,7 @@ export interface UploadPart {
 }
 export namespace UploadPart {
     export const ObjectEnum = {
-        UploadPart: 'upload.part'
+        UploadPart: 'upload.part',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

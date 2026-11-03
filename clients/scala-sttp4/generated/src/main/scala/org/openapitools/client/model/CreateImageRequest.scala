@@ -33,8 +33,8 @@ object CreateImageRequestEnums {
 
   sealed trait Quality
   object Quality {
-    case object Standard extends Quality
-    case object Hd extends Quality
+    case object Standard extends Quality { override def toString: String = "standard" }
+    case object Hd extends Quality { override def toString: String = "hd" }
 
     import org.json4s._
 
@@ -57,8 +57,8 @@ object CreateImageRequestEnums {
 
   sealed trait ResponseFormat
   object ResponseFormat {
-    case object Url extends ResponseFormat
-    case object B64Json extends ResponseFormat
+    case object Url extends ResponseFormat { override def toString: String = "url" }
+    case object B64Json extends ResponseFormat { override def toString: String = "b64_json" }
 
     import org.json4s._
 
@@ -81,11 +81,11 @@ object CreateImageRequestEnums {
 
   sealed trait Size
   object Size {
-    case object `256x256` extends Size
-    case object `512x512` extends Size
-    case object `1024x1024` extends Size
-    case object `1792x1024` extends Size
-    case object `1024x1792` extends Size
+    case object `256x256` extends Size { override def toString: String = "256x256" }
+    case object `512x512` extends Size { override def toString: String = "512x512" }
+    case object `1024x1024` extends Size { override def toString: String = "1024x1024" }
+    case object `1792x1024` extends Size { override def toString: String = "1792x1024" }
+    case object `1024x1792` extends Size { override def toString: String = "1024x1792" }
 
     import org.json4s._
 
@@ -114,8 +114,8 @@ object CreateImageRequestEnums {
 
   sealed trait Style
   object Style {
-    case object Vivid extends Style
-    case object Natural extends Style
+    case object Vivid extends Style { override def toString: String = "vivid" }
+    case object Natural extends Style { override def toString: String = "natural" }
 
     import org.json4s._
 

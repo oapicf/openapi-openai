@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputLogsObject"></param>
-        public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject runStepDeltaStepDetailsToolCallsCodeOutputLogsObject)
+        internal RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject runStepDeltaStepDetailsToolCallsCodeOutputLogsObject)
         {
             RunStepDeltaStepDetailsToolCallsCodeOutputLogsObject = runStepDeltaStepDetailsToolCallsCodeOutputLogsObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeOutputImageObject"></param>
-        public RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject runStepDeltaStepDetailsToolCallsCodeOutputImageObject)
+        internal RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDeltaStepDetailsToolCallsCodeOutputImageObject runStepDeltaStepDetailsToolCallsCodeOutputImageObject)
         {
             RunStepDeltaStepDetailsToolCallsCodeOutputImageObject = runStepDeltaStepDetailsToolCallsCodeOutputImageObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

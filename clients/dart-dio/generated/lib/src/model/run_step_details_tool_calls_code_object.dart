@@ -141,9 +141,10 @@ class _$RunStepDetailsToolCallsCodeObjectSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
 class RunStepDetailsToolCallsCodeObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `code_interpreter` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const RunStepDetailsToolCallsCodeObjectTypeEnum codeInterpreter = _$runStepDetailsToolCallsCodeObjectTypeEnum_codeInterpreter;
 

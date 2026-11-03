@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ProjectUserCreateRequest.RoleEnum?>(ProjectUserCreateRequest.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ProjectUserCreateRequest.RoleEnum? roleValue = ProjectUserCreateRequest.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ProjectUserCreateRequest.RoleEnum?>(roleValue);
+                            }
                             break;
                         default:
                             break;
@@ -217,16 +222,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!userId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserCreateRequest.", nameof(userId));
+                throw new JsonException("Property is required for class ProjectUserCreateRequest: user_id.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserCreateRequest.", nameof(role));
+                throw new JsonException("Property is required for class ProjectUserCreateRequest: role.");
 
             if (userId.IsSet && userId.Value == null)
-                throw new ArgumentNullException(nameof(userId), "Property is not nullable for class ProjectUserCreateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectUserCreateRequest: user_id.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ProjectUserCreateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectUserCreateRequest: role.");
 
             return new ProjectUserCreateRequest(userId.Value!, role.Value!.Value!);
         }
@@ -237,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserCreateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectUserCreateRequest projectUserCreateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -252,12 +256,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserCreateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectUserCreateRequest projectUserCreateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectUserCreateRequest.UserId == null)
-                throw new ArgumentNullException(nameof(projectUserCreateRequest.UserId), "Property is required for class ProjectUserCreateRequest.");
-
             writer.WriteString("user_id", projectUserCreateRequest.UserId);
 
             var roleRawValue = ProjectUserCreateRequest.RoleEnumToJsonValue(projectUserCreateRequest.Role);

@@ -19,7 +19,7 @@ import jakarta.annotation.Generated;
  * Error
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Error {
 
   private JsonNullable<String> code = JsonNullable.<String>undefined();
@@ -53,8 +53,8 @@ public class Error {
    * Get code
    * @return code
    */
-  @NotNull 
-  @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("code")
   public JsonNullable<String> getCode() {
     return code;
@@ -95,8 +95,8 @@ public class Error {
    * Get param
    * @return param
    */
-  @NotNull 
-  @Schema(name = "param", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "param", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("param")
   public JsonNullable<String> getParam() {
     return param;

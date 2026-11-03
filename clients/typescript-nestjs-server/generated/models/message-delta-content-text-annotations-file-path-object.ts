@@ -23,7 +23,7 @@ export interface MessageDeltaContentTextAnnotationsFilePathObject {
 }
 export namespace MessageDeltaContentTextAnnotationsFilePathObject {
   export const TypeEnum = {
-    FilePath: 'file_path'
+    FilePath: 'file_path',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class AssistantsNamedToolChoiceFunction.", nameof(name));
+                throw new JsonException("Property is required for class AssistantsNamedToolChoiceFunction: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AssistantsNamedToolChoiceFunction.");
+                throw new JsonException("Property is not nullable for class AssistantsNamedToolChoiceFunction: name.");
 
             return new AssistantsNamedToolChoiceFunction(name.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantsNamedToolChoiceFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantsNamedToolChoiceFunction assistantsNamedToolChoiceFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantsNamedToolChoiceFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantsNamedToolChoiceFunction assistantsNamedToolChoiceFunction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (assistantsNamedToolChoiceFunction.Name == null)
-                throw new ArgumentNullException(nameof(assistantsNamedToolChoiceFunction.Name), "Property is required for class AssistantsNamedToolChoiceFunction.");
-
             writer.WriteString("name", assistantsNamedToolChoiceFunction.Name);
         }
     }

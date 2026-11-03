@@ -19,11 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param id 
  * @param name 
  * @param redactedValue 
- * @param &#x60;value&#x60; 
+ * @param `value` 
  * @param createdAt 
  * @param owner 
  */

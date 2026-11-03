@@ -27,26 +27,26 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class MessageContentTextAnnotationsFilePathObject(
 
     @Schema(required = true, description = "Always `file_path`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: MessageContentTextAnnotationsFilePathObject.Type,
 
     @Schema(required = true, description = "The text in the message content that needs to be replaced.")
-    @param:JsonProperty("text")
+    @param:JsonProperty("text", required = true)
     @get:JsonProperty("text", required = true) val text: kotlin.String,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("file_path")
+    @param:JsonProperty("file_path", required = true)
     @get:JsonProperty("file_path", required = true) val filePath: MessageContentTextAnnotationsFilePathObjectFilePath,
 
     @get:Min(value=0)
     @Schema(required = true, description = "")
-    @param:JsonProperty("start_index")
+    @param:JsonProperty("start_index", required = true)
     @get:JsonProperty("start_index", required = true) val startIndex: kotlin.Int,
 
     @get:Min(value=0)
     @Schema(required = true, description = "")
-    @param:JsonProperty("end_index")
+    @param:JsonProperty("end_index", required = true)
     @get:JsonProperty("end_index", required = true) val endIndex: kotlin.Int
 ) : MessageContentTextObjectTextAnnotationsInner {
 
@@ -57,12 +57,12 @@ data class MessageContentTextAnnotationsFilePathObject(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         file_path("file_path");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

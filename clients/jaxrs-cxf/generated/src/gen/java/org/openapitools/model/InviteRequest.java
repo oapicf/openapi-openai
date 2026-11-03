@@ -67,8 +67,6 @@ READER(String.valueOf("reader")), OWNER(String.valueOf("owner"));
   */
   @ApiModelProperty(value = "An array of projects to which membership is granted at the same time the org invite is accepted. If omitted, the user will be invited to the default project for compatibility with legacy behavior.")
 
-  @Valid
-
   private List<@Valid InviteRequestProjectsInner> projects = new ArrayList<>();
  /**
    * Send an email to this address

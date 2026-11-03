@@ -27,8 +27,8 @@ object AuditLogActorApiKeyEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object User extends `Type`
-    case object ServiceAccount extends `Type`
+    case object User extends `Type` { override def toString: String = "user" }
+    case object ServiceAccount extends `Type` { override def toString: String = "service_account" }
 
     import org.json4s._
 

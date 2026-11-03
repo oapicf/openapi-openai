@@ -29,26 +29,18 @@ import {
 export interface ChatCompletionMessageToolCallChunk {
     /**
      * 
-     * @type {number}
-     * @memberof ChatCompletionMessageToolCallChunk
      */
     index: number;
     /**
      * The ID of the tool call.
-     * @type {string}
-     * @memberof ChatCompletionMessageToolCallChunk
      */
     id?: string;
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {ChatCompletionMessageToolCallChunkTypeEnum}
-     * @memberof ChatCompletionMessageToolCallChunk
      */
     type?: ChatCompletionMessageToolCallChunkTypeEnum;
     /**
      * 
-     * @type {ChatCompletionMessageToolCallChunkFunction}
-     * @memberof ChatCompletionMessageToolCallChunk
      */
     _function?: ChatCompletionMessageToolCallChunkFunction;
 }
@@ -58,7 +50,7 @@ export interface ChatCompletionMessageToolCallChunk {
  * @export
  */
 export const ChatCompletionMessageToolCallChunkTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type ChatCompletionMessageToolCallChunkTypeEnum = typeof ChatCompletionMessageToolCallChunkTypeEnum[keyof typeof ChatCompletionMessageToolCallChunkTypeEnum];
 

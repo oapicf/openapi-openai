@@ -141,9 +141,10 @@ class _$RealtimeServerEventSessionUpdatedSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The event type, must be `session.updated`.
 class RealtimeServerEventSessionUpdatedTypeEnum extends EnumClass {
 
-  /// The event type, must be `session.updated`.
   @BuiltValueEnumConst(wireName: r'session.updated')
   static const RealtimeServerEventSessionUpdatedTypeEnum sessionPeriodUpdated = _$realtimeServerEventSessionUpdatedTypeEnum_sessionPeriodUpdated;
 

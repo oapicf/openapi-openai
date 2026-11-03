@@ -57,7 +57,7 @@ function Invoke-DeleteUser {
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling deleteUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -232,7 +232,7 @@ function Edit-User {
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling modifyUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if (!$UserRoleUpdateRequest) {
             throw "Error! The required parameter `UserRoleUpdateRequest` missing when calling modifyUser."
@@ -316,7 +316,7 @@ function Invoke-RetrieveUser {
         if (!$UserId) {
             throw "Error! The required parameter `UserId` missing when calling retrieveUser."
         }
-        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Web.HTTPUtility]::UrlEncode($UserId))
+        $LocalVarUri = $LocalVarUri.replace('{user_id}', [System.Uri]::EscapeDataString([string]$UserId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

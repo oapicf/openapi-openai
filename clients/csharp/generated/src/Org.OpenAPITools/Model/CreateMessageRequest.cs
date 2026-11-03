@@ -240,7 +240,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<CreateMessageRequest.RoleEnum?>(CreateMessageRequest.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                CreateMessageRequest.RoleEnum? roleValue = CreateMessageRequest.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<CreateMessageRequest.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<CreateMessageRequestContent?>(JsonSerializer.Deserialize<CreateMessageRequestContent>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -258,16 +263,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class CreateMessageRequest.", nameof(role));
+                throw new JsonException("Property is required for class CreateMessageRequest: role.");
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class CreateMessageRequest.", nameof(content));
+                throw new JsonException("Property is required for class CreateMessageRequest: content.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class CreateMessageRequest.");
+                throw new JsonException("Property is not nullable for class CreateMessageRequest: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class CreateMessageRequest.");
+                throw new JsonException("Property is not nullable for class CreateMessageRequest: content.");
 
             return new CreateMessageRequest(role.Value!.Value!, content.Value!, attachments, metadata);
         }
@@ -278,7 +283,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateMessageRequest createMessageRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -293,12 +297,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateMessageRequest createMessageRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createMessageRequest.Content == null)
-                throw new ArgumentNullException(nameof(createMessageRequest.Content), "Property is required for class CreateMessageRequest.");
-
             var roleRawValue = CreateMessageRequest.RoleEnumToJsonValue(createMessageRequest.Role);
             writer.WriteString("role", roleRawValue);
             writer.WritePropertyName("content");

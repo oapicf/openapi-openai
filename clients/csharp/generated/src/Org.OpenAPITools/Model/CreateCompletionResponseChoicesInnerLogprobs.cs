@@ -200,16 +200,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (textOffset.IsSet && textOffset.Value == null)
-                throw new ArgumentNullException(nameof(textOffset), "Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs: text_offset.");
 
             if (tokenLogprobs.IsSet && tokenLogprobs.Value == null)
-                throw new ArgumentNullException(nameof(tokenLogprobs), "Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs: token_logprobs.");
 
             if (tokens.IsSet && tokens.Value == null)
-                throw new ArgumentNullException(nameof(tokens), "Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs: tokens.");
 
             if (topLogprobs.IsSet && topLogprobs.Value == null)
-                throw new ArgumentNullException(nameof(topLogprobs), "Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Property is not nullable for class CreateCompletionResponseChoicesInnerLogprobs: top_logprobs.");
 
             return new CreateCompletionResponseChoicesInnerLogprobs(textOffset, tokenLogprobs, tokens, topLogprobs);
         }
@@ -220,7 +220,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionResponseChoicesInnerLogprobs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,20 +234,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionResponseChoicesInnerLogprobs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCompletionResponseChoicesInnerLogprobs createCompletionResponseChoicesInnerLogprobs, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createCompletionResponseChoicesInnerLogprobs.TextOffsetOption.IsSet && createCompletionResponseChoicesInnerLogprobs.TextOffset == null)
-                throw new ArgumentNullException(nameof(createCompletionResponseChoicesInnerLogprobs.TextOffset), "Property is required for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Cannot write null property CreateCompletionResponseChoicesInnerLogprobs.TextOffset to non-nullable JSON property 'text_offset'.");
 
             if (createCompletionResponseChoicesInnerLogprobs.TokenLogprobsOption.IsSet && createCompletionResponseChoicesInnerLogprobs.TokenLogprobs == null)
-                throw new ArgumentNullException(nameof(createCompletionResponseChoicesInnerLogprobs.TokenLogprobs), "Property is required for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Cannot write null property CreateCompletionResponseChoicesInnerLogprobs.TokenLogprobs to non-nullable JSON property 'token_logprobs'.");
 
             if (createCompletionResponseChoicesInnerLogprobs.TokensOption.IsSet && createCompletionResponseChoicesInnerLogprobs.Tokens == null)
-                throw new ArgumentNullException(nameof(createCompletionResponseChoicesInnerLogprobs.Tokens), "Property is required for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Cannot write null property CreateCompletionResponseChoicesInnerLogprobs.Tokens to non-nullable JSON property 'tokens'.");
 
             if (createCompletionResponseChoicesInnerLogprobs.TopLogprobsOption.IsSet && createCompletionResponseChoicesInnerLogprobs.TopLogprobs == null)
-                throw new ArgumentNullException(nameof(createCompletionResponseChoicesInnerLogprobs.TopLogprobs), "Property is required for class CreateCompletionResponseChoicesInnerLogprobs.");
+                throw new JsonException("Cannot write null property CreateCompletionResponseChoicesInnerLogprobs.TopLogprobs to non-nullable JSON property 'top_logprobs'.");
 
             if (createCompletionResponseChoicesInnerLogprobs.TextOffsetOption.IsSet)
             {

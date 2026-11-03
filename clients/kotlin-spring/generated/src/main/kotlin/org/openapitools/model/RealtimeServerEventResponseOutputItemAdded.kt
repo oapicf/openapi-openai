@@ -27,24 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventResponseOutputItemAdded(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `response.output_item.added`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseOutputItemAdded.Type,
 
     @Schema(required = true, description = "The ID of the Response to which the item belongs.")
-    @param:JsonProperty("response_id")
+    @param:JsonProperty("response_id", required = true)
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
     @Schema(required = true, description = "The index of the output item in the Response.")
-    @param:JsonProperty("output_index")
+    @param:JsonProperty("output_index", required = true)
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("item")
+    @param:JsonProperty("item", required = true)
     @get:JsonProperty("item", required = true) val item: RealtimeConversationItem
 ) {
 
@@ -55,12 +55,12 @@ data class RealtimeServerEventResponseOutputItemAdded(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         responsePeriodOutput_itemPeriodAdded("response.output_item.added");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

@@ -229,7 +229,12 @@ namespace Org.OpenAPITools.Model
                         case "detail":
                             string? detailRawValue = utf8JsonReader.GetString();
                             if (detailRawValue != null)
-                                detail = new Option<ChatCompletionRequestMessageContentPartImageImageUrl.DetailEnum?>(ChatCompletionRequestMessageContentPartImageImageUrl.DetailEnumFromStringOrDefault(detailRawValue));
+                            {
+                                ChatCompletionRequestMessageContentPartImageImageUrl.DetailEnum? detailValue = ChatCompletionRequestMessageContentPartImageImageUrl.DetailEnumFromStringOrDefault(detailRawValue);
+                                if (detailValue == null)
+                                    throw new JsonException();
+                                detail = new Option<ChatCompletionRequestMessageContentPartImageImageUrl.DetailEnum?>(detailValue);
+                            }
                             break;
                         default:
                             break;
@@ -238,13 +243,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!url.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestMessageContentPartImageImageUrl.", nameof(url));
+                throw new JsonException("Property is required for class ChatCompletionRequestMessageContentPartImageImageUrl: url.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class ChatCompletionRequestMessageContentPartImageImageUrl.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartImageImageUrl: url.");
 
             if (detail.IsSet && detail.Value == null)
-                throw new ArgumentNullException(nameof(detail), "Property is not nullable for class ChatCompletionRequestMessageContentPartImageImageUrl.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartImageImageUrl: detail.");
 
             return new ChatCompletionRequestMessageContentPartImageImageUrl(url.Value!, detail);
         }
@@ -255,7 +260,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartImageImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartImageImageUrl chatCompletionRequestMessageContentPartImageImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -270,11 +274,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartImageImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartImageImageUrl chatCompletionRequestMessageContentPartImageImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestMessageContentPartImageImageUrl.Url == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestMessageContentPartImageImageUrl.Url), "Property is required for class ChatCompletionRequestMessageContentPartImageImageUrl.");
+            if (chatCompletionRequestMessageContentPartImageImageUrl.DetailOption.IsSet && chatCompletionRequestMessageContentPartImageImageUrl.Detail == null)
+                throw new JsonException("Cannot write null property ChatCompletionRequestMessageContentPartImageImageUrl.Detail to non-nullable JSON property 'detail'.");
 
             writer.WriteString("url", chatCompletionRequestMessageContentPartImageImageUrl.Url);
 

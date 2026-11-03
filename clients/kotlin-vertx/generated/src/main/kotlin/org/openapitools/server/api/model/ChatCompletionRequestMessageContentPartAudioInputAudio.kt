@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;data&#x60; Base64 encoded audio data.
+ * @param `data` Base64 encoded audio data.
  * @param format The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

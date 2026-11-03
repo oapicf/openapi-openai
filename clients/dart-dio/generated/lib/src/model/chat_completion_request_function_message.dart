@@ -143,10 +143,11 @@ class _$ChatCompletionRequestFunctionMessageSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The role of the messages author, in this case `function`.
 @Deprecated('ChatCompletionRequestFunctionMessageRoleEnum has been deprecated')
 class ChatCompletionRequestFunctionMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `function`.
   @BuiltValueEnumConst(wireName: r'function')
   static const ChatCompletionRequestFunctionMessageRoleEnum function_ = _$chatCompletionRequestFunctionMessageRoleEnum_function_;
 

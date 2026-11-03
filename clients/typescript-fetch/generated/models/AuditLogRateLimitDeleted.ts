@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogRateLimitDeleted {
     /**
      * The rate limit ID
-     * @type {string}
-     * @memberof AuditLogRateLimitDeleted
      */
     id?: string;
 }

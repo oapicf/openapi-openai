@@ -11,7 +11,7 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.AudioResponseFormat._
+import org.openapitools.client.model.AudioResponseFormat
 import org.openapitools.client.model.CreateSpeechRequest
 import org.openapitools.client.model.CreateTranscription200Response
 import org.openapitools.client.model.CreateTranscriptionRequestModel
@@ -38,7 +38,7 @@ class AudioApi(baseUrl: String) {
    * 
    * @param createSpeechRequest 
    */
-  def createSpeech(bearerToken: String)(createSpeechRequest: CreateSpeechRequest): Request[Either[ResponseException[String], File]] =
+  def createSpeech(bearerToken: String)(createSpeechRequest: CreateSpeechRequest): sttp.client4.Request[Either[ResponseException[String], File]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/audio/speech")
       .contentType("application/json")
@@ -61,7 +61,7 @@ class AudioApi(baseUrl: String) {
    * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
    * @param timestampGranularities The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. 
    */
-  def createTranscription(bearerToken: String)(file: File, model: CreateTranscriptionRequestModel, language: Option[String] = None, prompt: Option[String] = None, responseFormat: Option[AudioResponseFormat] = None, temperature: Option[Double] = None, timestampGranularities: Option[Seq[String]] = None): Request[Either[ResponseException[String], CreateTranscription200Response]] =
+  def createTranscription(bearerToken: String)(file: File, model: CreateTranscriptionRequestModel, language: Option[String] = None, prompt: Option[String] = None, responseFormat: Option[AudioResponseFormat] = None, temperature: Option[Double] = None, timestampGranularities: Option[Seq[String]] = None): sttp.client4.Request[Either[ResponseException[String], CreateTranscription200Response]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/audio/transcriptions")
       .contentType("multipart/form-data")
@@ -97,7 +97,7 @@ class AudioApi(baseUrl: String) {
    * @param responseFormat 
    * @param temperature The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. 
    */
-  def createTranslation(bearerToken: String)(file: File, model: CreateTranscriptionRequestModel, prompt: Option[String] = None, responseFormat: Option[AudioResponseFormat] = None, temperature: Option[Double] = None): Request[Either[ResponseException[String], CreateTranslation200Response]] =
+  def createTranslation(bearerToken: String)(file: File, model: CreateTranscriptionRequestModel, prompt: Option[String] = None, responseFormat: Option[AudioResponseFormat] = None, temperature: Option[Double] = None): sttp.client4.Request[Either[ResponseException[String], CreateTranslation200Response]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/audio/translations")
       .contentType("multipart/form-data")

@@ -294,15 +294,14 @@ class _$RealtimeConversationItemSerializer implements PrimitiveSerializer<Realti
   }
 }
 
+
+/// The type of the item (`message`, `function_call`, `function_call_output`). 
 class RealtimeConversationItemTypeEnum extends EnumClass {
 
-  /// The type of the item (`message`, `function_call`, `function_call_output`). 
   @BuiltValueEnumConst(wireName: r'message')
   static const RealtimeConversationItemTypeEnum message = _$realtimeConversationItemTypeEnum_message;
-  /// The type of the item (`message`, `function_call`, `function_call_output`). 
   @BuiltValueEnumConst(wireName: r'function_call')
   static const RealtimeConversationItemTypeEnum functionCall = _$realtimeConversationItemTypeEnum_functionCall;
-  /// The type of the item (`message`, `function_call`, `function_call_output`). 
   @BuiltValueEnumConst(wireName: r'function_call_output')
   static const RealtimeConversationItemTypeEnum functionCallOutput = _$realtimeConversationItemTypeEnum_functionCallOutput;
 
@@ -314,9 +313,9 @@ class RealtimeConversationItemTypeEnum extends EnumClass {
   static RealtimeConversationItemTypeEnum valueOf(String name) => _$realtimeConversationItemTypeEnumValueOf(name);
 }
 
+/// Identifier for the API object being returned - always `realtime.item`. 
 class RealtimeConversationItemObjectEnum extends EnumClass {
 
-  /// Identifier for the API object being returned - always `realtime.item`. 
   @BuiltValueEnumConst(wireName: r'realtime.item')
   static const RealtimeConversationItemObjectEnum realtimePeriodItem = _$realtimeConversationItemObjectEnum_realtimePeriodItem;
 
@@ -328,12 +327,11 @@ class RealtimeConversationItemObjectEnum extends EnumClass {
   static RealtimeConversationItemObjectEnum valueOf(String name) => _$realtimeConversationItemObjectEnumValueOf(name);
 }
 
+/// The status of the item (`completed`, `incomplete`). These have no effect  on the conversation, but are accepted for consistency with the  `conversation.item.created` event. 
 class RealtimeConversationItemStatusEnum extends EnumClass {
 
-  /// The status of the item (`completed`, `incomplete`). These have no effect  on the conversation, but are accepted for consistency with the  `conversation.item.created` event. 
   @BuiltValueEnumConst(wireName: r'completed')
   static const RealtimeConversationItemStatusEnum completed = _$realtimeConversationItemStatusEnum_completed;
-  /// The status of the item (`completed`, `incomplete`). These have no effect  on the conversation, but are accepted for consistency with the  `conversation.item.created` event. 
   @BuiltValueEnumConst(wireName: r'incomplete')
   static const RealtimeConversationItemStatusEnum incomplete = _$realtimeConversationItemStatusEnum_incomplete;
 
@@ -345,15 +343,13 @@ class RealtimeConversationItemStatusEnum extends EnumClass {
   static RealtimeConversationItemStatusEnum valueOf(String name) => _$realtimeConversationItemStatusEnumValueOf(name);
 }
 
+/// The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. 
 class RealtimeConversationItemRoleEnum extends EnumClass {
 
-  /// The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. 
   @BuiltValueEnumConst(wireName: r'user')
   static const RealtimeConversationItemRoleEnum user = _$realtimeConversationItemRoleEnum_user;
-  /// The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. 
   @BuiltValueEnumConst(wireName: r'assistant')
   static const RealtimeConversationItemRoleEnum assistant = _$realtimeConversationItemRoleEnum_assistant;
-  /// The role of the message sender (`user`, `assistant`, `system`), only  applicable for `message` items. 
   @BuiltValueEnumConst(wireName: r'system')
   static const RealtimeConversationItemRoleEnum system = _$realtimeConversationItemRoleEnum_system;
 

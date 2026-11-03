@@ -119,8 +119,7 @@ class RealtimeResponseCreateParams(BaseModel):
         _items = []
         if self.tools:
             for _item_tools in self.tools:
-                if _item_tools:
-                    _items.append(_item_tools.to_dict())
+                _items.append(_item_tools.to_dict() if _item_tools is not None else None)
             _dict['tools'] = _items
         # override the default output from pydantic by calling `to_dict()` of max_response_output_tokens
         if self.max_response_output_tokens:
@@ -132,8 +131,7 @@ class RealtimeResponseCreateParams(BaseModel):
         _items = []
         if self.input:
             for _item_input in self.input:
-                if _item_input:
-                    _items.append(_item_input.to_dict())
+                _items.append(_item_input.to_dict() if _item_input is not None else None)
             _dict['input'] = _items
         # set to None if metadata (nullable) is None
         # and model_fields_set contains the field

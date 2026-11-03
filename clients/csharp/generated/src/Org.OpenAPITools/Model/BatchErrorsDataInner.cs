@@ -204,10 +204,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class BatchErrorsDataInner.");
+                throw new JsonException("Property is not nullable for class BatchErrorsDataInner: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class BatchErrorsDataInner.");
+                throw new JsonException("Property is not nullable for class BatchErrorsDataInner: message.");
 
             return new BatchErrorsDataInner(code, message, param, line);
         }
@@ -218,7 +218,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchErrorsDataInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchErrorsDataInner batchErrorsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -233,14 +232,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchErrorsDataInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchErrorsDataInner batchErrorsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (batchErrorsDataInner.CodeOption.IsSet && batchErrorsDataInner.Code == null)
-                throw new ArgumentNullException(nameof(batchErrorsDataInner.Code), "Property is required for class BatchErrorsDataInner.");
+                throw new JsonException("Cannot write null property BatchErrorsDataInner.Code to non-nullable JSON property 'code'.");
 
             if (batchErrorsDataInner.MessageOption.IsSet && batchErrorsDataInner.Message == null)
-                throw new ArgumentNullException(nameof(batchErrorsDataInner.Message), "Property is required for class BatchErrorsDataInner.");
+                throw new JsonException("Cannot write null property BatchErrorsDataInner.Message to non-nullable JSON property 'message'.");
 
             if (batchErrorsDataInner.CodeOption.IsSet)
                 writer.WriteString("code", batchErrorsDataInner.Code);

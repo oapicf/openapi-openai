@@ -92,7 +92,9 @@ class CreateSpeechRequest {
         input: mapValueOfType<String>(json, r'input')!,
         voice: CreateSpeechRequestVoiceEnum.fromJson(json[r'voice'])!,
         responseFormat: CreateSpeechRequestResponseFormatEnum.fromJson(json[r'response_format']) ?? const CreateSpeechRequestResponseFormatEnum._('mp3'),
-        speed: num.parse('${json[r'speed']}'),
+        speed: json[r'speed'] == null
+            ? 1
+            : num.parse('${json[r'speed']}'),
       );
     }
     return null;

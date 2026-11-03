@@ -65,12 +65,12 @@ export interface RunStepObject {
 }
 export namespace RunStepObject {
   export const ObjectEnum = {
-    ThreadRunStep: 'thread.run.step'
+    ThreadRunStep: 'thread.run.step',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
   export const TypeEnum = {
     MessageCreation: 'message_creation',
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
   export const StatusEnum = {
@@ -78,7 +78,7 @@ export namespace RunStepObject {
     Cancelled: 'cancelled',
     Failed: 'failed',
     Completed: 'completed',
-    Expired: 'expired'
+    Expired: 'expired',
   } as const;
   export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

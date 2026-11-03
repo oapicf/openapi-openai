@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **deleteModel**
 ```swift
-    open class func deleteModel(model: String, completion: @escaping (_ data: DeleteModelResponse?, _ error: Error?) -> Void)
+    open class func deleteModel(model: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteModelResponse
 ```
 
 Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
@@ -24,15 +24,11 @@ import OpenAPIClient
 let model = "model_example" // String | The model to delete
 
 // Delete a fine-tuned model. You must have the Owner role in your organization to delete a model.
-ModelsAPI.deleteModel(model: model) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ModelsAPI.deleteModel(model: model)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 # **listModels**
 ```swift
-    open class func listModels(completion: @escaping (_ data: ListModelsResponse?, _ error: Error?) -> Void)
+    open class func listModels(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListModelsResponse
 ```
 
 Lists the currently available models, and provides basic information about each one such as the owner and availability.
@@ -71,15 +67,11 @@ import OpenAPIClient
 
 
 // Lists the currently available models, and provides basic information about each one such as the owner and availability.
-ModelsAPI.listModels() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ModelsAPI.listModels()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -103,7 +95,7 @@ This endpoint does not need any parameter.
 
 # **retrieveModel**
 ```swift
-    open class func retrieveModel(model: String, completion: @escaping (_ data: Model?, _ error: Error?) -> Void)
+    open class func retrieveModel(model: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Model
 ```
 
 Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
@@ -116,15 +108,11 @@ import OpenAPIClient
 let model = "model_example" // String | The ID of the model to use for this request
 
 // Retrieves a model instance, providing basic information about the model such as the owner and permissioning.
-ModelsAPI.retrieveModel(model: model) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ModelsAPI.retrieveModel(model: model)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

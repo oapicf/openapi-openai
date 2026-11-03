@@ -151,7 +151,6 @@ public enum OutputAudioFormatEnum {
   * Tools (functions) available to the model.
   */
   @ApiModelProperty(value = "Tools (functions) available to the model.")
-  @Valid
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
  /**
@@ -185,7 +184,6 @@ public enum OutputAudioFormatEnum {
   * Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. 
   */
   @ApiModelProperty(value = "Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. ")
-  @Valid
   private List<@Valid RealtimeConversationItem> input = new ArrayList<>();
  /**
   * The set of modalities the model can respond with. To disable audio, set this to [\&quot;text\&quot;]. 

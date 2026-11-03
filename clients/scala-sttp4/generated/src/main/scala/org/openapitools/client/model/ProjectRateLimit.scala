@@ -39,7 +39,7 @@ object ProjectRateLimitEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ProjectRateLimit extends `Object`
+    case object ProjectRateLimit extends `Object` { override def toString: String = "project.rate_limit" }
 
     import org.json4s._
 

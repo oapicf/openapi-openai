@@ -41,14 +41,14 @@ export interface RealtimeResponse {
 }
 export namespace RealtimeResponse {
     export const ObjectEnum = {
-        RealtimeResponse: 'realtime.response'
+        RealtimeResponse: 'realtime.response',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
         Completed: 'completed',
         Cancelled: 'cancelled',
         Failed: 'failed',
-        Incomplete: 'incomplete'
+        Incomplete: 'incomplete',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

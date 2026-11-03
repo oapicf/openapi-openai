@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateModerationRequestInput" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateModerationRequestInput(string @string)
+        public CreateModerationRequestInput(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateModerationRequestInput" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal CreateModerationRequestInput(List<string> list)
+        public CreateModerationRequestInput(List<string> list)
         {
             List = list;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateModerationRequestInput" /> class.
         /// </summary>
         /// <param name="list1"></param>
-        internal CreateModerationRequestInput(List<CreateModerationRequestInputOneOfInner> list1)
+        public CreateModerationRequestInput(List<CreateModerationRequestInputOneOfInner> list1)
         {
             List1 = list1;
             OnCreated();
@@ -202,7 +202,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationRequestInput createModerationRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -217,7 +216,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationRequestInput createModerationRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
 

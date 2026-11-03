@@ -24,14 +24,12 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs  {
   * A list of message content tokens with log probability information.
   */
   @ApiModelProperty(required = true, value = "A list of message content tokens with log probability information.")
-  @Valid
   private List<@Valid ChatCompletionTokenLogprob> content;
 
  /**
   * A list of message refusal tokens with log probability information.
   */
   @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
-  @Valid
   private List<@Valid ChatCompletionTokenLogprob> refusal;
  /**
   * A list of message content tokens with log probability information.

@@ -20,8 +20,6 @@ public class ListAssistantsResponse  {
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid AssistantObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "asst_abc123", required = true, value = "")

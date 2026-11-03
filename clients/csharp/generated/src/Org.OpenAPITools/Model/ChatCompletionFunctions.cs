@@ -176,16 +176,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionFunctions.", nameof(name));
+                throw new JsonException("Property is required for class ChatCompletionFunctions: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionFunctions.");
+                throw new JsonException("Property is not nullable for class ChatCompletionFunctions: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ChatCompletionFunctions.");
+                throw new JsonException("Property is not nullable for class ChatCompletionFunctions: description.");
 
             if (parameters.IsSet && parameters.Value == null)
-                throw new ArgumentNullException(nameof(parameters), "Property is not nullable for class ChatCompletionFunctions.");
+                throw new JsonException("Property is not nullable for class ChatCompletionFunctions: parameters.");
 
             return new ChatCompletionFunctions(name.Value!, description, parameters);
         }
@@ -196,7 +196,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionFunctions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionFunctions chatCompletionFunctions, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -211,17 +210,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionFunctions"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionFunctions chatCompletionFunctions, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionFunctions.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionFunctions.Name), "Property is required for class ChatCompletionFunctions.");
-
             if (chatCompletionFunctions.DescriptionOption.IsSet && chatCompletionFunctions.Description == null)
-                throw new ArgumentNullException(nameof(chatCompletionFunctions.Description), "Property is required for class ChatCompletionFunctions.");
+                throw new JsonException("Cannot write null property ChatCompletionFunctions.Description to non-nullable JSON property 'description'.");
 
             if (chatCompletionFunctions.ParametersOption.IsSet && chatCompletionFunctions.Parameters == null)
-                throw new ArgumentNullException(nameof(chatCompletionFunctions.Parameters), "Property is required for class ChatCompletionFunctions.");
+                throw new JsonException("Cannot write null property ChatCompletionFunctions.Parameters to non-nullable JSON property 'parameters'.");
 
             writer.WriteString("name", chatCompletionFunctions.Name);
 

@@ -57,7 +57,7 @@ function Invoke-DeleteInvite {
         if (!$InviteId) {
             throw "Error! The required parameter `InviteId` missing when calling deleteInvite."
         }
-        $LocalVarUri = $LocalVarUri.replace('{invite_id}', [System.Web.HTTPUtility]::UrlEncode($InviteId))
+        $LocalVarUri = $LocalVarUri.replace('{invite_id}', [System.Uri]::EscapeDataString([string]$InviteId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -306,7 +306,7 @@ function Invoke-RetrieveInvite {
         if (!$InviteId) {
             throw "Error! The required parameter `InviteId` missing when calling retrieveInvite."
         }
-        $LocalVarUri = $LocalVarUri.replace('{invite_id}', [System.Web.HTTPUtility]::UrlEncode($InviteId))
+        $LocalVarUri = $LocalVarUri.replace('{invite_id}', [System.Uri]::EscapeDataString([string]$InviteId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

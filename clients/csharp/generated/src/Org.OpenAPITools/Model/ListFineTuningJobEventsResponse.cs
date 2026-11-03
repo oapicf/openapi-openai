@@ -191,7 +191,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ListFineTuningJobEventsResponse.ObjectEnum?>(ListFineTuningJobEventsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ListFineTuningJobEventsResponse.ObjectEnum? varObjectValue = ListFineTuningJobEventsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ListFineTuningJobEventsResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -200,16 +205,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListFineTuningJobEventsResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListFineTuningJobEventsResponse: data.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListFineTuningJobEventsResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListFineTuningJobEventsResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListFineTuningJobEventsResponse.");
+                throw new JsonException("Property is not nullable for class ListFineTuningJobEventsResponse: data.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListFineTuningJobEventsResponse.");
+                throw new JsonException("Property is not nullable for class ListFineTuningJobEventsResponse: object.");
 
             return new ListFineTuningJobEventsResponse(data.Value!, varObject.Value!.Value!);
         }
@@ -220,7 +225,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listFineTuningJobEventsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListFineTuningJobEventsResponse listFineTuningJobEventsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,12 +239,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listFineTuningJobEventsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListFineTuningJobEventsResponse listFineTuningJobEventsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listFineTuningJobEventsResponse.Data == null)
-                throw new ArgumentNullException(nameof(listFineTuningJobEventsResponse.Data), "Property is required for class ListFineTuningJobEventsResponse.");
-
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listFineTuningJobEventsResponse.Data, jsonSerializerOptions);
             var varObjectRawValue = ListFineTuningJobEventsResponse.ObjectEnumToJsonValue(listFineTuningJobEventsResponse.Object);

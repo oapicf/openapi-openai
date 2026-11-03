@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface MessageDeltaContentRefusalObject {
     /**
      * The index of the refusal part in the message.
-     * @type {number}
-     * @memberof MessageDeltaContentRefusalObject
      */
     index: number;
     /**
      * Always `refusal`.
-     * @type {MessageDeltaContentRefusalObjectTypeEnum}
-     * @memberof MessageDeltaContentRefusalObject
      */
     type: MessageDeltaContentRefusalObjectTypeEnum;
     /**
      * 
-     * @type {string}
-     * @memberof MessageDeltaContentRefusalObject
      */
     refusal?: string;
 }
@@ -44,7 +38,7 @@ export interface MessageDeltaContentRefusalObject {
  * @export
  */
 export const MessageDeltaContentRefusalObjectTypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
 } as const;
 export type MessageDeltaContentRefusalObjectTypeEnum = typeof MessageDeltaContentRefusalObjectTypeEnum[keyof typeof MessageDeltaContentRefusalObjectTypeEnum];
 

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -28,7 +27,7 @@ import jakarta.annotation.Generated;
  * ModifyAssistantRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ModifyAssistantRequest {
 
   private String model;
@@ -39,8 +38,7 @@ public class ModifyAssistantRequest {
 
   private JsonNullable<@Size(max = 256000) String> instructions = JsonNullable.<String>undefined();
 
-  @Valid
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   private JsonNullable<ModifyAssistantRequestToolResources> toolResources = JsonNullable.<ModifyAssistantRequestToolResources>undefined();
 
@@ -132,7 +130,7 @@ public class ModifyAssistantRequest {
     this.instructions = instructions;
   }
 
-  public ModifyAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+  public ModifyAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -149,14 +147,14 @@ public class ModifyAssistantRequest {
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
    * @return tools
    */
-  @Valid @Size(max = 128) 
+  @Size(max = 128) 
   @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

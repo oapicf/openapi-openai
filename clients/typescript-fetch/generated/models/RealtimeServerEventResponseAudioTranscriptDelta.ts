@@ -22,44 +22,30 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseAudioTranscriptDelta {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     eventId: string;
     /**
      * The event type, must be `response.audio_transcript.delta`.
-     * @type {RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     type: RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     contentIndex: number;
     /**
      * The transcript delta.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDelta
      */
     delta: string;
 }
@@ -69,7 +55,7 @@ export interface RealtimeServerEventResponseAudioTranscriptDelta {
  * @export
  */
 export const RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum = {
-    ResponseAudioTranscriptDelta: 'response.audio_transcript.delta'
+    ResponseAudioTranscriptDelta: 'response.audio_transcript.delta',
 } as const;
 export type RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum = typeof RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum[keyof typeof RealtimeServerEventResponseAudioTranscriptDeltaTypeEnum];
 

@@ -29,14 +29,10 @@ import {
 export interface StaticChunkingStrategyRequestParam {
     /**
      * Always `static`.
-     * @type {StaticChunkingStrategyRequestParamTypeEnum}
-     * @memberof StaticChunkingStrategyRequestParam
      */
     type: StaticChunkingStrategyRequestParamTypeEnum;
     /**
      * 
-     * @type {StaticChunkingStrategy}
-     * @memberof StaticChunkingStrategyRequestParam
      */
     _static: StaticChunkingStrategy;
 }
@@ -46,7 +42,7 @@ export interface StaticChunkingStrategyRequestParam {
  * @export
  */
 export const StaticChunkingStrategyRequestParamTypeEnum = {
-    Static: 'static'
+    Static: 'static',
 } as const;
 export type StaticChunkingStrategyRequestParamTypeEnum = typeof StaticChunkingStrategyRequestParamTypeEnum[keyof typeof StaticChunkingStrategyRequestParamTypeEnum];
 

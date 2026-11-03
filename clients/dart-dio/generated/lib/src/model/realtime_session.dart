@@ -354,6 +354,7 @@ class _$RealtimeSessionSerializer implements PrimitiveSerializer<RealtimeSession
   }
 }
 
+
 class RealtimeSessionModalitiesEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'text')
@@ -369,30 +370,23 @@ class RealtimeSessionModalitiesEnum extends EnumClass {
   static RealtimeSessionModalitiesEnum valueOf(String name) => _$realtimeSessionModalitiesEnumValueOf(name);
 }
 
+/// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
 class RealtimeSessionVoiceEnum extends EnumClass {
 
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'alloy')
   static const RealtimeSessionVoiceEnum alloy = _$realtimeSessionVoiceEnum_alloy;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ash')
   static const RealtimeSessionVoiceEnum ash = _$realtimeSessionVoiceEnum_ash;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ballad')
   static const RealtimeSessionVoiceEnum ballad = _$realtimeSessionVoiceEnum_ballad;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'coral')
   static const RealtimeSessionVoiceEnum coral = _$realtimeSessionVoiceEnum_coral;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'echo')
   static const RealtimeSessionVoiceEnum echo = _$realtimeSessionVoiceEnum_echo;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'sage')
   static const RealtimeSessionVoiceEnum sage = _$realtimeSessionVoiceEnum_sage;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'shimmer')
   static const RealtimeSessionVoiceEnum shimmer = _$realtimeSessionVoiceEnum_shimmer;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'verse')
   static const RealtimeSessionVoiceEnum verse = _$realtimeSessionVoiceEnum_verse;
 
@@ -404,15 +398,13 @@ class RealtimeSessionVoiceEnum extends EnumClass {
   static RealtimeSessionVoiceEnum valueOf(String name) => _$realtimeSessionVoiceEnumValueOf(name);
 }
 
+/// The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
 class RealtimeSessionInputAudioFormatEnum extends EnumClass {
 
-  /// The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'pcm16')
   static const RealtimeSessionInputAudioFormatEnum pcm16 = _$realtimeSessionInputAudioFormatEnum_pcm16;
-  /// The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_ulaw')
   static const RealtimeSessionInputAudioFormatEnum g711Ulaw = _$realtimeSessionInputAudioFormatEnum_g711Ulaw;
-  /// The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_alaw')
   static const RealtimeSessionInputAudioFormatEnum g711Alaw = _$realtimeSessionInputAudioFormatEnum_g711Alaw;
 
@@ -424,15 +416,13 @@ class RealtimeSessionInputAudioFormatEnum extends EnumClass {
   static RealtimeSessionInputAudioFormatEnum valueOf(String name) => _$realtimeSessionInputAudioFormatEnumValueOf(name);
 }
 
+/// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
 class RealtimeSessionOutputAudioFormatEnum extends EnumClass {
 
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'pcm16')
   static const RealtimeSessionOutputAudioFormatEnum pcm16 = _$realtimeSessionOutputAudioFormatEnum_pcm16;
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_ulaw')
   static const RealtimeSessionOutputAudioFormatEnum g711Ulaw = _$realtimeSessionOutputAudioFormatEnum_g711Ulaw;
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_alaw')
   static const RealtimeSessionOutputAudioFormatEnum g711Alaw = _$realtimeSessionOutputAudioFormatEnum_g711Alaw;
 

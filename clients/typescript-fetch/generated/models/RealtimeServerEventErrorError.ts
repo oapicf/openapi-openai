@@ -22,33 +22,23 @@ export interface RealtimeServerEventErrorError {
     /**
      * The type of error (e.g., "invalid_request_error", "server_error").
      * 
-     * @type {string}
-     * @memberof RealtimeServerEventErrorError
      */
     type: string;
     /**
      * Error code, if any.
-     * @type {string}
-     * @memberof RealtimeServerEventErrorError
      */
     code?: string | null;
     /**
      * A human-readable error message.
-     * @type {string}
-     * @memberof RealtimeServerEventErrorError
      */
     message: string;
     /**
      * Parameter related to the error, if any.
-     * @type {string}
-     * @memberof RealtimeServerEventErrorError
      */
     param?: string | null;
     /**
      * The event_id of the client event that caused the error, if applicable.
      * 
-     * @type {string}
-     * @memberof RealtimeServerEventErrorError
      */
     eventId?: string | null;
 }

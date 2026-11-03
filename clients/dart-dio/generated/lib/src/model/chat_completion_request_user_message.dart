@@ -144,9 +144,10 @@ class _$ChatCompletionRequestUserMessageSerializer implements PrimitiveSerialize
   }
 }
 
+
+/// The role of the messages author, in this case `user`.
 class ChatCompletionRequestUserMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `user`.
   @BuiltValueEnumConst(wireName: r'user')
   static const ChatCompletionRequestUserMessageRoleEnum user = _$chatCompletionRequestUserMessageRoleEnum_user;
 

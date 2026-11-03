@@ -272,7 +272,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageAudioSpeechesResult.ObjectEnum?>(UsageAudioSpeechesResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageAudioSpeechesResult.ObjectEnum? varObjectValue = UsageAudioSpeechesResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageAudioSpeechesResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "characters":
                             characters = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -299,22 +304,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageAudioSpeechesResult.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageAudioSpeechesResult: object.");
 
             if (!characters.IsSet)
-                throw new ArgumentException("Property is required for class UsageAudioSpeechesResult.", nameof(characters));
+                throw new JsonException("Property is required for class UsageAudioSpeechesResult: characters.");
 
             if (!numModelRequests.IsSet)
-                throw new ArgumentException("Property is required for class UsageAudioSpeechesResult.", nameof(numModelRequests));
+                throw new JsonException("Property is required for class UsageAudioSpeechesResult: num_model_requests.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageAudioSpeechesResult.");
+                throw new JsonException("Property is not nullable for class UsageAudioSpeechesResult: object.");
 
             if (characters.IsSet && characters.Value == null)
-                throw new ArgumentNullException(nameof(characters), "Property is not nullable for class UsageAudioSpeechesResult.");
+                throw new JsonException("Property is not nullable for class UsageAudioSpeechesResult: characters.");
 
             if (numModelRequests.IsSet && numModelRequests.Value == null)
-                throw new ArgumentNullException(nameof(numModelRequests), "Property is not nullable for class UsageAudioSpeechesResult.");
+                throw new JsonException("Property is not nullable for class UsageAudioSpeechesResult: num_model_requests.");
 
             return new UsageAudioSpeechesResult(varObject.Value!.Value!, characters.Value!.Value!, numModelRequests.Value!.Value!, projectId, userId, apiKeyId, model);
         }
@@ -325,7 +330,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageAudioSpeechesResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageAudioSpeechesResult usageAudioSpeechesResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -340,7 +344,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageAudioSpeechesResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageAudioSpeechesResult usageAudioSpeechesResult, JsonSerializerOptions jsonSerializerOptions)
         {
             var varObjectRawValue = UsageAudioSpeechesResult.ObjectEnumToJsonValue(usageAudioSpeechesResult.Object);

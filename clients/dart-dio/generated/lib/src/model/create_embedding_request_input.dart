@@ -67,3 +67,4 @@ class _$CreateEmbeddingRequestInputSerializer implements PrimitiveSerializer<Cre
   }
 }
 
+

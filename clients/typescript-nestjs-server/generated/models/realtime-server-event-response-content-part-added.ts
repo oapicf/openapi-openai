@@ -33,7 +33,7 @@ export interface RealtimeServerEventResponseContentPartAdded {
 }
 export namespace RealtimeServerEventResponseContentPartAdded {
   export const TypeEnum = {
-    ResponseContentPartAdded: 'response.content_part.added'
+    ResponseContentPartAdded: 'response.content_part.added',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

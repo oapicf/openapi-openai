@@ -23,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateModerationRequestInputOneOfInnerOneOf1(
 
     @Schema(required = true, description = "Always `text`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: CreateModerationRequestInputOneOfInnerOneOf1.Type,
 
     @Schema(example = "I want to kill them", required = true, description = "A string of text to classify.")
-    @param:JsonProperty("text")
+    @param:JsonProperty("text", required = true)
     @get:JsonProperty("text", required = true) val text: kotlin.String
 ) : CreateModerationRequestInputOneOfInner {
 
@@ -38,12 +38,12 @@ data class CreateModerationRequestInputOneOfInnerOneOf1(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         text("text");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

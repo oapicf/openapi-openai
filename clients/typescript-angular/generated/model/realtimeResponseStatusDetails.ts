@@ -29,14 +29,14 @@ export namespace RealtimeResponseStatusDetails {
         Completed: 'completed',
         Cancelled: 'cancelled',
         Failed: 'failed',
-        Incomplete: 'incomplete'
+        Incomplete: 'incomplete',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
     export const ReasonEnum = {
         TurnDetected: 'turn_detected',
         ClientCancelled: 'client_cancelled',
         MaxOutputTokens: 'max_output_tokens',
-        ContentFilter: 'content_filter'
+        ContentFilter: 'content_filter',
     } as const;
     export type ReasonEnum = typeof ReasonEnum[keyof typeof ReasonEnum];
 }

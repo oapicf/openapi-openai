@@ -19,22 +19,22 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Represents a run step delta i.e. any changed fields on a run step during streaming. 
  * @param id The identifier of the run step, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.run.step.delta`.
+ * @param `object` The object type, which is always `thread.run.step.delta`.
  * @param delta 
  */
 data class RunStepDeltaObject(
 
     @Schema(required = true, description = "The identifier of the run step, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `thread.run.step.delta`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: RunStepDeltaObject.`Object`,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("delta")
+    @param:JsonProperty("delta", required = true)
     @get:JsonProperty("delta", required = true) val delta: RunStepDeltaObjectDelta
 ) {
 
@@ -45,12 +45,12 @@ data class RunStepDeltaObject(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         threadPeriodRunPeriodStepPeriodDelta("thread.run.step.delta");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

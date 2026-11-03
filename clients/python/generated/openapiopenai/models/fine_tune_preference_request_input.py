@@ -82,15 +82,13 @@ class FineTunePreferenceRequestInput(BaseModel):
         _items = []
         if self.preferred_completion:
             for _item_preferred_completion in self.preferred_completion:
-                if _item_preferred_completion:
-                    _items.append(_item_preferred_completion.to_dict())
+                _items.append(_item_preferred_completion.to_dict() if _item_preferred_completion is not None else None)
             _dict['preferred_completion'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in non_preferred_completion (list)
         _items = []
         if self.non_preferred_completion:
             for _item_non_preferred_completion in self.non_preferred_completion:
-                if _item_non_preferred_completion:
-                    _items.append(_item_non_preferred_completion.to_dict())
+                _items.append(_item_non_preferred_completion.to_dict() if _item_non_preferred_completion is not None else None)
             _dict['non_preferred_completion'] = _items
         return _dict
 

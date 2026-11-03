@@ -31,44 +31,30 @@ import {
 export interface RealtimeServerEventResponseContentPartDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     eventId: string;
     /**
      * The event type, must be `response.content_part.done`.
-     * @type {RealtimeServerEventResponseContentPartDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     type: RealtimeServerEventResponseContentPartDoneTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     contentIndex: number;
     /**
      * 
-     * @type {RealtimeServerEventResponseContentPartDonePart}
-     * @memberof RealtimeServerEventResponseContentPartDone
      */
     part: RealtimeServerEventResponseContentPartDonePart;
 }
@@ -78,7 +64,7 @@ export interface RealtimeServerEventResponseContentPartDone {
  * @export
  */
 export const RealtimeServerEventResponseContentPartDoneTypeEnum = {
-    ResponseContentPartDone: 'response.content_part.done'
+    ResponseContentPartDone: 'response.content_part.done',
 } as const;
 export type RealtimeServerEventResponseContentPartDoneTypeEnum = typeof RealtimeServerEventResponseContentPartDoneTypeEnum[keyof typeof RealtimeServerEventResponseContentPartDoneTypeEnum];
 

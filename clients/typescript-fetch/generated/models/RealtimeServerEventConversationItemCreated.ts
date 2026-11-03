@@ -39,28 +39,20 @@ import {
 export interface RealtimeServerEventConversationItemCreated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemCreated
      */
     eventId: string;
     /**
      * The event type, must be `conversation.item.created`.
-     * @type {RealtimeServerEventConversationItemCreatedTypeEnum}
-     * @memberof RealtimeServerEventConversationItemCreated
      */
     type: RealtimeServerEventConversationItemCreatedTypeEnum;
     /**
      * The ID of the preceding item in the Conversation context, allows the 
      * client to understand the order of the conversation.
      * 
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemCreated
      */
     previousItemId: string;
     /**
      * 
-     * @type {RealtimeConversationItem}
-     * @memberof RealtimeServerEventConversationItemCreated
      */
     item: RealtimeConversationItem;
 }
@@ -70,7 +62,7 @@ export interface RealtimeServerEventConversationItemCreated {
  * @export
  */
 export const RealtimeServerEventConversationItemCreatedTypeEnum = {
-    ConversationItemCreated: 'conversation.item.created'
+    ConversationItemCreated: 'conversation.item.created',
 } as const;
 export type RealtimeServerEventConversationItemCreatedTypeEnum = typeof RealtimeServerEventConversationItemCreatedTypeEnum[keyof typeof RealtimeServerEventConversationItemCreatedTypeEnum];
 

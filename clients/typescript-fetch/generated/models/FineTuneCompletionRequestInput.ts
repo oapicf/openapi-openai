@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface FineTuneCompletionRequestInput {
     /**
      * The input prompt for this training example.
-     * @type {string}
-     * @memberof FineTuneCompletionRequestInput
      */
     prompt?: string;
     /**
      * The desired completion for this training example.
-     * @type {string}
-     * @memberof FineTuneCompletionRequestInput
      */
     completion?: string;
 }

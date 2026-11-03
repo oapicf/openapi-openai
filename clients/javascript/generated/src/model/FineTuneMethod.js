@@ -18,7 +18,7 @@ import FineTuneSupervisedMethod from './FineTuneSupervisedMethod';
 /**
  * The FineTuneMethod model module.
  * @module model/FineTuneMethod
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class FineTuneMethod {
     /**

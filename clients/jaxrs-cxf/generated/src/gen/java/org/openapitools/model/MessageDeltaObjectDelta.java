@@ -66,9 +66,7 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
   */
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
 
-  @Valid
-
-  private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
+  private List<@Valid MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
  /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
    * @return role
@@ -95,15 +93,15 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
    * @return content
   **/
   @JsonProperty("content")
-  public List<MessageDeltaObjectDeltaContentInner> getContent() {
+  public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+  public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
   }
 
-  public MessageDeltaObjectDelta content(List<MessageDeltaObjectDeltaContentInner> content) {
+  public MessageDeltaObjectDelta content(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
     return this;
   }

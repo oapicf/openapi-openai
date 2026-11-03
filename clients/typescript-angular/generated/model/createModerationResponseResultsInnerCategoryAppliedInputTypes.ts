@@ -68,61 +68,61 @@ export interface CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
 }
 export namespace CreateModerationResponseResultsInnerCategoryAppliedInputTypes {
     export const HateEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type HateEnum = typeof HateEnum[keyof typeof HateEnum];
     export const HateThreateningEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type HateThreateningEnum = typeof HateThreateningEnum[keyof typeof HateThreateningEnum];
     export const HarassmentEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type HarassmentEnum = typeof HarassmentEnum[keyof typeof HarassmentEnum];
     export const HarassmentThreateningEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type HarassmentThreateningEnum = typeof HarassmentThreateningEnum[keyof typeof HarassmentThreateningEnum];
     export const IllicitEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type IllicitEnum = typeof IllicitEnum[keyof typeof IllicitEnum];
     export const IllicitViolentEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type IllicitViolentEnum = typeof IllicitViolentEnum[keyof typeof IllicitViolentEnum];
     export const SelfHarmEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type SelfHarmEnum = typeof SelfHarmEnum[keyof typeof SelfHarmEnum];
     export const SelfHarmIntentEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type SelfHarmIntentEnum = typeof SelfHarmIntentEnum[keyof typeof SelfHarmIntentEnum];
     export const SelfHarmInstructionsEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type SelfHarmInstructionsEnum = typeof SelfHarmInstructionsEnum[keyof typeof SelfHarmInstructionsEnum];
     export const SexualEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type SexualEnum = typeof SexualEnum[keyof typeof SexualEnum];
     export const SexualMinorsEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type SexualMinorsEnum = typeof SexualMinorsEnum[keyof typeof SexualMinorsEnum];
     export const ViolenceEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type ViolenceEnum = typeof ViolenceEnum[keyof typeof ViolenceEnum];
     export const ViolenceGraphicEnum = {
         Text: 'text',
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type ViolenceGraphicEnum = typeof ViolenceGraphicEnum[keyof typeof ViolenceGraphicEnum];
 }

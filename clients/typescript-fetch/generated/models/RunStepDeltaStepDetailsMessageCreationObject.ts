@@ -29,14 +29,10 @@ import {
 export interface RunStepDeltaStepDetailsMessageCreationObject {
     /**
      * Always `message_creation`.
-     * @type {RunStepDeltaStepDetailsMessageCreationObjectTypeEnum}
-     * @memberof RunStepDeltaStepDetailsMessageCreationObject
      */
     type: RunStepDeltaStepDetailsMessageCreationObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDeltaStepDetailsMessageCreationObjectMessageCreation}
-     * @memberof RunStepDeltaStepDetailsMessageCreationObject
      */
     messageCreation?: RunStepDeltaStepDetailsMessageCreationObjectMessageCreation;
 }
@@ -46,7 +42,7 @@ export interface RunStepDeltaStepDetailsMessageCreationObject {
  * @export
  */
 export const RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = {
-    MessageCreation: 'message_creation'
+    MessageCreation: 'message_creation',
 } as const;
 export type RunStepDeltaStepDetailsMessageCreationObjectTypeEnum = typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum[keyof typeof RunStepDeltaStepDetailsMessageCreationObjectTypeEnum];
 

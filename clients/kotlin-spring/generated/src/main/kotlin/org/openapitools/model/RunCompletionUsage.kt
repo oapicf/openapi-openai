@@ -22,15 +22,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunCompletionUsage(
 
     @Schema(required = true, description = "Number of completion tokens used over the course of the run.")
-    @param:JsonProperty("completion_tokens")
+    @param:JsonProperty("completion_tokens", required = true)
     @get:JsonProperty("completion_tokens", required = true) val completionTokens: kotlin.Int,
 
     @Schema(required = true, description = "Number of prompt tokens used over the course of the run.")
-    @param:JsonProperty("prompt_tokens")
+    @param:JsonProperty("prompt_tokens", required = true)
     @get:JsonProperty("prompt_tokens", required = true) val promptTokens: kotlin.Int,
 
     @Schema(required = true, description = "Total number of tokens used (prompt + completion).")
-    @param:JsonProperty("total_tokens")
+    @param:JsonProperty("total_tokens", required = true)
     @get:JsonProperty("total_tokens", required = true) val totalTokens: kotlin.Int
 ) {
 

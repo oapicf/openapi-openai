@@ -29,32 +29,22 @@ import {
 export interface InviteListResponse {
     /**
      * The object type, which is always `list`
-     * @type {InviteListResponseObjectEnum}
-     * @memberof InviteListResponse
      */
     object: InviteListResponseObjectEnum;
     /**
      * 
-     * @type {Array<Invite>}
-     * @memberof InviteListResponse
      */
     data: Array<Invite>;
     /**
      * The first `invite_id` in the retrieved `list`
-     * @type {string}
-     * @memberof InviteListResponse
      */
     firstId?: string;
     /**
      * The last `invite_id` in the retrieved `list`
-     * @type {string}
-     * @memberof InviteListResponse
      */
     lastId?: string;
     /**
      * The `has_more` property is used for pagination to indicate there are additional results.
-     * @type {boolean}
-     * @memberof InviteListResponse
      */
     hasMore?: boolean;
 }
@@ -64,7 +54,7 @@ export interface InviteListResponse {
  * @export
  */
 export const InviteListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type InviteListResponseObjectEnum = typeof InviteListResponseObjectEnum[keyof typeof InviteListResponseObjectEnum];
 

@@ -224,19 +224,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ApiKeyList.");
+                throw new JsonException("Property is not nullable for class ApiKeyList: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ApiKeyList.");
+                throw new JsonException("Property is not nullable for class ApiKeyList: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ApiKeyList.");
+                throw new JsonException("Property is not nullable for class ApiKeyList: has_more.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ApiKeyList.");
+                throw new JsonException("Property is not nullable for class ApiKeyList: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ApiKeyList.");
+                throw new JsonException("Property is not nullable for class ApiKeyList: last_id.");
 
             return new ApiKeyList(varObject, data, hasMore, firstId, lastId);
         }
@@ -247,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="apiKeyList"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApiKeyList apiKeyList, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -262,20 +261,22 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="apiKeyList"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApiKeyList apiKeyList, JsonSerializerOptions jsonSerializerOptions)
         {
             if (apiKeyList.ObjectOption.IsSet && apiKeyList.Object == null)
-                throw new ArgumentNullException(nameof(apiKeyList.Object), "Property is required for class ApiKeyList.");
+                throw new JsonException("Cannot write null property ApiKeyList.Object to non-nullable JSON property 'object'.");
 
             if (apiKeyList.DataOption.IsSet && apiKeyList.Data == null)
-                throw new ArgumentNullException(nameof(apiKeyList.Data), "Property is required for class ApiKeyList.");
+                throw new JsonException("Cannot write null property ApiKeyList.Data to non-nullable JSON property 'data'.");
+
+            if (apiKeyList.HasMoreOption.IsSet && apiKeyList.HasMore == null)
+                throw new JsonException("Cannot write null property ApiKeyList.HasMore to non-nullable JSON property 'has_more'.");
 
             if (apiKeyList.FirstIdOption.IsSet && apiKeyList.FirstId == null)
-                throw new ArgumentNullException(nameof(apiKeyList.FirstId), "Property is required for class ApiKeyList.");
+                throw new JsonException("Cannot write null property ApiKeyList.FirstId to non-nullable JSON property 'first_id'.");
 
             if (apiKeyList.LastIdOption.IsSet && apiKeyList.LastId == null)
-                throw new ArgumentNullException(nameof(apiKeyList.LastId), "Property is required for class ApiKeyList.");
+                throw new JsonException("Cannot write null property ApiKeyList.LastId to non-nullable JSON property 'last_id'.");
 
             if (apiKeyList.ObjectOption.IsSet)
                 writer.WriteString("object", apiKeyList.Object);

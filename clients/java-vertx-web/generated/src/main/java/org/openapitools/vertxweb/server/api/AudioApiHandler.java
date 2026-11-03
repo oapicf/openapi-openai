@@ -52,7 +52,7 @@ public class AudioApiHandler {
         RequestParameter body = requestParameters.body();
         CreateSpeechRequest createSpeechRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateSpeechRequest>(){}) : null;
 
-        logger.debug("Parameter createSpeechRequest is {}", createSpeechRequest);
+        logger.debug("Parameter createSpeechRequest is (body omitted)");
 
         api.createSpeech(createSpeechRequest)
             .onSuccess(apiResponse -> {
@@ -72,7 +72,13 @@ public class AudioApiHandler {
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        FileUpload _file = routingContext.fileUploads().iterator().next();
+        FileUpload _file = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            _file = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter _file is {}", _file);
 
@@ -94,7 +100,13 @@ public class AudioApiHandler {
         // Param extraction
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
-        FileUpload _file = routingContext.fileUploads().iterator().next();
+        FileUpload _file = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            _file = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter _file is {}", _file);
 

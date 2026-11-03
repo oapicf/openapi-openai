@@ -17,7 +17,7 @@ import ChatCompletionFunctionCallOption from './ChatCompletionFunctionCallOption
 /**
  * The CreateChatCompletionRequestFunctionCall model module.
  * @module model/CreateChatCompletionRequestFunctionCall
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateChatCompletionRequestFunctionCall {
     /**

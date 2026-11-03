@@ -25,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RunStepDetailsToolCallsObject", description = "Details of the tool call.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
 
   /**
@@ -63,8 +63,7 @@ public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
 
   private TypeEnum type;
 
-  @Valid
-  private List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
+  private List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls = new ArrayList<>();
 
   public RunStepDetailsToolCallsObject() {
     super();
@@ -73,7 +72,7 @@ public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
   /**
    * Constructor with only required parameters
    */
-  public RunStepDetailsToolCallsObject(TypeEnum type, List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepDetailsToolCallsObject(TypeEnum type, List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.type = type;
     this.toolCalls = toolCalls;
   }
@@ -98,7 +97,7 @@ public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
     this.type = type;
   }
 
-  public RunStepDetailsToolCallsObject toolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepDetailsToolCallsObject toolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
   }
@@ -115,14 +114,14 @@ public class RunStepDetailsToolCallsObject implements RunStepObjectStepDetails {
    * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
    * @return toolCalls
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "tool_calls", description = "An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tool_calls")
-  public List<RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+  public List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;
   }
 
-  public void setToolCalls(List<RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public void setToolCalls(List<@Valid RunStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
   }
 

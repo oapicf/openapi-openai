@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (hyperparameters.IsSet && hyperparameters.Value == null)
-                throw new ArgumentNullException(nameof(hyperparameters), "Property is not nullable for class FineTuneDPOMethod.");
+                throw new JsonException("Property is not nullable for class FineTuneDPOMethod: hyperparameters.");
 
             return new FineTuneDPOMethod(hyperparameters);
         }
@@ -151,7 +151,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethod"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneDPOMethod fineTuneDPOMethod, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -166,11 +165,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethod"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneDPOMethod fineTuneDPOMethod, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTuneDPOMethod.HyperparametersOption.IsSet && fineTuneDPOMethod.Hyperparameters == null)
-                throw new ArgumentNullException(nameof(fineTuneDPOMethod.Hyperparameters), "Property is required for class FineTuneDPOMethod.");
+                throw new JsonException("Cannot write null property FineTuneDPOMethod.Hyperparameters to non-nullable JSON property 'hyperparameters'.");
 
             if (fineTuneDPOMethod.HyperparametersOption.IsSet)
             {

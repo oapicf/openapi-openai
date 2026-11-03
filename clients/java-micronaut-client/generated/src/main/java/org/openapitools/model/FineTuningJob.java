@@ -53,7 +53,7 @@ import javax.annotation.Generated;
   FineTuningJob.JSON_PROPERTY_METHOD
 })
 @JsonTypeName("FineTuningJob")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FineTuningJob {
     public static final String JSON_PROPERTY_ID = "id";
@@ -168,7 +168,7 @@ public class FineTuningJob {
     private String validationFile;
 
     public static final String JSON_PROPERTY_INTEGRATIONS = "integrations";
-    private List<FineTuningJobIntegrationsInner> integrations = null;
+    private List<@Valid FineTuningJobIntegrationsInner> integrations = null;
 
     public static final String JSON_PROPERTY_SEED = "seed";
     private Integer seed;
@@ -512,7 +512,7 @@ public class FineTuningJob {
         this.validationFile = validationFile;
     }
 
-    public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+    public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
         this.integrations = integrations;
         return this;
     }
@@ -533,13 +533,13 @@ public class FineTuningJob {
     @Size(max=5)
     @JsonProperty(JSON_PROPERTY_INTEGRATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<FineTuningJobIntegrationsInner> getIntegrations() {
+    public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
         return integrations;
     }
 
     @JsonProperty(JSON_PROPERTY_INTEGRATIONS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+    public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
         this.integrations = integrations;
     }
 

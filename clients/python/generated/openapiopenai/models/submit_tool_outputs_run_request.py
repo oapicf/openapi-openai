@@ -76,8 +76,7 @@ class SubmitToolOutputsRunRequest(BaseModel):
         _items = []
         if self.tool_outputs:
             for _item_tool_outputs in self.tool_outputs:
-                if _item_tool_outputs:
-                    _items.append(_item_tool_outputs.to_dict())
+                _items.append(_item_tool_outputs.to_dict() if _item_tool_outputs is not None else None)
             _dict['tool_outputs'] = _items
         # set to None if stream (nullable) is None
         # and model_fields_set contains the field

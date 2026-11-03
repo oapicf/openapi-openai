@@ -39,7 +39,7 @@ object InviteEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationInvite extends `Object`
+    case object OrganizationInvite extends `Object` { override def toString: String = "organization.invite" }
 
     import org.json4s._
 
@@ -60,8 +60,8 @@ object InviteEnums {
 
   sealed trait Role
   object Role {
-    case object Owner extends Role
-    case object Reader extends Role
+    case object Owner extends Role { override def toString: String = "owner" }
+    case object Reader extends Role { override def toString: String = "reader" }
 
     import org.json4s._
 
@@ -84,9 +84,9 @@ object InviteEnums {
 
   sealed trait Status
   object Status {
-    case object Accepted extends Status
-    case object Expired extends Status
-    case object Pending extends Status
+    case object Accepted extends Status { override def toString: String = "accepted" }
+    case object Expired extends Status { override def toString: String = "expired" }
+    case object Pending extends Status { override def toString: String = "pending" }
 
     import org.json4s._
 

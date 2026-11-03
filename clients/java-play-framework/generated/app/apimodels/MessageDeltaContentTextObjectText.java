@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * MessageDeltaContentTextObjectText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MessageDeltaContentTextObjectText   {
   @JsonProperty("value")
@@ -24,7 +24,7 @@ public class MessageDeltaContentTextObjectText   {
   @JsonProperty("annotations")
   @Valid
 
-  private List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations = null;
+  private List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations = null;
 
   public MessageDeltaContentTextObjectText value(String value) {
     this.value = value;
@@ -43,7 +43,7 @@ public class MessageDeltaContentTextObjectText   {
     this.value = value;
   }
 
-  public MessageDeltaContentTextObjectText annotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageDeltaContentTextObjectText annotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -60,11 +60,11 @@ public class MessageDeltaContentTextObjectText   {
    * Get annotations
    * @return annotations
   **/
-  public List<MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
-  public void setAnnotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

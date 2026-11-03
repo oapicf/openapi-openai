@@ -29,32 +29,22 @@ import {
 export interface ListVectorStoresResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoresResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<VectorStoreObject>}
-     * @memberof ListVectorStoresResponse
      */
     data: Array<VectorStoreObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoresResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoresResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListVectorStoresResponse
      */
     hasMore: boolean;
 }

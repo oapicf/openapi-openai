@@ -107,9 +107,10 @@ class _$ResponseFormatTextSerializer implements PrimitiveSerializer<ResponseForm
   }
 }
 
+
+/// The type of response format being defined: `text`
 class ResponseFormatTextTypeEnum extends EnumClass {
 
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'text')
   static const ResponseFormatTextTypeEnum text = _$responseFormatTextTypeEnum_text;
 

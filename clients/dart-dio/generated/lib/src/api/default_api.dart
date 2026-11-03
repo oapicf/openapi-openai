@@ -332,7 +332,7 @@ class DefaultApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'after': encodeQueryParameter(_serializers, after, const FullType(String)),
+      if (after != null) r'after': encodeQueryParameter(_serializers, after, const FullType(String)),
       if (order != null) r'order': encodeQueryParameter(_serializers, order, const FullType(String)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
     };

@@ -13,7 +13,7 @@ import org.openapitools.model.RunObjectRequiredActionSubmitToolOutputs;
  * Details on the action required to continue the run. Will be &#x60;null&#x60; if no action is required.
  */
 @ApiModel(description = "Details on the action required to continue the run. Will be `null` if no action is required.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObjectRequiredAction   {
   /**
    * For now, this is always `submit_tool_outputs`.

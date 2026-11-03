@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateCompletionRequestPrompt" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateCompletionRequestPrompt(string @string)
+        public CreateCompletionRequestPrompt(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateCompletionRequestPrompt" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal CreateCompletionRequestPrompt(List<string> list)
+        public CreateCompletionRequestPrompt(List<string> list)
         {
             List = list;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateCompletionRequestPrompt" /> class.
         /// </summary>
         /// <param name="list1"></param>
-        internal CreateCompletionRequestPrompt(List<int> list1)
+        public CreateCompletionRequestPrompt(List<int> list1)
         {
             List1 = list1;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateCompletionRequestPrompt" /> class.
         /// </summary>
         /// <param name="list1"></param>
-        internal CreateCompletionRequestPrompt(List<List<int>> list1)
+        public CreateCompletionRequestPrompt(List<List<int>> list1)
         {
             List1 = list1;
             OnCreated();
@@ -223,7 +223,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionRequestPrompt"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCompletionRequestPrompt createCompletionRequestPrompt, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -238,7 +237,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createCompletionRequestPrompt"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCompletionRequestPrompt createCompletionRequestPrompt, JsonSerializerOptions jsonSerializerOptions)
         {
 

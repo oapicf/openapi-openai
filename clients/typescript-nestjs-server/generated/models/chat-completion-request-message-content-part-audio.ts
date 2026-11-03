@@ -13,7 +13,7 @@ export interface ChatCompletionRequestMessageContentPartAudio {
 }
 export namespace ChatCompletionRequestMessageContentPartAudio {
   export const TypeEnum = {
-    InputAudio: 'input_audio'
+    InputAudio: 'input_audio',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

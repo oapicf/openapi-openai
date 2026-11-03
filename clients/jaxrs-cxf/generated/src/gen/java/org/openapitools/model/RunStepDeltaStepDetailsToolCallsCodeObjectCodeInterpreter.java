@@ -32,8 +32,6 @@ public class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter  {
   */
   @ApiModelProperty(value = "The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.")
 
-  @Valid
-
   private List<@Valid RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner> outputs = new ArrayList<>();
  /**
    * The input to the Code Interpreter tool call.

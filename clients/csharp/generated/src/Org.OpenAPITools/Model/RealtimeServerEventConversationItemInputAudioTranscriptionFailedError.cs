@@ -204,16 +204,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError: type.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError: message.");
 
             if (param.IsSet && param.Value == null)
-                throw new ArgumentNullException(nameof(param), "Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError: param.");
 
             return new RealtimeServerEventConversationItemInputAudioTranscriptionFailedError(type, code, message, param);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemInputAudioTranscriptionFailedError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationItemInputAudioTranscriptionFailedError realtimeServerEventConversationItemInputAudioTranscriptionFailedError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,20 +238,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemInputAudioTranscriptionFailedError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationItemInputAudioTranscriptionFailedError realtimeServerEventConversationItemInputAudioTranscriptionFailedError, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeServerEventConversationItemInputAudioTranscriptionFailedError.TypeOption.IsSet && realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Type == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Type), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.Type to non-nullable JSON property 'type'.");
 
             if (realtimeServerEventConversationItemInputAudioTranscriptionFailedError.CodeOption.IsSet && realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Code == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Code), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.Code to non-nullable JSON property 'code'.");
 
             if (realtimeServerEventConversationItemInputAudioTranscriptionFailedError.MessageOption.IsSet && realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Message == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Message), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.Message to non-nullable JSON property 'message'.");
 
             if (realtimeServerEventConversationItemInputAudioTranscriptionFailedError.ParamOption.IsSet && realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Param == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Param), "Property is required for class RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.");
+                throw new JsonException("Cannot write null property RealtimeServerEventConversationItemInputAudioTranscriptionFailedError.Param to non-nullable JSON property 'param'.");
 
             if (realtimeServerEventConversationItemInputAudioTranscriptionFailedError.TypeOption.IsSet)
                 writer.WriteString("type", realtimeServerEventConversationItemInputAudioTranscriptionFailedError.Type);

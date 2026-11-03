@@ -19,7 +19,7 @@ export interface StaticChunkingStrategy {
 }
 export namespace StaticChunkingStrategy {
     export const TypeEnum = {
-        Static: 'static'
+        Static: 'static',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

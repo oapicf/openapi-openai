@@ -43,8 +43,6 @@ public class CreateTranslation200Response  {
   */
   @ApiModelProperty(value = "Segments of the translated text and their corresponding details.")
 
-  @Valid
-
   private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
  /**
    * The translated text.

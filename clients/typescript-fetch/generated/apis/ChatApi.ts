@@ -25,6 +25,9 @@ import {
 } from '../models/CreateChatCompletionResponse';
 
 export interface CreateChatCompletionOperationRequest {
+    /**
+     * 
+     */
     createChatCompletionRequest: CreateChatCompletionRequest;
 }
 

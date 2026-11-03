@@ -27,7 +27,7 @@ export interface InviteRequest {
 export namespace InviteRequest {
     export const RoleEnum = {
         Reader: 'reader',
-        Owner: 'owner'
+        Owner: 'owner',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

@@ -22,7 +22,7 @@ public class MessageContentTextObjectText   {
   
   private String value;
 
-  private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   /**
    * The data that makes up the text.
@@ -46,7 +46,7 @@ public class MessageContentTextObjectText   {
 
   /**
    **/
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -55,10 +55,10 @@ public class MessageContentTextObjectText   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("annotations")
   @NotNull
-  public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

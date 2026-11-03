@@ -27,7 +27,7 @@ object RealtimeClientEventConversationItemDeleteEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ConversationItemDelete extends `Type`
+    case object ConversationItemDelete extends `Type` { override def toString: String = "conversation.item.delete" }
 
     import org.json4s._
 

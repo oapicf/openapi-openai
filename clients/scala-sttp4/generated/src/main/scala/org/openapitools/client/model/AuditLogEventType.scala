@@ -18,28 +18,28 @@ package org.openapitools.client.model
 sealed trait AuditLogEventType
 
 object AuditLogEventType {
-  case object ApiKeyCreated extends AuditLogEventType
-  case object ApiKeyUpdated extends AuditLogEventType
-  case object ApiKeyDeleted extends AuditLogEventType
-  case object InviteSent extends AuditLogEventType
-  case object InviteAccepted extends AuditLogEventType
-  case object InviteDeleted extends AuditLogEventType
-  case object LoginSucceeded extends AuditLogEventType
-  case object LoginFailed extends AuditLogEventType
-  case object LogoutSucceeded extends AuditLogEventType
-  case object LogoutFailed extends AuditLogEventType
-  case object OrganizationUpdated extends AuditLogEventType
-  case object ProjectCreated extends AuditLogEventType
-  case object ProjectUpdated extends AuditLogEventType
-  case object ProjectArchived extends AuditLogEventType
-  case object ServiceAccountCreated extends AuditLogEventType
-  case object ServiceAccountUpdated extends AuditLogEventType
-  case object ServiceAccountDeleted extends AuditLogEventType
-  case object RateLimitUpdated extends AuditLogEventType
-  case object RateLimitDeleted extends AuditLogEventType
-  case object UserAdded extends AuditLogEventType
-  case object UserUpdated extends AuditLogEventType
-  case object UserDeleted extends AuditLogEventType
+  case object ApiKeyCreated extends AuditLogEventType { override def toString: String = "api_key.created" }
+  case object ApiKeyUpdated extends AuditLogEventType { override def toString: String = "api_key.updated" }
+  case object ApiKeyDeleted extends AuditLogEventType { override def toString: String = "api_key.deleted" }
+  case object InviteSent extends AuditLogEventType { override def toString: String = "invite.sent" }
+  case object InviteAccepted extends AuditLogEventType { override def toString: String = "invite.accepted" }
+  case object InviteDeleted extends AuditLogEventType { override def toString: String = "invite.deleted" }
+  case object LoginSucceeded extends AuditLogEventType { override def toString: String = "login.succeeded" }
+  case object LoginFailed extends AuditLogEventType { override def toString: String = "login.failed" }
+  case object LogoutSucceeded extends AuditLogEventType { override def toString: String = "logout.succeeded" }
+  case object LogoutFailed extends AuditLogEventType { override def toString: String = "logout.failed" }
+  case object OrganizationUpdated extends AuditLogEventType { override def toString: String = "organization.updated" }
+  case object ProjectCreated extends AuditLogEventType { override def toString: String = "project.created" }
+  case object ProjectUpdated extends AuditLogEventType { override def toString: String = "project.updated" }
+  case object ProjectArchived extends AuditLogEventType { override def toString: String = "project.archived" }
+  case object ServiceAccountCreated extends AuditLogEventType { override def toString: String = "service_account.created" }
+  case object ServiceAccountUpdated extends AuditLogEventType { override def toString: String = "service_account.updated" }
+  case object ServiceAccountDeleted extends AuditLogEventType { override def toString: String = "service_account.deleted" }
+  case object RateLimitUpdated extends AuditLogEventType { override def toString: String = "rate_limit.updated" }
+  case object RateLimitDeleted extends AuditLogEventType { override def toString: String = "rate_limit.deleted" }
+  case object UserAdded extends AuditLogEventType { override def toString: String = "user.added" }
+  case object UserUpdated extends AuditLogEventType { override def toString: String = "user.updated" }
+  case object UserDeleted extends AuditLogEventType { override def toString: String = "user.deleted" }
 
   import org.json4s._
 

@@ -27,7 +27,7 @@ export interface RealtimeServerEventConversationItemTruncated {
 }
 export namespace RealtimeServerEventConversationItemTruncated {
   export const TypeEnum = {
-    ConversationItemTruncated: 'conversation.item.truncated'
+    ConversationItemTruncated: 'conversation.item.truncated',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

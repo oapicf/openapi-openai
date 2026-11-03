@@ -25,7 +25,7 @@ export interface RealtimeServerEventResponseOutputItemAdded {
 }
 export namespace RealtimeServerEventResponseOutputItemAdded {
   export const TypeEnum = {
-    ResponseOutputItemAdded: 'response.output_item.added'
+    ResponseOutputItemAdded: 'response.output_item.added',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

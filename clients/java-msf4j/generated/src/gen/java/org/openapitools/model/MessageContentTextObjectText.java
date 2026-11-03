@@ -14,13 +14,13 @@ import org.openapitools.model.MessageContentTextObjectTextAnnotationsInner;
 /**
  * MessageContentTextObjectText
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageContentTextObjectText   {
   @JsonProperty("value")
   private String value;
 
   @JsonProperty("annotations")
-  private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageContentTextObjectText value(String value) {
     this.value = value;
@@ -40,7 +40,7 @@ public class MessageContentTextObjectText   {
     this.value = value;
   }
 
-  public MessageContentTextObjectText annotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageContentTextObjectText annotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -55,11 +55,11 @@ public class MessageContentTextObjectText   {
    * @return annotations
   **/
   @ApiModelProperty(required = true, value = "")
-  public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
-  public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

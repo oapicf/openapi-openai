@@ -25,7 +25,7 @@ import org.openapitools.model.RealtimeSession;
  */
 
 @ApiModel(description = "Returned when a session is updated with a `session.update` event, unless  there is an error. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventSessionUpdated   {
   
   private String eventId;

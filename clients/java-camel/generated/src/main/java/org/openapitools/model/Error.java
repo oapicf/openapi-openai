@@ -18,7 +18,7 @@ import jakarta.annotation.Generated;
  * Error
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Error {
 
   private JsonNullable<String> code = JsonNullable.<String>undefined();
@@ -52,7 +52,7 @@ public class Error {
    * Get code
    * @return code
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "code", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("code")
   public JsonNullable<String> getCode() {
@@ -92,7 +92,7 @@ public class Error {
    * Get param
    * @return param
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "param", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("param")
   public JsonNullable<String> getParam() {

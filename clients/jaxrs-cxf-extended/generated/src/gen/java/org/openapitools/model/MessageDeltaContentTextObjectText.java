@@ -22,8 +22,7 @@ public class MessageDeltaContentTextObjectText  {
   private String value;
 
   @ApiModelProperty(value = "")
-  @Valid
-  private List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
  /**
   * The data that makes up the text.
   * @return value
@@ -53,21 +52,21 @@ public class MessageDeltaContentTextObjectText  {
   * @return annotations
   */
   @JsonProperty("annotations")
-  public List<MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
   /**
    * Sets the <code>annotations</code> property.
    */
- public void setAnnotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+ public void setAnnotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 
   /**
    * Sets the <code>annotations</code> property.
    */
-  public MessageDeltaContentTextObjectText annotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageDeltaContentTextObjectText annotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }

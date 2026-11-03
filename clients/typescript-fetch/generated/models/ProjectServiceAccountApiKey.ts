@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface ProjectServiceAccountApiKey {
     /**
      * The object type, which is always `organization.project.service_account.api_key`
-     * @type {ProjectServiceAccountApiKeyObjectEnum}
-     * @memberof ProjectServiceAccountApiKey
      */
     object: ProjectServiceAccountApiKeyObjectEnum;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectServiceAccountApiKey
      */
     value: string;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectServiceAccountApiKey
      */
     name: string;
     /**
      * 
-     * @type {number}
-     * @memberof ProjectServiceAccountApiKey
      */
     createdAt: number;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectServiceAccountApiKey
      */
     id: string;
 }
@@ -56,7 +46,7 @@ export interface ProjectServiceAccountApiKey {
  * @export
  */
 export const ProjectServiceAccountApiKeyObjectEnum = {
-    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key'
+    OrganizationProjectServiceAccountApiKey: 'organization.project.service_account.api_key',
 } as const;
 export type ProjectServiceAccountApiKeyObjectEnum = typeof ProjectServiceAccountApiKeyObjectEnum[keyof typeof ProjectServiceAccountApiKeyObjectEnum];
 

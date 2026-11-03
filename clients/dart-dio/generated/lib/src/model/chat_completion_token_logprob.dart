@@ -159,3 +159,4 @@ class _$ChatCompletionTokenLogprobSerializer implements PrimitiveSerializer<Chat
   }
 }
 
+

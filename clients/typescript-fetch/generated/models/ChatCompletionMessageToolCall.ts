@@ -29,20 +29,14 @@ import {
 export interface ChatCompletionMessageToolCall {
     /**
      * The ID of the tool call.
-     * @type {string}
-     * @memberof ChatCompletionMessageToolCall
      */
     id: string;
     /**
      * The type of the tool. Currently, only `function` is supported.
-     * @type {ChatCompletionMessageToolCallTypeEnum}
-     * @memberof ChatCompletionMessageToolCall
      */
     type: ChatCompletionMessageToolCallTypeEnum;
     /**
      * 
-     * @type {ChatCompletionMessageToolCallFunction}
-     * @memberof ChatCompletionMessageToolCall
      */
     _function: ChatCompletionMessageToolCallFunction;
 }
@@ -52,7 +46,7 @@ export interface ChatCompletionMessageToolCall {
  * @export
  */
 export const ChatCompletionMessageToolCallTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type ChatCompletionMessageToolCallTypeEnum = typeof ChatCompletionMessageToolCallTypeEnum[keyof typeof ChatCompletionMessageToolCallTypeEnum];
 

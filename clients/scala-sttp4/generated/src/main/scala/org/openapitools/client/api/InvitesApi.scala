@@ -34,7 +34,7 @@ class InvitesApi(baseUrl: String) {
    * 
    * @param inviteId The ID of the invite to delete.
    */
-  def deleteInvite(bearerToken: String)(inviteId: String): Request[Either[ResponseException[String], InviteDeleteResponse]] =
+  def deleteInvite(bearerToken: String)(inviteId: String): sttp.client4.Request[Either[ResponseException[String], InviteDeleteResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/organization/invites/${inviteId}")
       .contentType("application/json")
@@ -50,7 +50,7 @@ class InvitesApi(baseUrl: String) {
    * 
    * @param inviteRequest The invite request payload.
    */
-  def inviteUser(bearerToken: String)(inviteRequest: InviteRequest): Request[Either[ResponseException[String], Invite]] =
+  def inviteUser(bearerToken: String)(inviteRequest: InviteRequest): sttp.client4.Request[Either[ResponseException[String], Invite]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/organization/invites")
       .contentType("application/json")
@@ -68,7 +68,7 @@ class InvitesApi(baseUrl: String) {
    * @param limit A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listInvites(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None): Request[Either[ResponseException[String], InviteListResponse]] =
+  def listInvites(bearerToken: String)(limit: Option[Int] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], InviteListResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/invites?limit=${ limit }&after=${ after }")
       .contentType("application/json")
@@ -84,7 +84,7 @@ class InvitesApi(baseUrl: String) {
    * 
    * @param inviteId The ID of the invite to retrieve.
    */
-  def retrieveInvite(bearerToken: String)(inviteId: String): Request[Either[ResponseException[String], Invite]] =
+  def retrieveInvite(bearerToken: String)(inviteId: String): sttp.client4.Request[Either[ResponseException[String], Invite]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/invites/${inviteId}")
       .contentType("application/json")

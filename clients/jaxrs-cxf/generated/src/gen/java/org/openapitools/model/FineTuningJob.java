@@ -190,9 +190,7 @@ VALIDATING_FILES(String.valueOf("validating_files")), QUEUED(String.valueOf("que
   */
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
 
-  @Valid
-
-  private List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
 
  /**
   * The seed used for the fine-tuning job.
@@ -495,15 +493,15 @@ VALIDATING_FILES(String.valueOf("validating_files")), QUEUED(String.valueOf("que
    * @return integrations
   **/
   @JsonProperty("integrations")
- @Size(max=5)  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+ @Size(max=5)  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
 
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
     return this;
   }

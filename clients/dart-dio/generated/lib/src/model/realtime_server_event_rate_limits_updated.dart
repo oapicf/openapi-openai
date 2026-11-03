@@ -142,9 +142,10 @@ class _$RealtimeServerEventRateLimitsUpdatedSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The event type, must be `rate_limits.updated`.
 class RealtimeServerEventRateLimitsUpdatedTypeEnum extends EnumClass {
 
-  /// The event type, must be `rate_limits.updated`.
   @BuiltValueEnumConst(wireName: r'rate_limits.updated')
   static const RealtimeServerEventRateLimitsUpdatedTypeEnum rateLimitsPeriodUpdated = _$realtimeServerEventRateLimitsUpdatedTypeEnum_rateLimitsPeriodUpdated;
 

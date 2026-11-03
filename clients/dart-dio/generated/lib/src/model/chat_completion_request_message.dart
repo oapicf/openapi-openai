@@ -85,9 +85,10 @@ class _$ChatCompletionRequestMessageSerializer implements PrimitiveSerializer<Ch
   }
 }
 
+
+/// The role of the messages author, in this case `function`.
 class ChatCompletionRequestMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `function`.
   @BuiltValueEnumConst(wireName: r'function')
   static const ChatCompletionRequestMessageRoleEnum function_ = _$chatCompletionRequestMessageRoleEnum_function_;
 

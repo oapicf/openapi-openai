@@ -146,16 +146,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class ImagesResponse.", nameof(created));
+                throw new JsonException("Property is required for class ImagesResponse: created.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ImagesResponse.", nameof(data));
+                throw new JsonException("Property is required for class ImagesResponse: data.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class ImagesResponse.");
+                throw new JsonException("Property is not nullable for class ImagesResponse: created.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ImagesResponse.");
+                throw new JsonException("Property is not nullable for class ImagesResponse: data.");
 
             return new ImagesResponse(created.Value!.Value!, data.Value!);
         }
@@ -166,7 +166,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="imagesResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ImagesResponse imagesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,12 +180,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="imagesResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ImagesResponse imagesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (imagesResponse.Data == null)
-                throw new ArgumentNullException(nameof(imagesResponse.Data), "Property is required for class ImagesResponse.");
-
             writer.WriteNumber("created", imagesResponse.Created);
 
             writer.WritePropertyName("data");

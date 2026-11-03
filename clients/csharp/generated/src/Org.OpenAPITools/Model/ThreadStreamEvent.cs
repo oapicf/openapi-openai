@@ -206,7 +206,12 @@ namespace Org.OpenAPITools.Model
                         case "event":
                             string? varEventRawValue = utf8JsonReader.GetString();
                             if (varEventRawValue != null)
-                                varEvent = new Option<ThreadStreamEvent.EventEnum?>(ThreadStreamEvent.EventEnumFromStringOrDefault(varEventRawValue));
+                            {
+                                ThreadStreamEvent.EventEnum? varEventValue = ThreadStreamEvent.EventEnumFromStringOrDefault(varEventRawValue);
+                                if (varEventValue == null)
+                                    throw new JsonException();
+                                varEvent = new Option<ThreadStreamEvent.EventEnum?>(varEventValue);
+                            }
                             break;
                         case "data":
                             data = new Option<ThreadObject?>(JsonSerializer.Deserialize<ThreadObject>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -221,19 +226,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class ThreadStreamEvent.", nameof(varEvent));
+                throw new JsonException("Property is required for class ThreadStreamEvent: event.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ThreadStreamEvent.", nameof(data));
+                throw new JsonException("Property is required for class ThreadStreamEvent: data.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class ThreadStreamEvent.");
+                throw new JsonException("Property is not nullable for class ThreadStreamEvent: event.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ThreadStreamEvent.");
+                throw new JsonException("Property is not nullable for class ThreadStreamEvent: data.");
 
             if (enabled.IsSet && enabled.Value == null)
-                throw new ArgumentNullException(nameof(enabled), "Property is not nullable for class ThreadStreamEvent.");
+                throw new JsonException("Property is not nullable for class ThreadStreamEvent: enabled.");
 
             return new ThreadStreamEvent(varEvent.Value!.Value!, data.Value!, enabled);
         }
@@ -244,7 +249,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="threadStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ThreadStreamEvent threadStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -259,11 +263,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="threadStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ThreadStreamEvent threadStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (threadStreamEvent.Data == null)
-                throw new ArgumentNullException(nameof(threadStreamEvent.Data), "Property is required for class ThreadStreamEvent.");
+            if (threadStreamEvent.EnabledOption.IsSet && threadStreamEvent.Enabled == null)
+                throw new JsonException("Cannot write null property ThreadStreamEvent.Enabled to non-nullable JSON property 'enabled'.");
 
             var varEventRawValue = ThreadStreamEvent.EventEnumToJsonValue(threadStreamEvent.Event);
             writer.WriteString("event", varEventRawValue);

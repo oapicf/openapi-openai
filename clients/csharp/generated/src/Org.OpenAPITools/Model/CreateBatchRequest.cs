@@ -304,12 +304,22 @@ namespace Org.OpenAPITools.Model
                         case "endpoint":
                             string? endpointRawValue = utf8JsonReader.GetString();
                             if (endpointRawValue != null)
-                                endpoint = new Option<CreateBatchRequest.EndpointEnum?>(CreateBatchRequest.EndpointEnumFromStringOrDefault(endpointRawValue));
+                            {
+                                CreateBatchRequest.EndpointEnum? endpointValue = CreateBatchRequest.EndpointEnumFromStringOrDefault(endpointRawValue);
+                                if (endpointValue == null)
+                                    throw new JsonException();
+                                endpoint = new Option<CreateBatchRequest.EndpointEnum?>(endpointValue);
+                            }
                             break;
                         case "completion_window":
                             string? completionWindowRawValue = utf8JsonReader.GetString();
                             if (completionWindowRawValue != null)
-                                completionWindow = new Option<CreateBatchRequest.CompletionWindowEnum?>(CreateBatchRequest.CompletionWindowEnumFromStringOrDefault(completionWindowRawValue));
+                            {
+                                CreateBatchRequest.CompletionWindowEnum? completionWindowValue = CreateBatchRequest.CompletionWindowEnumFromStringOrDefault(completionWindowRawValue);
+                                if (completionWindowValue == null)
+                                    throw new JsonException();
+                                completionWindow = new Option<CreateBatchRequest.CompletionWindowEnum?>(completionWindowValue);
+                            }
                             break;
                         case "metadata":
                             metadata = new Option<Dictionary<string, string>?>(JsonSerializer.Deserialize<Dictionary<string, string>>(ref utf8JsonReader, jsonSerializerOptions));
@@ -321,22 +331,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!inputFileId.IsSet)
-                throw new ArgumentException("Property is required for class CreateBatchRequest.", nameof(inputFileId));
+                throw new JsonException("Property is required for class CreateBatchRequest: input_file_id.");
 
             if (!endpoint.IsSet)
-                throw new ArgumentException("Property is required for class CreateBatchRequest.", nameof(endpoint));
+                throw new JsonException("Property is required for class CreateBatchRequest: endpoint.");
 
             if (!completionWindow.IsSet)
-                throw new ArgumentException("Property is required for class CreateBatchRequest.", nameof(completionWindow));
+                throw new JsonException("Property is required for class CreateBatchRequest: completion_window.");
 
             if (inputFileId.IsSet && inputFileId.Value == null)
-                throw new ArgumentNullException(nameof(inputFileId), "Property is not nullable for class CreateBatchRequest.");
+                throw new JsonException("Property is not nullable for class CreateBatchRequest: input_file_id.");
 
             if (endpoint.IsSet && endpoint.Value == null)
-                throw new ArgumentNullException(nameof(endpoint), "Property is not nullable for class CreateBatchRequest.");
+                throw new JsonException("Property is not nullable for class CreateBatchRequest: endpoint.");
 
             if (completionWindow.IsSet && completionWindow.Value == null)
-                throw new ArgumentNullException(nameof(completionWindow), "Property is not nullable for class CreateBatchRequest.");
+                throw new JsonException("Property is not nullable for class CreateBatchRequest: completion_window.");
 
             return new CreateBatchRequest(inputFileId.Value!, endpoint.Value!.Value!, completionWindow.Value!.Value!, metadata);
         }
@@ -347,7 +357,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createBatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateBatchRequest createBatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -362,12 +371,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createBatchRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateBatchRequest createBatchRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createBatchRequest.InputFileId == null)
-                throw new ArgumentNullException(nameof(createBatchRequest.InputFileId), "Property is required for class CreateBatchRequest.");
-
             writer.WriteString("input_file_id", createBatchRequest.InputFileId);
 
             var endpointRawValue = CreateBatchRequest.EndpointEnumToJsonValue(createBatchRequest.Endpoint);

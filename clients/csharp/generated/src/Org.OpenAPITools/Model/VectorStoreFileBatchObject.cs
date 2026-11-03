@@ -332,7 +332,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<VectorStoreFileBatchObject.ObjectEnum?>(VectorStoreFileBatchObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                VectorStoreFileBatchObject.ObjectEnum? varObjectValue = VectorStoreFileBatchObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<VectorStoreFileBatchObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -343,7 +348,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<VectorStoreFileBatchObject.StatusEnum?>(VectorStoreFileBatchObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                VectorStoreFileBatchObject.StatusEnum? statusValue = VectorStoreFileBatchObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<VectorStoreFileBatchObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "file_counts":
                             fileCounts = new Option<VectorStoreFileBatchObjectFileCounts?>(JsonSerializer.Deserialize<VectorStoreFileBatchObjectFileCounts>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -355,40 +365,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(id));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(varObject));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: created_at.");
 
             if (!vectorStoreId.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(vectorStoreId));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: vector_store_id.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(status));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: status.");
 
             if (!fileCounts.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreFileBatchObject.", nameof(fileCounts));
+                throw new JsonException("Property is required for class VectorStoreFileBatchObject: file_counts.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: created_at.");
 
             if (vectorStoreId.IsSet && vectorStoreId.Value == null)
-                throw new ArgumentNullException(nameof(vectorStoreId), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: vector_store_id.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: status.");
 
             if (fileCounts.IsSet && fileCounts.Value == null)
-                throw new ArgumentNullException(nameof(fileCounts), "Property is not nullable for class VectorStoreFileBatchObject.");
+                throw new JsonException("Property is not nullable for class VectorStoreFileBatchObject: file_counts.");
 
             return new VectorStoreFileBatchObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, vectorStoreId.Value!, status.Value!.Value!, fileCounts.Value!);
         }
@@ -399,7 +409,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileBatchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreFileBatchObject vectorStoreFileBatchObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -414,18 +423,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreFileBatchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreFileBatchObject vectorStoreFileBatchObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (vectorStoreFileBatchObject.Id == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileBatchObject.Id), "Property is required for class VectorStoreFileBatchObject.");
-
-            if (vectorStoreFileBatchObject.VectorStoreId == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileBatchObject.VectorStoreId), "Property is required for class VectorStoreFileBatchObject.");
-
-            if (vectorStoreFileBatchObject.FileCounts == null)
-                throw new ArgumentNullException(nameof(vectorStoreFileBatchObject.FileCounts), "Property is required for class VectorStoreFileBatchObject.");
-
             writer.WriteString("id", vectorStoreFileBatchObject.Id);
 
             var varObjectRawValue = VectorStoreFileBatchObject.ObjectEnumToJsonValue(vectorStoreFileBatchObject.Object);

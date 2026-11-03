@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJob   {
   
   private String id;
@@ -84,7 +84,7 @@ public class FineTuningJob   {
   private Integer trainedTokens;
   private String trainingFile;
   private String validationFile;
-  private List<FineTuningJobIntegrationsInner> integrations;
+  private List<@Valid FineTuningJobIntegrationsInner> integrations;
   private Integer seed;
   private Integer estimatedFinish;
   private FineTuneMethod method;
@@ -289,10 +289,10 @@ public class FineTuningJob   {
   
   @ApiModelProperty(value = "A list of integrations to enable for this fine-tuning job.")
   @JsonProperty("integrations")
- @Size(max=5)  public List<FineTuningJobIntegrationsInner> getIntegrations() {
+ @Size(max=5)  public List<@Valid FineTuningJobIntegrationsInner> getIntegrations() {
     return integrations;
   }
-  public void setIntegrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public void setIntegrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = integrations;
   }
 

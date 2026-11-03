@@ -17,7 +17,7 @@ export interface AssistantToolsFileSearchTypeOnly {
 }
 export namespace AssistantToolsFileSearchTypeOnly {
     export const TypeEnum = {
-        FileSearch: 'file_search'
+        FileSearch: 'file_search',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

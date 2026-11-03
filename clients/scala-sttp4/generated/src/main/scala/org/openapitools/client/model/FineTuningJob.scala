@@ -55,7 +55,7 @@ object FineTuningJobEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object FineTuningJob extends `Object`
+    case object FineTuningJob extends `Object` { override def toString: String = "fine_tuning.job" }
 
     import org.json4s._
 
@@ -76,12 +76,12 @@ object FineTuningJobEnums {
 
   sealed trait Status
   object Status {
-    case object ValidatingFiles extends Status
-    case object Queued extends Status
-    case object Running extends Status
-    case object Succeeded extends Status
-    case object Failed extends Status
-    case object Cancelled extends Status
+    case object ValidatingFiles extends Status { override def toString: String = "validating_files" }
+    case object Queued extends Status { override def toString: String = "queued" }
+    case object Running extends Status { override def toString: String = "running" }
+    case object Succeeded extends Status { override def toString: String = "succeeded" }
+    case object Failed extends Status { override def toString: String = "failed" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
 
     import org.json4s._
 

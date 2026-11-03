@@ -23,7 +23,7 @@ data class SubmitToolOutputsRunRequest(
 
     @field:Valid
     @Schema(required = true, description = "A list of tools for which the outputs are being submitted.")
-    @param:JsonProperty("tool_outputs")
+    @param:JsonProperty("tool_outputs", required = true)
     @get:JsonProperty("tool_outputs", required = true) val toolOutputs: kotlin.collections.List<SubmitToolOutputsRunRequestToolOutputsInner>,
 
     @Schema(description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ")

@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="Create a new Realtime response with these parameters")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="Create a new Realtime response with these parameters")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseCreateParams   {
   
 
@@ -170,7 +170,6 @@ public class RealtimeResponseCreateParams   {
   
   @ApiModelProperty(value = "Tools (functions) available to the model.")
   @JsonProperty("tools")
-  @Valid
   public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }
@@ -250,7 +249,6 @@ public class RealtimeResponseCreateParams   {
   
   @ApiModelProperty(value = "Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. ")
   @JsonProperty("input")
-  @Valid
   public List<@Valid RealtimeConversationItem> getInput() {
     return input;
   }

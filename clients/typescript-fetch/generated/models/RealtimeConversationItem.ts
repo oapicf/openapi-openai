@@ -32,22 +32,16 @@ export interface RealtimeConversationItem {
      * manage server-side context, but is not required because the server will 
      * generate one if not provided.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItem
      */
     id?: string;
     /**
      * The type of the item (`message`, `function_call`, `function_call_output`).
      * 
-     * @type {RealtimeConversationItemTypeEnum}
-     * @memberof RealtimeConversationItem
      */
     type?: RealtimeConversationItemTypeEnum;
     /**
      * Identifier for the API object being returned - always `realtime.item`.
      * 
-     * @type {RealtimeConversationItemObjectEnum}
-     * @memberof RealtimeConversationItem
      */
     object?: RealtimeConversationItemObjectEnum;
     /**
@@ -55,16 +49,12 @@ export interface RealtimeConversationItem {
      * on the conversation, but are accepted for consistency with the 
      * `conversation.item.created` event.
      * 
-     * @type {RealtimeConversationItemStatusEnum}
-     * @memberof RealtimeConversationItem
      */
     status?: RealtimeConversationItemStatusEnum;
     /**
      * The role of the message sender (`user`, `assistant`, `system`), only 
      * applicable for `message` items.
      * 
-     * @type {RealtimeConversationItemRoleEnum}
-     * @memberof RealtimeConversationItem
      */
     role?: RealtimeConversationItemRoleEnum;
     /**
@@ -74,8 +64,6 @@ export interface RealtimeConversationItem {
      *   content
      * - Message items of role `assistant` support `text` content.
      * 
-     * @type {Array<RealtimeConversationItemContentInner>}
-     * @memberof RealtimeConversationItem
      */
     content?: Array<RealtimeConversationItemContentInner>;
     /**
@@ -84,29 +72,21 @@ export interface RealtimeConversationItem {
      * item, the server will check that a `function_call` item with the same 
      * ID exists in the conversation history.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItem
      */
     callId?: string;
     /**
      * The name of the function being called (for `function_call` items).
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItem
      */
     name?: string;
     /**
      * The arguments of the function call (for `function_call` items).
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItem
      */
     arguments?: string;
     /**
      * The output of the function call (for `function_call_output` items).
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItem
      */
     output?: string;
 }
@@ -118,7 +98,7 @@ export interface RealtimeConversationItem {
 export const RealtimeConversationItemTypeEnum = {
     Message: 'message',
     FunctionCall: 'function_call',
-    FunctionCallOutput: 'function_call_output'
+    FunctionCallOutput: 'function_call_output',
 } as const;
 export type RealtimeConversationItemTypeEnum = typeof RealtimeConversationItemTypeEnum[keyof typeof RealtimeConversationItemTypeEnum];
 
@@ -126,7 +106,7 @@ export type RealtimeConversationItemTypeEnum = typeof RealtimeConversationItemTy
  * @export
  */
 export const RealtimeConversationItemObjectEnum = {
-    RealtimeItem: 'realtime.item'
+    RealtimeItem: 'realtime.item',
 } as const;
 export type RealtimeConversationItemObjectEnum = typeof RealtimeConversationItemObjectEnum[keyof typeof RealtimeConversationItemObjectEnum];
 
@@ -135,7 +115,7 @@ export type RealtimeConversationItemObjectEnum = typeof RealtimeConversationItem
  */
 export const RealtimeConversationItemStatusEnum = {
     Completed: 'completed',
-    Incomplete: 'incomplete'
+    Incomplete: 'incomplete',
 } as const;
 export type RealtimeConversationItemStatusEnum = typeof RealtimeConversationItemStatusEnum[keyof typeof RealtimeConversationItemStatusEnum];
 
@@ -145,7 +125,7 @@ export type RealtimeConversationItemStatusEnum = typeof RealtimeConversationItem
 export const RealtimeConversationItemRoleEnum = {
     User: 'user',
     Assistant: 'assistant',
-    System: 'system'
+    System: 'system',
 } as const;
 export type RealtimeConversationItemRoleEnum = typeof RealtimeConversationItemRoleEnum[keyof typeof RealtimeConversationItemRoleEnum];
 

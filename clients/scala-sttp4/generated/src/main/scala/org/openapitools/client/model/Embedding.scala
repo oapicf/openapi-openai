@@ -27,7 +27,7 @@ object EmbeddingEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Embedding extends `Object`
+    case object Embedding extends `Object` { override def toString: String = "embedding" }
 
     import org.json4s._
 

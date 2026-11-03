@@ -219,7 +219,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<Model.ObjectEnum?>(Model.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                Model.ObjectEnum? varObjectValue = Model.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<Model.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "owned_by":
                             ownedBy = new Option<string?>(utf8JsonReader.GetString()!);
@@ -231,28 +236,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Model.", nameof(id));
+                throw new JsonException("Property is required for class Model: id.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class Model.", nameof(created));
+                throw new JsonException("Property is required for class Model: created.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class Model.", nameof(varObject));
+                throw new JsonException("Property is required for class Model: object.");
 
             if (!ownedBy.IsSet)
-                throw new ArgumentException("Property is required for class Model.", nameof(ownedBy));
+                throw new JsonException("Property is required for class Model: owned_by.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class Model.");
+                throw new JsonException("Property is not nullable for class Model: id.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class Model.");
+                throw new JsonException("Property is not nullable for class Model: created.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class Model.");
+                throw new JsonException("Property is not nullable for class Model: object.");
 
             if (ownedBy.IsSet && ownedBy.Value == null)
-                throw new ArgumentNullException(nameof(ownedBy), "Property is not nullable for class Model.");
+                throw new JsonException("Property is not nullable for class Model: owned_by.");
 
             return new Model(id.Value!, created.Value!.Value!, varObject.Value!.Value!, ownedBy.Value!);
         }
@@ -263,7 +268,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="model"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Model model, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -278,15 +282,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="model"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Model model, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (model.Id == null)
-                throw new ArgumentNullException(nameof(model.Id), "Property is required for class Model.");
-
-            if (model.OwnedBy == null)
-                throw new ArgumentNullException(nameof(model.OwnedBy), "Property is required for class Model.");
-
             writer.WriteString("id", model.Id);
 
             writer.WriteNumber("created", model.Created);

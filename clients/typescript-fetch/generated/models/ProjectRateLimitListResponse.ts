@@ -29,32 +29,22 @@ import {
 export interface ProjectRateLimitListResponse {
     /**
      * 
-     * @type {ProjectRateLimitListResponseObjectEnum}
-     * @memberof ProjectRateLimitListResponse
      */
     object: ProjectRateLimitListResponseObjectEnum;
     /**
      * 
-     * @type {Array<ProjectRateLimit>}
-     * @memberof ProjectRateLimitListResponse
      */
     data: Array<ProjectRateLimit>;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectRateLimitListResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectRateLimitListResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ProjectRateLimitListResponse
      */
     hasMore: boolean;
 }
@@ -64,7 +54,7 @@ export interface ProjectRateLimitListResponse {
  * @export
  */
 export const ProjectRateLimitListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ProjectRateLimitListResponseObjectEnum = typeof ProjectRateLimitListResponseObjectEnum[keyof typeof ProjectRateLimitListResponseObjectEnum];
 

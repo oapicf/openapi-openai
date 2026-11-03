@@ -19,7 +19,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * A batch of files attached to a vector store.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `vector_store.file_batch`.
+ * @param `object` The object type, which is always `vector_store.file_batch`.
  * @param createdAt The Unix timestamp (in seconds) for when the vector store files batch was created.
  * @param vectorStoreId The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
  * @param status The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
@@ -28,28 +28,28 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class VectorStoreFileBatchObject(
 
     @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `vector_store.file_batch`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: VectorStoreFileBatchObject.`Object`,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the vector store files batch was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.")
-    @param:JsonProperty("vector_store_id")
+    @param:JsonProperty("vector_store_id", required = true)
     @get:JsonProperty("vector_store_id", required = true) val vectorStoreId: kotlin.String,
 
     @Schema(required = true, description = "The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.")
-    @param:JsonProperty("status")
+    @param:JsonProperty("status", required = true)
     @get:JsonProperty("status", required = true) val status: VectorStoreFileBatchObject.Status,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("file_counts")
+    @param:JsonProperty("file_counts", required = true)
     @get:JsonProperty("file_counts", required = true) val fileCounts: VectorStoreFileBatchObjectFileCounts
 ) {
 
@@ -60,12 +60,12 @@ data class VectorStoreFileBatchObject(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         vector_storePeriodFiles_batch("vector_store.files_batch");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -81,12 +81,12 @@ data class VectorStoreFileBatchObject(
         completed("completed"),
         cancelled("cancelled"),
         failed("failed");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

@@ -148,10 +148,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionResponseChoicesInnerLogprobs.", nameof(content));
+                throw new JsonException("Property is required for class CreateChatCompletionResponseChoicesInnerLogprobs: content.");
 
             if (!refusal.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionResponseChoicesInnerLogprobs.", nameof(refusal));
+                throw new JsonException("Property is required for class CreateChatCompletionResponseChoicesInnerLogprobs: refusal.");
 
             return new CreateChatCompletionResponseChoicesInnerLogprobs(content.Value!, refusal.Value!);
         }
@@ -162,7 +162,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionResponseChoicesInnerLogprobs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -177,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionResponseChoicesInnerLogprobs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionResponseChoicesInnerLogprobs createChatCompletionResponseChoicesInnerLogprobs, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createChatCompletionResponseChoicesInnerLogprobs.Content != null)

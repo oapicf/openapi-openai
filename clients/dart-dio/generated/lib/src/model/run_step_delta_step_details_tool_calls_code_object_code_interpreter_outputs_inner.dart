@@ -75,12 +75,12 @@ class _$RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerSer
   }
 }
 
+
+/// Always `logs`.
 class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerTypeEnum extends EnumClass {
 
-  /// Always `logs`.
   @BuiltValueEnumConst(wireName: r'logs')
   static const RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerTypeEnum logs = _$runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerTypeEnum_logs;
-  /// Always `logs`.
   @BuiltValueEnumConst(wireName: r'image')
   static const RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerTypeEnum image = _$runStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInnerTypeEnum_image;
 

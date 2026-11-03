@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.CreateModerationRequestInput;
@@ -22,13 +21,12 @@ import jakarta.annotation.Generated;
  * CreateModerationRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationRequest {
 
   private CreateModerationRequestInput input;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
-  private @Nullable CreateModerationRequestModel model;
+  private CreateModerationRequestModel model = omni-moderation-latest;
 
   public CreateModerationRequest() {
     super();
@@ -62,7 +60,7 @@ public class CreateModerationRequest {
     this.input = input;
   }
 
-  public CreateModerationRequest model(@Nullable CreateModerationRequestModel model) {
+  public CreateModerationRequest model(CreateModerationRequestModel model) {
     this.model = model;
     return this;
   }
@@ -74,12 +72,12 @@ public class CreateModerationRequest {
   @Valid 
   @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("model")
-  public @Nullable CreateModerationRequestModel getModel() {
+  public CreateModerationRequestModel getModel() {
     return model;
   }
 
   @JsonProperty("model")
-  public void setModel(@Nullable CreateModerationRequestModel model) {
+  public void setModel(CreateModerationRequestModel model) {
     this.model = model;
   }
 

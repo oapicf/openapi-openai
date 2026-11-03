@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RunStepDeltaStepDetailsMessageCreationObjectMessageCreation {
     /**
      * The ID of the message that was created by this run step.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsMessageCreationObjectMessageCreation
      */
     messageId?: string;
 }

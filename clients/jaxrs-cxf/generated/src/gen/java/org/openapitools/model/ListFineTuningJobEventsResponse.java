@@ -18,8 +18,6 @@ public class ListFineTuningJobEventsResponse  {
   
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid FineTuningJobEvent> data = new ArrayList<>();
 
 public enum ObjectEnum {

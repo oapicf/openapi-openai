@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param id 
  * @param name 
  * @param role Service accounts can only have one role of type `member`
@@ -28,28 +28,28 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProjectServiceAccountCreateResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ProjectServiceAccountCreateResponse.`Object`,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(required = true, description = "Service accounts can only have one role of type `member`")
-    @param:JsonProperty("role")
+    @param:JsonProperty("role", required = true)
     @get:JsonProperty("role", required = true) val role: ProjectServiceAccountCreateResponse.Role,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("api_key")
+    @param:JsonProperty("api_key", required = true)
     @get:JsonProperty("api_key", required = true) val apiKey: ProjectServiceAccountApiKey
 ) {
 
@@ -60,12 +60,12 @@ data class ProjectServiceAccountCreateResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodProjectPeriodService_account("organization.project.service_account");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -78,12 +78,12 @@ data class ProjectServiceAccountCreateResponse(
     enum class Role(@get:JsonValue val value: kotlin.String) {
 
         member("member");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CompletionUsagePromptTokensDetails {
     /**
      * Audio input tokens present in the prompt.
-     * @type {number}
-     * @memberof CompletionUsagePromptTokensDetails
      */
     audioTokens?: number;
     /**
      * Cached tokens present in the prompt.
-     * @type {number}
-     * @memberof CompletionUsagePromptTokensDetails
      */
     cachedTokens?: number;
 }

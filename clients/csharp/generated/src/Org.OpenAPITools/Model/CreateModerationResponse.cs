@@ -162,22 +162,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponse.", nameof(id));
+                throw new JsonException("Property is required for class CreateModerationResponse: id.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponse.", nameof(model));
+                throw new JsonException("Property is required for class CreateModerationResponse: model.");
 
             if (!results.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponse.", nameof(results));
+                throw new JsonException("Property is required for class CreateModerationResponse: results.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateModerationResponse.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponse: id.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateModerationResponse.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponse: model.");
 
             if (results.IsSet && results.Value == null)
-                throw new ArgumentNullException(nameof(results), "Property is not nullable for class CreateModerationResponse.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponse: results.");
 
             return new CreateModerationResponse(id.Value!, model.Value!, results.Value!);
         }
@@ -188,7 +188,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationResponse createModerationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,18 +202,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationResponse createModerationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationResponse.Id == null)
-                throw new ArgumentNullException(nameof(createModerationResponse.Id), "Property is required for class CreateModerationResponse.");
-
-            if (createModerationResponse.Model == null)
-                throw new ArgumentNullException(nameof(createModerationResponse.Model), "Property is required for class CreateModerationResponse.");
-
-            if (createModerationResponse.Results == null)
-                throw new ArgumentNullException(nameof(createModerationResponse.Results), "Property is required for class CreateModerationResponse.");
-
             writer.WriteString("id", createModerationResponse.Id);
 
             writer.WriteString("model", createModerationResponse.Model);

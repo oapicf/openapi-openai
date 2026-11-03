@@ -162,22 +162,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class BatchRequestCounts.", nameof(total));
+                throw new JsonException("Property is required for class BatchRequestCounts: total.");
 
             if (!completed.IsSet)
-                throw new ArgumentException("Property is required for class BatchRequestCounts.", nameof(completed));
+                throw new JsonException("Property is required for class BatchRequestCounts: completed.");
 
             if (!failed.IsSet)
-                throw new ArgumentException("Property is required for class BatchRequestCounts.", nameof(failed));
+                throw new JsonException("Property is required for class BatchRequestCounts: failed.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class BatchRequestCounts.");
+                throw new JsonException("Property is not nullable for class BatchRequestCounts: total.");
 
             if (completed.IsSet && completed.Value == null)
-                throw new ArgumentNullException(nameof(completed), "Property is not nullable for class BatchRequestCounts.");
+                throw new JsonException("Property is not nullable for class BatchRequestCounts: completed.");
 
             if (failed.IsSet && failed.Value == null)
-                throw new ArgumentNullException(nameof(failed), "Property is not nullable for class BatchRequestCounts.");
+                throw new JsonException("Property is not nullable for class BatchRequestCounts: failed.");
 
             return new BatchRequestCounts(total.Value!.Value!, completed.Value!.Value!, failed.Value!.Value!);
         }
@@ -188,7 +188,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestCounts"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchRequestCounts batchRequestCounts, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,7 +202,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestCounts"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchRequestCounts batchRequestCounts, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("total", batchRequestCounts.Total);

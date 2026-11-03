@@ -36,7 +36,7 @@ import javax.validation.Valid;
   UsageTimeBucket.JSON_PROPERTY_END_TIME,
   UsageTimeBucket.JSON_PROPERTY_RESULT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageTimeBucket   {
   /**
    * Gets or Sets _object
@@ -85,7 +85,7 @@ public class UsageTimeBucket   {
 
   public static final String JSON_PROPERTY_RESULT = "result";
   @JsonProperty(JSON_PROPERTY_RESULT)
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   public UsageTimeBucket _object(ObjectEnum _object) {
     this._object = _object;
@@ -147,7 +147,7 @@ public class UsageTimeBucket   {
     this.endTime = endTime;
   }
 
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }
@@ -166,12 +166,12 @@ public class UsageTimeBucket   {
    **/
   @JsonProperty(value = "result")
   @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
-  public List<UsageTimeBucketResultInner> getResult() {
+  @NotNull 
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
 
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

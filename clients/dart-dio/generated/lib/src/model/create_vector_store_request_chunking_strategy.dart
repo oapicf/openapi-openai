@@ -73,12 +73,12 @@ class _$CreateVectorStoreRequestChunkingStrategySerializer implements PrimitiveS
   }
 }
 
+
+/// Always `auto`.
 class CreateVectorStoreRequestChunkingStrategyTypeEnum extends EnumClass {
 
-  /// Always `auto`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const CreateVectorStoreRequestChunkingStrategyTypeEnum auto = _$createVectorStoreRequestChunkingStrategyTypeEnum_auto;
-  /// Always `auto`.
   @BuiltValueEnumConst(wireName: r'static')
   static const CreateVectorStoreRequestChunkingStrategyTypeEnum static_ = _$createVectorStoreRequestChunkingStrategyTypeEnum_static_;
 

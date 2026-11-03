@@ -162,19 +162,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction.", nameof(name));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction: name.");
 
             if (!arguments.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction.", nameof(arguments));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction: arguments.");
 
             if (!output.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction.", nameof(output));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObjectFunction: output.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RunStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFunctionObjectFunction: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class RunStepDetailsToolCallsFunctionObjectFunction.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFunctionObjectFunction: arguments.");
 
             return new RunStepDetailsToolCallsFunctionObjectFunction(name.Value!, arguments.Value!, output.Value!);
         }
@@ -185,7 +185,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFunctionObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFunctionObjectFunction runStepDetailsToolCallsFunctionObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,15 +199,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFunctionObjectFunction"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFunctionObjectFunction runStepDetailsToolCallsFunctionObjectFunction, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsFunctionObjectFunction.Name == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFunctionObjectFunction.Name), "Property is required for class RunStepDetailsToolCallsFunctionObjectFunction.");
-
-            if (runStepDetailsToolCallsFunctionObjectFunction.Arguments == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFunctionObjectFunction.Arguments), "Property is required for class RunStepDetailsToolCallsFunctionObjectFunction.");
-
             writer.WriteString("name", runStepDetailsToolCallsFunctionObjectFunction.Name);
 
             writer.WriteString("arguments", runStepDetailsToolCallsFunctionObjectFunction.Arguments);

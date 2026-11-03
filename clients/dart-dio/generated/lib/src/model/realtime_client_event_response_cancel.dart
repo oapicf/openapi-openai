@@ -147,9 +147,10 @@ class _$RealtimeClientEventResponseCancelSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The event type, must be `response.cancel`.
 class RealtimeClientEventResponseCancelTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.cancel`.
   @BuiltValueEnumConst(wireName: r'response.cancel')
   static const RealtimeClientEventResponseCancelTypeEnum responsePeriodCancel = _$realtimeClientEventResponseCancelTypeEnum_responsePeriodCancel;
 

@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The CreateSpeechRequest model module.
  * @module model/CreateSpeechRequest
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateSpeechRequest {
     /**

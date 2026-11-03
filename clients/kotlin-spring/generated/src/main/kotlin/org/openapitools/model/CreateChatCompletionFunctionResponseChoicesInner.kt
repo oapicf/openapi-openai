@@ -25,16 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateChatCompletionFunctionResponseChoicesInner(
 
     @Schema(required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. ")
-    @param:JsonProperty("finish_reason")
+    @param:JsonProperty("finish_reason", required = true)
     @get:JsonProperty("finish_reason", required = true) val finishReason: CreateChatCompletionFunctionResponseChoicesInner.FinishReason,
 
     @Schema(required = true, description = "The index of the choice in the list of choices.")
-    @param:JsonProperty("index")
+    @param:JsonProperty("index", required = true)
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("message")
+    @param:JsonProperty("message", required = true)
     @get:JsonProperty("message", required = true) val message: ChatCompletionResponseMessage
 ) {
 
@@ -48,12 +48,12 @@ data class CreateChatCompletionFunctionResponseChoicesInner(
         length("length"),
         function_call("function_call"),
         content_filter("content_filter");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): FinishReason {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FinishReason'")
             }
         }

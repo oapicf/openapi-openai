@@ -75,12 +75,12 @@ class _$RunStepDeltaObjectDeltaStepDetailsSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// Always `message_creation`.
 class RunStepDeltaObjectDeltaStepDetailsTypeEnum extends EnumClass {
 
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'message_creation')
   static const RunStepDeltaObjectDeltaStepDetailsTypeEnum messageCreation = _$runStepDeltaObjectDeltaStepDetailsTypeEnum_messageCreation;
-  /// Always `message_creation`.
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const RunStepDeltaObjectDeltaStepDetailsTypeEnum toolCalls = _$runStepDeltaObjectDeltaStepDetailsTypeEnum_toolCalls;
 

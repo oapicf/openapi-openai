@@ -236,7 +236,12 @@ namespace Org.OpenAPITools.Model
                         case "detail":
                             string? detailRawValue = utf8JsonReader.GetString();
                             if (detailRawValue != null)
-                                detail = new Option<MessageDeltaContentImageUrlObjectImageUrl.DetailEnum?>(MessageDeltaContentImageUrlObjectImageUrl.DetailEnumFromStringOrDefault(detailRawValue));
+                            {
+                                MessageDeltaContentImageUrlObjectImageUrl.DetailEnum? detailValue = MessageDeltaContentImageUrlObjectImageUrl.DetailEnumFromStringOrDefault(detailRawValue);
+                                if (detailValue == null)
+                                    throw new JsonException();
+                                detail = new Option<MessageDeltaContentImageUrlObjectImageUrl.DetailEnum?>(detailValue);
+                            }
                             break;
                         default:
                             break;
@@ -245,10 +250,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class MessageDeltaContentImageUrlObjectImageUrl.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageUrlObjectImageUrl: url.");
 
             if (detail.IsSet && detail.Value == null)
-                throw new ArgumentNullException(nameof(detail), "Property is not nullable for class MessageDeltaContentImageUrlObjectImageUrl.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageUrlObjectImageUrl: detail.");
 
             return new MessageDeltaContentImageUrlObjectImageUrl(url, detail);
         }
@@ -259,7 +264,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageUrlObjectImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentImageUrlObjectImageUrl messageDeltaContentImageUrlObjectImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -274,11 +278,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageUrlObjectImageUrl"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentImageUrlObjectImageUrl messageDeltaContentImageUrlObjectImageUrl, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentImageUrlObjectImageUrl.UrlOption.IsSet && messageDeltaContentImageUrlObjectImageUrl.Url == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentImageUrlObjectImageUrl.Url), "Property is required for class MessageDeltaContentImageUrlObjectImageUrl.");
+                throw new JsonException("Cannot write null property MessageDeltaContentImageUrlObjectImageUrl.Url to non-nullable JSON property 'url'.");
+
+            if (messageDeltaContentImageUrlObjectImageUrl.DetailOption.IsSet && messageDeltaContentImageUrlObjectImageUrl.Detail == null)
+                throw new JsonException("Cannot write null property MessageDeltaContentImageUrlObjectImageUrl.Detail to non-nullable JSON property 'detail'.");
 
             if (messageDeltaContentImageUrlObjectImageUrl.UrlOption.IsSet)
                 writer.WriteString("url", messageDeltaContentImageUrlObjectImageUrl.Url);

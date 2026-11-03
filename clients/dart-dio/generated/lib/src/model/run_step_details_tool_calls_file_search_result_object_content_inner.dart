@@ -130,9 +130,10 @@ class _$RunStepDetailsToolCallsFileSearchResultObjectContentInnerSerializer impl
   }
 }
 
+
+/// The type of the content.
 class RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum extends EnumClass {
 
-  /// The type of the content.
   @BuiltValueEnumConst(wireName: r'text')
   static const RunStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum text = _$runStepDetailsToolCallsFileSearchResultObjectContentInnerTypeEnum_text;
 

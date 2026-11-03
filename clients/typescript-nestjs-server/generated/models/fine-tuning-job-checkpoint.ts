@@ -33,7 +33,7 @@ export interface FineTuningJobCheckpoint {
 }
 export namespace FineTuningJobCheckpoint {
   export const ObjectEnum = {
-    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint'
+    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

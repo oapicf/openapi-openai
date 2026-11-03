@@ -9,21 +9,17 @@ import 'package:built_value/serializer.dart';
 
 part 'audio_response_format.g.dart';
 
+/// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
 class AudioResponseFormat extends EnumClass {
 
-  /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
   @BuiltValueEnumConst(wireName: r'json')
   static const AudioResponseFormat json = _$json;
-  /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
   @BuiltValueEnumConst(wireName: r'text')
   static const AudioResponseFormat text = _$text;
-  /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
   @BuiltValueEnumConst(wireName: r'srt')
   static const AudioResponseFormat srt = _$srt;
-  /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
   @BuiltValueEnumConst(wireName: r'verbose_json')
   static const AudioResponseFormat verboseJson = _$verboseJson;
-  /// The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`. 
   @BuiltValueEnumConst(wireName: r'vtt')
   static const AudioResponseFormat vtt = _$vtt;
 

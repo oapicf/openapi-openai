@@ -138,6 +138,7 @@ class _$ProjectUserDeleteResponseSerializer implements PrimitiveSerializer<Proje
   }
 }
 
+
 class ProjectUserDeleteResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.project.user.deleted')

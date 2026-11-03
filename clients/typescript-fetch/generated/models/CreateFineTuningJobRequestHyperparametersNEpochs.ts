@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * @type CreateFineTuningJobRequestHyperparametersNEpochs
  * The number of epochs to train the model for. An epoch refers to one full cycle

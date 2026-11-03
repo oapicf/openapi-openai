@@ -17,20 +17,20 @@ import io.swagger.v3.oas.annotations.media.Schema
  * 
  * @param id 
  * @param deleted 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  */
 data class DeleteModelResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("deleted")
+    @param:JsonProperty("deleted", required = true)
     @get:JsonProperty("deleted", required = true) val deleted: kotlin.Boolean,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: kotlin.String
 ) {
 

@@ -50,7 +50,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   AssistantObject.JSON_PROPERTY_RESPONSE_FORMAT
 })
 @JsonTypeName("AssistantObject")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class AssistantObject {
     public static final String JSON_PROPERTY_ID = "id";
@@ -107,7 +107,7 @@ public class AssistantObject {
     private String instructions;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+    private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
     public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
     private AssistantObjectToolResources toolResources;
@@ -124,7 +124,7 @@ public class AssistantObject {
     public static final String JSON_PROPERTY_RESPONSE_FORMAT = "response_format";
     private AssistantsApiResponseFormatOption responseFormat;
 
-    public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata) {
+    public AssistantObject(String id, ObjectEnum _object, Integer createdAt, String name, String description, String model, String instructions, List<@Valid AssistantObjectToolsInner> tools, Object metadata) {
         this.id = id;
         this._object = _object;
         this.createdAt = createdAt;
@@ -300,7 +300,7 @@ public class AssistantObject {
         this.instructions = instructions;
     }
 
-    public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+    public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -319,13 +319,13 @@ public class AssistantObject {
     @Schema(name = "tools", description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

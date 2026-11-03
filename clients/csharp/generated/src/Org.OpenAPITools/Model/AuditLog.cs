@@ -594,91 +594,91 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AuditLog.", nameof(id));
+                throw new JsonException("Property is required for class AuditLog: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AuditLog.", nameof(type));
+                throw new JsonException("Property is required for class AuditLog: type.");
 
             if (!effectiveAt.IsSet)
-                throw new ArgumentException("Property is required for class AuditLog.", nameof(effectiveAt));
+                throw new JsonException("Property is required for class AuditLog: effective_at.");
 
             if (!actor.IsSet)
-                throw new ArgumentException("Property is required for class AuditLog.", nameof(actor));
+                throw new JsonException("Property is required for class AuditLog: actor.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: type.");
 
             if (effectiveAt.IsSet && effectiveAt.Value == null)
-                throw new ArgumentNullException(nameof(effectiveAt), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: effective_at.");
 
             if (actor.IsSet && actor.Value == null)
-                throw new ArgumentNullException(nameof(actor), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: actor.");
 
             if (project.IsSet && project.Value == null)
-                throw new ArgumentNullException(nameof(project), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: project.");
 
             if (apiKeyCreated.IsSet && apiKeyCreated.Value == null)
-                throw new ArgumentNullException(nameof(apiKeyCreated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: api_key.created.");
 
             if (apiKeyUpdated.IsSet && apiKeyUpdated.Value == null)
-                throw new ArgumentNullException(nameof(apiKeyUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: api_key.updated.");
 
             if (apiKeyDeleted.IsSet && apiKeyDeleted.Value == null)
-                throw new ArgumentNullException(nameof(apiKeyDeleted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: api_key.deleted.");
 
             if (inviteSent.IsSet && inviteSent.Value == null)
-                throw new ArgumentNullException(nameof(inviteSent), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: invite.sent.");
 
             if (inviteAccepted.IsSet && inviteAccepted.Value == null)
-                throw new ArgumentNullException(nameof(inviteAccepted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: invite.accepted.");
 
             if (inviteDeleted.IsSet && inviteDeleted.Value == null)
-                throw new ArgumentNullException(nameof(inviteDeleted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: invite.deleted.");
 
             if (loginFailed.IsSet && loginFailed.Value == null)
-                throw new ArgumentNullException(nameof(loginFailed), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: login.failed.");
 
             if (logoutFailed.IsSet && logoutFailed.Value == null)
-                throw new ArgumentNullException(nameof(logoutFailed), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: logout.failed.");
 
             if (organizationUpdated.IsSet && organizationUpdated.Value == null)
-                throw new ArgumentNullException(nameof(organizationUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: organization.updated.");
 
             if (projectCreated.IsSet && projectCreated.Value == null)
-                throw new ArgumentNullException(nameof(projectCreated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: project.created.");
 
             if (projectUpdated.IsSet && projectUpdated.Value == null)
-                throw new ArgumentNullException(nameof(projectUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: project.updated.");
 
             if (projectArchived.IsSet && projectArchived.Value == null)
-                throw new ArgumentNullException(nameof(projectArchived), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: project.archived.");
 
             if (rateLimitUpdated.IsSet && rateLimitUpdated.Value == null)
-                throw new ArgumentNullException(nameof(rateLimitUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: rate_limit.updated.");
 
             if (rateLimitDeleted.IsSet && rateLimitDeleted.Value == null)
-                throw new ArgumentNullException(nameof(rateLimitDeleted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: rate_limit.deleted.");
 
             if (serviceAccountCreated.IsSet && serviceAccountCreated.Value == null)
-                throw new ArgumentNullException(nameof(serviceAccountCreated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: service_account.created.");
 
             if (serviceAccountUpdated.IsSet && serviceAccountUpdated.Value == null)
-                throw new ArgumentNullException(nameof(serviceAccountUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: service_account.updated.");
 
             if (serviceAccountDeleted.IsSet && serviceAccountDeleted.Value == null)
-                throw new ArgumentNullException(nameof(serviceAccountDeleted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: service_account.deleted.");
 
             if (userAdded.IsSet && userAdded.Value == null)
-                throw new ArgumentNullException(nameof(userAdded), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: user.added.");
 
             if (userUpdated.IsSet && userUpdated.Value == null)
-                throw new ArgumentNullException(nameof(userUpdated), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: user.updated.");
 
             if (userDeleted.IsSet && userDeleted.Value == null)
-                throw new ArgumentNullException(nameof(userDeleted), "Property is not nullable for class AuditLog.");
+                throw new JsonException("Property is not nullable for class AuditLog: user.deleted.");
 
             return new AuditLog(id.Value!, type.Value!.Value!, effectiveAt.Value!.Value!, actor.Value!, project, apiKeyCreated, apiKeyUpdated, apiKeyDeleted, inviteSent, inviteAccepted, inviteDeleted, loginFailed, logoutFailed, organizationUpdated, projectCreated, projectUpdated, projectArchived, rateLimitUpdated, rateLimitDeleted, serviceAccountCreated, serviceAccountUpdated, serviceAccountDeleted, userAdded, userUpdated, userDeleted);
         }
@@ -689,7 +689,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLog auditLog, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -704,77 +703,70 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLog"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLog auditLog, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (auditLog.Id == null)
-                throw new ArgumentNullException(nameof(auditLog.Id), "Property is required for class AuditLog.");
-
-            if (auditLog.Actor == null)
-                throw new ArgumentNullException(nameof(auditLog.Actor), "Property is required for class AuditLog.");
-
             if (auditLog.ProjectOption.IsSet && auditLog.Project == null)
-                throw new ArgumentNullException(nameof(auditLog.Project), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.Project to non-nullable JSON property 'project'.");
 
             if (auditLog.ApiKeyCreatedOption.IsSet && auditLog.ApiKeyCreated == null)
-                throw new ArgumentNullException(nameof(auditLog.ApiKeyCreated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ApiKeyCreated to non-nullable JSON property 'api_key.created'.");
 
             if (auditLog.ApiKeyUpdatedOption.IsSet && auditLog.ApiKeyUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.ApiKeyUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ApiKeyUpdated to non-nullable JSON property 'api_key.updated'.");
 
             if (auditLog.ApiKeyDeletedOption.IsSet && auditLog.ApiKeyDeleted == null)
-                throw new ArgumentNullException(nameof(auditLog.ApiKeyDeleted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ApiKeyDeleted to non-nullable JSON property 'api_key.deleted'.");
 
             if (auditLog.InviteSentOption.IsSet && auditLog.InviteSent == null)
-                throw new ArgumentNullException(nameof(auditLog.InviteSent), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.InviteSent to non-nullable JSON property 'invite.sent'.");
 
             if (auditLog.InviteAcceptedOption.IsSet && auditLog.InviteAccepted == null)
-                throw new ArgumentNullException(nameof(auditLog.InviteAccepted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.InviteAccepted to non-nullable JSON property 'invite.accepted'.");
 
             if (auditLog.InviteDeletedOption.IsSet && auditLog.InviteDeleted == null)
-                throw new ArgumentNullException(nameof(auditLog.InviteDeleted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.InviteDeleted to non-nullable JSON property 'invite.deleted'.");
 
             if (auditLog.LoginFailedOption.IsSet && auditLog.LoginFailed == null)
-                throw new ArgumentNullException(nameof(auditLog.LoginFailed), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.LoginFailed to non-nullable JSON property 'login.failed'.");
 
             if (auditLog.LogoutFailedOption.IsSet && auditLog.LogoutFailed == null)
-                throw new ArgumentNullException(nameof(auditLog.LogoutFailed), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.LogoutFailed to non-nullable JSON property 'logout.failed'.");
 
             if (auditLog.OrganizationUpdatedOption.IsSet && auditLog.OrganizationUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.OrganizationUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.OrganizationUpdated to non-nullable JSON property 'organization.updated'.");
 
             if (auditLog.ProjectCreatedOption.IsSet && auditLog.ProjectCreated == null)
-                throw new ArgumentNullException(nameof(auditLog.ProjectCreated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ProjectCreated to non-nullable JSON property 'project.created'.");
 
             if (auditLog.ProjectUpdatedOption.IsSet && auditLog.ProjectUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.ProjectUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ProjectUpdated to non-nullable JSON property 'project.updated'.");
 
             if (auditLog.ProjectArchivedOption.IsSet && auditLog.ProjectArchived == null)
-                throw new ArgumentNullException(nameof(auditLog.ProjectArchived), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ProjectArchived to non-nullable JSON property 'project.archived'.");
 
             if (auditLog.RateLimitUpdatedOption.IsSet && auditLog.RateLimitUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.RateLimitUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.RateLimitUpdated to non-nullable JSON property 'rate_limit.updated'.");
 
             if (auditLog.RateLimitDeletedOption.IsSet && auditLog.RateLimitDeleted == null)
-                throw new ArgumentNullException(nameof(auditLog.RateLimitDeleted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.RateLimitDeleted to non-nullable JSON property 'rate_limit.deleted'.");
 
             if (auditLog.ServiceAccountCreatedOption.IsSet && auditLog.ServiceAccountCreated == null)
-                throw new ArgumentNullException(nameof(auditLog.ServiceAccountCreated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ServiceAccountCreated to non-nullable JSON property 'service_account.created'.");
 
             if (auditLog.ServiceAccountUpdatedOption.IsSet && auditLog.ServiceAccountUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.ServiceAccountUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ServiceAccountUpdated to non-nullable JSON property 'service_account.updated'.");
 
             if (auditLog.ServiceAccountDeletedOption.IsSet && auditLog.ServiceAccountDeleted == null)
-                throw new ArgumentNullException(nameof(auditLog.ServiceAccountDeleted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.ServiceAccountDeleted to non-nullable JSON property 'service_account.deleted'.");
 
             if (auditLog.UserAddedOption.IsSet && auditLog.UserAdded == null)
-                throw new ArgumentNullException(nameof(auditLog.UserAdded), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.UserAdded to non-nullable JSON property 'user.added'.");
 
             if (auditLog.UserUpdatedOption.IsSet && auditLog.UserUpdated == null)
-                throw new ArgumentNullException(nameof(auditLog.UserUpdated), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.UserUpdated to non-nullable JSON property 'user.updated'.");
 
             if (auditLog.UserDeletedOption.IsSet && auditLog.UserDeleted == null)
-                throw new ArgumentNullException(nameof(auditLog.UserDeleted), "Property is required for class AuditLog.");
+                throw new JsonException("Cannot write null property AuditLog.UserDeleted to non-nullable JSON property 'user.deleted'.");
 
             writer.WriteString("id", auditLog.Id);
 

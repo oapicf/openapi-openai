@@ -8,7 +8,7 @@ import play.api.libs.json._
   * @param `type` The event type, must be `conversation.item.delete`.
   * @param itemId The ID of the item to delete.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class RealtimeClientEventConversationItemDelete(
   eventId: Option[String],
   `type`: RealtimeClientEventConversationItemDelete.Type.Value,

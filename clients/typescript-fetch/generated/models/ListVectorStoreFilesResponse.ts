@@ -29,32 +29,22 @@ import {
 export interface ListVectorStoreFilesResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoreFilesResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<VectorStoreFileObject>}
-     * @memberof ListVectorStoreFilesResponse
      */
     data: Array<VectorStoreFileObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoreFilesResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListVectorStoreFilesResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListVectorStoreFilesResponse
      */
     hasMore: boolean;
 }

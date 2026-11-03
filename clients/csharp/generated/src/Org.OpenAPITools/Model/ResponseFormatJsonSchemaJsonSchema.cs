@@ -197,16 +197,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ResponseFormatJsonSchemaJsonSchema.", nameof(name));
+                throw new JsonException("Property is required for class ResponseFormatJsonSchemaJsonSchema: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ResponseFormatJsonSchemaJsonSchema.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonSchemaJsonSchema: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class ResponseFormatJsonSchemaJsonSchema.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonSchemaJsonSchema: description.");
 
             if (schema.IsSet && schema.Value == null)
-                throw new ArgumentNullException(nameof(schema), "Property is not nullable for class ResponseFormatJsonSchemaJsonSchema.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonSchemaJsonSchema: schema.");
 
             return new ResponseFormatJsonSchemaJsonSchema(name.Value!, description, schema, strict);
         }
@@ -217,7 +217,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonSchemaJsonSchema"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ResponseFormatJsonSchemaJsonSchema responseFormatJsonSchemaJsonSchema, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -232,17 +231,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonSchemaJsonSchema"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ResponseFormatJsonSchemaJsonSchema responseFormatJsonSchemaJsonSchema, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (responseFormatJsonSchemaJsonSchema.Name == null)
-                throw new ArgumentNullException(nameof(responseFormatJsonSchemaJsonSchema.Name), "Property is required for class ResponseFormatJsonSchemaJsonSchema.");
-
             if (responseFormatJsonSchemaJsonSchema.DescriptionOption.IsSet && responseFormatJsonSchemaJsonSchema.Description == null)
-                throw new ArgumentNullException(nameof(responseFormatJsonSchemaJsonSchema.Description), "Property is required for class ResponseFormatJsonSchemaJsonSchema.");
+                throw new JsonException("Cannot write null property ResponseFormatJsonSchemaJsonSchema.Description to non-nullable JSON property 'description'.");
 
             if (responseFormatJsonSchemaJsonSchema.SchemaOption.IsSet && responseFormatJsonSchemaJsonSchema.Schema == null)
-                throw new ArgumentNullException(nameof(responseFormatJsonSchemaJsonSchema.Schema), "Property is required for class ResponseFormatJsonSchemaJsonSchema.");
+                throw new JsonException("Cannot write null property ResponseFormatJsonSchemaJsonSchema.Schema to non-nullable JSON property 'schema'.");
 
             writer.WriteString("name", responseFormatJsonSchemaJsonSchema.Name);
 

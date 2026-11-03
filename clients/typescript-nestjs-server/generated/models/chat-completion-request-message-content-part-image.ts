@@ -13,7 +13,7 @@ export interface ChatCompletionRequestMessageContentPartImage {
 }
 export namespace ChatCompletionRequestMessageContentPartImage {
   export const TypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

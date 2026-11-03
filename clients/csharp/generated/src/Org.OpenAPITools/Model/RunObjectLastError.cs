@@ -219,7 +219,12 @@ namespace Org.OpenAPITools.Model
                         case "code":
                             string? codeRawValue = utf8JsonReader.GetString();
                             if (codeRawValue != null)
-                                code = new Option<RunObjectLastError.CodeEnum?>(RunObjectLastError.CodeEnumFromStringOrDefault(codeRawValue));
+                            {
+                                RunObjectLastError.CodeEnum? codeValue = RunObjectLastError.CodeEnumFromStringOrDefault(codeRawValue);
+                                if (codeValue == null)
+                                    throw new JsonException();
+                                code = new Option<RunObjectLastError.CodeEnum?>(codeValue);
+                            }
                             break;
                         case "message":
                             message = new Option<string?>(utf8JsonReader.GetString()!);
@@ -231,16 +236,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class RunObjectLastError.", nameof(code));
+                throw new JsonException("Property is required for class RunObjectLastError: code.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class RunObjectLastError.", nameof(message));
+                throw new JsonException("Property is required for class RunObjectLastError: message.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class RunObjectLastError.");
+                throw new JsonException("Property is not nullable for class RunObjectLastError: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class RunObjectLastError.");
+                throw new JsonException("Property is not nullable for class RunObjectLastError: message.");
 
             return new RunObjectLastError(code.Value!.Value!, message.Value!);
         }
@@ -251,7 +256,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunObjectLastError runObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,12 +270,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectLastError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunObjectLastError runObjectLastError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runObjectLastError.Message == null)
-                throw new ArgumentNullException(nameof(runObjectLastError.Message), "Property is required for class RunObjectLastError.");
-
             var codeRawValue = RunObjectLastError.CodeEnumToJsonValue(runObjectLastError.Code);
             writer.WriteString("code", codeRawValue);
             writer.WriteString("message", runObjectLastError.Message);

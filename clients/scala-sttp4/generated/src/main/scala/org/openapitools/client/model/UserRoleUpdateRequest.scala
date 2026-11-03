@@ -20,8 +20,8 @@ object UserRoleUpdateRequestEnums {
 
   sealed trait Role
   object Role {
-    case object Owner extends Role
-    case object Reader extends Role
+    case object Owner extends Role { override def toString: String = "owner" }
+    case object Reader extends Role { override def toString: String = "reader" }
 
     import org.json4s._
 

@@ -22,26 +22,18 @@ export interface RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
     /**
      * The name of the rate limit (`requests`, `tokens`).
      * 
-     * @type {RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum}
-     * @memberof RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      */
     name?: RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum;
     /**
      * The maximum allowed value for the rate limit.
-     * @type {number}
-     * @memberof RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      */
     limit?: number;
     /**
      * The remaining value before the limit is reached.
-     * @type {number}
-     * @memberof RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      */
     remaining?: number;
     /**
      * Seconds until the rate limit resets.
-     * @type {number}
-     * @memberof RealtimeServerEventRateLimitsUpdatedRateLimitsInner
      */
     resetSeconds?: number;
 }
@@ -52,7 +44,7 @@ export interface RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
  */
 export const RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum = {
     Requests: 'requests',
-    Tokens: 'tokens'
+    Tokens: 'tokens',
 } as const;
 export type RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum = typeof RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum[keyof typeof RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum];
 

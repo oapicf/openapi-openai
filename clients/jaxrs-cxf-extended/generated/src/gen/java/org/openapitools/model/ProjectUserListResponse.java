@@ -18,7 +18,6 @@ public class ProjectUserListResponse  {
   private String _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid ProjectUser> data = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")

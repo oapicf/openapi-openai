@@ -22,7 +22,7 @@ export interface PredictionContent {
 }
 export namespace PredictionContent {
     export const TypeEnum = {
-        Content: 'content'
+        Content: 'content',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

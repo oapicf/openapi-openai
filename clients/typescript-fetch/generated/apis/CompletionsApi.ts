@@ -25,6 +25,9 @@ import {
 } from '../models/CreateCompletionResponse';
 
 export interface CreateCompletionOperationRequest {
+    /**
+     * 
+     */
     createCompletionRequest: CreateCompletionRequest;
 }
 

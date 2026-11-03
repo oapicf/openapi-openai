@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CreateModerationRequestInputOneOfInnerOneOf1 {
     /**
      * Always `text`.
-     * @type {CreateModerationRequestInputOneOfInnerOneOf1TypeEnum}
-     * @memberof CreateModerationRequestInputOneOfInnerOneOf1
      */
     type: CreateModerationRequestInputOneOfInnerOneOf1TypeEnum;
     /**
      * A string of text to classify.
-     * @type {string}
-     * @memberof CreateModerationRequestInputOneOfInnerOneOf1
      */
     text: string;
 }
@@ -38,7 +34,7 @@ export interface CreateModerationRequestInputOneOfInnerOneOf1 {
  * @export
  */
 export const CreateModerationRequestInputOneOfInnerOneOf1TypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type CreateModerationRequestInputOneOfInnerOneOf1TypeEnum = typeof CreateModerationRequestInputOneOfInnerOneOf1TypeEnum[keyof typeof CreateModerationRequestInputOneOfInnerOneOf1TypeEnum];
 

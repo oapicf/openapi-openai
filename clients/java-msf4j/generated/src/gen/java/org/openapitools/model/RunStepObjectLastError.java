@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * The last error associated with this run step. Will be &#x60;null&#x60; if there are no errors.
  */
 @ApiModel(description = "The last error associated with this run step. Will be `null` if there are no errors.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepObjectLastError   {
   /**
    * One of `server_error` or `rate_limit_exceeded`.

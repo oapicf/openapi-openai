@@ -26,7 +26,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Realtime session object configuration.")
 @JsonTypeName("RealtimeSessionCreateRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeSessionCreateRequest   {
   public enum ModalitiesEnum {
 
@@ -75,7 +75,7 @@ public class RealtimeSessionCreateRequest   {
     }
 }
 
-  private @Valid List<ModalitiesEnum> modalities = new ArrayList<>();
+  private List<ModalitiesEnum> modalities = new ArrayList<>();
   public enum ModelEnum {
 
     GPT_4O_REALTIME_PREVIEW(String.valueOf("gpt-4o-realtime-preview")), GPT_4O_REALTIME_PREVIEW_2024_10_01(String.valueOf("gpt-4o-realtime-preview-2024-10-01")), GPT_4O_REALTIME_PREVIEW_2024_12_17(String.valueOf("gpt-4o-realtime-preview-2024-12-17")), GPT_4O_MINI_REALTIME_PREVIEW(String.valueOf("gpt-4o-mini-realtime-preview")), GPT_4O_MINI_REALTIME_PREVIEW_2024_12_17(String.valueOf("gpt-4o-mini-realtime-preview-2024-12-17"));
@@ -271,7 +271,7 @@ public class RealtimeSessionCreateRequest   {
   private OutputAudioFormatEnum outputAudioFormat;
   private RealtimeSessionInputAudioTranscription inputAudioTranscription;
   private RealtimeSessionCreateRequestTurnDetection turnDetection;
-  private @Valid List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
+  private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
   private String toolChoice;
   private BigDecimal temperature;
   private RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
@@ -471,7 +471,7 @@ public class RealtimeSessionCreateRequest   {
   
   @ApiModelProperty(value = "Tools (functions) available to the model.")
   @JsonProperty("tools")
-  @Valid public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
+  public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }
 

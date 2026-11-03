@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from pydantic import Field, StrictBytes, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBytes, StrictStr, field_validator
 from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 from openapi_server.models.delete_file_response import DeleteFileResponse
@@ -19,10 +19,10 @@ class BaseFilesApi:
         BaseFilesApi.subclasses = BaseFilesApi.subclasses + (cls,)
     async def list_files(
         self,
-        purpose: Annotated[Optional[StrictStr], Field(description="Only return files with the given purpose.")],
-        limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")],
-        order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
-        after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
+        purpose: Annotated[Optional[str], Field(description="Only return files with the given purpose.")],
+        limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 10,000, and the default is 10,000. ")],
+        order: Annotated[Optional[str], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")],
+        after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")],
     ) -> ListFilesResponse:
         ...
 
@@ -37,20 +37,20 @@ class BaseFilesApi:
 
     async def retrieve_file(
         self,
-        file_id: Annotated[StrictStr, Field(description="The ID of the file to use for this request.")],
+        file_id: Annotated[str, Field(description="The ID of the file to use for this request.")],
     ) -> OpenAIFile:
         ...
 
 
     async def delete_file(
         self,
-        file_id: Annotated[StrictStr, Field(description="The ID of the file to use for this request.")],
+        file_id: Annotated[str, Field(description="The ID of the file to use for this request.")],
     ) -> DeleteFileResponse:
         ...
 
 
     async def download_file(
         self,
-        file_id: Annotated[StrictStr, Field(description="The ID of the file to use for this request.")],
+        file_id: Annotated[str, Field(description="The ID of the file to use for this request.")],
     ) -> str:
         ...

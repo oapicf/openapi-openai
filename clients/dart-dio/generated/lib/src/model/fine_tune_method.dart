@@ -150,12 +150,12 @@ class _$FineTuneMethodSerializer implements PrimitiveSerializer<FineTuneMethod> 
   }
 }
 
+
+/// The type of method. Is either `supervised` or `dpo`.
 class FineTuneMethodTypeEnum extends EnumClass {
 
-  /// The type of method. Is either `supervised` or `dpo`.
   @BuiltValueEnumConst(wireName: r'supervised')
   static const FineTuneMethodTypeEnum supervised = _$fineTuneMethodTypeEnum_supervised;
-  /// The type of method. Is either `supervised` or `dpo`.
   @BuiltValueEnumConst(wireName: r'dpo')
   static const FineTuneMethodTypeEnum dpo = _$fineTuneMethodTypeEnum_dpo;
 

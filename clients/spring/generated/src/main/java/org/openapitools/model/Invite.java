@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "Invite", description = "Represents an individual `invite` to the organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Invite {
 
   /**
@@ -148,10 +147,8 @@ public class Invite {
 
   private Integer expiresAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer acceptedAt;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid InviteProjectsInner> projects = new ArrayList<>();
 
   public Invite() {
@@ -356,7 +353,7 @@ public class Invite {
    * The projects that were granted membership upon acceptance of the invite.
    * @return projects
    */
-  @Valid 
+  
   @Schema(name = "projects", description = "The projects that were granted membership upon acceptance of the invite.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("projects")
   public List<@Valid InviteProjectsInner> getProjects() {

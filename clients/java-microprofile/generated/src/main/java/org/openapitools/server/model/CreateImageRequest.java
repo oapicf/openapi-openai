@@ -39,7 +39,7 @@ public class CreateImageRequest  {
   protected String prompt;
 
   @JsonbProperty("model")
-  protected CreateImageRequestModel model;
+  protected CreateImageRequestModel model = dall-e-2;
 
  /**
   * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.

@@ -131,15 +131,14 @@ class _$MessageDeltaContentImageUrlObjectImageUrlSerializer implements Primitive
   }
 }
 
+
+/// Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
 class MessageDeltaContentImageUrlObjectImageUrlDetailEnum extends EnumClass {
 
-  /// Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const MessageDeltaContentImageUrlObjectImageUrlDetailEnum auto = _$messageDeltaContentImageUrlObjectImageUrlDetailEnum_auto;
-  /// Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'low')
   static const MessageDeltaContentImageUrlObjectImageUrlDetailEnum low = _$messageDeltaContentImageUrlObjectImageUrlDetailEnum_low;
-  /// Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
   @BuiltValueEnumConst(wireName: r'high')
   static const MessageDeltaContentImageUrlObjectImageUrlDetailEnum high = _$messageDeltaContentImageUrlObjectImageUrlDetailEnum_high;
 

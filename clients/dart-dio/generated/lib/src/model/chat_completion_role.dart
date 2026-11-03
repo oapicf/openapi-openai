@@ -9,21 +9,17 @@ import 'package:built_value/serializer.dart';
 
 part 'chat_completion_role.g.dart';
 
+/// The role of the author of a message
 class ChatCompletionRole extends EnumClass {
 
-  /// The role of the author of a message
   @BuiltValueEnumConst(wireName: r'system')
   static const ChatCompletionRole system = _$system;
-  /// The role of the author of a message
   @BuiltValueEnumConst(wireName: r'user')
   static const ChatCompletionRole user = _$user;
-  /// The role of the author of a message
   @BuiltValueEnumConst(wireName: r'assistant')
   static const ChatCompletionRole assistant = _$assistant;
-  /// The role of the author of a message
   @BuiltValueEnumConst(wireName: r'tool')
   static const ChatCompletionRole tool = _$tool;
-  /// The role of the author of a message
   @BuiltValueEnumConst(wireName: r'function')
   static const ChatCompletionRole function_ = _$function_;
 

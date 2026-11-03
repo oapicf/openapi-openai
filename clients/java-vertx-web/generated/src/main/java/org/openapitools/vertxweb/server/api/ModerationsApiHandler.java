@@ -45,7 +45,7 @@ public class ModerationsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateModerationRequest createModerationRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateModerationRequest>(){}) : null;
 
-        logger.debug("Parameter createModerationRequest is {}", createModerationRequest);
+        logger.debug("Parameter createModerationRequest is (body omitted)");
 
         api.createModeration(createModerationRequest)
             .onSuccess(apiResponse -> {

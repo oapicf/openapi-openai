@@ -36,26 +36,18 @@ import {
 export interface AuditLogActorApiKey {
     /**
      * The tracking id of the API key.
-     * @type {string}
-     * @memberof AuditLogActorApiKey
      */
     id?: string;
     /**
      * The type of API key. Can be either `user` or `service_account`.
-     * @type {AuditLogActorApiKeyTypeEnum}
-     * @memberof AuditLogActorApiKey
      */
     type?: AuditLogActorApiKeyTypeEnum;
     /**
      * 
-     * @type {AuditLogActorUser}
-     * @memberof AuditLogActorApiKey
      */
     user?: AuditLogActorUser;
     /**
      * 
-     * @type {AuditLogActorServiceAccount}
-     * @memberof AuditLogActorApiKey
      */
     serviceAccount?: AuditLogActorServiceAccount;
 }
@@ -66,7 +58,7 @@ export interface AuditLogActorApiKey {
  */
 export const AuditLogActorApiKeyTypeEnum = {
     User: 'user',
-    ServiceAccount: 'service_account'
+    ServiceAccount: 'service_account',
 } as const;
 export type AuditLogActorApiKeyTypeEnum = typeof AuditLogActorApiKeyTypeEnum[keyof typeof AuditLogActorApiKeyTypeEnum];
 

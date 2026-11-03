@@ -205,7 +205,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnum?>(RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnum? typeValue = RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -217,10 +222,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObjectContentInner.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObjectContentInner: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObjectContentInner.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObjectContentInner: text.");
 
             return new RunStepDetailsToolCallsFileSearchResultObjectContentInner(type, text);
         }
@@ -231,7 +236,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchResultObjectContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchResultObjectContentInner runStepDetailsToolCallsFileSearchResultObjectContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -246,11 +250,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchResultObjectContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchResultObjectContentInner runStepDetailsToolCallsFileSearchResultObjectContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (runStepDetailsToolCallsFileSearchResultObjectContentInner.TypeOption.IsSet && runStepDetailsToolCallsFileSearchResultObjectContentInner.Type == null)
+                throw new JsonException("Cannot write null property RunStepDetailsToolCallsFileSearchResultObjectContentInner.Type to non-nullable JSON property 'type'.");
+
             if (runStepDetailsToolCallsFileSearchResultObjectContentInner.TextOption.IsSet && runStepDetailsToolCallsFileSearchResultObjectContentInner.Text == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchResultObjectContentInner.Text), "Property is required for class RunStepDetailsToolCallsFileSearchResultObjectContentInner.");
+                throw new JsonException("Cannot write null property RunStepDetailsToolCallsFileSearchResultObjectContentInner.Text to non-nullable JSON property 'text'.");
 
             var typeRawValue = RunStepDetailsToolCallsFileSearchResultObjectContentInner.TypeEnumToJsonValue(runStepDetailsToolCallsFileSearchResultObjectContentInner.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

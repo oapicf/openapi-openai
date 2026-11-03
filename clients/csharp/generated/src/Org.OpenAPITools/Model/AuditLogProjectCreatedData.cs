@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AuditLogProjectCreatedData.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectCreatedData: name.");
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AuditLogProjectCreatedData.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectCreatedData: title.");
 
             return new AuditLogProjectCreatedData(name, title);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogProjectCreatedData auditLogProjectCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectCreatedData"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogProjectCreatedData auditLogProjectCreatedData, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogProjectCreatedData.NameOption.IsSet && auditLogProjectCreatedData.Name == null)
-                throw new ArgumentNullException(nameof(auditLogProjectCreatedData.Name), "Property is required for class AuditLogProjectCreatedData.");
+                throw new JsonException("Cannot write null property AuditLogProjectCreatedData.Name to non-nullable JSON property 'name'.");
 
             if (auditLogProjectCreatedData.TitleOption.IsSet && auditLogProjectCreatedData.Title == null)
-                throw new ArgumentNullException(nameof(auditLogProjectCreatedData.Title), "Property is required for class AuditLogProjectCreatedData.");
+                throw new JsonException("Cannot write null property AuditLogProjectCreatedData.Title to non-nullable JSON property 'title'.");
 
             if (auditLogProjectCreatedData.NameOption.IsSet)
                 writer.WriteString("name", auditLogProjectCreatedData.Name);

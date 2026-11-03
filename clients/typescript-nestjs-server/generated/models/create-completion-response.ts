@@ -34,7 +34,7 @@ export interface CreateCompletionResponse {
 }
 export namespace CreateCompletionResponse {
   export const ObjectEnum = {
-    TextCompletion: 'text_completion'
+    TextCompletion: 'text_completion',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

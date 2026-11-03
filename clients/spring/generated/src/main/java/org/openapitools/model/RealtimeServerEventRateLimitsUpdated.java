@@ -25,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeServerEventRateLimitsUpdated", description = "Emitted at the beginning of a Response to indicate the updated rate limits.  When a Response is created some tokens will be \"reserved\" for the output  tokens, the rate limits shown here reflect that reservation, which is then  adjusted accordingly once the Response is completed. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventRateLimitsUpdated {
 
   private String eventId;
@@ -139,7 +139,7 @@ public class RealtimeServerEventRateLimitsUpdated {
    * List of rate limit information.
    * @return rateLimits
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "rate_limits", description = "List of rate limit information.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("rate_limits")
   public List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> getRateLimits() {

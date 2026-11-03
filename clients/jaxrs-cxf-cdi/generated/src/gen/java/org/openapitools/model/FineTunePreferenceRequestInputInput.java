@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class FineTunePreferenceRequestInputInput   {
   
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class FineTunePreferenceRequestInputInput   {
 
   /**
    **/
-  public FineTunePreferenceRequestInputInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTunePreferenceRequestInputInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -37,10 +37,10 @@ public class FineTunePreferenceRequestInputInput   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("messages")
- @Size(min=1)  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+ @Size(min=1)  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 

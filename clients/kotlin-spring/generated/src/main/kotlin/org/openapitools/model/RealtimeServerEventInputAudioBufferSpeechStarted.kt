@@ -25,19 +25,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventInputAudioBufferSpeechStarted(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `input_audio_buffer.speech_started`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventInputAudioBufferSpeechStarted.Type,
 
     @Schema(required = true, description = "Milliseconds from the start of all audio written to the buffer during the  session when speech was first detected. This will correspond to the  beginning of audio sent to the model, and thus includes the  `prefix_padding_ms` configured in the Session. ")
-    @param:JsonProperty("audio_start_ms")
+    @param:JsonProperty("audio_start_ms", required = true)
     @get:JsonProperty("audio_start_ms", required = true) val audioStartMs: kotlin.Int,
 
     @Schema(required = true, description = "The ID of the user message item that will be created when speech stops. ")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String
 ) {
 
@@ -48,12 +48,12 @@ data class RealtimeServerEventInputAudioBufferSpeechStarted(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         input_audio_bufferPeriodSpeech_started("input_audio_buffer.speech_started");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

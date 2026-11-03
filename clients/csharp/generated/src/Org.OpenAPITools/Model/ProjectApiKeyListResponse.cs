@@ -218,7 +218,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectApiKeyListResponse.ObjectEnum?>(ProjectApiKeyListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectApiKeyListResponse.ObjectEnum? varObjectValue = ProjectApiKeyListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectApiKeyListResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<ProjectApiKey>?>(JsonSerializer.Deserialize<List<ProjectApiKey>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -239,34 +244,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyListResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectApiKeyListResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyListResponse.", nameof(data));
+                throw new JsonException("Property is required for class ProjectApiKeyListResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyListResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class ProjectApiKeyListResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyListResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class ProjectApiKeyListResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ProjectApiKeyListResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ProjectApiKeyListResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectApiKeyListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyListResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ProjectApiKeyListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyListResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ProjectApiKeyListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyListResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ProjectApiKeyListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyListResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ProjectApiKeyListResponse.");
+                throw new JsonException("Property is not nullable for class ProjectApiKeyListResponse: has_more.");
 
             return new ProjectApiKeyListResponse(varObject.Value!.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -277,7 +282,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectApiKeyListResponse projectApiKeyListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -292,18 +296,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectApiKeyListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectApiKeyListResponse projectApiKeyListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectApiKeyListResponse.Data == null)
-                throw new ArgumentNullException(nameof(projectApiKeyListResponse.Data), "Property is required for class ProjectApiKeyListResponse.");
-
-            if (projectApiKeyListResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(projectApiKeyListResponse.FirstId), "Property is required for class ProjectApiKeyListResponse.");
-
-            if (projectApiKeyListResponse.LastId == null)
-                throw new ArgumentNullException(nameof(projectApiKeyListResponse.LastId), "Property is required for class ProjectApiKeyListResponse.");
-
             var varObjectRawValue = ProjectApiKeyListResponse.ObjectEnumToJsonValue(projectApiKeyListResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WritePropertyName("data");

@@ -202,9 +202,10 @@ class _$MessageDeltaContentTextAnnotationsFilePathObjectSerializer implements Pr
   }
 }
 
+
+/// Always `file_path`.
 class MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum extends EnumClass {
 
-  /// Always `file_path`.
   @BuiltValueEnumConst(wireName: r'file_path')
   static const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum filePath = _$messageDeltaContentTextAnnotationsFilePathObjectTypeEnum_filePath;
 

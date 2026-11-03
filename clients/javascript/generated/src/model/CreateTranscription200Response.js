@@ -20,7 +20,7 @@ import TranscriptionWord from './TranscriptionWord';
 /**
  * The CreateTranscription200Response model module.
  * @module model/CreateTranscription200Response
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateTranscription200Response {
     /**

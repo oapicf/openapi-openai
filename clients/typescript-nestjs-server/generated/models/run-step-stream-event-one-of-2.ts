@@ -10,7 +10,7 @@ export interface RunStepStreamEventOneOf2 {
 }
 export namespace RunStepStreamEventOneOf2 {
   export const EventEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

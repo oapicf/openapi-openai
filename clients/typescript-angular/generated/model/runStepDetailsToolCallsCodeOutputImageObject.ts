@@ -19,7 +19,7 @@ export interface RunStepDetailsToolCallsCodeOutputImageObject {
 }
 export namespace RunStepDetailsToolCallsCodeOutputImageObject {
     export const TypeEnum = {
-        Image: 'image'
+        Image: 'image',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

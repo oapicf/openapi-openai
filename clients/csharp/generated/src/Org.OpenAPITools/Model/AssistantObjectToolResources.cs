@@ -160,10 +160,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class AssistantObjectToolResources.");
+                throw new JsonException("Property is not nullable for class AssistantObjectToolResources: code_interpreter.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class AssistantObjectToolResources.");
+                throw new JsonException("Property is not nullable for class AssistantObjectToolResources: file_search.");
 
             return new AssistantObjectToolResources(codeInterpreter, fileSearch);
         }
@@ -174,7 +174,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObjectToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantObjectToolResources assistantObjectToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -189,14 +188,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObjectToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantObjectToolResources assistantObjectToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (assistantObjectToolResources.CodeInterpreterOption.IsSet && assistantObjectToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(assistantObjectToolResources.CodeInterpreter), "Property is required for class AssistantObjectToolResources.");
+                throw new JsonException("Cannot write null property AssistantObjectToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (assistantObjectToolResources.FileSearchOption.IsSet && assistantObjectToolResources.FileSearch == null)
-                throw new ArgumentNullException(nameof(assistantObjectToolResources.FileSearch), "Property is required for class AssistantObjectToolResources.");
+                throw new JsonException("Cannot write null property AssistantObjectToolResources.FileSearch to non-nullable JSON property 'file_search'.");
 
             if (assistantObjectToolResources.CodeInterpreterOption.IsSet)
             {

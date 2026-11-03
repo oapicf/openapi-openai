@@ -32,14 +32,10 @@ export interface AssistantToolsFileSearchFileSearch {
      * 
      * Note that the file search tool may output fewer than `max_num_results` results. See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.
      * 
-     * @type {number}
-     * @memberof AssistantToolsFileSearchFileSearch
      */
     maxNumResults?: number;
     /**
      * 
-     * @type {FileSearchRankingOptions}
-     * @memberof AssistantToolsFileSearchFileSearch
      */
     rankingOptions?: FileSearchRankingOptions;
 }

@@ -244,7 +244,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<InviteListResponse.ObjectEnum?>(InviteListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                InviteListResponse.ObjectEnum? varObjectValue = InviteListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<InviteListResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<Invite>?>(JsonSerializer.Deserialize<List<Invite>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -265,25 +270,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class InviteListResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class InviteListResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class InviteListResponse.", nameof(data));
+                throw new JsonException("Property is required for class InviteListResponse: data.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class InviteListResponse.");
+                throw new JsonException("Property is not nullable for class InviteListResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class InviteListResponse.");
+                throw new JsonException("Property is not nullable for class InviteListResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class InviteListResponse.");
+                throw new JsonException("Property is not nullable for class InviteListResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class InviteListResponse.");
+                throw new JsonException("Property is not nullable for class InviteListResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class InviteListResponse.");
+                throw new JsonException("Property is not nullable for class InviteListResponse: has_more.");
 
             return new InviteListResponse(varObject.Value!.Value!, data.Value!, firstId, lastId, hasMore);
         }
@@ -294,7 +299,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InviteListResponse inviteListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -309,17 +313,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InviteListResponse inviteListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (inviteListResponse.Data == null)
-                throw new ArgumentNullException(nameof(inviteListResponse.Data), "Property is required for class InviteListResponse.");
-
             if (inviteListResponse.FirstIdOption.IsSet && inviteListResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(inviteListResponse.FirstId), "Property is required for class InviteListResponse.");
+                throw new JsonException("Cannot write null property InviteListResponse.FirstId to non-nullable JSON property 'first_id'.");
 
             if (inviteListResponse.LastIdOption.IsSet && inviteListResponse.LastId == null)
-                throw new ArgumentNullException(nameof(inviteListResponse.LastId), "Property is required for class InviteListResponse.");
+                throw new JsonException("Cannot write null property InviteListResponse.LastId to non-nullable JSON property 'last_id'.");
+
+            if (inviteListResponse.HasMoreOption.IsSet && inviteListResponse.HasMore == null)
+                throw new JsonException("Cannot write null property InviteListResponse.HasMore to non-nullable JSON property 'has_more'.");
 
             var varObjectRawValue = InviteListResponse.ObjectEnumToJsonValue(inviteListResponse.Object);
             writer.WriteString("object", varObjectRawValue);

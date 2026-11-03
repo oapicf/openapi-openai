@@ -68,8 +68,6 @@ USER(String.valueOf("user")), ASSISTANT(String.valueOf("assistant"));
   */
   @ApiModelProperty(value = "A list of files attached to the message, and the tools they should be added to.")
 
-  @Valid
-
   private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
 
  /**

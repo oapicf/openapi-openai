@@ -36,14 +36,10 @@ import {
 export interface RunStepDetailsToolCallsFileSearchObjectFileSearch {
     /**
      * 
-     * @type {RunStepDetailsToolCallsFileSearchRankingOptionsObject}
-     * @memberof RunStepDetailsToolCallsFileSearchObjectFileSearch
      */
     rankingOptions?: RunStepDetailsToolCallsFileSearchRankingOptionsObject;
     /**
      * The results of the file search.
-     * @type {Array<RunStepDetailsToolCallsFileSearchResultObject>}
-     * @memberof RunStepDetailsToolCallsFileSearchObjectFileSearch
      */
     results?: Array<RunStepDetailsToolCallsFileSearchResultObject>;
 }

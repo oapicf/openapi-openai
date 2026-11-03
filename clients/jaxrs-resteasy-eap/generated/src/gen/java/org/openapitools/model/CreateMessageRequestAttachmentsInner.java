@@ -15,11 +15,11 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateMessageRequestAttachmentsInner   {
   
   private String fileId;
-  private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
 
   /**
    * The ID of the file to attach to the message.
@@ -40,10 +40,10 @@ public class CreateMessageRequestAttachmentsInner   {
   
   @ApiModelProperty(value = "The tools to add this file to.")
   @JsonProperty("tools")
-  public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 

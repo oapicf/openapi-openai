@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateAssistantRequest_tool_resources_file_search")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateAssistantRequestToolResourcesFileSearch   {
-  private @Valid List<String> vectorStoreIds = new ArrayList<>();
-  private @Valid List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
+  private List<String> vectorStoreIds = new ArrayList<>();
+  private List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
 
   public CreateAssistantRequestToolResourcesFileSearch() {
   }
@@ -76,7 +76,7 @@ public class CreateAssistantRequestToolResourcesFileSearch   {
   
   @ApiModelProperty(value = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this assistant. There can be a maximum of 1 vector store attached to the assistant. ")
   @JsonProperty("vector_stores")
-  @Valid  @Size(max=1)public List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
+   @Size(max=1)public List<@Valid CreateAssistantRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
     return vectorStores;
   }
 

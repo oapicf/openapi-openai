@@ -105,3 +105,4 @@ class _$ChatCompletionFunctionCallOptionSerializer implements PrimitiveSerialize
   }
 }
 
+

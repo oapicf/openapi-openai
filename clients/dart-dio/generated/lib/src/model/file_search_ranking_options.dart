@@ -127,12 +127,12 @@ class _$FileSearchRankingOptionsSerializer implements PrimitiveSerializer<FileSe
   }
 }
 
+
+/// The ranker to use for the file search. If not specified will use the `auto` ranker.
 class FileSearchRankingOptionsRankerEnum extends EnumClass {
 
-  /// The ranker to use for the file search. If not specified will use the `auto` ranker.
   @BuiltValueEnumConst(wireName: r'auto')
   static const FileSearchRankingOptionsRankerEnum auto = _$fileSearchRankingOptionsRankerEnum_auto;
-  /// The ranker to use for the file search. If not specified will use the `auto` ranker.
   @BuiltValueEnumConst(wireName: r'default_2024_08_21')
   static const FileSearchRankingOptionsRankerEnum default20240821 = _$fileSearchRankingOptionsRankerEnum_default20240821;
 

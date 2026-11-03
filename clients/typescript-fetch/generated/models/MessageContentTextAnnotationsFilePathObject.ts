@@ -29,32 +29,22 @@ import {
 export interface MessageContentTextAnnotationsFilePathObject {
     /**
      * Always `file_path`.
-     * @type {MessageContentTextAnnotationsFilePathObjectTypeEnum}
-     * @memberof MessageContentTextAnnotationsFilePathObject
      */
     type: MessageContentTextAnnotationsFilePathObjectTypeEnum;
     /**
      * The text in the message content that needs to be replaced.
-     * @type {string}
-     * @memberof MessageContentTextAnnotationsFilePathObject
      */
     text: string;
     /**
      * 
-     * @type {MessageContentTextAnnotationsFilePathObjectFilePath}
-     * @memberof MessageContentTextAnnotationsFilePathObject
      */
     filePath: MessageContentTextAnnotationsFilePathObjectFilePath;
     /**
      * 
-     * @type {number}
-     * @memberof MessageContentTextAnnotationsFilePathObject
      */
     startIndex: number;
     /**
      * 
-     * @type {number}
-     * @memberof MessageContentTextAnnotationsFilePathObject
      */
     endIndex: number;
 }
@@ -64,7 +54,7 @@ export interface MessageContentTextAnnotationsFilePathObject {
  * @export
  */
 export const MessageContentTextAnnotationsFilePathObjectTypeEnum = {
-    FilePath: 'file_path'
+    FilePath: 'file_path',
 } as const;
 export type MessageContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFilePathObjectTypeEnum];
 

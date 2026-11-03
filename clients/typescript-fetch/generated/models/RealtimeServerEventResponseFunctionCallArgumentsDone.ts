@@ -23,45 +23,31 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseFunctionCallArgumentsDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     eventId: string;
     /**
      * The event type, must be `response.function_call_arguments.done`.
      * 
-     * @type {RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     type: RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     responseId: string;
     /**
      * The ID of the function call item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     outputIndex: number;
     /**
      * The ID of the function call.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     callId: string;
     /**
      * The final arguments as a JSON string.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseFunctionCallArgumentsDone
      */
     arguments: string;
 }
@@ -71,7 +57,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDone {
  * @export
  */
 export const RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum = {
-    ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done'
+    ResponseFunctionCallArgumentsDone: 'response.function_call_arguments.done',
 } as const;
 export type RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum = typeof RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum[keyof typeof RealtimeServerEventResponseFunctionCallArgumentsDoneTypeEnum];
 

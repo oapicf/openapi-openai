@@ -23,11 +23,11 @@ object MessageObjectIncompleteDetailsEnums {
 
   sealed trait Reason
   object Reason {
-    case object ContentFilter extends Reason
-    case object MaxTokens extends Reason
-    case object RunCancelled extends Reason
-    case object RunExpired extends Reason
-    case object RunFailed extends Reason
+    case object ContentFilter extends Reason { override def toString: String = "content_filter" }
+    case object MaxTokens extends Reason { override def toString: String = "max_tokens" }
+    case object RunCancelled extends Reason { override def toString: String = "run_cancelled" }
+    case object RunExpired extends Reason { override def toString: String = "run_expired" }
+    case object RunFailed extends Reason { override def toString: String = "run_failed" }
 
     import org.json4s._
 

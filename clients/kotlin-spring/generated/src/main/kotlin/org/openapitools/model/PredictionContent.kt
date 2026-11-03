@@ -24,12 +24,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PredictionContent(
 
     @Schema(required = true, description = "The type of the predicted content you want to provide. This type is currently always `content`. ")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: PredictionContent.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("content")
+    @param:JsonProperty("content", required = true)
     @get:JsonProperty("content", required = true) val content: PredictionContentContent
 ) {
 
@@ -40,12 +40,12 @@ data class PredictionContent(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         content("content");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

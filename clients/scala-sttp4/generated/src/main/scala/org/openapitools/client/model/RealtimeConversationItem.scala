@@ -41,9 +41,9 @@ object RealtimeConversationItemEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Message extends `Type`
-    case object FunctionCall extends `Type`
-    case object FunctionCallOutput extends `Type`
+    case object Message extends `Type` { override def toString: String = "message" }
+    case object FunctionCall extends `Type` { override def toString: String = "function_call" }
+    case object FunctionCallOutput extends `Type` { override def toString: String = "function_call_output" }
 
     import org.json4s._
 
@@ -68,7 +68,7 @@ object RealtimeConversationItemEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object RealtimeItem extends `Object`
+    case object RealtimeItem extends `Object` { override def toString: String = "realtime.item" }
 
     import org.json4s._
 
@@ -89,8 +89,8 @@ object RealtimeConversationItemEnums {
 
   sealed trait Status
   object Status {
-    case object Completed extends Status
-    case object Incomplete extends Status
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Incomplete extends Status { override def toString: String = "incomplete" }
 
     import org.json4s._
 
@@ -113,9 +113,9 @@ object RealtimeConversationItemEnums {
 
   sealed trait Role
   object Role {
-    case object User extends Role
-    case object Assistant extends Role
-    case object System extends Role
+    case object User extends Role { override def toString: String = "user" }
+    case object Assistant extends Role { override def toString: String = "assistant" }
+    case object System extends Role { override def toString: String = "system" }
 
     import org.json4s._
 

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 /**
  * Represents a message within a [thread](/docs/api-reference/threads).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MessageObject   {
   @JsonProperty("id")
@@ -161,7 +161,7 @@ public class MessageObject   {
   @NotNull
 @Valid
 
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
   @JsonProperty("assistant_id")
   @NotNull
@@ -177,7 +177,7 @@ public class MessageObject   {
   @NotNull
 @Valid
 
-  private List<@Valid CreateMessageRequestAttachmentsInner> attachments = ;
+  private List<@Valid CreateMessageRequestAttachmentsInner> attachments = null;
 
   @JsonProperty("metadata")
   @NotNull
@@ -337,7 +337,7 @@ public class MessageObject   {
     this.role = role;
   }
 
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -354,11 +354,11 @@ public class MessageObject   {
    * The content of the message in array of text and/or images.
    * @return content
   **/
-  public List<MessageObjectContentInner> getContent() {
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 

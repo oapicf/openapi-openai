@@ -233,9 +233,10 @@ class _$RealtimeResponseSerializer implements PrimitiveSerializer<RealtimeRespon
   }
 }
 
+
+/// The object type, must be `realtime.response`.
 class RealtimeResponseObjectEnum extends EnumClass {
 
-  /// The object type, must be `realtime.response`.
   @BuiltValueEnumConst(wireName: r'realtime.response')
   static const RealtimeResponseObjectEnum realtimePeriodResponse = _$realtimeResponseObjectEnum_realtimePeriodResponse;
 
@@ -247,18 +248,15 @@ class RealtimeResponseObjectEnum extends EnumClass {
   static RealtimeResponseObjectEnum valueOf(String name) => _$realtimeResponseObjectEnumValueOf(name);
 }
 
+/// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
 class RealtimeResponseStatusEnum extends EnumClass {
 
-  /// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
   @BuiltValueEnumConst(wireName: r'completed')
   static const RealtimeResponseStatusEnum completed = _$realtimeResponseStatusEnum_completed;
-  /// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const RealtimeResponseStatusEnum cancelled = _$realtimeResponseStatusEnum_cancelled;
-  /// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
   @BuiltValueEnumConst(wireName: r'failed')
   static const RealtimeResponseStatusEnum failed = _$realtimeResponseStatusEnum_failed;
-  /// The final status of the response (`completed`, `cancelled`, `failed`, or  `incomplete`). 
   @BuiltValueEnumConst(wireName: r'incomplete')
   static const RealtimeResponseStatusEnum incomplete = _$realtimeResponseStatusEnum_incomplete;
 

@@ -22,9 +22,9 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.models.create_chat_completion_request import CreateChatCompletionRequest
 from openapi_server.models.create_chat_completion_response import CreateChatCompletionResponse
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -44,7 +44,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def create_chat_completion(
-    create_chat_completion_request: CreateChatCompletionRequest = Body(None, description=""),
+    create_chat_completion_request: CreateChatCompletionRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

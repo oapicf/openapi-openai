@@ -34,7 +34,7 @@ import javax.validation.Valid;
   CreateThreadRequestToolResourcesFileSearch.JSON_PROPERTY_VECTOR_STORE_IDS,
   CreateThreadRequestToolResourcesFileSearch.JSON_PROPERTY_VECTOR_STORES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequestToolResourcesFileSearch   {
   public static final String JSON_PROPERTY_VECTOR_STORE_IDS = "vector_store_ids";
   @JsonProperty(JSON_PROPERTY_VECTOR_STORE_IDS)
@@ -91,7 +91,7 @@ public class CreateThreadRequestToolResourcesFileSearch   {
    **/
   @JsonProperty(value = "vector_stores")
   @ApiModelProperty(value = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. ")
-  @Valid  @Size(max=1)
+   @Size(max=1)
   public List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
     return vectorStores;
   }

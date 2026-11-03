@@ -36,20 +36,14 @@ import {
 export interface FineTuneMethod {
     /**
      * The type of method. Is either `supervised` or `dpo`.
-     * @type {FineTuneMethodTypeEnum}
-     * @memberof FineTuneMethod
      */
     type?: FineTuneMethodTypeEnum;
     /**
      * 
-     * @type {FineTuneSupervisedMethod}
-     * @memberof FineTuneMethod
      */
     supervised?: FineTuneSupervisedMethod;
     /**
      * 
-     * @type {FineTuneDPOMethod}
-     * @memberof FineTuneMethod
      */
     dpo?: FineTuneDPOMethod;
 }
@@ -60,7 +54,7 @@ export interface FineTuneMethod {
  */
 export const FineTuneMethodTypeEnum = {
     Supervised: 'supervised',
-    Dpo: 'dpo'
+    Dpo: 'dpo',
 } as const;
 export type FineTuneMethodTypeEnum = typeof FineTuneMethodTypeEnum[keyof typeof FineTuneMethodTypeEnum];
 

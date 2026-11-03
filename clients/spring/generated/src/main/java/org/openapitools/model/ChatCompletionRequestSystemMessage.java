@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -29,7 +28,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "ChatCompletionRequestSystemMessage", description = "Developer-provided instructions that the model should follow, regardless of messages sent by the user. With o1 models and newer, use `developer` messages for this purpose instead. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionRequestSystemMessage implements ChatCompletionRequestMessage, FineTuneChatRequestInputMessagesInner {
 
   private ChatCompletionRequestSystemMessageContent content;
@@ -69,7 +68,6 @@ public class ChatCompletionRequestSystemMessage implements ChatCompletionRequest
 
   private RoleEnum role;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
   public ChatCompletionRequestSystemMessage() {

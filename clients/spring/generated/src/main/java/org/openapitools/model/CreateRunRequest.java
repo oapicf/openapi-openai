@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.math.BigDecimal;
@@ -32,54 +31,39 @@ import jakarta.annotation.Generated;
  * CreateRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateRunRequest {
 
   private String assistantId;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateRunRequestModel> model = JsonNullable.<CreateRunRequestModel>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> instructions = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> additionalInstructions = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<@Valid CreateMessageRequest>> additionalMessages = JsonNullable.<List<@Valid CreateMessageRequest>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
-  private JsonNullable<List<AssistantObjectToolsInner>> tools = JsonNullable.<List<AssistantObjectToolsInner>>undefined();
+  private JsonNullable<List<@Valid AssistantObjectToolsInner>> tools = JsonNullable.<List<@Valid AssistantObjectToolsInner>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> temperature = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 256) Integer> maxPromptTokens = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 256) Integer> maxCompletionTokens = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TruncationObject truncationStrategy;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiToolChoiceOption toolChoice;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Boolean parallelToolCalls = true;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantsApiResponseFormatOption responseFormat;
 
   public CreateRunRequest() {
@@ -124,7 +108,7 @@ public class CreateRunRequest {
    * @return model
    */
   @Valid 
-  @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "model", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("model")
   public JsonNullable<CreateRunRequestModel> getModel() {
     return model;
@@ -144,7 +128,7 @@ public class CreateRunRequest {
    * @return instructions
    */
   
-  @Schema(name = "instructions", description = "Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "instructions", description = "Overrides the [instructions](/docs/api-reference/assistants/createAssistant) of the assistant. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("instructions")
   public JsonNullable<String> getInstructions() {
     return instructions;
@@ -164,7 +148,7 @@ public class CreateRunRequest {
    * @return additionalInstructions
    */
   
-  @Schema(name = "additional_instructions", description = "Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "additional_instructions", description = "Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("additional_instructions")
   public JsonNullable<String> getAdditionalInstructions() {
     return additionalInstructions;
@@ -180,7 +164,7 @@ public class CreateRunRequest {
   }
 
   public CreateRunRequest addAdditionalMessagesItem(CreateMessageRequest additionalMessagesItem) {
-    if (this.additionalMessages == null || !this.additionalMessages.isPresent()) {
+    if (this.additionalMessages == null || !this.additionalMessages.isPresent() || this.additionalMessages.get() == null) {
       this.additionalMessages = JsonNullable.of(new ArrayList<>());
     }
     this.additionalMessages.get().add(additionalMessagesItem);
@@ -191,8 +175,8 @@ public class CreateRunRequest {
    * Adds additional messages to the thread before creating the run.
    * @return additionalMessages
    */
-  @Valid 
-  @Schema(name = "additional_messages", description = "Adds additional messages to the thread before creating the run.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  
+  @Schema(name = "additional_messages", description = "Adds additional messages to the thread before creating the run.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("additional_messages")
   public JsonNullable<List<@Valid CreateMessageRequest>> getAdditionalMessages() {
     return additionalMessages;
@@ -202,13 +186,13 @@ public class CreateRunRequest {
     this.additionalMessages = additionalMessages;
   }
 
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = JsonNullable.of(tools);
     return this;
   }
 
   public CreateRunRequest addToolsItem(AssistantObjectToolsInner toolsItem) {
-    if (this.tools == null || !this.tools.isPresent()) {
+    if (this.tools == null || !this.tools.isPresent() || this.tools.get() == null) {
       this.tools = JsonNullable.of(new ArrayList<>());
     }
     this.tools.get().add(toolsItem);
@@ -219,14 +203,14 @@ public class CreateRunRequest {
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    * @return tools
    */
-  @Valid @Size(max = 20) 
-  @Schema(name = "tools", description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Size(max = 20) 
+  @Schema(name = "tools", description = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("tools")
-  public JsonNullable<List<AssistantObjectToolsInner>> getTools() {
+  public JsonNullable<List<@Valid AssistantObjectToolsInner>> getTools() {
     return tools;
   }
 
-  public void setTools(JsonNullable<List<AssistantObjectToolsInner>> tools) {
+  public void setTools(JsonNullable<List<@Valid AssistantObjectToolsInner>> tools) {
     this.tools = tools;
   }
 
@@ -240,7 +224,7 @@ public class CreateRunRequest {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;
@@ -262,7 +246,7 @@ public class CreateRunRequest {
    * @return temperature
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "2") 
-  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "temperature", example = "1", description = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("temperature")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "2") BigDecimal> getTemperature() {
     return temperature;
@@ -284,7 +268,7 @@ public class CreateRunRequest {
    * @return topP
    */
   @Valid @DecimalMin(value = "0") @DecimalMax(value = "1") 
-  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "top_p", example = "1", description = "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.  We generally recommend altering this or temperature but not both. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("top_p")
   public JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> getTopP() {
     return topP;
@@ -304,7 +288,7 @@ public class CreateRunRequest {
    * @return stream
    */
   
-  @Schema(name = "stream", description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream", description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream")
   public JsonNullable<Boolean> getStream() {
     return stream;
@@ -325,7 +309,7 @@ public class CreateRunRequest {
    * @return maxPromptTokens
    */
   @Min(value = 256) 
-  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("max_prompt_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxPromptTokens() {
     return maxPromptTokens;
@@ -346,7 +330,7 @@ public class CreateRunRequest {
    * @return maxCompletionTokens
    */
   @Min(value = 256) 
-  @Schema(name = "max_completion_tokens", description = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "max_completion_tokens", description = "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("max_completion_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxCompletionTokens() {
     return maxCompletionTokens;

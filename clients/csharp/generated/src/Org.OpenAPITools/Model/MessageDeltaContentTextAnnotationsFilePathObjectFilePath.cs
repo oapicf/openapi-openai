@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class MessageDeltaContentTextAnnotationsFilePathObjectFilePath.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFilePathObjectFilePath: file_id.");
 
             return new MessageDeltaContentTextAnnotationsFilePathObjectFilePath(fileId);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFilePathObjectFilePath"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFilePathObjectFilePath messageDeltaContentTextAnnotationsFilePathObjectFilePath, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFilePathObjectFilePath"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFilePathObjectFilePath messageDeltaContentTextAnnotationsFilePathObjectFilePath, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentTextAnnotationsFilePathObjectFilePath.FileIdOption.IsSet && messageDeltaContentTextAnnotationsFilePathObjectFilePath.FileId == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextAnnotationsFilePathObjectFilePath.FileId), "Property is required for class MessageDeltaContentTextAnnotationsFilePathObjectFilePath.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFilePathObjectFilePath.FileId to non-nullable JSON property 'file_id'.");
 
             if (messageDeltaContentTextAnnotationsFilePathObjectFilePath.FileIdOption.IsSet)
                 writer.WriteString("file_id", messageDeltaContentTextAnnotationsFilePathObjectFilePath.FileId);

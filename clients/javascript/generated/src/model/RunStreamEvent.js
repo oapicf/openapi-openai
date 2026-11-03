@@ -27,7 +27,7 @@ import RunStreamEventOneOf9 from './RunStreamEventOneOf9';
 /**
  * The RunStreamEvent model module.
  * @module model/RunStreamEvent
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class RunStreamEvent {
     /**

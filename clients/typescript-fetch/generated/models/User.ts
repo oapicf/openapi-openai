@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface User {
     /**
      * The object type, which is always `organization.user`
-     * @type {UserObjectEnum}
-     * @memberof User
      */
     object: UserObjectEnum;
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof User
      */
     id: string;
     /**
      * The name of the user
-     * @type {string}
-     * @memberof User
      */
     name: string;
     /**
      * The email address of the user
-     * @type {string}
-     * @memberof User
      */
     email: string;
     /**
      * `owner` or `reader`
-     * @type {UserRoleEnum}
-     * @memberof User
      */
     role: UserRoleEnum;
     /**
      * The Unix timestamp (in seconds) of when the user was added.
-     * @type {number}
-     * @memberof User
      */
     addedAt: number;
 }
@@ -62,7 +50,7 @@ export interface User {
  * @export
  */
 export const UserObjectEnum = {
-    OrganizationUser: 'organization.user'
+    OrganizationUser: 'organization.user',
 } as const;
 export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
 
@@ -71,7 +59,7 @@ export type UserObjectEnum = typeof UserObjectEnum[keyof typeof UserObjectEnum];
  */
 export const UserRoleEnum = {
     Owner: 'owner',
-    Reader: 'reader'
+    Reader: 'reader',
 } as const;
 export type UserRoleEnum = typeof UserRoleEnum[keyof typeof UserRoleEnum];
 

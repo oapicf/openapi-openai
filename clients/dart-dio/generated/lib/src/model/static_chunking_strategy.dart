@@ -124,9 +124,10 @@ class _$StaticChunkingStrategySerializer implements PrimitiveSerializer<StaticCh
   }
 }
 
+
+/// Always `static`.
 class StaticChunkingStrategyTypeEnum extends EnumClass {
 
-  /// Always `static`.
   @BuiltValueEnumConst(wireName: r'static')
   static const StaticChunkingStrategyTypeEnum static_ = _$staticChunkingStrategyTypeEnum_static_;
 

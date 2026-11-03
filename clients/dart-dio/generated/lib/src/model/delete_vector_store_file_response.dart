@@ -138,6 +138,7 @@ class _$DeleteVectorStoreFileResponseSerializer implements PrimitiveSerializer<D
   }
 }
 
+
 class DeleteVectorStoreFileResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'vector_store.file.deleted')

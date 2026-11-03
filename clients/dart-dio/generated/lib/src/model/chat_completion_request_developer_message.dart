@@ -144,9 +144,10 @@ class _$ChatCompletionRequestDeveloperMessageSerializer implements PrimitiveSeri
   }
 }
 
+
+/// The role of the messages author, in this case `developer`.
 class ChatCompletionRequestDeveloperMessageRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `developer`.
   @BuiltValueEnumConst(wireName: r'developer')
   static const ChatCompletionRequestDeveloperMessageRoleEnum developer = _$chatCompletionRequestDeveloperMessageRoleEnum_developer;
 

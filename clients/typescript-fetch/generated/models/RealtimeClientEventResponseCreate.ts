@@ -44,20 +44,14 @@ import {
 export interface RealtimeClientEventResponseCreate {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventResponseCreate
      */
     eventId?: string;
     /**
      * The event type, must be `response.create`.
-     * @type {RealtimeClientEventResponseCreateTypeEnum}
-     * @memberof RealtimeClientEventResponseCreate
      */
     type: RealtimeClientEventResponseCreateTypeEnum;
     /**
      * 
-     * @type {RealtimeResponseCreateParams}
-     * @memberof RealtimeClientEventResponseCreate
      */
     response?: RealtimeResponseCreateParams;
 }
@@ -67,7 +61,7 @@ export interface RealtimeClientEventResponseCreate {
  * @export
  */
 export const RealtimeClientEventResponseCreateTypeEnum = {
-    ResponseCreate: 'response.create'
+    ResponseCreate: 'response.create',
 } as const;
 export type RealtimeClientEventResponseCreateTypeEnum = typeof RealtimeClientEventResponseCreateTypeEnum[keyof typeof RealtimeClientEventResponseCreateTypeEnum];
 

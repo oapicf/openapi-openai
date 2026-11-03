@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The item to add to the conversation.")
 @JsonTypeName("RealtimeConversationItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeConversationItem   {
   private String id;
   public enum TypeEnum {
@@ -217,7 +217,7 @@ public class RealtimeConversationItem   {
 }
 
   private RoleEnum role;
-  private @Valid List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
+  private List<@Valid RealtimeConversationItemContentInner> content = new ArrayList<>();
   private String callId;
   private String name;
   private String arguments;
@@ -337,7 +337,7 @@ public class RealtimeConversationItem   {
   
   @ApiModelProperty(value = "The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. ")
   @JsonProperty("content")
-  @Valid public List<@Valid RealtimeConversationItemContentInner> getContent() {
+  public List<@Valid RealtimeConversationItemContentInner> getContent() {
     return content;
   }
 

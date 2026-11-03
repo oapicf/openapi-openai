@@ -18,7 +18,6 @@ public class ListVectorStoreFilesResponse  {
   private String _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid VectorStoreFileObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "file-abc123", required = true, value = "")

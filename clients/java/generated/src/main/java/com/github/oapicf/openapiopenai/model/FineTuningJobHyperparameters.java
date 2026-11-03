@@ -32,6 +32,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -51,22 +52,22 @@ import com.github.oapicf.openapiopenai.JSON;
 /**
  * The hyperparameters used for the fine-tuning job. This value will only be returned when running &#x60;supervised&#x60; jobs.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-26T05:15:06.374984127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-03T06:32:49.309140381Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJobHyperparameters {
   public static final String SERIALIZED_NAME_BATCH_SIZE = "batch_size";
   @SerializedName(SERIALIZED_NAME_BATCH_SIZE)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
   public static final String SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @SerializedName(SERIALIZED_NAME_LEARNING_RATE_MULTIPLIER)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   public static final String SERIALIZED_NAME_N_EPOCHS = "n_epochs";
   @SerializedName(SERIALIZED_NAME_N_EPOCHS)
   @javax.annotation.Nullable
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   public FineTuningJobHyperparameters() {
   }

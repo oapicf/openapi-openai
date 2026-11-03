@@ -50,7 +50,7 @@ public class DefaultApiHandler {
         RequestParameter body = requestParameters.body();
         AdminApiKeysCreateRequest adminApiKeysCreateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<AdminApiKeysCreateRequest>(){}) : null;
 
-        logger.debug("Parameter adminApiKeysCreateRequest is {}", adminApiKeysCreateRequest);
+        logger.debug("Parameter adminApiKeysCreateRequest is (body omitted)");
 
         api.adminApiKeysCreate(adminApiKeysCreateRequest)
             .onSuccess(apiResponse -> {

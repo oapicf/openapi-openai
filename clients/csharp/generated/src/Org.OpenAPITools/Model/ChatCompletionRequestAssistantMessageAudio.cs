@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestAssistantMessageAudio.", nameof(id));
+                throw new JsonException("Property is required for class ChatCompletionRequestAssistantMessageAudio: id.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ChatCompletionRequestAssistantMessageAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestAssistantMessageAudio: id.");
 
             return new ChatCompletionRequestAssistantMessageAudio(id.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessageAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessageAudio chatCompletionRequestAssistantMessageAudio, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestAssistantMessageAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestAssistantMessageAudio chatCompletionRequestAssistantMessageAudio, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestAssistantMessageAudio.Id == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestAssistantMessageAudio.Id), "Property is required for class ChatCompletionRequestAssistantMessageAudio.");
-
             writer.WriteString("id", chatCompletionRequestAssistantMessageAudio.Id);
         }
     }

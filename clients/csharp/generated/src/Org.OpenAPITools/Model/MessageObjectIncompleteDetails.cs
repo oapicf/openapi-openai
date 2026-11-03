@@ -236,7 +236,12 @@ namespace Org.OpenAPITools.Model
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
                             if (reasonRawValue != null)
-                                reason = new Option<MessageObjectIncompleteDetails.ReasonEnum?>(MessageObjectIncompleteDetails.ReasonEnumFromStringOrDefault(reasonRawValue));
+                            {
+                                MessageObjectIncompleteDetails.ReasonEnum? reasonValue = MessageObjectIncompleteDetails.ReasonEnumFromStringOrDefault(reasonRawValue);
+                                if (reasonValue == null)
+                                    throw new JsonException();
+                                reason = new Option<MessageObjectIncompleteDetails.ReasonEnum?>(reasonValue);
+                            }
                             break;
                         default:
                             break;
@@ -245,10 +250,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!reason.IsSet)
-                throw new ArgumentException("Property is required for class MessageObjectIncompleteDetails.", nameof(reason));
+                throw new JsonException("Property is required for class MessageObjectIncompleteDetails: reason.");
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class MessageObjectIncompleteDetails.");
+                throw new JsonException("Property is not nullable for class MessageObjectIncompleteDetails: reason.");
 
             return new MessageObjectIncompleteDetails(reason.Value!.Value!);
         }
@@ -259,7 +264,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObjectIncompleteDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageObjectIncompleteDetails messageObjectIncompleteDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -274,7 +278,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObjectIncompleteDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageObjectIncompleteDetails messageObjectIncompleteDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             var reasonRawValue = MessageObjectIncompleteDetails.ReasonEnumToJsonValue(messageObjectIncompleteDetails.Reason);

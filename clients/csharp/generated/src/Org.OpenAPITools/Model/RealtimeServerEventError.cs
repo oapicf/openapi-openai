@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventError.TypeEnum?>(RealtimeServerEventError.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventError.TypeEnum? typeValue = RealtimeServerEventError.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventError.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "error":
                             error = new Option<RealtimeServerEventErrorError?>(JsonSerializer.Deserialize<RealtimeServerEventErrorError>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventError.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventError: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventError.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventError: type.");
 
             if (!error.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventError.", nameof(error));
+                throw new JsonException("Property is required for class RealtimeServerEventError: error.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventError: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventError: type.");
 
             if (error.IsSet && error.Value == null)
-                throw new ArgumentNullException(nameof(error), "Property is not nullable for class RealtimeServerEventError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventError: error.");
 
             return new RealtimeServerEventError(eventId.Value!, type.Value!.Value!, error.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventError realtimeServerEventError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventError realtimeServerEventError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventError.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventError.EventId), "Property is required for class RealtimeServerEventError.");
-
-            if (realtimeServerEventError.Error == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventError.Error), "Property is required for class RealtimeServerEventError.");
-
             writer.WriteString("event_id", realtimeServerEventError.EventId);
 
             var typeRawValue = RealtimeServerEventError.TypeEnumToJsonValue(realtimeServerEventError.Type);

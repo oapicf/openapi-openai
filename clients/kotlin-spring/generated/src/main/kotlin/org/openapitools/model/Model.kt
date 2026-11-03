@@ -19,25 +19,25 @@ import io.swagger.v3.oas.annotations.media.Schema
  * Describes an OpenAI model offering that can be used with the API.
  * @param id The model identifier, which can be referenced in the API endpoints.
  * @param created The Unix timestamp (in seconds) when the model was created.
- * @param &#x60;object&#x60; The object type, which is always \"model\".
+ * @param `object` The object type, which is always \"model\".
  * @param ownedBy The organization that owns the model.
  */
 data class Model(
 
     @Schema(required = true, description = "The model identifier, which can be referenced in the API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) when the model was created.")
-    @param:JsonProperty("created")
+    @param:JsonProperty("created", required = true)
     @get:JsonProperty("created", required = true) val created: kotlin.Int,
 
     @Schema(required = true, description = "The object type, which is always \"model\".")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: Model.`Object`,
 
     @Schema(required = true, description = "The organization that owns the model.")
-    @param:JsonProperty("owned_by")
+    @param:JsonProperty("owned_by", required = true)
     @get:JsonProperty("owned_by", required = true) val ownedBy: kotlin.String
 ) {
 
@@ -48,12 +48,12 @@ data class Model(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         model("model");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

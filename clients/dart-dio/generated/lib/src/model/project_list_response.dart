@@ -171,6 +171,7 @@ class _$ProjectListResponseSerializer implements PrimitiveSerializer<ProjectList
   }
 }
 
+
 class ProjectListResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

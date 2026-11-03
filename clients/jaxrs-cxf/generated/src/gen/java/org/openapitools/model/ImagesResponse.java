@@ -20,8 +20,6 @@ public class ImagesResponse  {
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid Image> data = new ArrayList<>();
  /**
    * Get created

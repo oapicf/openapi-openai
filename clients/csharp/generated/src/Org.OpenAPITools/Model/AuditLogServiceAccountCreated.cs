@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogServiceAccountCreated.");
+                throw new JsonException("Property is not nullable for class AuditLogServiceAccountCreated: id.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class AuditLogServiceAccountCreated.");
+                throw new JsonException("Property is not nullable for class AuditLogServiceAccountCreated: data.");
 
             return new AuditLogServiceAccountCreated(id, data);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogServiceAccountCreated auditLogServiceAccountCreated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogServiceAccountCreated auditLogServiceAccountCreated, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogServiceAccountCreated.IdOption.IsSet && auditLogServiceAccountCreated.Id == null)
-                throw new ArgumentNullException(nameof(auditLogServiceAccountCreated.Id), "Property is required for class AuditLogServiceAccountCreated.");
+                throw new JsonException("Cannot write null property AuditLogServiceAccountCreated.Id to non-nullable JSON property 'id'.");
 
             if (auditLogServiceAccountCreated.DataOption.IsSet && auditLogServiceAccountCreated.Data == null)
-                throw new ArgumentNullException(nameof(auditLogServiceAccountCreated.Data), "Property is required for class AuditLogServiceAccountCreated.");
+                throw new JsonException("Cannot write null property AuditLogServiceAccountCreated.Data to non-nullable JSON property 'data'.");
 
             if (auditLogServiceAccountCreated.IdOption.IsSet)
                 writer.WriteString("id", auditLogServiceAccountCreated.Id);

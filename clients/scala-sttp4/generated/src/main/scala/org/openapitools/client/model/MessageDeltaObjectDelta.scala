@@ -25,8 +25,8 @@ object MessageDeltaObjectDeltaEnums {
 
   sealed trait Role
   object Role {
-    case object User extends Role
-    case object Assistant extends Role
+    case object User extends Role { override def toString: String = "user" }
+    case object Assistant extends Role { override def toString: String = "assistant" }
 
     import org.json4s._
 

@@ -23,7 +23,7 @@ export namespace CreateUploadRequest {
     Assistants: 'assistants',
     Batch: 'batch',
     FineTune: 'fine-tune',
-    Vision: 'vision'
+    Vision: 'vision',
   } as const;
   export type PurposeEnum = typeof PurposeEnum[keyof typeof PurposeEnum];
 }

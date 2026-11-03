@@ -90,8 +90,8 @@ class UsersApiSimulation extends Simulation {
         .feed(list-usersQUERYFeeder)
         .exec(http("listUsers")
         .httpRequest("GET","/organization/users")
-        .queryParam("after","${after}")
         .queryParam("limit","${limit}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistUsers with warm up and reach a constant rate for entire duration

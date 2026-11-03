@@ -31,20 +31,14 @@ import {
 export interface RealtimeServerEventResponseCreated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseCreated
      */
     eventId: string;
     /**
      * The event type, must be `response.created`.
-     * @type {RealtimeServerEventResponseCreatedTypeEnum}
-     * @memberof RealtimeServerEventResponseCreated
      */
     type: RealtimeServerEventResponseCreatedTypeEnum;
     /**
      * 
-     * @type {RealtimeResponse}
-     * @memberof RealtimeServerEventResponseCreated
      */
     response: RealtimeResponse;
 }
@@ -54,7 +48,7 @@ export interface RealtimeServerEventResponseCreated {
  * @export
  */
 export const RealtimeServerEventResponseCreatedTypeEnum = {
-    ResponseCreated: 'response.created'
+    ResponseCreated: 'response.created',
 } as const;
 export type RealtimeServerEventResponseCreatedTypeEnum = typeof RealtimeServerEventResponseCreatedTypeEnum[keyof typeof RealtimeServerEventResponseCreatedTypeEnum];
 

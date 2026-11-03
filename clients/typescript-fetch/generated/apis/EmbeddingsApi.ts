@@ -25,6 +25,9 @@ import {
 } from '../models/CreateEmbeddingResponse';
 
 export interface CreateEmbeddingOperationRequest {
+    /**
+     * 
+     */
     createEmbeddingRequest: CreateEmbeddingRequest;
 }
 

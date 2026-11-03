@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseTextDoneSerializer implements PrimitiveSerial
   }
 }
 
+
+/// The event type, must be `response.text.done`.
 class RealtimeServerEventResponseTextDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.text.done`.
   @BuiltValueEnumConst(wireName: r'response.text.done')
   static const RealtimeServerEventResponseTextDoneTypeEnum responsePeriodTextPeriodDone = _$realtimeServerEventResponseTextDoneTypeEnum_responsePeriodTextPeriodDone;
 

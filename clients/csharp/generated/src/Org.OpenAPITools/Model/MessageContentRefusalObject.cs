@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageContentRefusalObject.TypeEnum?>(MessageContentRefusalObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageContentRefusalObject.TypeEnum? typeValue = MessageContentRefusalObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageContentRefusalObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "refusal":
                             refusal = new Option<string?>(utf8JsonReader.GetString()!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentRefusalObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageContentRefusalObject: type.");
 
             if (!refusal.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentRefusalObject.", nameof(refusal));
+                throw new JsonException("Property is required for class MessageContentRefusalObject: refusal.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageContentRefusalObject.");
+                throw new JsonException("Property is not nullable for class MessageContentRefusalObject: type.");
 
             if (refusal.IsSet && refusal.Value == null)
-                throw new ArgumentNullException(nameof(refusal), "Property is not nullable for class MessageContentRefusalObject.");
+                throw new JsonException("Property is not nullable for class MessageContentRefusalObject: refusal.");
 
             return new MessageContentRefusalObject(type.Value!.Value!, refusal.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentRefusalObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentRefusalObject messageContentRefusalObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentRefusalObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentRefusalObject messageContentRefusalObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentRefusalObject.Refusal == null)
-                throw new ArgumentNullException(nameof(messageContentRefusalObject.Refusal), "Property is required for class MessageContentRefusalObject.");
-
             var typeRawValue = MessageContentRefusalObject.TypeEnumToJsonValue(messageContentRefusalObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("refusal", messageContentRefusalObject.Refusal);

@@ -170,3 +170,4 @@ class _$ListAssistantsResponseSerializer implements PrimitiveSerializer<ListAssi
   }
 }
 
+

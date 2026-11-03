@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param type The type of error (e.g., \"invalid_request_error\", \"server_error\"). 
  * @param message A human-readable error message.
  * @param code Error code, if any.
- * @param &#x60;param&#x60; Parameter related to the error, if any.
+ * @param `param` Parameter related to the error, if any.
  * @param eventId The event_id of the client event that caused the error, if applicable. 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

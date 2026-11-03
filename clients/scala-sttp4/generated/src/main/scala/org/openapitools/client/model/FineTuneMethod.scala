@@ -25,8 +25,8 @@ object FineTuneMethodEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Supervised extends `Type`
-    case object Dpo extends `Type`
+    case object Supervised extends `Type` { override def toString: String = "supervised" }
+    case object Dpo extends `Type` { override def toString: String = "dpo" }
 
     import org.json4s._
 

@@ -29,32 +29,22 @@ import {
 export interface ListFilesResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListFilesResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<OpenAIFile>}
-     * @memberof ListFilesResponse
      */
     data: Array<OpenAIFile>;
     /**
      * 
-     * @type {string}
-     * @memberof ListFilesResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListFilesResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListFilesResponse
      */
     hasMore: boolean;
 }

@@ -158,18 +158,16 @@ class _$CreateUploadRequestSerializer implements PrimitiveSerializer<CreateUploa
   }
 }
 
+
+/// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
 class CreateUploadRequestPurposeEnum extends EnumClass {
 
-  /// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
   @BuiltValueEnumConst(wireName: r'assistants')
   static const CreateUploadRequestPurposeEnum assistants = _$createUploadRequestPurposeEnum_assistants;
-  /// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
   @BuiltValueEnumConst(wireName: r'batch')
   static const CreateUploadRequestPurposeEnum batch = _$createUploadRequestPurposeEnum_batch;
-  /// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
   @BuiltValueEnumConst(wireName: r'fine-tune')
   static const CreateUploadRequestPurposeEnum fineTune = _$createUploadRequestPurposeEnum_fineTune;
-  /// The intended purpose of the uploaded file.  See the [documentation on File purposes](/docs/api-reference/files/create#files-create-purpose). 
   @BuiltValueEnumConst(wireName: r'vision')
   static const CreateUploadRequestPurposeEnum vision = _$createUploadRequestPurposeEnum_vision;
 

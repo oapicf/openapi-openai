@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "UsageCodeInterpreterSessionsResult", description = "The aggregated code interpreter sessions usage details of the specific time bucket.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageCodeInterpreterSessionsResult implements UsageTimeBucketResultInner {
 
   /**
@@ -66,7 +65,6 @@ public class UsageCodeInterpreterSessionsResult implements UsageTimeBucketResult
 
   private Integer sessions;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> projectId = JsonNullable.<String>undefined();
 
   public UsageCodeInterpreterSessionsResult() {
@@ -133,7 +131,7 @@ public class UsageCodeInterpreterSessionsResult implements UsageTimeBucketResult
    * @return projectId
    */
   
-  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("project_id")
   public JsonNullable<String> getProjectId() {
     return projectId;

@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ResponseFormatJsonSchemaJsonSchema {
     /**
      * A description of what the response format is for, used by the model to determine how to respond in the format.
-     * @type {string}
-     * @memberof ResponseFormatJsonSchemaJsonSchema
      */
     description?: string;
     /**
      * The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
-     * @type {string}
-     * @memberof ResponseFormatJsonSchemaJsonSchema
      */
     name: string;
     /**
      * The schema for the response format, described as a JSON Schema object.
-     * @type {{ [key: string]: any; }}
-     * @memberof ResponseFormatJsonSchemaJsonSchema
      */
     schema?: { [key: string]: any; };
     /**
      * Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).
-     * @type {boolean}
-     * @memberof ResponseFormatJsonSchemaJsonSchema
      */
     strict?: boolean | null;
 }

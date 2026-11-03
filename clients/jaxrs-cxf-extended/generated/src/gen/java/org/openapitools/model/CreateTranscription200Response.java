@@ -40,14 +40,12 @@ public class CreateTranscription200Response  {
   * Extracted words and their corresponding timestamps.
   */
   @ApiModelProperty(value = "Extracted words and their corresponding timestamps.")
-  @Valid
   private List<@Valid TranscriptionWord> words = new ArrayList<>();
 
  /**
   * Segments of the transcribed text and their corresponding details.
   */
   @ApiModelProperty(value = "Segments of the transcribed text and their corresponding details.")
-  @Valid
   private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
  /**
   * The transcribed text.

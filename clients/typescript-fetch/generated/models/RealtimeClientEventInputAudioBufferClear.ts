@@ -23,14 +23,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventInputAudioBufferClear {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventInputAudioBufferClear
      */
     eventId?: string;
     /**
      * The event type, must be `input_audio_buffer.clear`.
-     * @type {RealtimeClientEventInputAudioBufferClearTypeEnum}
-     * @memberof RealtimeClientEventInputAudioBufferClear
      */
     type: RealtimeClientEventInputAudioBufferClearTypeEnum;
 }
@@ -40,7 +36,7 @@ export interface RealtimeClientEventInputAudioBufferClear {
  * @export
  */
 export const RealtimeClientEventInputAudioBufferClearTypeEnum = {
-    InputAudioBufferClear: 'input_audio_buffer.clear'
+    InputAudioBufferClear: 'input_audio_buffer.clear',
 } as const;
 export type RealtimeClientEventInputAudioBufferClearTypeEnum = typeof RealtimeClientEventInputAudioBufferClearTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferClearTypeEnum];
 

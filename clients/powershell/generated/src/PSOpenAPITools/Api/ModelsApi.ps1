@@ -57,7 +57,7 @@ function Invoke-DeleteModel {
         if (!$Model) {
             throw "Error! The required parameter `Model` missing when calling deleteModel."
         }
-        $LocalVarUri = $LocalVarUri.replace('{model}', [System.Web.HTTPUtility]::UrlEncode($Model))
+        $LocalVarUri = $LocalVarUri.replace('{model}', [System.Uri]::EscapeDataString([string]$Model))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -203,7 +203,7 @@ function Invoke-RetrieveModel {
         if (!$Model) {
             throw "Error! The required parameter `Model` missing when calling retrieveModel."
         }
-        $LocalVarUri = $LocalVarUri.replace('{model}', [System.Web.HTTPUtility]::UrlEncode($Model))
+        $LocalVarUri = $LocalVarUri.replace('{model}', [System.Uri]::EscapeDataString([string]$Model))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

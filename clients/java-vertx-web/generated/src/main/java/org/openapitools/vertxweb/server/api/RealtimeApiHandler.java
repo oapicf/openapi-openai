@@ -45,7 +45,7 @@ public class RealtimeApiHandler {
         RequestParameter body = requestParameters.body();
         RealtimeSessionCreateRequest realtimeSessionCreateRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<RealtimeSessionCreateRequest>(){}) : null;
 
-        logger.debug("Parameter realtimeSessionCreateRequest is {}", realtimeSessionCreateRequest);
+        logger.debug("Parameter realtimeSessionCreateRequest is (body omitted)");
 
         api.createRealtimeSession(realtimeSessionCreateRequest)
             .onSuccess(apiResponse -> {

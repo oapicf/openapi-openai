@@ -51,10 +51,10 @@ class FilesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'file' => [
@@ -96,13 +96,13 @@ class FilesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fileId' => $fileId,
-                ],
                 $request->all(),
+                [
+                    'file_id' => $fileId,
+                ],
             ),
             [
-                'fileId' => [
+                'file_id' => [
                     'required',
                     'string',
                 ],
@@ -135,13 +135,13 @@ class FilesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fileId' => $fileId,
-                ],
                 $request->all(),
+                [
+                    'file_id' => $fileId,
+                ],
             ),
             [
-                'fileId' => [
+                'file_id' => [
                     'required',
                     'string',
                 ],
@@ -174,10 +174,10 @@ class FilesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'purpose' => [
@@ -227,13 +227,13 @@ class FilesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fileId' => $fileId,
-                ],
                 $request->all(),
+                [
+                    'file_id' => $fileId,
+                ],
             ),
             [
-                'fileId' => [
+                'file_id' => [
                     'required',
                     'string',
                 ],

@@ -37,7 +37,7 @@ import javax.validation.Valid;
   RunStepDetailsToolCallsFileSearchResultObject.JSON_PROPERTY_SCORE,
   RunStepDetailsToolCallsFileSearchResultObject.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDetailsToolCallsFileSearchResultObject   {
   public static final String JSON_PROPERTY_FILE_ID = "file_id";
   @JsonProperty(JSON_PROPERTY_FILE_ID)
@@ -136,7 +136,7 @@ public class RunStepDetailsToolCallsFileSearchResultObject   {
    **/
   @JsonProperty(value = "content")
   @ApiModelProperty(value = "The content of the result that was found. The content is only included if requested via the include query parameter.")
-  @Valid 
+  
   public List<@Valid RunStepDetailsToolCallsFileSearchResultObjectContentInner> getContent() {
     return content;
   }

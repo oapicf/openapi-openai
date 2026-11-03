@@ -127,9 +127,10 @@ class _$RealtimeClientEventInputAudioBufferClearSerializer implements PrimitiveS
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.clear`.
 class RealtimeClientEventInputAudioBufferClearTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.clear`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.clear')
   static const RealtimeClientEventInputAudioBufferClearTypeEnum inputAudioBufferPeriodClear = _$realtimeClientEventInputAudioBufferClearTypeEnum_inputAudioBufferPeriodClear;
 

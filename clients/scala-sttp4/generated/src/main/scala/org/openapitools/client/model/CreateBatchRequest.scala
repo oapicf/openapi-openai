@@ -26,9 +26,9 @@ object CreateBatchRequestEnums {
 
   sealed trait Endpoint
   object Endpoint {
-    case object V1ChatCompletions extends Endpoint
-    case object V1Embeddings extends Endpoint
-    case object V1Completions extends Endpoint
+    case object V1ChatCompletions extends Endpoint { override def toString: String = "/v1/chat/completions" }
+    case object V1Embeddings extends Endpoint { override def toString: String = "/v1/embeddings" }
+    case object V1Completions extends Endpoint { override def toString: String = "/v1/completions" }
 
     import org.json4s._
 
@@ -53,7 +53,7 @@ object CreateBatchRequestEnums {
 
   sealed trait CompletionWindow
   object CompletionWindow {
-    case object `24h` extends CompletionWindow
+    case object `24h` extends CompletionWindow { override def toString: String = "24h" }
 
     import org.json4s._
 

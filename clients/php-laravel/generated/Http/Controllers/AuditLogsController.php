@@ -51,27 +51,27 @@ class AuditLogsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
-                'effectiveAt' => [
+                'effective_at' => [
                 ],
-                'projectIds' => [
+                'project_ids[]' => [
                     'array',
                 ],
-                'eventTypes' => [
+                'event_types[]' => [
                     'array',
                 ],
-                'actorIds' => [
+                'actor_ids[]' => [
                     'array',
                 ],
-                'actorEmails' => [
+                'actor_emails[]' => [
                     'array',
                 ],
-                'resourceIds' => [
+                'resource_ids[]' => [
                     'array',
                 ],
                 'limit' => [
@@ -92,15 +92,15 @@ class AuditLogsController extends Controller
 
         $effectiveAt = $this->serde->deserialize($request->getContent(), from: 'json', to: object::class);
 
-        $projectIds = $request->get('projectIds');
+        $projectIds = $request->get('project_ids[]');
 
-        $eventTypes = $request->get('eventTypes');
+        $eventTypes = $request->get('event_types[]');
 
-        $actorIds = $request->get('actorIds');
+        $actorIds = $request->get('actor_ids[]');
 
-        $actorEmails = $request->get('actorEmails');
+        $actorEmails = $request->get('actor_emails[]');
 
-        $resourceIds = $request->get('resourceIds');
+        $resourceIds = $request->get('resource_ids[]');
 
         $limit = $request->integer('limit');
 

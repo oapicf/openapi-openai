@@ -11,13 +11,13 @@ import org.openapitools.model.CreateModerationRequestModel;
 /**
  * CreateModerationRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationRequest   {
   @JsonProperty("input")
   private CreateModerationRequestInput input;
 
   @JsonProperty("model")
-  private CreateModerationRequestModel model;
+  private CreateModerationRequestModel model = omni-moderation-latest;
 
   public CreateModerationRequest input(CreateModerationRequestInput input) {
     this.input = input;

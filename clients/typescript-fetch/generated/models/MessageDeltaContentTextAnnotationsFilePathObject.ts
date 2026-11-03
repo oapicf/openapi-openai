@@ -29,38 +29,26 @@ import {
 export interface MessageDeltaContentTextAnnotationsFilePathObject {
     /**
      * The index of the annotation in the text content part.
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     index: number;
     /**
      * Always `file_path`.
-     * @type {MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     type: MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum;
     /**
      * The text in the message content that needs to be replaced.
-     * @type {string}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     text?: string;
     /**
      * 
-     * @type {MessageDeltaContentTextAnnotationsFilePathObjectFilePath}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     filePath?: MessageDeltaContentTextAnnotationsFilePathObjectFilePath;
     /**
      * 
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     startIndex?: number;
     /**
      * 
-     * @type {number}
-     * @memberof MessageDeltaContentTextAnnotationsFilePathObject
      */
     endIndex?: number;
 }
@@ -70,7 +58,7 @@ export interface MessageDeltaContentTextAnnotationsFilePathObject {
  * @export
  */
 export const MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = {
-    FilePath: 'file_path'
+    FilePath: 'file_path',
 } as const;
 export type MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum = typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum[keyof typeof MessageDeltaContentTextAnnotationsFilePathObjectTypeEnum];
 

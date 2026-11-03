@@ -36,26 +36,18 @@ import {
 export interface BatchRequestOutput {
     /**
      * 
-     * @type {string}
-     * @memberof BatchRequestOutput
      */
     id?: string;
     /**
      * A developer-provided per-request id that will be used to match outputs to inputs.
-     * @type {string}
-     * @memberof BatchRequestOutput
      */
     customId?: string;
     /**
      * 
-     * @type {BatchRequestOutputResponse}
-     * @memberof BatchRequestOutput
      */
     response?: BatchRequestOutputResponse | null;
     /**
      * 
-     * @type {BatchRequestOutputError}
-     * @memberof BatchRequestOutput
      */
     error?: BatchRequestOutputError | null;
 }

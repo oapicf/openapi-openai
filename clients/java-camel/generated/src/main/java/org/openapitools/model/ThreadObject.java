@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "ThreadObject", description = "Represents a thread that contains [messages](/docs/api-reference/messages).")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ThreadObject {
 
   private String id;
@@ -151,7 +151,7 @@ public class ThreadObject {
    * Get toolResources
    * @return toolResources
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "tool_resources", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tool_resources")
   public JsonNullable<ModifyThreadRequestToolResources> getToolResources() {
@@ -171,7 +171,7 @@ public class ThreadObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {

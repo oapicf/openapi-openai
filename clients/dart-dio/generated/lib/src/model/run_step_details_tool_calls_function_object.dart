@@ -141,9 +141,10 @@ class _$RunStepDetailsToolCallsFunctionObjectSerializer implements PrimitiveSeri
   }
 }
 
+
+/// The type of tool call. This is always going to be `function` for this type of tool call.
 class RunStepDetailsToolCallsFunctionObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `function` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'function')
   static const RunStepDetailsToolCallsFunctionObjectTypeEnum function_ = _$runStepDetailsToolCallsFunctionObjectTypeEnum_function_;
 

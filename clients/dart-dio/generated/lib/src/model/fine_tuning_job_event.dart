@@ -218,9 +218,10 @@ class _$FineTuningJobEventSerializer implements PrimitiveSerializer<FineTuningJo
   }
 }
 
+
+/// The object type, which is always \"fine_tuning.job.event\".
 class FineTuningJobEventObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"fine_tuning.job.event\".
   @BuiltValueEnumConst(wireName: r'fine_tuning.job.event')
   static const FineTuningJobEventObjectEnum fineTuningPeriodJobPeriodEvent = _$fineTuningJobEventObjectEnum_fineTuningPeriodJobPeriodEvent;
 
@@ -232,15 +233,13 @@ class FineTuningJobEventObjectEnum extends EnumClass {
   static FineTuningJobEventObjectEnum valueOf(String name) => _$fineTuningJobEventObjectEnumValueOf(name);
 }
 
+/// The log level of the event.
 class FineTuningJobEventLevelEnum extends EnumClass {
 
-  /// The log level of the event.
   @BuiltValueEnumConst(wireName: r'info')
   static const FineTuningJobEventLevelEnum info = _$fineTuningJobEventLevelEnum_info;
-  /// The log level of the event.
   @BuiltValueEnumConst(wireName: r'warn')
   static const FineTuningJobEventLevelEnum warn = _$fineTuningJobEventLevelEnum_warn;
-  /// The log level of the event.
   @BuiltValueEnumConst(wireName: r'error')
   static const FineTuningJobEventLevelEnum error = _$fineTuningJobEventLevelEnum_error;
 
@@ -252,12 +251,11 @@ class FineTuningJobEventLevelEnum extends EnumClass {
   static FineTuningJobEventLevelEnum valueOf(String name) => _$fineTuningJobEventLevelEnumValueOf(name);
 }
 
+/// The type of event.
 class FineTuningJobEventTypeEnum extends EnumClass {
 
-  /// The type of event.
   @BuiltValueEnumConst(wireName: r'message')
   static const FineTuningJobEventTypeEnum message = _$fineTuningJobEventTypeEnum_message;
-  /// The type of event.
   @BuiltValueEnumConst(wireName: r'metrics')
   static const FineTuningJobEventTypeEnum metrics = _$fineTuningJobEventTypeEnum_metrics;
 

@@ -141,9 +141,10 @@ class _$RunStepDeltaObjectSerializer implements PrimitiveSerializer<RunStepDelta
   }
 }
 
+
+/// The object type, which is always `thread.run.step.delta`.
 class RunStepDeltaObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread.run.step.delta`.
   @BuiltValueEnumConst(wireName: r'thread.run.step.delta')
   static const RunStepDeltaObjectObjectEnum threadPeriodRunPeriodStepPeriodDelta = _$runStepDeltaObjectObjectEnum_threadPeriodRunPeriodStepPeriodDelta;
 

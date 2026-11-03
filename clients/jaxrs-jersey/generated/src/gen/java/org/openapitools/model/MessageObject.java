@@ -49,7 +49,7 @@ import javax.validation.Valid;
   MessageObject.JSON_PROPERTY_ATTACHMENTS,
   MessageObject.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageObject   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -194,7 +194,7 @@ public class MessageObject   {
 
   public static final String JSON_PROPERTY_CONTENT = "content";
   @JsonProperty(JSON_PROPERTY_CONTENT)
-  private List<MessageObjectContentInner> content = new ArrayList<>();
+  private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
   @JsonProperty(JSON_PROPERTY_ASSISTANT_ID)
@@ -392,7 +392,7 @@ public class MessageObject   {
     this.role = role;
   }
 
-  public MessageObject content(List<MessageObjectContentInner> content) {
+  public MessageObject content(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
     return this;
   }
@@ -411,12 +411,12 @@ public class MessageObject   {
    **/
   @JsonProperty(value = "content")
   @ApiModelProperty(required = true, value = "The content of the message in array of text and/or images.")
-  @NotNull @Valid 
-  public List<MessageObjectContentInner> getContent() {
+  @NotNull 
+  public List<@Valid MessageObjectContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageObjectContentInner> content) {
+  public void setContent(List<@Valid MessageObjectContentInner> content) {
     this.content = content;
   }
 
@@ -479,7 +479,7 @@ public class MessageObject   {
    **/
   @JsonProperty(value = "attachments")
   @ApiModelProperty(required = true, value = "A list of files attached to the message, and the tools they were added to.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid CreateMessageRequestAttachmentsInner> getAttachments() {
     return attachments;
   }

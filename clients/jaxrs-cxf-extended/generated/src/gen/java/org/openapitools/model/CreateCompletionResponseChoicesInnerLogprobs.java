@@ -20,14 +20,12 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
   private List<Integer> textOffset = new ArrayList<>();
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<BigDecimal> tokenLogprobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private List<String> tokens = new ArrayList<>();
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<Map<String, BigDecimal>> topLogprobs = new ArrayList<>();
  /**
   * Get textOffset

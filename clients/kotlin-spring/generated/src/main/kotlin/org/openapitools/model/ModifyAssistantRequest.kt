@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantObjectToolsInner
 import org.openapitools.model.AssistantsApiResponseFormatOption
 import org.openapitools.model.ModifyAssistantRequestToolResources
@@ -35,8 +32,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ModifyAssistantRequest(
 
     @Schema(description = "ID of the model to use. You can use the [List models](/docs/api-reference/models/list) API to see all of your available models, or see our [Model overview](/docs/models) for descriptions of them. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("model")
     @get:JsonProperty("model") val model: kotlin.String? = null,
 
@@ -58,8 +53,6 @@ data class ModifyAssistantRequest(
     @field:Valid
     @get:Size(max=128)
     @Schema(description = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<AssistantObjectToolsInner>? = arrayListOf(),
 
@@ -87,8 +80,6 @@ data class ModifyAssistantRequest(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: AssistantsApiResponseFormatOption? = null
 ) {

@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!messageId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsMessageCreationObjectMessageCreation.", nameof(messageId));
+                throw new JsonException("Property is required for class RunStepDetailsMessageCreationObjectMessageCreation: message_id.");
 
             if (messageId.IsSet && messageId.Value == null)
-                throw new ArgumentNullException(nameof(messageId), "Property is not nullable for class RunStepDetailsMessageCreationObjectMessageCreation.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsMessageCreationObjectMessageCreation: message_id.");
 
             return new RunStepDetailsMessageCreationObjectMessageCreation(messageId.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsMessageCreationObjectMessageCreation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsMessageCreationObjectMessageCreation runStepDetailsMessageCreationObjectMessageCreation, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsMessageCreationObjectMessageCreation"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsMessageCreationObjectMessageCreation runStepDetailsMessageCreationObjectMessageCreation, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsMessageCreationObjectMessageCreation.MessageId == null)
-                throw new ArgumentNullException(nameof(runStepDetailsMessageCreationObjectMessageCreation.MessageId), "Property is required for class RunStepDetailsMessageCreationObjectMessageCreation.");
-
             writer.WriteString("message_id", runStepDetailsMessageCreationObjectMessageCreation.MessageId);
         }
     }

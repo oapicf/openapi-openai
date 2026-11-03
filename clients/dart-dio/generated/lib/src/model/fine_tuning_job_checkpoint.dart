@@ -209,9 +209,10 @@ class _$FineTuningJobCheckpointSerializer implements PrimitiveSerializer<FineTun
   }
 }
 
+
+/// The object type, which is always \"fine_tuning.job.checkpoint\".
 class FineTuningJobCheckpointObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"fine_tuning.job.checkpoint\".
   @BuiltValueEnumConst(wireName: r'fine_tuning.job.checkpoint')
   static const FineTuningJobCheckpointObjectEnum fineTuningPeriodJobPeriodCheckpoint = _$fineTuningJobCheckpointObjectEnum_fineTuningPeriodJobPeriodCheckpoint;
 

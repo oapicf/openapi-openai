@@ -22,12 +22,12 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing_extensions import Annotated
 from openapi_server.models.delete_model_response import DeleteModelResponse
 from openapi_server.models.list_models_response import ListModelsResponse
 from openapi_server.models.model import Model
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -66,7 +66,7 @@ async def list_models(
     response_model_by_alias=True,
 )
 async def retrieve_model(
-    model: Annotated[StrictStr, Field(description="The ID of the model to use for this request")] = Path(..., description="The ID of the model to use for this request", examples=["gpt-4o-mini"]),
+    model: Annotated[str, Field(description="The ID of the model to use for this request")] = Path(..., description="The ID of the model to use for this request", examples=["gpt-4o-mini"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -86,7 +86,7 @@ async def retrieve_model(
     response_model_by_alias=True,
 )
 async def delete_model(
-    model: Annotated[StrictStr, Field(description="The model to delete")] = Path(..., description="The model to delete", examples=["ft:gpt-4o-mini:acemeco:suffix:abc123"]),
+    model: Annotated[str, Field(description="The model to delete")] = Path(..., description="The model to delete", examples=["ft:gpt-4o-mini:acemeco:suffix:abc123"]),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

@@ -26,10 +26,10 @@ object CreateUploadRequestEnums {
 
   sealed trait Purpose
   object Purpose {
-    case object Assistants extends Purpose
-    case object Batch extends Purpose
-    case object FineTune extends Purpose
-    case object Vision extends Purpose
+    case object Assistants extends Purpose { override def toString: String = "assistants" }
+    case object Batch extends Purpose { override def toString: String = "batch" }
+    case object FineTune extends Purpose { override def toString: String = "fine-tune" }
+    case object Vision extends Purpose { override def toString: String = "vision" }
 
     import org.json4s._
 

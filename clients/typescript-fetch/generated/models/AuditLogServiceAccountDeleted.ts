@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogServiceAccountDeleted {
     /**
      * The service account ID.
-     * @type {string}
-     * @memberof AuditLogServiceAccountDeleted
      */
     id?: string;
 }

@@ -19,7 +19,7 @@ import javax.validation.Valid;
 */
 @Path("/realtime/sessions")
 @Api(description = "the realtime API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeApi {
 
     @POST
@@ -32,7 +32,8 @@ public class RealtimeApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Session created successfully.", response = RealtimeSessionCreateResponse.class)
     })
-    public Response createRealtimeSession(@Valid @NotNull RealtimeSessionCreateRequest realtimeSessionCreateRequest) {
+    public Response createRealtimeSession(@Valid @NotNull RealtimeSessionCreateRequest realtimeSessionCreateRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 }

@@ -17,7 +17,7 @@ export interface RunStepDeltaObject {
 }
 export namespace RunStepDeltaObject {
   export const ObjectEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

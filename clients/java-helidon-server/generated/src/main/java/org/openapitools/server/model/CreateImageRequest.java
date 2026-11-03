@@ -12,7 +12,7 @@ import jakarta.validation.Valid;
 public class CreateImageRequest   {
 
     private String prompt;
-    private CreateImageRequestModel model;
+    private CreateImageRequestModel model = dall-e-2;
     private Integer n = 1;
 
     /**

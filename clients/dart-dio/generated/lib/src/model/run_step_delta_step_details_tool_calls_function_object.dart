@@ -164,9 +164,10 @@ class _$RunStepDeltaStepDetailsToolCallsFunctionObjectSerializer implements Prim
   }
 }
 
+
+/// The type of tool call. This is always going to be `function` for this type of tool call.
 class RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `function` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'function')
   static const RunStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum function_ = _$runStepDeltaStepDetailsToolCallsFunctionObjectTypeEnum_function_;
 

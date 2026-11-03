@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListBatchesResponse  {
   
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid Batch> data = new ArrayList<>();
 
   @ApiModelProperty(example = "batch_abc123", value = "")

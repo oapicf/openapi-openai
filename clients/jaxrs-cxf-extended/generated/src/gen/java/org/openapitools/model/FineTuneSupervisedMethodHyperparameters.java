@@ -21,15 +21,15 @@ public class FineTuneSupervisedMethodHyperparameters  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
  /**
   * Get batchSize
   * @return batchSize

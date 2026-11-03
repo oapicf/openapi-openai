@@ -28,31 +28,31 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventResponseFunctionCallArgumentsDone(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `response.function_call_arguments.done`. ")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseFunctionCallArgumentsDone.Type,
 
     @Schema(required = true, description = "The ID of the response.")
-    @param:JsonProperty("response_id")
+    @param:JsonProperty("response_id", required = true)
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
     @Schema(required = true, description = "The ID of the function call item.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the output item in the response.")
-    @param:JsonProperty("output_index")
+    @param:JsonProperty("output_index", required = true)
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
     @Schema(required = true, description = "The ID of the function call.")
-    @param:JsonProperty("call_id")
+    @param:JsonProperty("call_id", required = true)
     @get:JsonProperty("call_id", required = true) val callId: kotlin.String,
 
     @Schema(required = true, description = "The final arguments as a JSON string.")
-    @param:JsonProperty("arguments")
+    @param:JsonProperty("arguments", required = true)
     @get:JsonProperty("arguments", required = true) val arguments: kotlin.String
 ) {
 
@@ -63,12 +63,12 @@ data class RealtimeServerEventResponseFunctionCallArgumentsDone(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         responsePeriodFunction_call_argumentsPeriodDone("response.function_call_arguments.done");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

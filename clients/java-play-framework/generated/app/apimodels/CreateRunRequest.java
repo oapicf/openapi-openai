@@ -20,7 +20,7 @@ import javax.validation.Valid;
 /**
  * CreateRunRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CreateRunRequest   {
   @JsonProperty("assistant_id")
@@ -50,7 +50,7 @@ public class CreateRunRequest   {
   @Size(max=20)
 @Valid
 
-  private List<AssistantObjectToolsInner> tools = null;
+  private List<@Valid AssistantObjectToolsInner> tools = null;
 
   @JsonProperty("metadata")
   
@@ -196,7 +196,7 @@ public class CreateRunRequest   {
     this.additionalMessages = additionalMessages;
   }
 
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -213,11 +213,11 @@ public class CreateRunRequest   {
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    * @return tools
   **/
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

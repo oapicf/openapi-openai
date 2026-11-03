@@ -15,7 +15,7 @@ export interface MessageRequestContentTextObject {
 }
 export namespace MessageRequestContentTextObject {
   export const TypeEnum = {
-    Text: 'text'
+    Text: 'text',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

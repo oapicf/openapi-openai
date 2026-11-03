@@ -73,15 +73,14 @@ class _$AssistantsApiToolChoiceOptionSerializer implements PrimitiveSerializer<A
   }
 }
 
+
+/// The type of the tool. If type is `function`, the function name must be set
 class AssistantsApiToolChoiceOptionTypeEnum extends EnumClass {
 
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'function')
   static const AssistantsApiToolChoiceOptionTypeEnum function_ = _$assistantsApiToolChoiceOptionTypeEnum_function_;
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const AssistantsApiToolChoiceOptionTypeEnum codeInterpreter = _$assistantsApiToolChoiceOptionTypeEnum_codeInterpreter;
-  /// The type of the tool. If type is `function`, the function name must be set
   @BuiltValueEnumConst(wireName: r'file_search')
   static const AssistantsApiToolChoiceOptionTypeEnum fileSearch = _$assistantsApiToolChoiceOptionTypeEnum_fileSearch;
 

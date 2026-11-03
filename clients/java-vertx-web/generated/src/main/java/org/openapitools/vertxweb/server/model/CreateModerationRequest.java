@@ -10,7 +10,7 @@ import org.openapitools.vertxweb.server.model.CreateModerationRequestModel;
 public class CreateModerationRequest   {
   
   private CreateModerationRequestInput input;
-  private CreateModerationRequestModel model;
+  private CreateModerationRequestModel model = omni-moderation-latest;
 
   public CreateModerationRequest () {
 

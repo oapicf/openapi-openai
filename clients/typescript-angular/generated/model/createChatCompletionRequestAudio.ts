@@ -31,7 +31,7 @@ export namespace CreateChatCompletionRequestAudio {
         Echo: 'echo',
         Sage: 'sage',
         Shimmer: 'shimmer',
-        Verse: 'verse'
+        Verse: 'verse',
     } as const;
     export type VoiceEnum = typeof VoiceEnum[keyof typeof VoiceEnum];
     export const FormatEnum = {
@@ -39,7 +39,7 @@ export namespace CreateChatCompletionRequestAudio {
         Mp3: 'mp3',
         Flac: 'flac',
         Opus: 'opus',
-        Pcm16: 'pcm16'
+        Pcm16: 'pcm16',
     } as const;
     export type FormatEnum = typeof FormatEnum[keyof typeof FormatEnum];
 }

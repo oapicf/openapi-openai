@@ -124,9 +124,10 @@ class _$AssistantToolsFunctionSerializer implements PrimitiveSerializer<Assistan
   }
 }
 
+
+/// The type of tool being defined: `function`
 class AssistantToolsFunctionTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `function`
   @BuiltValueEnumConst(wireName: r'function')
   static const AssistantToolsFunctionTypeEnum function_ = _$assistantToolsFunctionTypeEnum_function_;
 

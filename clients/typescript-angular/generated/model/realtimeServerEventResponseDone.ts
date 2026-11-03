@@ -26,7 +26,7 @@ export interface RealtimeServerEventResponseDone {
 }
 export namespace RealtimeServerEventResponseDone {
     export const TypeEnum = {
-        ResponseDone: 'response.done'
+        ResponseDone: 'response.done',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

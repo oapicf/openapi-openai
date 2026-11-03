@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class AutoChunkingStrategyRequestParam(
 
     @Schema(required = true, description = "Always `auto`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: AutoChunkingStrategyRequestParam.Type
 ) : ChunkingStrategyRequestParam, CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy, CreateVectorStoreRequestChunkingStrategy {
 
@@ -33,12 +33,12 @@ data class AutoChunkingStrategyRequestParam(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         auto("auto");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

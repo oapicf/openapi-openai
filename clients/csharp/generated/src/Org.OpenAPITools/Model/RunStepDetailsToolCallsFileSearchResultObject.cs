@@ -195,25 +195,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!fileId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject.", nameof(fileId));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject: file_id.");
 
             if (!fileName.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject.", nameof(fileName));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject: file_name.");
 
             if (!score.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject.", nameof(score));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchResultObject: score.");
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject: file_id.");
 
             if (fileName.IsSet && fileName.Value == null)
-                throw new ArgumentNullException(nameof(fileName), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject: file_name.");
 
             if (score.IsSet && score.Value == null)
-                throw new ArgumentNullException(nameof(score), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject: score.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchResultObject: content.");
 
             return new RunStepDetailsToolCallsFileSearchResultObject(fileId.Value!, fileName.Value!, score.Value!.Value!, content);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchResultObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchResultObject runStepDetailsToolCallsFileSearchResultObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,17 +238,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchResultObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchResultObject runStepDetailsToolCallsFileSearchResultObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsFileSearchResultObject.FileId == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchResultObject.FileId), "Property is required for class RunStepDetailsToolCallsFileSearchResultObject.");
-
-            if (runStepDetailsToolCallsFileSearchResultObject.FileName == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchResultObject.FileName), "Property is required for class RunStepDetailsToolCallsFileSearchResultObject.");
-
             if (runStepDetailsToolCallsFileSearchResultObject.ContentOption.IsSet && runStepDetailsToolCallsFileSearchResultObject.Content == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchResultObject.Content), "Property is required for class RunStepDetailsToolCallsFileSearchResultObject.");
+                throw new JsonException("Cannot write null property RunStepDetailsToolCallsFileSearchResultObject.Content to non-nullable JSON property 'content'.");
 
             writer.WriteString("file_id", runStepDetailsToolCallsFileSearchResultObject.FileId);
 

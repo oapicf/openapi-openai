@@ -23,12 +23,12 @@ data class CreateChatCompletionResponseChoicesInnerLogprobs(
 
     @field:Valid
     @Schema(required = true, description = "A list of message content tokens with log probability information.")
-    @param:JsonProperty("content")
+    @param:JsonProperty("content", required = true)
     @get:JsonProperty("content", required = true) val content: kotlin.collections.List<ChatCompletionTokenLogprob>?,
 
     @field:Valid
     @Schema(required = true, description = "A list of message refusal tokens with log probability information.")
-    @param:JsonProperty("refusal")
+    @param:JsonProperty("refusal", required = true)
     @get:JsonProperty("refusal", required = true) val refusal: kotlin.collections.List<ChatCompletionTokenLogprob>?
 ) {
 

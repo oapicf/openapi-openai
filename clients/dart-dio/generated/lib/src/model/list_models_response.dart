@@ -123,6 +123,7 @@ class _$ListModelsResponseSerializer implements PrimitiveSerializer<ListModelsRe
   }
 }
 
+
 class ListModelsResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

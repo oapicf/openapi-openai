@@ -147,16 +147,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextObjectText.", nameof(value));
+                throw new JsonException("Property is required for class MessageContentTextObjectText: value.");
 
             if (!annotations.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextObjectText.", nameof(annotations));
+                throw new JsonException("Property is required for class MessageContentTextObjectText: annotations.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class MessageContentTextObjectText.");
+                throw new JsonException("Property is not nullable for class MessageContentTextObjectText: value.");
 
             if (annotations.IsSet && annotations.Value == null)
-                throw new ArgumentNullException(nameof(annotations), "Property is not nullable for class MessageContentTextObjectText.");
+                throw new JsonException("Property is not nullable for class MessageContentTextObjectText: annotations.");
 
             return new MessageContentTextObjectText(value.Value!, annotations.Value!);
         }
@@ -167,7 +167,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextObjectText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentTextObjectText messageContentTextObjectText, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -182,15 +181,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextObjectText"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentTextObjectText messageContentTextObjectText, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentTextObjectText.Value == null)
-                throw new ArgumentNullException(nameof(messageContentTextObjectText.Value), "Property is required for class MessageContentTextObjectText.");
-
-            if (messageContentTextObjectText.Annotations == null)
-                throw new ArgumentNullException(nameof(messageContentTextObjectText.Annotations), "Property is required for class MessageContentTextObjectText.");
-
             writer.WriteString("value", messageContentTextObjectText.Value);
 
             writer.WritePropertyName("annotations");

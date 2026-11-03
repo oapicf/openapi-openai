@@ -134,10 +134,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!fileId.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObjectImage.", nameof(fileId));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsCodeOutputImageObjectImage: file_id.");
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObjectImage.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsCodeOutputImageObjectImage: file_id.");
 
             return new RunStepDetailsToolCallsCodeOutputImageObjectImage(fileId.Value!);
         }
@@ -148,7 +148,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeOutputImageObjectImage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeOutputImageObjectImage runStepDetailsToolCallsCodeOutputImageObjectImage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -163,12 +162,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeOutputImageObjectImage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeOutputImageObjectImage runStepDetailsToolCallsCodeOutputImageObjectImage, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsCodeOutputImageObjectImage.FileId == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsCodeOutputImageObjectImage.FileId), "Property is required for class RunStepDetailsToolCallsCodeOutputImageObjectImage.");
-
             writer.WriteString("file_id", runStepDetailsToolCallsCodeOutputImageObjectImage.FileId);
         }
     }

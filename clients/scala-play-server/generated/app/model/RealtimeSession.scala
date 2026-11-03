@@ -14,7 +14,7 @@ import play.api.libs.json._
   * @param toolChoice How the model chooses tools. Options are `auto`, `none`, `required`, or  specify a function. 
   * @param temperature Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8. 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class RealtimeSession(
   id: Option[String],
   modalities: Option[RealtimeSession.Modalities.Value],

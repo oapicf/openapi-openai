@@ -32,28 +32,20 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventConversationItemTruncate {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemTruncate
      */
     eventId?: string;
     /**
      * The event type, must be `conversation.item.truncate`.
-     * @type {RealtimeClientEventConversationItemTruncateTypeEnum}
-     * @memberof RealtimeClientEventConversationItemTruncate
      */
     type: RealtimeClientEventConversationItemTruncateTypeEnum;
     /**
      * The ID of the assistant message item to truncate. Only assistant message 
      * items can be truncated.
      * 
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemTruncate
      */
     itemId: string;
     /**
      * The index of the content part to truncate. Set this to 0.
-     * @type {number}
-     * @memberof RealtimeClientEventConversationItemTruncate
      */
     contentIndex: number;
     /**
@@ -61,8 +53,6 @@ export interface RealtimeClientEventConversationItemTruncate {
      * the audio_end_ms is greater than the actual audio duration, the server 
      * will respond with an error.
      * 
-     * @type {number}
-     * @memberof RealtimeClientEventConversationItemTruncate
      */
     audioEndMs: number;
 }
@@ -72,7 +62,7 @@ export interface RealtimeClientEventConversationItemTruncate {
  * @export
  */
 export const RealtimeClientEventConversationItemTruncateTypeEnum = {
-    ConversationItemTruncate: 'conversation.item.truncate'
+    ConversationItemTruncate: 'conversation.item.truncate',
 } as const;
 export type RealtimeClientEventConversationItemTruncateTypeEnum = typeof RealtimeClientEventConversationItemTruncateTypeEnum[keyof typeof RealtimeClientEventConversationItemTruncateTypeEnum];
 

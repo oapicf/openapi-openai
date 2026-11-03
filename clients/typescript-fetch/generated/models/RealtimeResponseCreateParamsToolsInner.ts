@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeResponseCreateParamsToolsInner {
     /**
      * The type of the tool, i.e. `function`.
-     * @type {RealtimeResponseCreateParamsToolsInnerTypeEnum}
-     * @memberof RealtimeResponseCreateParamsToolsInner
      */
     type?: RealtimeResponseCreateParamsToolsInnerTypeEnum;
     /**
      * The name of the function.
-     * @type {string}
-     * @memberof RealtimeResponseCreateParamsToolsInner
      */
     name?: string;
     /**
@@ -36,14 +32,10 @@ export interface RealtimeResponseCreateParamsToolsInner {
      * to call it, and guidance about what to tell the user when calling 
      * (if anything).
      * 
-     * @type {string}
-     * @memberof RealtimeResponseCreateParamsToolsInner
      */
     description?: string;
     /**
      * Parameters of the function in JSON Schema.
-     * @type {object}
-     * @memberof RealtimeResponseCreateParamsToolsInner
      */
     parameters?: object;
 }
@@ -53,7 +45,7 @@ export interface RealtimeResponseCreateParamsToolsInner {
  * @export
  */
 export const RealtimeResponseCreateParamsToolsInnerTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type RealtimeResponseCreateParamsToolsInnerTypeEnum = typeof RealtimeResponseCreateParamsToolsInnerTypeEnum[keyof typeof RealtimeResponseCreateParamsToolsInnerTypeEnum];
 

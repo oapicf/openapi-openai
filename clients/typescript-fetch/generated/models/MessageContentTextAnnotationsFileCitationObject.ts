@@ -29,32 +29,22 @@ import {
 export interface MessageContentTextAnnotationsFileCitationObject {
     /**
      * Always `file_citation`.
-     * @type {MessageContentTextAnnotationsFileCitationObjectTypeEnum}
-     * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     type: MessageContentTextAnnotationsFileCitationObjectTypeEnum;
     /**
      * The text in the message content that needs to be replaced.
-     * @type {string}
-     * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     text: string;
     /**
      * 
-     * @type {MessageContentTextAnnotationsFileCitationObjectFileCitation}
-     * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     fileCitation: MessageContentTextAnnotationsFileCitationObjectFileCitation;
     /**
      * 
-     * @type {number}
-     * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     startIndex: number;
     /**
      * 
-     * @type {number}
-     * @memberof MessageContentTextAnnotationsFileCitationObject
      */
     endIndex: number;
 }
@@ -64,7 +54,7 @@ export interface MessageContentTextAnnotationsFileCitationObject {
  * @export
  */
 export const MessageContentTextAnnotationsFileCitationObjectTypeEnum = {
-    FileCitation: 'file_citation'
+    FileCitation: 'file_citation',
 } as const;
 export type MessageContentTextAnnotationsFileCitationObjectTypeEnum = typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum[keyof typeof MessageContentTextAnnotationsFileCitationObjectTypeEnum];
 

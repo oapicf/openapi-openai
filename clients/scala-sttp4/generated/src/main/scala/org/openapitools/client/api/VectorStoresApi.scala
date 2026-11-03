@@ -42,7 +42,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store that the file batch belongs to.
    * @param batchId The ID of the file batch to cancel.
    */
-  def cancelVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, batchId: String): Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
+  def cancelVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, batchId: String): sttp.client4.Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/vector_stores/${vectorStoreId}/file_batches/${batchId}/cancel")
       .contentType("application/json")
@@ -58,7 +58,7 @@ class VectorStoresApi(baseUrl: String) {
    * 
    * @param createVectorStoreRequest 
    */
-  def createVectorStore(bearerToken: String)(createVectorStoreRequest: CreateVectorStoreRequest): Request[Either[ResponseException[String], VectorStoreObject]] =
+  def createVectorStore(bearerToken: String)(createVectorStoreRequest: CreateVectorStoreRequest): sttp.client4.Request[Either[ResponseException[String], VectorStoreObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/vector_stores")
       .contentType("application/json")
@@ -76,7 +76,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store for which to create a File. 
    * @param createVectorStoreFileRequest 
    */
-  def createVectorStoreFile(bearerToken: String)(vectorStoreId: String, createVectorStoreFileRequest: CreateVectorStoreFileRequest): Request[Either[ResponseException[String], VectorStoreFileObject]] =
+  def createVectorStoreFile(bearerToken: String)(vectorStoreId: String, createVectorStoreFileRequest: CreateVectorStoreFileRequest): sttp.client4.Request[Either[ResponseException[String], VectorStoreFileObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/vector_stores/${vectorStoreId}/files")
       .contentType("application/json")
@@ -94,7 +94,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store for which to create a File Batch. 
    * @param createVectorStoreFileBatchRequest 
    */
-  def createVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest): Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
+  def createVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, createVectorStoreFileBatchRequest: CreateVectorStoreFileBatchRequest): sttp.client4.Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/vector_stores/${vectorStoreId}/file_batches")
       .contentType("application/json")
@@ -111,7 +111,7 @@ class VectorStoresApi(baseUrl: String) {
    * 
    * @param vectorStoreId The ID of the vector store to delete.
    */
-  def deleteVectorStore(bearerToken: String)(vectorStoreId: String): Request[Either[ResponseException[String], DeleteVectorStoreResponse]] =
+  def deleteVectorStore(bearerToken: String)(vectorStoreId: String): sttp.client4.Request[Either[ResponseException[String], DeleteVectorStoreResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/vector_stores/${vectorStoreId}")
       .contentType("application/json")
@@ -128,7 +128,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store that the file belongs to.
    * @param fileId The ID of the file to delete.
    */
-  def deleteVectorStoreFile(bearerToken: String)(vectorStoreId: String, fileId: String): Request[Either[ResponseException[String], DeleteVectorStoreFileResponse]] =
+  def deleteVectorStoreFile(bearerToken: String)(vectorStoreId: String, fileId: String): sttp.client4.Request[Either[ResponseException[String], DeleteVectorStoreFileResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/vector_stores/${vectorStoreId}/files/${fileId}")
       .contentType("application/json")
@@ -144,7 +144,7 @@ class VectorStoresApi(baseUrl: String) {
    * 
    * @param vectorStoreId The ID of the vector store to retrieve.
    */
-  def getVectorStore(bearerToken: String)(vectorStoreId: String): Request[Either[ResponseException[String], VectorStoreObject]] =
+  def getVectorStore(bearerToken: String)(vectorStoreId: String): sttp.client4.Request[Either[ResponseException[String], VectorStoreObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores/${vectorStoreId}")
       .contentType("application/json")
@@ -161,7 +161,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store that the file belongs to.
    * @param fileId The ID of the file being retrieved.
    */
-  def getVectorStoreFile(bearerToken: String)(vectorStoreId: String, fileId: String): Request[Either[ResponseException[String], VectorStoreFileObject]] =
+  def getVectorStoreFile(bearerToken: String)(vectorStoreId: String, fileId: String): sttp.client4.Request[Either[ResponseException[String], VectorStoreFileObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores/${vectorStoreId}/files/${fileId}")
       .contentType("application/json")
@@ -178,7 +178,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store that the file batch belongs to.
    * @param batchId The ID of the file batch being retrieved.
    */
-  def getVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, batchId: String): Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
+  def getVectorStoreFileBatch(bearerToken: String)(vectorStoreId: String, batchId: String): sttp.client4.Request[Either[ResponseException[String], VectorStoreFileBatchObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores/${vectorStoreId}/file_batches/${batchId}")
       .contentType("application/json")
@@ -200,7 +200,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    * @param filter Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
    */
-  def listFilesInVectorStoreBatch(bearerToken: String)(vectorStoreId: String, batchId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, filter: Option[String] = None): Request[Either[ResponseException[String], ListVectorStoreFilesResponse]] =
+  def listFilesInVectorStoreBatch(bearerToken: String)(vectorStoreId: String, batchId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, filter: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListVectorStoreFilesResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores/${vectorStoreId}/file_batches/${batchId}/files?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }&filter=${ filter }")
       .contentType("application/json")
@@ -221,7 +221,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    * @param filter Filter by file status. One of `in_progress`, `completed`, `failed`, `cancelled`.
    */
-  def listVectorStoreFiles(bearerToken: String)(vectorStoreId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, filter: Option[String] = None): Request[Either[ResponseException[String], ListVectorStoreFilesResponse]] =
+  def listVectorStoreFiles(bearerToken: String)(vectorStoreId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, filter: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListVectorStoreFilesResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores/${vectorStoreId}/files?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }&filter=${ filter }")
       .contentType("application/json")
@@ -240,7 +240,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    */
-  def listVectorStores(bearerToken: String)(limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): Request[Either[ResponseException[String], ListVectorStoresResponse]] =
+  def listVectorStores(bearerToken: String)(limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListVectorStoresResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/vector_stores?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }")
       .contentType("application/json")
@@ -257,7 +257,7 @@ class VectorStoresApi(baseUrl: String) {
    * @param vectorStoreId The ID of the vector store to modify.
    * @param updateVectorStoreRequest 
    */
-  def modifyVectorStore(bearerToken: String)(vectorStoreId: String, updateVectorStoreRequest: UpdateVectorStoreRequest): Request[Either[ResponseException[String], VectorStoreObject]] =
+  def modifyVectorStore(bearerToken: String)(vectorStoreId: String, updateVectorStoreRequest: UpdateVectorStoreRequest): sttp.client4.Request[Either[ResponseException[String], VectorStoreObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/vector_stores/${vectorStoreId}")
       .contentType("application/json")

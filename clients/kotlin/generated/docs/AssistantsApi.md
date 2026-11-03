@@ -57,9 +57,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the thread to which this run belongs. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the thread to which this run belongs. | |
 | **runId** | **kotlin.String**| The ID of the run to cancel. | |
 
 ### Return type
@@ -163,9 +163,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to create a message for. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to create a message for. | |
 | **createMessageRequest** | [**CreateMessageRequest**](CreateMessageRequest.md)|  | |
 
 ### Return type
@@ -218,10 +218,10 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the thread to run. | |
-| **createRunRequest** | [**CreateRunRequest**](CreateRunRequest.md)|  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the thread to run. | |
+| **createRunRequest** | [**CreateRunRequest**](CreateRunRequest.md)|  | |
 | **include** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
@@ -429,9 +429,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the thread to which this message belongs. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the thread to which this message belongs. | |
 | **messageId** | **kotlin.String**| The ID of the message to delete. | |
 
 ### Return type
@@ -587,9 +587,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to which this message belongs. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to which this message belongs. | |
 | **messageId** | **kotlin.String**| The ID of the message to retrieve. | |
 
 ### Return type
@@ -641,9 +641,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) that was run. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) that was run. | |
 | **runId** | **kotlin.String**| The ID of the run to retrieve. | |
 
 ### Return type
@@ -697,11 +697,11 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **threadId** | **kotlin.String**| The ID of the thread to which the run and run step belongs. | |
 | **runId** | **kotlin.String**| The ID of the run to which the run step belongs. | |
 | **stepId** | **kotlin.String**| The ID of the run step to retrieve. | |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **include** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
@@ -807,11 +807,11 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
 
 ### Return type
@@ -867,13 +867,13 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) the messages belong to. | |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **runId** | **kotlin.String**| Filter messages by the run ID that generated them.  | [optional] |
 
 ### Return type
@@ -930,14 +930,14 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **threadId** | **kotlin.String**| The ID of the thread the run and run steps belong to. | |
 | **runId** | **kotlin.String**| The ID of the run the run steps belong to. | |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **include** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information.  | [optional] [enum: step_details.tool_calls[*].file_search.results[*].content] |
 
 ### Return type
@@ -992,12 +992,12 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **threadId** | **kotlin.String**| The ID of the thread the run belongs to. | |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
 
 ### Return type
@@ -1049,9 +1049,9 @@ try {
 ```
 
 ### Parameters
-| **assistantId** | **kotlin.String**| The ID of the assistant to modify. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **assistantId** | **kotlin.String**| The ID of the assistant to modify. | |
 | **modifyAssistantRequest** | [**ModifyAssistantRequest**](ModifyAssistantRequest.md)|  | |
 
 ### Return type
@@ -1104,10 +1104,10 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the thread to which this message belongs. | |
-| **messageId** | **kotlin.String**| The ID of the message to modify. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the thread to which this message belongs. | |
+| **messageId** | **kotlin.String**| The ID of the message to modify. | |
 | **modifyMessageRequest** | [**ModifyMessageRequest**](ModifyMessageRequest.md)|  | |
 
 ### Return type
@@ -1160,10 +1160,10 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) that was run. | |
-| **runId** | **kotlin.String**| The ID of the run to modify. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) that was run. | |
+| **runId** | **kotlin.String**| The ID of the run to modify. | |
 | **modifyRunRequest** | [**ModifyRunRequest**](ModifyRunRequest.md)|  | |
 
 ### Return type
@@ -1215,9 +1215,9 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified. | |
 | **modifyThreadRequest** | [**ModifyThreadRequest**](ModifyThreadRequest.md)|  | |
 
 ### Return type
@@ -1270,10 +1270,10 @@ try {
 ```
 
 ### Parameters
-| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to which this run belongs. | |
-| **runId** | **kotlin.String**| The ID of the run that requires the tool output submission. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **threadId** | **kotlin.String**| The ID of the [thread](/docs/api-reference/threads) to which this run belongs. | |
+| **runId** | **kotlin.String**| The ID of the run that requires the tool output submission. | |
 | **submitToolOutputsRunRequest** | [**SubmitToolOutputsRunRequest**](SubmitToolOutputsRunRequest.md)|  | |
 
 ### Return type

@@ -108,7 +108,9 @@ class RealtimeSessionTurnDetection {
 
       return RealtimeSessionTurnDetection(
         type: RealtimeSessionTurnDetectionTypeEnum.fromJson(json[r'type']),
-        threshold: num.parse('${json[r'threshold']}'),
+        threshold: json[r'threshold'] == null
+            ? null
+            : num.parse('${json[r'threshold']}'),
         prefixPaddingMs: mapValueOfType<int>(json, r'prefix_padding_ms'),
         silenceDurationMs: mapValueOfType<int>(json, r'silence_duration_ms'),
       );

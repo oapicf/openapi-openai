@@ -50,7 +50,7 @@ object MessageObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ThreadMessage extends `Object`
+    case object ThreadMessage extends `Object` { override def toString: String = "thread.message" }
 
     import org.json4s._
 
@@ -71,9 +71,9 @@ object MessageObjectEnums {
 
   sealed trait Status
   object Status {
-    case object InProgress extends Status
-    case object Incomplete extends Status
-    case object Completed extends Status
+    case object InProgress extends Status { override def toString: String = "in_progress" }
+    case object Incomplete extends Status { override def toString: String = "incomplete" }
+    case object Completed extends Status { override def toString: String = "completed" }
 
     import org.json4s._
 
@@ -98,8 +98,8 @@ object MessageObjectEnums {
 
   sealed trait Role
   object Role {
-    case object User extends Role
-    case object Assistant extends Role
+    case object User extends Role { override def toString: String = "user" }
+    case object Assistant extends Role { override def toString: String = "assistant" }
 
     import org.json4s._
 

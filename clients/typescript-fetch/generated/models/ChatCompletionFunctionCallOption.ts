@@ -22,8 +22,6 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionFunctionCallOption {
     /**
      * The name of the function to call.
-     * @type {string}
-     * @memberof ChatCompletionFunctionCallOption
      */
     name: string;
 }

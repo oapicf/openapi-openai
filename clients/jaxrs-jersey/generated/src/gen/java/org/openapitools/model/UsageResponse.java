@@ -36,7 +36,7 @@ import javax.validation.Valid;
   UsageResponse.JSON_PROPERTY_HAS_MORE,
   UsageResponse.JSON_PROPERTY_NEXT_PAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageResponse   {
   /**
    * Gets or Sets _object
@@ -126,7 +126,7 @@ public class UsageResponse   {
    **/
   @JsonProperty(value = "data")
   @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid UsageTimeBucket> getData() {
     return data;
   }

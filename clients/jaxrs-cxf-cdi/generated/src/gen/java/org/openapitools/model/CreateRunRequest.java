@@ -36,7 +36,7 @@ public class CreateRunRequest   {
 
   private List<@Valid CreateMessageRequest> additionalMessages;
 
-  private List<AssistantObjectToolsInner> tools;
+  private List<@Valid AssistantObjectToolsInner> tools;
 
   private Object metadata;
 
@@ -164,7 +164,7 @@ public class CreateRunRequest   {
   /**
    * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
    **/
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -172,10 +172,10 @@ public class CreateRunRequest   {
   
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
   @JsonProperty("tools")
- @Size(max=20)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

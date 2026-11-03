@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionFunctions
 import org.openapitools.model.ChatCompletionRequestMessage
 import org.openapitools.model.ChatCompletionStreamOptions
@@ -67,12 +64,12 @@ data class CreateChatCompletionRequest(
     @field:Valid
     @get:Size(min=1)
     @Schema(required = true, description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
-    @param:JsonProperty("messages")
+    @param:JsonProperty("messages", required = true)
     @get:JsonProperty("messages", required = true) val messages: kotlin.collections.List<ChatCompletionRequestMessage>,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: CreateChatCompletionRequestModel,
 
     @Schema(description = "Whether or not to store the output of this chat completion request for  use in our [model distillation](/docs/guides/distillation) or [evals](/docs/guides/evals) products. ")
@@ -80,8 +77,6 @@ data class CreateChatCompletionRequest(
     @get:JsonProperty("store") val store: kotlin.Boolean? = false,
 
     @Schema(description = "**o1 models only**   Constrains effort on reasoning for  [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("reasoning_effort")
     @get:JsonProperty("reasoning_effort") val reasoningEffort: CreateChatCompletionRequest.ReasoningEffort? = ReasoningEffort.medium,
 
@@ -146,8 +141,6 @@ data class CreateChatCompletionRequest(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("response_format")
     @get:JsonProperty("response_format") val responseFormat: CreateChatCompletionRequestResponseFormat? = null,
 
@@ -163,8 +156,6 @@ data class CreateChatCompletionRequest(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("stop")
     @get:JsonProperty("stop") val stop: CreateChatCompletionRequestStop? = null,
 
@@ -191,35 +182,25 @@ data class CreateChatCompletionRequest(
 
     @field:Valid
     @Schema(description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tools")
     @get:JsonProperty("tools") val tools: kotlin.collections.List<ChatCompletionTool>? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("tool_choice")
     @get:JsonProperty("tool_choice") val toolChoice: ChatCompletionToolChoiceOption? = null,
 
     @Schema(description = "Whether to enable [parallel function calling](/docs/guides/function-calling#configuring-parallel-function-calling) during tool use.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("parallel_tool_calls")
     @get:JsonProperty("parallel_tool_calls") val parallelToolCalls: kotlin.Boolean? = true,
 
     @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("user")
     @get:JsonProperty("user") val user: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("function_call")
     @get:JsonProperty("function_call") val functionCall: CreateChatCompletionRequestFunctionCall? = null,
 
@@ -227,8 +208,6 @@ data class CreateChatCompletionRequest(
     @get:Size(min=1,max=128) 
     @Schema(description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ")
     @Deprecated(message = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("functions")
     @get:JsonProperty("functions") val functions: kotlin.collections.List<ChatCompletionFunctions>? = null
 ) {
@@ -242,12 +221,12 @@ data class CreateChatCompletionRequest(
         low("low"),
         medium("medium"),
         high("high");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ReasoningEffort {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ReasoningEffort'")
             }
         }
@@ -261,12 +240,12 @@ data class CreateChatCompletionRequest(
 
         text("text"),
         audio("audio");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Modalities {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Modalities'")
             }
         }
@@ -280,12 +259,12 @@ data class CreateChatCompletionRequest(
 
         auto("auto"),
         default("default");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ServiceTier {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ServiceTier'")
             }
         }

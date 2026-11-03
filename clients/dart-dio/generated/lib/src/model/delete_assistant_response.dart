@@ -138,6 +138,7 @@ class _$DeleteAssistantResponseSerializer implements PrimitiveSerializer<DeleteA
   }
 }
 
+
 class DeleteAssistantResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'assistant.deleted')

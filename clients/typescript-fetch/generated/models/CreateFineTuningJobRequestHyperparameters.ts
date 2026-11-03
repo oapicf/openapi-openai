@@ -45,20 +45,14 @@ import {
 export interface CreateFineTuningJobRequestHyperparameters {
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersBatchSize}
-     * @memberof CreateFineTuningJobRequestHyperparameters
      */
     batchSize?: CreateFineTuningJobRequestHyperparametersBatchSize;
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersLearningRateMultiplier}
-     * @memberof CreateFineTuningJobRequestHyperparameters
      */
     learningRateMultiplier?: CreateFineTuningJobRequestHyperparametersLearningRateMultiplier;
     /**
      * 
-     * @type {CreateFineTuningJobRequestHyperparametersNEpochs}
-     * @memberof CreateFineTuningJobRequestHyperparameters
      */
     nEpochs?: CreateFineTuningJobRequestHyperparametersNEpochs;
 }

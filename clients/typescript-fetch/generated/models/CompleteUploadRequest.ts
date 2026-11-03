@@ -22,15 +22,11 @@ export interface CompleteUploadRequest {
     /**
      * The ordered list of Part IDs.
      * 
-     * @type {Array<string>}
-     * @memberof CompleteUploadRequest
      */
     partIds: Array<string>;
     /**
      * The optional md5 checksum for the file contents to verify if the bytes uploaded matches what you expect.
      * 
-     * @type {string}
-     * @memberof CompleteUploadRequest
      */
     md5?: string;
 }

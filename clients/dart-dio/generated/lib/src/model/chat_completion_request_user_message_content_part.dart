@@ -77,15 +77,14 @@ class _$ChatCompletionRequestUserMessageContentPartSerializer implements Primiti
   }
 }
 
+
+/// The type of the content part.
 class ChatCompletionRequestUserMessageContentPartTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'text')
   static const ChatCompletionRequestUserMessageContentPartTypeEnum text = _$chatCompletionRequestUserMessageContentPartTypeEnum_text;
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const ChatCompletionRequestUserMessageContentPartTypeEnum imageUrl = _$chatCompletionRequestUserMessageContentPartTypeEnum_imageUrl;
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'input_audio')
   static const ChatCompletionRequestUserMessageContentPartTypeEnum inputAudio = _$chatCompletionRequestUserMessageContentPartTypeEnum_inputAudio;
 

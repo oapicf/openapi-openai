@@ -173,9 +173,10 @@ class _$MessageContentTextAnnotationsFilePathObjectSerializer implements Primiti
   }
 }
 
+
+/// Always `file_path`.
 class MessageContentTextAnnotationsFilePathObjectTypeEnum extends EnumClass {
 
-  /// Always `file_path`.
   @BuiltValueEnumConst(wireName: r'file_path')
   static const MessageContentTextAnnotationsFilePathObjectTypeEnum filePath = _$messageContentTextAnnotationsFilePathObjectTypeEnum_filePath;
 

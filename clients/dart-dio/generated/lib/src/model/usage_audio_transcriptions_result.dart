@@ -220,6 +220,7 @@ class _$UsageAudioTranscriptionsResultSerializer implements PrimitiveSerializer<
   }
 }
 
+
 class UsageAudioTranscriptionsResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.audio_transcriptions.result')

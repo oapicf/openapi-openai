@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param choices A list of chat completion choices. Can be more than one if `n` is greater than 1.
  * @param created The Unix timestamp (in seconds) of when the chat completion was created.
  * @param model The model used for the chat completion.
- * @param &#x60;object&#x60; The object type, which is always `chat.completion`.
+ * @param `object` The object type, which is always `chat.completion`.
  * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with.  Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param usage 
  */

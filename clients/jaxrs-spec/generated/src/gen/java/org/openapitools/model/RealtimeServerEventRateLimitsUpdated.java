@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Emitted at the beginning of a Response to indicate the updated rate limits.  When a Response is created some tokens will be \"reserved\" for the output  tokens, the rate limits shown here reflect that reservation, which is then  adjusted accordingly once the Response is completed. ")
 @JsonTypeName("RealtimeServerEventRateLimitsUpdated")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventRateLimitsUpdated   {
   private String eventId;
   public enum TypeEnum {
@@ -73,7 +73,7 @@ public class RealtimeServerEventRateLimitsUpdated   {
 }
 
   private TypeEnum type;
-  private @Valid List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits = new ArrayList<>();
+  private List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits = new ArrayList<>();
 
   public RealtimeServerEventRateLimitsUpdated() {
   }
@@ -140,7 +140,7 @@ public class RealtimeServerEventRateLimitsUpdated   {
   
   @ApiModelProperty(required = true, value = "List of rate limit information.")
   @JsonProperty(required = true, value = "rate_limits")
-  @NotNull @Valid public List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> getRateLimits() {
+  @NotNull public List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> getRateLimits() {
     return rateLimits;
   }
 

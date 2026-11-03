@@ -35,7 +35,7 @@ import javax.validation.Valid;
   CreateModerationResponse.JSON_PROPERTY_MODEL,
   CreateModerationResponse.JSON_PROPERTY_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponse   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -108,7 +108,7 @@ public class CreateModerationResponse   {
    **/
   @JsonProperty(value = "results")
   @ApiModelProperty(required = true, value = "A list of moderation objects.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid CreateModerationResponseResultsInner> getResults() {
     return results;
   }

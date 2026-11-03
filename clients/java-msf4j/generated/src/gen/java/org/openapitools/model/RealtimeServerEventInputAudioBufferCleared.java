@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Returned when the input audio buffer is cleared by the client with a  &#x60;input_audio_buffer.clear&#x60; event. 
  */
 @ApiModel(description = "Returned when the input audio buffer is cleared by the client with a  `input_audio_buffer.clear` event. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventInputAudioBufferCleared   {
   @JsonProperty("event_id")
   private String eventId;

@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestFunctionMessage {
     /**
      * The role of the messages author, in this case `function`.
-     * @type {ChatCompletionRequestFunctionMessageRoleEnum}
-     * @memberof ChatCompletionRequestFunctionMessage
      */
     role: ChatCompletionRequestFunctionMessageRoleEnum;
     /**
      * The contents of the function message.
-     * @type {string}
-     * @memberof ChatCompletionRequestFunctionMessage
      */
     content: string | null;
     /**
      * The name of the function to call.
-     * @type {string}
-     * @memberof ChatCompletionRequestFunctionMessage
      */
     name: string;
 }
@@ -44,7 +38,7 @@ export interface ChatCompletionRequestFunctionMessage {
  * @export
  */
 export const ChatCompletionRequestFunctionMessageRoleEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type ChatCompletionRequestFunctionMessageRoleEnum = typeof ChatCompletionRequestFunctionMessageRoleEnum[keyof typeof ChatCompletionRequestFunctionMessageRoleEnum];
 

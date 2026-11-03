@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsCodeOutputLogsObject"></param>
-        public RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDetailsToolCallsCodeOutputLogsObject runStepDetailsToolCallsCodeOutputLogsObject)
+        internal RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDetailsToolCallsCodeOutputLogsObject runStepDetailsToolCallsCodeOutputLogsObject)
         {
             RunStepDetailsToolCallsCodeOutputLogsObject = runStepDetailsToolCallsCodeOutputLogsObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsCodeOutputImageObject"></param>
-        public RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDetailsToolCallsCodeOutputImageObject runStepDetailsToolCallsCodeOutputImageObject)
+        internal RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner(RunStepDetailsToolCallsCodeOutputImageObject runStepDetailsToolCallsCodeOutputImageObject)
         {
             RunStepDetailsToolCallsCodeOutputImageObject = runStepDetailsToolCallsCodeOutputImageObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner runStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner runStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

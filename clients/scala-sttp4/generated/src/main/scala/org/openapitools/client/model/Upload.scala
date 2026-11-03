@@ -39,10 +39,10 @@ object UploadEnums {
 
   sealed trait Status
   object Status {
-    case object Pending extends Status
-    case object Completed extends Status
-    case object Cancelled extends Status
-    case object Expired extends Status
+    case object Pending extends Status { override def toString: String = "pending" }
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
+    case object Expired extends Status { override def toString: String = "expired" }
 
     import org.json4s._
 
@@ -69,7 +69,7 @@ object UploadEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Upload extends `Object`
+    case object Upload extends `Object` { override def toString: String = "upload" }
 
     import org.json4s._
 

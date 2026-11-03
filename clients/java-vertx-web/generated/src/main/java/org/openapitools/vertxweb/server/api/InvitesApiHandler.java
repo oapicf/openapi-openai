@@ -72,7 +72,7 @@ public class InvitesApiHandler {
         RequestParameter body = requestParameters.body();
         InviteRequest inviteRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<InviteRequest>(){}) : null;
 
-        logger.debug("Parameter inviteRequest is {}", inviteRequest);
+        logger.debug("Parameter inviteRequest is (body omitted)");
 
         api.inviteUser(inviteRequest)
             .onSuccess(apiResponse -> {

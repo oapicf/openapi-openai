@@ -25,7 +25,7 @@ export interface ChatCompletionRequestFunctionMessage {
 }
 export namespace ChatCompletionRequestFunctionMessage {
     export const RoleEnum = {
-        Function: 'function'
+        Function: 'function',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

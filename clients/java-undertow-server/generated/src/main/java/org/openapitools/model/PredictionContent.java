@@ -25,7 +25,7 @@ import org.openapitools.model.PredictionContentContent;
  */
 
 @ApiModel(description = "Static predicted output content, such as the content of a text file that is being regenerated. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class PredictionContent   {
   
 

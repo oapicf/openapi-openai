@@ -191,18 +191,16 @@ class _$ChatCompletionStreamResponseDeltaSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The role of the author of this message.
 class ChatCompletionStreamResponseDeltaRoleEnum extends EnumClass {
 
-  /// The role of the author of this message.
   @BuiltValueEnumConst(wireName: r'system')
   static const ChatCompletionStreamResponseDeltaRoleEnum system = _$chatCompletionStreamResponseDeltaRoleEnum_system;
-  /// The role of the author of this message.
   @BuiltValueEnumConst(wireName: r'user')
   static const ChatCompletionStreamResponseDeltaRoleEnum user = _$chatCompletionStreamResponseDeltaRoleEnum_user;
-  /// The role of the author of this message.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const ChatCompletionStreamResponseDeltaRoleEnum assistant = _$chatCompletionStreamResponseDeltaRoleEnum_assistant;
-  /// The role of the author of this message.
   @BuiltValueEnumConst(wireName: r'tool')
   static const ChatCompletionStreamResponseDeltaRoleEnum tool = _$chatCompletionStreamResponseDeltaRoleEnum_tool;
 

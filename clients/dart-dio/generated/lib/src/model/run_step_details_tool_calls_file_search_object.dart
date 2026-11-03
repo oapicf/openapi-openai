@@ -141,9 +141,10 @@ class _$RunStepDetailsToolCallsFileSearchObjectSerializer implements PrimitiveSe
   }
 }
 
+
+/// The type of tool call. This is always going to be `file_search` for this type of tool call.
 class RunStepDetailsToolCallsFileSearchObjectTypeEnum extends EnumClass {
 
-  /// The type of tool call. This is always going to be `file_search` for this type of tool call.
   @BuiltValueEnumConst(wireName: r'file_search')
   static const RunStepDetailsToolCallsFileSearchObjectTypeEnum fileSearch = _$runStepDetailsToolCallsFileSearchObjectTypeEnum_fileSearch;
 

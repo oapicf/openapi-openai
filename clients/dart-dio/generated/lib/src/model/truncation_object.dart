@@ -127,12 +127,12 @@ class _$TruncationObjectSerializer implements PrimitiveSerializer<TruncationObje
   }
 }
 
+
+/// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
 class TruncationObjectTypeEnum extends EnumClass {
 
-  /// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
   @BuiltValueEnumConst(wireName: r'auto')
   static const TruncationObjectTypeEnum auto = _$truncationObjectTypeEnum_auto;
-  /// The truncation strategy to use for the thread. The default is `auto`. If set to `last_messages`, the thread will be truncated to the n most recent messages in the thread. When set to `auto`, messages in the middle of the thread will be dropped to fit the context length of the model, `max_prompt_tokens`.
   @BuiltValueEnumConst(wireName: r'last_messages')
   static const TruncationObjectTypeEnum lastMessages = _$truncationObjectTypeEnum_lastMessages;
 

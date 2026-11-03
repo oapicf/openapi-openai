@@ -18,7 +18,6 @@ public class ListVectorStoresResponse  {
   private String _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid VectorStoreObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "vs_abc123", required = true, value = "")

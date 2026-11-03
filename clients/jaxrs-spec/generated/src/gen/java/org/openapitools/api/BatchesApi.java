@@ -20,7 +20,7 @@ import javax.validation.Valid;
 */
 @Path("/batches")
 @Api(description = "the batches API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BatchesApi {
 
     @POST
@@ -33,7 +33,8 @@ public class BatchesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Batch is cancelling. Returns the cancelling batch's details.", response = Batch.class)
     })
-    public Response cancelBatch(@PathParam("batch_id") @ApiParam("The ID of the batch to cancel.") String batchId) {
+    public Response cancelBatch(@PathParam("batch_id") @ApiParam("The ID of the batch to cancel.") String batchId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -47,7 +48,8 @@ public class BatchesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Batch created successfully.", response = Batch.class)
     })
-    public Response createBatch(@Valid @NotNull CreateBatchRequest createBatchRequest) {
+    public Response createBatch(@Valid @NotNull CreateBatchRequest createBatchRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -60,7 +62,9 @@ public class BatchesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Batch listed successfully.", response = ListBatchesResponse.class)
     })
-    public Response listBatches(@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit) {
+    public Response listBatches(@QueryParam("after")  @ApiParam("A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ")  String after
+,@QueryParam("limit") @DefaultValue("20")  @ApiParam("A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")  Integer limit
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -74,7 +78,8 @@ public class BatchesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Batch retrieved successfully.", response = Batch.class)
     })
-    public Response retrieveBatch(@PathParam("batch_id") @ApiParam("The ID of the batch to retrieve.") String batchId) {
+    public Response retrieveBatch(@PathParam("batch_id") @ApiParam("The ID of the batch to retrieve.") String batchId
+) {
         return Response.ok().entity("magic!").build();
     }
 }

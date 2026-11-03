@@ -28,7 +28,7 @@ object RealtimeClientEventConversationItemCreateEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ConversationItemCreate extends `Type`
+    case object ConversationItemCreate extends `Type` { override def toString: String = "conversation.item.create" }
 
     import org.json4s._
 

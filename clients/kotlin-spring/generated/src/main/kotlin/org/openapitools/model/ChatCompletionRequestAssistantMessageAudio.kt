@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ChatCompletionRequestAssistantMessageAudio(
 
     @Schema(required = true, description = "Unique identifier for a previous audio response from the model. ")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String
 ) {
 

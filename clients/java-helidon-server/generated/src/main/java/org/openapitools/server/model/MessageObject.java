@@ -137,7 +137,7 @@ public class MessageObject   {
 
 
     private RoleEnum role;
-    private List<MessageObjectContentInner> content = new ArrayList<>();
+    private List<@Valid MessageObjectContentInner> content = new ArrayList<>();
     private String assistantId;
     private String runId;
     private List<@Valid CreateMessageRequestAttachmentsInner> attachments;
@@ -178,7 +178,7 @@ public class MessageObject   {
         Integer completedAt, 
         Integer incompleteAt, 
         RoleEnum role, 
-        List<MessageObjectContentInner> content, 
+        List<@Valid MessageObjectContentInner> content, 
         String assistantId, 
         String runId, 
         List<@Valid CreateMessageRequestAttachmentsInner> attachments, 
@@ -314,11 +314,11 @@ public class MessageObject   {
      * The content of the message in array of text and/or images.
      * @return content
      */
-    public List<MessageObjectContentInner> getContent() {
+    public List<@Valid MessageObjectContentInner> getContent() {
         return content;
     }
 
-    public void setContent(List<MessageObjectContentInner> content) {
+    public void setContent(List<@Valid MessageObjectContentInner> content) {
         this.content = content;
     }
 

@@ -29,38 +29,26 @@ import {
 export interface ProjectApiKey {
     /**
      * The object type, which is always `organization.project.api_key`
-     * @type {ProjectApiKeyObjectEnum}
-     * @memberof ProjectApiKey
      */
     object: ProjectApiKeyObjectEnum;
     /**
      * The redacted value of the API key
-     * @type {string}
-     * @memberof ProjectApiKey
      */
     redactedValue: string;
     /**
      * The name of the API key
-     * @type {string}
-     * @memberof ProjectApiKey
      */
     name: string;
     /**
      * The Unix timestamp (in seconds) of when the API key was created
-     * @type {number}
-     * @memberof ProjectApiKey
      */
     createdAt: number;
     /**
      * The identifier, which can be referenced in API endpoints
-     * @type {string}
-     * @memberof ProjectApiKey
      */
     id: string;
     /**
      * 
-     * @type {ProjectApiKeyOwner}
-     * @memberof ProjectApiKey
      */
     owner: ProjectApiKeyOwner;
 }
@@ -70,7 +58,7 @@ export interface ProjectApiKey {
  * @export
  */
 export const ProjectApiKeyObjectEnum = {
-    OrganizationProjectApiKey: 'organization.project.api_key'
+    OrganizationProjectApiKey: 'organization.project.api_key',
 } as const;
 export type ProjectApiKeyObjectEnum = typeof ProjectApiKeyObjectEnum[keyof typeof ProjectApiKeyObjectEnum];
 

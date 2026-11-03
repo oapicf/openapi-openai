@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogProjectArchived {
     /**
      * The project ID.
-     * @type {string}
-     * @memberof AuditLogProjectArchived
      */
     id?: string;
 }

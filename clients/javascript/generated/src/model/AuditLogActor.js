@@ -18,7 +18,7 @@ import AuditLogActorSession from './AuditLogActorSession';
 /**
  * The AuditLogActor model module.
  * @module model/AuditLogActor
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class AuditLogActor {
     /**

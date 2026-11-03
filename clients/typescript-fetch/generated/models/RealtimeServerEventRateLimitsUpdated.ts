@@ -33,20 +33,14 @@ import {
 export interface RealtimeServerEventRateLimitsUpdated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventRateLimitsUpdated
      */
     eventId: string;
     /**
      * The event type, must be `rate_limits.updated`.
-     * @type {RealtimeServerEventRateLimitsUpdatedTypeEnum}
-     * @memberof RealtimeServerEventRateLimitsUpdated
      */
     type: RealtimeServerEventRateLimitsUpdatedTypeEnum;
     /**
      * List of rate limit information.
-     * @type {Array<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>}
-     * @memberof RealtimeServerEventRateLimitsUpdated
      */
     rateLimits: Array<RealtimeServerEventRateLimitsUpdatedRateLimitsInner>;
 }
@@ -56,7 +50,7 @@ export interface RealtimeServerEventRateLimitsUpdated {
  * @export
  */
 export const RealtimeServerEventRateLimitsUpdatedTypeEnum = {
-    RateLimitsUpdated: 'rate_limits.updated'
+    RateLimitsUpdated: 'rate_limits.updated',
 } as const;
 export type RealtimeServerEventRateLimitsUpdatedTypeEnum = typeof RealtimeServerEventRateLimitsUpdatedTypeEnum[keyof typeof RealtimeServerEventRateLimitsUpdatedTypeEnum];
 

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -26,16 +25,13 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("CreateThreadRequest_tool_resources_file_search_vector_stores_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequestToolResourcesFileSearchVectorStoresInner {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> fileIds = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CreateAssistantRequestToolResourcesFileSearchVectorStoresInnerChunkingStrategy chunkingStrategy;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Object metadata;
 
   public CreateThreadRequestToolResourcesFileSearchVectorStoresInner fileIds(List<String> fileIds) {

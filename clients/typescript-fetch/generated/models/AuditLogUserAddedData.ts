@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogUserAddedData {
     /**
      * The role of the user. Is either `owner` or `member`.
-     * @type {string}
-     * @memberof AuditLogUserAddedData
      */
     role?: string;
 }

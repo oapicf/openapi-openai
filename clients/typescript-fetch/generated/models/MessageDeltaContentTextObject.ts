@@ -29,20 +29,14 @@ import {
 export interface MessageDeltaContentTextObject {
     /**
      * The index of the content part in the message.
-     * @type {number}
-     * @memberof MessageDeltaContentTextObject
      */
     index: number;
     /**
      * Always `text`.
-     * @type {MessageDeltaContentTextObjectTypeEnum}
-     * @memberof MessageDeltaContentTextObject
      */
     type: MessageDeltaContentTextObjectTypeEnum;
     /**
      * 
-     * @type {MessageDeltaContentTextObjectText}
-     * @memberof MessageDeltaContentTextObject
      */
     text?: MessageDeltaContentTextObjectText;
 }
@@ -52,7 +46,7 @@ export interface MessageDeltaContentTextObject {
  * @export
  */
 export const MessageDeltaContentTextObjectTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type MessageDeltaContentTextObjectTypeEnum = typeof MessageDeltaContentTextObjectTypeEnum[keyof typeof MessageDeltaContentTextObjectTypeEnum];
 

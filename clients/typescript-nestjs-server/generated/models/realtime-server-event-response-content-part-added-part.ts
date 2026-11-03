@@ -24,7 +24,7 @@ export interface RealtimeServerEventResponseContentPartAddedPart {
 export namespace RealtimeServerEventResponseContentPartAddedPart {
   export const TypeEnum = {
     Audio: 'audio',
-    Text: 'text'
+    Text: 'text',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

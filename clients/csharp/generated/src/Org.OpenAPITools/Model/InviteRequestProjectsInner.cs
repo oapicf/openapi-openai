@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<InviteRequestProjectsInner.RoleEnum?>(InviteRequestProjectsInner.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                InviteRequestProjectsInner.RoleEnum? roleValue = InviteRequestProjectsInner.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<InviteRequestProjectsInner.RoleEnum?>(roleValue);
+                            }
                             break;
                         default:
                             break;
@@ -217,16 +222,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class InviteRequestProjectsInner.", nameof(id));
+                throw new JsonException("Property is required for class InviteRequestProjectsInner: id.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class InviteRequestProjectsInner.", nameof(role));
+                throw new JsonException("Property is required for class InviteRequestProjectsInner: role.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class InviteRequestProjectsInner.");
+                throw new JsonException("Property is not nullable for class InviteRequestProjectsInner: id.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class InviteRequestProjectsInner.");
+                throw new JsonException("Property is not nullable for class InviteRequestProjectsInner: role.");
 
             return new InviteRequestProjectsInner(id.Value!, role.Value!.Value!);
         }
@@ -237,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteRequestProjectsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InviteRequestProjectsInner inviteRequestProjectsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -252,12 +256,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteRequestProjectsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InviteRequestProjectsInner inviteRequestProjectsInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (inviteRequestProjectsInner.Id == null)
-                throw new ArgumentNullException(nameof(inviteRequestProjectsInner.Id), "Property is required for class InviteRequestProjectsInner.");
-
             writer.WriteString("id", inviteRequestProjectsInner.Id);
 
             var roleRawValue = InviteRequestProjectsInner.RoleEnumToJsonValue(inviteRequestProjectsInner.Role);

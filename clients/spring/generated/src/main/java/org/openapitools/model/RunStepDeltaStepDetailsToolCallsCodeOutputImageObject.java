@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,7 +22,7 @@ import jakarta.annotation.Generated;
  * RunStepDeltaStepDetailsToolCallsCodeOutputImageObject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject implements RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner {
 
   private Integer index;
@@ -63,7 +62,6 @@ public class RunStepDeltaStepDetailsToolCallsCodeOutputImageObject implements Ru
 
   private TypeEnum type;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage image;
 
   public RunStepDeltaStepDetailsToolCallsCodeOutputImageObject() {

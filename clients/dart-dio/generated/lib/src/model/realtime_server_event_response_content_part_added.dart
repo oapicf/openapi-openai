@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseContentPartAddedSerializer implements Primiti
   }
 }
 
+
+/// The event type, must be `response.content_part.added`.
 class RealtimeServerEventResponseContentPartAddedTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.content_part.added`.
   @BuiltValueEnumConst(wireName: r'response.content_part.added')
   static const RealtimeServerEventResponseContentPartAddedTypeEnum responsePeriodContentPartPeriodAdded = _$realtimeServerEventResponseContentPartAddedTypeEnum_responsePeriodContentPartPeriodAdded;
 

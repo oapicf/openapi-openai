@@ -12,24 +12,74 @@
 
 namespace models {
 
-
-class ChatCompletionRole
-{
-public:
-
-    ChatCompletionRole();
-    virtual ~ChatCompletionRole() = default;
-
-    // Getters and setters
-
-
-    // JSON serialization using NLOHMANN INTRUSIVE macro (must be inside class to access private members)
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(ChatCompletionRole,
-        )
-
-private:
+enum class ChatCompletionRole {
+    
+    SYSTEM,
+    
+    USER,
+    
+    ASSISTANT,
+    
+    TOOL,
+    
+    FUNCTION
+    
 };
 
+inline void to_json(nlohmann::json& j, const ChatCompletionRole& value)
+{
+    switch (value)
+    {
+        
+        case ChatCompletionRole::SYSTEM: j = "system"; break;
+        
+        case ChatCompletionRole::USER: j = "user"; break;
+        
+        case ChatCompletionRole::ASSISTANT: j = "assistant"; break;
+        
+        case ChatCompletionRole::TOOL: j = "tool"; break;
+        
+        case ChatCompletionRole::FUNCTION: j = "function"; break;
+        
+        default: throw nlohmann::json::type_error::create(302, "Invalid value for ChatCompletionRole", &j);
+    }
+}
+
+inline void from_json(const nlohmann::json& j, ChatCompletionRole& value)
+{
+    
+    if (j == "system")
+    {
+        value = ChatCompletionRole::SYSTEM;
+        return;
+    }
+    
+    if (j == "user")
+    {
+        value = ChatCompletionRole::USER;
+        return;
+    }
+    
+    if (j == "assistant")
+    {
+        value = ChatCompletionRole::ASSISTANT;
+        return;
+    }
+    
+    if (j == "tool")
+    {
+        value = ChatCompletionRole::TOOL;
+        return;
+    }
+    
+    if (j == "function")
+    {
+        value = ChatCompletionRole::FUNCTION;
+        return;
+    }
+    
+    throw nlohmann::json::type_error::create(302, "Invalid value for ChatCompletionRole", &j);
+}
 
 } // namespace models
 

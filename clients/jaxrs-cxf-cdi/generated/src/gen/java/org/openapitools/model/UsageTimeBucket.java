@@ -56,7 +56,7 @@ public enum ObjectEnum {
 
   private Integer endTime;
 
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   /**
    **/
@@ -117,7 +117,7 @@ public enum ObjectEnum {
 
   /**
    **/
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }
@@ -126,10 +126,10 @@ public enum ObjectEnum {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("result")
   @NotNull
-  public List<UsageTimeBucketResultInner> getResult() {
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

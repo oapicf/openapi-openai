@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestHyperparametersBatchSize" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal CreateFineTuningJobRequestHyperparametersBatchSize(string @string)
+        public CreateFineTuningJobRequestHyperparametersBatchSize(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateFineTuningJobRequestHyperparametersBatchSize" /> class.
         /// </summary>
         /// <param name="int"></param>
-        internal CreateFineTuningJobRequestHyperparametersBatchSize(int @int)
+        public CreateFineTuningJobRequestHyperparametersBatchSize(int @int)
         {
             Int = @int;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparametersBatchSize"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparametersBatchSize createFineTuningJobRequestHyperparametersBatchSize, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createFineTuningJobRequestHyperparametersBatchSize"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateFineTuningJobRequestHyperparametersBatchSize createFineTuningJobRequestHyperparametersBatchSize, JsonSerializerOptions jsonSerializerOptions)
         {
 

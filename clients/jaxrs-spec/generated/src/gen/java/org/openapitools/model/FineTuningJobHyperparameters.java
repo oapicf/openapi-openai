@@ -22,11 +22,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.")
 @JsonTypeName("FineTuningJob_hyperparameters")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJobHyperparameters   {
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   public FineTuningJobHyperparameters() {
   }

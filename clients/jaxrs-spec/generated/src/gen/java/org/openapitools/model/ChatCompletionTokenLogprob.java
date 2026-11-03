@@ -21,12 +21,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ChatCompletionTokenLogprob")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionTokenLogprob   {
   private String token;
   private BigDecimal logprob;
-  private @Valid List<Integer> bytes;
-  private @Valid List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> topLogprobs = new ArrayList<>();
+  private List<Integer> bytes;
+  private List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> topLogprobs = new ArrayList<>();
 
   public ChatCompletionTokenLogprob() {
   }
@@ -131,7 +131,7 @@ public class ChatCompletionTokenLogprob   {
   
   @ApiModelProperty(required = true, value = "List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.")
   @JsonProperty(required = true, value = "top_logprobs")
-  @NotNull @Valid public List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> getTopLogprobs() {
+  @NotNull public List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> getTopLogprobs() {
     return topLogprobs;
   }
 

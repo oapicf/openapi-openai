@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -23,10 +22,9 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeClientEventResponseCreate", description = "This event instructs the server to create a Response, which means triggering  model inference. When in Server VAD mode, the server will create Responses  automatically.  A Response will include at least one Item, and may have two, in which case  the second will be a function call. These Items will be appended to the  conversation history.  The server will respond with a `response.created` event, events for Items  and content created, and finally a `response.done` event to indicate the  Response is complete.  The `response.create` event includes inference configuration like  `instructions`, and `temperature`. These fields will override the Session's  configuration for this Response only. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeClientEventResponseCreate {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String eventId;
 
   /**
@@ -64,7 +62,6 @@ public class RealtimeClientEventResponseCreate {
 
   private TypeEnum type;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable RealtimeResponseCreateParams response;
 
   public RealtimeClientEventResponseCreate() {

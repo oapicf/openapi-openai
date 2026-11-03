@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface DeleteModelResponse {
     /**
      * 
-     * @type {string}
-     * @memberof DeleteModelResponse
      */
     id: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof DeleteModelResponse
      */
     deleted: boolean;
     /**
      * 
-     * @type {string}
-     * @memberof DeleteModelResponse
      */
     object: string;
 }

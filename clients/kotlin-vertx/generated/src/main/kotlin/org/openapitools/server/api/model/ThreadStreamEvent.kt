@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Occurs when a new [thread](/docs/api-reference/threads/object) is created.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  * @param enabled Whether to enable input audio transcription.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

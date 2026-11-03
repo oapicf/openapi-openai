@@ -23,8 +23,8 @@ object RunObjectIncompleteDetailsEnums {
 
   sealed trait Reason
   object Reason {
-    case object MaxCompletionTokens extends Reason
-    case object MaxPromptTokens extends Reason
+    case object MaxCompletionTokens extends Reason { override def toString: String = "max_completion_tokens" }
+    case object MaxPromptTokens extends Reason { override def toString: String = "max_prompt_tokens" }
 
     import org.json4s._
 

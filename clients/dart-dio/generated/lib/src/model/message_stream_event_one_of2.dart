@@ -123,6 +123,7 @@ class _$MessageStreamEventOneOf2Serializer implements PrimitiveSerializer<Messag
   }
 }
 
+
 class MessageStreamEventOneOf2EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.message.delta')

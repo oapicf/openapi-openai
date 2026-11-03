@@ -21,7 +21,7 @@ object DeleteFileResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object File extends `Object`
+    case object File extends `Object` { override def toString: String = "file" }
 
     import org.json4s._
 

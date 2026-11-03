@@ -29,14 +29,10 @@ import {
 export interface ListModelsResponse {
     /**
      * 
-     * @type {ListModelsResponseObjectEnum}
-     * @memberof ListModelsResponse
      */
     object: ListModelsResponseObjectEnum;
     /**
      * 
-     * @type {Array<Model>}
-     * @memberof ListModelsResponse
      */
     data: Array<Model>;
 }
@@ -46,7 +42,7 @@ export interface ListModelsResponse {
  * @export
  */
 export const ListModelsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListModelsResponseObjectEnum = typeof ListModelsResponseObjectEnum[keyof typeof ListModelsResponseObjectEnum];
 

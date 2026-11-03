@@ -29,7 +29,7 @@ object RealtimeSessionTurnDetectionEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ServerVad extends `Type`
+    case object ServerVad extends `Type` { override def toString: String = "server_vad" }
 
     import org.json4s._
 

@@ -182,13 +182,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (input.IsSet && input.Value == null)
-                throw new ArgumentNullException(nameof(input), "Property is not nullable for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInput: input.");
 
             if (preferredCompletion.IsSet && preferredCompletion.Value == null)
-                throw new ArgumentNullException(nameof(preferredCompletion), "Property is not nullable for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInput: preferred_completion.");
 
             if (nonPreferredCompletion.IsSet && nonPreferredCompletion.Value == null)
-                throw new ArgumentNullException(nameof(nonPreferredCompletion), "Property is not nullable for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTunePreferenceRequestInput: non_preferred_completion.");
 
             return new FineTunePreferenceRequestInput(input, preferredCompletion, nonPreferredCompletion);
         }
@@ -199,7 +199,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTunePreferenceRequestInput fineTunePreferenceRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -214,17 +213,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTunePreferenceRequestInput fineTunePreferenceRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTunePreferenceRequestInput.InputOption.IsSet && fineTunePreferenceRequestInput.Input == null)
-                throw new ArgumentNullException(nameof(fineTunePreferenceRequestInput.Input), "Property is required for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInput.Input to non-nullable JSON property 'input'.");
 
             if (fineTunePreferenceRequestInput.PreferredCompletionOption.IsSet && fineTunePreferenceRequestInput.PreferredCompletion == null)
-                throw new ArgumentNullException(nameof(fineTunePreferenceRequestInput.PreferredCompletion), "Property is required for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInput.PreferredCompletion to non-nullable JSON property 'preferred_completion'.");
 
             if (fineTunePreferenceRequestInput.NonPreferredCompletionOption.IsSet && fineTunePreferenceRequestInput.NonPreferredCompletion == null)
-                throw new ArgumentNullException(nameof(fineTunePreferenceRequestInput.NonPreferredCompletion), "Property is required for class FineTunePreferenceRequestInput.");
+                throw new JsonException("Cannot write null property FineTunePreferenceRequestInput.NonPreferredCompletion to non-nullable JSON property 'non_preferred_completion'.");
 
             if (fineTunePreferenceRequestInput.InputOption.IsSet)
             {

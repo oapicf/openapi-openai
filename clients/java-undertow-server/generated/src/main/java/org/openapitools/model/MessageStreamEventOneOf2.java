@@ -25,7 +25,7 @@ import org.openapitools.model.MessageDeltaObject;
  */
 
 @ApiModel(description = "Occurs when parts of a [Message](/docs/api-reference/messages/object) are being streamed.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageStreamEventOneOf2   {
   
 

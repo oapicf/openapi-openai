@@ -146,16 +146,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class DefaultProjectErrorResponse.", nameof(code));
+                throw new JsonException("Property is required for class DefaultProjectErrorResponse: code.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class DefaultProjectErrorResponse.", nameof(message));
+                throw new JsonException("Property is required for class DefaultProjectErrorResponse: message.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class DefaultProjectErrorResponse.");
+                throw new JsonException("Property is not nullable for class DefaultProjectErrorResponse: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class DefaultProjectErrorResponse.");
+                throw new JsonException("Property is not nullable for class DefaultProjectErrorResponse: message.");
 
             return new DefaultProjectErrorResponse(code.Value!.Value!, message.Value!);
         }
@@ -166,7 +166,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="defaultProjectErrorResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DefaultProjectErrorResponse defaultProjectErrorResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -181,12 +180,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="defaultProjectErrorResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DefaultProjectErrorResponse defaultProjectErrorResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (defaultProjectErrorResponse.Message == null)
-                throw new ArgumentNullException(nameof(defaultProjectErrorResponse.Message), "Property is required for class DefaultProjectErrorResponse.");
-
             writer.WriteNumber("code", defaultProjectErrorResponse.Code);
 
             writer.WriteString("message", defaultProjectErrorResponse.Message);

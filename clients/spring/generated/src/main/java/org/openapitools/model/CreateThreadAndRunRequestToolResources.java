@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -25,13 +24,11 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateThreadAndRunRequest_tool_resources", description = "A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs. ")
 @JsonTypeName("CreateThreadAndRunRequest_tool_resources")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequestToolResources {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CreateAssistantRequestToolResourcesCodeInterpreter codeInterpreter;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AssistantObjectToolResourcesFileSearch fileSearch;
 
   public CreateThreadAndRunRequestToolResources codeInterpreter(@Nullable CreateAssistantRequestToolResourcesCodeInterpreter codeInterpreter) {
@@ -108,7 +105,7 @@ public class CreateThreadAndRunRequestToolResources {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(@Nullable Object o) {
     return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

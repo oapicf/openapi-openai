@@ -6,20 +6,3 @@
 */
 #include "ChatCompletionRole.h"
 
-namespace models {
-
-ChatCompletionRole::ChatCompletionRole()
-{
-}
-// =========================================
-// ===== Getters/Setters =====
-// =========================================
-
-
-
-
-
-
-
-} // namespace models
-

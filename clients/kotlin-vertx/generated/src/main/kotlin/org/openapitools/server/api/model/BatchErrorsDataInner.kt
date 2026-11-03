@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * 
  * @param code An error code identifying the error type.
  * @param message A human-readable message providing more details about the error.
- * @param &#x60;param&#x60; The name of the parameter that caused the error, if applicable.
+ * @param `param` The name of the parameter that caused the error, if applicable.
  * @param line The line number of the input file where the error occurred, if applicable.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

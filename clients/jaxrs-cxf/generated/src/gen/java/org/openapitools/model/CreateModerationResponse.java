@@ -38,8 +38,6 @@ public class CreateModerationResponse  {
   */
   @ApiModelProperty(required = true, value = "A list of moderation objects.")
 
-  @Valid
-
   private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
  /**
    * The unique identifier for the moderation request.

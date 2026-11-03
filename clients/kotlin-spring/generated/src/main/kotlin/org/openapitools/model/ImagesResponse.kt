@@ -17,17 +17,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * 
  * @param created 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class ImagesResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("created")
+    @param:JsonProperty("created", required = true)
     @get:JsonProperty("created", required = true) val created: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<Image>
 ) {
 

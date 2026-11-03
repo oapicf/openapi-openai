@@ -235,7 +235,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<FineTuneMethod.TypeEnum?>(FineTuneMethod.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                FineTuneMethod.TypeEnum? typeValue = FineTuneMethod.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<FineTuneMethod.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "supervised":
                             supervised = new Option<FineTuneSupervisedMethod?>(JsonSerializer.Deserialize<FineTuneSupervisedMethod>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -250,13 +255,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FineTuneMethod.");
+                throw new JsonException("Property is not nullable for class FineTuneMethod: type.");
 
             if (supervised.IsSet && supervised.Value == null)
-                throw new ArgumentNullException(nameof(supervised), "Property is not nullable for class FineTuneMethod.");
+                throw new JsonException("Property is not nullable for class FineTuneMethod: supervised.");
 
             if (dpo.IsSet && dpo.Value == null)
-                throw new ArgumentNullException(nameof(dpo), "Property is not nullable for class FineTuneMethod.");
+                throw new JsonException("Property is not nullable for class FineTuneMethod: dpo.");
 
             return new FineTuneMethod(type, supervised, dpo);
         }
@@ -267,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneMethod"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneMethod fineTuneMethod, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -282,14 +286,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneMethod"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneMethod fineTuneMethod, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (fineTuneMethod.TypeOption.IsSet && fineTuneMethod.Type == null)
+                throw new JsonException("Cannot write null property FineTuneMethod.Type to non-nullable JSON property 'type'.");
+
             if (fineTuneMethod.SupervisedOption.IsSet && fineTuneMethod.Supervised == null)
-                throw new ArgumentNullException(nameof(fineTuneMethod.Supervised), "Property is required for class FineTuneMethod.");
+                throw new JsonException("Cannot write null property FineTuneMethod.Supervised to non-nullable JSON property 'supervised'.");
 
             if (fineTuneMethod.DpoOption.IsSet && fineTuneMethod.Dpo == null)
-                throw new ArgumentNullException(nameof(fineTuneMethod.Dpo), "Property is required for class FineTuneMethod.");
+                throw new JsonException("Cannot write null property FineTuneMethod.Dpo to non-nullable JSON property 'dpo'.");
 
             var typeRawValue = FineTuneMethod.TypeEnumToJsonValue(fineTuneMethod.TypeOption.Value!.Value);
             writer.WriteString("type", typeRawValue);

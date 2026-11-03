@@ -29,32 +29,22 @@ import {
 export interface ProjectApiKeyListResponse {
     /**
      * 
-     * @type {ProjectApiKeyListResponseObjectEnum}
-     * @memberof ProjectApiKeyListResponse
      */
     object: ProjectApiKeyListResponseObjectEnum;
     /**
      * 
-     * @type {Array<ProjectApiKey>}
-     * @memberof ProjectApiKeyListResponse
      */
     data: Array<ProjectApiKey>;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectApiKeyListResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectApiKeyListResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ProjectApiKeyListResponse
      */
     hasMore: boolean;
 }
@@ -64,7 +54,7 @@ export interface ProjectApiKeyListResponse {
  * @export
  */
 export const ProjectApiKeyListResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ProjectApiKeyListResponseObjectEnum = typeof ProjectApiKeyListResponseObjectEnum[keyof typeof ProjectApiKeyListResponseObjectEnum];
 

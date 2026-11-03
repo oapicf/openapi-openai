@@ -26,7 +26,7 @@ export namespace CreateChatCompletionFunctionResponseChoicesInner {
         Stop: 'stop',
         Length: 'length',
         FunctionCall: 'function_call',
-        ContentFilter: 'content_filter'
+        ContentFilter: 'content_filter',
     } as const;
     export type FinishReasonEnum = typeof FinishReasonEnum[keyof typeof FinishReasonEnum];
 }

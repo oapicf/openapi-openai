@@ -190,18 +190,16 @@ class _$RealtimeConversationItemContentInnerSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
 class RealtimeConversationItemContentInnerTypeEnum extends EnumClass {
 
-  /// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
   @BuiltValueEnumConst(wireName: r'input_audio')
   static const RealtimeConversationItemContentInnerTypeEnum inputAudio = _$realtimeConversationItemContentInnerTypeEnum_inputAudio;
-  /// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
   @BuiltValueEnumConst(wireName: r'input_text')
   static const RealtimeConversationItemContentInnerTypeEnum inputText = _$realtimeConversationItemContentInnerTypeEnum_inputText;
-  /// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
   @BuiltValueEnumConst(wireName: r'item_reference')
   static const RealtimeConversationItemContentInnerTypeEnum itemReference = _$realtimeConversationItemContentInnerTypeEnum_itemReference;
-  /// The content type (`input_text`, `input_audio`, `item_reference`, `text`). 
   @BuiltValueEnumConst(wireName: r'text')
   static const RealtimeConversationItemContentInnerTypeEnum text = _$realtimeConversationItemContentInnerTypeEnum_text;
 

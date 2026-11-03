@@ -22,15 +22,11 @@ export interface RealtimeConversationItemContentInner {
     /**
      * The content type (`input_text`, `input_audio`, `item_reference`, `text`).
      * 
-     * @type {RealtimeConversationItemContentInnerTypeEnum}
-     * @memberof RealtimeConversationItemContentInner
      */
     type?: RealtimeConversationItemContentInnerTypeEnum;
     /**
      * The text content, used for `input_text` and `text` content types.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItemContentInner
      */
     text?: string;
     /**
@@ -38,22 +34,16 @@ export interface RealtimeConversationItemContentInner {
      * content types in `response.create` events). These can reference both
      * client and server created items.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItemContentInner
      */
     id?: string;
     /**
      * Base64-encoded audio bytes, used for `input_audio` content type.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItemContentInner
      */
     audio?: string;
     /**
      * The transcript of the audio, used for `input_audio` content type.
      * 
-     * @type {string}
-     * @memberof RealtimeConversationItemContentInner
      */
     transcript?: string;
 }
@@ -66,7 +56,7 @@ export const RealtimeConversationItemContentInnerTypeEnum = {
     InputAudio: 'input_audio',
     InputText: 'input_text',
     ItemReference: 'item_reference',
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type RealtimeConversationItemContentInnerTypeEnum = typeof RealtimeConversationItemContentInnerTypeEnum[keyof typeof RealtimeConversationItemContentInnerTypeEnum];
 

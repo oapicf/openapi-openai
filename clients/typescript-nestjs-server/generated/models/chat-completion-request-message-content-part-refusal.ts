@@ -12,7 +12,7 @@ export interface ChatCompletionRequestMessageContentPartRefusal {
 }
 export namespace ChatCompletionRequestMessageContentPartRefusal {
   export const TypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

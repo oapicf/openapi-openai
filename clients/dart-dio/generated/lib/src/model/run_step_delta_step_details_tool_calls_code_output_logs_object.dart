@@ -144,9 +144,10 @@ class _$RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectSerializer implement
   }
 }
 
+
+/// Always `logs`.
 class RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum extends EnumClass {
 
-  /// Always `logs`.
   @BuiltValueEnumConst(wireName: r'logs')
   static const RunStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum logs = _$runStepDeltaStepDetailsToolCallsCodeOutputLogsObjectTypeEnum_logs;
 

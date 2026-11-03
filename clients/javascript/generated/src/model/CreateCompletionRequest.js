@@ -19,7 +19,7 @@ import CreateCompletionRequestStop from './CreateCompletionRequestStop';
 /**
  * The CreateCompletionRequest model module.
  * @module model/CreateCompletionRequest
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateCompletionRequest {
     /**

@@ -25,7 +25,7 @@ object ProjectServiceAccountCreateResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationProjectServiceAccount extends `Object`
+    case object OrganizationProjectServiceAccount extends `Object` { override def toString: String = "organization.project.service_account" }
 
     import org.json4s._
 
@@ -46,7 +46,7 @@ object ProjectServiceAccountCreateResponseEnums {
 
   sealed trait Role
   object Role {
-    case object Member extends Role
+    case object Member extends Role { override def toString: String = "member" }
 
     import org.json4s._
 

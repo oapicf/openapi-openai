@@ -10,7 +10,7 @@ export interface MessageStreamEventOneOf3 {
 }
 export namespace MessageStreamEventOneOf3 {
   export const EventEnum = {
-    ThreadMessageCompleted: 'thread.message.completed'
+    ThreadMessageCompleted: 'thread.message.completed',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

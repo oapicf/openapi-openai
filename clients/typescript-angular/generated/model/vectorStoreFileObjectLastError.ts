@@ -26,7 +26,7 @@ export namespace VectorStoreFileObjectLastError {
     export const CodeEnum = {
         ServerError: 'server_error',
         UnsupportedFile: 'unsupported_file',
-        InvalidFile: 'invalid_file'
+        InvalidFile: 'invalid_file',
     } as const;
     export type CodeEnum = typeof CodeEnum[keyof typeof CodeEnum];
 }

@@ -25,16 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventError(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `error`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventError.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("error")
+    @param:JsonProperty("error", required = true)
     @get:JsonProperty("error", required = true) val error: RealtimeServerEventErrorError
 ) {
 
@@ -45,12 +45,12 @@ data class RealtimeServerEventError(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         error("error");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

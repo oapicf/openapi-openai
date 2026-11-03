@@ -2,8 +2,8 @@
 
 OpenAI API
 - API version: 2.3.0
-  - Build date: 2026-08-26T05:15:06.374984127Z[Etc/UTC]
-  - Generator version: 7.24.0
+  - Build date: 2026-11-03T06:32:49.309140381Z[Etc/UTC]
+  - Generator version: 7.26.0
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.github.oapicf</groupId>
   <artifactId>openapiopenai</artifactId>
-  <version>0.9.0-pre.0</version>
+  <version>1.3.1-pre.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.github.oapicf:openapiopenai:0.9.0-pre.0"
+     implementation "com.github.oapicf:openapiopenai:1.3.1-pre.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/openapiopenai-0.9.0-pre.0.jar`
+* `target/openapiopenai-1.3.1-pre.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

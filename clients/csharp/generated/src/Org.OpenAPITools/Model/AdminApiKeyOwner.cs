@@ -225,19 +225,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class AdminApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class AdminApiKeyOwner: type.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AdminApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class AdminApiKeyOwner: id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class AdminApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class AdminApiKeyOwner: name.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class AdminApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class AdminApiKeyOwner: created_at.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class AdminApiKeyOwner.");
+                throw new JsonException("Property is not nullable for class AdminApiKeyOwner: role.");
 
             return new AdminApiKeyOwner(type, id, name, createdAt, role);
         }
@@ -248,7 +248,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeyOwner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdminApiKeyOwner adminApiKeyOwner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -263,20 +262,22 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="adminApiKeyOwner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdminApiKeyOwner adminApiKeyOwner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (adminApiKeyOwner.TypeOption.IsSet && adminApiKeyOwner.Type == null)
-                throw new ArgumentNullException(nameof(adminApiKeyOwner.Type), "Property is required for class AdminApiKeyOwner.");
+                throw new JsonException("Cannot write null property AdminApiKeyOwner.Type to non-nullable JSON property 'type'.");
 
             if (adminApiKeyOwner.IdOption.IsSet && adminApiKeyOwner.Id == null)
-                throw new ArgumentNullException(nameof(adminApiKeyOwner.Id), "Property is required for class AdminApiKeyOwner.");
+                throw new JsonException("Cannot write null property AdminApiKeyOwner.Id to non-nullable JSON property 'id'.");
 
             if (adminApiKeyOwner.NameOption.IsSet && adminApiKeyOwner.Name == null)
-                throw new ArgumentNullException(nameof(adminApiKeyOwner.Name), "Property is required for class AdminApiKeyOwner.");
+                throw new JsonException("Cannot write null property AdminApiKeyOwner.Name to non-nullable JSON property 'name'.");
+
+            if (adminApiKeyOwner.CreatedAtOption.IsSet && adminApiKeyOwner.CreatedAt == null)
+                throw new JsonException("Cannot write null property AdminApiKeyOwner.CreatedAt to non-nullable JSON property 'created_at'.");
 
             if (adminApiKeyOwner.RoleOption.IsSet && adminApiKeyOwner.Role == null)
-                throw new ArgumentNullException(nameof(adminApiKeyOwner.Role), "Property is required for class AdminApiKeyOwner.");
+                throw new JsonException("Cannot write null property AdminApiKeyOwner.Role to non-nullable JSON property 'role'.");
 
             if (adminApiKeyOwner.TypeOption.IsSet)
                 writer.WriteString("type", adminApiKeyOwner.Type);

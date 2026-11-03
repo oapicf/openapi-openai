@@ -226,7 +226,12 @@ namespace Org.OpenAPITools.Model
                         case "method":
                             string? methodRawValue = utf8JsonReader.GetString();
                             if (methodRawValue != null)
-                                method = new Option<BatchRequestInput.MethodEnum?>(BatchRequestInput.MethodEnumFromStringOrDefault(methodRawValue));
+                            {
+                                BatchRequestInput.MethodEnum? methodValue = BatchRequestInput.MethodEnumFromStringOrDefault(methodRawValue);
+                                if (methodValue == null)
+                                    throw new JsonException();
+                                method = new Option<BatchRequestInput.MethodEnum?>(methodValue);
+                            }
                             break;
                         case "url":
                             url = new Option<string?>(utf8JsonReader.GetString()!);
@@ -238,13 +243,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (customId.IsSet && customId.Value == null)
-                throw new ArgumentNullException(nameof(customId), "Property is not nullable for class BatchRequestInput.");
+                throw new JsonException("Property is not nullable for class BatchRequestInput: custom_id.");
 
             if (method.IsSet && method.Value == null)
-                throw new ArgumentNullException(nameof(method), "Property is not nullable for class BatchRequestInput.");
+                throw new JsonException("Property is not nullable for class BatchRequestInput: method.");
 
             if (url.IsSet && url.Value == null)
-                throw new ArgumentNullException(nameof(url), "Property is not nullable for class BatchRequestInput.");
+                throw new JsonException("Property is not nullable for class BatchRequestInput: url.");
 
             return new BatchRequestInput(customId, method, url);
         }
@@ -255,7 +260,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchRequestInput batchRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -270,14 +274,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchRequestInput batchRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (batchRequestInput.CustomIdOption.IsSet && batchRequestInput.CustomId == null)
-                throw new ArgumentNullException(nameof(batchRequestInput.CustomId), "Property is required for class BatchRequestInput.");
+                throw new JsonException("Cannot write null property BatchRequestInput.CustomId to non-nullable JSON property 'custom_id'.");
+
+            if (batchRequestInput.MethodOption.IsSet && batchRequestInput.Method == null)
+                throw new JsonException("Cannot write null property BatchRequestInput.Method to non-nullable JSON property 'method'.");
 
             if (batchRequestInput.UrlOption.IsSet && batchRequestInput.Url == null)
-                throw new ArgumentNullException(nameof(batchRequestInput.Url), "Property is required for class BatchRequestInput.");
+                throw new JsonException("Cannot write null property BatchRequestInput.Url to non-nullable JSON property 'url'.");
 
             if (batchRequestInput.CustomIdOption.IsSet)
                 writer.WriteString("custom_id", batchRequestInput.CustomId);

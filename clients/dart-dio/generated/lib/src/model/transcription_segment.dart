@@ -259,3 +259,4 @@ class _$TranscriptionSegmentSerializer implements PrimitiveSerializer<Transcript
   }
 }
 
+

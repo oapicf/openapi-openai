@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface SubmitToolOutputsRunRequestToolOutputsInner {
     /**
      * The ID of the tool call in the `required_action` object within the run object the output is being submitted for.
-     * @type {string}
-     * @memberof SubmitToolOutputsRunRequestToolOutputsInner
      */
     toolCallId?: string;
     /**
      * The output of the tool call to be submitted to continue the run.
-     * @type {string}
-     * @memberof SubmitToolOutputsRunRequestToolOutputsInner
      */
     output?: string;
 }

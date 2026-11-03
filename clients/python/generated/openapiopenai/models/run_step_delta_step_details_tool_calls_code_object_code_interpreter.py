@@ -76,8 +76,7 @@ class RunStepDeltaStepDetailsToolCallsCodeObjectCodeInterpreter(BaseModel):
         _items = []
         if self.outputs:
             for _item_outputs in self.outputs:
-                if _item_outputs:
-                    _items.append(_item_outputs.to_dict())
+                _items.append(_item_outputs.to_dict() if _item_outputs is not None else None)
             _dict['outputs'] = _items
         return _dict
 

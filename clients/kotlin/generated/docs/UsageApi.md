@@ -51,6 +51,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -60,8 +62,6 @@ try {
 | **models** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these models. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -121,6 +121,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -130,8 +132,6 @@ try {
 | **models** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these models. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -188,14 +188,14 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
 | **projectIds** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these projects. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;. | [optional] [enum: project_id] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -256,6 +256,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -266,8 +268,6 @@ try {
 | **batch** | **kotlin.Boolean**| If &#x60;true&#x60;, return batch jobs only. If &#x60;false&#x60;, return non-batch jobs only. By default, return both.  | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;batch&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model, batch] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -324,14 +324,14 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently only &#x60;1d&#x60; is supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1d] |
 | **projectIds** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only costs for these projects. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the costs by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;line_item&#x60; and any combination of them. | [optional] [enum: project_id, line_item] |
 | **limit** | **kotlin.Int**| A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7.  | [optional] [default to 7] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -391,6 +391,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -400,8 +402,6 @@ try {
 | **models** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these models. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -463,6 +463,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -474,8 +476,6 @@ try {
 | **models** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these models. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60;, &#x60;size&#x60;, &#x60;source&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model, size, source] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -535,6 +535,8 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
@@ -544,8 +546,6 @@ try {
 | **models** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these models. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;, &#x60;user_id&#x60;, &#x60;api_key_id&#x60;, &#x60;model&#x60; or any combination of them. | [optional] [enum: project_id, user_id, api_key_id, model] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type
@@ -602,14 +602,14 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **startTime** | **kotlin.Int**| Start time (Unix seconds) of the query time range, inclusive. | |
 | **endTime** | **kotlin.Int**| End time (Unix seconds) of the query time range, exclusive. | [optional] |
 | **bucketWidth** | **kotlin.String**| Width of each time bucket in response. Currently &#x60;1m&#x60;, &#x60;1h&#x60; and &#x60;1d&#x60; are supported, default to &#x60;1d&#x60;. | [optional] [default to BucketWidth._1d] [enum: 1m, 1h, 1d] |
 | **projectIds** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Return only usage for these projects. | [optional] |
 | **groupBy** | [**kotlin.collections.List&lt;kotlin.String&gt;**](kotlin.String.md)| Group the usage data by the specified fields. Support fields include &#x60;project_id&#x60;. | [optional] [enum: project_id] |
 | **limit** | **kotlin.Int**| Specifies the number of buckets to return. - &#x60;bucket_width&#x3D;1d&#x60;: default: 7, max: 31 - &#x60;bucket_width&#x3D;1h&#x60;: default: 24, max: 168 - &#x60;bucket_width&#x3D;1m&#x60;: default: 60, max: 1440  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **page** | **kotlin.String**| A cursor for use in pagination. Corresponding to the &#x60;next_page&#x60; field from the previous response. | [optional] |
 
 ### Return type

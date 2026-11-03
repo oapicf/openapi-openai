@@ -271,7 +271,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<CreateChatCompletionFunctionResponse.ObjectEnum?>(CreateChatCompletionFunctionResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                CreateChatCompletionFunctionResponse.ObjectEnum? varObjectValue = CreateChatCompletionFunctionResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<CreateChatCompletionFunctionResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "system_fingerprint":
                             systemFingerprint = new Option<string?>(utf8JsonReader.GetString()!);
@@ -286,40 +291,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponse.", nameof(id));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponse: id.");
 
             if (!choices.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponse.", nameof(choices));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponse: choices.");
 
             if (!created.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponse.", nameof(created));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponse: created.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponse.", nameof(model));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponse: model.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: id.");
 
             if (choices.IsSet && choices.Value == null)
-                throw new ArgumentNullException(nameof(choices), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: choices.");
 
             if (created.IsSet && created.Value == null)
-                throw new ArgumentNullException(nameof(created), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: created.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: model.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: object.");
 
             if (systemFingerprint.IsSet && systemFingerprint.Value == null)
-                throw new ArgumentNullException(nameof(systemFingerprint), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: system_fingerprint.");
 
             if (usage.IsSet && usage.Value == null)
-                throw new ArgumentNullException(nameof(usage), "Property is not nullable for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponse: usage.");
 
             return new CreateChatCompletionFunctionResponse(id.Value!, choices.Value!, created.Value!.Value!, model.Value!, varObject.Value!.Value!, systemFingerprint, usage);
         }
@@ -330,7 +335,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionFunctionResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionFunctionResponse createChatCompletionFunctionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -345,23 +349,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionFunctionResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionFunctionResponse createChatCompletionFunctionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createChatCompletionFunctionResponse.Id == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponse.Id), "Property is required for class CreateChatCompletionFunctionResponse.");
-
-            if (createChatCompletionFunctionResponse.Choices == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponse.Choices), "Property is required for class CreateChatCompletionFunctionResponse.");
-
-            if (createChatCompletionFunctionResponse.Model == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponse.Model), "Property is required for class CreateChatCompletionFunctionResponse.");
-
             if (createChatCompletionFunctionResponse.SystemFingerprintOption.IsSet && createChatCompletionFunctionResponse.SystemFingerprint == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponse.SystemFingerprint), "Property is required for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Cannot write null property CreateChatCompletionFunctionResponse.SystemFingerprint to non-nullable JSON property 'system_fingerprint'.");
 
             if (createChatCompletionFunctionResponse.UsageOption.IsSet && createChatCompletionFunctionResponse.Usage == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponse.Usage), "Property is required for class CreateChatCompletionFunctionResponse.");
+                throw new JsonException("Cannot write null property CreateChatCompletionFunctionResponse.Usage to non-nullable JSON property 'usage'.");
 
             writer.WriteString("id", createChatCompletionFunctionResponse.Id);
 

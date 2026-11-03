@@ -21,11 +21,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunToolCallObjectFunction(
 
     @Schema(required = true, description = "The name of the function.")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(required = true, description = "The arguments that the model expects you to pass to the function.")
-    @param:JsonProperty("arguments")
+    @param:JsonProperty("arguments", required = true)
     @get:JsonProperty("arguments", required = true) val arguments: kotlin.String
 ) {
 

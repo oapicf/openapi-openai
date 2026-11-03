@@ -33,8 +33,6 @@ public class Embedding  {
   */
   @ApiModelProperty(required = true, value = "The embedding vector, which is a list of floats. The length of vector depends on the model as listed in the [embedding guide](/docs/guides/embeddings). ")
 
-  @Valid
-
   private List<BigDecimal> embedding = new ArrayList<>();
 
 public enum ObjectEnum {

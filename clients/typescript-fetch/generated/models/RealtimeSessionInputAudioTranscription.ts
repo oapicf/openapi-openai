@@ -28,8 +28,6 @@ export interface RealtimeSessionInputAudioTranscription {
      * The model to use for transcription, `whisper-1` is the only currently 
      * supported model.
      * 
-     * @type {string}
-     * @memberof RealtimeSessionInputAudioTranscription
      */
     model?: string;
 }

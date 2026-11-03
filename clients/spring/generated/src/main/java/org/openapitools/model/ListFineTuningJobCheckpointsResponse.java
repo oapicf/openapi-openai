@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -27,7 +26,7 @@ import jakarta.annotation.Generated;
  * ListFineTuningJobCheckpointsResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ListFineTuningJobCheckpointsResponse {
 
   private List<@Valid FineTuningJobCheckpoint> data = new ArrayList<>();
@@ -67,10 +66,8 @@ public class ListFineTuningJobCheckpointsResponse {
 
   private ObjectEnum _object;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> firstId = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> lastId = JsonNullable.<String>undefined();
 
   private Boolean hasMore;
@@ -105,7 +102,7 @@ public class ListFineTuningJobCheckpointsResponse {
    * Get data
    * @return data
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "data", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("data")
   public List<@Valid FineTuningJobCheckpoint> getData() {
@@ -148,7 +145,7 @@ public class ListFineTuningJobCheckpointsResponse {
    * @return firstId
    */
   
-  @Schema(name = "first_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "first_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("first_id")
   public JsonNullable<String> getFirstId() {
     return firstId;
@@ -168,7 +165,7 @@ public class ListFineTuningJobCheckpointsResponse {
    * @return lastId
    */
   
-  @Schema(name = "last_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "last_id", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("last_id")
   public JsonNullable<String> getLastId() {
     return lastId;

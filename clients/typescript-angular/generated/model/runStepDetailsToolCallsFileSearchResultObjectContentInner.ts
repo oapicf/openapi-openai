@@ -21,7 +21,7 @@ export interface RunStepDetailsToolCallsFileSearchResultObjectContentInner {
 }
 export namespace RunStepDetailsToolCallsFileSearchResultObjectContentInner {
     export const TypeEnum = {
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

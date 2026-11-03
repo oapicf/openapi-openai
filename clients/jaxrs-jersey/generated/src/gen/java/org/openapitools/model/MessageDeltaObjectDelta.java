@@ -36,7 +36,7 @@ import javax.validation.Valid;
   MessageDeltaObjectDelta.JSON_PROPERTY_ROLE,
   MessageDeltaObjectDelta.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaObjectDelta   {
   /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
@@ -79,7 +79,7 @@ public class MessageDeltaObjectDelta   {
 
   public static final String JSON_PROPERTY_CONTENT = "content";
   @JsonProperty(JSON_PROPERTY_CONTENT)
-  private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
+  private List<@Valid MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
 
   public MessageDeltaObjectDelta role(RoleEnum role) {
     this.role = role;
@@ -101,7 +101,7 @@ public class MessageDeltaObjectDelta   {
     this.role = role;
   }
 
-  public MessageDeltaObjectDelta content(List<MessageDeltaObjectDeltaContentInner> content) {
+  public MessageDeltaObjectDelta content(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
     return this;
   }
@@ -120,12 +120,12 @@ public class MessageDeltaObjectDelta   {
    **/
   @JsonProperty(value = "content")
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
-  @Valid 
-  public List<MessageDeltaObjectDeltaContentInner> getContent() {
+  
+  public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+  public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
   }
 

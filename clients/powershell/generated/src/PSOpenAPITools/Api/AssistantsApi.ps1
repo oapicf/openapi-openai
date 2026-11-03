@@ -63,11 +63,11 @@ function Stop-Run {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling cancelRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling cancelRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -237,7 +237,7 @@ function New-Message {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling createMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if (!$CreateMessageRequest) {
             throw "Error! The required parameter `CreateMessageRequest` missing when calling createMessage."
@@ -337,7 +337,7 @@ function New-Run {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling createRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if ($Include) {
             $LocalVarQueryParameters['include[]'] = $Include
@@ -587,7 +587,7 @@ function Invoke-DeleteAssistant {
         if (!$AssistantId) {
             throw "Error! The required parameter `AssistantId` missing when calling deleteAssistant."
         }
-        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Web.HTTPUtility]::UrlEncode($AssistantId))
+        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Uri]::EscapeDataString([string]$AssistantId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -671,11 +671,11 @@ function Invoke-DeleteMessage {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling deleteMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$MessageId) {
             throw "Error! The required parameter `MessageId` missing when calling deleteMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Web.HTTPUtility]::UrlEncode($MessageId))
+        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Uri]::EscapeDataString([string]$MessageId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -753,7 +753,7 @@ function Invoke-DeleteThread {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling deleteThread."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -831,7 +831,7 @@ function Get-Assistant {
         if (!$AssistantId) {
             throw "Error! The required parameter `AssistantId` missing when calling getAssistant."
         }
-        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Web.HTTPUtility]::UrlEncode($AssistantId))
+        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Uri]::EscapeDataString([string]$AssistantId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -915,11 +915,11 @@ function Get-Message {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling getMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$MessageId) {
             throw "Error! The required parameter `MessageId` missing when calling getMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Web.HTTPUtility]::UrlEncode($MessageId))
+        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Uri]::EscapeDataString([string]$MessageId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1003,11 +1003,11 @@ function Get-Run {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling getRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling getRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1104,15 +1104,15 @@ function Get-RunStep {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling getRunStep."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling getRunStep."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
         if (!$StepId) {
             throw "Error! The required parameter `StepId` missing when calling getRunStep."
         }
-        $LocalVarUri = $LocalVarUri.replace('{step_id}', [System.Web.HTTPUtility]::UrlEncode($StepId))
+        $LocalVarUri = $LocalVarUri.replace('{step_id}', [System.Uri]::EscapeDataString([string]$StepId))
 
         if ($Include) {
             $LocalVarQueryParameters['include[]'] = $Include
@@ -1194,7 +1194,7 @@ function Get-Thread {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling getThread."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -1412,7 +1412,7 @@ function Invoke-ListMessages {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling listMessages."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1548,11 +1548,11 @@ function Invoke-ListRunSteps {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling listRunSteps."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling listRunSteps."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1675,7 +1675,7 @@ function Invoke-ListRuns {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling listRuns."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if ($Limit) {
             $LocalVarQueryParameters['limit'] = $Limit
@@ -1778,7 +1778,7 @@ function Edit-Assistant {
         if (!$AssistantId) {
             throw "Error! The required parameter `AssistantId` missing when calling modifyAssistant."
         }
-        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Web.HTTPUtility]::UrlEncode($AssistantId))
+        $LocalVarUri = $LocalVarUri.replace('{assistant_id}', [System.Uri]::EscapeDataString([string]$AssistantId))
 
         if (!$ModifyAssistantRequest) {
             throw "Error! The required parameter `ModifyAssistantRequest` missing when calling modifyAssistant."
@@ -1877,11 +1877,11 @@ function Edit-Message {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling modifyMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$MessageId) {
             throw "Error! The required parameter `MessageId` missing when calling modifyMessage."
         }
-        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Web.HTTPUtility]::UrlEncode($MessageId))
+        $LocalVarUri = $LocalVarUri.replace('{message_id}', [System.Uri]::EscapeDataString([string]$MessageId))
 
         if (!$ModifyMessageRequest) {
             throw "Error! The required parameter `ModifyMessageRequest` missing when calling modifyMessage."
@@ -1980,11 +1980,11 @@ function Edit-Run {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling modifyRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling modifyRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
 
         if (!$ModifyRunRequest) {
             throw "Error! The required parameter `ModifyRunRequest` missing when calling modifyRun."
@@ -2077,7 +2077,7 @@ function Edit-Thread {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling modifyThread."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
 
         if (!$ModifyThreadRequest) {
             throw "Error! The required parameter `ModifyThreadRequest` missing when calling modifyThread."
@@ -2176,11 +2176,11 @@ function Submit-ToolOuputsToRun {
         if (!$ThreadId) {
             throw "Error! The required parameter `ThreadId` missing when calling submitToolOuputsToRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Web.HTTPUtility]::UrlEncode($ThreadId))
+        $LocalVarUri = $LocalVarUri.replace('{thread_id}', [System.Uri]::EscapeDataString([string]$ThreadId))
         if (!$RunId) {
             throw "Error! The required parameter `RunId` missing when calling submitToolOuputsToRun."
         }
-        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Web.HTTPUtility]::UrlEncode($RunId))
+        $LocalVarUri = $LocalVarUri.replace('{run_id}', [System.Uri]::EscapeDataString([string]$RunId))
 
         if (!$SubmitToolOutputsRunRequest) {
             throw "Error! The required parameter `SubmitToolOutputsRunRequest` missing when calling submitToolOuputsToRun."

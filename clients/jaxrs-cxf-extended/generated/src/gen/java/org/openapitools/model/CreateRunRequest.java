@@ -47,15 +47,13 @@ public class CreateRunRequest  {
   * Adds additional messages to the thread before creating the run.
   */
   @ApiModelProperty(value = "Adds additional messages to the thread before creating the run.")
-  @Valid
   private List<@Valid CreateMessageRequest> additionalMessages;
 
  /**
   * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
   */
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  @Valid
-  private List<AssistantObjectToolsInner> tools;
+  private List<@Valid AssistantObjectToolsInner> tools;
 
  /**
   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
@@ -246,21 +244,21 @@ public class CreateRunRequest  {
   * @return tools
   */
   @JsonProperty("tools")
- @Size(max=20)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
- public void setTools(List<AssistantObjectToolsInner> tools) {
+ public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
-  public CreateRunRequest tools(List<AssistantObjectToolsInner> tools) {
+  public CreateRunRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }

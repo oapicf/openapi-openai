@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 # **usageAudioSpeeches**
 ```swift
-    open class func usageAudioSpeeches(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageAudioSpeeches? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageAudioSpeeches]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageAudioSpeeches(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageAudioSpeeches? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageAudioSpeeches]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get audio speeches usage details for the organization.
@@ -39,15 +39,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get audio speeches usage details for the organization.
-UsageAPI.usageAudioSpeeches(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageAudioSpeeches(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -83,7 +79,7 @@ Name | Type | Description  | Notes
 
 # **usageAudioTranscriptions**
 ```swift
-    open class func usageAudioTranscriptions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageAudioTranscriptions? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageAudioTranscriptions]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageAudioTranscriptions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageAudioTranscriptions? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageAudioTranscriptions]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get audio transcriptions usage details for the organization.
@@ -105,15 +101,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get audio transcriptions usage details for the organization.
-UsageAPI.usageAudioTranscriptions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageAudioTranscriptions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -149,7 +141,7 @@ Name | Type | Description  | Notes
 
 # **usageCodeInterpreterSessions**
 ```swift
-    open class func usageCodeInterpreterSessions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCodeInterpreterSessions? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageCodeInterpreterSessions]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageCodeInterpreterSessions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCodeInterpreterSessions? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageCodeInterpreterSessions]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get code interpreter sessions usage details for the organization.
@@ -168,15 +160,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get code interpreter sessions usage details for the organization.
-UsageAPI.usageCodeInterpreterSessions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageCodeInterpreterSessions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -209,7 +197,7 @@ Name | Type | Description  | Notes
 
 # **usageCompletions**
 ```swift
-    open class func usageCompletions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCompletions? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, batch: Bool? = nil, groupBy: [GroupBy_usageCompletions]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageCompletions(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCompletions? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, batch: Bool? = nil, groupBy: [GroupBy_usageCompletions]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get completions usage details for the organization.
@@ -232,15 +220,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get completions usage details for the organization.
-UsageAPI.usageCompletions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, batch: batch, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageCompletions(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, batch: batch, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -277,7 +261,7 @@ Name | Type | Description  | Notes
 
 # **usageCosts**
 ```swift
-    open class func usageCosts(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCosts? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageCosts]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageCosts(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageCosts? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageCosts]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get costs details for the organization.
@@ -296,15 +280,11 @@ let limit = 987 // Int | A limit on the number of buckets to be returned. Limit 
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get costs details for the organization.
-UsageAPI.usageCosts(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageCosts(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -337,7 +317,7 @@ Name | Type | Description  | Notes
 
 # **usageEmbeddings**
 ```swift
-    open class func usageEmbeddings(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageEmbeddings? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageEmbeddings]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageEmbeddings(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageEmbeddings? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageEmbeddings]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get embeddings usage details for the organization.
@@ -359,15 +339,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get embeddings usage details for the organization.
-UsageAPI.usageEmbeddings(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageEmbeddings(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -403,7 +379,7 @@ Name | Type | Description  | Notes
 
 # **usageImages**
 ```swift
-    open class func usageImages(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageImages? = nil, sources: [Sources_usageImages]? = nil, sizes: [Sizes_usageImages]? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageImages]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageImages(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageImages? = nil, sources: [Sources_usageImages]? = nil, sizes: [Sizes_usageImages]? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageImages]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get images usage details for the organization.
@@ -427,15 +403,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get images usage details for the organization.
-UsageAPI.usageImages(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, sources: sources, sizes: sizes, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageImages(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, sources: sources, sizes: sizes, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -473,7 +445,7 @@ Name | Type | Description  | Notes
 
 # **usageModerations**
 ```swift
-    open class func usageModerations(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageModerations? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageModerations]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageModerations(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageModerations? = nil, projectIds: [String]? = nil, userIds: [String]? = nil, apiKeyIds: [String]? = nil, models: [String]? = nil, groupBy: [GroupBy_usageModerations]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get moderations usage details for the organization.
@@ -495,15 +467,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get moderations usage details for the organization.
-UsageAPI.usageModerations(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageModerations(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, userIds: userIds, apiKeyIds: apiKeyIds, models: models, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -539,7 +507,7 @@ Name | Type | Description  | Notes
 
 # **usageVectorStores**
 ```swift
-    open class func usageVectorStores(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageVectorStores? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageVectorStores]? = nil, limit: Int? = nil, page: String? = nil, completion: @escaping (_ data: UsageResponse?, _ error: Error?) -> Void)
+    open class func usageVectorStores(startTime: Int, endTime: Int? = nil, bucketWidth: BucketWidth_usageVectorStores? = nil, projectIds: [String]? = nil, groupBy: [GroupBy_usageVectorStores]? = nil, limit: Int? = nil, page: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageResponse
 ```
 
 Get vector stores usage details for the organization.
@@ -558,15 +526,11 @@ let limit = 987 // Int | Specifies the number of buckets to return. - `bucket_wi
 let page = "page_example" // String | A cursor for use in pagination. Corresponding to the `next_page` field from the previous response. (optional)
 
 // Get vector stores usage details for the organization.
-UsageAPI.usageVectorStores(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await UsageAPI.usageVectorStores(startTime: startTime, endTime: endTime, bucketWidth: bucketWidth, projectIds: projectIds, groupBy: groupBy, limit: limit, page: page)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

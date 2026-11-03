@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * A list of files attached to a vector store.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `vector_store.file`.
+ * @param `object` The object type, which is always `vector_store.file`.
  * @param usageBytes The total vector store usage in bytes. Note that this may be different from the original file size.
  * @param createdAt The Unix timestamp (in seconds) for when the vector store file was created.
  * @param vectorStoreId The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.

@@ -40,7 +40,7 @@ export interface UsageImagesResult {
 }
 export namespace UsageImagesResult {
   export const ObjectEnum = {
-    OrganizationUsageImagesResult: 'organization.usage.images.result'
+    OrganizationUsageImagesResult: 'organization.usage.images.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

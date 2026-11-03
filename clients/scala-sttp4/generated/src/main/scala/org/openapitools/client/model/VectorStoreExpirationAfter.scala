@@ -26,7 +26,7 @@ object VectorStoreExpirationAfterEnums {
 
   sealed trait Anchor
   object Anchor {
-    case object LastActiveAt extends Anchor
+    case object LastActiveAt extends Anchor { override def toString: String = "last_active_at" }
 
     import org.json4s._
 

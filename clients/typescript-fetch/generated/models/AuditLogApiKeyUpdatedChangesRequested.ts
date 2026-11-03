@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AuditLogApiKeyUpdatedChangesRequested {
     /**
      * A list of scopes allowed for the API key, e.g. `["api.model.request"]`
-     * @type {Array<string>}
-     * @memberof AuditLogApiKeyUpdatedChangesRequested
      */
     scopes?: Array<string>;
 }

@@ -32,26 +32,18 @@ export interface CreateCompletionResponseChoicesInner {
      * `length` if the maximum number of tokens specified in the request was reached,
      * or `content_filter` if content was omitted due to a flag from our content filters.
      * 
-     * @type {CreateCompletionResponseChoicesInnerFinishReasonEnum}
-     * @memberof CreateCompletionResponseChoicesInner
      */
     finishReason: CreateCompletionResponseChoicesInnerFinishReasonEnum;
     /**
      * 
-     * @type {number}
-     * @memberof CreateCompletionResponseChoicesInner
      */
     index: number;
     /**
      * 
-     * @type {CreateCompletionResponseChoicesInnerLogprobs}
-     * @memberof CreateCompletionResponseChoicesInner
      */
     logprobs: CreateCompletionResponseChoicesInnerLogprobs | null;
     /**
      * 
-     * @type {string}
-     * @memberof CreateCompletionResponseChoicesInner
      */
     text: string;
 }
@@ -63,7 +55,7 @@ export interface CreateCompletionResponseChoicesInner {
 export const CreateCompletionResponseChoicesInnerFinishReasonEnum = {
     Stop: 'stop',
     Length: 'length',
-    ContentFilter: 'content_filter'
+    ContentFilter: 'content_filter',
 } as const;
 export type CreateCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateCompletionResponseChoicesInnerFinishReasonEnum];
 

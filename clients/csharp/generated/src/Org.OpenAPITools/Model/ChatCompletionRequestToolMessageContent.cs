@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="ChatCompletionRequestToolMessageContent" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal ChatCompletionRequestToolMessageContent(string @string)
+        public ChatCompletionRequestToolMessageContent(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="ChatCompletionRequestToolMessageContent" /> class.
         /// </summary>
         /// <param name="list"></param>
-        internal ChatCompletionRequestToolMessageContent(List<ChatCompletionRequestMessageContentPartText> list)
+        public ChatCompletionRequestToolMessageContent(List<ChatCompletionRequestMessageContentPartText> list)
         {
             List = list;
             OnCreated();
@@ -178,7 +178,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestToolMessageContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestToolMessageContent chatCompletionRequestToolMessageContent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -193,7 +192,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestToolMessageContent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestToolMessageContent chatCompletionRequestToolMessageContent, JsonSerializerOptions jsonSerializerOptions)
         {
 

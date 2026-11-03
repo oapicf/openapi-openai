@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDetailsToolCallsFunctionObject.TypeEnum?>(RunStepDetailsToolCallsFunctionObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDetailsToolCallsFunctionObject.TypeEnum? typeValue = RunStepDetailsToolCallsFunctionObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDetailsToolCallsFunctionObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "function":
                             function = new Option<RunStepDetailsToolCallsFunctionObjectFunction?>(JsonSerializer.Deserialize<RunStepDetailsToolCallsFunctionObjectFunction>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObject.", nameof(id));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObject: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObject: type.");
 
             if (!function.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFunctionObject.", nameof(function));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFunctionObject: function.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepDetailsToolCallsFunctionObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFunctionObject: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDetailsToolCallsFunctionObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFunctionObject: type.");
 
             if (function.IsSet && function.Value == null)
-                throw new ArgumentNullException(nameof(function), "Property is not nullable for class RunStepDetailsToolCallsFunctionObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFunctionObject: function.");
 
             return new RunStepDetailsToolCallsFunctionObject(id.Value!, type.Value!.Value!, function.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFunctionObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFunctionObject runStepDetailsToolCallsFunctionObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFunctionObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFunctionObject runStepDetailsToolCallsFunctionObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsFunctionObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFunctionObject.Id), "Property is required for class RunStepDetailsToolCallsFunctionObject.");
-
-            if (runStepDetailsToolCallsFunctionObject.Function == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFunctionObject.Function), "Property is required for class RunStepDetailsToolCallsFunctionObject.");
-
             writer.WriteString("id", runStepDetailsToolCallsFunctionObject.Id);
 
             var typeRawValue = RunStepDetailsToolCallsFunctionObject.TypeEnumToJsonValue(runStepDetailsToolCallsFunctionObject.Type);

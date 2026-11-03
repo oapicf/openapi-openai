@@ -332,6 +332,7 @@ class _$RealtimeSessionCreateResponseSerializer implements PrimitiveSerializer<R
   }
 }
 
+
 class RealtimeSessionCreateResponseModalitiesEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'text')
@@ -347,30 +348,23 @@ class RealtimeSessionCreateResponseModalitiesEnum extends EnumClass {
   static RealtimeSessionCreateResponseModalitiesEnum valueOf(String name) => _$realtimeSessionCreateResponseModalitiesEnumValueOf(name);
 }
 
+/// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
 class RealtimeSessionCreateResponseVoiceEnum extends EnumClass {
 
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'alloy')
   static const RealtimeSessionCreateResponseVoiceEnum alloy = _$realtimeSessionCreateResponseVoiceEnum_alloy;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ash')
   static const RealtimeSessionCreateResponseVoiceEnum ash = _$realtimeSessionCreateResponseVoiceEnum_ash;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ballad')
   static const RealtimeSessionCreateResponseVoiceEnum ballad = _$realtimeSessionCreateResponseVoiceEnum_ballad;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'coral')
   static const RealtimeSessionCreateResponseVoiceEnum coral = _$realtimeSessionCreateResponseVoiceEnum_coral;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'echo')
   static const RealtimeSessionCreateResponseVoiceEnum echo = _$realtimeSessionCreateResponseVoiceEnum_echo;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'sage')
   static const RealtimeSessionCreateResponseVoiceEnum sage = _$realtimeSessionCreateResponseVoiceEnum_sage;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'shimmer')
   static const RealtimeSessionCreateResponseVoiceEnum shimmer = _$realtimeSessionCreateResponseVoiceEnum_shimmer;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'verse')
   static const RealtimeSessionCreateResponseVoiceEnum verse = _$realtimeSessionCreateResponseVoiceEnum_verse;
 

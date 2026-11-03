@@ -23,38 +23,26 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseAudioDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     eventId: string;
     /**
      * The event type, must be `response.audio.done`.
-     * @type {RealtimeServerEventResponseAudioDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     type: RealtimeServerEventResponseAudioDoneTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioDone
      */
     contentIndex: number;
 }
@@ -64,7 +52,7 @@ export interface RealtimeServerEventResponseAudioDone {
  * @export
  */
 export const RealtimeServerEventResponseAudioDoneTypeEnum = {
-    ResponseAudioDone: 'response.audio.done'
+    ResponseAudioDone: 'response.audio.done',
 } as const;
 export type RealtimeServerEventResponseAudioDoneTypeEnum = typeof RealtimeServerEventResponseAudioDoneTypeEnum[keyof typeof RealtimeServerEventResponseAudioDoneTypeEnum];
 

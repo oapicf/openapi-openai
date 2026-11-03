@@ -48,7 +48,7 @@ import javax.validation.Valid;
   RealtimeResponseCreateParams.JSON_PROPERTY_METADATA,
   RealtimeResponseCreateParams.JSON_PROPERTY_INPUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseCreateParams   {
   /**
    * Gets or Sets modalities
@@ -320,7 +320,7 @@ public class RealtimeResponseCreateParams   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "Tools (functions) available to the model.")
-  @Valid 
+  
   public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }
@@ -448,7 +448,7 @@ public class RealtimeResponseCreateParams   {
    **/
   @JsonProperty(value = "input")
   @ApiModelProperty(value = "Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. ")
-  @Valid 
+  
   public List<@Valid RealtimeConversationItem> getInput() {
     return input;
   }

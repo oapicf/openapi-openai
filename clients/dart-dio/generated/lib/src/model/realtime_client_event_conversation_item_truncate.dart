@@ -178,9 +178,10 @@ class _$RealtimeClientEventConversationItemTruncateSerializer implements Primiti
   }
 }
 
+
+/// The event type, must be `conversation.item.truncate`.
 class RealtimeClientEventConversationItemTruncateTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.truncate`.
   @BuiltValueEnumConst(wireName: r'conversation.item.truncate')
   static const RealtimeClientEventConversationItemTruncateTypeEnum conversationPeriodItemPeriodTruncate = _$realtimeClientEventConversationItemTruncateTypeEnum_conversationPeriodItemPeriodTruncate;
 

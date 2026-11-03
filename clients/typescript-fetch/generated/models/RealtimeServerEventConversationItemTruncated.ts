@@ -27,33 +27,23 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventConversationItemTruncated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemTruncated
      */
     eventId: string;
     /**
      * The event type, must be `conversation.item.truncated`.
-     * @type {RealtimeServerEventConversationItemTruncatedTypeEnum}
-     * @memberof RealtimeServerEventConversationItemTruncated
      */
     type: RealtimeServerEventConversationItemTruncatedTypeEnum;
     /**
      * The ID of the assistant message item that was truncated.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemTruncated
      */
     itemId: string;
     /**
      * The index of the content part that was truncated.
-     * @type {number}
-     * @memberof RealtimeServerEventConversationItemTruncated
      */
     contentIndex: number;
     /**
      * The duration up to which the audio was truncated, in milliseconds.
      * 
-     * @type {number}
-     * @memberof RealtimeServerEventConversationItemTruncated
      */
     audioEndMs: number;
 }
@@ -63,7 +53,7 @@ export interface RealtimeServerEventConversationItemTruncated {
  * @export
  */
 export const RealtimeServerEventConversationItemTruncatedTypeEnum = {
-    ConversationItemTruncated: 'conversation.item.truncated'
+    ConversationItemTruncated: 'conversation.item.truncated',
 } as const;
 export type RealtimeServerEventConversationItemTruncatedTypeEnum = typeof RealtimeServerEventConversationItemTruncatedTypeEnum[keyof typeof RealtimeServerEventConversationItemTruncatedTypeEnum];
 

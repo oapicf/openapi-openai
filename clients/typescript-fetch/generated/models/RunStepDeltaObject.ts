@@ -30,20 +30,14 @@ import {
 export interface RunStepDeltaObject {
     /**
      * The identifier of the run step, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof RunStepDeltaObject
      */
     id: string;
     /**
      * The object type, which is always `thread.run.step.delta`.
-     * @type {RunStepDeltaObjectObjectEnum}
-     * @memberof RunStepDeltaObject
      */
     object: RunStepDeltaObjectObjectEnum;
     /**
      * 
-     * @type {RunStepDeltaObjectDelta}
-     * @memberof RunStepDeltaObject
      */
     delta: RunStepDeltaObjectDelta;
 }
@@ -53,7 +47,7 @@ export interface RunStepDeltaObject {
  * @export
  */
 export const RunStepDeltaObjectObjectEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
 } as const;
 export type RunStepDeltaObjectObjectEnum = typeof RunStepDeltaObjectObjectEnum[keyof typeof RunStepDeltaObjectObjectEnum];
 

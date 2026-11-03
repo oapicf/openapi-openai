@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The delta containing the fields that have changed on the Message.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="The delta containing the fields that have changed on the Message.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaObjectDelta   {
   
 
@@ -41,7 +41,7 @@ public class MessageDeltaObjectDelta   {
   }
 
   private RoleEnum role;
-  private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
+  private List<@Valid MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
 
   /**
    * The entity that produced the message. One of &#x60;user&#x60; or &#x60;assistant&#x60;.
@@ -62,10 +62,10 @@ public class MessageDeltaObjectDelta   {
   
   @ApiModelProperty(value = "The content of the message in array of text and/or images.")
   @JsonProperty("content")
-  public List<MessageDeltaObjectDeltaContentInner> getContent() {
+  public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
     return content;
   }
-  public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+  public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
   }
 

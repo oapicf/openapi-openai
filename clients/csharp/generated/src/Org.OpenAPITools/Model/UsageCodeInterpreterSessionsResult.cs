@@ -207,7 +207,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageCodeInterpreterSessionsResult.ObjectEnum?>(UsageCodeInterpreterSessionsResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageCodeInterpreterSessionsResult.ObjectEnum? varObjectValue = UsageCodeInterpreterSessionsResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageCodeInterpreterSessionsResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "sessions":
                             sessions = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -222,16 +227,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageCodeInterpreterSessionsResult.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageCodeInterpreterSessionsResult: object.");
 
             if (!sessions.IsSet)
-                throw new ArgumentException("Property is required for class UsageCodeInterpreterSessionsResult.", nameof(sessions));
+                throw new JsonException("Property is required for class UsageCodeInterpreterSessionsResult: sessions.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageCodeInterpreterSessionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCodeInterpreterSessionsResult: object.");
 
             if (sessions.IsSet && sessions.Value == null)
-                throw new ArgumentNullException(nameof(sessions), "Property is not nullable for class UsageCodeInterpreterSessionsResult.");
+                throw new JsonException("Property is not nullable for class UsageCodeInterpreterSessionsResult: sessions.");
 
             return new UsageCodeInterpreterSessionsResult(varObject.Value!.Value!, sessions.Value!.Value!, projectId);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageCodeInterpreterSessionsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageCodeInterpreterSessionsResult usageCodeInterpreterSessionsResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +261,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageCodeInterpreterSessionsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageCodeInterpreterSessionsResult usageCodeInterpreterSessionsResult, JsonSerializerOptions jsonSerializerOptions)
         {
             var varObjectRawValue = UsageCodeInterpreterSessionsResult.ObjectEnumToJsonValue(usageCodeInterpreterSessionsResult.Object);

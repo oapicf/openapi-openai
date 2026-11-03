@@ -211,7 +211,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ChatCompletionRequestDeveloperMessage.RoleEnum?>(ChatCompletionRequestDeveloperMessage.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ChatCompletionRequestDeveloperMessage.RoleEnum? roleValue = ChatCompletionRequestDeveloperMessage.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ChatCompletionRequestDeveloperMessage.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "name":
                             name = new Option<string?>(utf8JsonReader.GetString()!);
@@ -223,19 +228,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestDeveloperMessage.", nameof(content));
+                throw new JsonException("Property is required for class ChatCompletionRequestDeveloperMessage: content.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestDeveloperMessage.", nameof(role));
+                throw new JsonException("Property is required for class ChatCompletionRequestDeveloperMessage: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class ChatCompletionRequestDeveloperMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestDeveloperMessage: content.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ChatCompletionRequestDeveloperMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestDeveloperMessage: role.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionRequestDeveloperMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestDeveloperMessage: name.");
 
             return new ChatCompletionRequestDeveloperMessage(content.Value!, role.Value!.Value!, name);
         }
@@ -246,7 +251,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestDeveloperMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestDeveloperMessage chatCompletionRequestDeveloperMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,14 +265,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestDeveloperMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestDeveloperMessage chatCompletionRequestDeveloperMessage, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestDeveloperMessage.Content == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestDeveloperMessage.Content), "Property is required for class ChatCompletionRequestDeveloperMessage.");
-
             if (chatCompletionRequestDeveloperMessage.NameOption.IsSet && chatCompletionRequestDeveloperMessage.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestDeveloperMessage.Name), "Property is required for class ChatCompletionRequestDeveloperMessage.");
+                throw new JsonException("Cannot write null property ChatCompletionRequestDeveloperMessage.Name to non-nullable JSON property 'name'.");
 
             writer.WritePropertyName("content");
             JsonSerializer.Serialize(writer, chatCompletionRequestDeveloperMessage.Content, jsonSerializerOptions);

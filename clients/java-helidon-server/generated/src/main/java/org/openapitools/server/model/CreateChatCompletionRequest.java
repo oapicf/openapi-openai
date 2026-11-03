@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 
 public class CreateChatCompletionRequest   {
 
-    private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+    private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
     private CreateChatCompletionRequestModel model;
     private Boolean store = false;
 
@@ -158,7 +158,7 @@ public class CreateChatCompletionRequest   {
 
 
     private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
-    private CreateChatCompletionRequestStop stop;
+    private CreateChatCompletionRequestStop stop = null;
     private Boolean stream = false;
     private ChatCompletionStreamOptions streamOptions;
     private BigDecimal temperature = new BigDecimal("1");
@@ -212,7 +212,7 @@ public class CreateChatCompletionRequest   {
      * @param functions Deprecated in favor of &#x60;tools&#x60;.  A list of functions the model may generate JSON inputs for. 
      */
     public CreateChatCompletionRequest(
-        List<ChatCompletionRequestMessage> messages, 
+        List<@Valid ChatCompletionRequestMessage> messages, 
         CreateChatCompletionRequestModel model, 
         Boolean store, 
         ReasoningEffortEnum reasoningEffort, 
@@ -281,11 +281,11 @@ public class CreateChatCompletionRequest   {
      * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
      * @return messages
      */
-    public List<ChatCompletionRequestMessage> getMessages() {
+    public List<@Valid ChatCompletionRequestMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<ChatCompletionRequestMessage> messages) {
+    public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
         this.messages = messages;
     }
 

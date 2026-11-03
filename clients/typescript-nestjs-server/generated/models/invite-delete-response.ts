@@ -10,7 +10,7 @@ export interface InviteDeleteResponse {
 }
 export namespace InviteDeleteResponse {
   export const ObjectEnum = {
-    OrganizationInviteDeleted: 'organization.invite.deleted'
+    OrganizationInviteDeleted: 'organization.invite.deleted',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

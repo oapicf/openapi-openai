@@ -313,10 +313,10 @@ class AssistantsApiSimulation extends Simulation {
         .feed(listAssistantsQUERYFeeder)
         .exec(http("listAssistants")
         .httpRequest("GET","/assistants")
-        .queryParam("after","${after}")
         .queryParam("limit","${limit}")
-        .queryParam("before","${before}")
         .queryParam("order","${order}")
+        .queryParam("before","${before}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistAssistants with warm up and reach a constant rate for entire duration
@@ -332,11 +332,11 @@ class AssistantsApiSimulation extends Simulation {
         .feed(listMessagesPATHFeeder)
         .exec(http("listMessages")
         .httpRequest("GET","/threads/${thread_id}/messages")
-        .queryParam("after","${after}")
-        .queryParam("limit","${limit}")
-        .queryParam("before","${before}")
         .queryParam("run_id","${run_id}")
+        .queryParam("limit","${limit}")
         .queryParam("order","${order}")
+        .queryParam("before","${before}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistMessages with warm up and reach a constant rate for entire duration
@@ -352,11 +352,11 @@ class AssistantsApiSimulation extends Simulation {
         .feed(listRunStepsPATHFeeder)
         .exec(http("listRunSteps")
         .httpRequest("GET","/threads/${thread_id}/runs/${run_id}/steps")
-        .queryParam("after","${after}")
-        .queryParam("limit","${limit}")
-        .queryParam("before","${before}")
         .queryParam("include[]","${include[]}")
+        .queryParam("limit","${limit}")
         .queryParam("order","${order}")
+        .queryParam("before","${before}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistRunSteps with warm up and reach a constant rate for entire duration
@@ -372,10 +372,10 @@ class AssistantsApiSimulation extends Simulation {
         .feed(listRunsPATHFeeder)
         .exec(http("listRuns")
         .httpRequest("GET","/threads/${thread_id}/runs")
-        .queryParam("after","${after}")
         .queryParam("limit","${limit}")
-        .queryParam("before","${before}")
         .queryParam("order","${order}")
+        .queryParam("before","${before}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistRuns with warm up and reach a constant rate for entire duration

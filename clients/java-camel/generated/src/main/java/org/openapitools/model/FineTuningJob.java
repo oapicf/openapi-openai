@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -30,7 +29,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "FineTuningJob", description = "The `fine_tuning.job` object represents a fine-tuning job that has been created through the API. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJob {
 
   private String id;
@@ -84,7 +83,6 @@ public class FineTuningJob {
 
   private String organizationId;
 
-  @Valid
   private List<String> resultFiles = new ArrayList<>();
 
   /**
@@ -138,8 +136,7 @@ public class FineTuningJob {
 
   private JsonNullable<String> validationFile = JsonNullable.<String>undefined();
 
-  @Valid
-  private JsonNullable<List<FineTuningJobIntegrationsInner>> integrations = JsonNullable.<List<FineTuningJobIntegrationsInner>>undefined();
+  private JsonNullable<List<@Valid FineTuningJobIntegrationsInner>> integrations = JsonNullable.<List<@Valid FineTuningJobIntegrationsInner>>undefined();
 
   private Integer seed;
 
@@ -221,7 +218,7 @@ public class FineTuningJob {
    * Get error
    * @return error
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "error", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("error")
   public JsonNullable<FineTuningJobError> getError() {
@@ -241,7 +238,7 @@ public class FineTuningJob {
    * The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.
    * @return fineTunedModel
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "fine_tuned_model", description = "The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("fine_tuned_model")
   public JsonNullable<String> getFineTunedModel() {
@@ -261,7 +258,7 @@ public class FineTuningJob {
    * The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
    * @return finishedAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "finished_at", description = "The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("finished_at")
   public JsonNullable<Integer> getFinishedAt() {
@@ -409,7 +406,7 @@ public class FineTuningJob {
    * The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
    * @return trainedTokens
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "trained_tokens", description = "The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("trained_tokens")
   public JsonNullable<Integer> getTrainedTokens() {
@@ -449,7 +446,7 @@ public class FineTuningJob {
    * The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
    * @return validationFile
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "validation_file", description = "The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("validation_file")
   public JsonNullable<String> getValidationFile() {
@@ -460,7 +457,7 @@ public class FineTuningJob {
     this.validationFile = validationFile;
   }
 
-  public FineTuningJob integrations(List<FineTuningJobIntegrationsInner> integrations) {
+  public FineTuningJob integrations(List<@Valid FineTuningJobIntegrationsInner> integrations) {
     this.integrations = JsonNullable.of(integrations);
     return this;
   }
@@ -477,14 +474,14 @@ public class FineTuningJob {
    * A list of integrations to enable for this fine-tuning job.
    * @return integrations
    */
-  @Valid @Size(max = 5) 
+  @Size(max = 5) 
   @Schema(name = "integrations", description = "A list of integrations to enable for this fine-tuning job.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("integrations")
-  public JsonNullable<List<FineTuningJobIntegrationsInner>> getIntegrations() {
+  public JsonNullable<List<@Valid FineTuningJobIntegrationsInner>> getIntegrations() {
     return integrations;
   }
 
-  public void setIntegrations(JsonNullable<List<FineTuningJobIntegrationsInner>> integrations) {
+  public void setIntegrations(JsonNullable<List<@Valid FineTuningJobIntegrationsInner>> integrations) {
     this.integrations = integrations;
   }
 

@@ -36,123 +36,83 @@ import {
 export interface Batch {
     /**
      * 
-     * @type {string}
-     * @memberof Batch
      */
     id: string;
     /**
      * The object type, which is always `batch`.
-     * @type {BatchObjectEnum}
-     * @memberof Batch
      */
     object: BatchObjectEnum;
     /**
      * The OpenAI API endpoint used by the batch.
-     * @type {string}
-     * @memberof Batch
      */
     endpoint: string;
     /**
      * 
-     * @type {BatchErrors}
-     * @memberof Batch
      */
     errors?: BatchErrors;
     /**
      * The ID of the input file for the batch.
-     * @type {string}
-     * @memberof Batch
      */
     inputFileId: string;
     /**
      * The time frame within which the batch should be processed.
-     * @type {string}
-     * @memberof Batch
      */
     completionWindow: string;
     /**
      * The current status of the batch.
-     * @type {BatchStatusEnum}
-     * @memberof Batch
      */
     status: BatchStatusEnum;
     /**
      * The ID of the file containing the outputs of successfully executed requests.
-     * @type {string}
-     * @memberof Batch
      */
     outputFileId?: string;
     /**
      * The ID of the file containing the outputs of requests with errors.
-     * @type {string}
-     * @memberof Batch
      */
     errorFileId?: string;
     /**
      * The Unix timestamp (in seconds) for when the batch was created.
-     * @type {number}
-     * @memberof Batch
      */
     createdAt: number;
     /**
      * The Unix timestamp (in seconds) for when the batch started processing.
-     * @type {number}
-     * @memberof Batch
      */
     inProgressAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch will expire.
-     * @type {number}
-     * @memberof Batch
      */
     expiresAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch started finalizing.
-     * @type {number}
-     * @memberof Batch
      */
     finalizingAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch was completed.
-     * @type {number}
-     * @memberof Batch
      */
     completedAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch failed.
-     * @type {number}
-     * @memberof Batch
      */
     failedAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch expired.
-     * @type {number}
-     * @memberof Batch
      */
     expiredAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch started cancelling.
-     * @type {number}
-     * @memberof Batch
      */
     cancellingAt?: number;
     /**
      * The Unix timestamp (in seconds) for when the batch was cancelled.
-     * @type {number}
-     * @memberof Batch
      */
     cancelledAt?: number;
     /**
      * 
-     * @type {BatchRequestCounts}
-     * @memberof Batch
      */
     requestCounts?: BatchRequestCounts;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof Batch
      */
     metadata?: object | null;
 }
@@ -162,7 +122,7 @@ export interface Batch {
  * @export
  */
 export const BatchObjectEnum = {
-    Batch: 'batch'
+    Batch: 'batch',
 } as const;
 export type BatchObjectEnum = typeof BatchObjectEnum[keyof typeof BatchObjectEnum];
 
@@ -177,7 +137,7 @@ export const BatchStatusEnum = {
     Completed: 'completed',
     Expired: 'expired',
     Cancelling: 'cancelling',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type BatchStatusEnum = typeof BatchStatusEnum[keyof typeof BatchStatusEnum];
 

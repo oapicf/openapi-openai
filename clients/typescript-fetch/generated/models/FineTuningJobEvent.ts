@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface FineTuningJobEvent {
     /**
      * The object type, which is always "fine_tuning.job.event".
-     * @type {FineTuningJobEventObjectEnum}
-     * @memberof FineTuningJobEvent
      */
     object: FineTuningJobEventObjectEnum;
     /**
      * The object identifier.
-     * @type {string}
-     * @memberof FineTuningJobEvent
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) for when the fine-tuning job was created.
-     * @type {number}
-     * @memberof FineTuningJobEvent
      */
     createdAt: number;
     /**
      * The log level of the event.
-     * @type {FineTuningJobEventLevelEnum}
-     * @memberof FineTuningJobEvent
      */
     level: FineTuningJobEventLevelEnum;
     /**
      * The message of the event.
-     * @type {string}
-     * @memberof FineTuningJobEvent
      */
     message: string;
     /**
      * The type of event.
-     * @type {FineTuningJobEventTypeEnum}
-     * @memberof FineTuningJobEvent
      */
     type?: FineTuningJobEventTypeEnum;
     /**
      * The data associated with the event.
-     * @type {object}
-     * @memberof FineTuningJobEvent
      */
     data?: object;
 }
@@ -68,7 +54,7 @@ export interface FineTuningJobEvent {
  * @export
  */
 export const FineTuningJobEventObjectEnum = {
-    FineTuningJobEvent: 'fine_tuning.job.event'
+    FineTuningJobEvent: 'fine_tuning.job.event',
 } as const;
 export type FineTuningJobEventObjectEnum = typeof FineTuningJobEventObjectEnum[keyof typeof FineTuningJobEventObjectEnum];
 
@@ -78,7 +64,7 @@ export type FineTuningJobEventObjectEnum = typeof FineTuningJobEventObjectEnum[k
 export const FineTuningJobEventLevelEnum = {
     Info: 'info',
     Warn: 'warn',
-    Error: 'error'
+    Error: 'error',
 } as const;
 export type FineTuningJobEventLevelEnum = typeof FineTuningJobEventLevelEnum[keyof typeof FineTuningJobEventLevelEnum];
 
@@ -87,7 +73,7 @@ export type FineTuningJobEventLevelEnum = typeof FineTuningJobEventLevelEnum[key
  */
 export const FineTuningJobEventTypeEnum = {
     Message: 'message',
-    Metrics: 'metrics'
+    Metrics: 'metrics',
 } as const;
 export type FineTuningJobEventTypeEnum = typeof FineTuningJobEventTypeEnum[keyof typeof FineTuningJobEventTypeEnum];
 

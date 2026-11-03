@@ -75,15 +75,14 @@ class _$AssistantsApiResponseFormatOptionSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The type of response format being defined: `text`
 class AssistantsApiResponseFormatOptionTypeEnum extends EnumClass {
 
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'text')
   static const AssistantsApiResponseFormatOptionTypeEnum text = _$assistantsApiResponseFormatOptionTypeEnum_text;
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'json_object')
   static const AssistantsApiResponseFormatOptionTypeEnum jsonObject = _$assistantsApiResponseFormatOptionTypeEnum_jsonObject;
-  /// The type of response format being defined: `text`
   @BuiltValueEnumConst(wireName: r'json_schema')
   static const AssistantsApiResponseFormatOptionTypeEnum jsonSchema = _$assistantsApiResponseFormatOptionTypeEnum_jsonSchema;
 

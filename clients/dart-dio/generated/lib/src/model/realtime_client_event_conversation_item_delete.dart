@@ -144,9 +144,10 @@ class _$RealtimeClientEventConversationItemDeleteSerializer implements Primitive
   }
 }
 
+
+/// The event type, must be `conversation.item.delete`.
 class RealtimeClientEventConversationItemDeleteTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.delete`.
   @BuiltValueEnumConst(wireName: r'conversation.item.delete')
   static const RealtimeClientEventConversationItemDeleteTypeEnum conversationPeriodItemPeriodDelete = _$realtimeClientEventConversationItemDeleteTypeEnum_conversationPeriodItemPeriodDelete;
 

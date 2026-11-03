@@ -25,6 +25,9 @@ import {
 } from '../models/CreateModerationResponse';
 
 export interface CreateModerationOperationRequest {
+    /**
+     * 
+     */
     createModerationRequest: CreateModerationRequest;
 }
 

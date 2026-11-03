@@ -200,16 +200,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (beta.IsSet && beta.Value == null)
-                throw new ArgumentNullException(nameof(beta), "Property is not nullable for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Property is not nullable for class FineTuneDPOMethodHyperparameters: beta.");
 
             if (batchSize.IsSet && batchSize.Value == null)
-                throw new ArgumentNullException(nameof(batchSize), "Property is not nullable for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Property is not nullable for class FineTuneDPOMethodHyperparameters: batch_size.");
 
             if (learningRateMultiplier.IsSet && learningRateMultiplier.Value == null)
-                throw new ArgumentNullException(nameof(learningRateMultiplier), "Property is not nullable for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Property is not nullable for class FineTuneDPOMethodHyperparameters: learning_rate_multiplier.");
 
             if (nEpochs.IsSet && nEpochs.Value == null)
-                throw new ArgumentNullException(nameof(nEpochs), "Property is not nullable for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Property is not nullable for class FineTuneDPOMethodHyperparameters: n_epochs.");
 
             return new FineTuneDPOMethodHyperparameters(beta, batchSize, learningRateMultiplier, nEpochs);
         }
@@ -220,7 +220,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparameters"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneDPOMethodHyperparameters fineTuneDPOMethodHyperparameters, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,20 +234,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparameters"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneDPOMethodHyperparameters fineTuneDPOMethodHyperparameters, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTuneDPOMethodHyperparameters.BetaOption.IsSet && fineTuneDPOMethodHyperparameters.Beta == null)
-                throw new ArgumentNullException(nameof(fineTuneDPOMethodHyperparameters.Beta), "Property is required for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Cannot write null property FineTuneDPOMethodHyperparameters.Beta to non-nullable JSON property 'beta'.");
 
             if (fineTuneDPOMethodHyperparameters.BatchSizeOption.IsSet && fineTuneDPOMethodHyperparameters.BatchSize == null)
-                throw new ArgumentNullException(nameof(fineTuneDPOMethodHyperparameters.BatchSize), "Property is required for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Cannot write null property FineTuneDPOMethodHyperparameters.BatchSize to non-nullable JSON property 'batch_size'.");
 
             if (fineTuneDPOMethodHyperparameters.LearningRateMultiplierOption.IsSet && fineTuneDPOMethodHyperparameters.LearningRateMultiplier == null)
-                throw new ArgumentNullException(nameof(fineTuneDPOMethodHyperparameters.LearningRateMultiplier), "Property is required for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Cannot write null property FineTuneDPOMethodHyperparameters.LearningRateMultiplier to non-nullable JSON property 'learning_rate_multiplier'.");
 
             if (fineTuneDPOMethodHyperparameters.NEpochsOption.IsSet && fineTuneDPOMethodHyperparameters.NEpochs == null)
-                throw new ArgumentNullException(nameof(fineTuneDPOMethodHyperparameters.NEpochs), "Property is required for class FineTuneDPOMethodHyperparameters.");
+                throw new JsonException("Cannot write null property FineTuneDPOMethodHyperparameters.NEpochs to non-nullable JSON property 'n_epochs'.");
 
             if (fineTuneDPOMethodHyperparameters.BetaOption.IsSet)
             {

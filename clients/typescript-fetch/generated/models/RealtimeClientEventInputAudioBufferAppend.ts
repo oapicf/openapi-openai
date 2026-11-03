@@ -31,22 +31,16 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventInputAudioBufferAppend {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventInputAudioBufferAppend
      */
     eventId?: string;
     /**
      * The event type, must be `input_audio_buffer.append`.
-     * @type {RealtimeClientEventInputAudioBufferAppendTypeEnum}
-     * @memberof RealtimeClientEventInputAudioBufferAppend
      */
     type: RealtimeClientEventInputAudioBufferAppendTypeEnum;
     /**
      * Base64-encoded audio bytes. This must be in the format specified by the 
      * `input_audio_format` field in the session configuration.
      * 
-     * @type {string}
-     * @memberof RealtimeClientEventInputAudioBufferAppend
      */
     audio: string;
 }
@@ -56,7 +50,7 @@ export interface RealtimeClientEventInputAudioBufferAppend {
  * @export
  */
 export const RealtimeClientEventInputAudioBufferAppendTypeEnum = {
-    InputAudioBufferAppend: 'input_audio_buffer.append'
+    InputAudioBufferAppend: 'input_audio_buffer.append',
 } as const;
 export type RealtimeClientEventInputAudioBufferAppendTypeEnum = typeof RealtimeClientEventInputAudioBufferAppendTypeEnum[keyof typeof RealtimeClientEventInputAudioBufferAppendTypeEnum];
 

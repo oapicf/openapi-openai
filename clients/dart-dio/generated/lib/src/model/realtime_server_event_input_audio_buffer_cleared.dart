@@ -124,9 +124,10 @@ class _$RealtimeServerEventInputAudioBufferClearedSerializer implements Primitiv
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.cleared`.
 class RealtimeServerEventInputAudioBufferClearedTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.cleared`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.cleared')
   static const RealtimeServerEventInputAudioBufferClearedTypeEnum inputAudioBufferPeriodCleared = _$realtimeServerEventInputAudioBufferClearedTypeEnum_inputAudioBufferPeriodCleared;
 

@@ -124,9 +124,10 @@ class _$ResponseFormatJsonSchemaSerializer implements PrimitiveSerializer<Respon
   }
 }
 
+
+/// The type of response format being defined: `json_schema`
 class ResponseFormatJsonSchemaTypeEnum extends EnumClass {
 
-  /// The type of response format being defined: `json_schema`
   @BuiltValueEnumConst(wireName: r'json_schema')
   static const ResponseFormatJsonSchemaTypeEnum jsonSchema = _$responseFormatJsonSchemaTypeEnum_jsonSchema;
 

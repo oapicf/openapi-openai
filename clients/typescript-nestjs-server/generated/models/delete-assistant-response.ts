@@ -7,7 +7,7 @@ export interface DeleteAssistantResponse {
 }
 export namespace DeleteAssistantResponse {
   export const ObjectEnum = {
-    AssistantDeleted: 'assistant.deleted'
+    AssistantDeleted: 'assistant.deleted',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

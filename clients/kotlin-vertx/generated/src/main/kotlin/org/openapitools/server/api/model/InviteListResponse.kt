@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;object&#x60; The object type, which is always `list`
- * @param &#x60;data&#x60; 
+ * @param `object` The object type, which is always `list`
+ * @param `data` 
  * @param firstId The first `invite_id` in the retrieved `list`
  * @param lastId The last `invite_id` in the retrieved `list`
  * @param hasMore The `has_more` property is used for pagination to indicate there are additional results.

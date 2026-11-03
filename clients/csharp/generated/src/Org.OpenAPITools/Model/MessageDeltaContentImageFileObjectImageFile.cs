@@ -236,7 +236,12 @@ namespace Org.OpenAPITools.Model
                         case "detail":
                             string? detailRawValue = utf8JsonReader.GetString();
                             if (detailRawValue != null)
-                                detail = new Option<MessageDeltaContentImageFileObjectImageFile.DetailEnum?>(MessageDeltaContentImageFileObjectImageFile.DetailEnumFromStringOrDefault(detailRawValue));
+                            {
+                                MessageDeltaContentImageFileObjectImageFile.DetailEnum? detailValue = MessageDeltaContentImageFileObjectImageFile.DetailEnumFromStringOrDefault(detailRawValue);
+                                if (detailValue == null)
+                                    throw new JsonException();
+                                detail = new Option<MessageDeltaContentImageFileObjectImageFile.DetailEnum?>(detailValue);
+                            }
                             break;
                         default:
                             break;
@@ -245,10 +250,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class MessageDeltaContentImageFileObjectImageFile.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageFileObjectImageFile: file_id.");
 
             if (detail.IsSet && detail.Value == null)
-                throw new ArgumentNullException(nameof(detail), "Property is not nullable for class MessageDeltaContentImageFileObjectImageFile.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageFileObjectImageFile: detail.");
 
             return new MessageDeltaContentImageFileObjectImageFile(fileId, detail);
         }
@@ -259,7 +264,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageFileObjectImageFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentImageFileObjectImageFile messageDeltaContentImageFileObjectImageFile, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -274,11 +278,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageFileObjectImageFile"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentImageFileObjectImageFile messageDeltaContentImageFileObjectImageFile, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentImageFileObjectImageFile.FileIdOption.IsSet && messageDeltaContentImageFileObjectImageFile.FileId == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentImageFileObjectImageFile.FileId), "Property is required for class MessageDeltaContentImageFileObjectImageFile.");
+                throw new JsonException("Cannot write null property MessageDeltaContentImageFileObjectImageFile.FileId to non-nullable JSON property 'file_id'.");
+
+            if (messageDeltaContentImageFileObjectImageFile.DetailOption.IsSet && messageDeltaContentImageFileObjectImageFile.Detail == null)
+                throw new JsonException("Cannot write null property MessageDeltaContentImageFileObjectImageFile.Detail to non-nullable JSON property 'detail'.");
 
             if (messageDeltaContentImageFileObjectImageFile.FileIdOption.IsSet)
                 writer.WriteString("file_id", messageDeltaContentImageFileObjectImageFile.FileId);

@@ -76,15 +76,14 @@ class _$AssistantObjectToolsInnerSerializer implements PrimitiveSerializer<Assis
   }
 }
 
+
+/// The type of tool being defined: `code_interpreter`
 class AssistantObjectToolsInnerTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'code_interpreter')
   static const AssistantObjectToolsInnerTypeEnum codeInterpreter = _$assistantObjectToolsInnerTypeEnum_codeInterpreter;
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'file_search')
   static const AssistantObjectToolsInnerTypeEnum fileSearch = _$assistantObjectToolsInnerTypeEnum_fileSearch;
-  /// The type of tool being defined: `code_interpreter`
   @BuiltValueEnumConst(wireName: r'function')
   static const AssistantObjectToolsInnerTypeEnum function_ = _$assistantObjectToolsInnerTypeEnum_function_;
 

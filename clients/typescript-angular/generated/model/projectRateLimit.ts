@@ -52,7 +52,7 @@ export interface ProjectRateLimit {
 }
 export namespace ProjectRateLimit {
     export const ObjectEnum = {
-        ProjectRateLimit: 'project.rate_limit'
+        ProjectRateLimit: 'project.rate_limit',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

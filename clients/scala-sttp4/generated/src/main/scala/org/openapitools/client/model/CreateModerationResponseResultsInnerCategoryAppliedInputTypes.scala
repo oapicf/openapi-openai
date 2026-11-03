@@ -47,7 +47,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait Hate
   object Hate {
-    case object Text extends Hate
+    case object Text extends Hate { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -68,7 +68,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait HateThreatening
   object HateThreatening {
-    case object Text extends HateThreatening
+    case object Text extends HateThreatening { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -89,7 +89,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait Harassment
   object Harassment {
-    case object Text extends Harassment
+    case object Text extends Harassment { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -110,7 +110,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait HarassmentThreatening
   object HarassmentThreatening {
-    case object Text extends HarassmentThreatening
+    case object Text extends HarassmentThreatening { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -131,7 +131,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait Illicit
   object Illicit {
-    case object Text extends Illicit
+    case object Text extends Illicit { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -152,7 +152,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait IllicitViolent
   object IllicitViolent {
-    case object Text extends IllicitViolent
+    case object Text extends IllicitViolent { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -173,8 +173,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait SelfHarm
   object SelfHarm {
-    case object Text extends SelfHarm
-    case object Image extends SelfHarm
+    case object Text extends SelfHarm { override def toString: String = "text" }
+    case object Image extends SelfHarm { override def toString: String = "image" }
 
     import org.json4s._
 
@@ -197,8 +197,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait SelfHarmIntent
   object SelfHarmIntent {
-    case object Text extends SelfHarmIntent
-    case object Image extends SelfHarmIntent
+    case object Text extends SelfHarmIntent { override def toString: String = "text" }
+    case object Image extends SelfHarmIntent { override def toString: String = "image" }
 
     import org.json4s._
 
@@ -221,8 +221,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait SelfHarmInstructions
   object SelfHarmInstructions {
-    case object Text extends SelfHarmInstructions
-    case object Image extends SelfHarmInstructions
+    case object Text extends SelfHarmInstructions { override def toString: String = "text" }
+    case object Image extends SelfHarmInstructions { override def toString: String = "image" }
 
     import org.json4s._
 
@@ -245,8 +245,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait Sexual
   object Sexual {
-    case object Text extends Sexual
-    case object Image extends Sexual
+    case object Text extends Sexual { override def toString: String = "text" }
+    case object Image extends Sexual { override def toString: String = "image" }
 
     import org.json4s._
 
@@ -269,7 +269,7 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait SexualMinors
   object SexualMinors {
-    case object Text extends SexualMinors
+    case object Text extends SexualMinors { override def toString: String = "text" }
 
     import org.json4s._
 
@@ -290,8 +290,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait Violence
   object Violence {
-    case object Text extends Violence
-    case object Image extends Violence
+    case object Text extends Violence { override def toString: String = "text" }
+    case object Image extends Violence { override def toString: String = "image" }
 
     import org.json4s._
 
@@ -314,8 +314,8 @@ object CreateModerationResponseResultsInnerCategoryAppliedInputTypesEnums {
 
   sealed trait ViolenceGraphic
   object ViolenceGraphic {
-    case object Text extends ViolenceGraphic
-    case object Image extends ViolenceGraphic
+    case object Text extends ViolenceGraphic { override def toString: String = "text" }
+    case object Image extends ViolenceGraphic { override def toString: String = "image" }
 
     import org.json4s._
 

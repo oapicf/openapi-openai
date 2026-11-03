@@ -203,10 +203,10 @@ try {
 ```
 
 ### Parameters
-| **after** | **kotlin.String**|  | [optional] |
-| **order** | **kotlin.String**|  | [optional] [default to Order.asc] [enum: asc, desc] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **after** | **kotlin.String**|  | [optional] |
+| **order** | **kotlin.String**|  | [optional] [default to Order.asc] [enum: asc, desc] |
 | **limit** | **kotlin.Int**|  | [optional] [default to 20] |
 
 ### Return type

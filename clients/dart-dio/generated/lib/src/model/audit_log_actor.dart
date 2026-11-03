@@ -150,12 +150,12 @@ class _$AuditLogActorSerializer implements PrimitiveSerializer<AuditLogActor> {
   }
 }
 
+
+/// The type of actor. Is either `session` or `api_key`.
 class AuditLogActorTypeEnum extends EnumClass {
 
-  /// The type of actor. Is either `session` or `api_key`.
   @BuiltValueEnumConst(wireName: r'session')
   static const AuditLogActorTypeEnum session = _$auditLogActorTypeEnum_session;
-  /// The type of actor. Is either `session` or `api_key`.
   @BuiltValueEnumConst(wireName: r'api_key')
   static const AuditLogActorTypeEnum apiKey = _$auditLogActorTypeEnum_apiKey;
 

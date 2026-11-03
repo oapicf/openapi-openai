@@ -32,7 +32,7 @@ import javax.validation.Valid;
   AssistantToolsFileSearchFileSearch.JSON_PROPERTY_MAX_NUM_RESULTS,
   AssistantToolsFileSearchFileSearch.JSON_PROPERTY_RANKING_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantToolsFileSearchFileSearch   {
   public static final String JSON_PROPERTY_MAX_NUM_RESULTS = "max_num_results";
   @JsonProperty(JSON_PROPERTY_MAX_NUM_RESULTS)

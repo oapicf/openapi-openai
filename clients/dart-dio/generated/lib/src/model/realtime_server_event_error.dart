@@ -141,9 +141,10 @@ class _$RealtimeServerEventErrorSerializer implements PrimitiveSerializer<Realti
   }
 }
 
+
+/// The event type, must be `error`.
 class RealtimeServerEventErrorTypeEnum extends EnumClass {
 
-  /// The event type, must be `error`.
   @BuiltValueEnumConst(wireName: r'error')
   static const RealtimeServerEventErrorTypeEnum error = _$realtimeServerEventErrorTypeEnum_error;
 

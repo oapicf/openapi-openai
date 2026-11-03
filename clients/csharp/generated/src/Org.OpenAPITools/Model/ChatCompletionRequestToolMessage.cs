@@ -201,7 +201,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ChatCompletionRequestToolMessage.RoleEnum?>(ChatCompletionRequestToolMessage.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ChatCompletionRequestToolMessage.RoleEnum? roleValue = ChatCompletionRequestToolMessage.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ChatCompletionRequestToolMessage.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<ChatCompletionRequestToolMessageContent?>(JsonSerializer.Deserialize<ChatCompletionRequestToolMessageContent>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestToolMessage.", nameof(role));
+                throw new JsonException("Property is required for class ChatCompletionRequestToolMessage: role.");
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestToolMessage.", nameof(content));
+                throw new JsonException("Property is required for class ChatCompletionRequestToolMessage: content.");
 
             if (!toolCallId.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestToolMessage.", nameof(toolCallId));
+                throw new JsonException("Property is required for class ChatCompletionRequestToolMessage: tool_call_id.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ChatCompletionRequestToolMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestToolMessage: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class ChatCompletionRequestToolMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestToolMessage: content.");
 
             if (toolCallId.IsSet && toolCallId.Value == null)
-                throw new ArgumentNullException(nameof(toolCallId), "Property is not nullable for class ChatCompletionRequestToolMessage.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestToolMessage: tool_call_id.");
 
             return new ChatCompletionRequestToolMessage(role.Value!.Value!, content.Value!, toolCallId.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestToolMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestToolMessage chatCompletionRequestToolMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestToolMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestToolMessage chatCompletionRequestToolMessage, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestToolMessage.Content == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestToolMessage.Content), "Property is required for class ChatCompletionRequestToolMessage.");
-
-            if (chatCompletionRequestToolMessage.ToolCallId == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestToolMessage.ToolCallId), "Property is required for class ChatCompletionRequestToolMessage.");
-
             var roleRawValue = ChatCompletionRequestToolMessage.RoleEnumToJsonValue(chatCompletionRequestToolMessage.Role);
             writer.WriteString("role", roleRawValue);
             writer.WritePropertyName("content");

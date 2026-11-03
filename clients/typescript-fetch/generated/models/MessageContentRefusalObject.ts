@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageContentRefusalObject {
     /**
      * Always `refusal`.
-     * @type {MessageContentRefusalObjectTypeEnum}
-     * @memberof MessageContentRefusalObject
      */
     type: MessageContentRefusalObjectTypeEnum;
     /**
      * 
-     * @type {string}
-     * @memberof MessageContentRefusalObject
      */
     refusal: string;
 }
@@ -38,7 +34,7 @@ export interface MessageContentRefusalObject {
  * @export
  */
 export const MessageContentRefusalObjectTypeEnum = {
-    Refusal: 'refusal'
+    Refusal: 'refusal',
 } as const;
 export type MessageContentRefusalObjectTypeEnum = typeof MessageContentRefusalObjectTypeEnum[keyof typeof MessageContentRefusalObjectTypeEnum];
 

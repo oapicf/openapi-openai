@@ -13,7 +13,7 @@ export interface ChatCompletionNamedToolChoice {
 }
 export namespace ChatCompletionNamedToolChoice {
   export const TypeEnum = {
-    Function: 'function'
+    Function: 'function',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

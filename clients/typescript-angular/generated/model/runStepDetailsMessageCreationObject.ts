@@ -22,7 +22,7 @@ export interface RunStepDetailsMessageCreationObject {
 }
 export namespace RunStepDetailsMessageCreationObject {
     export const TypeEnum = {
-        MessageCreation: 'message_creation'
+        MessageCreation: 'message_creation',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

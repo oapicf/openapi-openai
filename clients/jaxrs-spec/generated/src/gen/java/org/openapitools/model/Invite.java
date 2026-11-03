@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents an individual `invite` to the organization.")
 @JsonTypeName("Invite")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Invite   {
   public enum ObjectEnum {
 
@@ -173,7 +173,7 @@ public class Invite   {
   private Integer invitedAt;
   private Integer expiresAt;
   private Integer acceptedAt;
-  private @Valid List<@Valid InviteProjectsInner> projects = new ArrayList<>();
+  private List<@Valid InviteProjectsInner> projects = new ArrayList<>();
 
   public Invite() {
   }
@@ -368,7 +368,7 @@ public class Invite   {
   
   @ApiModelProperty(value = "The projects that were granted membership upon acceptance of the invite.")
   @JsonProperty("projects")
-  @Valid public List<@Valid InviteProjectsInner> getProjects() {
+  public List<@Valid InviteProjectsInner> getProjects() {
     return projects;
   }
 

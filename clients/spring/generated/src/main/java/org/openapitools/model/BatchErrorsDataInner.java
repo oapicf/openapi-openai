@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -25,19 +24,15 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Batch_errors_data_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BatchErrorsDataInner {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String code;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String message;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> param = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Integer> line = JsonNullable.<Integer>undefined();
 
   public BatchErrorsDataInner code(@Nullable String code) {
@@ -92,7 +87,7 @@ public class BatchErrorsDataInner {
    * @return param
    */
   
-  @Schema(name = "param", description = "The name of the parameter that caused the error, if applicable.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "param", description = "The name of the parameter that caused the error, if applicable.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("param")
   public JsonNullable<String> getParam() {
     return param;
@@ -112,7 +107,7 @@ public class BatchErrorsDataInner {
    * @return line
    */
   
-  @Schema(name = "line", description = "The line number of the input file where the error occurred, if applicable.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "line", description = "The line number of the input file where the error occurred, if applicable.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("line")
   public JsonNullable<Integer> getLine() {
     return line;

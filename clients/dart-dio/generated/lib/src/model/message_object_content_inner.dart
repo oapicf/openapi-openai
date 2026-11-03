@@ -80,18 +80,16 @@ class _$MessageObjectContentInnerSerializer implements PrimitiveSerializer<Messa
   }
 }
 
+
+/// Always `image_file`.
 class MessageObjectContentInnerTypeEnum extends EnumClass {
 
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_file')
   static const MessageObjectContentInnerTypeEnum imageFile = _$messageObjectContentInnerTypeEnum_imageFile;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const MessageObjectContentInnerTypeEnum imageUrl = _$messageObjectContentInnerTypeEnum_imageUrl;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'text')
   static const MessageObjectContentInnerTypeEnum text = _$messageObjectContentInnerTypeEnum_text;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'refusal')
   static const MessageObjectContentInnerTypeEnum refusal = _$messageObjectContentInnerTypeEnum_refusal;
 

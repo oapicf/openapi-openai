@@ -31,34 +31,24 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     eventId: string;
     /**
      * The event type, must be
      * `conversation.item.input_audio_transcription.completed`.
      * 
-     * @type {RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     type: RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum;
     /**
      * The ID of the user message item containing the audio.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     itemId: string;
     /**
      * The index of the content part containing the audio.
-     * @type {number}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     contentIndex: number;
     /**
      * The transcribed text.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
      */
     transcript: string;
 }
@@ -68,7 +58,7 @@ export interface RealtimeServerEventConversationItemInputAudioTranscriptionCompl
  * @export
  */
 export const RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum = {
-    ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed'
+    ConversationItemInputAudioTranscriptionCompleted: 'conversation.item.input_audio_transcription.completed',
 } as const;
 export type RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum = typeof RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum[keyof typeof RealtimeServerEventConversationItemInputAudioTranscriptionCompletedTypeEnum];
 

@@ -22,7 +22,7 @@ object InviteDeleteResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationInviteDeleted extends `Object`
+    case object OrganizationInviteDeleted extends `Object` { override def toString: String = "organization.invite.deleted" }
 
     import org.json4s._
 

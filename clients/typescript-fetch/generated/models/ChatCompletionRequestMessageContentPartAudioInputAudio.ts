@@ -21,15 +21,11 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestMessageContentPartAudioInputAudio {
     /**
      * Base64 encoded audio data.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessageContentPartAudioInputAudio
      */
     data: string;
     /**
      * The format of the encoded audio data. Currently supports "wav" and "mp3".
      * 
-     * @type {ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum}
-     * @memberof ChatCompletionRequestMessageContentPartAudioInputAudio
      */
     format: ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum;
 }
@@ -40,7 +36,7 @@ export interface ChatCompletionRequestMessageContentPartAudioInputAudio {
  */
 export const ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum = {
     Wav: 'wav',
-    Mp3: 'mp3'
+    Mp3: 'mp3',
 } as const;
 export type ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum = typeof ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum[keyof typeof ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum];
 

@@ -10,7 +10,7 @@ import jakarta.validation.Valid;
 public class CreateModerationRequest   {
 
     private CreateModerationRequestInput input;
-    private CreateModerationRequestModel model;
+    private CreateModerationRequestModel model = omni-moderation-latest;
 
     /**
      * Default constructor.

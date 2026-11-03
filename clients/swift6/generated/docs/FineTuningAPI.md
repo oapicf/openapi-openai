@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **cancelFineTuningJob**
 ```swift
-    open class func cancelFineTuningJob(fineTuningJobId: String, completion: @escaping (_ data: FineTuningJob?, _ error: Error?) -> Void)
+    open class func cancelFineTuningJob(fineTuningJobId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FineTuningJob
 ```
 
 Immediately cancel a fine-tune job. 
@@ -27,15 +27,11 @@ import OpenAPIClient
 let fineTuningJobId = "fineTuningJobId_example" // String | The ID of the fine-tuning job to cancel. 
 
 // Immediately cancel a fine-tune job. 
-FineTuningAPI.cancelFineTuningJob(fineTuningJobId: fineTuningJobId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.cancelFineTuningJob(fineTuningJobId: fineTuningJobId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -62,7 +58,7 @@ Name | Type | Description  | Notes
 
 # **createFineTuningJob**
 ```swift
-    open class func createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest, completion: @escaping (_ data: FineTuningJob?, _ error: Error?) -> Void)
+    open class func createFineTuningJob(createFineTuningJobRequest: CreateFineTuningJobRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FineTuningJob
 ```
 
 Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
@@ -75,15 +71,11 @@ import OpenAPIClient
 let createFineTuningJobRequest = CreateFineTuningJobRequest(model: CreateFineTuningJobRequest_model(), trainingFile: "trainingFile_example", hyperparameters: CreateFineTuningJobRequest_hyperparameters(batchSize: CreateFineTuningJobRequest_hyperparameters_batch_size(), learningRateMultiplier: CreateFineTuningJobRequest_hyperparameters_learning_rate_multiplier(), nEpochs: CreateFineTuningJobRequest_hyperparameters_n_epochs()), suffix: "suffix_example", validationFile: "validationFile_example", integrations: [CreateFineTuningJobRequest_integrations_inner(type: "type_example", wandb: CreateFineTuningJobRequest_integrations_inner_wandb(project: "project_example", name: "name_example", entity: "entity_example", tags: ["tags_example"]))], seed: 123, method: FineTuneMethod(type: "type_example", supervised: FineTuneSupervisedMethod(hyperparameters: FineTuneSupervisedMethod_hyperparameters(batchSize: FineTuneDPOMethod_hyperparameters_batch_size(), learningRateMultiplier: FineTuneDPOMethod_hyperparameters_learning_rate_multiplier(), nEpochs: FineTuneDPOMethod_hyperparameters_n_epochs())), dpo: FineTuneDPOMethod(hyperparameters: FineTuneDPOMethod_hyperparameters(beta: FineTuneDPOMethod_hyperparameters_beta(), batchSize: nil, learningRateMultiplier: nil, nEpochs: nil)))) // CreateFineTuningJobRequest | 
 
 // Creates a fine-tuning job which begins the process of creating a new model from a given dataset.  Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
-FineTuningAPI.createFineTuningJob(createFineTuningJobRequest: createFineTuningJobRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.createFineTuningJob(createFineTuningJobRequest: createFineTuningJobRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -110,7 +102,7 @@ Name | Type | Description  | Notes
 
 # **listFineTuningEvents**
 ```swift
-    open class func listFineTuningEvents(fineTuningJobId: String, after: String? = nil, limit: Int? = nil, completion: @escaping (_ data: ListFineTuningJobEventsResponse?, _ error: Error?) -> Void)
+    open class func listFineTuningEvents(fineTuningJobId: String, after: String? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListFineTuningJobEventsResponse
 ```
 
 Get status updates for a fine-tuning job. 
@@ -125,15 +117,11 @@ let after = "after_example" // String | Identifier for the last event from the p
 let limit = 987 // Int | Number of events to retrieve. (optional) (default to 20)
 
 // Get status updates for a fine-tuning job. 
-FineTuningAPI.listFineTuningEvents(fineTuningJobId: fineTuningJobId, after: after, limit: limit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.listFineTuningEvents(fineTuningJobId: fineTuningJobId, after: after, limit: limit)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -162,7 +150,7 @@ Name | Type | Description  | Notes
 
 # **listFineTuningJobCheckpoints**
 ```swift
-    open class func listFineTuningJobCheckpoints(fineTuningJobId: String, after: String? = nil, limit: Int? = nil, completion: @escaping (_ data: ListFineTuningJobCheckpointsResponse?, _ error: Error?) -> Void)
+    open class func listFineTuningJobCheckpoints(fineTuningJobId: String, after: String? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListFineTuningJobCheckpointsResponse
 ```
 
 List checkpoints for a fine-tuning job. 
@@ -177,15 +165,11 @@ let after = "after_example" // String | Identifier for the last checkpoint ID fr
 let limit = 987 // Int | Number of checkpoints to retrieve. (optional) (default to 10)
 
 // List checkpoints for a fine-tuning job. 
-FineTuningAPI.listFineTuningJobCheckpoints(fineTuningJobId: fineTuningJobId, after: after, limit: limit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.listFineTuningJobCheckpoints(fineTuningJobId: fineTuningJobId, after: after, limit: limit)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -214,7 +198,7 @@ Name | Type | Description  | Notes
 
 # **listPaginatedFineTuningJobs**
 ```swift
-    open class func listPaginatedFineTuningJobs(after: String? = nil, limit: Int? = nil, completion: @escaping (_ data: ListPaginatedFineTuningJobsResponse?, _ error: Error?) -> Void)
+    open class func listPaginatedFineTuningJobs(after: String? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListPaginatedFineTuningJobsResponse
 ```
 
 List your organization's fine-tuning jobs 
@@ -228,15 +212,11 @@ let after = "after_example" // String | Identifier for the last job from the pre
 let limit = 987 // Int | Number of fine-tuning jobs to retrieve. (optional) (default to 20)
 
 // List your organization's fine-tuning jobs 
-FineTuningAPI.listPaginatedFineTuningJobs(after: after, limit: limit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.listPaginatedFineTuningJobs(after: after, limit: limit)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -264,7 +244,7 @@ Name | Type | Description  | Notes
 
 # **retrieveFineTuningJob**
 ```swift
-    open class func retrieveFineTuningJob(fineTuningJobId: String, completion: @escaping (_ data: FineTuningJob?, _ error: Error?) -> Void)
+    open class func retrieveFineTuningJob(fineTuningJobId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FineTuningJob
 ```
 
 Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
@@ -277,15 +257,11 @@ import OpenAPIClient
 let fineTuningJobId = "fineTuningJobId_example" // String | The ID of the fine-tuning job. 
 
 // Get info about a fine-tuning job.  [Learn more about fine-tuning](/docs/guides/fine-tuning) 
-FineTuningAPI.retrieveFineTuningJob(fineTuningJobId: fineTuningJobId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FineTuningAPI.retrieveFineTuningJob(fineTuningJobId: fineTuningJobId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

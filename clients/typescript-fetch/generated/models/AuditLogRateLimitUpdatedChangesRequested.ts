@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface AuditLogRateLimitUpdatedChangesRequested {
     /**
      * The maximum requests per minute.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     maxRequestsPer1Minute?: number;
     /**
      * The maximum tokens per minute.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     maxTokensPer1Minute?: number;
     /**
      * The maximum images per minute. Only relevant for certain models.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     maxImagesPer1Minute?: number;
     /**
      * The maximum audio megabytes per minute. Only relevant for certain models.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     maxAudioMegabytesPer1Minute?: number;
     /**
      * The maximum requests per day. Only relevant for certain models.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     maxRequestsPer1Day?: number;
     /**
      * The maximum batch input tokens per day. Only relevant for certain models.
-     * @type {number}
-     * @memberof AuditLogRateLimitUpdatedChangesRequested
      */
     batch1DayMaxInputTokens?: number;
 }

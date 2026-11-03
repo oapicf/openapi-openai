@@ -25,7 +25,7 @@ export interface TruncationObject {
 export namespace TruncationObject {
     export const TypeEnum = {
         Auto: 'auto',
-        LastMessages: 'last_messages'
+        LastMessages: 'last_messages',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

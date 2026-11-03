@@ -123,6 +123,7 @@ class _$RunStepStreamEventOneOf5Serializer implements PrimitiveSerializer<RunSte
   }
 }
 
+
 class RunStepStreamEventOneOf5EventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.run.step.cancelled')

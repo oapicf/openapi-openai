@@ -220,6 +220,7 @@ class _$UsageModerationsResultSerializer implements PrimitiveSerializer<UsageMod
   }
 }
 
+
 class UsageModerationsResultObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.usage.moderations.result')

@@ -19,7 +19,7 @@ export interface FineTuningIntegration {
 }
 export namespace FineTuningIntegration {
     export const TypeEnum = {
-        Wandb: 'wandb'
+        Wandb: 'wandb',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

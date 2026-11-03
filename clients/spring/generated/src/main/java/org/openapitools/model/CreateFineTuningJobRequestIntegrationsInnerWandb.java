@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -28,18 +27,15 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateFineTuningJobRequest_integrations_inner_wandb", description = "The settings for your integration with Weights and Biases. This payload specifies the project that metrics will be sent to. Optionally, you can set an explicit display name for your run, add tags to your run, and set a default entity (team, username, etc) to be associated with your run. ")
 @JsonTypeName("CreateFineTuningJobRequest_integrations_inner_wandb")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequestIntegrationsInnerWandb {
 
   private String project;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> entity = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> tags = new ArrayList<>();
 
   public CreateFineTuningJobRequestIntegrationsInnerWandb() {
@@ -84,7 +80,7 @@ public class CreateFineTuningJobRequestIntegrationsInnerWandb {
    * @return name
    */
   
-  @Schema(name = "name", description = "A display name to set for the run. If not set, we will use the Job ID as the name. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "name", description = "A display name to set for the run. If not set, we will use the Job ID as the name. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("name")
   public JsonNullable<String> getName() {
     return name;
@@ -104,7 +100,7 @@ public class CreateFineTuningJobRequestIntegrationsInnerWandb {
    * @return entity
    */
   
-  @Schema(name = "entity", description = "The entity to use for the run. This allows you to set the team or username of the WandB user that you would like associated with the run. If not set, the default entity for the registered WandB API key is used. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "entity", description = "The entity to use for the run. This allows you to set the team or username of the WandB user that you would like associated with the run. If not set, the default entity for the registered WandB API key is used. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("entity")
   public JsonNullable<String> getEntity() {
     return entity;

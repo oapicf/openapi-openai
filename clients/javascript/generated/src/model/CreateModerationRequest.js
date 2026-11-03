@@ -17,7 +17,7 @@ import CreateModerationRequestInput from './CreateModerationRequestInput';
 /**
  * The CreateModerationRequest model module.
  * @module model/CreateModerationRequest
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateModerationRequest {
     /**

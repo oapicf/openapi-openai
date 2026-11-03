@@ -27,14 +27,14 @@ class BaseUploadsApi:
 
     async def cancel_upload(
         self,
-        upload_id: Annotated[StrictStr, Field(description="The ID of the Upload. ")],
+        upload_id: Annotated[str, Field(description="The ID of the Upload. ")],
     ) -> Upload:
         ...
 
 
     async def complete_upload(
         self,
-        upload_id: Annotated[StrictStr, Field(description="The ID of the Upload. ")],
+        upload_id: Annotated[str, Field(description="The ID of the Upload. ")],
         complete_upload_request: CompleteUploadRequest,
     ) -> Upload:
         ...
@@ -42,7 +42,7 @@ class BaseUploadsApi:
 
     async def add_upload_part(
         self,
-        upload_id: Annotated[StrictStr, Field(description="The ID of the Upload. ")],
+        upload_id: Annotated[str, Field(description="The ID of the Upload. ")],
         data: UploadFile,
     ) -> UploadPart:
         ...

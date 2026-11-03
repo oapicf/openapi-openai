@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ChatCompletionTool.TypeEnum?>(ChatCompletionTool.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ChatCompletionTool.TypeEnum? typeValue = ChatCompletionTool.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ChatCompletionTool.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "function":
                             function = new Option<FunctionObject?>(JsonSerializer.Deserialize<FunctionObject>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTool.", nameof(type));
+                throw new JsonException("Property is required for class ChatCompletionTool: type.");
 
             if (!function.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionTool.", nameof(function));
+                throw new JsonException("Property is required for class ChatCompletionTool: function.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ChatCompletionTool.");
+                throw new JsonException("Property is not nullable for class ChatCompletionTool: type.");
 
             if (function.IsSet && function.Value == null)
-                throw new ArgumentNullException(nameof(function), "Property is not nullable for class ChatCompletionTool.");
+                throw new JsonException("Property is not nullable for class ChatCompletionTool: function.");
 
             return new ChatCompletionTool(type.Value!.Value!, function.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionTool"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionTool chatCompletionTool, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionTool"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionTool chatCompletionTool, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionTool.Function == null)
-                throw new ArgumentNullException(nameof(chatCompletionTool.Function), "Property is required for class ChatCompletionTool.");
-
             var typeRawValue = ChatCompletionTool.TypeEnumToJsonValue(chatCompletionTool.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("function");

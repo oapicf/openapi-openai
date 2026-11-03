@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunObjectLastError {
     /**
      * One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
-     * @type {RunObjectLastErrorCodeEnum}
-     * @memberof RunObjectLastError
      */
     code: RunObjectLastErrorCodeEnum;
     /**
      * A human-readable description of the error.
-     * @type {string}
-     * @memberof RunObjectLastError
      */
     message: string;
 }
@@ -40,7 +36,7 @@ export interface RunObjectLastError {
 export const RunObjectLastErrorCodeEnum = {
     ServerError: 'server_error',
     RateLimitExceeded: 'rate_limit_exceeded',
-    InvalidPrompt: 'invalid_prompt'
+    InvalidPrompt: 'invalid_prompt',
 } as const;
 export type RunObjectLastErrorCodeEnum = typeof RunObjectLastErrorCodeEnum[keyof typeof RunObjectLastErrorCodeEnum];
 

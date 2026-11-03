@@ -16,7 +16,7 @@ export interface RunStepDeltaStepDetailsToolCallsObject {
 }
 export namespace RunStepDeltaStepDetailsToolCallsObject {
   export const TypeEnum = {
-    ToolCalls: 'tool_calls'
+    ToolCalls: 'tool_calls',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

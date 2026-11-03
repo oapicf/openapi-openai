@@ -162,22 +162,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!completionTokens.IsSet)
-                throw new ArgumentException("Property is required for class RunCompletionUsage.", nameof(completionTokens));
+                throw new JsonException("Property is required for class RunCompletionUsage: completion_tokens.");
 
             if (!promptTokens.IsSet)
-                throw new ArgumentException("Property is required for class RunCompletionUsage.", nameof(promptTokens));
+                throw new JsonException("Property is required for class RunCompletionUsage: prompt_tokens.");
 
             if (!totalTokens.IsSet)
-                throw new ArgumentException("Property is required for class RunCompletionUsage.", nameof(totalTokens));
+                throw new JsonException("Property is required for class RunCompletionUsage: total_tokens.");
 
             if (completionTokens.IsSet && completionTokens.Value == null)
-                throw new ArgumentNullException(nameof(completionTokens), "Property is not nullable for class RunCompletionUsage.");
+                throw new JsonException("Property is not nullable for class RunCompletionUsage: completion_tokens.");
 
             if (promptTokens.IsSet && promptTokens.Value == null)
-                throw new ArgumentNullException(nameof(promptTokens), "Property is not nullable for class RunCompletionUsage.");
+                throw new JsonException("Property is not nullable for class RunCompletionUsage: prompt_tokens.");
 
             if (totalTokens.IsSet && totalTokens.Value == null)
-                throw new ArgumentNullException(nameof(totalTokens), "Property is not nullable for class RunCompletionUsage.");
+                throw new JsonException("Property is not nullable for class RunCompletionUsage: total_tokens.");
 
             return new RunCompletionUsage(completionTokens.Value!.Value!, promptTokens.Value!.Value!, totalTokens.Value!.Value!);
         }
@@ -188,7 +188,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runCompletionUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunCompletionUsage runCompletionUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -203,7 +202,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runCompletionUsage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunCompletionUsage runCompletionUsage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("completion_tokens", runCompletionUsage.CompletionTokens);

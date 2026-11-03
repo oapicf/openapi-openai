@@ -76,8 +76,7 @@ class MessageDeltaContentTextObjectText(BaseModel):
         _items = []
         if self.annotations:
             for _item_annotations in self.annotations:
-                if _item_annotations:
-                    _items.append(_item_annotations.to_dict())
+                _items.append(_item_annotations.to_dict() if _item_annotations is not None else None)
             _dict['annotations'] = _items
         return _dict
 

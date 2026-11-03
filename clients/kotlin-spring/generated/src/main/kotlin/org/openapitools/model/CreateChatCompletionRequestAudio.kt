@@ -23,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateChatCompletionRequestAudio(
 
     @Schema(required = true, description = "The voice the model uses to respond. Supported voices are `ash`, `ballad`, `coral`, `sage`, and `verse` (also supported but not recommended are `alloy`, `echo`, and `shimmer`; these voices are less expressive). ")
-    @param:JsonProperty("voice")
+    @param:JsonProperty("voice", required = true)
     @get:JsonProperty("voice", required = true) val voice: CreateChatCompletionRequestAudio.Voice,
 
     @Schema(required = true, description = "Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`. ")
-    @param:JsonProperty("format")
+    @param:JsonProperty("format", required = true)
     @get:JsonProperty("format", required = true) val format: CreateChatCompletionRequestAudio.Format
 ) {
 
@@ -45,12 +45,12 @@ data class CreateChatCompletionRequestAudio(
         sage("sage"),
         shimmer("shimmer"),
         verse("verse");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Voice {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Voice'")
             }
         }
@@ -67,12 +67,12 @@ data class CreateChatCompletionRequestAudio(
         flac("flac"),
         opus("opus"),
         pcm16("pcm16");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Format {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Format'")
             }
         }

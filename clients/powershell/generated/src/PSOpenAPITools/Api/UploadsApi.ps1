@@ -66,7 +66,7 @@ function Add-UploadPart {
         if (!$UploadId) {
             throw "Error! The required parameter `UploadId` missing when calling addUploadPart."
         }
-        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Web.HTTPUtility]::UrlEncode($UploadId))
+        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Uri]::EscapeDataString([string]$UploadId))
 
         if (!$Data) {
             throw "Error! The required parameter `Data` missing when calling addUploadPart."
@@ -149,7 +149,7 @@ function Stop-Upload {
         if (!$UploadId) {
             throw "Error! The required parameter `UploadId` missing when calling cancelUpload."
         }
-        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Web.HTTPUtility]::UrlEncode($UploadId))
+        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Uri]::EscapeDataString([string]$UploadId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -236,7 +236,7 @@ function Complete-Upload {
         if (!$UploadId) {
             throw "Error! The required parameter `UploadId` missing when calling completeUpload."
         }
-        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Web.HTTPUtility]::UrlEncode($UploadId))
+        $LocalVarUri = $LocalVarUri.replace('{upload_id}', [System.Uri]::EscapeDataString([string]$UploadId))
 
         if (!$CompleteUploadRequest) {
             throw "Error! The required parameter `CompleteUploadRequest` missing when calling completeUpload."

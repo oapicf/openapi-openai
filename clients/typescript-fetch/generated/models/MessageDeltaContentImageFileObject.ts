@@ -29,20 +29,14 @@ import {
 export interface MessageDeltaContentImageFileObject {
     /**
      * The index of the content part in the message.
-     * @type {number}
-     * @memberof MessageDeltaContentImageFileObject
      */
     index: number;
     /**
      * Always `image_file`.
-     * @type {MessageDeltaContentImageFileObjectTypeEnum}
-     * @memberof MessageDeltaContentImageFileObject
      */
     type: MessageDeltaContentImageFileObjectTypeEnum;
     /**
      * 
-     * @type {MessageDeltaContentImageFileObjectImageFile}
-     * @memberof MessageDeltaContentImageFileObject
      */
     imageFile?: MessageDeltaContentImageFileObjectImageFile;
 }
@@ -52,7 +46,7 @@ export interface MessageDeltaContentImageFileObject {
  * @export
  */
 export const MessageDeltaContentImageFileObjectTypeEnum = {
-    ImageFile: 'image_file'
+    ImageFile: 'image_file',
 } as const;
 export type MessageDeltaContentImageFileObjectTypeEnum = typeof MessageDeltaContentImageFileObjectTypeEnum[keyof typeof MessageDeltaContentImageFileObjectTypeEnum];
 

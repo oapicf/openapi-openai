@@ -25,16 +25,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunStepDetailsToolCallsCodeObject(
 
     @Schema(required = true, description = "The ID of the tool call.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The type of tool call. This is always going to be `code_interpreter` for this type of tool call.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RunStepDetailsToolCallsCodeObject.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("code_interpreter")
+    @param:JsonProperty("code_interpreter", required = true)
     @get:JsonProperty("code_interpreter", required = true) val codeInterpreter: RunStepDetailsToolCallsCodeObjectCodeInterpreter
 ) : RunStepDetailsToolCallsObjectToolCallsInner {
 
@@ -45,12 +45,12 @@ data class RunStepDetailsToolCallsCodeObject(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         code_interpreter("code_interpreter");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

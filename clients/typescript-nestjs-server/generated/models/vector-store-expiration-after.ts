@@ -15,7 +15,7 @@ export interface VectorStoreExpirationAfter {
 }
 export namespace VectorStoreExpirationAfter {
   export const AnchorEnum = {
-    LastActiveAt: 'last_active_at'
+    LastActiveAt: 'last_active_at',
   } as const;
   export type AnchorEnum = typeof AnchorEnum[keyof typeof AnchorEnum];
 }

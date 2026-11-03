@@ -29,14 +29,10 @@ import {
 export interface AssistantsNamedToolChoice {
     /**
      * The type of the tool. If type is `function`, the function name must be set
-     * @type {AssistantsNamedToolChoiceTypeEnum}
-     * @memberof AssistantsNamedToolChoice
      */
     type: AssistantsNamedToolChoiceTypeEnum;
     /**
      * 
-     * @type {AssistantsNamedToolChoiceFunction}
-     * @memberof AssistantsNamedToolChoice
      */
     _function?: AssistantsNamedToolChoiceFunction;
 }
@@ -48,7 +44,7 @@ export interface AssistantsNamedToolChoice {
 export const AssistantsNamedToolChoiceTypeEnum = {
     Function: 'function',
     CodeInterpreter: 'code_interpreter',
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 export type AssistantsNamedToolChoiceTypeEnum = typeof AssistantsNamedToolChoiceTypeEnum[keyof typeof AssistantsNamedToolChoiceTypeEnum];
 

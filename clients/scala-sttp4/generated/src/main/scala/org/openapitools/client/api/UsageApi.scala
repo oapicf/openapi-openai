@@ -40,7 +40,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageAudioSpeeches(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageAudioSpeeches(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/audio_speeches?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -65,7 +65,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageAudioTranscriptions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageAudioTranscriptions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/audio_transcriptions?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -87,7 +87,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageCodeInterpreterSessions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageCodeInterpreterSessions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/code_interpreter_sessions?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -113,7 +113,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageCompletions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, batch: Option[Boolean] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageCompletions(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, batch: Option[Boolean] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/completions?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&batch=${ batch }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -135,7 +135,7 @@ class UsageApi(baseUrl: String) {
    * @param limit A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7. 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageCosts(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageCosts(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/costs?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -160,7 +160,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageEmbeddings(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageEmbeddings(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/embeddings?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -187,7 +187,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageImages(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, sources: Option[Seq[String]] = None, sizes: Option[Seq[String]] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageImages(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, sources: Option[Seq[String]] = None, sizes: Option[Seq[String]] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/images?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&sources=${ sources }&sizes=${ sizes }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -212,7 +212,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageModerations(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageModerations(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, userIds: Option[Seq[String]] = None, apiKeyIds: Option[Seq[String]] = None, models: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/moderations?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&user_ids=${ userIds }&api_key_ids=${ apiKeyIds }&models=${ models }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")
@@ -234,7 +234,7 @@ class UsageApi(baseUrl: String) {
    * @param limit Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440 
    * @param page A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
    */
-  def usageVectorStores(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): Request[Either[ResponseException[String], UsageResponse]] =
+  def usageVectorStores(bearerToken: String)(startTime: Int, endTime: Option[Int] = None, bucketWidth: Option[String] = None, projectIds: Option[Seq[String]] = None, groupBy: Option[Seq[String]] = None, limit: Option[Int] = None, page: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], UsageResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/usage/vector_stores?start_time=${ startTime }&end_time=${ endTime }&bucket_width=${ bucketWidth }&project_ids=${ projectIds }&group_by=${ groupBy }&limit=${ limit }&page=${ page }")
       .contentType("application/json")

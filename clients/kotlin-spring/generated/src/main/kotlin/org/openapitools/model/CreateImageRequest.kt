@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.CreateImageRequestModel
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -33,7 +30,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateImageRequest(
 
     @Schema(example = "A cute baby sea otter", required = true, description = "A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.")
-    @param:JsonProperty("prompt")
+    @param:JsonProperty("prompt", required = true)
     @get:JsonProperty("prompt", required = true) val prompt: kotlin.String,
 
     @field:Valid
@@ -48,8 +45,6 @@ data class CreateImageRequest(
     @get:JsonProperty("n") val n: kotlin.Int? = 1,
 
     @Schema(example = "standard", description = "The quality of the image that will be generated. `hd` creates images with finer details and greater consistency across the image. This param is only supported for `dall-e-3`.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("quality")
     @get:JsonProperty("quality") val quality: CreateImageRequest.Quality? = Quality.standard,
 
@@ -66,8 +61,6 @@ data class CreateImageRequest(
     @get:JsonProperty("style") val style: CreateImageRequest.Style? = Style.vivid,
 
     @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("user")
     @get:JsonProperty("user") val user: kotlin.String? = null
 ) {
@@ -80,12 +73,12 @@ data class CreateImageRequest(
 
         standard("standard"),
         hd("hd");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Quality {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Quality'")
             }
         }
@@ -99,12 +92,12 @@ data class CreateImageRequest(
 
         url("url"),
         b64_json("b64_json");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): ResponseFormat {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ResponseFormat'")
             }
         }
@@ -121,12 +114,12 @@ data class CreateImageRequest(
         _1024x1024("1024x1024"),
         _1792x1024("1792x1024"),
         _1024x1792("1024x1792");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): PropertySize {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'PropertySize'")
             }
         }
@@ -140,12 +133,12 @@ data class CreateImageRequest(
 
         vivid("vivid"),
         natural("natural");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Style {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Style'")
             }
         }

@@ -29,7 +29,7 @@ object RealtimeServerEventInputAudioBufferSpeechStoppedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object InputAudioBufferSpeechStopped extends `Type`
+    case object InputAudioBufferSpeechStopped extends `Type` { override def toString: String = "input_audio_buffer.speech_stopped" }
 
     import org.json4s._
 

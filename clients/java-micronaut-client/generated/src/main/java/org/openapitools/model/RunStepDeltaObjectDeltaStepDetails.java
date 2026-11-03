@@ -38,7 +38,7 @@ import javax.annotation.Generated;
   RunStepDeltaObjectDeltaStepDetails.JSON_PROPERTY_TOOL_CALLS
 })
 @JsonTypeName("RunStepDeltaObject_delta_step_details")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class RunStepDeltaObjectDeltaStepDetails {
     /**
@@ -81,7 +81,7 @@ public class RunStepDeltaObjectDeltaStepDetails {
     private RunStepDeltaStepDetailsMessageCreationObjectMessageCreation messageCreation;
 
     public static final String JSON_PROPERTY_TOOL_CALLS = "tool_calls";
-    private List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = null;
+    private List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = null;
 
     public RunStepDeltaObjectDeltaStepDetails(TypeEnum type) {
         this.type = type;
@@ -132,7 +132,7 @@ public class RunStepDeltaObjectDeltaStepDetails {
         this.messageCreation = messageCreation;
     }
 
-    public RunStepDeltaObjectDeltaStepDetails toolCalls(List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public RunStepDeltaObjectDeltaStepDetails toolCalls(List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.toolCalls = toolCalls;
         return this;
     }
@@ -152,13 +152,13 @@ public class RunStepDeltaObjectDeltaStepDetails {
     @Nullable
     @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+    public List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
         return toolCalls;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOL_CALLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setToolCalls(List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+    public void setToolCalls(List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
         this.toolCalls = toolCalls;
     }
 

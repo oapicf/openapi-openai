@@ -30,26 +30,71 @@ import {
 } from '../models/ImagesResponse';
 
 export interface CreateImageOperationRequest {
+    /**
+     * 
+     */
     createImageRequest: CreateImageRequest;
 }
 
 export interface CreateImageEditRequest {
+    /**
+     * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not provided, image must have transparency, which will be used as the mask.
+     */
     image: Blob;
+    /**
+     * A text description of the desired image(s). The maximum length is 1000 characters.
+     */
     prompt: string;
+    /**
+     * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions as `image`.
+     */
     mask?: Blob;
+    /**
+     * 
+     */
     model?: CreateImageEditRequestModel | null;
+    /**
+     * The number of images to generate. Must be between 1 and 10.
+     */
     n?: number | null;
+    /**
+     * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+     */
     size?: CreateImageEditSizeEnum;
+    /**
+     * The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+     */
     responseFormat?: CreateImageEditResponseFormatEnum;
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
+     */
     user?: string;
 }
 
 export interface CreateImageVariationRequest {
+    /**
+     * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square.
+     */
     image: Blob;
+    /**
+     * 
+     */
     model?: CreateImageEditRequestModel | null;
+    /**
+     * The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported.
+     */
     n?: number | null;
+    /**
+     * The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
+     */
     responseFormat?: CreateImageVariationResponseFormatEnum;
+    /**
+     * The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
+     */
     size?: CreateImageVariationSizeEnum;
+    /**
+     * A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
+     */
     user?: string;
 }
 
@@ -324,7 +369,7 @@ export class ImagesApi extends runtime.BaseAPI {
 export const CreateImageEditSizeEnum = {
     _256x256: '256x256',
     _512x512: '512x512',
-    _1024x1024: '1024x1024'
+    _1024x1024: '1024x1024',
 } as const;
 export type CreateImageEditSizeEnum = typeof CreateImageEditSizeEnum[keyof typeof CreateImageEditSizeEnum];
 /**
@@ -332,7 +377,7 @@ export type CreateImageEditSizeEnum = typeof CreateImageEditSizeEnum[keyof typeo
  */
 export const CreateImageEditResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
 } as const;
 export type CreateImageEditResponseFormatEnum = typeof CreateImageEditResponseFormatEnum[keyof typeof CreateImageEditResponseFormatEnum];
 /**
@@ -340,7 +385,7 @@ export type CreateImageEditResponseFormatEnum = typeof CreateImageEditResponseFo
  */
 export const CreateImageVariationResponseFormatEnum = {
     Url: 'url',
-    B64Json: 'b64_json'
+    B64Json: 'b64_json',
 } as const;
 export type CreateImageVariationResponseFormatEnum = typeof CreateImageVariationResponseFormatEnum[keyof typeof CreateImageVariationResponseFormatEnum];
 /**
@@ -349,6 +394,6 @@ export type CreateImageVariationResponseFormatEnum = typeof CreateImageVariation
 export const CreateImageVariationSizeEnum = {
     _256x256: '256x256',
     _512x512: '512x512',
-    _1024x1024: '1024x1024'
+    _1024x1024: '1024x1024',
 } as const;
 export type CreateImageVariationSizeEnum = typeof CreateImageVariationSizeEnum[keyof typeof CreateImageVariationSizeEnum];

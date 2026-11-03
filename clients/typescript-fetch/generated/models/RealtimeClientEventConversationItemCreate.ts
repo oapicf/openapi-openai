@@ -36,14 +36,10 @@ import {
 export interface RealtimeClientEventConversationItemCreate {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemCreate
      */
     eventId?: string;
     /**
      * The event type, must be `conversation.item.create`.
-     * @type {RealtimeClientEventConversationItemCreateTypeEnum}
-     * @memberof RealtimeClientEventConversationItemCreate
      */
     type: RealtimeClientEventConversationItemCreateTypeEnum;
     /**
@@ -52,14 +48,10 @@ export interface RealtimeClientEventConversationItemCreate {
      * If set, it allows an item to be inserted mid-conversation. If the ID 
      * cannot be found, an error will be returned and the item will not be added.
      * 
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemCreate
      */
     previousItemId?: string;
     /**
      * 
-     * @type {RealtimeConversationItem}
-     * @memberof RealtimeClientEventConversationItemCreate
      */
     item: RealtimeConversationItem;
 }
@@ -69,7 +61,7 @@ export interface RealtimeClientEventConversationItemCreate {
  * @export
  */
 export const RealtimeClientEventConversationItemCreateTypeEnum = {
-    ConversationItemCreate: 'conversation.item.create'
+    ConversationItemCreate: 'conversation.item.create',
 } as const;
 export type RealtimeClientEventConversationItemCreateTypeEnum = typeof RealtimeClientEventConversationItemCreateTypeEnum[keyof typeof RealtimeClientEventConversationItemCreateTypeEnum];
 

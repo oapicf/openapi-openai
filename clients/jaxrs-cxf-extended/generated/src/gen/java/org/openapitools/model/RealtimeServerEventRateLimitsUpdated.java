@@ -66,7 +66,6 @@ public enum TypeEnum {
   * List of rate limit information.
   */
   @ApiModelProperty(required = true, value = "List of rate limit information.")
-  @Valid
   private List<@Valid RealtimeServerEventRateLimitsUpdatedRateLimitsInner> rateLimits = new ArrayList<>();
  /**
   * The unique ID of the server event.

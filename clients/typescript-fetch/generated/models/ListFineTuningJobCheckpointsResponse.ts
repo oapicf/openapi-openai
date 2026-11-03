@@ -29,32 +29,22 @@ import {
 export interface ListFineTuningJobCheckpointsResponse {
     /**
      * 
-     * @type {Array<FineTuningJobCheckpoint>}
-     * @memberof ListFineTuningJobCheckpointsResponse
      */
     data: Array<FineTuningJobCheckpoint>;
     /**
      * 
-     * @type {ListFineTuningJobCheckpointsResponseObjectEnum}
-     * @memberof ListFineTuningJobCheckpointsResponse
      */
     object: ListFineTuningJobCheckpointsResponseObjectEnum;
     /**
      * 
-     * @type {string}
-     * @memberof ListFineTuningJobCheckpointsResponse
      */
     firstId?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ListFineTuningJobCheckpointsResponse
      */
     lastId?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListFineTuningJobCheckpointsResponse
      */
     hasMore: boolean;
 }
@@ -64,7 +54,7 @@ export interface ListFineTuningJobCheckpointsResponse {
  * @export
  */
 export const ListFineTuningJobCheckpointsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListFineTuningJobCheckpointsResponseObjectEnum = typeof ListFineTuningJobCheckpointsResponseObjectEnum[keyof typeof ListFineTuningJobCheckpointsResponseObjectEnum];
 

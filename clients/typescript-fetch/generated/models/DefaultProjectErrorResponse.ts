@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface DefaultProjectErrorResponse {
     /**
      * 
-     * @type {number}
-     * @memberof DefaultProjectErrorResponse
      */
     code: number;
     /**
      * 
-     * @type {string}
-     * @memberof DefaultProjectErrorResponse
      */
     message: string;
 }

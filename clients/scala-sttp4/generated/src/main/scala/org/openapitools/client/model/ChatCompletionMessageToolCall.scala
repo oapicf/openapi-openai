@@ -23,7 +23,7 @@ object ChatCompletionMessageToolCallEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Function extends `Type`
+    case object Function extends `Type` { override def toString: String = "function" }
 
     import org.json4s._
 

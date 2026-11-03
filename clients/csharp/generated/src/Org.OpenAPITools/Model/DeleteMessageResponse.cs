@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<DeleteMessageResponse.ObjectEnum?>(DeleteMessageResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                DeleteMessageResponse.ObjectEnum? varObjectValue = DeleteMessageResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<DeleteMessageResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class DeleteMessageResponse.", nameof(id));
+                throw new JsonException("Property is required for class DeleteMessageResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class DeleteMessageResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class DeleteMessageResponse: deleted.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class DeleteMessageResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class DeleteMessageResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class DeleteMessageResponse.");
+                throw new JsonException("Property is not nullable for class DeleteMessageResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class DeleteMessageResponse.");
+                throw new JsonException("Property is not nullable for class DeleteMessageResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class DeleteMessageResponse.");
+                throw new JsonException("Property is not nullable for class DeleteMessageResponse: object.");
 
             return new DeleteMessageResponse(id.Value!, deleted.Value!.Value!, varObject.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteMessageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteMessageResponse deleteMessageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteMessageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteMessageResponse deleteMessageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deleteMessageResponse.Id == null)
-                throw new ArgumentNullException(nameof(deleteMessageResponse.Id), "Property is required for class DeleteMessageResponse.");
-
             writer.WriteString("id", deleteMessageResponse.Id);
 
             writer.WriteBoolean("deleted", deleteMessageResponse.Deleted);

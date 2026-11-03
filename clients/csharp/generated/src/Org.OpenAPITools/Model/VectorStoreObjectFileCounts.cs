@@ -190,34 +190,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!inProgress.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObjectFileCounts.", nameof(inProgress));
+                throw new JsonException("Property is required for class VectorStoreObjectFileCounts: in_progress.");
 
             if (!completed.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObjectFileCounts.", nameof(completed));
+                throw new JsonException("Property is required for class VectorStoreObjectFileCounts: completed.");
 
             if (!failed.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObjectFileCounts.", nameof(failed));
+                throw new JsonException("Property is required for class VectorStoreObjectFileCounts: failed.");
 
             if (!cancelled.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObjectFileCounts.", nameof(cancelled));
+                throw new JsonException("Property is required for class VectorStoreObjectFileCounts: cancelled.");
 
             if (!total.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreObjectFileCounts.", nameof(total));
+                throw new JsonException("Property is required for class VectorStoreObjectFileCounts: total.");
 
             if (inProgress.IsSet && inProgress.Value == null)
-                throw new ArgumentNullException(nameof(inProgress), "Property is not nullable for class VectorStoreObjectFileCounts.");
+                throw new JsonException("Property is not nullable for class VectorStoreObjectFileCounts: in_progress.");
 
             if (completed.IsSet && completed.Value == null)
-                throw new ArgumentNullException(nameof(completed), "Property is not nullable for class VectorStoreObjectFileCounts.");
+                throw new JsonException("Property is not nullable for class VectorStoreObjectFileCounts: completed.");
 
             if (failed.IsSet && failed.Value == null)
-                throw new ArgumentNullException(nameof(failed), "Property is not nullable for class VectorStoreObjectFileCounts.");
+                throw new JsonException("Property is not nullable for class VectorStoreObjectFileCounts: failed.");
 
             if (cancelled.IsSet && cancelled.Value == null)
-                throw new ArgumentNullException(nameof(cancelled), "Property is not nullable for class VectorStoreObjectFileCounts.");
+                throw new JsonException("Property is not nullable for class VectorStoreObjectFileCounts: cancelled.");
 
             if (total.IsSet && total.Value == null)
-                throw new ArgumentNullException(nameof(total), "Property is not nullable for class VectorStoreObjectFileCounts.");
+                throw new JsonException("Property is not nullable for class VectorStoreObjectFileCounts: total.");
 
             return new VectorStoreObjectFileCounts(inProgress.Value!.Value!, completed.Value!.Value!, failed.Value!.Value!, cancelled.Value!.Value!, total.Value!.Value!);
         }
@@ -228,7 +228,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreObjectFileCounts"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreObjectFileCounts vectorStoreObjectFileCounts, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -243,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreObjectFileCounts"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreObjectFileCounts vectorStoreObjectFileCounts, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("in_progress", vectorStoreObjectFileCounts.InProgress);

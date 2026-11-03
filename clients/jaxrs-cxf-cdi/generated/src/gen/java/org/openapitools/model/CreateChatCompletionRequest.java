@@ -33,7 +33,7 @@ import java.util.Objects;
 
 public class CreateChatCompletionRequest   {
   
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   private CreateChatCompletionRequestModel model;
 
@@ -164,7 +164,7 @@ public enum ServiceTierEnum {
 
   private ServiceTierEnum serviceTier = ServiceTierEnum.AUTO;
 
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   private Boolean stream = false;
 
@@ -189,7 +189,7 @@ public enum ServiceTierEnum {
   /**
    * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    **/
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -198,10 +198,10 @@ public enum ServiceTierEnum {
   @ApiModelProperty(required = true, value = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ")
   @JsonProperty("messages")
   @NotNull
- @Size(min=1)  public List<ChatCompletionRequestMessage> getMessages() {
+ @Size(min=1)  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 

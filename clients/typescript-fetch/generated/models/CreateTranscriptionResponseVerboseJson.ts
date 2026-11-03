@@ -36,32 +36,22 @@ import {
 export interface CreateTranscriptionResponseVerboseJson {
     /**
      * The language of the input audio.
-     * @type {string}
-     * @memberof CreateTranscriptionResponseVerboseJson
      */
     language: string;
     /**
      * The duration of the input audio.
-     * @type {string}
-     * @memberof CreateTranscriptionResponseVerboseJson
      */
     duration: string;
     /**
      * The transcribed text.
-     * @type {string}
-     * @memberof CreateTranscriptionResponseVerboseJson
      */
     text: string;
     /**
      * Extracted words and their corresponding timestamps.
-     * @type {Array<TranscriptionWord>}
-     * @memberof CreateTranscriptionResponseVerboseJson
      */
     words?: Array<TranscriptionWord>;
     /**
      * Segments of the transcribed text and their corresponding details.
-     * @type {Array<TranscriptionSegment>}
-     * @memberof CreateTranscriptionResponseVerboseJson
      */
     segments?: Array<TranscriptionSegment>;
 }

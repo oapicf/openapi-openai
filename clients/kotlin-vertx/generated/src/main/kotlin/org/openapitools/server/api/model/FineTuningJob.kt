@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param finishedAt The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
  * @param hyperparameters 
  * @param model The base model that is being fine-tuned.
- * @param &#x60;object&#x60; The object type, which is always \"fine_tuning.job\".
+ * @param `object` The object type, which is always \"fine_tuning.job\".
  * @param organizationId The organization that owns the fine-tuning job.
  * @param resultFiles The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
  * @param status The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.

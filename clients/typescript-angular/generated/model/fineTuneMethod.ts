@@ -25,7 +25,7 @@ export interface FineTuneMethod {
 export namespace FineTuneMethod {
     export const TypeEnum = {
         Supervised: 'supervised',
-        Dpo: 'dpo'
+        Dpo: 'dpo',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

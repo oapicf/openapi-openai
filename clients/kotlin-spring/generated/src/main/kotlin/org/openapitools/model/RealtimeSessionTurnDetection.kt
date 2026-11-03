@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -28,26 +25,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeSessionTurnDetection(
 
     @Schema(description = "Type of turn detection, only `server_vad` is currently supported. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("type")
     @get:JsonProperty("type") val type: RealtimeSessionTurnDetection.Type? = null,
 
     @Schema(description = "Activation threshold for VAD (0.0 to 1.0), this defaults to 0.5. A  higher threshold will require louder audio to activate the model, and  thus might perform better in noisy environments. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("threshold")
     @get:JsonProperty("threshold") val threshold: java.math.BigDecimal? = null,
 
     @Schema(description = "Amount of audio to include before the VAD detected speech (in  milliseconds). Defaults to 300ms. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("prefix_padding_ms")
     @get:JsonProperty("prefix_padding_ms") val prefixPaddingMs: kotlin.Int? = null,
 
     @Schema(description = "Duration of silence to detect speech stop (in milliseconds). Defaults  to 500ms. With shorter values the model will respond more quickly,  but may jump in on short pauses from the user. ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("silence_duration_ms")
     @get:JsonProperty("silence_duration_ms") val silenceDurationMs: kotlin.Int? = null
 ) {
@@ -59,12 +48,12 @@ data class RealtimeSessionTurnDetection(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         server_vad("server_vad");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

@@ -32,7 +32,7 @@ object ThreadObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Thread extends `Object`
+    case object Thread extends `Object` { override def toString: String = "thread" }
 
     import org.json4s._
 

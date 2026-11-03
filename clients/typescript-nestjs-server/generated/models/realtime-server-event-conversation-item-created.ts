@@ -21,7 +21,7 @@ export interface RealtimeServerEventConversationItemCreated {
 }
 export namespace RealtimeServerEventConversationItemCreated {
   export const TypeEnum = {
-    ConversationItemCreated: 'conversation.item.created'
+    ConversationItemCreated: 'conversation.item.created',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject {
     /**
      * The ranker used for the file search.
-     * @type {RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum}
-     * @memberof RunStepDetailsToolCallsFileSearchRankingOptionsObject
      */
     ranker: RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum;
     /**
      * The score threshold for the file search. All values must be a floating point number between 0 and 1.
-     * @type {number}
-     * @memberof RunStepDetailsToolCallsFileSearchRankingOptionsObject
      */
     scoreThreshold: number;
 }
@@ -38,7 +34,7 @@ export interface RunStepDetailsToolCallsFileSearchRankingOptionsObject {
  * @export
  */
 export const RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum = {
-    Default20240821: 'default_2024_08_21'
+    Default20240821: 'default_2024_08_21',
 } as const;
 export type RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum = typeof RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum[keyof typeof RunStepDetailsToolCallsFileSearchRankingOptionsObjectRankerEnum];
 

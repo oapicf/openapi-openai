@@ -17,7 +17,7 @@ import MessageDeltaObject from './MessageDeltaObject';
 /**
  * The MessageStreamEventOneOf2 model module.
  * @module model/MessageStreamEventOneOf2
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageStreamEventOneOf2 {
     /**

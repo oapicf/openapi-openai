@@ -29,14 +29,10 @@ import {
 export interface FineTuningIntegration {
     /**
      * The type of the integration being enabled for the fine-tuning job
-     * @type {FineTuningIntegrationTypeEnum}
-     * @memberof FineTuningIntegration
      */
     type: FineTuningIntegrationTypeEnum;
     /**
      * 
-     * @type {CreateFineTuningJobRequestIntegrationsInnerWandb}
-     * @memberof FineTuningIntegration
      */
     wandb: CreateFineTuningJobRequestIntegrationsInnerWandb;
 }
@@ -46,7 +42,7 @@ export interface FineTuningIntegration {
  * @export
  */
 export const FineTuningIntegrationTypeEnum = {
-    Wandb: 'wandb'
+    Wandb: 'wandb',
 } as const;
 export type FineTuningIntegrationTypeEnum = typeof FineTuningIntegrationTypeEnum[keyof typeof FineTuningIntegrationTypeEnum];
 

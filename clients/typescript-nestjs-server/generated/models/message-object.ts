@@ -63,18 +63,18 @@ export interface MessageObject {
 }
 export namespace MessageObject {
   export const ObjectEnum = {
-    ThreadMessage: 'thread.message'
+    ThreadMessage: 'thread.message',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
   export const StatusEnum = {
     InProgress: 'in_progress',
     Incomplete: 'incomplete',
-    Completed: 'completed'
+    Completed: 'completed',
   } as const;
   export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
   export const RoleEnum = {
     User: 'user',
-    Assistant: 'assistant'
+    Assistant: 'assistant',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

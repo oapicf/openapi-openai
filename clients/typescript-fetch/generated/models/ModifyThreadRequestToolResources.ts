@@ -37,14 +37,10 @@ import {
 export interface ModifyThreadRequestToolResources {
     /**
      * 
-     * @type {CreateAssistantRequestToolResourcesCodeInterpreter}
-     * @memberof ModifyThreadRequestToolResources
      */
     codeInterpreter?: CreateAssistantRequestToolResourcesCodeInterpreter;
     /**
      * 
-     * @type {ModifyThreadRequestToolResourcesFileSearch}
-     * @memberof ModifyThreadRequestToolResources
      */
     fileSearch?: ModifyThreadRequestToolResourcesFileSearch;
 }

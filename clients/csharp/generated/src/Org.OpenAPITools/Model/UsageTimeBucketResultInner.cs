@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageCompletionsResult"></param>
-        public UsageTimeBucketResultInner(UsageCompletionsResult usageCompletionsResult)
+        internal UsageTimeBucketResultInner(UsageCompletionsResult usageCompletionsResult)
         {
             UsageCompletionsResult = usageCompletionsResult;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageEmbeddingsResult"></param>
-        public UsageTimeBucketResultInner(UsageEmbeddingsResult usageEmbeddingsResult)
+        internal UsageTimeBucketResultInner(UsageEmbeddingsResult usageEmbeddingsResult)
         {
             UsageEmbeddingsResult = usageEmbeddingsResult;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageModerationsResult"></param>
-        public UsageTimeBucketResultInner(UsageModerationsResult usageModerationsResult)
+        internal UsageTimeBucketResultInner(UsageModerationsResult usageModerationsResult)
         {
             UsageModerationsResult = usageModerationsResult;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageImagesResult"></param>
-        public UsageTimeBucketResultInner(UsageImagesResult usageImagesResult)
+        internal UsageTimeBucketResultInner(UsageImagesResult usageImagesResult)
         {
             UsageImagesResult = usageImagesResult;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageAudioSpeechesResult"></param>
-        public UsageTimeBucketResultInner(UsageAudioSpeechesResult usageAudioSpeechesResult)
+        internal UsageTimeBucketResultInner(UsageAudioSpeechesResult usageAudioSpeechesResult)
         {
             UsageAudioSpeechesResult = usageAudioSpeechesResult;
             OnCreated();
@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageAudioTranscriptionsResult"></param>
-        public UsageTimeBucketResultInner(UsageAudioTranscriptionsResult usageAudioTranscriptionsResult)
+        internal UsageTimeBucketResultInner(UsageAudioTranscriptionsResult usageAudioTranscriptionsResult)
         {
             UsageAudioTranscriptionsResult = usageAudioTranscriptionsResult;
             OnCreated();
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageVectorStoresResult"></param>
-        public UsageTimeBucketResultInner(UsageVectorStoresResult usageVectorStoresResult)
+        internal UsageTimeBucketResultInner(UsageVectorStoresResult usageVectorStoresResult)
         {
             UsageVectorStoresResult = usageVectorStoresResult;
             OnCreated();
@@ -105,7 +105,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="usageCodeInterpreterSessionsResult"></param>
-        public UsageTimeBucketResultInner(UsageCodeInterpreterSessionsResult usageCodeInterpreterSessionsResult)
+        internal UsageTimeBucketResultInner(UsageCodeInterpreterSessionsResult usageCodeInterpreterSessionsResult)
         {
             UsageCodeInterpreterSessionsResult = usageCodeInterpreterSessionsResult;
             OnCreated();
@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="UsageTimeBucketResultInner" /> class.
         /// </summary>
         /// <param name="costsResult"></param>
-        public UsageTimeBucketResultInner(CostsResult costsResult)
+        internal UsageTimeBucketResultInner(CostsResult costsResult)
         {
             CostsResult = costsResult;
             OnCreated();
@@ -330,7 +330,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageTimeBucketResultInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageTimeBucketResultInner usageTimeBucketResultInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -345,7 +344,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageTimeBucketResultInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageTimeBucketResultInner usageTimeBucketResultInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

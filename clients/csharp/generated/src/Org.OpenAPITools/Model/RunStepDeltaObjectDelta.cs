@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (stepDetails.IsSet && stepDetails.Value == null)
-                throw new ArgumentNullException(nameof(stepDetails), "Property is not nullable for class RunStepDeltaObjectDelta.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaObjectDelta: step_details.");
 
             return new RunStepDeltaObjectDelta(stepDetails);
         }
@@ -151,7 +151,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObjectDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaObjectDelta runStepDeltaObjectDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -166,11 +165,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObjectDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaObjectDelta runStepDeltaObjectDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaObjectDelta.StepDetailsOption.IsSet && runStepDeltaObjectDelta.StepDetails == null)
-                throw new ArgumentNullException(nameof(runStepDeltaObjectDelta.StepDetails), "Property is required for class RunStepDeltaObjectDelta.");
+                throw new JsonException("Cannot write null property RunStepDeltaObjectDelta.StepDetails to non-nullable JSON property 'step_details'.");
 
             if (runStepDeltaObjectDelta.StepDetailsOption.IsSet)
             {

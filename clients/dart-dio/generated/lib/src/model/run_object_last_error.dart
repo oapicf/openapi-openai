@@ -124,15 +124,14 @@ class _$RunObjectLastErrorSerializer implements PrimitiveSerializer<RunObjectLas
   }
 }
 
+
+/// One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
 class RunObjectLastErrorCodeEnum extends EnumClass {
 
-  /// One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
   @BuiltValueEnumConst(wireName: r'server_error')
   static const RunObjectLastErrorCodeEnum serverError = _$runObjectLastErrorCodeEnum_serverError;
-  /// One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
   @BuiltValueEnumConst(wireName: r'rate_limit_exceeded')
   static const RunObjectLastErrorCodeEnum rateLimitExceeded = _$runObjectLastErrorCodeEnum_rateLimitExceeded;
-  /// One of `server_error`, `rate_limit_exceeded`, or `invalid_prompt`.
   @BuiltValueEnumConst(wireName: r'invalid_prompt')
   static const RunObjectLastErrorCodeEnum invalidPrompt = _$runObjectLastErrorCodeEnum_invalidPrompt;
 

@@ -29,14 +29,10 @@ import {
 export interface AuditLogProjectCreated {
     /**
      * The project ID.
-     * @type {string}
-     * @memberof AuditLogProjectCreated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogProjectCreatedData}
-     * @memberof AuditLogProjectCreated
      */
     data?: AuditLogProjectCreatedData;
 }

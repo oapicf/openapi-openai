@@ -43,7 +43,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateModerationResponseResultsInnerCategories.JSON_PROPERTY_VIOLENCE_GRAPHIC
 })
 @JsonTypeName("CreateModerationResponse_results_inner_categories")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateModerationResponseResultsInnerCategories {
     public static final String JSON_PROPERTY_HATE = "hate";

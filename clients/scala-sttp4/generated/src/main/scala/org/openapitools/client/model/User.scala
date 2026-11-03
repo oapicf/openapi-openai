@@ -33,7 +33,7 @@ object UserEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationUser extends `Object`
+    case object OrganizationUser extends `Object` { override def toString: String = "organization.user" }
 
     import org.json4s._
 
@@ -54,8 +54,8 @@ object UserEnums {
 
   sealed trait Role
   object Role {
-    case object Owner extends Role
-    case object Reader extends Role
+    case object Owner extends Role { override def toString: String = "owner" }
+    case object Reader extends Role { override def toString: String = "reader" }
 
     import org.json4s._
 

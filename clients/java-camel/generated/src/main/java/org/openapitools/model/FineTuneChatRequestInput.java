@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,22 +25,19 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "FineTuneChatRequestInput", description = "The per-line training example of a fine-tuning input file for chat models using the supervised method.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneChatRequestInput {
 
-  @Valid
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
 
-  @Valid
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
   private Boolean parallelToolCalls = true;
 
   @Deprecated
-  @Valid
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
-  public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTuneChatRequestInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -58,14 +54,14 @@ public class FineTuneChatRequestInput {
    * Get messages
    * @return messages
    */
-  @Valid @Size(min = 1) 
+  @Size(min = 1) 
   @Schema(name = "messages", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("messages")
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
@@ -86,7 +82,7 @@ public class FineTuneChatRequestInput {
    * A list of tools the model may generate JSON inputs for.
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "A list of tools the model may generate JSON inputs for.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid ChatCompletionTool> getTools() {
@@ -135,7 +131,7 @@ public class FineTuneChatRequestInput {
    * @return functions
    * @deprecated
    */
-  @Valid @Size(min = 1, max = 128) 
+  @Size(min = 1, max = 128) 
   @Schema(name = "functions", description = "A list of functions the model may generate JSON inputs for.", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("functions")
   @Deprecated

@@ -31,12 +31,12 @@ export interface ProjectUser {
 }
 export namespace ProjectUser {
   export const ObjectEnum = {
-    OrganizationProjectUser: 'organization.project.user'
+    OrganizationProjectUser: 'organization.project.user',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
   export const RoleEnum = {
     Owner: 'owner',
-    Member: 'member'
+    Member: 'member',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

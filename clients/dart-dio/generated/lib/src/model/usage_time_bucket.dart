@@ -155,6 +155,7 @@ class _$UsageTimeBucketSerializer implements PrimitiveSerializer<UsageTimeBucket
   }
 }
 
+
 class UsageTimeBucketObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'bucket')

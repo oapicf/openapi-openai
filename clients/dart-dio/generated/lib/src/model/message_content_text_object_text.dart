@@ -123,3 +123,4 @@ class _$MessageContentTextObjectTextSerializer implements PrimitiveSerializer<Me
   }
 }
 
+

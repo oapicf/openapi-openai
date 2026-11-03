@@ -309,7 +309,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ChatCompletionStreamResponseDelta.RoleEnum?>(ChatCompletionStreamResponseDelta.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ChatCompletionStreamResponseDelta.RoleEnum? roleValue = ChatCompletionStreamResponseDelta.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ChatCompletionStreamResponseDelta.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "refusal":
                             refusal = new Option<string?>(utf8JsonReader.GetString());
@@ -321,13 +326,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (functionCall.IsSet && functionCall.Value == null)
-                throw new ArgumentNullException(nameof(functionCall), "Property is not nullable for class ChatCompletionStreamResponseDelta.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamResponseDelta: function_call.");
 
             if (toolCalls.IsSet && toolCalls.Value == null)
-                throw new ArgumentNullException(nameof(toolCalls), "Property is not nullable for class ChatCompletionStreamResponseDelta.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamResponseDelta: tool_calls.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ChatCompletionStreamResponseDelta.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamResponseDelta: role.");
 
             return new ChatCompletionStreamResponseDelta(content, functionCall, toolCalls, role, refusal);
         }
@@ -338,7 +343,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamResponseDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionStreamResponseDelta chatCompletionStreamResponseDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -353,14 +357,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamResponseDelta"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionStreamResponseDelta chatCompletionStreamResponseDelta, JsonSerializerOptions jsonSerializerOptions)
         {
             if (chatCompletionStreamResponseDelta.FunctionCallOption.IsSet && chatCompletionStreamResponseDelta.FunctionCall == null)
-                throw new ArgumentNullException(nameof(chatCompletionStreamResponseDelta.FunctionCall), "Property is required for class ChatCompletionStreamResponseDelta.");
+                throw new JsonException("Cannot write null property ChatCompletionStreamResponseDelta.FunctionCall to non-nullable JSON property 'function_call'.");
 
             if (chatCompletionStreamResponseDelta.ToolCallsOption.IsSet && chatCompletionStreamResponseDelta.ToolCalls == null)
-                throw new ArgumentNullException(nameof(chatCompletionStreamResponseDelta.ToolCalls), "Property is required for class ChatCompletionStreamResponseDelta.");
+                throw new JsonException("Cannot write null property ChatCompletionStreamResponseDelta.ToolCalls to non-nullable JSON property 'tool_calls'.");
+
+            if (chatCompletionStreamResponseDelta.RoleOption.IsSet && chatCompletionStreamResponseDelta.Role == null)
+                throw new JsonException("Cannot write null property ChatCompletionStreamResponseDelta.Role to non-nullable JSON property 'role'.");
 
             if (chatCompletionStreamResponseDelta.ContentOption.IsSet)
                 if (chatCompletionStreamResponseDelta.ContentOption.Value != null)

@@ -21,7 +21,7 @@ object AssistantToolsFileSearchEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object FileSearch extends `Type`
+    case object FileSearch extends `Type` { override def toString: String = "file_search" }
 
     import org.json4s._
 

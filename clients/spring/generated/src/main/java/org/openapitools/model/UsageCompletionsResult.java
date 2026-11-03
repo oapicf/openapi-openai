@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "UsageCompletionsResult", description = "The aggregated completions usage details of the specific time bucket.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageCompletionsResult implements UsageTimeBucketResultInner {
 
   /**
@@ -66,32 +65,24 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
 
   private Integer inputTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inputCachedTokens;
 
   private Integer outputTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inputAudioTokens;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer outputAudioTokens;
 
   private Integer numModelRequests;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> projectId = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> userId = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> apiKeyId = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> model = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> batch = JsonNullable.<Boolean>undefined();
 
   public UsageCompletionsResult() {
@@ -265,7 +256,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * @return projectId
    */
   
-  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "project_id", description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("project_id")
   public JsonNullable<String> getProjectId() {
     return projectId;
@@ -285,7 +276,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * @return userId
    */
   
-  @Schema(name = "user_id", description = "When `group_by=user_id`, this field provides the user ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "user_id", description = "When `group_by=user_id`, this field provides the user ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("user_id")
   public JsonNullable<String> getUserId() {
     return userId;
@@ -305,7 +296,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * @return apiKeyId
    */
   
-  @Schema(name = "api_key_id", description = "When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "api_key_id", description = "When `group_by=api_key_id`, this field provides the API key ID of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("api_key_id")
   public JsonNullable<String> getApiKeyId() {
     return apiKeyId;
@@ -325,7 +316,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * @return model
    */
   
-  @Schema(name = "model", description = "When `group_by=model`, this field provides the model name of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "model", description = "When `group_by=model`, this field provides the model name of the grouped usage result.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("model")
   public JsonNullable<String> getModel() {
     return model;
@@ -345,7 +336,7 @@ public class UsageCompletionsResult implements UsageTimeBucketResultInner {
    * @return batch
    */
   
-  @Schema(name = "batch", description = "When `group_by=batch`, this field tells whether the grouped usage result is batch or not.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "batch", description = "When `group_by=batch`, this field tells whether the grouped usage result is batch or not.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("batch")
   public JsonNullable<Boolean> getBatch() {
     return batch;

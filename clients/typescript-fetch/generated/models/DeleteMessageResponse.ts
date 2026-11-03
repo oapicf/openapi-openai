@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface DeleteMessageResponse {
     /**
      * 
-     * @type {string}
-     * @memberof DeleteMessageResponse
      */
     id: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof DeleteMessageResponse
      */
     deleted: boolean;
     /**
      * 
-     * @type {DeleteMessageResponseObjectEnum}
-     * @memberof DeleteMessageResponse
      */
     object: DeleteMessageResponseObjectEnum;
 }
@@ -44,7 +38,7 @@ export interface DeleteMessageResponse {
  * @export
  */
 export const DeleteMessageResponseObjectEnum = {
-    ThreadMessageDeleted: 'thread.message.deleted'
+    ThreadMessageDeleted: 'thread.message.deleted',
 } as const;
 export type DeleteMessageResponseObjectEnum = typeof DeleteMessageResponseObjectEnum[keyof typeof DeleteMessageResponseObjectEnum];
 

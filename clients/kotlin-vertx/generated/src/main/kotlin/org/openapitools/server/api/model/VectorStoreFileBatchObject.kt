@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * A batch of files attached to a vector store.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `vector_store.file_batch`.
+ * @param `object` The object type, which is always `vector_store.file_batch`.
  * @param createdAt The Unix timestamp (in seconds) for when the vector store files batch was created.
  * @param vectorStoreId The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
  * @param status The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.

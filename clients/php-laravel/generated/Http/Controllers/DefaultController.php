@@ -51,10 +51,10 @@ class DefaultController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -87,13 +87,13 @@ class DefaultController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'keyId' => $keyId,
-                ],
                 $request->all(),
+                [
+                    'key_id' => $keyId,
+                ],
             ),
             [
-                'keyId' => [
+                'key_id' => [
                     'required',
                     'string',
                 ],
@@ -126,13 +126,13 @@ class DefaultController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'keyId' => $keyId,
-                ],
                 $request->all(),
+                [
+                    'key_id' => $keyId,
+                ],
             ),
             [
-                'keyId' => [
+                'key_id' => [
                     'required',
                     'string',
                 ],
@@ -165,10 +165,10 @@ class DefaultController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'after' => [

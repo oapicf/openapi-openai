@@ -37,14 +37,10 @@ import {
 export interface CreateAssistantRequestToolResources {
     /**
      * 
-     * @type {CreateAssistantRequestToolResourcesCodeInterpreter}
-     * @memberof CreateAssistantRequestToolResources
      */
     codeInterpreter?: CreateAssistantRequestToolResourcesCodeInterpreter;
     /**
      * 
-     * @type {CreateAssistantRequestToolResourcesFileSearch}
-     * @memberof CreateAssistantRequestToolResources
      */
     fileSearch?: CreateAssistantRequestToolResourcesFileSearch | null;
 }

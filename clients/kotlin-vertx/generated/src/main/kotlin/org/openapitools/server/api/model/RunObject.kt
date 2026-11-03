@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.run`.
+ * @param `object` The object type, which is always `thread.run`.
  * @param createdAt The Unix timestamp (in seconds) for when the run was created.
  * @param threadId The ID of the [thread](/docs/api-reference/threads) that was executed on as a part of this run.
  * @param assistantId The ID of the [assistant](/docs/api-reference/assistants) used for execution of this run.

@@ -108,3 +108,4 @@ class _$AuditLogInviteAcceptedSerializer implements PrimitiveSerializer<AuditLog
   }
 }
 
+

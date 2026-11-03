@@ -123,6 +123,7 @@ class _$DoneEventSerializer implements PrimitiveSerializer<DoneEvent> {
   }
 }
 
+
 class DoneEventEventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'done')

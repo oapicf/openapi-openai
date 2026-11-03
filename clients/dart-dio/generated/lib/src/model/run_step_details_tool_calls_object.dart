@@ -125,9 +125,10 @@ class _$RunStepDetailsToolCallsObjectSerializer implements PrimitiveSerializer<R
   }
 }
 
+
+/// Always `tool_calls`.
 class RunStepDetailsToolCallsObjectTypeEnum extends EnumClass {
 
-  /// Always `tool_calls`.
   @BuiltValueEnumConst(wireName: r'tool_calls')
   static const RunStepDetailsToolCallsObjectTypeEnum toolCalls = _$runStepDetailsToolCallsObjectTypeEnum_toolCalls;
 

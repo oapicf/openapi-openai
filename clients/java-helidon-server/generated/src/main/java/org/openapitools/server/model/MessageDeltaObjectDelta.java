@@ -54,7 +54,7 @@ public class MessageDeltaObjectDelta   {
 
 
     private RoleEnum role;
-    private List<MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
+    private List<@Valid MessageDeltaObjectDeltaContentInner> content = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -71,7 +71,7 @@ public class MessageDeltaObjectDelta   {
      */
     public MessageDeltaObjectDelta(
         RoleEnum role, 
-        List<MessageDeltaObjectDeltaContentInner> content
+        List<@Valid MessageDeltaObjectDeltaContentInner> content
     ) {
         this.role = role;
         this.content = content;
@@ -95,11 +95,11 @@ public class MessageDeltaObjectDelta   {
      * The content of the message in array of text and/or images.
      * @return content
      */
-    public List<MessageDeltaObjectDeltaContentInner> getContent() {
+    public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
         return content;
     }
 
-    public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+    public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
         this.content = content;
     }
 

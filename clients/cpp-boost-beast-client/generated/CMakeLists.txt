@@ -7,7 +7,25 @@ if (POLICY CMP0167)
     cmake_policy(SET CMP0167 OLD)
 endif ()
 
-find_package(Boost 1.75 REQUIRED)
+set(BOOST_BOOST_TARGET_PREDEFINED FALSE)
+set(BOOST_JSON_TARGET_PREDEFINED FALSE)
+if (TARGET Boost::boost)
+    set(BOOST_BOOST_TARGET_PREDEFINED TRUE)
+endif ()
+if (TARGET Boost::json)
+    set(BOOST_JSON_TARGET_PREDEFINED TRUE)
+endif ()
+
+find_package(Boost 1.75 REQUIRED COMPONENTS json)
+
+# Imported targets created in this subdirectory are otherwise invisible to
+# sibling consumers when this project is included with add_subdirectory().
+if (NOT BOOST_BOOST_TARGET_PREDEFINED)
+    set_property(TARGET Boost::boost PROPERTY IMPORTED_GLOBAL TRUE)
+endif ()
+if (NOT BOOST_JSON_TARGET_PREDEFINED)
+    set_property(TARGET Boost::json PROPERTY IMPORTED_GLOBAL TRUE)
+endif ()
 set(THREADS_TARGET_PREDEFINED FALSE)
 if (TARGET Threads::Threads)
     set(THREADS_TARGET_PREDEFINED TRUE)
@@ -49,7 +67,7 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED)
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_EXTENSIONS OFF)
 
@@ -239,10 +257,14 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/ChatCompletionRequestMessageContentPartText.h
     model/ChatCompletionRequestSystemMessage.cpp
     model/ChatCompletionRequestSystemMessage.h
+    model/ChatCompletionRequestSystemMessageContentPart.cpp
+    model/ChatCompletionRequestSystemMessageContentPart.h
     model/ChatCompletionRequestSystemMessage_content.cpp
     model/ChatCompletionRequestSystemMessage_content.h
     model/ChatCompletionRequestToolMessage.cpp
     model/ChatCompletionRequestToolMessage.h
+    model/ChatCompletionRequestToolMessageContentPart.cpp
+    model/ChatCompletionRequestToolMessageContentPart.h
     model/ChatCompletionRequestToolMessage_content.cpp
     model/ChatCompletionRequestToolMessage_content.h
     model/ChatCompletionRequestUserMessage.cpp
@@ -315,6 +337,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/CreateChatCompletionRequest_function_call.h
     model/CreateChatCompletionRequest_model.cpp
     model/CreateChatCompletionRequest_model.h
+    model/CreateChatCompletionRequest_prediction.cpp
+    model/CreateChatCompletionRequest_prediction.h
     model/CreateChatCompletionRequest_response_format.cpp
     model/CreateChatCompletionRequest_response_format.h
     model/CreateChatCompletionRequest_stop.cpp
@@ -367,6 +391,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/CreateFineTuningJobRequest_hyperparameters_n_epochs.h
     model/CreateFineTuningJobRequest_integrations_inner.cpp
     model/CreateFineTuningJobRequest_integrations_inner.h
+    model/CreateFineTuningJobRequest_integrations_inner_type.cpp
+    model/CreateFineTuningJobRequest_integrations_inner_type.h
     model/CreateFineTuningJobRequest_integrations_inner_wandb.cpp
     model/CreateFineTuningJobRequest_integrations_inner_wandb.h
     model/CreateFineTuningJobRequest_model.cpp
@@ -657,6 +683,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/Model.h
     model/ModifyAssistantRequest.cpp
     model/ModifyAssistantRequest.h
+    model/ModifyAssistantRequest_model.cpp
+    model/ModifyAssistantRequest_model.h
     model/ModifyAssistantRequest_tool_resources.cpp
     model/ModifyAssistantRequest_tool_resources.h
     model/ModifyAssistantRequest_tool_resources_code_interpreter.cpp
@@ -1005,6 +1033,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/ThreadObject.h
     model/ThreadStreamEvent.cpp
     model/ThreadStreamEvent.h
+    model/ThreadStreamEvent_oneOf.cpp
+    model/ThreadStreamEvent_oneOf.h
     model/TranscriptionSegment.cpp
     model/TranscriptionSegment.h
     model/TranscriptionWord.cpp
@@ -1109,11 +1139,28 @@ target_sources(${PROJECT_NAME} PRIVATE
     api/HttpClientImpl.cpp
     api/HttpClientImpl.h
     model/AnyType.h
+    model/ValidationTypes.h
+    model/NullableField.h
+    model/Oas31DeepEqual.h
+    model/Oas31ExactNumber.cpp
+    model/Oas31ExactNumber.h
+    model/Oas31SchemaIr.h
+    model/Oas31ExactJson.h
+    model/Oas31Validator.h
+    model/schema_ir.generated.cpp
+    model/schema_ir.generated.chunk0.cpp
+    model/schema_ir.generated.chunk1.cpp
+    model/schema_ir.generated.chunk2.cpp
+    model/schema_ir.generated.chunk3.cpp
+    model/schema_ir.generated.chunk4.cpp
+    model/schema_ir.generated.chunk5.cpp
+    model/schema_ir.generated.chunk6.cpp
+    model/Oas31SchemaRegistry.h
 )
 
 
 target_link_libraries(${PROJECT_NAME}
-    PUBLIC Boost::boost OpenSSL::SSL Threads::Threads)
+    PUBLIC Boost::boost Boost::json OpenSSL::SSL Threads::Threads)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
@@ -1130,4 +1177,26 @@ install(TARGETS ${PROJECT_NAME}
 
 install(DIRECTORY api model
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
-    FILES_MATCHING PATTERN "*.h")
+    FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
+
+# ──────────────────────────────────────────────────────────────────────
+# Wire-level multipart encoding test executable.
+# Build and run:
+#   cmake -DMULTIPART_ENCODING_SELF_TEST=ON -B build
+#   cmake --build build --parallel
+#   ctest --test-dir build --output-on-failure
+# ──────────────────────────────────────────────────────────────────────
+option(MULTIPART_ENCODING_SELF_TEST "Enable multipart encoding wire-level self-test" OFF)
+if (MULTIPART_ENCODING_SELF_TEST)
+    enable_testing()
+    add_executable(${PROJECT_NAME}_multipart_wire_test
+        test/MultipartWireTest.cpp)
+
+    set_property(TARGET ${PROJECT_NAME}_multipart_wire_test
+        PROPERTY CXX_STANDARD 17)
+    target_link_libraries(${PROJECT_NAME}_multipart_wire_test
+        PRIVATE Boost::boost)
+
+    add_test(NAME multipart-encoding-wire-test
+        COMMAND ${PROJECT_NAME}_multipart_wire_test)
+endif ()

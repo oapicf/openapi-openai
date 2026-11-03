@@ -42,36 +42,26 @@ export interface RealtimeResponseUsage {
      * The total number of tokens in the Response including input and output 
      * text and audio tokens.
      * 
-     * @type {number}
-     * @memberof RealtimeResponseUsage
      */
     totalTokens?: number;
     /**
      * The number of input tokens used in the Response, including text and 
      * audio tokens.
      * 
-     * @type {number}
-     * @memberof RealtimeResponseUsage
      */
     inputTokens?: number;
     /**
      * The number of output tokens sent in the Response, including text and 
      * audio tokens.
      * 
-     * @type {number}
-     * @memberof RealtimeResponseUsage
      */
     outputTokens?: number;
     /**
      * 
-     * @type {RealtimeResponseUsageInputTokenDetails}
-     * @memberof RealtimeResponseUsage
      */
     inputTokenDetails?: RealtimeResponseUsageInputTokenDetails;
     /**
      * 
-     * @type {RealtimeResponseUsageOutputTokenDetails}
-     * @memberof RealtimeResponseUsage
      */
     outputTokenDetails?: RealtimeResponseUsageOutputTokenDetails;
 }

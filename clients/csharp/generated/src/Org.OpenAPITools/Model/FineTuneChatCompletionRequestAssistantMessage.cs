@@ -364,7 +364,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<FineTuneChatCompletionRequestAssistantMessage.RoleEnum?>(FineTuneChatCompletionRequestAssistantMessage.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                FineTuneChatCompletionRequestAssistantMessage.RoleEnum? roleValue = FineTuneChatCompletionRequestAssistantMessage.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<FineTuneChatCompletionRequestAssistantMessage.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<ChatCompletionRequestAssistantMessageContent?>(JsonSerializer.Deserialize<ChatCompletionRequestAssistantMessageContent>(ref utf8JsonReader, jsonSerializerOptions));
@@ -403,19 +408,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class FineTuneChatCompletionRequestAssistantMessage.", nameof(role));
+                throw new JsonException("Property is required for class FineTuneChatCompletionRequestAssistantMessage: role.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage: role.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage: name.");
 
             if (toolCalls.IsSet && toolCalls.Value == null)
-                throw new ArgumentNullException(nameof(toolCalls), "Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage: tool_calls.");
 
             if (weight.IsSet && weight.Value == null)
-                throw new ArgumentNullException(nameof(weight), "Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Property is not nullable for class FineTuneChatCompletionRequestAssistantMessage: weight.");
 
             return new FineTuneChatCompletionRequestAssistantMessage(role.Value!.Value!, content, refusal, name, audio, toolCalls, functionCall, weight);
         }
@@ -426,7 +431,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatCompletionRequestAssistantMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneChatCompletionRequestAssistantMessage fineTuneChatCompletionRequestAssistantMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -441,14 +445,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatCompletionRequestAssistantMessage"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneChatCompletionRequestAssistantMessage fineTuneChatCompletionRequestAssistantMessage, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTuneChatCompletionRequestAssistantMessage.NameOption.IsSet && fineTuneChatCompletionRequestAssistantMessage.Name == null)
-                throw new ArgumentNullException(nameof(fineTuneChatCompletionRequestAssistantMessage.Name), "Property is required for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Cannot write null property FineTuneChatCompletionRequestAssistantMessage.Name to non-nullable JSON property 'name'.");
 
             if (fineTuneChatCompletionRequestAssistantMessage.ToolCallsOption.IsSet && fineTuneChatCompletionRequestAssistantMessage.ToolCalls == null)
-                throw new ArgumentNullException(nameof(fineTuneChatCompletionRequestAssistantMessage.ToolCalls), "Property is required for class FineTuneChatCompletionRequestAssistantMessage.");
+                throw new JsonException("Cannot write null property FineTuneChatCompletionRequestAssistantMessage.ToolCalls to non-nullable JSON property 'tool_calls'.");
+
+            if (fineTuneChatCompletionRequestAssistantMessage.WeightOption.IsSet && fineTuneChatCompletionRequestAssistantMessage.Weight == null)
+                throw new JsonException("Cannot write null property FineTuneChatCompletionRequestAssistantMessage.Weight to non-nullable JSON property 'weight'.");
 
             var roleRawValue = FineTuneChatCompletionRequestAssistantMessage.RoleEnumToJsonValue(fineTuneChatCompletionRequestAssistantMessage.Role);
             writer.WriteString("role", roleRawValue);

@@ -28,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param inputTokens The aggregated number of input tokens used.
  * @param outputTokens The aggregated number of text output tokens used. For customers subscribe to scale tier, this includes scale tier tokens.
  * @param numModelRequests The count of requests made to the model.

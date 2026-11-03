@@ -162,19 +162,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobError.", nameof(code));
+                throw new JsonException("Property is required for class FineTuningJobError: code.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobError.", nameof(message));
+                throw new JsonException("Property is required for class FineTuningJobError: message.");
 
             if (!param.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobError.", nameof(param));
+                throw new JsonException("Property is required for class FineTuningJobError: param.");
 
             if (code.IsSet && code.Value == null)
-                throw new ArgumentNullException(nameof(code), "Property is not nullable for class FineTuningJobError.");
+                throw new JsonException("Property is not nullable for class FineTuningJobError: code.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class FineTuningJobError.");
+                throw new JsonException("Property is not nullable for class FineTuningJobError: message.");
 
             return new FineTuningJobError(code.Value!, message.Value!, param.Value!);
         }
@@ -185,7 +185,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJobError fineTuningJobError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,15 +199,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJobError fineTuningJobError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fineTuningJobError.Code == null)
-                throw new ArgumentNullException(nameof(fineTuningJobError.Code), "Property is required for class FineTuningJobError.");
-
-            if (fineTuningJobError.Message == null)
-                throw new ArgumentNullException(nameof(fineTuningJobError.Message), "Property is required for class FineTuningJobError.");
-
             writer.WriteString("code", fineTuningJobError.Code);
 
             writer.WriteString("message", fineTuningJobError.Message);

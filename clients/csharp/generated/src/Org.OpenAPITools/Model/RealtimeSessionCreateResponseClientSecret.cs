@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class RealtimeSessionCreateResponseClientSecret.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseClientSecret: value.");
 
             if (expiresAt.IsSet && expiresAt.Value == null)
-                throw new ArgumentNullException(nameof(expiresAt), "Property is not nullable for class RealtimeSessionCreateResponseClientSecret.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseClientSecret: expires_at.");
 
             return new RealtimeSessionCreateResponseClientSecret(value, expiresAt);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponseClientSecret"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeSessionCreateResponseClientSecret realtimeSessionCreateResponseClientSecret, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,11 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponseClientSecret"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeSessionCreateResponseClientSecret realtimeSessionCreateResponseClientSecret, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeSessionCreateResponseClientSecret.ValueOption.IsSet && realtimeSessionCreateResponseClientSecret.Value == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponseClientSecret.Value), "Property is required for class RealtimeSessionCreateResponseClientSecret.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseClientSecret.Value to non-nullable JSON property 'value'.");
+
+            if (realtimeSessionCreateResponseClientSecret.ExpiresAtOption.IsSet && realtimeSessionCreateResponseClientSecret.ExpiresAt == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseClientSecret.ExpiresAt to non-nullable JSON property 'expires_at'.");
 
             if (realtimeSessionCreateResponseClientSecret.ValueOption.IsSet)
                 writer.WriteString("value", realtimeSessionCreateResponseClientSecret.Value);

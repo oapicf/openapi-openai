@@ -18,7 +18,7 @@ export interface UserRoleUpdateRequest {
 export namespace UserRoleUpdateRequest {
     export const RoleEnum = {
         Owner: 'owner',
-        Reader: 'reader'
+        Reader: 'reader',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

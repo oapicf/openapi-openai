@@ -138,6 +138,7 @@ class _$DeleteFileResponseSerializer implements PrimitiveSerializer<DeleteFileRe
   }
 }
 
+
 class DeleteFileResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'file')

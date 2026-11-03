@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface TranscriptionWord {
     /**
      * The text content of the word.
-     * @type {string}
-     * @memberof TranscriptionWord
      */
     word: string;
     /**
      * Start time of the word in seconds.
-     * @type {number}
-     * @memberof TranscriptionWord
      */
     start: number;
     /**
      * End time of the word in seconds.
-     * @type {number}
-     * @memberof TranscriptionWord
      */
     end: number;
 }

@@ -18,17 +18,17 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param type The type of error (e.g., \"invalid_request_error\", \"server_error\"). 
  * @param message A human-readable error message.
  * @param code Error code, if any.
- * @param &#x60;param&#x60; Parameter related to the error, if any.
+ * @param `param` Parameter related to the error, if any.
  * @param eventId The event_id of the client event that caused the error, if applicable. 
  */
 data class RealtimeServerEventErrorError(
 
     @Schema(required = true, description = "The type of error (e.g., \"invalid_request_error\", \"server_error\"). ")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: kotlin.String,
 
     @Schema(required = true, description = "A human-readable error message.")
-    @param:JsonProperty("message")
+    @param:JsonProperty("message", required = true)
     @get:JsonProperty("message", required = true) val message: kotlin.String,
 
     @Schema(description = "Error code, if any.")

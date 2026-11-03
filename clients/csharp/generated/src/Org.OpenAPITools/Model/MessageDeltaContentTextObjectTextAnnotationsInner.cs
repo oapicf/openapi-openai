@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaContentTextObjectTextAnnotationsInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentTextAnnotationsFileCitationObject"></param>
-        public MessageDeltaContentTextObjectTextAnnotationsInner(MessageDeltaContentTextAnnotationsFileCitationObject messageDeltaContentTextAnnotationsFileCitationObject)
+        internal MessageDeltaContentTextObjectTextAnnotationsInner(MessageDeltaContentTextAnnotationsFileCitationObject messageDeltaContentTextAnnotationsFileCitationObject)
         {
             MessageDeltaContentTextAnnotationsFileCitationObject = messageDeltaContentTextAnnotationsFileCitationObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaContentTextObjectTextAnnotationsInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentTextAnnotationsFilePathObject"></param>
-        public MessageDeltaContentTextObjectTextAnnotationsInner(MessageDeltaContentTextAnnotationsFilePathObject messageDeltaContentTextAnnotationsFilePathObject)
+        internal MessageDeltaContentTextObjectTextAnnotationsInner(MessageDeltaContentTextAnnotationsFilePathObject messageDeltaContentTextAnnotationsFilePathObject)
         {
             MessageDeltaContentTextAnnotationsFilePathObject = messageDeltaContentTextAnnotationsFilePathObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextObjectTextAnnotationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentTextObjectTextAnnotationsInner messageDeltaContentTextObjectTextAnnotationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextObjectTextAnnotationsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentTextObjectTextAnnotationsInner messageDeltaContentTextObjectTextAnnotationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

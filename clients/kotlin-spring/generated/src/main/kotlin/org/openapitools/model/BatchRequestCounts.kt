@@ -22,15 +22,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class BatchRequestCounts(
 
     @Schema(required = true, description = "Total number of requests in the batch.")
-    @param:JsonProperty("total")
+    @param:JsonProperty("total", required = true)
     @get:JsonProperty("total", required = true) val total: kotlin.Int,
 
     @Schema(required = true, description = "Number of requests that have been completed successfully.")
-    @param:JsonProperty("completed")
+    @param:JsonProperty("completed", required = true)
     @get:JsonProperty("completed", required = true) val completed: kotlin.Int,
 
     @Schema(required = true, description = "Number of requests that have failed.")
-    @param:JsonProperty("failed")
+    @param:JsonProperty("failed", required = true)
     @get:JsonProperty("failed", required = true) val failed: kotlin.Int
 ) {
 

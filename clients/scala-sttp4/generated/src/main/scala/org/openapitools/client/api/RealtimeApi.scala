@@ -32,7 +32,7 @@ class RealtimeApi(baseUrl: String) {
    * 
    * @param realtimeSessionCreateRequest Create an ephemeral API key with the given session configuration.
    */
-  def createRealtimeSession(bearerToken: String)(realtimeSessionCreateRequest: RealtimeSessionCreateRequest): Request[Either[ResponseException[String], RealtimeSessionCreateResponse]] =
+  def createRealtimeSession(bearerToken: String)(realtimeSessionCreateRequest: RealtimeSessionCreateRequest): sttp.client4.Request[Either[ResponseException[String], RealtimeSessionCreateResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/realtime/sessions")
       .contentType("application/json")

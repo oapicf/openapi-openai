@@ -78,6 +78,7 @@ class _$RunStepStreamEventSerializer implements PrimitiveSerializer<RunStepStrea
   }
 }
 
+
 class RunStepStreamEventEventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.run.step.expired')

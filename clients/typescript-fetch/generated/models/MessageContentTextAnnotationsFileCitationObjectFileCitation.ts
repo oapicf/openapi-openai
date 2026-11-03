@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface MessageContentTextAnnotationsFileCitationObjectFileCitation {
     /**
      * The ID of the specific File the citation is from.
-     * @type {string}
-     * @memberof MessageContentTextAnnotationsFileCitationObjectFileCitation
      */
     fileId: string;
 }

@@ -85,16 +85,11 @@ func (dst *CreateChatCompletionRequestFunctionCall) UnmarshalJSON(data []byte) e
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall)")
-        }
-        if err != nil {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall): %v", err)
-        } else {
-            return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall)")
-        }
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall): %v", err)
+		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateChatCompletionRequestFunctionCall)")
 	}
 }
 

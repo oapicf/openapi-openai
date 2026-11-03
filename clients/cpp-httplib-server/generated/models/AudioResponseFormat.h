@@ -12,24 +12,74 @@
 
 namespace models {
 
-
-class AudioResponseFormat
-{
-public:
-
-    AudioResponseFormat();
-    virtual ~AudioResponseFormat() = default;
-
-    // Getters and setters
-
-
-    // JSON serialization using NLOHMANN INTRUSIVE macro (must be inside class to access private members)
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(AudioResponseFormat,
-        )
-
-private:
+enum class AudioResponseFormat {
+    
+    JSON,
+    
+    TEXT,
+    
+    SRT,
+    
+    VERBOSE_JSON,
+    
+    VTT
+    
 };
 
+inline void to_json(nlohmann::json& j, const AudioResponseFormat& value)
+{
+    switch (value)
+    {
+        
+        case AudioResponseFormat::JSON: j = "json"; break;
+        
+        case AudioResponseFormat::TEXT: j = "text"; break;
+        
+        case AudioResponseFormat::SRT: j = "srt"; break;
+        
+        case AudioResponseFormat::VERBOSE_JSON: j = "verbose_json"; break;
+        
+        case AudioResponseFormat::VTT: j = "vtt"; break;
+        
+        default: throw nlohmann::json::type_error::create(302, "Invalid value for AudioResponseFormat", &j);
+    }
+}
+
+inline void from_json(const nlohmann::json& j, AudioResponseFormat& value)
+{
+    
+    if (j == "json")
+    {
+        value = AudioResponseFormat::JSON;
+        return;
+    }
+    
+    if (j == "text")
+    {
+        value = AudioResponseFormat::TEXT;
+        return;
+    }
+    
+    if (j == "srt")
+    {
+        value = AudioResponseFormat::SRT;
+        return;
+    }
+    
+    if (j == "verbose_json")
+    {
+        value = AudioResponseFormat::VERBOSE_JSON;
+        return;
+    }
+    
+    if (j == "vtt")
+    {
+        value = AudioResponseFormat::VTT;
+        return;
+    }
+    
+    throw nlohmann::json::type_error::create(302, "Invalid value for AudioResponseFormat", &j);
+}
 
 } // namespace models
 

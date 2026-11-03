@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepObjectStepDetails" /> class.
         /// </summary>
         /// <param name="runStepDetailsMessageCreationObject"></param>
-        public RunStepObjectStepDetails(RunStepDetailsMessageCreationObject runStepDetailsMessageCreationObject)
+        internal RunStepObjectStepDetails(RunStepDetailsMessageCreationObject runStepDetailsMessageCreationObject)
         {
             RunStepDetailsMessageCreationObject = runStepDetailsMessageCreationObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepObjectStepDetails" /> class.
         /// </summary>
         /// <param name="runStepDetailsToolCallsObject"></param>
-        public RunStepObjectStepDetails(RunStepDetailsToolCallsObject runStepDetailsToolCallsObject)
+        internal RunStepObjectStepDetails(RunStepDetailsToolCallsObject runStepDetailsToolCallsObject)
         {
             RunStepDetailsToolCallsObject = runStepDetailsToolCallsObject;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObjectStepDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepObjectStepDetails runStepObjectStepDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepObjectStepDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepObjectStepDetails runStepObjectStepDetails, JsonSerializerOptions jsonSerializerOptions)
         {
 

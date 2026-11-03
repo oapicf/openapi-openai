@@ -21,7 +21,7 @@ import org.openapitools.model.TruncationObject;
 /**
  * CreateThreadAndRunRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequest   {
   @JsonProperty("assistant_id")
   private String assistantId;
@@ -36,7 +36,7 @@ public class CreateThreadAndRunRequest   {
   private String instructions;
 
   @JsonProperty("tools")
-  private List<CreateThreadAndRunRequestToolsInner> tools = null;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools = null;
 
   @JsonProperty("tool_resources")
   private CreateThreadAndRunRequestToolResources toolResources;
@@ -143,14 +143,14 @@ public class CreateThreadAndRunRequest   {
     this.instructions = instructions;
   }
 
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
     return this;
   }
 
   public CreateThreadAndRunRequest addToolsItem(CreateThreadAndRunRequestToolsInner toolsItem) {
     if (this.tools == null) {
-      this.tools = ;
+      this.tools = new ArrayList<>();
     }
     this.tools.add(toolsItem);
     return this;
@@ -161,11 +161,11 @@ public class CreateThreadAndRunRequest   {
    * @return tools
   **/
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  public List<CreateThreadAndRunRequestToolsInner> getTools() {
+  public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 

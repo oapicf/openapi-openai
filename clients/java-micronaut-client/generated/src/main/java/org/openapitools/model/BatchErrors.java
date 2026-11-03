@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   BatchErrors.JSON_PROPERTY_DATA
 })
 @JsonTypeName("Batch_errors")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class BatchErrors {
     public static final String JSON_PROPERTY_OBJECT = "object";

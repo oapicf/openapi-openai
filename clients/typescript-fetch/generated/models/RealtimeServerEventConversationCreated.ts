@@ -30,20 +30,14 @@ import {
 export interface RealtimeServerEventConversationCreated {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventConversationCreated
      */
     eventId: string;
     /**
      * The event type, must be `conversation.created`.
-     * @type {RealtimeServerEventConversationCreatedTypeEnum}
-     * @memberof RealtimeServerEventConversationCreated
      */
     type: RealtimeServerEventConversationCreatedTypeEnum;
     /**
      * 
-     * @type {RealtimeServerEventConversationCreatedConversation}
-     * @memberof RealtimeServerEventConversationCreated
      */
     conversation: RealtimeServerEventConversationCreatedConversation;
 }
@@ -53,7 +47,7 @@ export interface RealtimeServerEventConversationCreated {
  * @export
  */
 export const RealtimeServerEventConversationCreatedTypeEnum = {
-    ConversationCreated: 'conversation.created'
+    ConversationCreated: 'conversation.created',
 } as const;
 export type RealtimeServerEventConversationCreatedTypeEnum = typeof RealtimeServerEventConversationCreatedTypeEnum[keyof typeof RealtimeServerEventConversationCreatedTypeEnum];
 

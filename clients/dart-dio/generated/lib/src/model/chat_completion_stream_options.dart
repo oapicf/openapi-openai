@@ -108,3 +108,4 @@ class _$ChatCompletionStreamOptionsSerializer implements PrimitiveSerializer<Cha
   }
 }
 
+

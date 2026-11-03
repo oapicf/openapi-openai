@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Arrays;
@@ -24,16 +23,13 @@ import jakarta.annotation.Generated;
  * UpdateVectorStoreRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UpdateVectorStoreRequest {
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> name = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable VectorStoreExpirationAfter expiresAfter;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
   public UpdateVectorStoreRequest name(String name) {
@@ -46,7 +42,7 @@ public class UpdateVectorStoreRequest {
    * @return name
    */
   
-  @Schema(name = "name", description = "The name of the vector store.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "name", description = "The name of the vector store.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("name")
   public JsonNullable<String> getName() {
     return name;
@@ -87,7 +83,7 @@ public class UpdateVectorStoreRequest {
    * @return metadata
    */
   
-  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
     return metadata;

@@ -160,16 +160,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!maxChunkSizeTokens.IsSet)
-                throw new ArgumentException("Property is required for class StaticChunkingStrategyStatic.", nameof(maxChunkSizeTokens));
+                throw new JsonException("Property is required for class StaticChunkingStrategyStatic: max_chunk_size_tokens.");
 
             if (!chunkOverlapTokens.IsSet)
-                throw new ArgumentException("Property is required for class StaticChunkingStrategyStatic.", nameof(chunkOverlapTokens));
+                throw new JsonException("Property is required for class StaticChunkingStrategyStatic: chunk_overlap_tokens.");
 
             if (maxChunkSizeTokens.IsSet && maxChunkSizeTokens.Value == null)
-                throw new ArgumentNullException(nameof(maxChunkSizeTokens), "Property is not nullable for class StaticChunkingStrategyStatic.");
+                throw new JsonException("Property is not nullable for class StaticChunkingStrategyStatic: max_chunk_size_tokens.");
 
             if (chunkOverlapTokens.IsSet && chunkOverlapTokens.Value == null)
-                throw new ArgumentNullException(nameof(chunkOverlapTokens), "Property is not nullable for class StaticChunkingStrategyStatic.");
+                throw new JsonException("Property is not nullable for class StaticChunkingStrategyStatic: chunk_overlap_tokens.");
 
             return new StaticChunkingStrategyStatic(maxChunkSizeTokens.Value!.Value!, chunkOverlapTokens.Value!.Value!);
         }
@@ -180,7 +180,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="staticChunkingStrategyStatic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StaticChunkingStrategyStatic staticChunkingStrategyStatic, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -195,7 +194,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="staticChunkingStrategyStatic"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StaticChunkingStrategyStatic staticChunkingStrategyStatic, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteNumber("max_chunk_size_tokens", staticChunkingStrategyStatic.MaxChunkSizeTokens);

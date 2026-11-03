@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class AuditLogServiceAccountUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogServiceAccountUpdatedChangesRequested: role.");
 
             return new AuditLogServiceAccountUpdatedChangesRequested(role);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogServiceAccountUpdatedChangesRequested auditLogServiceAccountUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogServiceAccountUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogServiceAccountUpdatedChangesRequested auditLogServiceAccountUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogServiceAccountUpdatedChangesRequested.RoleOption.IsSet && auditLogServiceAccountUpdatedChangesRequested.Role == null)
-                throw new ArgumentNullException(nameof(auditLogServiceAccountUpdatedChangesRequested.Role), "Property is required for class AuditLogServiceAccountUpdatedChangesRequested.");
+                throw new JsonException("Cannot write null property AuditLogServiceAccountUpdatedChangesRequested.Role to non-nullable JSON property 'role'.");
 
             if (auditLogServiceAccountUpdatedChangesRequested.RoleOption.IsSet)
                 writer.WriteString("role", auditLogServiceAccountUpdatedChangesRequested.Role);

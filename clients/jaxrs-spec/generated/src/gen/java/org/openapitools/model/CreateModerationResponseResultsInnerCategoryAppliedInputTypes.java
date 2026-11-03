@@ -22,7 +22,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "A list of the categories along with the input type(s) that the score applies to.")
 @JsonTypeName("CreateModerationResponse_results_inner_category_applied_input_types")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
   public enum HateEnum {
 
@@ -71,7 +71,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<HateEnum> hate = new ArrayList<>();
+  private List<HateEnum> hate = new ArrayList<>();
   public enum HateThreateningEnum {
 
     TEXT(String.valueOf("text"));
@@ -119,7 +119,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<HateThreateningEnum> hateThreatening = new ArrayList<>();
+  private List<HateThreateningEnum> hateThreatening = new ArrayList<>();
   public enum HarassmentEnum {
 
     TEXT(String.valueOf("text"));
@@ -167,7 +167,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<HarassmentEnum> harassment = new ArrayList<>();
+  private List<HarassmentEnum> harassment = new ArrayList<>();
   public enum HarassmentThreateningEnum {
 
     TEXT(String.valueOf("text"));
@@ -215,7 +215,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<HarassmentThreateningEnum> harassmentThreatening = new ArrayList<>();
+  private List<HarassmentThreateningEnum> harassmentThreatening = new ArrayList<>();
   public enum IllicitEnum {
 
     TEXT(String.valueOf("text"));
@@ -263,7 +263,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<IllicitEnum> illicit = new ArrayList<>();
+  private List<IllicitEnum> illicit = new ArrayList<>();
   public enum IllicitViolentEnum {
 
     TEXT(String.valueOf("text"));
@@ -311,7 +311,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<IllicitViolentEnum> illicitViolent = new ArrayList<>();
+  private List<IllicitViolentEnum> illicitViolent = new ArrayList<>();
   public enum SelfHarmEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -359,7 +359,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<SelfHarmEnum> selfHarm = new ArrayList<>();
+  private List<SelfHarmEnum> selfHarm = new ArrayList<>();
   public enum SelfHarmIntentEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -407,7 +407,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<SelfHarmIntentEnum> selfHarmIntent = new ArrayList<>();
+  private List<SelfHarmIntentEnum> selfHarmIntent = new ArrayList<>();
   public enum SelfHarmInstructionsEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -455,7 +455,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<SelfHarmInstructionsEnum> selfHarmInstructions = new ArrayList<>();
+  private List<SelfHarmInstructionsEnum> selfHarmInstructions = new ArrayList<>();
   public enum SexualEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -503,7 +503,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<SexualEnum> sexual = new ArrayList<>();
+  private List<SexualEnum> sexual = new ArrayList<>();
   public enum SexualMinorsEnum {
 
     TEXT(String.valueOf("text"));
@@ -551,7 +551,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<SexualMinorsEnum> sexualMinors = new ArrayList<>();
+  private List<SexualMinorsEnum> sexualMinors = new ArrayList<>();
   public enum ViolenceEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -599,7 +599,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<ViolenceEnum> violence = new ArrayList<>();
+  private List<ViolenceEnum> violence = new ArrayList<>();
   public enum ViolenceGraphicEnum {
 
     TEXT(String.valueOf("text")), IMAGE(String.valueOf("image"));
@@ -647,7 +647,7 @@ public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
     }
 }
 
-  private @Valid List<ViolenceGraphicEnum> violenceGraphic = new ArrayList<>();
+  private List<ViolenceGraphicEnum> violenceGraphic = new ArrayList<>();
 
   public CreateModerationResponseResultsInnerCategoryAppliedInputTypes() {
   }

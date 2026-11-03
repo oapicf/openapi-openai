@@ -27,7 +27,7 @@ object RealtimeClientEventInputAudioBufferAppendEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object InputAudioBufferAppend extends `Type`
+    case object InputAudioBufferAppend extends `Type` { override def toString: String = "input_audio_buffer.append" }
 
     import org.json4s._
 

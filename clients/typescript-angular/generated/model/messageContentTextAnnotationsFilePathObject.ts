@@ -28,7 +28,7 @@ export interface MessageContentTextAnnotationsFilePathObject {
 }
 export namespace MessageContentTextAnnotationsFilePathObject {
     export const TypeEnum = {
-        FilePath: 'file_path'
+        FilePath: 'file_path',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

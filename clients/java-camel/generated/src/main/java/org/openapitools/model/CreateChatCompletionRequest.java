@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -39,11 +38,10 @@ import jakarta.annotation.Generated;
  * CreateChatCompletionRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionRequest {
 
-  @Valid
-  private List<ChatCompletionRequestMessage> messages = new ArrayList<>();
+  private List<@Valid ChatCompletionRequestMessage> messages = new ArrayList<>();
 
   private CreateChatCompletionRequestModel model;
 
@@ -88,12 +86,10 @@ public class CreateChatCompletionRequest {
 
   private ReasoningEffortEnum reasoningEffort = ReasoningEffortEnum.MEDIUM;
 
-  @Valid
   private JsonNullable<Map<String, String>> metadata = JsonNullable.<Map<String, String>>undefined();
 
   private JsonNullable<@DecimalMin(value = "-2") @DecimalMax(value = "2") BigDecimal> frequencyPenalty = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
   private JsonNullable<Map<String, Integer>> logitBias = JsonNullable.<Map<String, Integer>>undefined();
 
   private JsonNullable<Boolean> logprobs = JsonNullable.<Boolean>undefined();
@@ -142,7 +138,6 @@ public class CreateChatCompletionRequest {
     }
   }
 
-  @Valid
   private JsonNullable<List<ModalitiesEnum>> modalities = JsonNullable.<List<ModalitiesEnum>>undefined();
 
   private JsonNullable<PredictionContent> prediction = JsonNullable.<PredictionContent>undefined();
@@ -192,7 +187,7 @@ public class CreateChatCompletionRequest {
 
   private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
-  private CreateChatCompletionRequestStop stop;
+  private CreateChatCompletionRequestStop stop = null;
 
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
@@ -202,7 +197,6 @@ public class CreateChatCompletionRequest {
 
   private JsonNullable<@DecimalMin(value = "0") @DecimalMax(value = "1") BigDecimal> topP = JsonNullable.<BigDecimal>undefined();
 
-  @Valid
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
 
   private ChatCompletionToolChoiceOption toolChoice;
@@ -215,7 +209,6 @@ public class CreateChatCompletionRequest {
   private CreateChatCompletionRequestFunctionCall functionCall;
 
   @Deprecated
-  @Valid
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
 
   public CreateChatCompletionRequest() {
@@ -225,12 +218,12 @@ public class CreateChatCompletionRequest {
   /**
    * Constructor with only required parameters
    */
-  public CreateChatCompletionRequest(List<ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
+  public CreateChatCompletionRequest(List<@Valid ChatCompletionRequestMessage> messages, CreateChatCompletionRequestModel model) {
     this.messages = messages;
     this.model = model;
   }
 
-  public CreateChatCompletionRequest messages(List<ChatCompletionRequestMessage> messages) {
+  public CreateChatCompletionRequest messages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
     return this;
   }
@@ -247,14 +240,14 @@ public class CreateChatCompletionRequest {
    * A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). 
    * @return messages
    */
-  @NotNull @Valid @Size(min = 1) 
+  @NotNull @Size(min = 1) 
   @Schema(name = "messages", description = "A list of messages comprising the conversation so far. Depending on the [model](/docs/models) you use, different message types (modalities) are supported, like [text](/docs/guides/text-generation), [images](/docs/guides/vision), and [audio](/docs/guides/audio). ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("messages")
-  public List<ChatCompletionRequestMessage> getMessages() {
+  public List<@Valid ChatCompletionRequestMessage> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<ChatCompletionRequestMessage> messages) {
+  public void setMessages(List<@Valid ChatCompletionRequestMessage> messages) {
     this.messages = messages;
   }
 
@@ -779,7 +772,7 @@ public class CreateChatCompletionRequest {
    * A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. 
    * @return tools
    */
-  @Valid 
+  
   @Schema(name = "tools", description = "A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("tools")
   public List<@Valid ChatCompletionTool> getTools() {
@@ -894,7 +887,7 @@ public class CreateChatCompletionRequest {
    * @return functions
    * @deprecated
    */
-  @Valid @Size(min = 1, max = 128) 
+  @Size(min = 1, max = 128) 
   @Schema(name = "functions", description = "Deprecated in favor of `tools`.  A list of functions the model may generate JSON inputs for. ", deprecated = true, requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("functions")
   @Deprecated

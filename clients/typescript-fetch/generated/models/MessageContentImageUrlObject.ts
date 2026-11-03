@@ -29,14 +29,10 @@ import {
 export interface MessageContentImageUrlObject {
     /**
      * The type of the content part.
-     * @type {MessageContentImageUrlObjectTypeEnum}
-     * @memberof MessageContentImageUrlObject
      */
     type: MessageContentImageUrlObjectTypeEnum;
     /**
      * 
-     * @type {MessageContentImageUrlObjectImageUrl}
-     * @memberof MessageContentImageUrlObject
      */
     imageUrl: MessageContentImageUrlObjectImageUrl;
 }
@@ -46,7 +42,7 @@ export interface MessageContentImageUrlObject {
  * @export
  */
 export const MessageContentImageUrlObjectTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 export type MessageContentImageUrlObjectTypeEnum = typeof MessageContentImageUrlObjectTypeEnum[keyof typeof MessageContentImageUrlObjectTypeEnum];
 

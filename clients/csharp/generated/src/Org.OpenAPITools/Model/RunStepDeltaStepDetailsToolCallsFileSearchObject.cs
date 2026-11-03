@@ -223,7 +223,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnum?>(RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnum? typeValue = RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsToolCallsFileSearchObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "file_search":
                             fileSearch = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -238,25 +243,25 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject.", nameof(index));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject: type.");
 
             if (!fileSearch.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject.", nameof(fileSearch));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject: file_search.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject: type.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject: file_search.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsFileSearchObject: id.");
 
             return new RunStepDeltaStepDetailsToolCallsFileSearchObject(index.Value!.Value!, type.Value!.Value!, fileSearch.Value!, id);
         }
@@ -267,7 +272,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsFileSearchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsFileSearchObject runStepDeltaStepDetailsToolCallsFileSearchObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -282,14 +286,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsFileSearchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsFileSearchObject runStepDeltaStepDetailsToolCallsFileSearchObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDeltaStepDetailsToolCallsFileSearchObject.FileSearch == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsFileSearchObject.FileSearch), "Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
-
             if (runStepDeltaStepDetailsToolCallsFileSearchObject.IdOption.IsSet && runStepDeltaStepDetailsToolCallsFileSearchObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsFileSearchObject.Id), "Property is required for class RunStepDeltaStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsFileSearchObject.Id to non-nullable JSON property 'id'.");
 
             writer.WriteNumber("index", runStepDeltaStepDetailsToolCallsFileSearchObject.Index);
 

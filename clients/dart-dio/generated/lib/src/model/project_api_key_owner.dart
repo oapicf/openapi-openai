@@ -150,12 +150,12 @@ class _$ProjectApiKeyOwnerSerializer implements PrimitiveSerializer<ProjectApiKe
   }
 }
 
+
+/// `user` or `service_account`
 class ProjectApiKeyOwnerTypeEnum extends EnumClass {
 
-  /// `user` or `service_account`
   @BuiltValueEnumConst(wireName: r'user')
   static const ProjectApiKeyOwnerTypeEnum user = _$projectApiKeyOwnerTypeEnum_user;
-  /// `user` or `service_account`
   @BuiltValueEnumConst(wireName: r'service_account')
   static const ProjectApiKeyOwnerTypeEnum serviceAccount = _$projectApiKeyOwnerTypeEnum_serviceAccount;
 

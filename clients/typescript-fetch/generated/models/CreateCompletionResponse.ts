@@ -37,26 +37,18 @@ import {
 export interface CreateCompletionResponse {
     /**
      * A unique identifier for the completion.
-     * @type {string}
-     * @memberof CreateCompletionResponse
      */
     id: string;
     /**
      * The list of completion choices the model generated for the input prompt.
-     * @type {Array<CreateCompletionResponseChoicesInner>}
-     * @memberof CreateCompletionResponse
      */
     choices: Array<CreateCompletionResponseChoicesInner>;
     /**
      * The Unix timestamp (in seconds) of when the completion was created.
-     * @type {number}
-     * @memberof CreateCompletionResponse
      */
     created: number;
     /**
      * The model used for completion.
-     * @type {string}
-     * @memberof CreateCompletionResponse
      */
     model: string;
     /**
@@ -64,20 +56,14 @@ export interface CreateCompletionResponse {
      * 
      * Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism.
      * 
-     * @type {string}
-     * @memberof CreateCompletionResponse
      */
     systemFingerprint?: string;
     /**
      * The object type, which is always "text_completion"
-     * @type {CreateCompletionResponseObjectEnum}
-     * @memberof CreateCompletionResponse
      */
     object: CreateCompletionResponseObjectEnum;
     /**
      * 
-     * @type {CompletionUsage}
-     * @memberof CreateCompletionResponse
      */
     usage?: CompletionUsage;
 }
@@ -87,7 +73,7 @@ export interface CreateCompletionResponse {
  * @export
  */
 export const CreateCompletionResponseObjectEnum = {
-    TextCompletion: 'text_completion'
+    TextCompletion: 'text_completion',
 } as const;
 export type CreateCompletionResponseObjectEnum = typeof CreateCompletionResponseObjectEnum[keyof typeof CreateCompletionResponseObjectEnum];
 

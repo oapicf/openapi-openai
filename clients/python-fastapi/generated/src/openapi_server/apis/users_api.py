@@ -22,14 +22,14 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_server.models.user import User
 from openapi_server.models.user_delete_response import UserDeleteResponse
 from openapi_server.models.user_list_response import UserListResponse
 from openapi_server.models.user_role_update_request import UserRoleUpdateRequest
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -49,8 +49,8 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_users(
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -70,7 +70,7 @@ async def list_users(
     response_model_by_alias=True,
 )
 async def retrieve_user(
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -90,8 +90,8 @@ async def retrieve_user(
     response_model_by_alias=True,
 )
 async def modify_user(
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
-    user_role_update_request: Annotated[UserRoleUpdateRequest, Field(description="The new user role to modify. This must be one of `owner` or `member`.")] = Body(None, description="The new user role to modify. This must be one of &#x60;owner&#x60; or &#x60;member&#x60;."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    user_role_update_request: Annotated[UserRoleUpdateRequest, Field(description="The new user role to modify. This must be one of `owner` or `member`.")] = Body(..., description="The new user role to modify. This must be one of &#x60;owner&#x60; or &#x60;member&#x60;."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -111,7 +111,7 @@ async def modify_user(
     response_model_by_alias=True,
 )
 async def delete_user(
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

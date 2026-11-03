@@ -48,7 +48,6 @@ public class CreateFineTuningJobRequest  {
   * A list of integrations to enable for your fine-tuning job.
   */
   @ApiModelProperty(value = "A list of integrations to enable for your fine-tuning job.")
-  @Valid
   private List<@Valid CreateFineTuningJobRequestIntegrationsInner> integrations;
 
  /**

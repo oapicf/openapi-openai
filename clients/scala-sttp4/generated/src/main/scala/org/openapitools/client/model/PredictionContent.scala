@@ -25,7 +25,7 @@ object PredictionContentEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object Content extends `Type`
+    case object Content extends `Type` { override def toString: String = "content" }
 
     import org.json4s._
 

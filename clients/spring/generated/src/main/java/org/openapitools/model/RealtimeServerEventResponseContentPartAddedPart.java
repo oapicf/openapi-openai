@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -24,7 +23,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RealtimeServerEventResponseContentPartAdded_part", description = "The content part that was added.")
 @JsonTypeName("RealtimeServerEventResponseContentPartAdded_part")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventResponseContentPartAddedPart {
 
   /**
@@ -62,16 +61,12 @@ public class RealtimeServerEventResponseContentPartAddedPart {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable TypeEnum type;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String text;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String audio;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String transcript;
 
   public RealtimeServerEventResponseContentPartAddedPart type(@Nullable TypeEnum type) {

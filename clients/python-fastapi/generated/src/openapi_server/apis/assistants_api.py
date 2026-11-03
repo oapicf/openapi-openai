@@ -22,8 +22,7 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_server.models.assistant_object import AssistantObject
@@ -48,6 +47,7 @@ from openapi_server.models.run_object import RunObject
 from openapi_server.models.run_step_object import RunStepObject
 from openapi_server.models.submit_tool_outputs_run_request import SubmitToolOutputsRunRequest
 from openapi_server.models.thread_object import ThreadObject
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -67,10 +67,10 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_assistants(
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    order: Annotated[Optional[str], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    before: Annotated[Optional[str], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -90,7 +90,7 @@ async def list_assistants(
     response_model_by_alias=True,
 )
 async def create_assistant(
-    create_assistant_request: CreateAssistantRequest = Body(None, description=""),
+    create_assistant_request: CreateAssistantRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -110,7 +110,7 @@ async def create_assistant(
     response_model_by_alias=True,
 )
 async def get_assistant(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant to retrieve.")] = Path(..., description="The ID of the assistant to retrieve."),
+    assistant_id: Annotated[str, Field(description="The ID of the assistant to retrieve.")] = Path(..., description="The ID of the assistant to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -130,8 +130,8 @@ async def get_assistant(
     response_model_by_alias=True,
 )
 async def modify_assistant(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant to modify.")] = Path(..., description="The ID of the assistant to modify."),
-    modify_assistant_request: ModifyAssistantRequest = Body(None, description=""),
+    assistant_id: Annotated[str, Field(description="The ID of the assistant to modify.")] = Path(..., description="The ID of the assistant to modify."),
+    modify_assistant_request: ModifyAssistantRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -151,7 +151,7 @@ async def modify_assistant(
     response_model_by_alias=True,
 )
 async def delete_assistant(
-    assistant_id: Annotated[StrictStr, Field(description="The ID of the assistant to delete.")] = Path(..., description="The ID of the assistant to delete."),
+    assistant_id: Annotated[str, Field(description="The ID of the assistant to delete.")] = Path(..., description="The ID of the assistant to delete."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -191,7 +191,7 @@ async def create_thread(
     response_model_by_alias=True,
 )
 async def create_thread_and_run(
-    create_thread_and_run_request: CreateThreadAndRunRequest = Body(None, description=""),
+    create_thread_and_run_request: CreateThreadAndRunRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -211,7 +211,7 @@ async def create_thread_and_run(
     response_model_by_alias=True,
 )
 async def get_thread(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to retrieve.")] = Path(..., description="The ID of the thread to retrieve."),
+    thread_id: Annotated[str, Field(description="The ID of the thread to retrieve.")] = Path(..., description="The ID of the thread to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -231,8 +231,8 @@ async def get_thread(
     response_model_by_alias=True,
 )
 async def modify_thread(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to modify. Only the `metadata` can be modified.")] = Path(..., description="The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified."),
-    modify_thread_request: ModifyThreadRequest = Body(None, description=""),
+    thread_id: Annotated[str, Field(description="The ID of the thread to modify. Only the `metadata` can be modified.")] = Path(..., description="The ID of the thread to modify. Only the &#x60;metadata&#x60; can be modified."),
+    modify_thread_request: ModifyThreadRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -252,7 +252,7 @@ async def modify_thread(
     response_model_by_alias=True,
 )
 async def delete_thread(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to delete.")] = Path(..., description="The ID of the thread to delete."),
+    thread_id: Annotated[str, Field(description="The ID of the thread to delete.")] = Path(..., description="The ID of the thread to delete."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -272,12 +272,12 @@ async def delete_thread(
     response_model_by_alias=True,
 )
 async def list_messages(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) the messages belong to.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) the messages belong to."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
-    run_id: Annotated[Optional[StrictStr], Field(description="Filter messages by the run ID that generated them. ")] = Query(None, description="Filter messages by the run ID that generated them. ", alias="run_id"),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) the messages belong to.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) the messages belong to."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    order: Annotated[Optional[str], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    before: Annotated[Optional[str], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    run_id: Annotated[Optional[str], Field(description="Filter messages by the run ID that generated them. ")] = Query(None, description="Filter messages by the run ID that generated them. ", alias="run_id"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -297,8 +297,8 @@ async def list_messages(
     response_model_by_alias=True,
 )
 async def create_message(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to create a message for.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to create a message for."),
-    create_message_request: CreateMessageRequest = Body(None, description=""),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) to create a message for.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to create a message for."),
+    create_message_request: CreateMessageRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -318,8 +318,8 @@ async def create_message(
     response_model_by_alias=True,
 )
 async def get_message(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this message belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this message belongs."),
-    message_id: Annotated[StrictStr, Field(description="The ID of the message to retrieve.")] = Path(..., description="The ID of the message to retrieve."),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this message belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this message belongs."),
+    message_id: Annotated[str, Field(description="The ID of the message to retrieve.")] = Path(..., description="The ID of the message to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -339,9 +339,9 @@ async def get_message(
     response_model_by_alias=True,
 )
 async def modify_message(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this message belongs.")] = Path(..., description="The ID of the thread to which this message belongs."),
-    message_id: Annotated[StrictStr, Field(description="The ID of the message to modify.")] = Path(..., description="The ID of the message to modify."),
-    modify_message_request: ModifyMessageRequest = Body(None, description=""),
+    thread_id: Annotated[str, Field(description="The ID of the thread to which this message belongs.")] = Path(..., description="The ID of the thread to which this message belongs."),
+    message_id: Annotated[str, Field(description="The ID of the message to modify.")] = Path(..., description="The ID of the message to modify."),
+    modify_message_request: ModifyMessageRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -361,8 +361,8 @@ async def modify_message(
     response_model_by_alias=True,
 )
 async def delete_message(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this message belongs.")] = Path(..., description="The ID of the thread to which this message belongs."),
-    message_id: Annotated[StrictStr, Field(description="The ID of the message to delete.")] = Path(..., description="The ID of the message to delete."),
+    thread_id: Annotated[str, Field(description="The ID of the thread to which this message belongs.")] = Path(..., description="The ID of the thread to which this message belongs."),
+    message_id: Annotated[str, Field(description="The ID of the message to delete.")] = Path(..., description="The ID of the message to delete."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -382,11 +382,11 @@ async def delete_message(
     response_model_by_alias=True,
 )
 async def list_runs(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread the run belongs to.")] = Path(..., description="The ID of the thread the run belongs to."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    thread_id: Annotated[str, Field(description="The ID of the thread the run belongs to.")] = Path(..., description="The ID of the thread the run belongs to."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    order: Annotated[Optional[str], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    before: Annotated[Optional[str], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -406,9 +406,9 @@ async def list_runs(
     response_model_by_alias=True,
 )
 async def create_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to run.")] = Path(..., description="The ID of the thread to run."),
-    create_run_request: CreateRunRequest = Body(None, description=""),
-    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
+    thread_id: Annotated[str, Field(description="The ID of the thread to run.")] = Path(..., description="The ID of the thread to run."),
+    create_run_request: CreateRunRequest = Body(..., description=""),
+    include: Annotated[Optional[List[str]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -428,8 +428,8 @@ async def create_run(
     response_model_by_alias=True,
 )
 async def get_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) that was run.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) that was run."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run to retrieve.")] = Path(..., description="The ID of the run to retrieve."),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) that was run.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) that was run."),
+    run_id: Annotated[str, Field(description="The ID of the run to retrieve.")] = Path(..., description="The ID of the run to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -449,9 +449,9 @@ async def get_run(
     response_model_by_alias=True,
 )
 async def modify_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) that was run.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) that was run."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run to modify.")] = Path(..., description="The ID of the run to modify."),
-    modify_run_request: ModifyRunRequest = Body(None, description=""),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) that was run.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) that was run."),
+    run_id: Annotated[str, Field(description="The ID of the run to modify.")] = Path(..., description="The ID of the run to modify."),
+    modify_run_request: ModifyRunRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -471,8 +471,8 @@ async def modify_run(
     response_model_by_alias=True,
 )
 async def cancel_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which this run belongs.")] = Path(..., description="The ID of the thread to which this run belongs."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run to cancel.")] = Path(..., description="The ID of the run to cancel."),
+    thread_id: Annotated[str, Field(description="The ID of the thread to which this run belongs.")] = Path(..., description="The ID of the thread to which this run belongs."),
+    run_id: Annotated[str, Field(description="The ID of the run to cancel.")] = Path(..., description="The ID of the run to cancel."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -492,13 +492,13 @@ async def cancel_run(
     response_model_by_alias=True,
 )
 async def list_run_steps(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread the run and run steps belong to.")] = Path(..., description="The ID of the thread the run and run steps belong to."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run the run steps belong to.")] = Path(..., description="The ID of the run the run steps belong to."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    order: Annotated[Optional[StrictStr], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
-    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
+    thread_id: Annotated[str, Field(description="The ID of the thread the run and run steps belong to.")] = Path(..., description="The ID of the thread the run and run steps belong to."),
+    run_id: Annotated[str, Field(description="The ID of the run the run steps belong to.")] = Path(..., description="The ID of the run the run steps belong to."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    order: Annotated[Optional[str], Field(description="Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. ")] = Query('desc', description="Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order. ", alias="order"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    before: Annotated[Optional[str], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    include: Annotated[Optional[List[str]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -518,10 +518,10 @@ async def list_run_steps(
     response_model_by_alias=True,
 )
 async def get_run_step(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the thread to which the run and run step belongs.")] = Path(..., description="The ID of the thread to which the run and run step belongs."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run to which the run step belongs.")] = Path(..., description="The ID of the run to which the run step belongs."),
-    step_id: Annotated[StrictStr, Field(description="The ID of the run step to retrieve.")] = Path(..., description="The ID of the run step to retrieve."),
-    include: Annotated[Optional[List[StrictStr]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
+    thread_id: Annotated[str, Field(description="The ID of the thread to which the run and run step belongs.")] = Path(..., description="The ID of the thread to which the run and run step belongs."),
+    run_id: Annotated[str, Field(description="The ID of the run to which the run step belongs.")] = Path(..., description="The ID of the run to which the run step belongs."),
+    step_id: Annotated[str, Field(description="The ID of the run step to retrieve.")] = Path(..., description="The ID of the run step to retrieve."),
+    include: Annotated[Optional[List[str]], Field(description="A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ")] = Query(None, description="A list of additional fields to include in the response. Currently the only supported value is &#x60;step_details.tool_calls[*].file_search.results[*].content&#x60; to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. ", alias="include[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -541,9 +541,9 @@ async def get_run_step(
     response_model_by_alias=True,
 )
 async def submit_tool_ouputs_to_run(
-    thread_id: Annotated[StrictStr, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs."),
-    run_id: Annotated[StrictStr, Field(description="The ID of the run that requires the tool output submission.")] = Path(..., description="The ID of the run that requires the tool output submission."),
-    submit_tool_outputs_run_request: SubmitToolOutputsRunRequest = Body(None, description=""),
+    thread_id: Annotated[str, Field(description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs.")] = Path(..., description="The ID of the [thread](/docs/api-reference/threads) to which this run belongs."),
+    run_id: Annotated[str, Field(description="The ID of the run that requires the tool output submission.")] = Path(..., description="The ID of the run that requires the tool output submission."),
+    submit_tool_outputs_run_request: SubmitToolOutputsRunRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

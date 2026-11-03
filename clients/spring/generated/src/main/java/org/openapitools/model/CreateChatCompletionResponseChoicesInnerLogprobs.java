@@ -26,7 +26,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "CreateChatCompletionResponse_choices_inner_logprobs", description = "Log probability information for the choice.")
 @JsonTypeName("CreateChatCompletionResponse_choices_inner_logprobs")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs {
 
   private JsonNullable<List<@Valid ChatCompletionTokenLogprob>> content = JsonNullable.<List<@Valid ChatCompletionTokenLogprob>>undefined();
@@ -51,7 +51,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
   }
 
   public CreateChatCompletionResponseChoicesInnerLogprobs addContentItem(ChatCompletionTokenLogprob contentItem) {
-    if (this.content == null || !this.content.isPresent()) {
+    if (this.content == null || !this.content.isPresent() || this.content.get() == null) {
       this.content = JsonNullable.of(new ArrayList<>());
     }
     this.content.get().add(contentItem);
@@ -62,8 +62,8 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * A list of message content tokens with log probability information.
    * @return content
    */
-  @NotNull @Valid 
-  @Schema(name = "content", description = "A list of message content tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "content", description = "A list of message content tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("content")
   public JsonNullable<List<@Valid ChatCompletionTokenLogprob>> getContent() {
     return content;
@@ -80,7 +80,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
   }
 
   public CreateChatCompletionResponseChoicesInnerLogprobs addRefusalItem(ChatCompletionTokenLogprob refusalItem) {
-    if (this.refusal == null || !this.refusal.isPresent()) {
+    if (this.refusal == null || !this.refusal.isPresent() || this.refusal.get() == null) {
       this.refusal = JsonNullable.of(new ArrayList<>());
     }
     this.refusal.get().add(refusalItem);
@@ -91,8 +91,8 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * A list of message refusal tokens with log probability information.
    * @return refusal
    */
-  @NotNull @Valid 
-  @Schema(name = "refusal", description = "A list of message refusal tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED)
+  /* @Present */ 
+  @Schema(name = "refusal", description = "A list of message refusal tokens with log probability information.", requiredMode = Schema.RequiredMode.REQUIRED, nullable = true)
   @JsonProperty("refusal")
   public JsonNullable<List<@Valid ChatCompletionTokenLogprob>> getRefusal() {
     return refusal;
@@ -135,7 +135,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(@Nullable Object o) {
     return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

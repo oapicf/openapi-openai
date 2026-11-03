@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface CostsResultAmount {
     /**
      * The numeric value of the cost.
-     * @type {number}
-     * @memberof CostsResultAmount
      */
     value?: number;
     /**
      * Lowercase ISO-4217 currency e.g. "usd"
-     * @type {string}
-     * @memberof CostsResultAmount
      */
     currency?: string;
 }

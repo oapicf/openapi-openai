@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateTranscription200Response" /> class.
         /// </summary>
         /// <param name="createTranscriptionResponseJson"></param>
-        public CreateTranscription200Response(CreateTranscriptionResponseJson createTranscriptionResponseJson)
+        internal CreateTranscription200Response(CreateTranscriptionResponseJson createTranscriptionResponseJson)
         {
             CreateTranscriptionResponseJson = createTranscriptionResponseJson;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="CreateTranscription200Response" /> class.
         /// </summary>
         /// <param name="createTranscriptionResponseVerboseJson"></param>
-        public CreateTranscription200Response(CreateTranscriptionResponseVerboseJson createTranscriptionResponseVerboseJson)
+        internal CreateTranscription200Response(CreateTranscriptionResponseVerboseJson createTranscriptionResponseVerboseJson)
         {
             CreateTranscriptionResponseVerboseJson = createTranscriptionResponseVerboseJson;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranscription200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTranscription200Response createTranscription200Response, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranscription200Response"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTranscription200Response createTranscription200Response, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -20,113 +20,399 @@ import {
 } from '../models/UsageResponse';
 
 export interface UsageAudioSpeechesRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageAudioSpeechesBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model` or any combination of them.
+     */
     groupBy?: Array<UsageAudioSpeechesGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageAudioTranscriptionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageAudioTranscriptionsBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model` or any combination of them.
+     */
     groupBy?: Array<UsageAudioTranscriptionsGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageCodeInterpreterSessionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageCodeInterpreterSessionsBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`.
+     */
     groupBy?: Array<UsageCodeInterpreterSessionsGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageCompletionsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageCompletionsBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * If `true`, return batch jobs only. If `false`, return non-batch jobs only. By default, return both.
+     * 
+     */
     batch?: boolean;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `batch` or any combination of them.
+     */
     groupBy?: Array<UsageCompletionsGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageCostsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently only `1d` is supported, default to `1d`.
+     */
     bucketWidth?: UsageCostsBucketWidthEnum;
+    /**
+     * Return only costs for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Group the costs by the specified fields. Support fields include `project_id`, `line_item` and any combination of them.
+     */
     groupBy?: Array<UsageCostsGroupByEnum>;
+    /**
+     * A limit on the number of buckets to be returned. Limit can range between 1 and 180, and the default is 7.
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageEmbeddingsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageEmbeddingsBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model` or any combination of them.
+     */
     groupBy?: Array<UsageEmbeddingsGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageImagesRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageImagesBucketWidthEnum;
+    /**
+     * Return only usages for these sources. Possible values are `image.generation`, `image.edit`, `image.variation` or any combination of them.
+     */
     sources?: Array<UsageImagesSourcesEnum>;
+    /**
+     * Return only usages for these image sizes. Possible values are `256x256`, `512x512`, `1024x1024`, `1792x1792`, `1024x1792` or any combination of them.
+     */
     sizes?: Array<UsageImagesSizesEnum>;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `size`, `source` or any combination of them.
+     */
     groupBy?: Array<UsageImagesGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageModerationsRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageModerationsBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Return only usage for these users.
+     */
     userIds?: Array<string>;
+    /**
+     * Return only usage for these API keys.
+     */
     apiKeyIds?: Array<string>;
+    /**
+     * Return only usage for these models.
+     */
     models?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model` or any combination of them.
+     */
     groupBy?: Array<UsageModerationsGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
 export interface UsageVectorStoresRequest {
+    /**
+     * Start time (Unix seconds) of the query time range, inclusive.
+     */
     startTime: number;
+    /**
+     * End time (Unix seconds) of the query time range, exclusive.
+     */
     endTime?: number;
+    /**
+     * Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`.
+     */
     bucketWidth?: UsageVectorStoresBucketWidthEnum;
+    /**
+     * Return only usage for these projects.
+     */
     projectIds?: Array<string>;
+    /**
+     * Group the usage data by the specified fields. Support fields include `project_id`.
+     */
     groupBy?: Array<UsageVectorStoresGroupByEnum>;
+    /**
+     * Specifies the number of buckets to return.
+     * - `bucket_width=1d`: default: 7, max: 31
+     * - `bucket_width=1h`: default: 24, max: 168
+     * - `bucket_width=1m`: default: 60, max: 1440
+     * 
+     */
     limit?: number;
+    /**
+     * A cursor for use in pagination. Corresponding to the `next_page` field from the previous response.
+     */
     page?: string;
 }
 
@@ -947,7 +1233,7 @@ export class UsageApi extends runtime.BaseAPI {
 export const UsageAudioSpeechesBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageAudioSpeechesBucketWidthEnum = typeof UsageAudioSpeechesBucketWidthEnum[keyof typeof UsageAudioSpeechesBucketWidthEnum];
 /**
@@ -957,7 +1243,7 @@ export const UsageAudioSpeechesGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageAudioSpeechesGroupByEnum = typeof UsageAudioSpeechesGroupByEnum[keyof typeof UsageAudioSpeechesGroupByEnum];
 /**
@@ -966,7 +1252,7 @@ export type UsageAudioSpeechesGroupByEnum = typeof UsageAudioSpeechesGroupByEnum
 export const UsageAudioTranscriptionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageAudioTranscriptionsBucketWidthEnum = typeof UsageAudioTranscriptionsBucketWidthEnum[keyof typeof UsageAudioTranscriptionsBucketWidthEnum];
 /**
@@ -976,7 +1262,7 @@ export const UsageAudioTranscriptionsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageAudioTranscriptionsGroupByEnum = typeof UsageAudioTranscriptionsGroupByEnum[keyof typeof UsageAudioTranscriptionsGroupByEnum];
 /**
@@ -985,14 +1271,14 @@ export type UsageAudioTranscriptionsGroupByEnum = typeof UsageAudioTranscription
 export const UsageCodeInterpreterSessionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCodeInterpreterSessionsBucketWidthEnum = typeof UsageCodeInterpreterSessionsBucketWidthEnum[keyof typeof UsageCodeInterpreterSessionsBucketWidthEnum];
 /**
  * @export
  */
 export const UsageCodeInterpreterSessionsGroupByEnum = {
-    ProjectId: 'project_id'
+    ProjectId: 'project_id',
 } as const;
 export type UsageCodeInterpreterSessionsGroupByEnum = typeof UsageCodeInterpreterSessionsGroupByEnum[keyof typeof UsageCodeInterpreterSessionsGroupByEnum];
 /**
@@ -1001,7 +1287,7 @@ export type UsageCodeInterpreterSessionsGroupByEnum = typeof UsageCodeInterprete
 export const UsageCompletionsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCompletionsBucketWidthEnum = typeof UsageCompletionsBucketWidthEnum[keyof typeof UsageCompletionsBucketWidthEnum];
 /**
@@ -1012,14 +1298,14 @@ export const UsageCompletionsGroupByEnum = {
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
     Model: 'model',
-    Batch: 'batch'
+    Batch: 'batch',
 } as const;
 export type UsageCompletionsGroupByEnum = typeof UsageCompletionsGroupByEnum[keyof typeof UsageCompletionsGroupByEnum];
 /**
  * @export
  */
 export const UsageCostsBucketWidthEnum = {
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageCostsBucketWidthEnum = typeof UsageCostsBucketWidthEnum[keyof typeof UsageCostsBucketWidthEnum];
 /**
@@ -1027,7 +1313,7 @@ export type UsageCostsBucketWidthEnum = typeof UsageCostsBucketWidthEnum[keyof t
  */
 export const UsageCostsGroupByEnum = {
     ProjectId: 'project_id',
-    LineItem: 'line_item'
+    LineItem: 'line_item',
 } as const;
 export type UsageCostsGroupByEnum = typeof UsageCostsGroupByEnum[keyof typeof UsageCostsGroupByEnum];
 /**
@@ -1036,7 +1322,7 @@ export type UsageCostsGroupByEnum = typeof UsageCostsGroupByEnum[keyof typeof Us
 export const UsageEmbeddingsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageEmbeddingsBucketWidthEnum = typeof UsageEmbeddingsBucketWidthEnum[keyof typeof UsageEmbeddingsBucketWidthEnum];
 /**
@@ -1046,7 +1332,7 @@ export const UsageEmbeddingsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageEmbeddingsGroupByEnum = typeof UsageEmbeddingsGroupByEnum[keyof typeof UsageEmbeddingsGroupByEnum];
 /**
@@ -1055,7 +1341,7 @@ export type UsageEmbeddingsGroupByEnum = typeof UsageEmbeddingsGroupByEnum[keyof
 export const UsageImagesBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageImagesBucketWidthEnum = typeof UsageImagesBucketWidthEnum[keyof typeof UsageImagesBucketWidthEnum];
 /**
@@ -1064,7 +1350,7 @@ export type UsageImagesBucketWidthEnum = typeof UsageImagesBucketWidthEnum[keyof
 export const UsageImagesSourcesEnum = {
     ImageGeneration: 'image.generation',
     ImageEdit: 'image.edit',
-    ImageVariation: 'image.variation'
+    ImageVariation: 'image.variation',
 } as const;
 export type UsageImagesSourcesEnum = typeof UsageImagesSourcesEnum[keyof typeof UsageImagesSourcesEnum];
 /**
@@ -1075,7 +1361,7 @@ export const UsageImagesSizesEnum = {
     _512x512: '512x512',
     _1024x1024: '1024x1024',
     _1792x1792: '1792x1792',
-    _1024x1792: '1024x1792'
+    _1024x1792: '1024x1792',
 } as const;
 export type UsageImagesSizesEnum = typeof UsageImagesSizesEnum[keyof typeof UsageImagesSizesEnum];
 /**
@@ -1087,7 +1373,7 @@ export const UsageImagesGroupByEnum = {
     ApiKeyId: 'api_key_id',
     Model: 'model',
     Size: 'size',
-    Source: 'source'
+    Source: 'source',
 } as const;
 export type UsageImagesGroupByEnum = typeof UsageImagesGroupByEnum[keyof typeof UsageImagesGroupByEnum];
 /**
@@ -1096,7 +1382,7 @@ export type UsageImagesGroupByEnum = typeof UsageImagesGroupByEnum[keyof typeof 
 export const UsageModerationsBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageModerationsBucketWidthEnum = typeof UsageModerationsBucketWidthEnum[keyof typeof UsageModerationsBucketWidthEnum];
 /**
@@ -1106,7 +1392,7 @@ export const UsageModerationsGroupByEnum = {
     ProjectId: 'project_id',
     UserId: 'user_id',
     ApiKeyId: 'api_key_id',
-    Model: 'model'
+    Model: 'model',
 } as const;
 export type UsageModerationsGroupByEnum = typeof UsageModerationsGroupByEnum[keyof typeof UsageModerationsGroupByEnum];
 /**
@@ -1115,13 +1401,13 @@ export type UsageModerationsGroupByEnum = typeof UsageModerationsGroupByEnum[key
 export const UsageVectorStoresBucketWidthEnum = {
     _1m: '1m',
     _1h: '1h',
-    _1d: '1d'
+    _1d: '1d',
 } as const;
 export type UsageVectorStoresBucketWidthEnum = typeof UsageVectorStoresBucketWidthEnum[keyof typeof UsageVectorStoresBucketWidthEnum];
 /**
  * @export
  */
 export const UsageVectorStoresGroupByEnum = {
-    ProjectId: 'project_id'
+    ProjectId: 'project_id',
 } as const;
 export type UsageVectorStoresGroupByEnum = typeof UsageVectorStoresGroupByEnum[keyof typeof UsageVectorStoresGroupByEnum];

@@ -173,9 +173,10 @@ class _$MessageContentTextAnnotationsFileCitationObjectSerializer implements Pri
   }
 }
 
+
+/// Always `file_citation`.
 class MessageContentTextAnnotationsFileCitationObjectTypeEnum extends EnumClass {
 
-  /// Always `file_citation`.
   @BuiltValueEnumConst(wireName: r'file_citation')
   static const MessageContentTextAnnotationsFileCitationObjectTypeEnum fileCitation = _$messageContentTextAnnotationsFileCitationObjectTypeEnum_fileCitation;
 

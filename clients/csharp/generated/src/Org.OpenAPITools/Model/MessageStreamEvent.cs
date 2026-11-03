@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEventOneOf"></param>
-        public MessageStreamEvent(MessageStreamEventOneOf messageStreamEventOneOf)
+        internal MessageStreamEvent(MessageStreamEventOneOf messageStreamEventOneOf)
         {
             MessageStreamEventOneOf = messageStreamEventOneOf;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEventOneOf1"></param>
-        public MessageStreamEvent(MessageStreamEventOneOf1 messageStreamEventOneOf1)
+        internal MessageStreamEvent(MessageStreamEventOneOf1 messageStreamEventOneOf1)
         {
             MessageStreamEventOneOf1 = messageStreamEventOneOf1;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEventOneOf2"></param>
-        public MessageStreamEvent(MessageStreamEventOneOf2 messageStreamEventOneOf2)
+        internal MessageStreamEvent(MessageStreamEventOneOf2 messageStreamEventOneOf2)
         {
             MessageStreamEventOneOf2 = messageStreamEventOneOf2;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEventOneOf3"></param>
-        public MessageStreamEvent(MessageStreamEventOneOf3 messageStreamEventOneOf3)
+        internal MessageStreamEvent(MessageStreamEventOneOf3 messageStreamEventOneOf3)
         {
             MessageStreamEventOneOf3 = messageStreamEventOneOf3;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEventOneOf4"></param>
-        public MessageStreamEvent(MessageStreamEventOneOf4 messageStreamEventOneOf4)
+        internal MessageStreamEvent(MessageStreamEventOneOf4 messageStreamEventOneOf4)
         {
             MessageStreamEventOneOf4 = messageStreamEventOneOf4;
             OnCreated();
@@ -242,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageStreamEvent messageStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,7 +256,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageStreamEvent messageStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -29,30 +28,24 @@ import jakarta.annotation.Generated;
  * CreateFineTuningJobRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequest {
 
   private CreateFineTuningJobRequestModel model;
 
   private String trainingFile;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   @Deprecated
   private @Nullable CreateFineTuningJobRequestHyperparameters hyperparameters;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Size(min = 1, max = 64) String> suffix = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> validationFile = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<List<@Valid CreateFineTuningJobRequestIntegrationsInner>> integrations = JsonNullable.<List<@Valid CreateFineTuningJobRequestIntegrationsInner>>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<@Min(value = 0) @Max(value = 2147483647) Integer> seed = JsonNullable.<Integer>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FineTuneMethod method;
 
   public CreateFineTuningJobRequest() {
@@ -146,7 +139,7 @@ public class CreateFineTuningJobRequest {
    * @return suffix
    */
   @Size(min = 1, max = 64) 
-  @Schema(name = "suffix", description = "A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "suffix", description = "A string of up to 64 characters that will be added to your fine-tuned model name.  For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("suffix")
   public JsonNullable<@Size(min = 1, max = 64) String> getSuffix() {
     return suffix;
@@ -166,7 +159,7 @@ public class CreateFineTuningJobRequest {
    * @return validationFile
    */
   
-  @Schema(name = "validation_file", example = "file-abc123", description = "The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "validation_file", example = "file-abc123", description = "The ID of an uploaded file that contains validation data.  If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files.  Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`.  See the [fine-tuning guide](/docs/guides/fine-tuning) for more details. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("validation_file")
   public JsonNullable<String> getValidationFile() {
     return validationFile;
@@ -182,7 +175,7 @@ public class CreateFineTuningJobRequest {
   }
 
   public CreateFineTuningJobRequest addIntegrationsItem(CreateFineTuningJobRequestIntegrationsInner integrationsItem) {
-    if (this.integrations == null || !this.integrations.isPresent()) {
+    if (this.integrations == null || !this.integrations.isPresent() || this.integrations.get() == null) {
       this.integrations = JsonNullable.of(new ArrayList<>());
     }
     this.integrations.get().add(integrationsItem);
@@ -193,8 +186,8 @@ public class CreateFineTuningJobRequest {
    * A list of integrations to enable for your fine-tuning job.
    * @return integrations
    */
-  @Valid 
-  @Schema(name = "integrations", description = "A list of integrations to enable for your fine-tuning job.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  
+  @Schema(name = "integrations", description = "A list of integrations to enable for your fine-tuning job.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("integrations")
   public JsonNullable<List<@Valid CreateFineTuningJobRequestIntegrationsInner>> getIntegrations() {
     return integrations;
@@ -216,7 +209,7 @@ public class CreateFineTuningJobRequest {
    * @return seed
    */
   @Min(value = 0) @Max(value = 2147483647) 
-  @Schema(name = "seed", example = "42", description = "The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "seed", example = "42", description = "The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("seed")
   public JsonNullable<@Min(value = 0) @Max(value = 2147483647) Integer> getSeed() {
     return seed;

@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseTextDeltaSerializer implements PrimitiveSeria
   }
 }
 
+
+/// The event type, must be `response.text.delta`.
 class RealtimeServerEventResponseTextDeltaTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.text.delta`.
   @BuiltValueEnumConst(wireName: r'response.text.delta')
   static const RealtimeServerEventResponseTextDeltaTypeEnum responsePeriodTextPeriodDelta = _$realtimeServerEventResponseTextDeltaTypeEnum_responsePeriodTextPeriodDelta;
 

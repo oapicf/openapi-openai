@@ -23,11 +23,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class MessageRequestContentTextObject(
 
     @Schema(required = true, description = "Always `text`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: MessageRequestContentTextObject.Type,
 
     @Schema(required = true, description = "Text content to be sent to the model")
-    @param:JsonProperty("text")
+    @param:JsonProperty("text", required = true)
     @get:JsonProperty("text", required = true) val text: kotlin.String
 ) : ArrayOfContentPartsInner {
 
@@ -38,12 +38,12 @@ data class MessageRequestContentTextObject(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         text("text");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

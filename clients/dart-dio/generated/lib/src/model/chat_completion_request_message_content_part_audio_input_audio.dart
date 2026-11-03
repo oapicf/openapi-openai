@@ -124,12 +124,12 @@ class _$ChatCompletionRequestMessageContentPartAudioInputAudioSerializer impleme
   }
 }
 
+
+/// The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
 class ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum extends EnumClass {
 
-  /// The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
   @BuiltValueEnumConst(wireName: r'wav')
   static const ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum wav = _$chatCompletionRequestMessageContentPartAudioInputAudioFormatEnum_wav;
-  /// The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
   @BuiltValueEnumConst(wireName: r'mp3')
   static const ChatCompletionRequestMessageContentPartAudioInputAudioFormatEnum mp3 = _$chatCompletionRequestMessageContentPartAudioInputAudioFormatEnum_mp3;
 

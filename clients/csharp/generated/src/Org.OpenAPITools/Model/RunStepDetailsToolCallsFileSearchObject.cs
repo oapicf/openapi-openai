@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDetailsToolCallsFileSearchObject.TypeEnum?>(RunStepDetailsToolCallsFileSearchObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDetailsToolCallsFileSearchObject.TypeEnum? typeValue = RunStepDetailsToolCallsFileSearchObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDetailsToolCallsFileSearchObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "file_search":
                             fileSearch = new Option<RunStepDetailsToolCallsFileSearchObjectFileSearch?>(JsonSerializer.Deserialize<RunStepDetailsToolCallsFileSearchObjectFileSearch>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchObject.", nameof(id));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchObject: id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchObject: type.");
 
             if (!fileSearch.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsToolCallsFileSearchObject.", nameof(fileSearch));
+                throw new JsonException("Property is required for class RunStepDetailsToolCallsFileSearchObject: file_search.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchObject: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchObject: type.");
 
             if (fileSearch.IsSet && fileSearch.Value == null)
-                throw new ArgumentNullException(nameof(fileSearch), "Property is not nullable for class RunStepDetailsToolCallsFileSearchObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsToolCallsFileSearchObject: file_search.");
 
             return new RunStepDetailsToolCallsFileSearchObject(id.Value!, type.Value!.Value!, fileSearch.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchObject runStepDetailsToolCallsFileSearchObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsToolCallsFileSearchObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsToolCallsFileSearchObject runStepDetailsToolCallsFileSearchObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsToolCallsFileSearchObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchObject.Id), "Property is required for class RunStepDetailsToolCallsFileSearchObject.");
-
-            if (runStepDetailsToolCallsFileSearchObject.FileSearch == null)
-                throw new ArgumentNullException(nameof(runStepDetailsToolCallsFileSearchObject.FileSearch), "Property is required for class RunStepDetailsToolCallsFileSearchObject.");
-
             writer.WriteString("id", runStepDetailsToolCallsFileSearchObject.Id);
 
             var typeRawValue = RunStepDetailsToolCallsFileSearchObject.TypeEnumToJsonValue(runStepDetailsToolCallsFileSearchObject.Type);

@@ -29,14 +29,10 @@ import {
 export interface AuditLogRateLimitUpdated {
     /**
      * The rate limit ID
-     * @type {string}
-     * @memberof AuditLogRateLimitUpdated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogRateLimitUpdatedChangesRequested}
-     * @memberof AuditLogRateLimitUpdated
      */
     changesRequested?: AuditLogRateLimitUpdatedChangesRequested;
 }

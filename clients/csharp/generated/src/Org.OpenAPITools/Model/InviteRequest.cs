@@ -226,7 +226,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<InviteRequest.RoleEnum?>(InviteRequest.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                InviteRequest.RoleEnum? roleValue = InviteRequest.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<InviteRequest.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "projects":
                             projects = new Option<List<InviteRequestProjectsInner>?>(JsonSerializer.Deserialize<List<InviteRequestProjectsInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -238,19 +243,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!email.IsSet)
-                throw new ArgumentException("Property is required for class InviteRequest.", nameof(email));
+                throw new JsonException("Property is required for class InviteRequest: email.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class InviteRequest.", nameof(role));
+                throw new JsonException("Property is required for class InviteRequest: role.");
 
             if (email.IsSet && email.Value == null)
-                throw new ArgumentNullException(nameof(email), "Property is not nullable for class InviteRequest.");
+                throw new JsonException("Property is not nullable for class InviteRequest: email.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class InviteRequest.");
+                throw new JsonException("Property is not nullable for class InviteRequest: role.");
 
             if (projects.IsSet && projects.Value == null)
-                throw new ArgumentNullException(nameof(projects), "Property is not nullable for class InviteRequest.");
+                throw new JsonException("Property is not nullable for class InviteRequest: projects.");
 
             return new InviteRequest(email.Value!, role.Value!.Value!, projects);
         }
@@ -261,7 +266,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InviteRequest inviteRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -276,14 +280,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InviteRequest inviteRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (inviteRequest.Email == null)
-                throw new ArgumentNullException(nameof(inviteRequest.Email), "Property is required for class InviteRequest.");
-
             if (inviteRequest.ProjectsOption.IsSet && inviteRequest.Projects == null)
-                throw new ArgumentNullException(nameof(inviteRequest.Projects), "Property is required for class InviteRequest.");
+                throw new JsonException("Cannot write null property InviteRequest.Projects to non-nullable JSON property 'projects'.");
 
             writer.WriteString("email", inviteRequest.Email);
 

@@ -36,50 +36,34 @@ import {
 export interface VectorStoreFileObject {
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof VectorStoreFileObject
      */
     id: string;
     /**
      * The object type, which is always `vector_store.file`.
-     * @type {VectorStoreFileObjectObjectEnum}
-     * @memberof VectorStoreFileObject
      */
     object: VectorStoreFileObjectObjectEnum;
     /**
      * The total vector store usage in bytes. Note that this may be different from the original file size.
-     * @type {number}
-     * @memberof VectorStoreFileObject
      */
     usageBytes: number;
     /**
      * The Unix timestamp (in seconds) for when the vector store file was created.
-     * @type {number}
-     * @memberof VectorStoreFileObject
      */
     createdAt: number;
     /**
      * The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
-     * @type {string}
-     * @memberof VectorStoreFileObject
      */
     vectorStoreId: string;
     /**
      * The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
-     * @type {VectorStoreFileObjectStatusEnum}
-     * @memberof VectorStoreFileObject
      */
     status: VectorStoreFileObjectStatusEnum;
     /**
      * 
-     * @type {VectorStoreFileObjectLastError}
-     * @memberof VectorStoreFileObject
      */
     lastError: VectorStoreFileObjectLastError | null;
     /**
      * 
-     * @type {VectorStoreFileObjectChunkingStrategy}
-     * @memberof VectorStoreFileObject
      */
     chunkingStrategy?: VectorStoreFileObjectChunkingStrategy;
 }
@@ -89,7 +73,7 @@ export interface VectorStoreFileObject {
  * @export
  */
 export const VectorStoreFileObjectObjectEnum = {
-    VectorStoreFile: 'vector_store.file'
+    VectorStoreFile: 'vector_store.file',
 } as const;
 export type VectorStoreFileObjectObjectEnum = typeof VectorStoreFileObjectObjectEnum[keyof typeof VectorStoreFileObjectObjectEnum];
 
@@ -100,7 +84,7 @@ export const VectorStoreFileObjectStatusEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Failed: 'failed'
+    Failed: 'failed',
 } as const;
 export type VectorStoreFileObjectStatusEnum = typeof VectorStoreFileObjectStatusEnum[keyof typeof VectorStoreFileObjectStatusEnum];
 

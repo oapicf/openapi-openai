@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   ModifyThreadRequestToolResourcesFileSearch.JSON_PROPERTY_VECTOR_STORE_IDS
 })
 @JsonTypeName("ModifyThreadRequest_tool_resources_file_search")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class ModifyThreadRequestToolResourcesFileSearch {
     public static final String JSON_PROPERTY_VECTOR_STORE_IDS = "vector_store_ids";

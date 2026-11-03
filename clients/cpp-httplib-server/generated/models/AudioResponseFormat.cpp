@@ -6,20 +6,3 @@
 */
 #include "AudioResponseFormat.h"
 
-namespace models {
-
-AudioResponseFormat::AudioResponseFormat()
-{
-}
-// =========================================
-// ===== Getters/Setters =====
-// =========================================
-
-
-
-
-
-
-
-} // namespace models
-

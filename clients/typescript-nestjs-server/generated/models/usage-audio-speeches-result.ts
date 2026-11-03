@@ -32,7 +32,7 @@ export interface UsageAudioSpeechesResult {
 }
 export namespace UsageAudioSpeechesResult {
   export const ObjectEnum = {
-    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result'
+    OrganizationUsageAudioSpeechesResult: 'organization.usage.audio_speeches.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

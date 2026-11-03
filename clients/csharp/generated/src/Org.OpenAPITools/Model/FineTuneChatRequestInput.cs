@@ -204,16 +204,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (messages.IsSet && messages.Value == null)
-                throw new ArgumentNullException(nameof(messages), "Property is not nullable for class FineTuneChatRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneChatRequestInput: messages.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class FineTuneChatRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneChatRequestInput: tools.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class FineTuneChatRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneChatRequestInput: parallel_tool_calls.");
 
             if (functions.IsSet && functions.Value == null)
-                throw new ArgumentNullException(nameof(functions), "Property is not nullable for class FineTuneChatRequestInput.");
+                throw new JsonException("Property is not nullable for class FineTuneChatRequestInput: functions.");
 
             return new FineTuneChatRequestInput(messages, tools, parallelToolCalls, functions);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneChatRequestInput fineTuneChatRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,17 +238,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneChatRequestInput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneChatRequestInput fineTuneChatRequestInput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (fineTuneChatRequestInput.MessagesOption.IsSet && fineTuneChatRequestInput.Messages == null)
-                throw new ArgumentNullException(nameof(fineTuneChatRequestInput.Messages), "Property is required for class FineTuneChatRequestInput.");
+                throw new JsonException("Cannot write null property FineTuneChatRequestInput.Messages to non-nullable JSON property 'messages'.");
 
             if (fineTuneChatRequestInput.ToolsOption.IsSet && fineTuneChatRequestInput.Tools == null)
-                throw new ArgumentNullException(nameof(fineTuneChatRequestInput.Tools), "Property is required for class FineTuneChatRequestInput.");
+                throw new JsonException("Cannot write null property FineTuneChatRequestInput.Tools to non-nullable JSON property 'tools'.");
+
+            if (fineTuneChatRequestInput.ParallelToolCallsOption.IsSet && fineTuneChatRequestInput.ParallelToolCalls == null)
+                throw new JsonException("Cannot write null property FineTuneChatRequestInput.ParallelToolCalls to non-nullable JSON property 'parallel_tool_calls'.");
 
             if (fineTuneChatRequestInput.FunctionsOption.IsSet && fineTuneChatRequestInput.Functions == null)
-                throw new ArgumentNullException(nameof(fineTuneChatRequestInput.Functions), "Property is required for class FineTuneChatRequestInput.");
+                throw new JsonException("Cannot write null property FineTuneChatRequestInput.Functions to non-nullable JSON property 'functions'.");
 
             if (fineTuneChatRequestInput.MessagesOption.IsSet)
             {

@@ -211,7 +211,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageDeltaContentImageFileObject.TypeEnum?>(MessageDeltaContentImageFileObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageDeltaContentImageFileObject.TypeEnum? typeValue = MessageDeltaContentImageFileObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageDeltaContentImageFileObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "image_file":
                             imageFile = new Option<MessageDeltaContentImageFileObjectImageFile?>(JsonSerializer.Deserialize<MessageDeltaContentImageFileObjectImageFile>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -223,19 +228,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentImageFileObject.", nameof(index));
+                throw new JsonException("Property is required for class MessageDeltaContentImageFileObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentImageFileObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageDeltaContentImageFileObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class MessageDeltaContentImageFileObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageFileObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageDeltaContentImageFileObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageFileObject: type.");
 
             if (imageFile.IsSet && imageFile.Value == null)
-                throw new ArgumentNullException(nameof(imageFile), "Property is not nullable for class MessageDeltaContentImageFileObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentImageFileObject: image_file.");
 
             return new MessageDeltaContentImageFileObject(index.Value!.Value!, type.Value!.Value!, imageFile);
         }
@@ -246,7 +251,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageFileObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentImageFileObject messageDeltaContentImageFileObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,11 +265,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentImageFileObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentImageFileObject messageDeltaContentImageFileObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentImageFileObject.ImageFileOption.IsSet && messageDeltaContentImageFileObject.ImageFile == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentImageFileObject.ImageFile), "Property is required for class MessageDeltaContentImageFileObject.");
+                throw new JsonException("Cannot write null property MessageDeltaContentImageFileObject.ImageFile to non-nullable JSON property 'image_file'.");
 
             writer.WriteNumber("index", messageDeltaContentImageFileObject.Index);
 

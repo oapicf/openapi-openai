@@ -68,3 +68,4 @@ class _$PredictionContentContentSerializer implements PrimitiveSerializer<Predic
   }
 }
 
+

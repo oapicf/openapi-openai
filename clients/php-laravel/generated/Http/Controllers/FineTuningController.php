@@ -51,13 +51,13 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fineTuningJobId' => $fineTuningJobId,
-                ],
                 $request->all(),
+                [
+                    'fine_tuning_job_id' => $fineTuningJobId,
+                ],
             ),
             [
-                'fineTuningJobId' => [
+                'fine_tuning_job_id' => [
                     'required',
                     'string',
                 ],
@@ -90,10 +90,10 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -126,13 +126,13 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fineTuningJobId' => $fineTuningJobId,
-                ],
                 $request->all(),
+                [
+                    'fine_tuning_job_id' => $fineTuningJobId,
+                ],
             ),
             [
-                'fineTuningJobId' => [
+                'fine_tuning_job_id' => [
                     'required',
                     'string',
                 ],
@@ -175,13 +175,13 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fineTuningJobId' => $fineTuningJobId,
-                ],
                 $request->all(),
+                [
+                    'fine_tuning_job_id' => $fineTuningJobId,
+                ],
             ),
             [
-                'fineTuningJobId' => [
+                'fine_tuning_job_id' => [
                     'required',
                     'string',
                 ],
@@ -224,10 +224,10 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'after' => [
@@ -268,13 +268,13 @@ class FineTuningController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'fineTuningJobId' => $fineTuningJobId,
-                ],
                 $request->all(),
+                [
+                    'fine_tuning_job_id' => $fineTuningJobId,
+                ],
             ),
             [
-                'fineTuningJobId' => [
+                'fine_tuning_job_id' => [
                     'required',
                     'string',
                 ],

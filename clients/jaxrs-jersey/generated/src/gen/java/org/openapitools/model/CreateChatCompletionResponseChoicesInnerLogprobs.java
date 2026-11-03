@@ -35,7 +35,7 @@ import javax.validation.Valid;
   CreateChatCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_CONTENT,
   CreateChatCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_REFUSAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionResponseChoicesInnerLogprobs   {
   public static final String JSON_PROPERTY_CONTENT = "content";
   @JsonProperty(JSON_PROPERTY_CONTENT)
@@ -64,7 +64,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
    **/
   @JsonProperty(value = "content")
   @ApiModelProperty(required = true, value = "A list of message content tokens with log probability information.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid ChatCompletionTokenLogprob> getContent() {
     return content;
   }
@@ -92,7 +92,7 @@ public class CreateChatCompletionResponseChoicesInnerLogprobs   {
    **/
   @JsonProperty(value = "refusal")
   @ApiModelProperty(required = true, value = "A list of message refusal tokens with log probability information.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid ChatCompletionTokenLogprob> getRefusal() {
     return refusal;
   }

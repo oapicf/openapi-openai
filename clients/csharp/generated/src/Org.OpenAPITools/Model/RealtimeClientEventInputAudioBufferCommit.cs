@@ -198,7 +198,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeClientEventInputAudioBufferCommit.TypeEnum?>(RealtimeClientEventInputAudioBufferCommit.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeClientEventInputAudioBufferCommit.TypeEnum? typeValue = RealtimeClientEventInputAudioBufferCommit.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeClientEventInputAudioBufferCommit.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "event_id":
                             eventId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -210,13 +215,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventInputAudioBufferCommit.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeClientEventInputAudioBufferCommit: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeClientEventInputAudioBufferCommit.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventInputAudioBufferCommit: type.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeClientEventInputAudioBufferCommit.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventInputAudioBufferCommit: event_id.");
 
             return new RealtimeClientEventInputAudioBufferCommit(type.Value!.Value!, eventId);
         }
@@ -227,7 +232,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventInputAudioBufferCommit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeClientEventInputAudioBufferCommit realtimeClientEventInputAudioBufferCommit, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -242,11 +246,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventInputAudioBufferCommit"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeClientEventInputAudioBufferCommit realtimeClientEventInputAudioBufferCommit, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeClientEventInputAudioBufferCommit.EventIdOption.IsSet && realtimeClientEventInputAudioBufferCommit.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventInputAudioBufferCommit.EventId), "Property is required for class RealtimeClientEventInputAudioBufferCommit.");
+                throw new JsonException("Cannot write null property RealtimeClientEventInputAudioBufferCommit.EventId to non-nullable JSON property 'event_id'.");
 
             var typeRawValue = RealtimeClientEventInputAudioBufferCommit.TypeEnumToJsonValue(realtimeClientEventInputAudioBufferCommit.Type);
             writer.WriteString("type", typeRawValue);

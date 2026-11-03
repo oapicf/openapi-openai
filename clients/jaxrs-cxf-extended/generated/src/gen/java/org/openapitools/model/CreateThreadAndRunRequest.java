@@ -46,8 +46,7 @@ public class CreateThreadAndRunRequest  {
   * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
   */
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  @Valid
-  private List<CreateThreadAndRunRequestToolsInner> tools;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools;
 
   @ApiModelProperty(value = "")
   @Valid
@@ -210,21 +209,21 @@ public class CreateThreadAndRunRequest  {
   * @return tools
   */
   @JsonProperty("tools")
- @Size(max=20)  public List<CreateThreadAndRunRequestToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
- public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+ public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
     return this;
   }

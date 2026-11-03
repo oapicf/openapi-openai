@@ -182,7 +182,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (expiresAfter.IsSet && expiresAfter.Value == null)
-                throw new ArgumentNullException(nameof(expiresAfter), "Property is not nullable for class UpdateVectorStoreRequest.");
+                throw new JsonException("Property is not nullable for class UpdateVectorStoreRequest: expires_after.");
 
             return new UpdateVectorStoreRequest(name, expiresAfter, metadata);
         }
@@ -193,7 +193,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="updateVectorStoreRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateVectorStoreRequest updateVectorStoreRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -208,11 +207,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="updateVectorStoreRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateVectorStoreRequest updateVectorStoreRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (updateVectorStoreRequest.ExpiresAfterOption.IsSet && updateVectorStoreRequest.ExpiresAfter == null)
-                throw new ArgumentNullException(nameof(updateVectorStoreRequest.ExpiresAfter), "Property is required for class UpdateVectorStoreRequest.");
+                throw new JsonException("Cannot write null property UpdateVectorStoreRequest.ExpiresAfter to non-nullable JSON property 'expires_after'.");
 
             if (updateVectorStoreRequest.NameOption.IsSet)
                 if (updateVectorStoreRequest.NameOption.Value != null)

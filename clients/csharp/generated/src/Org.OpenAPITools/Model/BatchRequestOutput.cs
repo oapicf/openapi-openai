@@ -201,10 +201,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class BatchRequestOutput.");
+                throw new JsonException("Property is not nullable for class BatchRequestOutput: id.");
 
             if (customId.IsSet && customId.Value == null)
-                throw new ArgumentNullException(nameof(customId), "Property is not nullable for class BatchRequestOutput.");
+                throw new JsonException("Property is not nullable for class BatchRequestOutput: custom_id.");
 
             return new BatchRequestOutput(id, customId, response, error);
         }
@@ -215,7 +215,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestOutput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BatchRequestOutput batchRequestOutput, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -230,14 +229,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="batchRequestOutput"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BatchRequestOutput batchRequestOutput, JsonSerializerOptions jsonSerializerOptions)
         {
             if (batchRequestOutput.IdOption.IsSet && batchRequestOutput.Id == null)
-                throw new ArgumentNullException(nameof(batchRequestOutput.Id), "Property is required for class BatchRequestOutput.");
+                throw new JsonException("Cannot write null property BatchRequestOutput.Id to non-nullable JSON property 'id'.");
 
             if (batchRequestOutput.CustomIdOption.IsSet && batchRequestOutput.CustomId == null)
-                throw new ArgumentNullException(nameof(batchRequestOutput.CustomId), "Property is required for class BatchRequestOutput.");
+                throw new JsonException("Cannot write null property BatchRequestOutput.CustomId to non-nullable JSON property 'custom_id'.");
 
             if (batchRequestOutput.IdOption.IsSet)
                 writer.WriteString("id", batchRequestOutput.Id);

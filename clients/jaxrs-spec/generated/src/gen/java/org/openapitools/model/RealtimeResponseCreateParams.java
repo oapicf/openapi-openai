@@ -27,7 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Create a new Realtime response with these parameters")
 @JsonTypeName("RealtimeResponseCreateParams")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseCreateParams   {
   public enum ModalitiesEnum {
 
@@ -76,7 +76,7 @@ public class RealtimeResponseCreateParams   {
     }
 }
 
-  private @Valid List<ModalitiesEnum> modalities = new ArrayList<>();
+  private List<ModalitiesEnum> modalities = new ArrayList<>();
   private String instructions;
   public enum VoiceEnum {
 
@@ -174,13 +174,13 @@ public class RealtimeResponseCreateParams   {
 }
 
   private OutputAudioFormatEnum outputAudioFormat;
-  private @Valid List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
+  private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
   private String toolChoice;
   private BigDecimal temperature;
   private RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
   private RealtimeResponseCreateParamsConversation conversation;
   private Object metadata;
-  private @Valid List<@Valid RealtimeConversationItem> input = new ArrayList<>();
+  private List<@Valid RealtimeConversationItem> input = new ArrayList<>();
 
   public RealtimeResponseCreateParams() {
   }
@@ -292,7 +292,7 @@ public class RealtimeResponseCreateParams   {
   
   @ApiModelProperty(value = "Tools (functions) available to the model.")
   @JsonProperty("tools")
-  @Valid public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
+  public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }
 
@@ -426,7 +426,7 @@ public class RealtimeResponseCreateParams   {
   
   @ApiModelProperty(value = "Input items to include in the prompt for the model. Creates a new context for this response, without including the default conversation. Can include references to items from the default conversation. ")
   @JsonProperty("input")
-  @Valid public List<@Valid RealtimeConversationItem> getInput() {
+  public List<@Valid RealtimeConversationItem> getInput() {
     return input;
   }
 

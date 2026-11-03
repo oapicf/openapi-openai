@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface UsageVectorStoresResult {
     /**
      * 
-     * @type {UsageVectorStoresResultObjectEnum}
-     * @memberof UsageVectorStoresResult
      */
     object: UsageVectorStoresResultObjectEnum;
     /**
      * The vector stores usage in bytes.
-     * @type {number}
-     * @memberof UsageVectorStoresResult
      */
     usageBytes: number;
     /**
      * When `group_by=project_id`, this field provides the project ID of the grouped usage result.
-     * @type {string}
-     * @memberof UsageVectorStoresResult
      */
     projectId?: string | null;
 }
@@ -44,7 +38,7 @@ export interface UsageVectorStoresResult {
  * @export
  */
 export const UsageVectorStoresResultObjectEnum = {
-    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result'
+    OrganizationUsageVectorStoresResult: 'organization.usage.vector_stores.result',
 } as const;
 export type UsageVectorStoresResultObjectEnum = typeof UsageVectorStoresResultObjectEnum[keyof typeof UsageVectorStoresResultObjectEnum];
 

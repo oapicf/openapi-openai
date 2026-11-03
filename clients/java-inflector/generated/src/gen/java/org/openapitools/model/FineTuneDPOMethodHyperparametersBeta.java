@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  **/
 
 @ApiModel(description = "The beta value for the DPO method. A higher beta value will increase the weight of the penalty between the policy and reference model. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparametersBeta   {
 
   @Override

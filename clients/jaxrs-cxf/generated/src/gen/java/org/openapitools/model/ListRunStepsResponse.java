@@ -20,8 +20,6 @@ public class ListRunStepsResponse  {
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
   private List<@Valid RunStepObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "step_abc123", required = true, value = "")

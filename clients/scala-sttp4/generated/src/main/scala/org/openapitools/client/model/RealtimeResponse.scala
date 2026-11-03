@@ -34,7 +34,7 @@ object RealtimeResponseEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object RealtimeResponse extends `Object`
+    case object RealtimeResponse extends `Object` { override def toString: String = "realtime.response" }
 
     import org.json4s._
 
@@ -55,10 +55,10 @@ object RealtimeResponseEnums {
 
   sealed trait Status
   object Status {
-    case object Completed extends Status
-    case object Cancelled extends Status
-    case object Failed extends Status
-    case object Incomplete extends Status
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
+    case object Failed extends Status { override def toString: String = "failed" }
+    case object Incomplete extends Status { override def toString: String = "incomplete" }
 
     import org.json4s._
 

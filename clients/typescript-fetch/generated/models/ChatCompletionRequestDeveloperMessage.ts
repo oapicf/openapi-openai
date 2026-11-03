@@ -32,20 +32,14 @@ import {
 export interface ChatCompletionRequestDeveloperMessage {
     /**
      * 
-     * @type {ChatCompletionRequestDeveloperMessageContent}
-     * @memberof ChatCompletionRequestDeveloperMessage
      */
     content: ChatCompletionRequestDeveloperMessageContent;
     /**
      * The role of the messages author, in this case `developer`.
-     * @type {ChatCompletionRequestDeveloperMessageRoleEnum}
-     * @memberof ChatCompletionRequestDeveloperMessage
      */
     role: ChatCompletionRequestDeveloperMessageRoleEnum;
     /**
      * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
-     * @type {string}
-     * @memberof ChatCompletionRequestDeveloperMessage
      */
     name?: string;
 }
@@ -55,7 +49,7 @@ export interface ChatCompletionRequestDeveloperMessage {
  * @export
  */
 export const ChatCompletionRequestDeveloperMessageRoleEnum = {
-    Developer: 'developer'
+    Developer: 'developer',
 } as const;
 export type ChatCompletionRequestDeveloperMessageRoleEnum = typeof ChatCompletionRequestDeveloperMessageRoleEnum[keyof typeof ChatCompletionRequestDeveloperMessageRoleEnum];
 

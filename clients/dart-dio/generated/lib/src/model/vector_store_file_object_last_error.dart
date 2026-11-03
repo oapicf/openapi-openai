@@ -124,15 +124,14 @@ class _$VectorStoreFileObjectLastErrorSerializer implements PrimitiveSerializer<
   }
 }
 
+
+/// One of `server_error` or `rate_limit_exceeded`.
 class VectorStoreFileObjectLastErrorCodeEnum extends EnumClass {
 
-  /// One of `server_error` or `rate_limit_exceeded`.
   @BuiltValueEnumConst(wireName: r'server_error')
   static const VectorStoreFileObjectLastErrorCodeEnum serverError = _$vectorStoreFileObjectLastErrorCodeEnum_serverError;
-  /// One of `server_error` or `rate_limit_exceeded`.
   @BuiltValueEnumConst(wireName: r'unsupported_file')
   static const VectorStoreFileObjectLastErrorCodeEnum unsupportedFile = _$vectorStoreFileObjectLastErrorCodeEnum_unsupportedFile;
-  /// One of `server_error` or `rate_limit_exceeded`.
   @BuiltValueEnumConst(wireName: r'invalid_file')
   static const VectorStoreFileObjectLastErrorCodeEnum invalidFile = _$vectorStoreFileObjectLastErrorCodeEnum_invalidFile;
 

@@ -17,7 +17,7 @@ import MessageContentImageFileObjectImageFile from './MessageContentImageFileObj
 /**
  * The MessageContentImageFileObject model module.
  * @module model/MessageContentImageFileObject
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageContentImageFileObject {
     /**

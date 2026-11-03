@@ -17,7 +17,7 @@ export namespace RunObjectLastError {
   export const CodeEnum = {
     ServerError: 'server_error',
     RateLimitExceeded: 'rate_limit_exceeded',
-    InvalidPrompt: 'invalid_prompt'
+    InvalidPrompt: 'invalid_prompt',
   } as const;
   export type CodeEnum = typeof CodeEnum[keyof typeof CodeEnum];
 }

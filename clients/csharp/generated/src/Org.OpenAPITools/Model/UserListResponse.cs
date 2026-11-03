@@ -218,7 +218,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UserListResponse.ObjectEnum?>(UserListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UserListResponse.ObjectEnum? varObjectValue = UserListResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UserListResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<User>?>(JsonSerializer.Deserialize<List<User>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -239,34 +244,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UserListResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class UserListResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class UserListResponse.", nameof(data));
+                throw new JsonException("Property is required for class UserListResponse: data.");
 
             if (!firstId.IsSet)
-                throw new ArgumentException("Property is required for class UserListResponse.", nameof(firstId));
+                throw new JsonException("Property is required for class UserListResponse: first_id.");
 
             if (!lastId.IsSet)
-                throw new ArgumentException("Property is required for class UserListResponse.", nameof(lastId));
+                throw new JsonException("Property is required for class UserListResponse: last_id.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class UserListResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class UserListResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UserListResponse.");
+                throw new JsonException("Property is not nullable for class UserListResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class UserListResponse.");
+                throw new JsonException("Property is not nullable for class UserListResponse: data.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class UserListResponse.");
+                throw new JsonException("Property is not nullable for class UserListResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class UserListResponse.");
+                throw new JsonException("Property is not nullable for class UserListResponse: last_id.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class UserListResponse.");
+                throw new JsonException("Property is not nullable for class UserListResponse: has_more.");
 
             return new UserListResponse(varObject.Value!.Value!, data.Value!, firstId.Value!, lastId.Value!, hasMore.Value!.Value!);
         }
@@ -277,7 +282,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="userListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UserListResponse userListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -292,18 +296,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="userListResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UserListResponse userListResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (userListResponse.Data == null)
-                throw new ArgumentNullException(nameof(userListResponse.Data), "Property is required for class UserListResponse.");
-
-            if (userListResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(userListResponse.FirstId), "Property is required for class UserListResponse.");
-
-            if (userListResponse.LastId == null)
-                throw new ArgumentNullException(nameof(userListResponse.LastId), "Property is required for class UserListResponse.");
-
             var varObjectRawValue = UserListResponse.ObjectEnumToJsonValue(userListResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WritePropertyName("data");

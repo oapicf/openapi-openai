@@ -51,10 +51,10 @@ class ImagesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -87,10 +87,10 @@ class ImagesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'image' => [
@@ -113,7 +113,7 @@ class ImagesController extends Controller
                 ],
                 'size' => [
                 ],
-                'responseFormat' => [
+                'response_format' => [
                 ],
                 'user' => [
                     'string',
@@ -162,10 +162,10 @@ class ImagesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'image' => [
@@ -179,7 +179,7 @@ class ImagesController extends Controller
                     'lte:10',
                     'integer',
                 ],
-                'responseFormat' => [
+                'response_format' => [
                 ],
                 'size' => [
                 ],

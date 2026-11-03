@@ -29,14 +29,10 @@ import {
 export interface BatchErrors {
     /**
      * The object type, which is always `list`.
-     * @type {string}
-     * @memberof BatchErrors
      */
     object?: string;
     /**
      * 
-     * @type {Array<BatchErrorsDataInner>}
-     * @memberof BatchErrors
      */
     data?: Array<BatchErrorsDataInner>;
 }

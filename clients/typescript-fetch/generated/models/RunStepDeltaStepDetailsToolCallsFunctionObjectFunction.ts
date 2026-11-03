@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface RunStepDeltaStepDetailsToolCallsFunctionObjectFunction {
     /**
      * The name of the function.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
      */
     name?: string;
     /**
      * The arguments passed to the function.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
      */
     arguments?: string;
     /**
      * The output of the function. This will be `null` if the outputs have not been [submitted](/docs/api-reference/runs/submitToolOutputs) yet.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsFunctionObjectFunction
      */
     output?: string | null;
 }

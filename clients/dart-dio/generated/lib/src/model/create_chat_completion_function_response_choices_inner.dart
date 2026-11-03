@@ -141,18 +141,16 @@ class _$CreateChatCompletionFunctionResponseChoicesInnerSerializer implements Pr
   }
 }
 
+
+/// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
 class CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum extends EnumClass {
 
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
   @BuiltValueEnumConst(wireName: r'stop')
   static const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum stop = _$createChatCompletionFunctionResponseChoicesInnerFinishReasonEnum_stop;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
   @BuiltValueEnumConst(wireName: r'length')
   static const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum length = _$createChatCompletionFunctionResponseChoicesInnerFinishReasonEnum_length;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
   @BuiltValueEnumConst(wireName: r'function_call')
   static const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum functionCall = _$createChatCompletionFunctionResponseChoicesInnerFinishReasonEnum_functionCall;
-  /// The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, or `function_call` if the model called a function. 
   @BuiltValueEnumConst(wireName: r'content_filter')
   static const CreateChatCompletionFunctionResponseChoicesInnerFinishReasonEnum contentFilter = _$createChatCompletionFunctionResponseChoicesInnerFinishReasonEnum_contentFilter;
 

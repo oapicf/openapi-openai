@@ -22,8 +22,7 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_server.models.error_response import ErrorResponse
@@ -47,6 +46,7 @@ from openapi_server.models.project_user_create_request import ProjectUserCreateR
 from openapi_server.models.project_user_delete_response import ProjectUserDeleteResponse
 from openapi_server.models.project_user_list_response import ProjectUserListResponse
 from openapi_server.models.project_user_update_request import ProjectUserUpdateRequest
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -66,9 +66,9 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_projects(
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    include_archived: Annotated[Optional[StrictBool], Field(description="If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.")] = Query(False, description="If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.", alias="include_archived"),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    include_archived: Annotated[Optional[bool], Field(description="If `true` returns all projects including those that have been `archived`. Archived projects are not included by default.")] = Query(False, description="If &#x60;true&#x60; returns all projects including those that have been &#x60;archived&#x60;. Archived projects are not included by default.", alias="include_archived"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -88,7 +88,7 @@ async def list_projects(
     response_model_by_alias=True,
 )
 async def create_project(
-    project_create_request: Annotated[ProjectCreateRequest, Field(description="The project create request payload.")] = Body(None, description="The project create request payload."),
+    project_create_request: Annotated[ProjectCreateRequest, Field(description="The project create request payload.")] = Body(..., description="The project create request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -108,7 +108,7 @@ async def create_project(
     response_model_by_alias=True,
 )
 async def retrieve_project(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -129,8 +129,8 @@ async def retrieve_project(
     response_model_by_alias=True,
 )
 async def modify_project(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    project_update_request: Annotated[ProjectUpdateRequest, Field(description="The project update request payload.")] = Body(None, description="The project update request payload."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    project_update_request: Annotated[ProjectUpdateRequest, Field(description="The project update request payload.")] = Body(..., description="The project update request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -150,9 +150,9 @@ async def modify_project(
     response_model_by_alias=True,
 )
 async def list_project_api_keys(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -172,8 +172,8 @@ async def list_project_api_keys(
     response_model_by_alias=True,
 )
 async def retrieve_project_api_key(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    key_id: Annotated[StrictStr, Field(description="The ID of the API key.")] = Path(..., description="The ID of the API key."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    key_id: Annotated[str, Field(description="The ID of the API key.")] = Path(..., description="The ID of the API key."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -194,8 +194,8 @@ async def retrieve_project_api_key(
     response_model_by_alias=True,
 )
 async def delete_project_api_key(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    key_id: Annotated[StrictStr, Field(description="The ID of the API key.")] = Path(..., description="The ID of the API key."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    key_id: Annotated[str, Field(description="The ID of the API key.")] = Path(..., description="The ID of the API key."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -215,7 +215,7 @@ async def delete_project_api_key(
     response_model_by_alias=True,
 )
 async def archive_project(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -235,10 +235,10 @@ async def archive_project(
     response_model_by_alias=True,
 )
 async def list_project_rate_limits(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. The default is 100. ")] = Query(100, description="A limit on the number of objects to be returned. The default is 100. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
-    before: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. The default is 100. ")] = Query(100, description="A limit on the number of objects to be returned. The default is 100. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    before: Annotated[Optional[str], Field(description="A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list. ", alias="before"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -259,9 +259,9 @@ async def list_project_rate_limits(
     response_model_by_alias=True,
 )
 async def update_project_rate_limits(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    rate_limit_id: Annotated[StrictStr, Field(description="The ID of the rate limit.")] = Path(..., description="The ID of the rate limit."),
-    project_rate_limit_update_request: Annotated[ProjectRateLimitUpdateRequest, Field(description="The project rate limit update request payload.")] = Body(None, description="The project rate limit update request payload."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    rate_limit_id: Annotated[str, Field(description="The ID of the rate limit.")] = Path(..., description="The ID of the rate limit."),
+    project_rate_limit_update_request: Annotated[ProjectRateLimitUpdateRequest, Field(description="The project rate limit update request payload.")] = Body(..., description="The project rate limit update request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -282,9 +282,9 @@ async def update_project_rate_limits(
     response_model_by_alias=True,
 )
 async def list_project_service_accounts(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -305,8 +305,8 @@ async def list_project_service_accounts(
     response_model_by_alias=True,
 )
 async def create_project_service_account(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    project_service_account_create_request: Annotated[ProjectServiceAccountCreateRequest, Field(description="The project service account create request payload.")] = Body(None, description="The project service account create request payload."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    project_service_account_create_request: Annotated[ProjectServiceAccountCreateRequest, Field(description="The project service account create request payload.")] = Body(..., description="The project service account create request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -326,8 +326,8 @@ async def create_project_service_account(
     response_model_by_alias=True,
 )
 async def retrieve_project_service_account(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    service_account_id: Annotated[StrictStr, Field(description="The ID of the service account.")] = Path(..., description="The ID of the service account."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    service_account_id: Annotated[str, Field(description="The ID of the service account.")] = Path(..., description="The ID of the service account."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -347,8 +347,8 @@ async def retrieve_project_service_account(
     response_model_by_alias=True,
 )
 async def delete_project_service_account(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    service_account_id: Annotated[StrictStr, Field(description="The ID of the service account.")] = Path(..., description="The ID of the service account."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    service_account_id: Annotated[str, Field(description="The ID of the service account.")] = Path(..., description="The ID of the service account."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -369,9 +369,9 @@ async def delete_project_service_account(
     response_model_by_alias=True,
 )
 async def list_project_users(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -392,8 +392,8 @@ async def list_project_users(
     response_model_by_alias=True,
 )
 async def create_project_user(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    project_user_create_request: Annotated[ProjectUserCreateRequest, Field(description="The project user create request payload.")] = Body(None, description="The project user create request payload."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    project_user_create_request: Annotated[ProjectUserCreateRequest, Field(description="The project user create request payload.")] = Body(..., description="The project user create request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -413,8 +413,8 @@ async def create_project_user(
     response_model_by_alias=True,
 )
 async def retrieve_project_user(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -435,9 +435,9 @@ async def retrieve_project_user(
     response_model_by_alias=True,
 )
 async def modify_project_user(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
-    project_user_update_request: Annotated[ProjectUserUpdateRequest, Field(description="The project user update request payload.")] = Body(None, description="The project user update request payload."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    project_user_update_request: Annotated[ProjectUserUpdateRequest, Field(description="The project user update request payload.")] = Body(..., description="The project user update request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -458,8 +458,8 @@ async def modify_project_user(
     response_model_by_alias=True,
 )
 async def delete_project_user(
-    project_id: Annotated[StrictStr, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
-    user_id: Annotated[StrictStr, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
+    project_id: Annotated[str, Field(description="The ID of the project.")] = Path(..., description="The ID of the project."),
+    user_id: Annotated[str, Field(description="The ID of the user.")] = Path(..., description="The ID of the user."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

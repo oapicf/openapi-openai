@@ -229,7 +229,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeObject.TypeEnum?>(RunStepDeltaStepDetailsToolCallsCodeObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDeltaStepDetailsToolCallsCodeObject.TypeEnum? typeValue = RunStepDeltaStepDetailsToolCallsCodeObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDeltaStepDetailsToolCallsCodeObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -244,22 +249,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject.", nameof(index));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject: type.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject: id.");
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaStepDetailsToolCallsCodeObject: code_interpreter.");
 
             return new RunStepDeltaStepDetailsToolCallsCodeObject(index.Value!.Value!, type.Value!.Value!, id, codeInterpreter);
         }
@@ -270,7 +275,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObject runStepDeltaStepDetailsToolCallsCodeObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -285,14 +289,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsCodeObject runStepDeltaStepDetailsToolCallsCodeObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (runStepDeltaStepDetailsToolCallsCodeObject.IdOption.IsSet && runStepDeltaStepDetailsToolCallsCodeObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeObject.Id), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeObject.Id to non-nullable JSON property 'id'.");
 
             if (runStepDeltaStepDetailsToolCallsCodeObject.CodeInterpreterOption.IsSet && runStepDeltaStepDetailsToolCallsCodeObject.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(runStepDeltaStepDetailsToolCallsCodeObject.CodeInterpreter), "Property is required for class RunStepDeltaStepDetailsToolCallsCodeObject.");
+                throw new JsonException("Cannot write null property RunStepDeltaStepDetailsToolCallsCodeObject.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             writer.WriteNumber("index", runStepDeltaStepDetailsToolCallsCodeObject.Index);
 

@@ -23,12 +23,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "The hyperparameters used for the fine-tuning job.")
 @JsonTypeName("FineTuneDPOMethod_hyperparameters")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparameters   {
-  private FineTuneDPOMethodHyperparametersBeta beta;
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   public FineTuneDPOMethodHyperparameters() {
   }

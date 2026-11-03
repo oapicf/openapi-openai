@@ -23,44 +23,30 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseTextDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     eventId: string;
     /**
      * The event type, must be `response.text.done`.
-     * @type {RealtimeServerEventResponseTextDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     type: RealtimeServerEventResponseTextDoneTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     contentIndex: number;
     /**
      * The final text content.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseTextDone
      */
     text: string;
 }
@@ -70,7 +56,7 @@ export interface RealtimeServerEventResponseTextDone {
  * @export
  */
 export const RealtimeServerEventResponseTextDoneTypeEnum = {
-    ResponseTextDone: 'response.text.done'
+    ResponseTextDone: 'response.text.done',
 } as const;
 export type RealtimeServerEventResponseTextDoneTypeEnum = typeof RealtimeServerEventResponseTextDoneTypeEnum[keyof typeof RealtimeServerEventResponseTextDoneTypeEnum];
 

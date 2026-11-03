@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AssistantsNamedToolChoiceFunction {
     /**
      * The name of the function to call.
-     * @type {string}
-     * @memberof AssistantsNamedToolChoiceFunction
      */
     name: string;
 }

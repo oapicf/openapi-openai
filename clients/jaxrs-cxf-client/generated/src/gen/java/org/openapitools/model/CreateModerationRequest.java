@@ -16,7 +16,7 @@ public class CreateModerationRequest  {
 
   @ApiModelProperty(value = "")
 
-  private CreateModerationRequestModel model;
+  private CreateModerationRequestModel model = omni-moderation-latest;
  /**
    * Get input
    * @return input

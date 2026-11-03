@@ -237,12 +237,12 @@ class _$CreateChatCompletionStreamResponseSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
 class CreateChatCompletionStreamResponseServiceTierEnum extends EnumClass {
 
-  /// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
   @BuiltValueEnumConst(wireName: r'scale')
   static const CreateChatCompletionStreamResponseServiceTierEnum scale = _$createChatCompletionStreamResponseServiceTierEnum_scale;
-  /// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
   @BuiltValueEnumConst(wireName: r'default')
   static const CreateChatCompletionStreamResponseServiceTierEnum default_ = _$createChatCompletionStreamResponseServiceTierEnum_default_;
 
@@ -254,9 +254,9 @@ class CreateChatCompletionStreamResponseServiceTierEnum extends EnumClass {
   static CreateChatCompletionStreamResponseServiceTierEnum valueOf(String name) => _$createChatCompletionStreamResponseServiceTierEnumValueOf(name);
 }
 
+/// The object type, which is always `chat.completion.chunk`.
 class CreateChatCompletionStreamResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always `chat.completion.chunk`.
   @BuiltValueEnumConst(wireName: r'chat.completion.chunk')
   static const CreateChatCompletionStreamResponseObjectEnum chatPeriodCompletionPeriodChunk = _$createChatCompletionStreamResponseObjectEnum_chatPeriodCompletionPeriodChunk;
 

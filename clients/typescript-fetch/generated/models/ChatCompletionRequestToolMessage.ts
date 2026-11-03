@@ -29,20 +29,14 @@ import {
 export interface ChatCompletionRequestToolMessage {
     /**
      * The role of the messages author, in this case `tool`.
-     * @type {ChatCompletionRequestToolMessageRoleEnum}
-     * @memberof ChatCompletionRequestToolMessage
      */
     role: ChatCompletionRequestToolMessageRoleEnum;
     /**
      * 
-     * @type {ChatCompletionRequestToolMessageContent}
-     * @memberof ChatCompletionRequestToolMessage
      */
     content: ChatCompletionRequestToolMessageContent;
     /**
      * Tool call that this message is responding to.
-     * @type {string}
-     * @memberof ChatCompletionRequestToolMessage
      */
     toolCallId: string;
 }
@@ -52,7 +46,7 @@ export interface ChatCompletionRequestToolMessage {
  * @export
  */
 export const ChatCompletionRequestToolMessageRoleEnum = {
-    Tool: 'tool'
+    Tool: 'tool',
 } as const;
 export type ChatCompletionRequestToolMessageRoleEnum = typeof ChatCompletionRequestToolMessageRoleEnum[keyof typeof ChatCompletionRequestToolMessageRoleEnum];
 

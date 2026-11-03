@@ -36,20 +36,14 @@ import {
 export interface ProjectApiKeyOwner {
     /**
      * `user` or `service_account`
-     * @type {ProjectApiKeyOwnerTypeEnum}
-     * @memberof ProjectApiKeyOwner
      */
     type?: ProjectApiKeyOwnerTypeEnum;
     /**
      * 
-     * @type {ProjectUser}
-     * @memberof ProjectApiKeyOwner
      */
     user?: ProjectUser;
     /**
      * 
-     * @type {ProjectServiceAccount}
-     * @memberof ProjectApiKeyOwner
      */
     serviceAccount?: ProjectServiceAccount;
 }
@@ -60,7 +54,7 @@ export interface ProjectApiKeyOwner {
  */
 export const ProjectApiKeyOwnerTypeEnum = {
     User: 'user',
-    ServiceAccount: 'service_account'
+    ServiceAccount: 'service_account',
 } as const;
 export type ProjectApiKeyOwnerTypeEnum = typeof ProjectApiKeyOwnerTypeEnum[keyof typeof ProjectApiKeyOwnerTypeEnum];
 

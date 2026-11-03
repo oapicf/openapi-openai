@@ -62,9 +62,7 @@ BUCKET(String.valueOf("bucket"));
 
   @ApiModelProperty(required = true, value = "")
 
-  @Valid
-
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
  /**
    * Get _object
    * @return _object
@@ -131,15 +129,15 @@ BUCKET(String.valueOf("bucket"));
   **/
   @JsonProperty("result")
   @NotNull
-  public List<UsageTimeBucketResultInner> getResult() {
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
 
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }

@@ -182,7 +182,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (messages.IsSet && messages.Value == null)
-                throw new ArgumentNullException(nameof(messages), "Property is not nullable for class CreateThreadRequest.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequest: messages.");
 
             return new CreateThreadRequest(messages, toolResources, metadata);
         }
@@ -193,7 +193,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadRequest createThreadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -208,11 +207,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadRequest createThreadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createThreadRequest.MessagesOption.IsSet && createThreadRequest.Messages == null)
-                throw new ArgumentNullException(nameof(createThreadRequest.Messages), "Property is required for class CreateThreadRequest.");
+                throw new JsonException("Cannot write null property CreateThreadRequest.Messages to non-nullable JSON property 'messages'.");
 
             if (createThreadRequest.MessagesOption.IsSet)
             {

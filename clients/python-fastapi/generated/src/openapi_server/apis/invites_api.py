@@ -22,14 +22,14 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_server.models.invite import Invite
 from openapi_server.models.invite_delete_response import InviteDeleteResponse
 from openapi_server.models.invite_list_response import InviteListResponse
 from openapi_server.models.invite_request import InviteRequest
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -49,8 +49,8 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def list_invites(
-    limit: Annotated[Optional[StrictInt], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
-    after: Annotated[Optional[StrictStr], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
+    limit: Annotated[Optional[int], Field(description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ")] = Query(20, description="A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. ", alias="limit"),
+    after: Annotated[Optional[str], Field(description="A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. ")] = Query(None, description="A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list. ", alias="after"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -70,7 +70,7 @@ async def list_invites(
     response_model_by_alias=True,
 )
 async def invite_user(
-    invite_request: Annotated[InviteRequest, Field(description="The invite request payload.")] = Body(None, description="The invite request payload."),
+    invite_request: Annotated[InviteRequest, Field(description="The invite request payload.")] = Body(..., description="The invite request payload."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -90,7 +90,7 @@ async def invite_user(
     response_model_by_alias=True,
 )
 async def retrieve_invite(
-    invite_id: Annotated[StrictStr, Field(description="The ID of the invite to retrieve.")] = Path(..., description="The ID of the invite to retrieve."),
+    invite_id: Annotated[str, Field(description="The ID of the invite to retrieve.")] = Path(..., description="The ID of the invite to retrieve."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -110,7 +110,7 @@ async def retrieve_invite(
     response_model_by_alias=True,
 )
 async def delete_invite(
-    invite_id: Annotated[StrictStr, Field(description="The ID of the invite to delete.")] = Path(..., description="The ID of the invite to delete."),
+    invite_id: Annotated[str, Field(description="The ID of the invite to delete.")] = Path(..., description="The ID of the invite to delete."),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

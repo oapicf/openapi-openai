@@ -18,11 +18,11 @@ package org.openapitools.client.model
 sealed trait AudioResponseFormat
 
 object AudioResponseFormat {
-  case object Json extends AudioResponseFormat
-  case object Text extends AudioResponseFormat
-  case object Srt extends AudioResponseFormat
-  case object VerboseJson extends AudioResponseFormat
-  case object Vtt extends AudioResponseFormat
+  case object Json extends AudioResponseFormat { override def toString: String = "json" }
+  case object Text extends AudioResponseFormat { override def toString: String = "text" }
+  case object Srt extends AudioResponseFormat { override def toString: String = "srt" }
+  case object VerboseJson extends AudioResponseFormat { override def toString: String = "verbose_json" }
+  case object Vtt extends AudioResponseFormat { override def toString: String = "vtt" }
 
   import org.json4s._
 

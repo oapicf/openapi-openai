@@ -36,20 +36,14 @@ import {
 export interface FineTunePreferenceRequestInput {
     /**
      * 
-     * @type {FineTunePreferenceRequestInputInput}
-     * @memberof FineTunePreferenceRequestInput
      */
     input?: FineTunePreferenceRequestInputInput;
     /**
      * The preferred completion message for the output.
-     * @type {Array<FineTunePreferenceRequestInputPreferredCompletionInner>}
-     * @memberof FineTunePreferenceRequestInput
      */
     preferredCompletion?: Array<FineTunePreferenceRequestInputPreferredCompletionInner>;
     /**
      * The non-preferred completion message for the output.
-     * @type {Array<FineTunePreferenceRequestInputPreferredCompletionInner>}
-     * @memberof FineTunePreferenceRequestInput
      */
     nonPreferredCompletion?: Array<FineTunePreferenceRequestInputPreferredCompletionInner>;
 }

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "CreateTranscriptionResponseVerboseJson", description = "Represents a verbose json transcription response returned by model, based on the provided input.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscriptionResponseVerboseJson implements CreateTranscription200Response {
 
   private String language;
@@ -36,10 +35,8 @@ public class CreateTranscriptionResponseVerboseJson implements CreateTranscripti
 
   private String text;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid TranscriptionWord> words = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid TranscriptionSegment> segments = new ArrayList<>();
 
   public CreateTranscriptionResponseVerboseJson() {
@@ -135,7 +132,7 @@ public class CreateTranscriptionResponseVerboseJson implements CreateTranscripti
    * Extracted words and their corresponding timestamps.
    * @return words
    */
-  @Valid 
+  
   @Schema(name = "words", description = "Extracted words and their corresponding timestamps.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("words")
   public List<@Valid TranscriptionWord> getWords() {
@@ -164,7 +161,7 @@ public class CreateTranscriptionResponseVerboseJson implements CreateTranscripti
    * Segments of the transcribed text and their corresponding details.
    * @return segments
    */
-  @Valid 
+  
   @Schema(name = "segments", description = "Segments of the transcribed text and their corresponding details.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("segments")
   public List<@Valid TranscriptionSegment> getSegments() {

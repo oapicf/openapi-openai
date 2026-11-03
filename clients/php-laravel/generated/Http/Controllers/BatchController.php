@@ -51,13 +51,13 @@ class BatchController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'batchId' => $batchId,
-                ],
                 $request->all(),
+                [
+                    'batch_id' => $batchId,
+                ],
             ),
             [
-                'batchId' => [
+                'batch_id' => [
                     'required',
                     'string',
                 ],
@@ -90,10 +90,10 @@ class BatchController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -126,10 +126,10 @@ class BatchController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'after' => [
@@ -170,13 +170,13 @@ class BatchController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'batchId' => $batchId,
-                ],
                 $request->all(),
+                [
+                    'batch_id' => $batchId,
+                ],
             ),
             [
-                'batchId' => [
+                'batch_id' => [
                     'required',
                     'string',
                 ],

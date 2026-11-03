@@ -124,9 +124,10 @@ class _$ChatCompletionRequestMessageContentPartTextSerializer implements Primiti
   }
 }
 
+
+/// The type of the content part.
 class ChatCompletionRequestMessageContentPartTextTypeEnum extends EnumClass {
 
-  /// The type of the content part.
   @BuiltValueEnumConst(wireName: r'text')
   static const ChatCompletionRequestMessageContentPartTextTypeEnum text = _$chatCompletionRequestMessageContentPartTextTypeEnum_text;
 

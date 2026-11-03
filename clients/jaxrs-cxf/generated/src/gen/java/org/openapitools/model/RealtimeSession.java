@@ -220,8 +220,6 @@ PCM16(String.valueOf("pcm16")), G711_ULAW(String.valueOf("g711_ulaw")), G711_ALA
   */
   @ApiModelProperty(value = "Tools (functions) available to the model.")
 
-  @Valid
-
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
  /**

@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * Represents an execution run on a [thread](/docs/api-reference/threads).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RunObject   {
   @JsonProperty("id")
@@ -187,7 +187,7 @@ public class RunObject   {
 @Size(max=20)
 @Valid
 
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   @JsonProperty("metadata")
   @NotNull
@@ -517,7 +517,7 @@ public class RunObject   {
     this.instructions = instructions;
   }
 
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -534,11 +534,11 @@ public class RunObject   {
    * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
    * @return tools
   **/
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

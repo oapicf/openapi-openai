@@ -203,7 +203,12 @@ namespace Org.OpenAPITools.Model
                         case "anchor":
                             string? anchorRawValue = utf8JsonReader.GetString();
                             if (anchorRawValue != null)
-                                anchor = new Option<VectorStoreExpirationAfter.AnchorEnum?>(VectorStoreExpirationAfter.AnchorEnumFromStringOrDefault(anchorRawValue));
+                            {
+                                VectorStoreExpirationAfter.AnchorEnum? anchorValue = VectorStoreExpirationAfter.AnchorEnumFromStringOrDefault(anchorRawValue);
+                                if (anchorValue == null)
+                                    throw new JsonException();
+                                anchor = new Option<VectorStoreExpirationAfter.AnchorEnum?>(anchorValue);
+                            }
                             break;
                         case "days":
                             days = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -215,16 +220,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!anchor.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreExpirationAfter.", nameof(anchor));
+                throw new JsonException("Property is required for class VectorStoreExpirationAfter: anchor.");
 
             if (!days.IsSet)
-                throw new ArgumentException("Property is required for class VectorStoreExpirationAfter.", nameof(days));
+                throw new JsonException("Property is required for class VectorStoreExpirationAfter: days.");
 
             if (anchor.IsSet && anchor.Value == null)
-                throw new ArgumentNullException(nameof(anchor), "Property is not nullable for class VectorStoreExpirationAfter.");
+                throw new JsonException("Property is not nullable for class VectorStoreExpirationAfter: anchor.");
 
             if (days.IsSet && days.Value == null)
-                throw new ArgumentNullException(nameof(days), "Property is not nullable for class VectorStoreExpirationAfter.");
+                throw new JsonException("Property is not nullable for class VectorStoreExpirationAfter: days.");
 
             return new VectorStoreExpirationAfter(anchor.Value!.Value!, days.Value!.Value!);
         }
@@ -235,7 +240,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreExpirationAfter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VectorStoreExpirationAfter vectorStoreExpirationAfter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -250,7 +254,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="vectorStoreExpirationAfter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VectorStoreExpirationAfter vectorStoreExpirationAfter, JsonSerializerOptions jsonSerializerOptions)
         {
             var anchorRawValue = VectorStoreExpirationAfter.AnchorEnumToJsonValue(vectorStoreExpirationAfter.Anchor);

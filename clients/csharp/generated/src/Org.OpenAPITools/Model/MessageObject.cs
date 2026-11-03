@@ -473,7 +473,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<MessageObject.ObjectEnum?>(MessageObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                MessageObject.ObjectEnum? varObjectValue = MessageObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<MessageObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -484,12 +489,22 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<MessageObject.StatusEnum?>(MessageObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                MessageObject.StatusEnum? statusValue = MessageObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<MessageObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<MessageObject.RoleEnum?>(MessageObject.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                MessageObject.RoleEnum? roleValue = MessageObject.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<MessageObject.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<List<MessageObjectContentInner>?>(JsonSerializer.Deserialize<List<MessageObjectContentInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -522,67 +537,67 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(id));
+                throw new JsonException("Property is required for class MessageObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(varObject));
+                throw new JsonException("Property is required for class MessageObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class MessageObject: created_at.");
 
             if (!threadId.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(threadId));
+                throw new JsonException("Property is required for class MessageObject: thread_id.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(status));
+                throw new JsonException("Property is required for class MessageObject: status.");
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(role));
+                throw new JsonException("Property is required for class MessageObject: role.");
 
             if (!content.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(content));
+                throw new JsonException("Property is required for class MessageObject: content.");
 
             if (!incompleteDetails.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(incompleteDetails));
+                throw new JsonException("Property is required for class MessageObject: incomplete_details.");
 
             if (!completedAt.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(completedAt));
+                throw new JsonException("Property is required for class MessageObject: completed_at.");
 
             if (!incompleteAt.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(incompleteAt));
+                throw new JsonException("Property is required for class MessageObject: incomplete_at.");
 
             if (!assistantId.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(assistantId));
+                throw new JsonException("Property is required for class MessageObject: assistant_id.");
 
             if (!runId.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(runId));
+                throw new JsonException("Property is required for class MessageObject: run_id.");
 
             if (!attachments.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(attachments));
+                throw new JsonException("Property is required for class MessageObject: attachments.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class MessageObject.", nameof(metadata));
+                throw new JsonException("Property is required for class MessageObject: metadata.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: created_at.");
 
             if (threadId.IsSet && threadId.Value == null)
-                throw new ArgumentNullException(nameof(threadId), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: thread_id.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: status.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class MessageObject.");
+                throw new JsonException("Property is not nullable for class MessageObject: content.");
 
             return new MessageObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, threadId.Value!, status.Value!.Value!, role.Value!.Value!, content.Value!, incompleteDetails.Value!, completedAt.Value!, incompleteAt.Value!, assistantId.Value!, runId.Value!, attachments.Value!, metadata.Value!);
         }
@@ -593,7 +608,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageObject messageObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -608,18 +622,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageObject messageObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageObject.Id == null)
-                throw new ArgumentNullException(nameof(messageObject.Id), "Property is required for class MessageObject.");
-
-            if (messageObject.ThreadId == null)
-                throw new ArgumentNullException(nameof(messageObject.ThreadId), "Property is required for class MessageObject.");
-
-            if (messageObject.Content == null)
-                throw new ArgumentNullException(nameof(messageObject.Content), "Property is required for class MessageObject.");
-
             writer.WriteString("id", messageObject.Id);
 
             var varObjectRawValue = MessageObject.ObjectEnumToJsonValue(messageObject.Object);

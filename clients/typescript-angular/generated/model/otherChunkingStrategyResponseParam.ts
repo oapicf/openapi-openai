@@ -20,7 +20,7 @@ export interface OtherChunkingStrategyResponseParam {
 }
 export namespace OtherChunkingStrategyResponseParam {
     export const TypeEnum = {
-        Other: 'other'
+        Other: 'other',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

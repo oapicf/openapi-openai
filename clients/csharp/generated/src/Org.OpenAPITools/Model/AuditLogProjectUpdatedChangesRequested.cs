@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (title.IsSet && title.Value == null)
-                throw new ArgumentNullException(nameof(title), "Property is not nullable for class AuditLogProjectUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogProjectUpdatedChangesRequested: title.");
 
             return new AuditLogProjectUpdatedChangesRequested(title);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogProjectUpdatedChangesRequested auditLogProjectUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogProjectUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogProjectUpdatedChangesRequested auditLogProjectUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogProjectUpdatedChangesRequested.TitleOption.IsSet && auditLogProjectUpdatedChangesRequested.Title == null)
-                throw new ArgumentNullException(nameof(auditLogProjectUpdatedChangesRequested.Title), "Property is required for class AuditLogProjectUpdatedChangesRequested.");
+                throw new JsonException("Cannot write null property AuditLogProjectUpdatedChangesRequested.Title to non-nullable JSON property 'title'.");
 
             if (auditLogProjectUpdatedChangesRequested.TitleOption.IsSet)
                 writer.WriteString("title", auditLogProjectUpdatedChangesRequested.Title);

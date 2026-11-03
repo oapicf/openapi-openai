@@ -28,7 +28,7 @@ export interface Embedding {
 }
 export namespace Embedding {
     export const ObjectEnum = {
-        Embedding: 'embedding'
+        Embedding: 'embedding',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

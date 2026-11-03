@@ -29,14 +29,10 @@ import {
 export interface ListFineTuningJobEventsResponse {
     /**
      * 
-     * @type {Array<FineTuningJobEvent>}
-     * @memberof ListFineTuningJobEventsResponse
      */
     data: Array<FineTuningJobEvent>;
     /**
      * 
-     * @type {ListFineTuningJobEventsResponseObjectEnum}
-     * @memberof ListFineTuningJobEventsResponse
      */
     object: ListFineTuningJobEventsResponseObjectEnum;
 }
@@ -46,7 +42,7 @@ export interface ListFineTuningJobEventsResponse {
  * @export
  */
 export const ListFineTuningJobEventsResponseObjectEnum = {
-    List: 'list'
+    List: 'list',
 } as const;
 export type ListFineTuningJobEventsResponseObjectEnum = typeof ListFineTuningJobEventsResponseObjectEnum[keyof typeof ListFineTuningJobEventsResponseObjectEnum];
 

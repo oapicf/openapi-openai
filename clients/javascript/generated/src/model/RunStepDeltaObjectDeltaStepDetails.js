@@ -20,7 +20,7 @@ import RunStepDeltaStepDetailsToolCallsObjectToolCallsInner from './RunStepDelta
 /**
  * The RunStepDeltaObjectDeltaStepDetails model module.
  * @module model/RunStepDeltaObjectDeltaStepDetails
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class RunStepDeltaObjectDeltaStepDetails {
     /**

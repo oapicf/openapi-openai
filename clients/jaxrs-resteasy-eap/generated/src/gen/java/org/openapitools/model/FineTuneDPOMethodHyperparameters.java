@@ -15,13 +15,13 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The hyperparameters used for the fine-tuning job.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="The hyperparameters used for the fine-tuning job.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparameters   {
   
-  private FineTuneDPOMethodHyperparametersBeta beta;
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   /**
    **/

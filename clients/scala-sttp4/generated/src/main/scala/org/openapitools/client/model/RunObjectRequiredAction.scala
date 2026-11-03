@@ -24,7 +24,7 @@ object RunObjectRequiredActionEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object SubmitToolOutputs extends `Type`
+    case object SubmitToolOutputs extends `Type` { override def toString: String = "submit_tool_outputs" }
 
     import org.json4s._
 

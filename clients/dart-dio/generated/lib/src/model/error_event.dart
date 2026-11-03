@@ -123,6 +123,7 @@ class _$ErrorEventSerializer implements PrimitiveSerializer<ErrorEvent> {
   }
 }
 
+
 class ErrorEventEventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'error')

@@ -118,10 +118,10 @@ class FilesApiSimulation extends Simulation {
         .feed(listFilesQUERYFeeder)
         .exec(http("listFiles")
         .httpRequest("GET","/files")
-        .queryParam("after","${after}")
-        .queryParam("limit","${limit}")
         .queryParam("purpose","${purpose}")
+        .queryParam("limit","${limit}")
         .queryParam("order","${order}")
+        .queryParam("after","${after}")
 )
 
     // Run scnlistFiles with warm up and reach a constant rate for entire duration

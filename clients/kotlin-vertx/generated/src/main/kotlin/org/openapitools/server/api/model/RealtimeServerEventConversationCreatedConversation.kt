@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * The conversation resource.
  * @param id The unique ID of the conversation.
- * @param &#x60;object&#x60; The object type, must be `realtime.conversation`.
+ * @param `object` The object type, must be `realtime.conversation`.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

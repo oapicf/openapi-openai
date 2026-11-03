@@ -155,6 +155,7 @@ class _$UsageResponseSerializer implements PrimitiveSerializer<UsageResponse> {
   }
 }
 
+
 class UsageResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'page')

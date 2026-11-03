@@ -128,15 +128,14 @@ class _$ChatCompletionRequestMessageContentPartImageImageUrlSerializer implement
   }
 }
 
+
+/// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
 class ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum extends EnumClass {
 
-  /// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
   @BuiltValueEnumConst(wireName: r'auto')
   static const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum auto = _$chatCompletionRequestMessageContentPartImageImageUrlDetailEnum_auto;
-  /// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
   @BuiltValueEnumConst(wireName: r'low')
   static const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum low = _$chatCompletionRequestMessageContentPartImageImageUrlDetailEnum_low;
-  /// Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).
   @BuiltValueEnumConst(wireName: r'high')
   static const ChatCompletionRequestMessageContentPartImageImageUrlDetailEnum high = _$chatCompletionRequestMessageContentPartImageImageUrlDetailEnum_high;
 

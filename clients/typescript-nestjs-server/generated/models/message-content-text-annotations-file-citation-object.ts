@@ -19,7 +19,7 @@ export interface MessageContentTextAnnotationsFileCitationObject {
 }
 export namespace MessageContentTextAnnotationsFileCitationObject {
   export const TypeEnum = {
-    FileCitation: 'file_citation'
+    FileCitation: 'file_citation',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

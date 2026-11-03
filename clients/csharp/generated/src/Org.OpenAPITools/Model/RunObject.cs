@@ -653,7 +653,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<RunObject.ObjectEnum?>(RunObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                RunObject.ObjectEnum? varObjectValue = RunObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<RunObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "created_at":
                             createdAt = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -667,7 +672,12 @@ namespace Org.OpenAPITools.Model
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<RunObject.StatusEnum?>(RunObject.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                RunObject.StatusEnum? statusValue = RunObject.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<RunObject.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "model":
                             model = new Option<string?>(utf8JsonReader.GetString()!);
@@ -739,118 +749,118 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(id));
+                throw new JsonException("Property is required for class RunObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(varObject));
+                throw new JsonException("Property is required for class RunObject: object.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(createdAt));
+                throw new JsonException("Property is required for class RunObject: created_at.");
 
             if (!threadId.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(threadId));
+                throw new JsonException("Property is required for class RunObject: thread_id.");
 
             if (!assistantId.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(assistantId));
+                throw new JsonException("Property is required for class RunObject: assistant_id.");
 
             if (!status.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(status));
+                throw new JsonException("Property is required for class RunObject: status.");
 
             if (!model.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(model));
+                throw new JsonException("Property is required for class RunObject: model.");
 
             if (!instructions.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(instructions));
+                throw new JsonException("Property is required for class RunObject: instructions.");
 
             if (!tools.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(tools));
+                throw new JsonException("Property is required for class RunObject: tools.");
 
             if (!truncationStrategy.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(truncationStrategy));
+                throw new JsonException("Property is required for class RunObject: truncation_strategy.");
 
             if (!toolChoice.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(toolChoice));
+                throw new JsonException("Property is required for class RunObject: tool_choice.");
 
             if (!responseFormat.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(responseFormat));
+                throw new JsonException("Property is required for class RunObject: response_format.");
 
             if (!requiredAction.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(requiredAction));
+                throw new JsonException("Property is required for class RunObject: required_action.");
 
             if (!lastError.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(lastError));
+                throw new JsonException("Property is required for class RunObject: last_error.");
 
             if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(expiresAt));
+                throw new JsonException("Property is required for class RunObject: expires_at.");
 
             if (!startedAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(startedAt));
+                throw new JsonException("Property is required for class RunObject: started_at.");
 
             if (!cancelledAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(cancelledAt));
+                throw new JsonException("Property is required for class RunObject: cancelled_at.");
 
             if (!failedAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(failedAt));
+                throw new JsonException("Property is required for class RunObject: failed_at.");
 
             if (!completedAt.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(completedAt));
+                throw new JsonException("Property is required for class RunObject: completed_at.");
 
             if (!incompleteDetails.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(incompleteDetails));
+                throw new JsonException("Property is required for class RunObject: incomplete_details.");
 
             if (!metadata.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(metadata));
+                throw new JsonException("Property is required for class RunObject: metadata.");
 
             if (!usage.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(usage));
+                throw new JsonException("Property is required for class RunObject: usage.");
 
             if (!maxPromptTokens.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(maxPromptTokens));
+                throw new JsonException("Property is required for class RunObject: max_prompt_tokens.");
 
             if (!maxCompletionTokens.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(maxCompletionTokens));
+                throw new JsonException("Property is required for class RunObject: max_completion_tokens.");
 
             if (!parallelToolCalls.IsSet)
-                throw new ArgumentException("Property is required for class RunObject.", nameof(parallelToolCalls));
+                throw new JsonException("Property is required for class RunObject: parallel_tool_calls.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: object.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: created_at.");
 
             if (threadId.IsSet && threadId.Value == null)
-                throw new ArgumentNullException(nameof(threadId), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: thread_id.");
 
             if (assistantId.IsSet && assistantId.Value == null)
-                throw new ArgumentNullException(nameof(assistantId), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: assistant_id.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: status.");
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: model.");
 
             if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: instructions.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: tools.");
 
             if (truncationStrategy.IsSet && truncationStrategy.Value == null)
-                throw new ArgumentNullException(nameof(truncationStrategy), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: truncation_strategy.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: tool_choice.");
 
             if (responseFormat.IsSet && responseFormat.Value == null)
-                throw new ArgumentNullException(nameof(responseFormat), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: response_format.");
 
             if (parallelToolCalls.IsSet && parallelToolCalls.Value == null)
-                throw new ArgumentNullException(nameof(parallelToolCalls), "Property is not nullable for class RunObject.");
+                throw new JsonException("Property is not nullable for class RunObject: parallel_tool_calls.");
 
             return new RunObject(id.Value!, varObject.Value!.Value!, createdAt.Value!.Value!, threadId.Value!, assistantId.Value!, status.Value!.Value!, model.Value!, instructions.Value!, tools.Value!, truncationStrategy.Value!, toolChoice.Value!, responseFormat.Value!, requiredAction.Value!, lastError.Value!, expiresAt.Value!, startedAt.Value!, cancelledAt.Value!, failedAt.Value!, completedAt.Value!, incompleteDetails.Value!, metadata.Value!, usage.Value!, temperature, topP, maxPromptTokens.Value!, maxCompletionTokens.Value!, parallelToolCalls.Value!.Value!);
         }
@@ -861,7 +871,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunObject runObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -876,36 +885,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunObject runObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runObject.Id == null)
-                throw new ArgumentNullException(nameof(runObject.Id), "Property is required for class RunObject.");
-
-            if (runObject.ThreadId == null)
-                throw new ArgumentNullException(nameof(runObject.ThreadId), "Property is required for class RunObject.");
-
-            if (runObject.AssistantId == null)
-                throw new ArgumentNullException(nameof(runObject.AssistantId), "Property is required for class RunObject.");
-
-            if (runObject.Model == null)
-                throw new ArgumentNullException(nameof(runObject.Model), "Property is required for class RunObject.");
-
-            if (runObject.Instructions == null)
-                throw new ArgumentNullException(nameof(runObject.Instructions), "Property is required for class RunObject.");
-
-            if (runObject.Tools == null)
-                throw new ArgumentNullException(nameof(runObject.Tools), "Property is required for class RunObject.");
-
-            if (runObject.TruncationStrategy == null)
-                throw new ArgumentNullException(nameof(runObject.TruncationStrategy), "Property is required for class RunObject.");
-
-            if (runObject.ToolChoice == null)
-                throw new ArgumentNullException(nameof(runObject.ToolChoice), "Property is required for class RunObject.");
-
-            if (runObject.ResponseFormat == null)
-                throw new ArgumentNullException(nameof(runObject.ResponseFormat), "Property is required for class RunObject.");
-
             writer.WriteString("id", runObject.Id);
 
             var varObjectRawValue = RunObject.ObjectEnumToJsonValue(runObject.Object);

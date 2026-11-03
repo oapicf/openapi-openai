@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class AdminApiKeysCreateRequest(
 
     @Schema(example = "New Admin Key", required = true, description = "")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String
 ) {
 

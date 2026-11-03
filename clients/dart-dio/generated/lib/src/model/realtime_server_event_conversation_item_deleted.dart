@@ -141,9 +141,10 @@ class _$RealtimeServerEventConversationItemDeletedSerializer implements Primitiv
   }
 }
 
+
+/// The event type, must be `conversation.item.deleted`.
 class RealtimeServerEventConversationItemDeletedTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.deleted`.
   @BuiltValueEnumConst(wireName: r'conversation.item.deleted')
   static const RealtimeServerEventConversationItemDeletedTypeEnum conversationPeriodItemPeriodDeleted = _$realtimeServerEventConversationItemDeletedTypeEnum_conversationPeriodItemPeriodDeleted;
 

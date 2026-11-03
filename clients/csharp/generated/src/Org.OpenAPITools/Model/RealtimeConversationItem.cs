@@ -581,22 +581,42 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeConversationItem.TypeEnum?>(RealtimeConversationItem.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeConversationItem.TypeEnum? typeValue = RealtimeConversationItem.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeConversationItem.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<RealtimeConversationItem.ObjectEnum?>(RealtimeConversationItem.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                RealtimeConversationItem.ObjectEnum? varObjectValue = RealtimeConversationItem.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<RealtimeConversationItem.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<RealtimeConversationItem.StatusEnum?>(RealtimeConversationItem.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                RealtimeConversationItem.StatusEnum? statusValue = RealtimeConversationItem.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<RealtimeConversationItem.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<RealtimeConversationItem.RoleEnum?>(RealtimeConversationItem.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                RealtimeConversationItem.RoleEnum? roleValue = RealtimeConversationItem.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<RealtimeConversationItem.RoleEnum?>(roleValue);
+                            }
                             break;
                         case "content":
                             content = new Option<List<RealtimeConversationItemContentInner>?>(JsonSerializer.Deserialize<List<RealtimeConversationItemContentInner>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -620,34 +640,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: type.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: object.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: status.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: role.");
 
             if (content.IsSet && content.Value == null)
-                throw new ArgumentNullException(nameof(content), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: content.");
 
             if (callId.IsSet && callId.Value == null)
-                throw new ArgumentNullException(nameof(callId), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: call_id.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: name.");
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: arguments.");
 
             if (output.IsSet && output.Value == null)
-                throw new ArgumentNullException(nameof(output), "Property is not nullable for class RealtimeConversationItem.");
+                throw new JsonException("Property is not nullable for class RealtimeConversationItem: output.");
 
             return new RealtimeConversationItem(id, type, varObject, status, role, content, callId, name, arguments, output);
         }
@@ -658,7 +678,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeConversationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeConversationItem realtimeConversationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -673,26 +692,37 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeConversationItem"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeConversationItem realtimeConversationItem, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeConversationItem.IdOption.IsSet && realtimeConversationItem.Id == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.Id), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Id to non-nullable JSON property 'id'.");
+
+            if (realtimeConversationItem.TypeOption.IsSet && realtimeConversationItem.Type == null)
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Type to non-nullable JSON property 'type'.");
+
+            if (realtimeConversationItem.ObjectOption.IsSet && realtimeConversationItem.Object == null)
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Object to non-nullable JSON property 'object'.");
+
+            if (realtimeConversationItem.StatusOption.IsSet && realtimeConversationItem.Status == null)
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Status to non-nullable JSON property 'status'.");
+
+            if (realtimeConversationItem.RoleOption.IsSet && realtimeConversationItem.Role == null)
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Role to non-nullable JSON property 'role'.");
 
             if (realtimeConversationItem.ContentOption.IsSet && realtimeConversationItem.Content == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.Content), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Content to non-nullable JSON property 'content'.");
 
             if (realtimeConversationItem.CallIdOption.IsSet && realtimeConversationItem.CallId == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.CallId), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.CallId to non-nullable JSON property 'call_id'.");
 
             if (realtimeConversationItem.NameOption.IsSet && realtimeConversationItem.Name == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.Name), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Name to non-nullable JSON property 'name'.");
 
             if (realtimeConversationItem.ArgumentsOption.IsSet && realtimeConversationItem.Arguments == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.Arguments), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Arguments to non-nullable JSON property 'arguments'.");
 
             if (realtimeConversationItem.OutputOption.IsSet && realtimeConversationItem.Output == null)
-                throw new ArgumentNullException(nameof(realtimeConversationItem.Output), "Property is required for class RealtimeConversationItem.");
+                throw new JsonException("Cannot write null property RealtimeConversationItem.Output to non-nullable JSON property 'output'.");
 
             if (realtimeConversationItem.IdOption.IsSet)
                 writer.WriteString("id", realtimeConversationItem.Id);

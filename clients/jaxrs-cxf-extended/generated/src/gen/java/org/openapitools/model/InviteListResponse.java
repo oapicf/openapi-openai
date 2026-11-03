@@ -52,7 +52,6 @@ public enum ObjectEnum {
   private ObjectEnum _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid Invite> data = new ArrayList<>();
 
  /**

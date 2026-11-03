@@ -19,7 +19,7 @@ export interface MessageStreamEventOneOf1 {
 }
 export namespace MessageStreamEventOneOf1 {
     export const EventEnum = {
-        ThreadMessageInProgress: 'thread.message.in_progress'
+        ThreadMessageInProgress: 'thread.message.in_progress',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

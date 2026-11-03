@@ -58,22 +58,16 @@ export interface RealtimeSession {
     /**
      * Unique identifier for the session object.
      * 
-     * @type {string}
-     * @memberof RealtimeSession
      */
     id?: string;
     /**
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<RealtimeSessionModalitiesEnum>}
-     * @memberof RealtimeSession
      */
     modalities?: Array<RealtimeSessionModalitiesEnum>;
     /**
      * 
-     * @type {RealtimeSessionModel}
-     * @memberof RealtimeSession
      */
     model?: RealtimeSessionModel;
     /**
@@ -90,8 +84,6 @@ export interface RealtimeSession {
      * field is not set and are visible in the `session.created` event at the 
      * start of the session.
      * 
-     * @type {string}
-     * @memberof RealtimeSession
      */
     instructions?: string;
     /**
@@ -100,61 +92,43 @@ export interface RealtimeSession {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {RealtimeSessionVoiceEnum}
-     * @memberof RealtimeSession
      */
     voice?: RealtimeSessionVoiceEnum;
     /**
      * The format of input audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {RealtimeSessionInputAudioFormatEnum}
-     * @memberof RealtimeSession
      */
     inputAudioFormat?: RealtimeSessionInputAudioFormatEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {RealtimeSessionOutputAudioFormatEnum}
-     * @memberof RealtimeSession
      */
     outputAudioFormat?: RealtimeSessionOutputAudioFormatEnum;
     /**
      * 
-     * @type {RealtimeSessionInputAudioTranscription}
-     * @memberof RealtimeSession
      */
     inputAudioTranscription?: RealtimeSessionInputAudioTranscription;
     /**
      * 
-     * @type {RealtimeSessionTurnDetection}
-     * @memberof RealtimeSession
      */
     turnDetection?: RealtimeSessionTurnDetection | null;
     /**
      * Tools (functions) available to the model.
-     * @type {Array<RealtimeResponseCreateParamsToolsInner>}
-     * @memberof RealtimeSession
      */
     tools?: Array<RealtimeResponseCreateParamsToolsInner>;
     /**
      * How the model chooses tools. Options are `auto`, `none`, `required`, or 
      * specify a function.
      * 
-     * @type {string}
-     * @memberof RealtimeSession
      */
     toolChoice?: string;
     /**
      * Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
      * 
-     * @type {number}
-     * @memberof RealtimeSession
      */
     temperature?: number;
     /**
      * 
-     * @type {RealtimeResponseCreateParamsMaxResponseOutputTokens}
-     * @memberof RealtimeSession
      */
     maxResponseOutputTokens?: RealtimeResponseCreateParamsMaxResponseOutputTokens;
 }
@@ -165,7 +139,7 @@ export interface RealtimeSession {
  */
 export const RealtimeSessionModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 export type RealtimeSessionModalitiesEnum = typeof RealtimeSessionModalitiesEnum[keyof typeof RealtimeSessionModalitiesEnum];
 
@@ -180,7 +154,7 @@ export const RealtimeSessionVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 export type RealtimeSessionVoiceEnum = typeof RealtimeSessionVoiceEnum[keyof typeof RealtimeSessionVoiceEnum];
 
@@ -190,7 +164,7 @@ export type RealtimeSessionVoiceEnum = typeof RealtimeSessionVoiceEnum[keyof typ
 export const RealtimeSessionInputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 export type RealtimeSessionInputAudioFormatEnum = typeof RealtimeSessionInputAudioFormatEnum[keyof typeof RealtimeSessionInputAudioFormatEnum];
 
@@ -200,7 +174,7 @@ export type RealtimeSessionInputAudioFormatEnum = typeof RealtimeSessionInputAud
 export const RealtimeSessionOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 export type RealtimeSessionOutputAudioFormatEnum = typeof RealtimeSessionOutputAudioFormatEnum[keyof typeof RealtimeSessionOutputAudioFormatEnum];
 

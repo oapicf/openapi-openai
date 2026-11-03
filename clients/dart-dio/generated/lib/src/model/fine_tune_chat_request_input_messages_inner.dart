@@ -85,9 +85,10 @@ class _$FineTuneChatRequestInputMessagesInnerSerializer implements PrimitiveSeri
   }
 }
 
+
+/// The role of the messages author, in this case `function`.
 class FineTuneChatRequestInputMessagesInnerRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `function`.
   @BuiltValueEnumConst(wireName: r'function')
   static const FineTuneChatRequestInputMessagesInnerRoleEnum function_ = _$fineTuneChatRequestInputMessagesInnerRoleEnum_function_;
 
@@ -99,12 +100,11 @@ class FineTuneChatRequestInputMessagesInnerRoleEnum extends EnumClass {
   static FineTuneChatRequestInputMessagesInnerRoleEnum valueOf(String name) => _$fineTuneChatRequestInputMessagesInnerRoleEnumValueOf(name);
 }
 
+/// Controls whether the assistant message is trained against (0 or 1)
 class FineTuneChatRequestInputMessagesInnerWeightEnum extends EnumClass {
 
-  /// Controls whether the assistant message is trained against (0 or 1)
   @BuiltValueEnumConst(wireNumber: 0)
   static const FineTuneChatRequestInputMessagesInnerWeightEnum number0 = _$fineTuneChatRequestInputMessagesInnerWeightEnum_number0;
-  /// Controls whether the assistant message is trained against (0 or 1)
   @BuiltValueEnumConst(wireNumber: 1)
   static const FineTuneChatRequestInputMessagesInnerWeightEnum number1 = _$fineTuneChatRequestInputMessagesInnerWeightEnum_number1;
 

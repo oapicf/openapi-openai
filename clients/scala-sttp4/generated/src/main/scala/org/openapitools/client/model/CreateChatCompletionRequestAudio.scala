@@ -25,14 +25,14 @@ object CreateChatCompletionRequestAudioEnums {
 
   sealed trait Voice
   object Voice {
-    case object Alloy extends Voice
-    case object Ash extends Voice
-    case object Ballad extends Voice
-    case object Coral extends Voice
-    case object Echo extends Voice
-    case object Sage extends Voice
-    case object Shimmer extends Voice
-    case object Verse extends Voice
+    case object Alloy extends Voice { override def toString: String = "alloy" }
+    case object Ash extends Voice { override def toString: String = "ash" }
+    case object Ballad extends Voice { override def toString: String = "ballad" }
+    case object Coral extends Voice { override def toString: String = "coral" }
+    case object Echo extends Voice { override def toString: String = "echo" }
+    case object Sage extends Voice { override def toString: String = "sage" }
+    case object Shimmer extends Voice { override def toString: String = "shimmer" }
+    case object Verse extends Voice { override def toString: String = "verse" }
 
     import org.json4s._
 
@@ -67,11 +67,11 @@ object CreateChatCompletionRequestAudioEnums {
 
   sealed trait Format
   object Format {
-    case object Wav extends Format
-    case object Mp3 extends Format
-    case object Flac extends Format
-    case object Opus extends Format
-    case object Pcm16 extends Format
+    case object Wav extends Format { override def toString: String = "wav" }
+    case object Mp3 extends Format { override def toString: String = "mp3" }
+    case object Flac extends Format { override def toString: String = "flac" }
+    case object Opus extends Format { override def toString: String = "opus" }
+    case object Pcm16 extends Format { override def toString: String = "pcm16" }
 
     import org.json4s._
 

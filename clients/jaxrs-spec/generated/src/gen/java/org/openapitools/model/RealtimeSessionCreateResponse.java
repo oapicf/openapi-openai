@@ -27,7 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "A new Realtime session configuration, with an ephermeral key. Default TTL for keys is one minute. ")
 @JsonTypeName("RealtimeSessionCreateResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeSessionCreateResponse   {
   private RealtimeSessionCreateResponseClientSecret clientSecret;
   public enum ModalitiesEnum {
@@ -77,7 +77,7 @@ public class RealtimeSessionCreateResponse   {
     }
 }
 
-  private @Valid List<ModalitiesEnum> modalities = new ArrayList<>();
+  private List<ModalitiesEnum> modalities = new ArrayList<>();
   private String instructions;
   public enum VoiceEnum {
 
@@ -131,7 +131,7 @@ public class RealtimeSessionCreateResponse   {
   private String outputAudioFormat;
   private RealtimeSessionInputAudioTranscription inputAudioTranscription;
   private RealtimeSessionCreateResponseTurnDetection turnDetection;
-  private @Valid List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
+  private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
   private String toolChoice;
   private BigDecimal temperature;
   private RealtimeResponseCreateParamsMaxResponseOutputTokens maxResponseOutputTokens;
@@ -323,7 +323,7 @@ public class RealtimeSessionCreateResponse   {
   
   @ApiModelProperty(value = "Tools (functions) available to the model.")
   @JsonProperty("tools")
-  @Valid public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
+  public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }
 

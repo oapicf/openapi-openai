@@ -75,3 +75,4 @@ class _$CreateTranslation200ResponseSerializer implements PrimitiveSerializer<Cr
   }
 }
 
+

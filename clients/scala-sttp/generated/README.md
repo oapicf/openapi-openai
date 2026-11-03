@@ -2,7 +2,7 @@
 
 OpenAI API
 - API version: 2.3.0
-  - Generator version: 7.24.0
+  - Generator version: 7.26.0
 
 The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.
 

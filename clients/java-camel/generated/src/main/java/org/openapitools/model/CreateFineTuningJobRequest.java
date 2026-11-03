@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import jakarta.annotation.Generated;
  * CreateFineTuningJobRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequest {
 
   private CreateFineTuningJobRequestModel model;
@@ -42,7 +41,6 @@ public class CreateFineTuningJobRequest {
 
   private JsonNullable<String> validationFile = JsonNullable.<String>undefined();
 
-  @Valid
   private JsonNullable<List<@Valid CreateFineTuningJobRequestIntegrationsInner>> integrations = JsonNullable.<List<@Valid CreateFineTuningJobRequestIntegrationsInner>>undefined();
 
   private JsonNullable<@Min(value = 0) @Max(value = 2147483647) Integer> seed = JsonNullable.<Integer>undefined();
@@ -184,7 +182,7 @@ public class CreateFineTuningJobRequest {
    * A list of integrations to enable for your fine-tuning job.
    * @return integrations
    */
-  @Valid 
+  
   @Schema(name = "integrations", description = "A list of integrations to enable for your fine-tuning job.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("integrations")
   public JsonNullable<List<@Valid CreateFineTuningJobRequestIntegrationsInner>> getIntegrations() {

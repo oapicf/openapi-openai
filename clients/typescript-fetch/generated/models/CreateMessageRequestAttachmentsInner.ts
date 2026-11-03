@@ -29,14 +29,10 @@ import {
 export interface CreateMessageRequestAttachmentsInner {
     /**
      * The ID of the file to attach to the message.
-     * @type {string}
-     * @memberof CreateMessageRequestAttachmentsInner
      */
     fileId?: string;
     /**
      * The tools to add this file to.
-     * @type {Array<CreateMessageRequestAttachmentsInnerToolsInner>}
-     * @memberof CreateMessageRequestAttachmentsInner
      */
     tools?: Array<CreateMessageRequestAttachmentsInnerToolsInner>;
 }

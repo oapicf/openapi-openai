@@ -24,44 +24,30 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseAudioTranscriptDone {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     eventId: string;
     /**
      * The event type, must be `response.audio_transcript.done`.
-     * @type {RealtimeServerEventResponseAudioTranscriptDoneTypeEnum}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     type: RealtimeServerEventResponseAudioTranscriptDoneTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     contentIndex: number;
     /**
      * The final transcript of the audio.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioTranscriptDone
      */
     transcript: string;
 }
@@ -71,7 +57,7 @@ export interface RealtimeServerEventResponseAudioTranscriptDone {
  * @export
  */
 export const RealtimeServerEventResponseAudioTranscriptDoneTypeEnum = {
-    ResponseAudioTranscriptDone: 'response.audio_transcript.done'
+    ResponseAudioTranscriptDone: 'response.audio_transcript.done',
 } as const;
 export type RealtimeServerEventResponseAudioTranscriptDoneTypeEnum = typeof RealtimeServerEventResponseAudioTranscriptDoneTypeEnum[keyof typeof RealtimeServerEventResponseAudioTranscriptDoneTypeEnum];
 

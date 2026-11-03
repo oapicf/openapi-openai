@@ -23,7 +23,7 @@ export interface ChatCompletionRequestToolMessage {
 }
 export namespace ChatCompletionRequestToolMessage {
     export const RoleEnum = {
-        Tool: 'tool'
+        Tool: 'tool',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

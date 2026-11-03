@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RealtimeResponseCreateParamsMaxResponseOutputTokens" /> class.
         /// </summary>
         /// <param name="int"></param>
-        internal RealtimeResponseCreateParamsMaxResponseOutputTokens(int @int)
+        public RealtimeResponseCreateParamsMaxResponseOutputTokens(int @int)
         {
             Int = @int;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RealtimeResponseCreateParamsMaxResponseOutputTokens" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal RealtimeResponseCreateParamsMaxResponseOutputTokens(string @string)
+        public RealtimeResponseCreateParamsMaxResponseOutputTokens(string @string)
         {
             String = @string;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParamsMaxResponseOutputTokens"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponseCreateParamsMaxResponseOutputTokens realtimeResponseCreateParamsMaxResponseOutputTokens, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponseCreateParamsMaxResponseOutputTokens"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponseCreateParamsMaxResponseOutputTokens realtimeResponseCreateParamsMaxResponseOutputTokens, JsonSerializerOptions jsonSerializerOptions)
         {
 

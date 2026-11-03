@@ -52,8 +52,6 @@ export interface RealtimeResponseCreateParams {
      * The set of modalities the model can respond with. To disable audio,
      * set this to ["text"].
      * 
-     * @type {Array<RealtimeResponseCreateParamsModalitiesEnum>}
-     * @memberof RealtimeResponseCreateParams
      */
     modalities?: Array<RealtimeResponseCreateParamsModalitiesEnum>;
     /**
@@ -70,8 +68,6 @@ export interface RealtimeResponseCreateParams {
      * field is not set and are visible in the `session.created` event at the 
      * start of the session.
      * 
-     * @type {string}
-     * @memberof RealtimeResponseCreateParams
      */
     instructions?: string;
     /**
@@ -80,48 +76,34 @@ export interface RealtimeResponseCreateParams {
      * voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`, 
      * `shimmer` and `verse`.
      * 
-     * @type {RealtimeResponseCreateParamsVoiceEnum}
-     * @memberof RealtimeResponseCreateParams
      */
     voice?: RealtimeResponseCreateParamsVoiceEnum;
     /**
      * The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`.
      * 
-     * @type {RealtimeResponseCreateParamsOutputAudioFormatEnum}
-     * @memberof RealtimeResponseCreateParams
      */
     outputAudioFormat?: RealtimeResponseCreateParamsOutputAudioFormatEnum;
     /**
      * Tools (functions) available to the model.
-     * @type {Array<RealtimeResponseCreateParamsToolsInner>}
-     * @memberof RealtimeResponseCreateParams
      */
     tools?: Array<RealtimeResponseCreateParamsToolsInner>;
     /**
      * How the model chooses tools. Options are `auto`, `none`, `required`, or 
      * specify a function, like `{"type": "function", "function": {"name": "my_function"}}`.
      * 
-     * @type {string}
-     * @memberof RealtimeResponseCreateParams
      */
     toolChoice?: string;
     /**
      * Sampling temperature for the model, limited to [0.6, 1.2]. Defaults to 0.8.
      * 
-     * @type {number}
-     * @memberof RealtimeResponseCreateParams
      */
     temperature?: number;
     /**
      * 
-     * @type {RealtimeResponseCreateParamsMaxResponseOutputTokens}
-     * @memberof RealtimeResponseCreateParams
      */
     maxResponseOutputTokens?: RealtimeResponseCreateParamsMaxResponseOutputTokens;
     /**
      * 
-     * @type {RealtimeResponseCreateParamsConversation}
-     * @memberof RealtimeResponseCreateParams
      */
     conversation?: RealtimeResponseCreateParamsConversation;
     /**
@@ -130,8 +112,6 @@ export interface RealtimeResponseCreateParams {
      * format. Keys can be a maximum of 64 characters long and values can be a
      * maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof RealtimeResponseCreateParams
      */
     metadata?: object | null;
     /**
@@ -139,8 +119,6 @@ export interface RealtimeResponseCreateParams {
      * for this response, without including the default conversation. Can include
      * references to items from the default conversation.
      * 
-     * @type {Array<RealtimeConversationItem>}
-     * @memberof RealtimeResponseCreateParams
      */
     input?: Array<RealtimeConversationItem>;
 }
@@ -151,7 +129,7 @@ export interface RealtimeResponseCreateParams {
  */
 export const RealtimeResponseCreateParamsModalitiesEnum = {
     Text: 'text',
-    Audio: 'audio'
+    Audio: 'audio',
 } as const;
 export type RealtimeResponseCreateParamsModalitiesEnum = typeof RealtimeResponseCreateParamsModalitiesEnum[keyof typeof RealtimeResponseCreateParamsModalitiesEnum];
 
@@ -166,7 +144,7 @@ export const RealtimeResponseCreateParamsVoiceEnum = {
     Echo: 'echo',
     Sage: 'sage',
     Shimmer: 'shimmer',
-    Verse: 'verse'
+    Verse: 'verse',
 } as const;
 export type RealtimeResponseCreateParamsVoiceEnum = typeof RealtimeResponseCreateParamsVoiceEnum[keyof typeof RealtimeResponseCreateParamsVoiceEnum];
 
@@ -176,7 +154,7 @@ export type RealtimeResponseCreateParamsVoiceEnum = typeof RealtimeResponseCreat
 export const RealtimeResponseCreateParamsOutputAudioFormatEnum = {
     Pcm16: 'pcm16',
     G711Ulaw: 'g711_ulaw',
-    G711Alaw: 'g711_alaw'
+    G711Alaw: 'g711_alaw',
 } as const;
 export type RealtimeResponseCreateParamsOutputAudioFormatEnum = typeof RealtimeResponseCreateParamsOutputAudioFormatEnum[keyof typeof RealtimeResponseCreateParamsOutputAudioFormatEnum];
 

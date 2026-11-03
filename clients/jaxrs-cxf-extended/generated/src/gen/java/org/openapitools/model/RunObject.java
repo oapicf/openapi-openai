@@ -190,8 +190,7 @@ public enum StatusEnum {
   * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
   */
   @ApiModelProperty(required = true, value = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
-  @Valid
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
  /**
   * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
@@ -652,21 +651,21 @@ public enum StatusEnum {
   */
   @JsonProperty("tools")
   @NotNull
- @Size(max=20)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
- public void setTools(List<AssistantObjectToolsInner> tools) {
+ public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }

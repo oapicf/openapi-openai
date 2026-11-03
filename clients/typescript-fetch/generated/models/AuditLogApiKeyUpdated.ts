@@ -29,14 +29,10 @@ import {
 export interface AuditLogApiKeyUpdated {
     /**
      * The tracking ID of the API key.
-     * @type {string}
-     * @memberof AuditLogApiKeyUpdated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogApiKeyUpdatedChangesRequested}
-     * @memberof AuditLogApiKeyUpdated
      */
     changesRequested?: AuditLogApiKeyUpdatedChangesRequested;
 }

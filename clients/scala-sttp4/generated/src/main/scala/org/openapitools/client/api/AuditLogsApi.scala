@@ -11,7 +11,7 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.AuditLogEventType._
+import org.openapitools.client.model.AuditLogEventType
 import org.openapitools.client.model.ListAuditLogsEffectiveAtParameter
 import org.openapitools.client.model.ListAuditLogsResponse
 import org.openapitools.client.core.JsonSupport._
@@ -41,7 +41,7 @@ class AuditLogsApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    */
-  def listAuditLogs(bearerToken: String)(effectiveAt: Option[ListAuditLogsEffectiveAtParameter] = None, projectIds: Option[Seq[String]] = None, eventTypes: Option[Seq[AuditLogEventType]] = None, actorIds: Option[Seq[String]] = None, actorEmails: Option[Seq[String]] = None, resourceIds: Option[Seq[String]] = None, limit: Option[Int] = None, after: Option[String] = None, before: Option[String] = None): Request[Either[ResponseException[String], ListAuditLogsResponse]] =
+  def listAuditLogs(bearerToken: String)(effectiveAt: Option[ListAuditLogsEffectiveAtParameter] = None, projectIds: Option[Seq[String]] = None, eventTypes: Option[Seq[AuditLogEventType]] = None, actorIds: Option[Seq[String]] = None, actorEmails: Option[Seq[String]] = None, resourceIds: Option[Seq[String]] = None, limit: Option[Int] = None, after: Option[String] = None, before: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListAuditLogsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/organization/audit_logs?effective_at=${ effectiveAt }&project_ids[]=${ projectIds }&event_types[]=${ eventTypes }&actor_ids[]=${ actorIds }&actor_emails[]=${ actorEmails }&resource_ids[]=${ resourceIds }&limit=${ limit }&after=${ after }&before=${ before }")
       .contentType("application/json")

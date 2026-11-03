@@ -143,6 +143,7 @@ class _$ThreadStreamEventSerializer implements PrimitiveSerializer<ThreadStreamE
   }
 }
 
+
 class ThreadStreamEventEventEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'thread.created')

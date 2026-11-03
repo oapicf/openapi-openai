@@ -21,38 +21,26 @@ import { mapValues } from '../runtime';
 export interface ProjectRateLimitUpdateRequest {
     /**
      * The maximum requests per minute.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     maxRequestsPer1Minute?: number;
     /**
      * The maximum tokens per minute.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     maxTokensPer1Minute?: number;
     /**
      * The maximum images per minute. Only relevant for certain models.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     maxImagesPer1Minute?: number;
     /**
      * The maximum audio megabytes per minute. Only relevant for certain models.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     maxAudioMegabytesPer1Minute?: number;
     /**
      * The maximum requests per day. Only relevant for certain models.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     maxRequestsPer1Day?: number;
     /**
      * The maximum batch input tokens per day. Only relevant for certain models.
-     * @type {number}
-     * @memberof ProjectRateLimitUpdateRequest
      */
     batch1DayMaxInputTokens?: number;
 }

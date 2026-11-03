@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListFineTuningJobCheckpointsResponse  {
   
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid FineTuningJobCheckpoint> data = new ArrayList<>();
 
 public enum ObjectEnum {

@@ -43,7 +43,7 @@ import javax.validation.Valid;
   RealtimeConversationItem.JSON_PROPERTY_ARGUMENTS,
   RealtimeConversationItem.JSON_PROPERTY_OUTPUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeConversationItem   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -346,7 +346,7 @@ public class RealtimeConversationItem   {
    **/
   @JsonProperty(value = "content")
   @ApiModelProperty(value = "The content of the message, applicable for `message` items.  - Message items of role `system` support only `input_text` content - Message items of role `user` support `input_text` and `input_audio`    content - Message items of role `assistant` support `text` content. ")
-  @Valid 
+  
   public List<@Valid RealtimeConversationItemContentInner> getContent() {
     return content;
   }

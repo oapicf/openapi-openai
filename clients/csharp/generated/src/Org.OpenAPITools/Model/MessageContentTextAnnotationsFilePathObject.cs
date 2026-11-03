@@ -233,7 +233,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageContentTextAnnotationsFilePathObject.TypeEnum?>(MessageContentTextAnnotationsFilePathObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageContentTextAnnotationsFilePathObject.TypeEnum? typeValue = MessageContentTextAnnotationsFilePathObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageContentTextAnnotationsFilePathObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -254,34 +259,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFilePathObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFilePathObject: type.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFilePathObject.", nameof(text));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFilePathObject: text.");
 
             if (!filePath.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFilePathObject.", nameof(filePath));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFilePathObject: file_path.");
 
             if (!startIndex.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFilePathObject.", nameof(startIndex));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFilePathObject: start_index.");
 
             if (!endIndex.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFilePathObject.", nameof(endIndex));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFilePathObject: end_index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageContentTextAnnotationsFilePathObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFilePathObject: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class MessageContentTextAnnotationsFilePathObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFilePathObject: text.");
 
             if (filePath.IsSet && filePath.Value == null)
-                throw new ArgumentNullException(nameof(filePath), "Property is not nullable for class MessageContentTextAnnotationsFilePathObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFilePathObject: file_path.");
 
             if (startIndex.IsSet && startIndex.Value == null)
-                throw new ArgumentNullException(nameof(startIndex), "Property is not nullable for class MessageContentTextAnnotationsFilePathObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFilePathObject: start_index.");
 
             if (endIndex.IsSet && endIndex.Value == null)
-                throw new ArgumentNullException(nameof(endIndex), "Property is not nullable for class MessageContentTextAnnotationsFilePathObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFilePathObject: end_index.");
 
             return new MessageContentTextAnnotationsFilePathObject(type.Value!.Value!, text.Value!, filePath.Value!, startIndex.Value!.Value!, endIndex.Value!.Value!);
         }
@@ -292,7 +297,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFilePathObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentTextAnnotationsFilePathObject messageContentTextAnnotationsFilePathObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -307,15 +311,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFilePathObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentTextAnnotationsFilePathObject messageContentTextAnnotationsFilePathObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentTextAnnotationsFilePathObject.Text == null)
-                throw new ArgumentNullException(nameof(messageContentTextAnnotationsFilePathObject.Text), "Property is required for class MessageContentTextAnnotationsFilePathObject.");
-
-            if (messageContentTextAnnotationsFilePathObject.FilePath == null)
-                throw new ArgumentNullException(nameof(messageContentTextAnnotationsFilePathObject.FilePath), "Property is required for class MessageContentTextAnnotationsFilePathObject.");
-
             var typeRawValue = MessageContentTextAnnotationsFilePathObject.TypeEnumToJsonValue(messageContentTextAnnotationsFilePathObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("text", messageContentTextAnnotationsFilePathObject.Text);

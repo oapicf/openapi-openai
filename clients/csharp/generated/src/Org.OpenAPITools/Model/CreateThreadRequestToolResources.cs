@@ -160,7 +160,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (codeInterpreter.IsSet && codeInterpreter.Value == null)
-                throw new ArgumentNullException(nameof(codeInterpreter), "Property is not nullable for class CreateThreadRequestToolResources.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResources: code_interpreter.");
 
             return new CreateThreadRequestToolResources(codeInterpreter, fileSearch);
         }
@@ -171,7 +171,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadRequestToolResources createThreadRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -186,11 +185,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResources"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadRequestToolResources createThreadRequestToolResources, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createThreadRequestToolResources.CodeInterpreterOption.IsSet && createThreadRequestToolResources.CodeInterpreter == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResources.CodeInterpreter), "Property is required for class CreateThreadRequestToolResources.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResources.CodeInterpreter to non-nullable JSON property 'code_interpreter'.");
 
             if (createThreadRequestToolResources.CodeInterpreterOption.IsSet)
             {

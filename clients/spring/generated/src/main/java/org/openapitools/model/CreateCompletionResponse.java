@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -27,7 +26,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "CreateCompletionResponse", description = "Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape (unlike the chat endpoint). ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionResponse {
 
   private String id;
@@ -38,7 +37,6 @@ public class CreateCompletionResponse {
 
   private String model;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String systemFingerprint;
 
   /**
@@ -76,7 +74,6 @@ public class CreateCompletionResponse {
 
   private ObjectEnum _object;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable CompletionUsage usage;
 
   public CreateCompletionResponse() {
@@ -132,7 +129,7 @@ public class CreateCompletionResponse {
    * The list of completion choices the model generated for the input prompt.
    * @return choices
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "choices", description = "The list of completion choices the model generated for the input prompt.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("choices")
   public List<@Valid CreateCompletionResponseChoicesInner> getChoices() {

@@ -211,7 +211,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageDeltaContentRefusalObject.TypeEnum?>(MessageDeltaContentRefusalObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageDeltaContentRefusalObject.TypeEnum? typeValue = MessageDeltaContentRefusalObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageDeltaContentRefusalObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "refusal":
                             refusal = new Option<string?>(utf8JsonReader.GetString()!);
@@ -223,19 +228,19 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentRefusalObject.", nameof(index));
+                throw new JsonException("Property is required for class MessageDeltaContentRefusalObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentRefusalObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageDeltaContentRefusalObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class MessageDeltaContentRefusalObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentRefusalObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageDeltaContentRefusalObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentRefusalObject: type.");
 
             if (refusal.IsSet && refusal.Value == null)
-                throw new ArgumentNullException(nameof(refusal), "Property is not nullable for class MessageDeltaContentRefusalObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentRefusalObject: refusal.");
 
             return new MessageDeltaContentRefusalObject(index.Value!.Value!, type.Value!.Value!, refusal);
         }
@@ -246,7 +251,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentRefusalObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentRefusalObject messageDeltaContentRefusalObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -261,11 +265,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentRefusalObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentRefusalObject messageDeltaContentRefusalObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentRefusalObject.RefusalOption.IsSet && messageDeltaContentRefusalObject.Refusal == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentRefusalObject.Refusal), "Property is required for class MessageDeltaContentRefusalObject.");
+                throw new JsonException("Cannot write null property MessageDeltaContentRefusalObject.Refusal to non-nullable JSON property 'refusal'.");
 
             writer.WriteNumber("index", messageDeltaContentRefusalObject.Index);
 

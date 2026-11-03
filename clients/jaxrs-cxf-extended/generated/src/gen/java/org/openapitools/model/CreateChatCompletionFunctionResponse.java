@@ -32,7 +32,6 @@ public class CreateChatCompletionFunctionResponse  {
   * A list of chat completion choices. Can be more than one if `n` is greater than 1.
   */
   @ApiModelProperty(required = true, value = "A list of chat completion choices. Can be more than one if `n` is greater than 1.")
-  @Valid
   private List<@Valid CreateChatCompletionFunctionResponseChoicesInner> choices = new ArrayList<>();
 
  /**

@@ -29,14 +29,10 @@ import {
 export interface CreateVectorStoreFileRequest {
     /**
      * A [File](/docs/api-reference/files) ID that the vector store should use. Useful for tools like `file_search` that can access files.
-     * @type {string}
-     * @memberof CreateVectorStoreFileRequest
      */
     fileId: string;
     /**
      * 
-     * @type {ChunkingStrategyRequestParam}
-     * @memberof CreateVectorStoreFileRequest
      */
     chunkingStrategy?: ChunkingStrategyRequestParam;
 }

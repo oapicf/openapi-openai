@@ -80,9 +80,10 @@ class _$FineTunePreferenceRequestInputPreferredCompletionInnerSerializer impleme
   }
 }
 
+
+/// The role of the messages author, in this case `assistant`.
 class FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum extends EnumClass {
 
-  /// The role of the messages author, in this case `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const FineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum assistant = _$fineTunePreferenceRequestInputPreferredCompletionInnerRoleEnum_assistant;
 

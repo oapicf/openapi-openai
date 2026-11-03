@@ -17,7 +17,7 @@ export interface ChatCompletionRequestDeveloperMessage {
 }
 export namespace ChatCompletionRequestDeveloperMessage {
   export const RoleEnum = {
-    Developer: 'developer'
+    Developer: 'developer',
   } as const;
   export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

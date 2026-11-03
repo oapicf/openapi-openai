@@ -25,6 +25,9 @@ import {
 } from '../models/RealtimeSessionCreateResponse';
 
 export interface CreateRealtimeSessionRequest {
+    /**
+     * 
+     */
     realtimeSessionCreateRequest: RealtimeSessionCreateRequest;
 }
 

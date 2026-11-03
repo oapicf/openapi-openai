@@ -125,7 +125,7 @@ public enum StatusEnum {
 
   private String instructions;
 
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   private Object metadata;
 
@@ -467,7 +467,7 @@ public enum StatusEnum {
   /**
    * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
    **/
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -476,10 +476,10 @@ public enum StatusEnum {
   @ApiModelProperty(required = true, value = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
   @JsonProperty("tools")
   @NotNull
- @Size(max=20)  public List<AssistantObjectToolsInner> getTools() {
+ @Size(max=20)  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

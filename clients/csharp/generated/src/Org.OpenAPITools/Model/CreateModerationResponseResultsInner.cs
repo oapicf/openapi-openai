@@ -173,28 +173,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!flagged.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInner.", nameof(flagged));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInner: flagged.");
 
             if (!categories.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInner.", nameof(categories));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInner: categories.");
 
             if (!categoryScores.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInner.", nameof(categoryScores));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInner: category_scores.");
 
             if (!categoryAppliedInputTypes.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationResponseResultsInner.", nameof(categoryAppliedInputTypes));
+                throw new JsonException("Property is required for class CreateModerationResponseResultsInner: category_applied_input_types.");
 
             if (flagged.IsSet && flagged.Value == null)
-                throw new ArgumentNullException(nameof(flagged), "Property is not nullable for class CreateModerationResponseResultsInner.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInner: flagged.");
 
             if (categories.IsSet && categories.Value == null)
-                throw new ArgumentNullException(nameof(categories), "Property is not nullable for class CreateModerationResponseResultsInner.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInner: categories.");
 
             if (categoryScores.IsSet && categoryScores.Value == null)
-                throw new ArgumentNullException(nameof(categoryScores), "Property is not nullable for class CreateModerationResponseResultsInner.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInner: category_scores.");
 
             if (categoryAppliedInputTypes.IsSet && categoryAppliedInputTypes.Value == null)
-                throw new ArgumentNullException(nameof(categoryAppliedInputTypes), "Property is not nullable for class CreateModerationResponseResultsInner.");
+                throw new JsonException("Property is not nullable for class CreateModerationResponseResultsInner: category_applied_input_types.");
 
             return new CreateModerationResponseResultsInner(flagged.Value!.Value!, categories.Value!, categoryScores.Value!, categoryAppliedInputTypes.Value!);
         }
@@ -205,7 +205,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponseResultsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationResponseResultsInner createModerationResponseResultsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -220,18 +219,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationResponseResultsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationResponseResultsInner createModerationResponseResultsInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationResponseResultsInner.Categories == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInner.Categories), "Property is required for class CreateModerationResponseResultsInner.");
-
-            if (createModerationResponseResultsInner.CategoryScores == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInner.CategoryScores), "Property is required for class CreateModerationResponseResultsInner.");
-
-            if (createModerationResponseResultsInner.CategoryAppliedInputTypes == null)
-                throw new ArgumentNullException(nameof(createModerationResponseResultsInner.CategoryAppliedInputTypes), "Property is required for class CreateModerationResponseResultsInner.");
-
             writer.WriteBoolean("flagged", createModerationResponseResultsInner.Flagged);
 
             writer.WritePropertyName("categories");

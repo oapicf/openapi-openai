@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ModelError {
     /**
      * 
-     * @type {string}
-     * @memberof ModelError
      */
     code: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ModelError
      */
     message: string;
     /**
      * 
-     * @type {string}
-     * @memberof ModelError
      */
     param: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ModelError
      */
     type: string;
 }

@@ -19,7 +19,7 @@ import StaticChunkingStrategyRequestParam from './StaticChunkingStrategyRequestP
 /**
  * The ChunkingStrategyRequestParam model module.
  * @module model/ChunkingStrategyRequestParam
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class ChunkingStrategyRequestParam {
     /**

@@ -16,10 +16,10 @@ import org.openapitools.model.FineTuneChatRequestInputMessagesInner;
  * The per-line training example of a fine-tuning input file for chat models using the supervised method.
  */
 @ApiModel(description = "The per-line training example of a fine-tuning input file for chat models using the supervised method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneChatRequestInput   {
   @JsonProperty("messages")
-  private List<FineTuneChatRequestInputMessagesInner> messages = null;
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = null;
 
   @JsonProperty("tools")
   private List<@Valid ChatCompletionTool> tools = null;
@@ -30,7 +30,7 @@ public class FineTuneChatRequestInput   {
   @JsonProperty("functions")
   private List<@Valid ChatCompletionFunctions> functions = null;
 
-  public FineTuneChatRequestInput messages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public FineTuneChatRequestInput messages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
     return this;
   }
@@ -48,11 +48,11 @@ public class FineTuneChatRequestInput   {
    * @return messages
   **/
   @ApiModelProperty(value = "")
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
 
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 

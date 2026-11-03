@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Apis/AssistantsApi.http
 Apis/AudioApi.http
 Apis/AuditLogsApi.http

@@ -204,7 +204,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<RunStepDeltaObject.ObjectEnum?>(RunStepDeltaObject.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                RunStepDeltaObject.ObjectEnum? varObjectValue = RunStepDeltaObject.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<RunStepDeltaObject.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "delta":
                             delta = new Option<RunStepDeltaObjectDelta?>(JsonSerializer.Deserialize<RunStepDeltaObjectDelta>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -216,22 +221,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaObject.", nameof(id));
+                throw new JsonException("Property is required for class RunStepDeltaObject: id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaObject.", nameof(varObject));
+                throw new JsonException("Property is required for class RunStepDeltaObject: object.");
 
             if (!delta.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDeltaObject.", nameof(delta));
+                throw new JsonException("Property is required for class RunStepDeltaObject: delta.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RunStepDeltaObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaObject: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RunStepDeltaObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaObject: object.");
 
             if (delta.IsSet && delta.Value == null)
-                throw new ArgumentNullException(nameof(delta), "Property is not nullable for class RunStepDeltaObject.");
+                throw new JsonException("Property is not nullable for class RunStepDeltaObject: delta.");
 
             return new RunStepDeltaObject(id.Value!, varObject.Value!.Value!, delta.Value!);
         }
@@ -242,7 +247,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaObject runStepDeltaObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -257,15 +261,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaObject runStepDeltaObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDeltaObject.Id == null)
-                throw new ArgumentNullException(nameof(runStepDeltaObject.Id), "Property is required for class RunStepDeltaObject.");
-
-            if (runStepDeltaObject.Delta == null)
-                throw new ArgumentNullException(nameof(runStepDeltaObject.Delta), "Property is required for class RunStepDeltaObject.");
-
             writer.WriteString("id", runStepDeltaObject.Id);
 
             var varObjectRawValue = RunStepDeltaObject.ObjectEnumToJsonValue(runStepDeltaObject.Object);

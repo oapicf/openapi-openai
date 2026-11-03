@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AssistantToolsFileSearchTypeOnly {
     /**
      * The type of tool being defined: `file_search`
-     * @type {AssistantToolsFileSearchTypeOnlyTypeEnum}
-     * @memberof AssistantToolsFileSearchTypeOnly
      */
     type: AssistantToolsFileSearchTypeOnlyTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface AssistantToolsFileSearchTypeOnly {
  * @export
  */
 export const AssistantToolsFileSearchTypeOnlyTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 export type AssistantToolsFileSearchTypeOnlyTypeEnum = typeof AssistantToolsFileSearchTypeOnlyTypeEnum[keyof typeof AssistantToolsFileSearchTypeOnlyTypeEnum];
 

@@ -29,7 +29,7 @@ export interface ProjectApiKey {
 }
 export namespace ProjectApiKey {
   export const ObjectEnum = {
-    OrganizationProjectApiKey: 'organization.project.api_key'
+    OrganizationProjectApiKey: 'organization.project.api_key',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

@@ -18,7 +18,7 @@ import ChatCompletionRequestMessageContentPartText from './ChatCompletionRequest
 /**
  * The ChatCompletionRequestAssistantMessageContentPart model module.
  * @module model/ChatCompletionRequestAssistantMessageContentPart
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class ChatCompletionRequestAssistantMessageContentPart {
     /**

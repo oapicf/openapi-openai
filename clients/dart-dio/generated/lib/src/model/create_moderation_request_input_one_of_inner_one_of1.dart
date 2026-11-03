@@ -124,9 +124,10 @@ class _$CreateModerationRequestInputOneOfInnerOneOf1Serializer implements Primit
   }
 }
 
+
+/// Always `text`.
 class CreateModerationRequestInputOneOfInnerOneOf1TypeEnum extends EnumClass {
 
-  /// Always `text`.
   @BuiltValueEnumConst(wireName: r'text')
   static const CreateModerationRequestInputOneOfInnerOneOf1TypeEnum text = _$createModerationRequestInputOneOfInnerOneOf1TypeEnum_text;
 

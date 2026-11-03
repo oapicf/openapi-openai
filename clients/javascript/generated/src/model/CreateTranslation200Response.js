@@ -19,7 +19,7 @@ import TranscriptionSegment from './TranscriptionSegment';
 /**
  * The CreateTranslation200Response model module.
  * @module model/CreateTranslation200Response
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateTranslation200Response {
     /**

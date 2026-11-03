@@ -99,15 +99,13 @@ class CreateRunRequest(BaseModel):
         _items = []
         if self.additional_messages:
             for _item_additional_messages in self.additional_messages:
-                if _item_additional_messages:
-                    _items.append(_item_additional_messages.to_dict())
+                _items.append(_item_additional_messages.to_dict() if _item_additional_messages is not None else None)
             _dict['additional_messages'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in tools (list)
         _items = []
         if self.tools:
             for _item_tools in self.tools:
-                if _item_tools:
-                    _items.append(_item_tools.to_dict())
+                _items.append(_item_tools.to_dict() if _item_tools is not None else None)
             _dict['tools'] = _items
         # override the default output from pydantic by calling `to_dict()` of truncation_strategy
         if self.truncation_strategy:
@@ -192,8 +190,8 @@ class CreateRunRequest(BaseModel):
             "additional_messages": [CreateMessageRequest.from_dict(_item) for _item in obj["additional_messages"]] if obj.get("additional_messages") is not None else None,
             "tools": [AssistantObjectToolsInner.from_dict(_item) for _item in obj["tools"]] if obj.get("tools") is not None else None,
             "metadata": obj.get("metadata"),
-            "temperature": obj.get("temperature") if obj.get("temperature") is not None else 1,
-            "top_p": obj.get("top_p") if obj.get("top_p") is not None else 1,
+            "temperature": obj.get("temperature") if "temperature" in obj else 1,
+            "top_p": obj.get("top_p") if "top_p" in obj else 1,
             "stream": obj.get("stream"),
             "max_prompt_tokens": obj.get("max_prompt_tokens"),
             "max_completion_tokens": obj.get("max_completion_tokens"),

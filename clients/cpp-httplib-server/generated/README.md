@@ -400,15 +400,15 @@ auto parsedModel = models::AssistantsNamedToolChoiceFunction::fromJson(nlohmann:
 #### models::AudioResponseFormat
 
 ```cpp
-// Create a model
-auto model = models::AudioResponseFormat();
+// Select an enum value
+auto model = models::AudioResponseFormat::JSON;
 
-// Serialize to JSON
-nlohmann::json json = models::AudioResponseFormat::toJson(model);
+// Serialize to JSON via the generated to_json free function
+nlohmann::json json = model;
 std::string jsonString = json.dump();
 
-// Deserialize from JSON
-auto parsedModel = models::AudioResponseFormat::fromJson(nlohmann::json::parse(jsonString));
+// Deserialize from JSON via the generated from_json free function
+auto parsedModel = nlohmann::json::parse(jsonString).get<models::AudioResponseFormat>();
 ```
 #### models::AuditLog
 
@@ -600,15 +600,15 @@ auto parsedModel = models::AuditLogApiKeyUpdatedChangesRequested::fromJson(nlohm
 #### models::AuditLogEventType
 
 ```cpp
-// Create a model
-auto model = models::AuditLogEventType();
+// Select an enum value
+auto model = models::AuditLogEventType::API_KEY_CREATED;
 
-// Serialize to JSON
-nlohmann::json json = models::AuditLogEventType::toJson(model);
+// Serialize to JSON via the generated to_json free function
+nlohmann::json json = model;
 std::string jsonString = json.dump();
 
-// Deserialize from JSON
-auto parsedModel = models::AuditLogEventType::fromJson(nlohmann::json::parse(jsonString));
+// Deserialize from JSON via the generated from_json free function
+auto parsedModel = nlohmann::json::parse(jsonString).get<models::AuditLogEventType>();
 ```
 #### models::AuditLogInviteAccepted
 
@@ -1698,15 +1698,15 @@ auto parsedModel = models::ChatCompletionResponseMessageFunctionCall::fromJson(n
 #### models::ChatCompletionRole
 
 ```cpp
-// Create a model
-auto model = models::ChatCompletionRole();
+// Select an enum value
+auto model = models::ChatCompletionRole::SYSTEM;
 
-// Serialize to JSON
-nlohmann::json json = models::ChatCompletionRole::toJson(model);
+// Serialize to JSON via the generated to_json free function
+nlohmann::json json = model;
 std::string jsonString = json.dump();
 
-// Deserialize from JSON
-auto parsedModel = models::ChatCompletionRole::fromJson(nlohmann::json::parse(jsonString));
+// Deserialize from JSON via the generated from_json free function
+auto parsedModel = nlohmann::json::parse(jsonString).get<models::ChatCompletionRole>();
 ```
 #### models::ChatCompletionStreamOptions
 

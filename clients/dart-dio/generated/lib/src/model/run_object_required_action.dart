@@ -124,9 +124,10 @@ class _$RunObjectRequiredActionSerializer implements PrimitiveSerializer<RunObje
   }
 }
 
+
+/// For now, this is always `submit_tool_outputs`.
 class RunObjectRequiredActionTypeEnum extends EnumClass {
 
-  /// For now, this is always `submit_tool_outputs`.
   @BuiltValueEnumConst(wireName: r'submit_tool_outputs')
   static const RunObjectRequiredActionTypeEnum submitToolOutputs = _$runObjectRequiredActionTypeEnum_submitToolOutputs;
 

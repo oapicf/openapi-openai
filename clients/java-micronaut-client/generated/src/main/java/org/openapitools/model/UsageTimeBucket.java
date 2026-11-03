@@ -35,7 +35,7 @@ import javax.annotation.Generated;
   UsageTimeBucket.JSON_PROPERTY_RESULT
 })
 @JsonTypeName("UsageTimeBucket")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class UsageTimeBucket {
     /**
@@ -80,9 +80,9 @@ public class UsageTimeBucket {
     private Integer endTime;
 
     public static final String JSON_PROPERTY_RESULT = "result";
-    private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+    private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
-    public UsageTimeBucket(ObjectEnum _object, Integer startTime, Integer endTime, List<UsageTimeBucketResultInner> result) {
+    public UsageTimeBucket(ObjectEnum _object, Integer startTime, Integer endTime, List<@Valid UsageTimeBucketResultInner> result) {
         this._object = _object;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -155,7 +155,7 @@ public class UsageTimeBucket {
         this.endTime = endTime;
     }
 
-    public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+    public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
         this.result = result;
         return this;
     }
@@ -172,13 +172,13 @@ public class UsageTimeBucket {
     @NotNull
     @JsonProperty(JSON_PROPERTY_RESULT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<UsageTimeBucketResultInner> getResult() {
+    public List<@Valid UsageTimeBucketResultInner> getResult() {
         return result;
     }
 
     @JsonProperty(JSON_PROPERTY_RESULT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setResult(List<UsageTimeBucketResultInner> result) {
+    public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
         this.result = result;
     }
 

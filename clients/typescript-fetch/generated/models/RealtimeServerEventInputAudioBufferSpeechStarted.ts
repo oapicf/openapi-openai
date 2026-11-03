@@ -31,14 +31,10 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventInputAudioBufferSpeechStarted {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStarted
      */
     eventId: string;
     /**
      * The event type, must be `input_audio_buffer.speech_started`.
-     * @type {RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStarted
      */
     type: RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum;
     /**
@@ -47,15 +43,11 @@ export interface RealtimeServerEventInputAudioBufferSpeechStarted {
      * beginning of audio sent to the model, and thus includes the 
      * `prefix_padding_ms` configured in the Session.
      * 
-     * @type {number}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStarted
      */
     audioStartMs: number;
     /**
      * The ID of the user message item that will be created when speech stops.
      * 
-     * @type {string}
-     * @memberof RealtimeServerEventInputAudioBufferSpeechStarted
      */
     itemId: string;
 }
@@ -65,7 +57,7 @@ export interface RealtimeServerEventInputAudioBufferSpeechStarted {
  * @export
  */
 export const RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum = {
-    InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started'
+    InputAudioBufferSpeechStarted: 'input_audio_buffer.speech_started',
 } as const;
 export type RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum = typeof RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum[keyof typeof RealtimeServerEventInputAudioBufferSpeechStartedTypeEnum];
 

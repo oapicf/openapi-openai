@@ -54,7 +54,7 @@ import javax.validation.Valid;
   CreateThreadAndRunRequest.JSON_PROPERTY_PARALLEL_TOOL_CALLS,
   CreateThreadAndRunRequest.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadAndRunRequest   {
   public static final String JSON_PROPERTY_ASSISTANT_ID = "assistant_id";
   @JsonProperty(JSON_PROPERTY_ASSISTANT_ID)
@@ -74,7 +74,7 @@ public class CreateThreadAndRunRequest   {
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
-  private List<CreateThreadAndRunRequestToolsInner> tools;
+  private List<@Valid CreateThreadAndRunRequestToolsInner> tools;
 
   public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
   @JsonProperty(JSON_PROPERTY_TOOL_RESOURCES)
@@ -200,7 +200,7 @@ public class CreateThreadAndRunRequest   {
     this.instructions = instructions;
   }
 
-  public CreateThreadAndRunRequest tools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public CreateThreadAndRunRequest tools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -219,12 +219,12 @@ public class CreateThreadAndRunRequest   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.")
-  @Valid  @Size(max=20)
-  public List<CreateThreadAndRunRequestToolsInner> getTools() {
+   @Size(max=20)
+  public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+  public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
     this.tools = tools;
   }
 

@@ -29,14 +29,10 @@ import {
 export interface RunObjectRequiredAction {
     /**
      * For now, this is always `submit_tool_outputs`.
-     * @type {RunObjectRequiredActionTypeEnum}
-     * @memberof RunObjectRequiredAction
      */
     type: RunObjectRequiredActionTypeEnum;
     /**
      * 
-     * @type {RunObjectRequiredActionSubmitToolOutputs}
-     * @memberof RunObjectRequiredAction
      */
     submitToolOutputs: RunObjectRequiredActionSubmitToolOutputs;
 }
@@ -46,7 +42,7 @@ export interface RunObjectRequiredAction {
  * @export
  */
 export const RunObjectRequiredActionTypeEnum = {
-    SubmitToolOutputs: 'submit_tool_outputs'
+    SubmitToolOutputs: 'submit_tool_outputs',
 } as const;
 export type RunObjectRequiredActionTypeEnum = typeof RunObjectRequiredActionTypeEnum[keyof typeof RunObjectRequiredActionTypeEnum];
 

@@ -18,28 +18,28 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; 
- * @param &#x60;data&#x60; 
+ * @param `object` 
+ * @param `data` 
  * @param hasMore 
  * @param nextPage 
  */
 data class UsageResponse(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageResponse.`Object`,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: kotlin.collections.List<UsageTimeBucket>,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("has_more")
+    @param:JsonProperty("has_more", required = true)
     @get:JsonProperty("has_more", required = true) val hasMore: kotlin.Boolean,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("next_page")
+    @param:JsonProperty("next_page", required = true)
     @get:JsonProperty("next_page", required = true) val nextPage: kotlin.String
 ) {
 
@@ -50,12 +50,12 @@ data class UsageResponse(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         page("page");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

@@ -231,7 +231,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<CostsResult.ObjectEnum?>(CostsResult.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                CostsResult.ObjectEnum? varObjectValue = CostsResult.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<CostsResult.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "amount":
                             amount = new Option<CostsResultAmount?>(JsonSerializer.Deserialize<CostsResultAmount>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -249,13 +254,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class CostsResult.", nameof(varObject));
+                throw new JsonException("Property is required for class CostsResult: object.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class CostsResult.");
+                throw new JsonException("Property is not nullable for class CostsResult: object.");
 
             if (amount.IsSet && amount.Value == null)
-                throw new ArgumentNullException(nameof(amount), "Property is not nullable for class CostsResult.");
+                throw new JsonException("Property is not nullable for class CostsResult: amount.");
 
             return new CostsResult(varObject.Value!.Value!, amount, lineItem, projectId);
         }
@@ -266,7 +271,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="costsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CostsResult costsResult, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -281,11 +285,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="costsResult"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CostsResult costsResult, JsonSerializerOptions jsonSerializerOptions)
         {
             if (costsResult.AmountOption.IsSet && costsResult.Amount == null)
-                throw new ArgumentNullException(nameof(costsResult.Amount), "Property is required for class CostsResult.");
+                throw new JsonException("Cannot write null property CostsResult.Amount to non-nullable JSON property 'amount'.");
 
             var varObjectRawValue = CostsResult.ObjectEnumToJsonValue(costsResult.Object);
             writer.WriteString("object", varObjectRawValue);

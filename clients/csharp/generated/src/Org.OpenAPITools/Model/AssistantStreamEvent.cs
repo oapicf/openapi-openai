@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="threadStreamEvent"></param>
-        public AssistantStreamEvent(ThreadStreamEvent threadStreamEvent)
+        internal AssistantStreamEvent(ThreadStreamEvent threadStreamEvent)
         {
             ThreadStreamEvent = threadStreamEvent;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEvent"></param>
-        public AssistantStreamEvent(RunStreamEvent runStreamEvent)
+        internal AssistantStreamEvent(RunStreamEvent runStreamEvent)
         {
             RunStreamEvent = runStreamEvent;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="runStepStreamEvent"></param>
-        public AssistantStreamEvent(RunStepStreamEvent runStepStreamEvent)
+        internal AssistantStreamEvent(RunStepStreamEvent runStepStreamEvent)
         {
             RunStepStreamEvent = runStepStreamEvent;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="messageStreamEvent"></param>
-        public AssistantStreamEvent(MessageStreamEvent messageStreamEvent)
+        internal AssistantStreamEvent(MessageStreamEvent messageStreamEvent)
         {
             MessageStreamEvent = messageStreamEvent;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="errorEvent"></param>
-        public AssistantStreamEvent(ErrorEvent errorEvent)
+        internal AssistantStreamEvent(ErrorEvent errorEvent)
         {
             ErrorEvent = errorEvent;
             OnCreated();
@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AssistantStreamEvent" /> class.
         /// </summary>
         /// <param name="doneEvent"></param>
-        public AssistantStreamEvent(DoneEvent doneEvent)
+        internal AssistantStreamEvent(DoneEvent doneEvent)
         {
             DoneEvent = doneEvent;
             OnCreated();
@@ -264,7 +264,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantStreamEvent assistantStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -279,7 +278,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantStreamEvent assistantStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage {
     /**
      * The [file](/docs/api-reference/files) ID of the image.
-     * @type {string}
-     * @memberof RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectImage
      */
     fileId?: string;
 }

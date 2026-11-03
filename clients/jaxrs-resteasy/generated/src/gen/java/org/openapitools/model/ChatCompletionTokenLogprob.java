@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ChatCompletionTokenLogprob   {
   
   private String token;
@@ -73,7 +73,6 @@ public class ChatCompletionTokenLogprob   {
   @ApiModelProperty(required = true, value = "List of the most likely tokens and their log probability, at this token position. In rare cases, there may be fewer than the number of requested `top_logprobs` returned.")
   @JsonProperty("top_logprobs")
   @NotNull
-  @Valid
   public List<@Valid ChatCompletionTokenLogprobTopLogprobsInner> getTopLogprobs() {
     return topLogprobs;
   }

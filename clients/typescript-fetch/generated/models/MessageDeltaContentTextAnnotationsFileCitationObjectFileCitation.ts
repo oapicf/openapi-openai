@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation {
     /**
      * The ID of the specific File the citation is from.
-     * @type {string}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
      */
     fileId?: string;
     /**
      * The specific quote in the file.
-     * @type {string}
-     * @memberof MessageDeltaContentTextAnnotationsFileCitationObjectFileCitation
      */
     quote?: string;
 }

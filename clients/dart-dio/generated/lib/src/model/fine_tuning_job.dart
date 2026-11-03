@@ -412,9 +412,10 @@ class _$FineTuningJobSerializer implements PrimitiveSerializer<FineTuningJob> {
   }
 }
 
+
+/// The object type, which is always \"fine_tuning.job\".
 class FineTuningJobObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"fine_tuning.job\".
   @BuiltValueEnumConst(wireName: r'fine_tuning.job')
   static const FineTuningJobObjectEnum fineTuningPeriodJob = _$fineTuningJobObjectEnum_fineTuningPeriodJob;
 
@@ -426,24 +427,19 @@ class FineTuningJobObjectEnum extends EnumClass {
   static FineTuningJobObjectEnum valueOf(String name) => _$fineTuningJobObjectEnumValueOf(name);
 }
 
+/// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
 class FineTuningJobStatusEnum extends EnumClass {
 
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'validating_files')
   static const FineTuningJobStatusEnum validatingFiles = _$fineTuningJobStatusEnum_validatingFiles;
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'queued')
   static const FineTuningJobStatusEnum queued = _$fineTuningJobStatusEnum_queued;
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'running')
   static const FineTuningJobStatusEnum running = _$fineTuningJobStatusEnum_running;
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'succeeded')
   static const FineTuningJobStatusEnum succeeded = _$fineTuningJobStatusEnum_succeeded;
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'failed')
   static const FineTuningJobStatusEnum failed = _$fineTuningJobStatusEnum_failed;
-  /// The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const FineTuningJobStatusEnum cancelled = _$fineTuningJobStatusEnum_cancelled;
 

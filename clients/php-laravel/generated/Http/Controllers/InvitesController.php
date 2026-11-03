@@ -51,13 +51,13 @@ class InvitesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'inviteId' => $inviteId,
-                ],
                 $request->all(),
+                [
+                    'invite_id' => $inviteId,
+                ],
             ),
             [
-                'inviteId' => [
+                'invite_id' => [
                     'required',
                     'string',
                 ],
@@ -90,10 +90,10 @@ class InvitesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -126,10 +126,10 @@ class InvitesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'limit' => [
@@ -170,13 +170,13 @@ class InvitesController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'inviteId' => $inviteId,
-                ],
                 $request->all(),
+                [
+                    'invite_id' => $inviteId,
+                ],
             ),
             [
-                'inviteId' => [
+                'invite_id' => [
                     'required',
                     'string',
                 ],

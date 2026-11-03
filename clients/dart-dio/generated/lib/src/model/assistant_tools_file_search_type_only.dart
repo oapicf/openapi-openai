@@ -107,9 +107,10 @@ class _$AssistantToolsFileSearchTypeOnlySerializer implements PrimitiveSerialize
   }
 }
 
+
+/// The type of tool being defined: `file_search`
 class AssistantToolsFileSearchTypeOnlyTypeEnum extends EnumClass {
 
-  /// The type of tool being defined: `file_search`
   @BuiltValueEnumConst(wireName: r'file_search')
   static const AssistantToolsFileSearchTypeOnlyTypeEnum fileSearch = _$assistantToolsFileSearchTypeOnlyTypeEnum_fileSearch;
 

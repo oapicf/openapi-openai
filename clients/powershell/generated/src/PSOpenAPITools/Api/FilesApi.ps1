@@ -151,7 +151,7 @@ function Invoke-DeleteFile {
         if (!$FileId) {
             throw "Error! The required parameter `FileId` missing when calling deleteFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Web.HTTPUtility]::UrlEncode($FileId))
+        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Uri]::EscapeDataString([string]$FileId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -229,7 +229,7 @@ function Invoke-DownloadFile {
         if (!$FileId) {
             throw "Error! The required parameter `FileId` missing when calling downloadFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Web.HTTPUtility]::UrlEncode($FileId))
+        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Uri]::EscapeDataString([string]$FileId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -416,7 +416,7 @@ function Invoke-RetrieveFile {
         if (!$FileId) {
             throw "Error! The required parameter `FileId` missing when calling retrieveFile."
         }
-        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Web.HTTPUtility]::UrlEncode($FileId))
+        $LocalVarUri = $LocalVarUri.replace('{file_id}', [System.Uri]::EscapeDataString([string]$FileId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

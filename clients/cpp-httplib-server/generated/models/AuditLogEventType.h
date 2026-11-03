@@ -12,24 +12,244 @@
 
 namespace models {
 
-
-class AuditLogEventType
-{
-public:
-
-    AuditLogEventType();
-    virtual ~AuditLogEventType() = default;
-
-    // Getters and setters
-
-
-    // JSON serialization using NLOHMANN INTRUSIVE macro (must be inside class to access private members)
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(AuditLogEventType,
-        )
-
-private:
+enum class AuditLogEventType {
+    
+    API_KEY_CREATED,
+    
+    API_KEY_UPDATED,
+    
+    API_KEY_DELETED,
+    
+    INVITE_SENT,
+    
+    INVITE_ACCEPTED,
+    
+    INVITE_DELETED,
+    
+    LOGIN_SUCCEEDED,
+    
+    LOGIN_FAILED,
+    
+    LOGOUT_SUCCEEDED,
+    
+    LOGOUT_FAILED,
+    
+    ORGANIZATION_UPDATED,
+    
+    PROJECT_CREATED,
+    
+    PROJECT_UPDATED,
+    
+    PROJECT_ARCHIVED,
+    
+    SERVICE_ACCOUNT_CREATED,
+    
+    SERVICE_ACCOUNT_UPDATED,
+    
+    SERVICE_ACCOUNT_DELETED,
+    
+    RATE_LIMIT_UPDATED,
+    
+    RATE_LIMIT_DELETED,
+    
+    USER_ADDED,
+    
+    USER_UPDATED,
+    
+    USER_DELETED
+    
 };
 
+inline void to_json(nlohmann::json& j, const AuditLogEventType& value)
+{
+    switch (value)
+    {
+        
+        case AuditLogEventType::API_KEY_CREATED: j = "api_key.created"; break;
+        
+        case AuditLogEventType::API_KEY_UPDATED: j = "api_key.updated"; break;
+        
+        case AuditLogEventType::API_KEY_DELETED: j = "api_key.deleted"; break;
+        
+        case AuditLogEventType::INVITE_SENT: j = "invite.sent"; break;
+        
+        case AuditLogEventType::INVITE_ACCEPTED: j = "invite.accepted"; break;
+        
+        case AuditLogEventType::INVITE_DELETED: j = "invite.deleted"; break;
+        
+        case AuditLogEventType::LOGIN_SUCCEEDED: j = "login.succeeded"; break;
+        
+        case AuditLogEventType::LOGIN_FAILED: j = "login.failed"; break;
+        
+        case AuditLogEventType::LOGOUT_SUCCEEDED: j = "logout.succeeded"; break;
+        
+        case AuditLogEventType::LOGOUT_FAILED: j = "logout.failed"; break;
+        
+        case AuditLogEventType::ORGANIZATION_UPDATED: j = "organization.updated"; break;
+        
+        case AuditLogEventType::PROJECT_CREATED: j = "project.created"; break;
+        
+        case AuditLogEventType::PROJECT_UPDATED: j = "project.updated"; break;
+        
+        case AuditLogEventType::PROJECT_ARCHIVED: j = "project.archived"; break;
+        
+        case AuditLogEventType::SERVICE_ACCOUNT_CREATED: j = "service_account.created"; break;
+        
+        case AuditLogEventType::SERVICE_ACCOUNT_UPDATED: j = "service_account.updated"; break;
+        
+        case AuditLogEventType::SERVICE_ACCOUNT_DELETED: j = "service_account.deleted"; break;
+        
+        case AuditLogEventType::RATE_LIMIT_UPDATED: j = "rate_limit.updated"; break;
+        
+        case AuditLogEventType::RATE_LIMIT_DELETED: j = "rate_limit.deleted"; break;
+        
+        case AuditLogEventType::USER_ADDED: j = "user.added"; break;
+        
+        case AuditLogEventType::USER_UPDATED: j = "user.updated"; break;
+        
+        case AuditLogEventType::USER_DELETED: j = "user.deleted"; break;
+        
+        default: throw nlohmann::json::type_error::create(302, "Invalid value for AuditLogEventType", &j);
+    }
+}
+
+inline void from_json(const nlohmann::json& j, AuditLogEventType& value)
+{
+    
+    if (j == "api_key.created")
+    {
+        value = AuditLogEventType::API_KEY_CREATED;
+        return;
+    }
+    
+    if (j == "api_key.updated")
+    {
+        value = AuditLogEventType::API_KEY_UPDATED;
+        return;
+    }
+    
+    if (j == "api_key.deleted")
+    {
+        value = AuditLogEventType::API_KEY_DELETED;
+        return;
+    }
+    
+    if (j == "invite.sent")
+    {
+        value = AuditLogEventType::INVITE_SENT;
+        return;
+    }
+    
+    if (j == "invite.accepted")
+    {
+        value = AuditLogEventType::INVITE_ACCEPTED;
+        return;
+    }
+    
+    if (j == "invite.deleted")
+    {
+        value = AuditLogEventType::INVITE_DELETED;
+        return;
+    }
+    
+    if (j == "login.succeeded")
+    {
+        value = AuditLogEventType::LOGIN_SUCCEEDED;
+        return;
+    }
+    
+    if (j == "login.failed")
+    {
+        value = AuditLogEventType::LOGIN_FAILED;
+        return;
+    }
+    
+    if (j == "logout.succeeded")
+    {
+        value = AuditLogEventType::LOGOUT_SUCCEEDED;
+        return;
+    }
+    
+    if (j == "logout.failed")
+    {
+        value = AuditLogEventType::LOGOUT_FAILED;
+        return;
+    }
+    
+    if (j == "organization.updated")
+    {
+        value = AuditLogEventType::ORGANIZATION_UPDATED;
+        return;
+    }
+    
+    if (j == "project.created")
+    {
+        value = AuditLogEventType::PROJECT_CREATED;
+        return;
+    }
+    
+    if (j == "project.updated")
+    {
+        value = AuditLogEventType::PROJECT_UPDATED;
+        return;
+    }
+    
+    if (j == "project.archived")
+    {
+        value = AuditLogEventType::PROJECT_ARCHIVED;
+        return;
+    }
+    
+    if (j == "service_account.created")
+    {
+        value = AuditLogEventType::SERVICE_ACCOUNT_CREATED;
+        return;
+    }
+    
+    if (j == "service_account.updated")
+    {
+        value = AuditLogEventType::SERVICE_ACCOUNT_UPDATED;
+        return;
+    }
+    
+    if (j == "service_account.deleted")
+    {
+        value = AuditLogEventType::SERVICE_ACCOUNT_DELETED;
+        return;
+    }
+    
+    if (j == "rate_limit.updated")
+    {
+        value = AuditLogEventType::RATE_LIMIT_UPDATED;
+        return;
+    }
+    
+    if (j == "rate_limit.deleted")
+    {
+        value = AuditLogEventType::RATE_LIMIT_DELETED;
+        return;
+    }
+    
+    if (j == "user.added")
+    {
+        value = AuditLogEventType::USER_ADDED;
+        return;
+    }
+    
+    if (j == "user.updated")
+    {
+        value = AuditLogEventType::USER_UPDATED;
+        return;
+    }
+    
+    if (j == "user.deleted")
+    {
+        value = AuditLogEventType::USER_DELETED;
+        return;
+    }
+    
+    throw nlohmann::json::type_error::create(302, "Invalid value for AuditLogEventType", &j);
+}
 
 } // namespace models
 

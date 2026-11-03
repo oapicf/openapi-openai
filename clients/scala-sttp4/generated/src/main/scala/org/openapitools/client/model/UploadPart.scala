@@ -30,7 +30,7 @@ object UploadPartEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object UploadPart extends `Object`
+    case object UploadPart extends `Object` { override def toString: String = "upload.part" }
 
     import org.json4s._
 

@@ -56,7 +56,7 @@ object BatchEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Batch extends `Object`
+    case object Batch extends `Object` { override def toString: String = "batch" }
 
     import org.json4s._
 
@@ -77,14 +77,14 @@ object BatchEnums {
 
   sealed trait Status
   object Status {
-    case object Validating extends Status
-    case object Failed extends Status
-    case object InProgress extends Status
-    case object Finalizing extends Status
-    case object Completed extends Status
-    case object Expired extends Status
-    case object Cancelling extends Status
-    case object Cancelled extends Status
+    case object Validating extends Status { override def toString: String = "validating" }
+    case object Failed extends Status { override def toString: String = "failed" }
+    case object InProgress extends Status { override def toString: String = "in_progress" }
+    case object Finalizing extends Status { override def toString: String = "finalizing" }
+    case object Completed extends Status { override def toString: String = "completed" }
+    case object Expired extends Status { override def toString: String = "expired" }
+    case object Cancelling extends Status { override def toString: String = "cancelling" }
+    case object Cancelled extends Status { override def toString: String = "cancelled" }
 
     import org.json4s._
 

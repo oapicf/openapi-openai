@@ -144,9 +144,10 @@ class _$RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectSerializer implemen
   }
 }
 
+
+/// Always `image`.
 class RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum extends EnumClass {
 
-  /// Always `image`.
   @BuiltValueEnumConst(wireName: r'image')
   static const RunStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum image = _$runStepDeltaStepDetailsToolCallsCodeOutputImageObjectTypeEnum_image;
 

@@ -110,7 +110,9 @@ class RealtimeServerEventRateLimitsUpdatedRateLimitsInner {
         name: RealtimeServerEventRateLimitsUpdatedRateLimitsInnerNameEnum.fromJson(json[r'name']),
         limit: mapValueOfType<int>(json, r'limit'),
         remaining: mapValueOfType<int>(json, r'remaining'),
-        resetSeconds: num.parse('${json[r'reset_seconds']}'),
+        resetSeconds: json[r'reset_seconds'] == null
+            ? null
+            : num.parse('${json[r'reset_seconds']}'),
       );
     }
     return null;

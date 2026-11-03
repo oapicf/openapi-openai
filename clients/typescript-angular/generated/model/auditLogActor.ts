@@ -25,7 +25,7 @@ export interface AuditLogActor {
 export namespace AuditLogActor {
     export const TypeEnum = {
         Session: 'session',
-        ApiKey: 'api_key'
+        ApiKey: 'api_key',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -51,13 +51,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -90,10 +90,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -126,10 +126,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
             ],
@@ -167,10 +167,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
             ],
@@ -208,17 +208,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'keyId' => $keyId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'key_id' => $keyId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'keyId' => [
+                'key_id' => [
                     'required',
                     'string',
                 ],
@@ -256,17 +256,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'serviceAccountId' => $serviceAccountId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'service_account_id' => $serviceAccountId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'serviceAccountId' => [
+                'service_account_id' => [
                     'required',
                     'string',
                 ],
@@ -300,17 +300,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'user_id' => $userId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'userId' => [
+                'user_id' => [
                     'required',
                     'string',
                 ],
@@ -348,13 +348,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -397,13 +397,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -451,13 +451,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -504,13 +504,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -557,10 +557,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'limit' => [
@@ -569,7 +569,7 @@ class ProjectsController extends Controller
                 'after' => [
                     'string',
                 ],
-                'includeArchived' => [
+                'include_archived' => [
                     'boolean',
                 ],
             ],
@@ -583,7 +583,7 @@ class ProjectsController extends Controller
 
         $after = $request->string('after')->value();
 
-        $includeArchived = $request->boolean('includeArchived');
+        $includeArchived = $request->boolean('include_archived');
 
 
         $apiResult = $this->api->listProjects($limit, $after, $includeArchived);
@@ -606,10 +606,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
             ],
@@ -647,10 +647,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'user_id' => $userId,
+                ],
             ),
             [
             ],
@@ -689,13 +689,13 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
@@ -728,17 +728,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'keyId' => $keyId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'key_id' => $keyId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'keyId' => [
+                'key_id' => [
                     'required',
                     'string',
                 ],
@@ -772,17 +772,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'serviceAccountId' => $serviceAccountId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'service_account_id' => $serviceAccountId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'serviceAccountId' => [
+                'service_account_id' => [
                     'required',
                     'string',
                 ],
@@ -816,17 +816,17 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'userId' => $userId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'user_id' => $userId,
+                ],
             ),
             [
-                'projectId' => [
+                'project_id' => [
                     'required',
                     'string',
                 ],
-                'userId' => [
+                'user_id' => [
                     'required',
                     'string',
                 ],
@@ -860,10 +860,10 @@ class ProjectsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'projectId' => $projectId,'rateLimitId' => $rateLimitId,
-                ],
                 $request->all(),
+                [
+                    'project_id' => $projectId,'rate_limit_id' => $rateLimitId,
+                ],
             ),
             [
             ],

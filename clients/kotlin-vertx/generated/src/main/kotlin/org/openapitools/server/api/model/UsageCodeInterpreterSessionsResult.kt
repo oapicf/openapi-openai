@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * The aggregated code interpreter sessions usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param sessions The number of code interpreter sessions.
  * @param projectId When `group_by=project_id`, this field provides the project ID of the grouped usage result.
  */

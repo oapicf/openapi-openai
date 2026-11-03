@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (arguments.IsSet && arguments.Value == null)
-                throw new ArgumentNullException(nameof(arguments), "Property is not nullable for class ChatCompletionStreamResponseDeltaFunctionCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamResponseDeltaFunctionCall: arguments.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ChatCompletionStreamResponseDeltaFunctionCall.");
+                throw new JsonException("Property is not nullable for class ChatCompletionStreamResponseDeltaFunctionCall: name.");
 
             return new ChatCompletionStreamResponseDeltaFunctionCall(arguments, name);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamResponseDeltaFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionStreamResponseDeltaFunctionCall chatCompletionStreamResponseDeltaFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionStreamResponseDeltaFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionStreamResponseDeltaFunctionCall chatCompletionStreamResponseDeltaFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
             if (chatCompletionStreamResponseDeltaFunctionCall.ArgumentsOption.IsSet && chatCompletionStreamResponseDeltaFunctionCall.Arguments == null)
-                throw new ArgumentNullException(nameof(chatCompletionStreamResponseDeltaFunctionCall.Arguments), "Property is required for class ChatCompletionStreamResponseDeltaFunctionCall.");
+                throw new JsonException("Cannot write null property ChatCompletionStreamResponseDeltaFunctionCall.Arguments to non-nullable JSON property 'arguments'.");
 
             if (chatCompletionStreamResponseDeltaFunctionCall.NameOption.IsSet && chatCompletionStreamResponseDeltaFunctionCall.Name == null)
-                throw new ArgumentNullException(nameof(chatCompletionStreamResponseDeltaFunctionCall.Name), "Property is required for class ChatCompletionStreamResponseDeltaFunctionCall.");
+                throw new JsonException("Cannot write null property ChatCompletionStreamResponseDeltaFunctionCall.Name to non-nullable JSON property 'name'.");
 
             if (chatCompletionStreamResponseDeltaFunctionCall.ArgumentsOption.IsSet)
                 writer.WriteString("arguments", chatCompletionStreamResponseDeltaFunctionCall.Arguments);

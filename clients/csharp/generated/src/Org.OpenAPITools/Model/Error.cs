@@ -172,22 +172,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class Error.", nameof(message));
+                throw new JsonException("Property is required for class Error: message.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Error.", nameof(type));
+                throw new JsonException("Property is required for class Error: type.");
 
             if (!code.IsSet)
-                throw new ArgumentException("Property is required for class Error.", nameof(code));
+                throw new JsonException("Property is required for class Error: code.");
 
             if (!param.IsSet)
-                throw new ArgumentException("Property is required for class Error.", nameof(param));
+                throw new JsonException("Property is required for class Error: param.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class Error.");
+                throw new JsonException("Property is not nullable for class Error: message.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class Error.");
+                throw new JsonException("Property is not nullable for class Error: type.");
 
             return new Error(message.Value!, type.Value!, code.Value!, param.Value!);
         }
@@ -198,7 +198,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="error"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Error error, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -213,15 +212,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="error"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Error error, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (error.Message == null)
-                throw new ArgumentNullException(nameof(error.Message), "Property is required for class Error.");
-
-            if (error.Type == null)
-                throw new ArgumentNullException(nameof(error.Type), "Property is required for class Error.");
-
             writer.WriteString("message", error.Message);
 
             writer.WriteString("type", error.Type);

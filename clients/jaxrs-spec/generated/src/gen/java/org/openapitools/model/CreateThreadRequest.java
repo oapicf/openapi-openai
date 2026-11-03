@@ -22,9 +22,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateThreadRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequest   {
-  private @Valid List<@Valid CreateMessageRequest> messages = new ArrayList<>();
+  private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
   private CreateThreadRequestToolResources toolResources;
   private Object metadata;
 
@@ -42,7 +42,7 @@ public class CreateThreadRequest   {
   
   @ApiModelProperty(value = "A list of [messages](/docs/api-reference/messages) to start the thread with.")
   @JsonProperty("messages")
-  @Valid public List<@Valid CreateMessageRequest> getMessages() {
+  public List<@Valid CreateMessageRequest> getMessages() {
     return messages;
   }
 

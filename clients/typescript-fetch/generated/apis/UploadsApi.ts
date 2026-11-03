@@ -35,20 +35,41 @@ import {
 } from '../models/UploadPart';
 
 export interface AddUploadPartRequest {
+    /**
+     * The ID of the Upload.
+     * 
+     */
     uploadId: string;
+    /**
+     * The chunk of bytes for this Part. 
+     */
     data: Blob;
 }
 
 export interface CancelUploadRequest {
+    /**
+     * The ID of the Upload.
+     * 
+     */
     uploadId: string;
 }
 
 export interface CompleteUploadOperationRequest {
+    /**
+     * The ID of the Upload.
+     * 
+     */
     uploadId: string;
+    /**
+     * 
+     */
     completeUploadRequest: CompleteUploadRequest;
 }
 
 export interface CreateUploadOperationRequest {
+    /**
+     * 
+     */
     createUploadRequest: CreateUploadRequest;
 }
 

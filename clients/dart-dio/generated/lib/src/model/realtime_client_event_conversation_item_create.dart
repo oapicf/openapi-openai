@@ -164,9 +164,10 @@ class _$RealtimeClientEventConversationItemCreateSerializer implements Primitive
   }
 }
 
+
+/// The event type, must be `conversation.item.create`.
 class RealtimeClientEventConversationItemCreateTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.create`.
   @BuiltValueEnumConst(wireName: r'conversation.item.create')
   static const RealtimeClientEventConversationItemCreateTypeEnum conversationPeriodItemPeriodCreate = _$realtimeClientEventConversationItemCreateTypeEnum_conversationPeriodItemPeriodCreate;
 

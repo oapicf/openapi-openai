@@ -10,7 +10,7 @@ import play.api.libs.json._
   * @param vectorStoreId The ID of the [vector store](/docs/api-reference/vector-stores/object) that the [File](/docs/api-reference/files) is attached to.
   * @param status The status of the vector store files batch, which can be either `in_progress`, `completed`, `cancelled` or `failed`.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class VectorStoreFileBatchObject(
   id: String,
   `object`: VectorStoreFileBatchObject.Object.Value,

@@ -19,7 +19,7 @@ import StaticChunkingStrategyRequestParam from './StaticChunkingStrategyRequestP
 /**
  * The CreateVectorStoreRequestChunkingStrategy model module.
  * @module model/CreateVectorStoreRequestChunkingStrategy
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class CreateVectorStoreRequestChunkingStrategy {
     /**

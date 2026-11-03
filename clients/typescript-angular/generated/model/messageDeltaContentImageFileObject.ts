@@ -26,7 +26,7 @@ export interface MessageDeltaContentImageFileObject {
 }
 export namespace MessageDeltaContentImageFileObject {
     export const TypeEnum = {
-        ImageFile: 'image_file'
+        ImageFile: 'image_file',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

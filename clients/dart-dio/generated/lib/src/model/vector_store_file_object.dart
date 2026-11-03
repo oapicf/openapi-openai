@@ -231,9 +231,10 @@ class _$VectorStoreFileObjectSerializer implements PrimitiveSerializer<VectorSto
   }
 }
 
+
+/// The object type, which is always `vector_store.file`.
 class VectorStoreFileObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `vector_store.file`.
   @BuiltValueEnumConst(wireName: r'vector_store.file')
   static const VectorStoreFileObjectObjectEnum vectorStorePeriodFile = _$vectorStoreFileObjectObjectEnum_vectorStorePeriodFile;
 
@@ -245,18 +246,15 @@ class VectorStoreFileObjectObjectEnum extends EnumClass {
   static VectorStoreFileObjectObjectEnum valueOf(String name) => _$vectorStoreFileObjectObjectEnumValueOf(name);
 }
 
+/// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
 class VectorStoreFileObjectStatusEnum extends EnumClass {
 
-  /// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const VectorStoreFileObjectStatusEnum inProgress = _$vectorStoreFileObjectStatusEnum_inProgress;
-  /// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
   @BuiltValueEnumConst(wireName: r'completed')
   static const VectorStoreFileObjectStatusEnum completed = _$vectorStoreFileObjectStatusEnum_completed;
-  /// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const VectorStoreFileObjectStatusEnum cancelled = _$vectorStoreFileObjectStatusEnum_cancelled;
-  /// The status of the vector store file, which can be either `in_progress`, `completed`, `cancelled`, or `failed`. The status `completed` indicates that the vector store file is ready for use.
   @BuiltValueEnumConst(wireName: r'failed')
   static const VectorStoreFileObjectStatusEnum failed = _$vectorStoreFileObjectStatusEnum_failed;
 

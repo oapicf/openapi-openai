@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -27,20 +24,14 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class BatchRequestInput(
 
     @Schema(description = "A developer-provided per-request id that will be used to match outputs to inputs. Must be unique for each request in a batch.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("custom_id")
     @get:JsonProperty("custom_id") val customId: kotlin.String? = null,
 
     @Schema(description = "The HTTP method to be used for the request. Currently only `POST` is supported.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("method")
     @get:JsonProperty("method") val method: BatchRequestInput.Method? = null,
 
     @Schema(description = "The OpenAI API relative URL to be used for the request. Currently `/v1/chat/completions`, `/v1/embeddings`, and `/v1/completions` are supported.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("url")
     @get:JsonProperty("url") val url: kotlin.String? = null
 ) {
@@ -52,12 +43,12 @@ data class BatchRequestInput(
     enum class Method(@get:JsonValue val value: kotlin.String) {
 
         POST("POST");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Method {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Method'")
             }
         }

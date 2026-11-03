@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -35,7 +34,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RunObject", description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObject {
 
   private String id;
@@ -152,8 +151,7 @@ public class RunObject {
 
   private String instructions;
 
-  @Valid
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   private JsonNullable<Object> metadata = JsonNullable.<Object>undefined();
 
@@ -182,7 +180,7 @@ public class RunObject {
   /**
    * Constructor with only required parameters
    */
-  public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
+  public RunObject(String id, ObjectEnum _object, Integer createdAt, String threadId, String assistantId, StatusEnum status, RunObjectRequiredAction requiredAction, RunObjectLastError lastError, Integer expiresAt, Integer startedAt, Integer cancelledAt, Integer failedAt, Integer completedAt, RunObjectIncompleteDetails incompleteDetails, String model, String instructions, List<@Valid AssistantObjectToolsInner> tools, Object metadata, RunCompletionUsage usage, Integer maxPromptTokens, Integer maxCompletionTokens, TruncationObject truncationStrategy, AssistantsApiToolChoiceOption toolChoice, Boolean parallelToolCalls, AssistantsApiResponseFormatOption responseFormat) {
     this.id = id;
     this._object = _object;
     this.createdAt = createdAt;
@@ -339,7 +337,7 @@ public class RunObject {
    * Get requiredAction
    * @return requiredAction
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "required_action", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("required_action")
   public JsonNullable<RunObjectRequiredAction> getRequiredAction() {
@@ -359,7 +357,7 @@ public class RunObject {
    * Get lastError
    * @return lastError
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "last_error", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("last_error")
   public JsonNullable<RunObjectLastError> getLastError() {
@@ -379,7 +377,7 @@ public class RunObject {
    * The Unix timestamp (in seconds) for when the run will expire.
    * @return expiresAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "expires_at", description = "The Unix timestamp (in seconds) for when the run will expire.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("expires_at")
   public JsonNullable<Integer> getExpiresAt() {
@@ -399,7 +397,7 @@ public class RunObject {
    * The Unix timestamp (in seconds) for when the run was started.
    * @return startedAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "started_at", description = "The Unix timestamp (in seconds) for when the run was started.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("started_at")
   public JsonNullable<Integer> getStartedAt() {
@@ -419,7 +417,7 @@ public class RunObject {
    * The Unix timestamp (in seconds) for when the run was cancelled.
    * @return cancelledAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "cancelled_at", description = "The Unix timestamp (in seconds) for when the run was cancelled.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("cancelled_at")
   public JsonNullable<Integer> getCancelledAt() {
@@ -439,7 +437,7 @@ public class RunObject {
    * The Unix timestamp (in seconds) for when the run failed.
    * @return failedAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "failed_at", description = "The Unix timestamp (in seconds) for when the run failed.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("failed_at")
   public JsonNullable<Integer> getFailedAt() {
@@ -459,7 +457,7 @@ public class RunObject {
    * The Unix timestamp (in seconds) for when the run was completed.
    * @return completedAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "completed_at", description = "The Unix timestamp (in seconds) for when the run was completed.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("completed_at")
   public JsonNullable<Integer> getCompletedAt() {
@@ -479,7 +477,7 @@ public class RunObject {
    * Get incompleteDetails
    * @return incompleteDetails
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "incomplete_details", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("incomplete_details")
   public JsonNullable<RunObjectIncompleteDetails> getIncompleteDetails() {
@@ -530,7 +528,7 @@ public class RunObject {
     this.instructions = instructions;
   }
 
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -547,14 +545,14 @@ public class RunObject {
    * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
    * @return tools
    */
-  @NotNull @Valid @Size(max = 20) 
+  @NotNull @Size(max = 20) 
   @Schema(name = "tools", description = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tools")
-  public List<AssistantObjectToolsInner> getTools() {
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 
@@ -567,7 +565,7 @@ public class RunObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {
@@ -587,7 +585,7 @@ public class RunObject {
    * Get usage
    * @return usage
    */
-  @NotNull @Valid 
+  /* @Present */ @Valid 
   @Schema(name = "usage", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("usage")
   public JsonNullable<RunCompletionUsage> getUsage() {
@@ -648,7 +646,7 @@ public class RunObject {
    * minimum: 256
    * @return maxPromptTokens
    */
-  @NotNull @Min(value = 256) 
+  /* @Present */ @Min(value = 256) 
   @Schema(name = "max_prompt_tokens", description = "The maximum number of prompt tokens specified to have been used over the course of the run. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("max_prompt_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxPromptTokens() {
@@ -669,7 +667,7 @@ public class RunObject {
    * minimum: 256
    * @return maxCompletionTokens
    */
-  @NotNull @Min(value = 256) 
+  /* @Present */ @Min(value = 256) 
   @Schema(name = "max_completion_tokens", description = "The maximum number of completion tokens specified to have been used over the course of the run. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("max_completion_tokens")
   public JsonNullable<@Min(value = 256) Integer> getMaxCompletionTokens() {

@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -27,12 +24,10 @@ data class ChatCompletionRequestMessageContentPartImageImageUrl(
 
     @field:Valid
     @Schema(required = true, description = "Either a URL of the image or the base64 encoded image data.")
-    @param:JsonProperty("url")
+    @param:JsonProperty("url", required = true)
     @get:JsonProperty("url", required = true) val url: java.net.URI,
 
     @Schema(description = "Specifies the detail level of the image. Learn more in the [Vision guide](/docs/guides/vision#low-or-high-fidelity-image-understanding).")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("detail")
     @get:JsonProperty("detail") val detail: ChatCompletionRequestMessageContentPartImageImageUrl.Detail? = Detail.auto
 ) {
@@ -46,12 +41,12 @@ data class ChatCompletionRequestMessageContentPartImageImageUrl(
         auto("auto"),
         low("low"),
         high("high");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Detail {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Detail'")
             }
         }

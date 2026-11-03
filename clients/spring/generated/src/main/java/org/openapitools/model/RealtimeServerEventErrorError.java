@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -26,20 +25,17 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RealtimeServerEventError_error", description = "Details of the error.")
 @JsonTypeName("RealtimeServerEventError_error")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventErrorError {
 
   private String type;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> code = JsonNullable.<String>undefined();
 
   private String message;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> param = JsonNullable.<String>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<String> eventId = JsonNullable.<String>undefined();
 
   public RealtimeServerEventErrorError() {
@@ -85,7 +81,7 @@ public class RealtimeServerEventErrorError {
    * @return code
    */
   
-  @Schema(name = "code", description = "Error code, if any.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "code", description = "Error code, if any.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("code")
   public JsonNullable<String> getCode() {
     return code;
@@ -126,7 +122,7 @@ public class RealtimeServerEventErrorError {
    * @return param
    */
   
-  @Schema(name = "param", description = "Parameter related to the error, if any.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "param", description = "Parameter related to the error, if any.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("param")
   public JsonNullable<String> getParam() {
     return param;
@@ -146,7 +142,7 @@ public class RealtimeServerEventErrorError {
    * @return eventId
    */
   
-  @Schema(name = "event_id", description = "The event_id of the client event that caused the error, if applicable. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "event_id", description = "The event_id of the client event that caused the error, if applicable. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("event_id")
   public JsonNullable<String> getEventId() {
     return eventId;

@@ -20,7 +20,7 @@ import RealtimeSessionTurnDetection from './RealtimeSessionTurnDetection';
 /**
  * The RealtimeSession model module.
  * @module model/RealtimeSession
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class RealtimeSession {
     /**

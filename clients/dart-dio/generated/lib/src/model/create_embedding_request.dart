@@ -185,12 +185,12 @@ class _$CreateEmbeddingRequestSerializer implements PrimitiveSerializer<CreateEm
   }
 }
 
+
+/// The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
 class CreateEmbeddingRequestEncodingFormatEnum extends EnumClass {
 
-  /// The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
   @BuiltValueEnumConst(wireName: r'float')
   static const CreateEmbeddingRequestEncodingFormatEnum float = _$createEmbeddingRequestEncodingFormatEnum_float;
-  /// The format to return the embeddings in. Can be either `float` or [`base64`](https://pypi.org/project/pybase64/).
   @BuiltValueEnumConst(wireName: r'base64')
   static const CreateEmbeddingRequestEncodingFormatEnum base64 = _$createEmbeddingRequestEncodingFormatEnum_base64;
 

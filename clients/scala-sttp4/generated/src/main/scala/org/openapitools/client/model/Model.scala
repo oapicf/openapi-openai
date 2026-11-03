@@ -30,7 +30,7 @@ object ModelEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Model extends `Object`
+    case object Model extends `Object` { override def toString: String = "model" }
 
     import org.json4s._
 

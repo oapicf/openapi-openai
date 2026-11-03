@@ -173,10 +173,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (maxNumResults.IsSet && maxNumResults.Value == null)
-                throw new ArgumentNullException(nameof(maxNumResults), "Property is not nullable for class AssistantToolsFileSearchFileSearch.");
+                throw new JsonException("Property is not nullable for class AssistantToolsFileSearchFileSearch: max_num_results.");
 
             if (rankingOptions.IsSet && rankingOptions.Value == null)
-                throw new ArgumentNullException(nameof(rankingOptions), "Property is not nullable for class AssistantToolsFileSearchFileSearch.");
+                throw new JsonException("Property is not nullable for class AssistantToolsFileSearchFileSearch: ranking_options.");
 
             return new AssistantToolsFileSearchFileSearch(maxNumResults, rankingOptions);
         }
@@ -187,7 +187,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantToolsFileSearchFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantToolsFileSearchFileSearch assistantToolsFileSearchFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -202,11 +201,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantToolsFileSearchFileSearch"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantToolsFileSearchFileSearch assistantToolsFileSearchFileSearch, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (assistantToolsFileSearchFileSearch.MaxNumResultsOption.IsSet && assistantToolsFileSearchFileSearch.MaxNumResults == null)
+                throw new JsonException("Cannot write null property AssistantToolsFileSearchFileSearch.MaxNumResults to non-nullable JSON property 'max_num_results'.");
+
             if (assistantToolsFileSearchFileSearch.RankingOptionsOption.IsSet && assistantToolsFileSearchFileSearch.RankingOptions == null)
-                throw new ArgumentNullException(nameof(assistantToolsFileSearchFileSearch.RankingOptions), "Property is required for class AssistantToolsFileSearchFileSearch.");
+                throw new JsonException("Cannot write null property AssistantToolsFileSearchFileSearch.RankingOptions to non-nullable JSON property 'ranking_options'.");
 
             if (assistantToolsFileSearchFileSearch.MaxNumResultsOption.IsSet)
                 writer.WriteNumber("max_num_results", assistantToolsFileSearchFileSearch.MaxNumResultsOption.Value!.Value);

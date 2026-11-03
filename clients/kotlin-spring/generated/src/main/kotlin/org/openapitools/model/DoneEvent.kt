@@ -4,9 +4,6 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -21,16 +18,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Occurs when a stream ends.
  * @param event 
- * @param &#x60;data&#x60; 
+ * @param `data` 
  */
 data class DoneEvent(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("event")
+    @param:JsonProperty("event", required = true)
     @get:JsonProperty("event", required = true) val event: DoneEvent.Event,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("data")
+    @param:JsonProperty("data", required = true)
     @get:JsonProperty("data", required = true) val `data`: DoneEvent.`Data`
 ) : AssistantStreamEvent {
 
@@ -41,12 +38,12 @@ data class DoneEvent(
     enum class Event(@get:JsonValue val value: kotlin.String) {
 
         done("done");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Event {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Event'")
             }
         }
@@ -59,12 +56,12 @@ data class DoneEvent(
     enum class `Data`(@get:JsonValue val value: kotlin.String) {
 
         Left_Square_BracketDONERight_Square_Bracket("[DONE]");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Data` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Data&#x60;'")
             }
         }

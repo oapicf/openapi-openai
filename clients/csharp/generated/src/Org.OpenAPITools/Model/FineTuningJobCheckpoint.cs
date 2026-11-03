@@ -263,7 +263,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<FineTuningJobCheckpoint.ObjectEnum?>(FineTuningJobCheckpoint.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                FineTuningJobCheckpoint.ObjectEnum? varObjectValue = FineTuningJobCheckpoint.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<FineTuningJobCheckpoint.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         default:
                             break;
@@ -272,46 +277,46 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(id));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(createdAt));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: created_at.");
 
             if (!fineTunedModelCheckpoint.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(fineTunedModelCheckpoint));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: fine_tuned_model_checkpoint.");
 
             if (!stepNumber.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(stepNumber));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: step_number.");
 
             if (!metrics.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(metrics));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: metrics.");
 
             if (!fineTuningJobId.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(fineTuningJobId));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: fine_tuning_job_id.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobCheckpoint.", nameof(varObject));
+                throw new JsonException("Property is required for class FineTuningJobCheckpoint: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: created_at.");
 
             if (fineTunedModelCheckpoint.IsSet && fineTunedModelCheckpoint.Value == null)
-                throw new ArgumentNullException(nameof(fineTunedModelCheckpoint), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: fine_tuned_model_checkpoint.");
 
             if (stepNumber.IsSet && stepNumber.Value == null)
-                throw new ArgumentNullException(nameof(stepNumber), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: step_number.");
 
             if (metrics.IsSet && metrics.Value == null)
-                throw new ArgumentNullException(nameof(metrics), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: metrics.");
 
             if (fineTuningJobId.IsSet && fineTuningJobId.Value == null)
-                throw new ArgumentNullException(nameof(fineTuningJobId), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: fine_tuning_job_id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class FineTuningJobCheckpoint.");
+                throw new JsonException("Property is not nullable for class FineTuningJobCheckpoint: object.");
 
             return new FineTuningJobCheckpoint(id.Value!, createdAt.Value!.Value!, fineTunedModelCheckpoint.Value!, stepNumber.Value!.Value!, metrics.Value!, fineTuningJobId.Value!, varObject.Value!.Value!);
         }
@@ -322,7 +327,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobCheckpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJobCheckpoint fineTuningJobCheckpoint, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -337,21 +341,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobCheckpoint"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJobCheckpoint fineTuningJobCheckpoint, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fineTuningJobCheckpoint.Id == null)
-                throw new ArgumentNullException(nameof(fineTuningJobCheckpoint.Id), "Property is required for class FineTuningJobCheckpoint.");
-
-            if (fineTuningJobCheckpoint.FineTunedModelCheckpoint == null)
-                throw new ArgumentNullException(nameof(fineTuningJobCheckpoint.FineTunedModelCheckpoint), "Property is required for class FineTuningJobCheckpoint.");
-
-            if (fineTuningJobCheckpoint.Metrics == null)
-                throw new ArgumentNullException(nameof(fineTuningJobCheckpoint.Metrics), "Property is required for class FineTuningJobCheckpoint.");
-
-            if (fineTuningJobCheckpoint.FineTuningJobId == null)
-                throw new ArgumentNullException(nameof(fineTuningJobCheckpoint.FineTuningJobId), "Property is required for class FineTuningJobCheckpoint.");
-
             writer.WriteString("id", fineTuningJobCheckpoint.Id);
 
             writer.WriteNumber("created_at", fineTuningJobCheckpoint.CreatedAt);

@@ -41,12 +41,12 @@ export interface FineTuneChatCompletionRequestAssistantMessage {
 }
 export namespace FineTuneChatCompletionRequestAssistantMessage {
     export const RoleEnum = {
-        Assistant: 'assistant'
+        Assistant: 'assistant',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
     export const WeightEnum = {
         NUMBER_0: 0,
-        NUMBER_1: 1
+        NUMBER_1: 1,
     } as const;
     export type WeightEnum = typeof WeightEnum[keyof typeof WeightEnum];
 }

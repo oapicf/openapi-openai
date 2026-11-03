@@ -77,15 +77,14 @@ class _$ArrayOfContentPartsInnerSerializer implements PrimitiveSerializer<ArrayO
   }
 }
 
+
+/// Always `image_file`.
 class ArrayOfContentPartsInnerTypeEnum extends EnumClass {
 
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_file')
   static const ArrayOfContentPartsInnerTypeEnum imageFile = _$arrayOfContentPartsInnerTypeEnum_imageFile;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const ArrayOfContentPartsInnerTypeEnum imageUrl = _$arrayOfContentPartsInnerTypeEnum_imageUrl;
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'text')
   static const ArrayOfContentPartsInnerTypeEnum text = _$arrayOfContentPartsInnerTypeEnum_text;
 

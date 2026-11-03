@@ -21,26 +21,18 @@ import { mapValues } from '../runtime';
 export interface ListAuditLogsEffectiveAtParameter {
     /**
      * Return only events whose `effective_at` (Unix seconds) is greater than this value.
-     * @type {number}
-     * @memberof ListAuditLogsEffectiveAtParameter
      */
     gt?: number;
     /**
      * Return only events whose `effective_at` (Unix seconds) is greater than or equal to this value.
-     * @type {number}
-     * @memberof ListAuditLogsEffectiveAtParameter
      */
     gte?: number;
     /**
      * Return only events whose `effective_at` (Unix seconds) is less than this value.
-     * @type {number}
-     * @memberof ListAuditLogsEffectiveAtParameter
      */
     lt?: number;
     /**
      * Return only events whose `effective_at` (Unix seconds) is less than or equal to this value.
-     * @type {number}
-     * @memberof ListAuditLogsEffectiveAtParameter
      */
     lte?: number;
 }

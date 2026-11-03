@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -27,18 +26,15 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("ResponseFormatJsonSchema_json_schema")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ResponseFormatJsonSchemaJsonSchema {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
   private String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Map<String, Object> schema = new HashMap<>();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> strict = JsonNullable.<Boolean>undefined();
 
   public ResponseFormatJsonSchemaJsonSchema() {
@@ -133,7 +129,7 @@ public class ResponseFormatJsonSchemaJsonSchema {
    * @return strict
    */
   
-  @Schema(name = "strict", description = "Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "strict", description = "Whether to enable strict schema adherence when generating the output. If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. To learn more, read the [Structured Outputs guide](/docs/guides/structured-outputs).", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("strict")
   public JsonNullable<Boolean> getStrict() {
     return strict;

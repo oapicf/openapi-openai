@@ -37,14 +37,10 @@ import {
 export interface AssistantObjectToolResources {
     /**
      * 
-     * @type {AssistantObjectToolResourcesCodeInterpreter}
-     * @memberof AssistantObjectToolResources
      */
     codeInterpreter?: AssistantObjectToolResourcesCodeInterpreter;
     /**
      * 
-     * @type {AssistantObjectToolResourcesFileSearch}
-     * @memberof AssistantObjectToolResources
      */
     fileSearch?: AssistantObjectToolResourcesFileSearch;
 }

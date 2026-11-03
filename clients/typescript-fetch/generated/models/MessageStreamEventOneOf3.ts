@@ -29,14 +29,10 @@ import {
 export interface MessageStreamEventOneOf3 {
     /**
      * 
-     * @type {MessageStreamEventOneOf3EventEnum}
-     * @memberof MessageStreamEventOneOf3
      */
     event: MessageStreamEventOneOf3EventEnum;
     /**
      * 
-     * @type {MessageObject}
-     * @memberof MessageStreamEventOneOf3
      */
     data: MessageObject;
 }
@@ -46,7 +42,7 @@ export interface MessageStreamEventOneOf3 {
  * @export
  */
 export const MessageStreamEventOneOf3EventEnum = {
-    ThreadMessageCompleted: 'thread.message.completed'
+    ThreadMessageCompleted: 'thread.message.completed',
 } as const;
 export type MessageStreamEventOneOf3EventEnum = typeof MessageStreamEventOneOf3EventEnum[keyof typeof MessageStreamEventOneOf3EventEnum];
 

@@ -29,20 +29,14 @@ import {
 export interface RunStepDetailsToolCallsFileSearchObject {
     /**
      * The ID of the tool call object.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsFileSearchObject
      */
     id: string;
     /**
      * The type of tool call. This is always going to be `file_search` for this type of tool call.
-     * @type {RunStepDetailsToolCallsFileSearchObjectTypeEnum}
-     * @memberof RunStepDetailsToolCallsFileSearchObject
      */
     type: RunStepDetailsToolCallsFileSearchObjectTypeEnum;
     /**
      * 
-     * @type {RunStepDetailsToolCallsFileSearchObjectFileSearch}
-     * @memberof RunStepDetailsToolCallsFileSearchObject
      */
     fileSearch: RunStepDetailsToolCallsFileSearchObjectFileSearch;
 }
@@ -52,7 +46,7 @@ export interface RunStepDetailsToolCallsFileSearchObject {
  * @export
  */
 export const RunStepDetailsToolCallsFileSearchObjectTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 export type RunStepDetailsToolCallsFileSearchObjectTypeEnum = typeof RunStepDetailsToolCallsFileSearchObjectTypeEnum[keyof typeof RunStepDetailsToolCallsFileSearchObjectTypeEnum];
 

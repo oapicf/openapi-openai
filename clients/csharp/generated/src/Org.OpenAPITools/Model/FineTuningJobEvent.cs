@@ -408,7 +408,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<FineTuningJobEvent.ObjectEnum?>(FineTuningJobEvent.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                FineTuningJobEvent.ObjectEnum? varObjectValue = FineTuningJobEvent.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<FineTuningJobEvent.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -419,7 +424,12 @@ namespace Org.OpenAPITools.Model
                         case "level":
                             string? levelRawValue = utf8JsonReader.GetString();
                             if (levelRawValue != null)
-                                level = new Option<FineTuningJobEvent.LevelEnum?>(FineTuningJobEvent.LevelEnumFromStringOrDefault(levelRawValue));
+                            {
+                                FineTuningJobEvent.LevelEnum? levelValue = FineTuningJobEvent.LevelEnumFromStringOrDefault(levelRawValue);
+                                if (levelValue == null)
+                                    throw new JsonException();
+                                level = new Option<FineTuningJobEvent.LevelEnum?>(levelValue);
+                            }
                             break;
                         case "message":
                             message = new Option<string?>(utf8JsonReader.GetString()!);
@@ -427,7 +437,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<FineTuningJobEvent.TypeEnum?>(FineTuningJobEvent.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                FineTuningJobEvent.TypeEnum? typeValue = FineTuningJobEvent.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<FineTuningJobEvent.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "data":
                             data = new Option<Object?>(JsonSerializer.Deserialize<Object>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -439,40 +454,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobEvent.", nameof(varObject));
+                throw new JsonException("Property is required for class FineTuningJobEvent: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobEvent.", nameof(id));
+                throw new JsonException("Property is required for class FineTuningJobEvent: id.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobEvent.", nameof(createdAt));
+                throw new JsonException("Property is required for class FineTuningJobEvent: created_at.");
 
             if (!level.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobEvent.", nameof(level));
+                throw new JsonException("Property is required for class FineTuningJobEvent: level.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningJobEvent.", nameof(message));
+                throw new JsonException("Property is required for class FineTuningJobEvent: message.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: id.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: created_at.");
 
             if (level.IsSet && level.Value == null)
-                throw new ArgumentNullException(nameof(level), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: level.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: message.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: type.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class FineTuningJobEvent.");
+                throw new JsonException("Property is not nullable for class FineTuningJobEvent: data.");
 
             return new FineTuningJobEvent(varObject.Value!.Value!, id.Value!, createdAt.Value!.Value!, level.Value!.Value!, message.Value!, type, data);
         }
@@ -483,7 +498,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningJobEvent fineTuningJobEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -498,17 +512,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningJobEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningJobEvent fineTuningJobEvent, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fineTuningJobEvent.Id == null)
-                throw new ArgumentNullException(nameof(fineTuningJobEvent.Id), "Property is required for class FineTuningJobEvent.");
-
-            if (fineTuningJobEvent.Message == null)
-                throw new ArgumentNullException(nameof(fineTuningJobEvent.Message), "Property is required for class FineTuningJobEvent.");
+            if (fineTuningJobEvent.TypeOption.IsSet && fineTuningJobEvent.Type == null)
+                throw new JsonException("Cannot write null property FineTuningJobEvent.Type to non-nullable JSON property 'type'.");
 
             if (fineTuningJobEvent.DataOption.IsSet && fineTuningJobEvent.Data == null)
-                throw new ArgumentNullException(nameof(fineTuningJobEvent.Data), "Property is required for class FineTuningJobEvent.");
+                throw new JsonException("Cannot write null property FineTuningJobEvent.Data to non-nullable JSON property 'data'.");
 
             var varObjectRawValue = FineTuningJobEvent.ObjectEnumToJsonValue(fineTuningJobEvent.Object);
             writer.WriteString("object", varObjectRawValue);

@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * Represents an individual `user` within an organization.
- * @param &#x60;object&#x60; The object type, which is always `organization.user`
+ * @param `object` The object type, which is always `organization.user`
  * @param id The identifier, which can be referenced in API endpoints
  * @param name The name of the user
  * @param email The email address of the user
@@ -27,27 +27,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class User(
 
     @Schema(required = true, description = "The object type, which is always `organization.user`")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: User.`Object`,
 
     @Schema(required = true, description = "The identifier, which can be referenced in API endpoints")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The name of the user")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(required = true, description = "The email address of the user")
-    @param:JsonProperty("email")
+    @param:JsonProperty("email", required = true)
     @get:JsonProperty("email", required = true) val email: kotlin.String,
 
     @Schema(required = true, description = "`owner` or `reader`")
-    @param:JsonProperty("role")
+    @param:JsonProperty("role", required = true)
     @get:JsonProperty("role", required = true) val role: User.Role,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) of when the user was added.")
-    @param:JsonProperty("added_at")
+    @param:JsonProperty("added_at", required = true)
     @get:JsonProperty("added_at", required = true) val addedAt: kotlin.Int
 ) {
 
@@ -58,12 +58,12 @@ data class User(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUser("organization.user");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -77,12 +77,12 @@ data class User(
 
         owner("owner"),
         reader("reader");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Role {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Role'")
             }
         }

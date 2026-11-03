@@ -34,14 +34,14 @@ import javax.annotation.Generated;
   CreateMessageRequestAttachmentsInner.JSON_PROPERTY_TOOLS
 })
 @JsonTypeName("CreateMessageRequest_attachments_inner")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateMessageRequestAttachmentsInner {
     public static final String JSON_PROPERTY_FILE_ID = "file_id";
     private String fileId;
 
     public static final String JSON_PROPERTY_TOOLS = "tools";
-    private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
+    private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
 
     public CreateMessageRequestAttachmentsInner() {
     }
@@ -68,7 +68,7 @@ public class CreateMessageRequestAttachmentsInner {
         this.fileId = fileId;
     }
 
-    public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+    public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
         this.tools = tools;
         return this;
     }
@@ -88,13 +88,13 @@ public class CreateMessageRequestAttachmentsInner {
     @Nullable
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+    public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
         return tools;
     }
 
     @JsonProperty(JSON_PROPERTY_TOOLS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+    public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
         this.tools = tools;
     }
 

@@ -29,14 +29,10 @@ import {
 export interface AuditLogActorSession {
     /**
      * 
-     * @type {AuditLogActorUser}
-     * @memberof AuditLogActorSession
      */
     user?: AuditLogActorUser;
     /**
      * The IP address from which the action was performed.
-     * @type {string}
-     * @memberof AuditLogActorSession
      */
     ipAddress?: string;
 }

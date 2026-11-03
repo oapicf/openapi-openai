@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("MessageDeltaContentTextObject_text")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MessageDeltaContentTextObjectText   {
   private String value;
-  private @Valid List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+  private List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
   public MessageDeltaContentTextObjectText() {
   }
@@ -51,7 +51,7 @@ public class MessageDeltaContentTextObjectText   {
 
   /**
    **/
-  public MessageDeltaContentTextObjectText annotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public MessageDeltaContentTextObjectText annotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
     return this;
   }
@@ -59,12 +59,12 @@ public class MessageDeltaContentTextObjectText   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("annotations")
-  @Valid public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
+  public List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> getAnnotations() {
     return annotations;
   }
 
   @JsonProperty("annotations")
-  public void setAnnotations(List<MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
+  public void setAnnotations(List<@Valid MessageDeltaContentTextObjectTextAnnotationsInner> annotations) {
     this.annotations = annotations;
   }
 

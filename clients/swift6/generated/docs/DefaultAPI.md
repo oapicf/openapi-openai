@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **adminApiKeysCreate**
 ```swift
-    open class func adminApiKeysCreate(adminApiKeysCreateRequest: AdminApiKeysCreateRequest, completion: @escaping (_ data: AdminApiKey?, _ error: Error?) -> Void)
+    open class func adminApiKeysCreate(adminApiKeysCreateRequest: AdminApiKeysCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AdminApiKey
 ```
 
 Create an organization admin API key
@@ -27,15 +27,11 @@ import OpenAPIClient
 let adminApiKeysCreateRequest = admin_api_keys_create_request(name: "name_example") // AdminApiKeysCreateRequest | 
 
 // Create an organization admin API key
-DefaultAPI.adminApiKeysCreate(adminApiKeysCreateRequest: adminApiKeysCreateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await DefaultAPI.adminApiKeysCreate(adminApiKeysCreateRequest: adminApiKeysCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -62,7 +58,7 @@ Name | Type | Description  | Notes
 
 # **adminApiKeysDelete**
 ```swift
-    open class func adminApiKeysDelete(keyId: String, completion: @escaping (_ data: AdminApiKeysDelete200Response?, _ error: Error?) -> Void)
+    open class func adminApiKeysDelete(keyId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AdminApiKeysDelete200Response
 ```
 
 Delete an organization admin API key
@@ -77,15 +73,11 @@ import OpenAPIClient
 let keyId = "keyId_example" // String | 
 
 // Delete an organization admin API key
-DefaultAPI.adminApiKeysDelete(keyId: keyId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await DefaultAPI.adminApiKeysDelete(keyId: keyId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -112,7 +104,7 @@ Name | Type | Description  | Notes
 
 # **adminApiKeysGet**
 ```swift
-    open class func adminApiKeysGet(keyId: String, completion: @escaping (_ data: AdminApiKey?, _ error: Error?) -> Void)
+    open class func adminApiKeysGet(keyId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AdminApiKey
 ```
 
 Retrieve a single organization API key
@@ -127,15 +119,11 @@ import OpenAPIClient
 let keyId = "keyId_example" // String | 
 
 // Retrieve a single organization API key
-DefaultAPI.adminApiKeysGet(keyId: keyId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await DefaultAPI.adminApiKeysGet(keyId: keyId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -162,7 +150,7 @@ Name | Type | Description  | Notes
 
 # **adminApiKeysList**
 ```swift
-    open class func adminApiKeysList(after: String? = nil, order: Order_adminApiKeysList? = nil, limit: Int? = nil, completion: @escaping (_ data: ApiKeyList?, _ error: Error?) -> Void)
+    open class func adminApiKeysList(after: String? = nil, order: Order_adminApiKeysList? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ApiKeyList
 ```
 
 List organization API keys
@@ -179,15 +167,11 @@ let order = "order_example" // String |  (optional) (default to .asc)
 let limit = 987 // Int |  (optional) (default to 20)
 
 // List organization API keys
-DefaultAPI.adminApiKeysList(after: after, order: order, limit: limit) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await DefaultAPI.adminApiKeysList(after: after, order: order, limit: limit)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

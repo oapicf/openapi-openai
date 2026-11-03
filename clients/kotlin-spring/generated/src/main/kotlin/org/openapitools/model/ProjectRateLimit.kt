@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,7 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * Represents a project rate limit config.
- * @param &#x60;object&#x60; The object type, which is always `project.rate_limit`
+ * @param `object` The object type, which is always `project.rate_limit`
  * @param id The identifier, which can be referenced in API endpoints.
  * @param model The model this rate limit applies to.
  * @param maxRequestsPer1Minute The maximum requests per minute.
@@ -33,46 +30,38 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProjectRateLimit(
 
     @Schema(required = true, description = "The object type, which is always `project.rate_limit`")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ProjectRateLimit.`Object`,
 
     @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The model this rate limit applies to.")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: kotlin.String,
 
     @Schema(required = true, description = "The maximum requests per minute.")
-    @param:JsonProperty("max_requests_per_1_minute")
+    @param:JsonProperty("max_requests_per_1_minute", required = true)
     @get:JsonProperty("max_requests_per_1_minute", required = true) val maxRequestsPer1Minute: kotlin.Int,
 
     @Schema(required = true, description = "The maximum tokens per minute.")
-    @param:JsonProperty("max_tokens_per_1_minute")
+    @param:JsonProperty("max_tokens_per_1_minute", required = true)
     @get:JsonProperty("max_tokens_per_1_minute", required = true) val maxTokensPer1Minute: kotlin.Int,
 
     @Schema(description = "The maximum images per minute. Only present for relevant models.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("max_images_per_1_minute")
     @get:JsonProperty("max_images_per_1_minute") val maxImagesPer1Minute: kotlin.Int? = null,
 
     @Schema(description = "The maximum audio megabytes per minute. Only present for relevant models.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("max_audio_megabytes_per_1_minute")
     @get:JsonProperty("max_audio_megabytes_per_1_minute") val maxAudioMegabytesPer1Minute: kotlin.Int? = null,
 
     @Schema(description = "The maximum requests per day. Only present for relevant models.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("max_requests_per_1_day")
     @get:JsonProperty("max_requests_per_1_day") val maxRequestsPer1Day: kotlin.Int? = null,
 
     @Schema(description = "The maximum batch input tokens per day. Only present for relevant models.")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("batch_1_day_max_input_tokens")
     @get:JsonProperty("batch_1_day_max_input_tokens") val batch1DayMaxInputTokens: kotlin.Int? = null
 ) {
@@ -84,12 +73,12 @@ data class ProjectRateLimit(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         projectPeriodRate_limit("project.rate_limit");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

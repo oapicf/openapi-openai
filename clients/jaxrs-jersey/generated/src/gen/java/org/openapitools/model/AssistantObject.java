@@ -49,7 +49,7 @@ import javax.validation.Valid;
   AssistantObject.JSON_PROPERTY_TOP_P,
   AssistantObject.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AssistantObject   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -114,7 +114,7 @@ public class AssistantObject   {
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   public static final String JSON_PROPERTY_TOOL_RESOURCES = "tool_resources";
   @JsonProperty(JSON_PROPERTY_TOOL_RESOURCES)
@@ -276,7 +276,7 @@ public class AssistantObject   {
     this.instructions = instructions;
   }
 
-  public AssistantObject tools(List<AssistantObjectToolsInner> tools) {
+  public AssistantObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -295,12 +295,12 @@ public class AssistantObject   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(required = true, value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
-  @NotNull @Valid  @Size(max=128)
-  public List<AssistantObjectToolsInner> getTools() {
+  @NotNull  @Size(max=128)
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

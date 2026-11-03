@@ -45,7 +45,7 @@ import org.openapitools.model.AuditLogUserUpdated;
  */
 
 @ApiModel(description = "A log of a user action or configuration change within this organization.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class AuditLog   {
   
   private String id;

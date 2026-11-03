@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   AuditLogUserUpdated.JSON_PROPERTY_CHANGES_REQUESTED
 })
 @JsonTypeName("AuditLog_user_updated")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class AuditLogUserUpdated {
     public static final String JSON_PROPERTY_ID = "id";

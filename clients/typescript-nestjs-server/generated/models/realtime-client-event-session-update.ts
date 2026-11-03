@@ -17,7 +17,7 @@ export interface RealtimeClientEventSessionUpdate {
 }
 export namespace RealtimeClientEventSessionUpdate {
   export const TypeEnum = {
-    SessionUpdate: 'session.update'
+    SessionUpdate: 'session.update',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

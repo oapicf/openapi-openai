@@ -216,7 +216,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnum?>(RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnum? typeValue = RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "audio_end_ms":
                             audioEndMs = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -231,28 +236,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped: type.");
 
             if (!audioEndMs.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.", nameof(audioEndMs));
+                throw new JsonException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped: audio_end_ms.");
 
             if (!itemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.", nameof(itemId));
+                throw new JsonException("Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped: item_id.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped: type.");
 
             if (audioEndMs.IsSet && audioEndMs.Value == null)
-                throw new ArgumentNullException(nameof(audioEndMs), "Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped: audio_end_ms.");
 
             if (itemId.IsSet && itemId.Value == null)
-                throw new ArgumentNullException(nameof(itemId), "Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventInputAudioBufferSpeechStopped: item_id.");
 
             return new RealtimeServerEventInputAudioBufferSpeechStopped(eventId.Value!, type.Value!.Value!, audioEndMs.Value!.Value!, itemId.Value!);
         }
@@ -263,7 +268,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventInputAudioBufferSpeechStopped"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventInputAudioBufferSpeechStopped realtimeServerEventInputAudioBufferSpeechStopped, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -278,15 +282,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventInputAudioBufferSpeechStopped"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventInputAudioBufferSpeechStopped realtimeServerEventInputAudioBufferSpeechStopped, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventInputAudioBufferSpeechStopped.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventInputAudioBufferSpeechStopped.EventId), "Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.");
-
-            if (realtimeServerEventInputAudioBufferSpeechStopped.ItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventInputAudioBufferSpeechStopped.ItemId), "Property is required for class RealtimeServerEventInputAudioBufferSpeechStopped.");
-
             writer.WriteString("event_id", realtimeServerEventInputAudioBufferSpeechStopped.EventId);
 
             var typeRawValue = RealtimeServerEventInputAudioBufferSpeechStopped.TypeEnumToJsonValue(realtimeServerEventInputAudioBufferSpeechStopped.Type);

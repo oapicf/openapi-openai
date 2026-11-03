@@ -11,7 +11,6 @@
  */
 package org.openapitools.client.model
 
-import org.openapitools.client.model.AuditLogEventType._
 
   /**
    * A log of a user action or configuration change within this organization.

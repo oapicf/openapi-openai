@@ -191,7 +191,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageRequestContentTextObject.TypeEnum?>(MessageRequestContentTextObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageRequestContentTextObject.TypeEnum? typeValue = MessageRequestContentTextObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageRequestContentTextObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -203,16 +208,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageRequestContentTextObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageRequestContentTextObject: type.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class MessageRequestContentTextObject.", nameof(text));
+                throw new JsonException("Property is required for class MessageRequestContentTextObject: text.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageRequestContentTextObject.");
+                throw new JsonException("Property is not nullable for class MessageRequestContentTextObject: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class MessageRequestContentTextObject.");
+                throw new JsonException("Property is not nullable for class MessageRequestContentTextObject: text.");
 
             return new MessageRequestContentTextObject(type.Value!.Value!, text.Value!);
         }
@@ -223,7 +228,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageRequestContentTextObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageRequestContentTextObject messageRequestContentTextObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -238,12 +242,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageRequestContentTextObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageRequestContentTextObject messageRequestContentTextObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageRequestContentTextObject.Text == null)
-                throw new ArgumentNullException(nameof(messageRequestContentTextObject.Text), "Property is required for class MessageRequestContentTextObject.");
-
             var typeRawValue = MessageRequestContentTextObject.TypeEnumToJsonValue(messageRequestContentTextObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("text", messageRequestContentTextObject.Text);

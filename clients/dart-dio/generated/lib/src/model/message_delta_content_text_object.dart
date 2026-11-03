@@ -144,9 +144,10 @@ class _$MessageDeltaContentTextObjectSerializer implements PrimitiveSerializer<M
   }
 }
 
+
+/// Always `text`.
 class MessageDeltaContentTextObjectTypeEnum extends EnumClass {
 
-  /// Always `text`.
   @BuiltValueEnumConst(wireName: r'text')
   static const MessageDeltaContentTextObjectTypeEnum text = _$messageDeltaContentTextObjectTypeEnum_text;
 

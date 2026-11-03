@@ -29,14 +29,10 @@ import {
 export interface RunStreamEventOneOf9 {
     /**
      * 
-     * @type {RunStreamEventOneOf9EventEnum}
-     * @memberof RunStreamEventOneOf9
      */
     event: RunStreamEventOneOf9EventEnum;
     /**
      * 
-     * @type {RunObject}
-     * @memberof RunStreamEventOneOf9
      */
     data: RunObject;
 }
@@ -46,7 +42,7 @@ export interface RunStreamEventOneOf9 {
  * @export
  */
 export const RunStreamEventOneOf9EventEnum = {
-    ThreadRunExpired: 'thread.run.expired'
+    ThreadRunExpired: 'thread.run.expired',
 } as const;
 export type RunStreamEventOneOf9EventEnum = typeof RunStreamEventOneOf9EventEnum[keyof typeof RunStreamEventOneOf9EventEnum];
 

@@ -27,7 +27,7 @@ object RealtimeClientEventResponseCancelEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object ResponseCancel extends `Type`
+    case object ResponseCancel extends `Type` { override def toString: String = "response.cancel" }
 
     import org.json4s._
 

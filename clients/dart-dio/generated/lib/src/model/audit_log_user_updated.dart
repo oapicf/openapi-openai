@@ -128,3 +128,4 @@ class _$AuditLogUserUpdatedSerializer implements PrimitiveSerializer<AuditLogUse
   }
 }
 
+

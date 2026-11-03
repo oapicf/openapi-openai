@@ -49,7 +49,13 @@ public class UploadsApiHandler {
         RequestParameters requestParameters = routingContext.get(ValidationHandler.REQUEST_CONTEXT_KEY);
 
         String uploadId = requestParameters.pathParameter("upload_id") != null ? requestParameters.pathParameter("upload_id").getString() : null;
-        FileUpload data = routingContext.fileUploads().iterator().next();
+        FileUpload data = null;
+        if (routingContext.fileUploads().isEmpty()) {
+            routingContext.fail(400);
+            return;
+        } else {
+            data = routingContext.fileUploads().iterator().next();
+        }
 
         logger.debug("Parameter uploadId is {}", uploadId);
         logger.debug("Parameter data is {}", data);
@@ -99,7 +105,7 @@ public class UploadsApiHandler {
         CompleteUploadRequest completeUploadRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CompleteUploadRequest>(){}) : null;
 
         logger.debug("Parameter uploadId is {}", uploadId);
-        logger.debug("Parameter completeUploadRequest is {}", completeUploadRequest);
+        logger.debug("Parameter completeUploadRequest is (body omitted)");
 
         api.completeUpload(uploadId, completeUploadRequest)
             .onSuccess(apiResponse -> {
@@ -122,7 +128,7 @@ public class UploadsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateUploadRequest createUploadRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateUploadRequest>(){}) : null;
 
-        logger.debug("Parameter createUploadRequest is {}", createUploadRequest);
+        logger.debug("Parameter createUploadRequest is (body omitted)");
 
         api.createUpload(createUploadRequest)
             .onSuccess(apiResponse -> {

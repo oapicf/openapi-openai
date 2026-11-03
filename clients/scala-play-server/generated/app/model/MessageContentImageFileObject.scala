@@ -6,7 +6,7 @@ import play.api.libs.json._
   * References an image [File](/docs/api-reference/files) in the content of a message.
   * @param `type` Always `image_file`.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class MessageContentImageFileObject(
   `type`: MessageContentImageFileObject.Type.Value,
   imageFile: MessageContentImageFileObjectImageFile

@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.AssistantObjectToolResourcesFileSearch
 import org.openapitools.model.CreateAssistantRequestToolResourcesCodeInterpreter
 import javax.validation.constraints.DecimalMax
@@ -27,15 +24,11 @@ data class CreateThreadAndRunRequestToolResources(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("code_interpreter")
     @get:JsonProperty("code_interpreter") val codeInterpreter: CreateAssistantRequestToolResourcesCodeInterpreter? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("file_search")
     @get:JsonProperty("file_search") val fileSearch: AssistantObjectToolResourcesFileSearch? = null
 ) {

@@ -35,7 +35,7 @@ class FineTuningApi(baseUrl: String) {
    * 
    * @param fineTuningJobId The ID of the fine-tuning job to cancel. 
    */
-  def cancelFineTuningJob(bearerToken: String)(fineTuningJobId: String): Request[Either[ResponseException[String], FineTuningJob]] =
+  def cancelFineTuningJob(bearerToken: String)(fineTuningJobId: String): sttp.client4.Request[Either[ResponseException[String], FineTuningJob]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/fine_tuning/jobs/${fineTuningJobId}/cancel")
       .contentType("application/json")
@@ -51,7 +51,7 @@ class FineTuningApi(baseUrl: String) {
    * 
    * @param createFineTuningJobRequest 
    */
-  def createFineTuningJob(bearerToken: String)(createFineTuningJobRequest: CreateFineTuningJobRequest): Request[Either[ResponseException[String], FineTuningJob]] =
+  def createFineTuningJob(bearerToken: String)(createFineTuningJobRequest: CreateFineTuningJobRequest): sttp.client4.Request[Either[ResponseException[String], FineTuningJob]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/fine_tuning/jobs")
       .contentType("application/json")
@@ -70,7 +70,7 @@ class FineTuningApi(baseUrl: String) {
    * @param after Identifier for the last event from the previous pagination request.
    * @param limit Number of events to retrieve.
    */
-  def listFineTuningEvents(bearerToken: String)(fineTuningJobId: String, after: Option[String] = None, limit: Option[Int] = None): Request[Either[ResponseException[String], ListFineTuningJobEventsResponse]] =
+  def listFineTuningEvents(bearerToken: String)(fineTuningJobId: String, after: Option[String] = None, limit: Option[Int] = None): sttp.client4.Request[Either[ResponseException[String], ListFineTuningJobEventsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/fine_tuning/jobs/${fineTuningJobId}/events?after=${ after }&limit=${ limit }")
       .contentType("application/json")
@@ -88,7 +88,7 @@ class FineTuningApi(baseUrl: String) {
    * @param after Identifier for the last checkpoint ID from the previous pagination request.
    * @param limit Number of checkpoints to retrieve.
    */
-  def listFineTuningJobCheckpoints(bearerToken: String)(fineTuningJobId: String, after: Option[String] = None, limit: Option[Int] = None): Request[Either[ResponseException[String], ListFineTuningJobCheckpointsResponse]] =
+  def listFineTuningJobCheckpoints(bearerToken: String)(fineTuningJobId: String, after: Option[String] = None, limit: Option[Int] = None): sttp.client4.Request[Either[ResponseException[String], ListFineTuningJobCheckpointsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/fine_tuning/jobs/${fineTuningJobId}/checkpoints?after=${ after }&limit=${ limit }")
       .contentType("application/json")
@@ -105,7 +105,7 @@ class FineTuningApi(baseUrl: String) {
    * @param after Identifier for the last job from the previous pagination request.
    * @param limit Number of fine-tuning jobs to retrieve.
    */
-  def listPaginatedFineTuningJobs(bearerToken: String)(after: Option[String] = None, limit: Option[Int] = None): Request[Either[ResponseException[String], ListPaginatedFineTuningJobsResponse]] =
+  def listPaginatedFineTuningJobs(bearerToken: String)(after: Option[String] = None, limit: Option[Int] = None): sttp.client4.Request[Either[ResponseException[String], ListPaginatedFineTuningJobsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/fine_tuning/jobs?after=${ after }&limit=${ limit }")
       .contentType("application/json")
@@ -121,7 +121,7 @@ class FineTuningApi(baseUrl: String) {
    * 
    * @param fineTuningJobId The ID of the fine-tuning job. 
    */
-  def retrieveFineTuningJob(bearerToken: String)(fineTuningJobId: String): Request[Either[ResponseException[String], FineTuningJob]] =
+  def retrieveFineTuningJob(bearerToken: String)(fineTuningJobId: String): sttp.client4.Request[Either[ResponseException[String], FineTuningJob]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/fine_tuning/jobs/${fineTuningJobId}")
       .contentType("application/json")

@@ -24,7 +24,7 @@ export namespace MessageObjectIncompleteDetails {
         MaxTokens: 'max_tokens',
         RunCancelled: 'run_cancelled',
         RunExpired: 'run_expired',
-        RunFailed: 'run_failed'
+        RunFailed: 'run_failed',
     } as const;
     export type ReasonEnum = typeof ReasonEnum[keyof typeof ReasonEnum];
 }

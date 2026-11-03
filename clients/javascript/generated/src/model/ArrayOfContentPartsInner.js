@@ -21,7 +21,7 @@ import MessageRequestContentTextObject from './MessageRequestContentTextObject';
 /**
  * The ArrayOfContentPartsInner model module.
  * @module model/ArrayOfContentPartsInner
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class ArrayOfContentPartsInner {
     /**

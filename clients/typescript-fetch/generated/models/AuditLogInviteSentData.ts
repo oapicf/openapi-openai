@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface AuditLogInviteSentData {
     /**
      * The email invited to the organization.
-     * @type {string}
-     * @memberof AuditLogInviteSentData
      */
     email?: string;
     /**
      * The role the email was invited to be. Is either `owner` or `member`.
-     * @type {string}
-     * @memberof AuditLogInviteSentData
      */
     role?: string;
 }

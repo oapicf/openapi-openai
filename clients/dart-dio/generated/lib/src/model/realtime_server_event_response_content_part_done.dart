@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseContentPartDoneSerializer implements Primitiv
   }
 }
 
+
+/// The event type, must be `response.content_part.done`.
 class RealtimeServerEventResponseContentPartDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.content_part.done`.
   @BuiltValueEnumConst(wireName: r'response.content_part.done')
   static const RealtimeServerEventResponseContentPartDoneTypeEnum responsePeriodContentPartPeriodDone = _$realtimeServerEventResponseContentPartDoneTypeEnum_responsePeriodContentPartPeriodDone;
 

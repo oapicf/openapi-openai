@@ -144,9 +144,10 @@ class _$MessageDeltaContentImageFileObjectSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// Always `image_file`.
 class MessageDeltaContentImageFileObjectTypeEnum extends EnumClass {
 
-  /// Always `image_file`.
   @BuiltValueEnumConst(wireName: r'image_file')
   static const MessageDeltaContentImageFileObjectTypeEnum imageFile = _$messageDeltaContentImageFileObjectTypeEnum_imageFile;
 

@@ -275,7 +275,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageDeltaContentTextAnnotationsFileCitationObject.TypeEnum?>(MessageDeltaContentTextAnnotationsFileCitationObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageDeltaContentTextAnnotationsFileCitationObject.TypeEnum? typeValue = MessageDeltaContentTextAnnotationsFileCitationObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageDeltaContentTextAnnotationsFileCitationObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -296,28 +301,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject.", nameof(index));
+                throw new JsonException("Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject: index.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject: type.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: text.");
 
             if (fileCitation.IsSet && fileCitation.Value == null)
-                throw new ArgumentNullException(nameof(fileCitation), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: file_citation.");
 
             if (startIndex.IsSet && startIndex.Value == null)
-                throw new ArgumentNullException(nameof(startIndex), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: start_index.");
 
             if (endIndex.IsSet && endIndex.Value == null)
-                throw new ArgumentNullException(nameof(endIndex), "Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageDeltaContentTextAnnotationsFileCitationObject: end_index.");
 
             return new MessageDeltaContentTextAnnotationsFileCitationObject(index.Value!.Value!, type.Value!.Value!, text, fileCitation, startIndex, endIndex);
         }
@@ -328,7 +333,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFileCitationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFileCitationObject messageDeltaContentTextAnnotationsFileCitationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -343,14 +347,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaContentTextAnnotationsFileCitationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaContentTextAnnotationsFileCitationObject messageDeltaContentTextAnnotationsFileCitationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             if (messageDeltaContentTextAnnotationsFileCitationObject.TextOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObject.Text == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextAnnotationsFileCitationObject.Text), "Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObject.Text to non-nullable JSON property 'text'.");
 
             if (messageDeltaContentTextAnnotationsFileCitationObject.FileCitationOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObject.FileCitation == null)
-                throw new ArgumentNullException(nameof(messageDeltaContentTextAnnotationsFileCitationObject.FileCitation), "Property is required for class MessageDeltaContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObject.FileCitation to non-nullable JSON property 'file_citation'.");
+
+            if (messageDeltaContentTextAnnotationsFileCitationObject.StartIndexOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObject.StartIndex == null)
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObject.StartIndex to non-nullable JSON property 'start_index'.");
+
+            if (messageDeltaContentTextAnnotationsFileCitationObject.EndIndexOption.IsSet && messageDeltaContentTextAnnotationsFileCitationObject.EndIndex == null)
+                throw new JsonException("Cannot write null property MessageDeltaContentTextAnnotationsFileCitationObject.EndIndex to non-nullable JSON property 'end_index'.");
 
             writer.WriteNumber("index", messageDeltaContentTextAnnotationsFileCitationObject.Index);
 

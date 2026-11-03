@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTunePreferenceRequestInputPreferredCompletionInner" /> class.
         /// </summary>
         /// <param name="chatCompletionRequestAssistantMessage"></param>
-        public FineTunePreferenceRequestInputPreferredCompletionInner(ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage)
+        internal FineTunePreferenceRequestInputPreferredCompletionInner(ChatCompletionRequestAssistantMessage chatCompletionRequestAssistantMessage)
         {
             ChatCompletionRequestAssistantMessage = chatCompletionRequestAssistantMessage;
             OnCreated();
@@ -154,7 +154,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInputPreferredCompletionInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTunePreferenceRequestInputPreferredCompletionInner fineTunePreferenceRequestInputPreferredCompletionInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -169,7 +168,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTunePreferenceRequestInputPreferredCompletionInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTunePreferenceRequestInputPreferredCompletionInner fineTunePreferenceRequestInputPreferredCompletionInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

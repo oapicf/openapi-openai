@@ -572,9 +572,10 @@ class _$RunObjectSerializer implements PrimitiveSerializer<RunObject> {
   }
 }
 
+
+/// The object type, which is always `thread.run`.
 class RunObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread.run`.
   @BuiltValueEnumConst(wireName: r'thread.run')
   static const RunObjectObjectEnum threadPeriodRun = _$runObjectObjectEnum_threadPeriodRun;
 
@@ -586,33 +587,25 @@ class RunObjectObjectEnum extends EnumClass {
   static RunObjectObjectEnum valueOf(String name) => _$runObjectObjectEnumValueOf(name);
 }
 
+/// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
 class RunObjectStatusEnum extends EnumClass {
 
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'queued')
   static const RunObjectStatusEnum queued = _$runObjectStatusEnum_queued;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const RunObjectStatusEnum inProgress = _$runObjectStatusEnum_inProgress;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'requires_action')
   static const RunObjectStatusEnum requiresAction = _$runObjectStatusEnum_requiresAction;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'cancelling')
   static const RunObjectStatusEnum cancelling = _$runObjectStatusEnum_cancelling;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'cancelled')
   static const RunObjectStatusEnum cancelled = _$runObjectStatusEnum_cancelled;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'failed')
   static const RunObjectStatusEnum failed = _$runObjectStatusEnum_failed;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'completed')
   static const RunObjectStatusEnum completed = _$runObjectStatusEnum_completed;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'incomplete')
   static const RunObjectStatusEnum incomplete = _$runObjectStatusEnum_incomplete;
-  /// The status of the run, which can be either `queued`, `in_progress`, `requires_action`, `cancelling`, `cancelled`, `failed`, `completed`, `incomplete`, or `expired`.
   @BuiltValueEnumConst(wireName: r'expired')
   static const RunObjectStatusEnum expired = _$runObjectStatusEnum_expired;
 

@@ -17,7 +17,7 @@ import javax.validation.Valid;
 /**
  * The details of the run step.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class RunStepDeltaObjectDeltaStepDetails   {
   /**
@@ -64,7 +64,7 @@ public class RunStepDeltaObjectDeltaStepDetails   {
   @JsonProperty("tool_calls")
   @Valid
 
-  private List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = null;
+  private List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls = null;
 
   public RunStepDeltaObjectDeltaStepDetails type(TypeEnum type) {
     this.type = type;
@@ -100,7 +100,7 @@ public class RunStepDeltaObjectDeltaStepDetails   {
     this.messageCreation = messageCreation;
   }
 
-  public RunStepDeltaObjectDeltaStepDetails toolCalls(List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public RunStepDeltaObjectDeltaStepDetails toolCalls(List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
     return this;
   }
@@ -117,11 +117,11 @@ public class RunStepDeltaObjectDeltaStepDetails   {
    * An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
    * @return toolCalls
   **/
-  public List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
+  public List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> getToolCalls() {
     return toolCalls;
   }
 
-  public void setToolCalls(List<RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
+  public void setToolCalls(List<@Valid RunStepDeltaStepDetailsToolCallsObjectToolCallsInner> toolCalls) {
     this.toolCalls = toolCalls;
   }
 

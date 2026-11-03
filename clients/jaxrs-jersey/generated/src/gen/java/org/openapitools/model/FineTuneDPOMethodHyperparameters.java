@@ -37,23 +37,23 @@ import javax.validation.Valid;
   FineTuneDPOMethodHyperparameters.JSON_PROPERTY_LEARNING_RATE_MULTIPLIER,
   FineTuneDPOMethodHyperparameters.JSON_PROPERTY_N_EPOCHS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparameters   {
   public static final String JSON_PROPERTY_BETA = "beta";
   @JsonProperty(JSON_PROPERTY_BETA)
-  private FineTuneDPOMethodHyperparametersBeta beta;
+  private FineTuneDPOMethodHyperparametersBeta beta = auto;
 
   public static final String JSON_PROPERTY_BATCH_SIZE = "batch_size";
   @JsonProperty(JSON_PROPERTY_BATCH_SIZE)
-  private FineTuneDPOMethodHyperparametersBatchSize batchSize;
+  private FineTuneDPOMethodHyperparametersBatchSize batchSize = auto;
 
   public static final String JSON_PROPERTY_LEARNING_RATE_MULTIPLIER = "learning_rate_multiplier";
   @JsonProperty(JSON_PROPERTY_LEARNING_RATE_MULTIPLIER)
-  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private FineTuneDPOMethodHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
   public static final String JSON_PROPERTY_N_EPOCHS = "n_epochs";
   @JsonProperty(JSON_PROPERTY_N_EPOCHS)
-  private FineTuneDPOMethodHyperparametersNEpochs nEpochs;
+  private FineTuneDPOMethodHyperparametersNEpochs nEpochs = auto;
 
   public FineTuneDPOMethodHyperparameters beta(FineTuneDPOMethodHyperparametersBeta beta) {
     this.beta = beta;

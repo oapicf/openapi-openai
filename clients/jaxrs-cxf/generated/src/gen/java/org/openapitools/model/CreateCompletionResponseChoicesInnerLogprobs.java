@@ -22,8 +22,6 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<BigDecimal> tokenLogprobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
@@ -31,8 +29,6 @@ public class CreateCompletionResponseChoicesInnerLogprobs  {
   private List<String> tokens = new ArrayList<>();
 
   @ApiModelProperty(value = "")
-
-  @Valid
 
   private List<Map<String, BigDecimal>> topLogprobs = new ArrayList<>();
  /**

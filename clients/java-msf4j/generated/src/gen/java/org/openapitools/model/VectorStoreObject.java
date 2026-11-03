@@ -14,7 +14,7 @@ import org.openapitools.model.VectorStoreObjectFileCounts;
  * A vector store is a collection of processed files can be used by the &#x60;file_search&#x60; tool.
  */
 @ApiModel(description = "A vector store is a collection of processed files can be used by the `file_search` tool.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class VectorStoreObject   {
   @JsonProperty("id")
   private String id;

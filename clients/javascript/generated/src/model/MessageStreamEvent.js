@@ -22,7 +22,7 @@ import MessageStreamEventOneOf4 from './MessageStreamEventOneOf4';
 /**
  * The MessageStreamEvent model module.
  * @module model/MessageStreamEvent
- * @version 1.2.1-pre.0
+ * @version 1.3.1-pre.0
  */
 class MessageStreamEvent {
     /**

@@ -68,7 +68,7 @@ import javax.validation.Valid;
   RunObject.JSON_PROPERTY_PARALLEL_TOOL_CALLS,
   RunObject.JSON_PROPERTY_RESPONSE_FORMAT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObject   {
   public static final String JSON_PROPERTY_ID = "id";
   @JsonProperty(JSON_PROPERTY_ID)
@@ -218,7 +218,7 @@ public class RunObject   {
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
-  private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @JsonProperty(JSON_PROPERTY_METADATA)
@@ -580,7 +580,7 @@ public class RunObject   {
     this.instructions = instructions;
   }
 
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -599,12 +599,12 @@ public class RunObject   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(required = true, value = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
-  @NotNull @Valid  @Size(max=20)
-  public List<AssistantObjectToolsInner> getTools() {
+  @NotNull  @Size(max=20)
+  public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

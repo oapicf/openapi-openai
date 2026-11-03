@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * For requests that failed with a non-HTTP error, this will contain more information on the cause of the failure.
  */
 @ApiModel(description = "For requests that failed with a non-HTTP error, this will contain more information on the cause of the failure.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BatchRequestOutputError   {
   @JsonProperty("code")
   private String code;

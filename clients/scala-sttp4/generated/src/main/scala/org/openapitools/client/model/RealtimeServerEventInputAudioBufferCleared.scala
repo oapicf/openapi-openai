@@ -25,7 +25,7 @@ object RealtimeServerEventInputAudioBufferClearedEnums {
 
   sealed trait `Type`
   object `Type` {
-    case object InputAudioBufferCleared extends `Type`
+    case object InputAudioBufferCleared extends `Type` { override def toString: String = "input_audio_buffer.cleared" }
 
     import org.json4s._
 

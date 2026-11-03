@@ -22,11 +22,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents if a given text input is potentially harmful.")
 @JsonTypeName("CreateModerationResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponse   {
   private String id;
   private String model;
-  private @Valid List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
+  private List<@Valid CreateModerationResponseResultsInner> results = new ArrayList<>();
 
   public CreateModerationResponse() {
   }
@@ -93,7 +93,7 @@ public class CreateModerationResponse   {
   
   @ApiModelProperty(required = true, value = "A list of moderation objects.")
   @JsonProperty(required = true, value = "results")
-  @NotNull @Valid public List<@Valid CreateModerationResponseResultsInner> getResults() {
+  @NotNull public List<@Valid CreateModerationResponseResultsInner> getResults() {
     return results;
   }
 

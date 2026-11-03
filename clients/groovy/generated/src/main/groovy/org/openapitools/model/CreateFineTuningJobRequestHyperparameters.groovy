@@ -10,9 +10,9 @@ import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs;
 @Canonical
 class CreateFineTuningJobRequestHyperparameters {
     
-    CreateFineTuningJobRequestHyperparametersBatchSize batchSize
+    CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto
     
-    CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier
+    CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto
     
-    CreateFineTuningJobRequestHyperparametersNEpochs nEpochs
+    CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto
 }

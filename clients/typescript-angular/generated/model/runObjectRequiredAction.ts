@@ -22,7 +22,7 @@ export interface RunObjectRequiredAction {
 }
 export namespace RunObjectRequiredAction {
     export const TypeEnum = {
-        SubmitToolOutputs: 'submit_tool_outputs'
+        SubmitToolOutputs: 'submit_tool_outputs',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

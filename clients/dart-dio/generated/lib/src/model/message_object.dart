@@ -340,9 +340,10 @@ class _$MessageObjectSerializer implements PrimitiveSerializer<MessageObject> {
   }
 }
 
+
+/// The object type, which is always `thread.message`.
 class MessageObjectObjectEnum extends EnumClass {
 
-  /// The object type, which is always `thread.message`.
   @BuiltValueEnumConst(wireName: r'thread.message')
   static const MessageObjectObjectEnum threadPeriodMessage = _$messageObjectObjectEnum_threadPeriodMessage;
 
@@ -354,15 +355,13 @@ class MessageObjectObjectEnum extends EnumClass {
   static MessageObjectObjectEnum valueOf(String name) => _$messageObjectObjectEnumValueOf(name);
 }
 
+/// The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
 class MessageObjectStatusEnum extends EnumClass {
 
-  /// The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
   @BuiltValueEnumConst(wireName: r'in_progress')
   static const MessageObjectStatusEnum inProgress = _$messageObjectStatusEnum_inProgress;
-  /// The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
   @BuiltValueEnumConst(wireName: r'incomplete')
   static const MessageObjectStatusEnum incomplete = _$messageObjectStatusEnum_incomplete;
-  /// The status of the message, which can be either `in_progress`, `incomplete`, or `completed`.
   @BuiltValueEnumConst(wireName: r'completed')
   static const MessageObjectStatusEnum completed = _$messageObjectStatusEnum_completed;
 
@@ -374,12 +373,11 @@ class MessageObjectStatusEnum extends EnumClass {
   static MessageObjectStatusEnum valueOf(String name) => _$messageObjectStatusEnumValueOf(name);
 }
 
+/// The entity that produced the message. One of `user` or `assistant`.
 class MessageObjectRoleEnum extends EnumClass {
 
-  /// The entity that produced the message. One of `user` or `assistant`.
   @BuiltValueEnumConst(wireName: r'user')
   static const MessageObjectRoleEnum user = _$messageObjectRoleEnum_user;
-  /// The entity that produced the message. One of `user` or `assistant`.
   @BuiltValueEnumConst(wireName: r'assistant')
   static const MessageObjectRoleEnum assistant = _$messageObjectRoleEnum_assistant;
 

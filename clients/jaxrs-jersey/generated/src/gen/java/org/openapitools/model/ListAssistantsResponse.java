@@ -36,7 +36,7 @@ import javax.validation.Valid;
   ListAssistantsResponse.JSON_PROPERTY_LAST_ID,
   ListAssistantsResponse.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ListAssistantsResponse   {
   public static final String JSON_PROPERTY_OBJECT = "object";
   @JsonProperty(JSON_PROPERTY_OBJECT)
@@ -97,7 +97,7 @@ public class ListAssistantsResponse   {
    **/
   @JsonProperty(value = "data")
   @ApiModelProperty(required = true, value = "")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid AssistantObject> getData() {
     return data;
   }

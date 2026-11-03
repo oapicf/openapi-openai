@@ -57,7 +57,7 @@ function Stop-FineTuningJob {
         if (!$FineTuningJobId) {
             throw "Error! The required parameter `FineTuningJobId` missing when calling cancelFineTuningJob."
         }
-        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Web.HTTPUtility]::UrlEncode($FineTuningJobId))
+        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Uri]::EscapeDataString([string]$FineTuningJobId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]
@@ -230,7 +230,7 @@ function Invoke-ListFineTuningEvents {
         if (!$FineTuningJobId) {
             throw "Error! The required parameter `FineTuningJobId` missing when calling listFineTuningEvents."
         }
-        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Web.HTTPUtility]::UrlEncode($FineTuningJobId))
+        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Uri]::EscapeDataString([string]$FineTuningJobId))
 
         if ($After) {
             $LocalVarQueryParameters['after'] = $After
@@ -328,7 +328,7 @@ function Invoke-ListFineTuningJobCheckpoints {
         if (!$FineTuningJobId) {
             throw "Error! The required parameter `FineTuningJobId` missing when calling listFineTuningJobCheckpoints."
         }
-        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Web.HTTPUtility]::UrlEncode($FineTuningJobId))
+        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Uri]::EscapeDataString([string]$FineTuningJobId))
 
         if ($After) {
             $LocalVarQueryParameters['after'] = $After
@@ -502,7 +502,7 @@ function Invoke-RetrieveFineTuningJob {
         if (!$FineTuningJobId) {
             throw "Error! The required parameter `FineTuningJobId` missing when calling retrieveFineTuningJob."
         }
-        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Web.HTTPUtility]::UrlEncode($FineTuningJobId))
+        $LocalVarUri = $LocalVarUri.replace('{fine_tuning_job_id}', [System.Uri]::EscapeDataString([string]$FineTuningJobId))
 
         if ($Configuration["AccessToken"]) {
             $LocalVarHeaderParameters['Authorization'] = "Bearer " + $Configuration["AccessToken"]

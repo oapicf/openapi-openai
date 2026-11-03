@@ -189,6 +189,7 @@ class _$ProjectServiceAccountCreateResponseSerializer implements PrimitiveSerial
   }
 }
 
+
 class ProjectServiceAccountCreateResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.project.service_account')
@@ -202,9 +203,9 @@ class ProjectServiceAccountCreateResponseObjectEnum extends EnumClass {
   static ProjectServiceAccountCreateResponseObjectEnum valueOf(String name) => _$projectServiceAccountCreateResponseObjectEnumValueOf(name);
 }
 
+/// Service accounts can only have one role of type `member`
 class ProjectServiceAccountCreateResponseRoleEnum extends EnumClass {
 
-  /// Service accounts can only have one role of type `member`
   @BuiltValueEnumConst(wireName: r'member')
   static const ProjectServiceAccountCreateResponseRoleEnum member = _$projectServiceAccountCreateResponseRoleEnum_member;
 

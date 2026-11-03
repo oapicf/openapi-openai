@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   StaticChunkingStrategyStatic.JSON_PROPERTY_CHUNK_OVERLAP_TOKENS
 })
 @JsonTypeName("Static_Chunking_Strategy_static")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-26T05:15:32.005018994Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-03T06:33:15.328883454Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class StaticChunkingStrategyStatic {
     public static final String JSON_PROPERTY_MAX_CHUNK_SIZE_TOKENS = "max_chunk_size_tokens";

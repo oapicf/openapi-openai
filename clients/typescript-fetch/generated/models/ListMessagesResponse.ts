@@ -29,32 +29,22 @@ import {
 export interface ListMessagesResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ListMessagesResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<MessageObject>}
-     * @memberof ListMessagesResponse
      */
     data: Array<MessageObject>;
     /**
      * 
-     * @type {string}
-     * @memberof ListMessagesResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListMessagesResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ListMessagesResponse
      */
     hasMore: boolean;
 }

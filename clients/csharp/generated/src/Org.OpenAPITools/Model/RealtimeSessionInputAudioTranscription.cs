@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (model.IsSet && model.Value == null)
-                throw new ArgumentNullException(nameof(model), "Property is not nullable for class RealtimeSessionInputAudioTranscription.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionInputAudioTranscription: model.");
 
             return new RealtimeSessionInputAudioTranscription(model);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionInputAudioTranscription"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeSessionInputAudioTranscription realtimeSessionInputAudioTranscription, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionInputAudioTranscription"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeSessionInputAudioTranscription realtimeSessionInputAudioTranscription, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeSessionInputAudioTranscription.ModelOption.IsSet && realtimeSessionInputAudioTranscription.Model == null)
-                throw new ArgumentNullException(nameof(realtimeSessionInputAudioTranscription.Model), "Property is required for class RealtimeSessionInputAudioTranscription.");
+                throw new JsonException("Cannot write null property RealtimeSessionInputAudioTranscription.Model to non-nullable JSON property 'model'.");
 
             if (realtimeSessionInputAudioTranscription.ModelOption.IsSet)
                 writer.WriteString("model", realtimeSessionInputAudioTranscription.Model);

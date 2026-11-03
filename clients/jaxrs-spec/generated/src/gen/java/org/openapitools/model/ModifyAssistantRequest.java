@@ -24,13 +24,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ModifyAssistantRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ModifyAssistantRequest   {
   private String model;
   private String name;
   private String description;
   private String instructions;
-  private @Valid List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
   private ModifyAssistantRequestToolResources toolResources;
   private Object metadata;
   private BigDecimal temperature = new BigDecimal("1");
@@ -123,7 +123,7 @@ public class ModifyAssistantRequest   {
   /**
    * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types &#x60;code_interpreter&#x60;, &#x60;file_search&#x60;, or &#x60;function&#x60;. 
    **/
-  public ModifyAssistantRequest tools(List<AssistantObjectToolsInner> tools) {
+  public ModifyAssistantRequest tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -131,12 +131,12 @@ public class ModifyAssistantRequest   {
   
   @ApiModelProperty(value = "A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. ")
   @JsonProperty("tools")
-  @Valid  @Size(max=128)public List<@Valid AssistantObjectToolsInner> getTools() {
+   @Size(max=128)public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty("tools")
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

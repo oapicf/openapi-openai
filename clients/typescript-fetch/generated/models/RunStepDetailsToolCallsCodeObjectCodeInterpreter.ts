@@ -29,14 +29,10 @@ import {
 export interface RunStepDetailsToolCallsCodeObjectCodeInterpreter {
     /**
      * The input to the Code Interpreter tool call.
-     * @type {string}
-     * @memberof RunStepDetailsToolCallsCodeObjectCodeInterpreter
      */
     input: string;
     /**
      * The outputs from the Code Interpreter tool call. Code Interpreter can output one or more items, including text (`logs`) or images (`image`). Each of these are represented by a different object type.
-     * @type {Array<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>}
-     * @memberof RunStepDetailsToolCallsCodeObjectCodeInterpreter
      */
     outputs: Array<RunStepDetailsToolCallsCodeObjectCodeInterpreterOutputsInner>;
 }

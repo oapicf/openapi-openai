@@ -182,13 +182,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileIds.IsSet && fileIds.Value == null)
-                throw new ArgumentNullException(nameof(fileIds), "Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner: file_ids.");
 
             if (chunkingStrategy.IsSet && chunkingStrategy.Value == null)
-                throw new ArgumentNullException(nameof(chunkingStrategy), "Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner: chunking_strategy.");
 
             if (metadata.IsSet && metadata.Value == null)
-                throw new ArgumentNullException(nameof(metadata), "Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Property is not nullable for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner: metadata.");
 
             return new CreateThreadRequestToolResourcesFileSearchVectorStoresInner(fileIds, chunkingStrategy, metadata);
         }
@@ -199,7 +199,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResourcesFileSearchVectorStoresInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateThreadRequestToolResourcesFileSearchVectorStoresInner createThreadRequestToolResourcesFileSearchVectorStoresInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -214,17 +213,16 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createThreadRequestToolResourcesFileSearchVectorStoresInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateThreadRequestToolResourcesFileSearchVectorStoresInner createThreadRequestToolResourcesFileSearchVectorStoresInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createThreadRequestToolResourcesFileSearchVectorStoresInner.FileIdsOption.IsSet && createThreadRequestToolResourcesFileSearchVectorStoresInner.FileIds == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResourcesFileSearchVectorStoresInner.FileIds), "Property is required for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResourcesFileSearchVectorStoresInner.FileIds to non-nullable JSON property 'file_ids'.");
 
             if (createThreadRequestToolResourcesFileSearchVectorStoresInner.ChunkingStrategyOption.IsSet && createThreadRequestToolResourcesFileSearchVectorStoresInner.ChunkingStrategy == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResourcesFileSearchVectorStoresInner.ChunkingStrategy), "Property is required for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResourcesFileSearchVectorStoresInner.ChunkingStrategy to non-nullable JSON property 'chunking_strategy'.");
 
             if (createThreadRequestToolResourcesFileSearchVectorStoresInner.MetadataOption.IsSet && createThreadRequestToolResourcesFileSearchVectorStoresInner.Metadata == null)
-                throw new ArgumentNullException(nameof(createThreadRequestToolResourcesFileSearchVectorStoresInner.Metadata), "Property is required for class CreateThreadRequestToolResourcesFileSearchVectorStoresInner.");
+                throw new JsonException("Cannot write null property CreateThreadRequestToolResourcesFileSearchVectorStoresInner.Metadata to non-nullable JSON property 'metadata'.");
 
             if (createThreadRequestToolResourcesFileSearchVectorStoresInner.FileIdsOption.IsSet)
             {

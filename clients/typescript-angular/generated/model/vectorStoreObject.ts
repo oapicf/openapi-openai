@@ -56,13 +56,13 @@ export interface VectorStoreObject {
 }
 export namespace VectorStoreObject {
     export const ObjectEnum = {
-        VectorStore: 'vector_store'
+        VectorStore: 'vector_store',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
         Expired: 'expired',
         InProgress: 'in_progress',
-        Completed: 'completed'
+        Completed: 'completed',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

@@ -159,22 +159,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class DeleteModelResponse.", nameof(id));
+                throw new JsonException("Property is required for class DeleteModelResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class DeleteModelResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class DeleteModelResponse: deleted.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class DeleteModelResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class DeleteModelResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class DeleteModelResponse.");
+                throw new JsonException("Property is not nullable for class DeleteModelResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class DeleteModelResponse.");
+                throw new JsonException("Property is not nullable for class DeleteModelResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class DeleteModelResponse.");
+                throw new JsonException("Property is not nullable for class DeleteModelResponse: object.");
 
             return new DeleteModelResponse(id.Value!, deleted.Value!.Value!, varObject.Value!);
         }
@@ -185,7 +185,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteModelResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeleteModelResponse deleteModelResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -200,15 +199,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="deleteModelResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeleteModelResponse deleteModelResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (deleteModelResponse.Id == null)
-                throw new ArgumentNullException(nameof(deleteModelResponse.Id), "Property is required for class DeleteModelResponse.");
-
-            if (deleteModelResponse.Object == null)
-                throw new ArgumentNullException(nameof(deleteModelResponse.Object), "Property is required for class DeleteModelResponse.");
-
             writer.WriteString("id", deleteModelResponse.Id);
 
             writer.WriteBoolean("deleted", deleteModelResponse.Deleted);

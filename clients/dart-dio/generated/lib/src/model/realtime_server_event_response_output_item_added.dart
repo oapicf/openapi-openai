@@ -175,9 +175,10 @@ class _$RealtimeServerEventResponseOutputItemAddedSerializer implements Primitiv
   }
 }
 
+
+/// The event type, must be `response.output_item.added`.
 class RealtimeServerEventResponseOutputItemAddedTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.output_item.added`.
   @BuiltValueEnumConst(wireName: r'response.output_item.added')
   static const RealtimeServerEventResponseOutputItemAddedTypeEnum responsePeriodOutputItemPeriodAdded = _$realtimeServerEventResponseOutputItemAddedTypeEnum_responsePeriodOutputItemPeriodAdded;
 

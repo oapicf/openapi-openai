@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<FineTuningIntegration.TypeEnum?>(FineTuningIntegration.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                FineTuningIntegration.TypeEnum? typeValue = FineTuningIntegration.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<FineTuningIntegration.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "wandb":
                             wandb = new Option<CreateFineTuningJobRequestIntegrationsInnerWandb?>(JsonSerializer.Deserialize<CreateFineTuningJobRequestIntegrationsInnerWandb>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningIntegration.", nameof(type));
+                throw new JsonException("Property is required for class FineTuningIntegration: type.");
 
             if (!wandb.IsSet)
-                throw new ArgumentException("Property is required for class FineTuningIntegration.", nameof(wandb));
+                throw new JsonException("Property is required for class FineTuningIntegration: wandb.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class FineTuningIntegration.");
+                throw new JsonException("Property is not nullable for class FineTuningIntegration: type.");
 
             if (wandb.IsSet && wandb.Value == null)
-                throw new ArgumentNullException(nameof(wandb), "Property is not nullable for class FineTuningIntegration.");
+                throw new JsonException("Property is not nullable for class FineTuningIntegration: wandb.");
 
             return new FineTuningIntegration(type.Value!.Value!, wandb.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningIntegration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuningIntegration fineTuningIntegration, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuningIntegration"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuningIntegration fineTuningIntegration, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (fineTuningIntegration.Wandb == null)
-                throw new ArgumentNullException(nameof(fineTuningIntegration.Wandb), "Property is required for class FineTuningIntegration.");
-
             var typeRawValue = FineTuningIntegration.TypeEnumToJsonValue(fineTuningIntegration.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("wandb");

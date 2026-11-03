@@ -51,13 +51,13 @@ class UploadsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'uploadId' => $uploadId,
-                ],
                 $request->all(),
+                [
+                    'upload_id' => $uploadId,
+                ],
             ),
             [
-                'uploadId' => [
+                'upload_id' => [
                     'required',
                     'string',
                 ],
@@ -96,13 +96,13 @@ class UploadsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'uploadId' => $uploadId,
-                ],
                 $request->all(),
+                [
+                    'upload_id' => $uploadId,
+                ],
             ),
             [
-                'uploadId' => [
+                'upload_id' => [
                     'required',
                     'string',
                 ],
@@ -135,10 +135,10 @@ class UploadsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
-                [
-                    'uploadId' => $uploadId,
-                ],
                 $request->all(),
+                [
+                    'upload_id' => $uploadId,
+                ],
             ),
             [
             ],
@@ -172,10 +172,10 @@ class UploadsController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],

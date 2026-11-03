@@ -35,7 +35,7 @@ class FilesApi(baseUrl: String) {
    * @param file The File object (not file name) to be uploaded. 
    * @param purpose The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
    */
-  def createFile(bearerToken: String)(file: File, purpose: String): Request[Either[ResponseException[String], OpenAIFile]] =
+  def createFile(bearerToken: String)(file: File, purpose: String): sttp.client4.Request[Either[ResponseException[String], OpenAIFile]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/files")
       .contentType("multipart/form-data")
@@ -57,7 +57,7 @@ class FilesApi(baseUrl: String) {
    * 
    * @param fileId The ID of the file to use for this request.
    */
-  def deleteFile(bearerToken: String)(fileId: String): Request[Either[ResponseException[String], DeleteFileResponse]] =
+  def deleteFile(bearerToken: String)(fileId: String): sttp.client4.Request[Either[ResponseException[String], DeleteFileResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/files/${fileId}")
       .contentType("application/json")
@@ -73,7 +73,7 @@ class FilesApi(baseUrl: String) {
    * 
    * @param fileId The ID of the file to use for this request.
    */
-  def downloadFile(bearerToken: String)(fileId: String): Request[Either[ResponseException[String], String]] =
+  def downloadFile(bearerToken: String)(fileId: String): sttp.client4.Request[Either[ResponseException[String], String]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/files/${fileId}/content")
       .contentType("application/json")
@@ -92,7 +92,7 @@ class FilesApi(baseUrl: String) {
    * @param order Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and `desc` for descending order. 
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    */
-  def listFiles(bearerToken: String)(purpose: Option[String] = None, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None): Request[Either[ResponseException[String], ListFilesResponse]] =
+  def listFiles(bearerToken: String)(purpose: Option[String] = None, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListFilesResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/files?purpose=${ purpose }&limit=${ limit }&order=${ order }&after=${ after }")
       .contentType("application/json")
@@ -108,7 +108,7 @@ class FilesApi(baseUrl: String) {
    * 
    * @param fileId The ID of the file to use for this request.
    */
-  def retrieveFile(bearerToken: String)(fileId: String): Request[Either[ResponseException[String], OpenAIFile]] =
+  def retrieveFile(bearerToken: String)(fileId: String): sttp.client4.Request[Either[ResponseException[String], OpenAIFile]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/files/${fileId}")
       .contentType("application/json")

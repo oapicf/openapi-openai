@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
  */
 public class FineTuneChatRequestInput   {
 
-    private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+    private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
     private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
     private Boolean parallelToolCalls = true;
     private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
@@ -36,7 +36,7 @@ public class FineTuneChatRequestInput   {
      * @param functions A list of functions the model may generate JSON inputs for.
      */
     public FineTuneChatRequestInput(
-        List<FineTuneChatRequestInputMessagesInner> messages, 
+        List<@Valid FineTuneChatRequestInputMessagesInner> messages, 
         List<@Valid ChatCompletionTool> tools, 
         Boolean parallelToolCalls, 
         List<@Valid ChatCompletionFunctions> functions
@@ -53,11 +53,11 @@ public class FineTuneChatRequestInput   {
      * Get messages
      * @return messages
      */
-    public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+    public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+    public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
         this.messages = messages;
     }
 

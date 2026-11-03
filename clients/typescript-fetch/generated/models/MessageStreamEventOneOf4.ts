@@ -29,14 +29,10 @@ import {
 export interface MessageStreamEventOneOf4 {
     /**
      * 
-     * @type {MessageStreamEventOneOf4EventEnum}
-     * @memberof MessageStreamEventOneOf4
      */
     event: MessageStreamEventOneOf4EventEnum;
     /**
      * 
-     * @type {MessageObject}
-     * @memberof MessageStreamEventOneOf4
      */
     data: MessageObject;
 }
@@ -46,7 +42,7 @@ export interface MessageStreamEventOneOf4 {
  * @export
  */
 export const MessageStreamEventOneOf4EventEnum = {
-    ThreadMessageIncomplete: 'thread.message.incomplete'
+    ThreadMessageIncomplete: 'thread.message.incomplete',
 } as const;
 export type MessageStreamEventOneOf4EventEnum = typeof MessageStreamEventOneOf4EventEnum[keyof typeof MessageStreamEventOneOf4EventEnum];
 

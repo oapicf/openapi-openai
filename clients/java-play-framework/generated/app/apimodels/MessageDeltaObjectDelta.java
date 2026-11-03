@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * The delta containing the fields that have changed on the Message.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MessageDeltaObjectDelta   {
   /**
@@ -55,7 +55,7 @@ public class MessageDeltaObjectDelta   {
   @JsonProperty("content")
   @Valid
 
-  private List<MessageDeltaObjectDeltaContentInner> content = null;
+  private List<@Valid MessageDeltaObjectDeltaContentInner> content = null;
 
   public MessageDeltaObjectDelta role(RoleEnum role) {
     this.role = role;
@@ -74,7 +74,7 @@ public class MessageDeltaObjectDelta   {
     this.role = role;
   }
 
-  public MessageDeltaObjectDelta content(List<MessageDeltaObjectDeltaContentInner> content) {
+  public MessageDeltaObjectDelta content(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
     return this;
   }
@@ -91,11 +91,11 @@ public class MessageDeltaObjectDelta   {
    * The content of the message in array of text and/or images.
    * @return content
   **/
-  public List<MessageDeltaObjectDeltaContentInner> getContent() {
+  public List<@Valid MessageDeltaObjectDeltaContentInner> getContent() {
     return content;
   }
 
-  public void setContent(List<MessageDeltaObjectDeltaContentInner> content) {
+  public void setContent(List<@Valid MessageDeltaObjectDeltaContentInner> content) {
     this.content = content;
   }
 

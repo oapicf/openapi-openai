@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface BatchRequestOutputResponse {
     /**
      * The HTTP status code of the response
-     * @type {number}
-     * @memberof BatchRequestOutputResponse
      */
     statusCode?: number;
     /**
      * An unique identifier for the OpenAI API request. Please include this request ID when contacting support.
-     * @type {string}
-     * @memberof BatchRequestOutputResponse
      */
     requestId?: string;
     /**
      * The JSON body of the response
-     * @type {object}
-     * @memberof BatchRequestOutputResponse
      */
     body?: object;
 }

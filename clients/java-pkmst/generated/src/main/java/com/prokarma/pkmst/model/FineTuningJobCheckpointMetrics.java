@@ -17,7 +17,7 @@ import java.math.BigDecimal;
  */
 @ApiModel(description = "Metrics at the step number during the fine-tuning job.")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuningJobCheckpointMetrics   {
   @JsonProperty("step")
   private BigDecimal step;

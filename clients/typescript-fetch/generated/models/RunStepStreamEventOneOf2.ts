@@ -29,14 +29,10 @@ import {
 export interface RunStepStreamEventOneOf2 {
     /**
      * 
-     * @type {RunStepStreamEventOneOf2EventEnum}
-     * @memberof RunStepStreamEventOneOf2
      */
     event: RunStepStreamEventOneOf2EventEnum;
     /**
      * 
-     * @type {RunStepDeltaObject}
-     * @memberof RunStepStreamEventOneOf2
      */
     data: RunStepDeltaObject;
 }
@@ -46,7 +42,7 @@ export interface RunStepStreamEventOneOf2 {
  * @export
  */
 export const RunStepStreamEventOneOf2EventEnum = {
-    ThreadRunStepDelta: 'thread.run.step.delta'
+    ThreadRunStepDelta: 'thread.run.step.delta',
 } as const;
 export type RunStepStreamEventOneOf2EventEnum = typeof RunStepStreamEventOneOf2EventEnum[keyof typeof RunStepStreamEventOneOf2EventEnum];
 

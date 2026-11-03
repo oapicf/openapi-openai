@@ -19,7 +19,7 @@ export interface MessageStreamEventOneOf4 {
 }
 export namespace MessageStreamEventOneOf4 {
     export const EventEnum = {
-        ThreadMessageIncomplete: 'thread.message.incomplete'
+        ThreadMessageIncomplete: 'thread.message.incomplete',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

@@ -75,7 +75,7 @@ public class FineTuningApiHandler {
         RequestParameter body = requestParameters.body();
         CreateFineTuningJobRequest createFineTuningJobRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateFineTuningJobRequest>(){}) : null;
 
-        logger.debug("Parameter createFineTuningJobRequest is {}", createFineTuningJobRequest);
+        logger.debug("Parameter createFineTuningJobRequest is (body omitted)");
 
         api.createFineTuningJob(createFineTuningJobRequest)
             .onSuccess(apiResponse -> {

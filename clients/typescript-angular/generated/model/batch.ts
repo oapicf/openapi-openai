@@ -86,7 +86,7 @@ export interface Batch {
 }
 export namespace Batch {
     export const ObjectEnum = {
-        Batch: 'batch'
+        Batch: 'batch',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
@@ -97,7 +97,7 @@ export namespace Batch {
         Completed: 'completed',
         Expired: 'expired',
         Cancelling: 'cancelling',
-        Cancelled: 'cancelled'
+        Cancelled: 'cancelled',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

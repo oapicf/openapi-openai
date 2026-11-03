@@ -177,7 +177,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionRequestFunctionCall createChatCompletionRequestFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -192,7 +191,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionRequestFunctionCall"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionRequestFunctionCall createChatCompletionRequestFunctionCall, JsonSerializerOptions jsonSerializerOptions)
         {
 

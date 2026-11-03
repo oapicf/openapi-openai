@@ -19,7 +19,7 @@ export interface RealtimeClientEventConversationItemDelete {
 }
 export namespace RealtimeClientEventConversationItemDelete {
   export const TypeEnum = {
-    ConversationItemDelete: 'conversation.item.delete'
+    ConversationItemDelete: 'conversation.item.delete',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

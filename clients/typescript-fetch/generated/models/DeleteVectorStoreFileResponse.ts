@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface DeleteVectorStoreFileResponse {
     /**
      * 
-     * @type {string}
-     * @memberof DeleteVectorStoreFileResponse
      */
     id: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof DeleteVectorStoreFileResponse
      */
     deleted: boolean;
     /**
      * 
-     * @type {DeleteVectorStoreFileResponseObjectEnum}
-     * @memberof DeleteVectorStoreFileResponse
      */
     object: DeleteVectorStoreFileResponseObjectEnum;
 }
@@ -44,7 +38,7 @@ export interface DeleteVectorStoreFileResponse {
  * @export
  */
 export const DeleteVectorStoreFileResponseObjectEnum = {
-    VectorStoreFileDeleted: 'vector_store.file.deleted'
+    VectorStoreFileDeleted: 'vector_store.file.deleted',
 } as const;
 export type DeleteVectorStoreFileResponseObjectEnum = typeof DeleteVectorStoreFileResponseObjectEnum[keyof typeof DeleteVectorStoreFileResponseObjectEnum];
 

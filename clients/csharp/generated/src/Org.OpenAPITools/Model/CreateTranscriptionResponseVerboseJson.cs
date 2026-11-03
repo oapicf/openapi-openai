@@ -204,28 +204,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!language.IsSet)
-                throw new ArgumentException("Property is required for class CreateTranscriptionResponseVerboseJson.", nameof(language));
+                throw new JsonException("Property is required for class CreateTranscriptionResponseVerboseJson: language.");
 
             if (!duration.IsSet)
-                throw new ArgumentException("Property is required for class CreateTranscriptionResponseVerboseJson.", nameof(duration));
+                throw new JsonException("Property is required for class CreateTranscriptionResponseVerboseJson: duration.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class CreateTranscriptionResponseVerboseJson.", nameof(text));
+                throw new JsonException("Property is required for class CreateTranscriptionResponseVerboseJson: text.");
 
             if (language.IsSet && language.Value == null)
-                throw new ArgumentNullException(nameof(language), "Property is not nullable for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranscriptionResponseVerboseJson: language.");
 
             if (duration.IsSet && duration.Value == null)
-                throw new ArgumentNullException(nameof(duration), "Property is not nullable for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranscriptionResponseVerboseJson: duration.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranscriptionResponseVerboseJson: text.");
 
             if (words.IsSet && words.Value == null)
-                throw new ArgumentNullException(nameof(words), "Property is not nullable for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranscriptionResponseVerboseJson: words.");
 
             if (segments.IsSet && segments.Value == null)
-                throw new ArgumentNullException(nameof(segments), "Property is not nullable for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Property is not nullable for class CreateTranscriptionResponseVerboseJson: segments.");
 
             return new CreateTranscriptionResponseVerboseJson(language.Value!, duration.Value!, text.Value!, words, segments);
         }
@@ -236,7 +236,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranscriptionResponseVerboseJson"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTranscriptionResponseVerboseJson createTranscriptionResponseVerboseJson, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -251,23 +250,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createTranscriptionResponseVerboseJson"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTranscriptionResponseVerboseJson createTranscriptionResponseVerboseJson, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createTranscriptionResponseVerboseJson.Language == null)
-                throw new ArgumentNullException(nameof(createTranscriptionResponseVerboseJson.Language), "Property is required for class CreateTranscriptionResponseVerboseJson.");
-
-            if (createTranscriptionResponseVerboseJson.Duration == null)
-                throw new ArgumentNullException(nameof(createTranscriptionResponseVerboseJson.Duration), "Property is required for class CreateTranscriptionResponseVerboseJson.");
-
-            if (createTranscriptionResponseVerboseJson.Text == null)
-                throw new ArgumentNullException(nameof(createTranscriptionResponseVerboseJson.Text), "Property is required for class CreateTranscriptionResponseVerboseJson.");
-
             if (createTranscriptionResponseVerboseJson.WordsOption.IsSet && createTranscriptionResponseVerboseJson.Words == null)
-                throw new ArgumentNullException(nameof(createTranscriptionResponseVerboseJson.Words), "Property is required for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Cannot write null property CreateTranscriptionResponseVerboseJson.Words to non-nullable JSON property 'words'.");
 
             if (createTranscriptionResponseVerboseJson.SegmentsOption.IsSet && createTranscriptionResponseVerboseJson.Segments == null)
-                throw new ArgumentNullException(nameof(createTranscriptionResponseVerboseJson.Segments), "Property is required for class CreateTranscriptionResponseVerboseJson.");
+                throw new JsonException("Cannot write null property CreateTranscriptionResponseVerboseJson.Segments to non-nullable JSON property 'segments'.");
 
             writer.WriteString("language", createTranscriptionResponseVerboseJson.Language);
 

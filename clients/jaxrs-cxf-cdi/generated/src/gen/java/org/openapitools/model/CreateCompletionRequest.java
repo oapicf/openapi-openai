@@ -25,7 +25,7 @@ public class CreateCompletionRequest   {
   
   private CreateCompletionRequestModel model;
 
-  private CreateCompletionRequestPrompt prompt;
+  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
 
   private Integer bestOf = 1;
 

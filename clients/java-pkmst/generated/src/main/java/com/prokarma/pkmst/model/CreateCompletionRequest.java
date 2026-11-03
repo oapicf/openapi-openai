@@ -22,13 +22,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * CreateCompletionRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionRequest   {
   @JsonProperty("model")
   private CreateCompletionRequestModel model;
 
   @JsonProperty("prompt")
-  private CreateCompletionRequestPrompt prompt;
+  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
 
   @JsonProperty("best_of")
   private Integer bestOf = 1;
@@ -180,7 +180,7 @@ public class CreateCompletionRequest   {
 
   public CreateCompletionRequest putLogitBiasItem(String key, Integer logitBiasItem) {
     if (this.logitBias == null) {
-      this.logitBias = new HashMap<>());
+      this.logitBias = new HashMap<>();
     }
     this.logitBias.put(key, logitBiasItem);
     return this;

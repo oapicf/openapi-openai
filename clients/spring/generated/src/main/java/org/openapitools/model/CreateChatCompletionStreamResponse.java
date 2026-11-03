@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -29,7 +28,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "CreateChatCompletionStreamResponse", description = "Represents a streamed chunk of a chat completion response returned by model, based on the provided input.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateChatCompletionStreamResponse {
 
   private String id;
@@ -75,10 +74,8 @@ public class CreateChatCompletionStreamResponse {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<ServiceTierEnum> serviceTier = JsonNullable.<ServiceTierEnum>undefined();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String systemFingerprint;
 
   /**
@@ -116,7 +113,6 @@ public class CreateChatCompletionStreamResponse {
 
   private ObjectEnum _object;
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<CreateChatCompletionStreamResponseUsage> usage = JsonNullable.<CreateChatCompletionStreamResponseUsage>undefined();
 
   public CreateChatCompletionStreamResponse() {
@@ -172,7 +168,7 @@ public class CreateChatCompletionStreamResponse {
    * A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
    * @return choices
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "choices", description = "A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("choices")
   public List<@Valid CreateChatCompletionStreamResponseChoicesInner> getChoices() {
@@ -236,7 +232,7 @@ public class CreateChatCompletionStreamResponse {
    * @return serviceTier
    */
   
-  @Schema(name = "service_tier", example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "service_tier", example = "scale", description = "The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("service_tier")
   public JsonNullable<ServiceTierEnum> getServiceTier() {
     return serviceTier;
@@ -298,7 +294,7 @@ public class CreateChatCompletionStreamResponse {
    * @return usage
    */
   @Valid 
-  @Schema(name = "usage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "usage", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("usage")
   public JsonNullable<CreateChatCompletionStreamResponseUsage> getUsage() {
     return usage;

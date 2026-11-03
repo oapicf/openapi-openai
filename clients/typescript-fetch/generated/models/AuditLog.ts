@@ -169,152 +169,102 @@ import {
 export interface AuditLog {
     /**
      * The ID of this log.
-     * @type {string}
-     * @memberof AuditLog
      */
     id: string;
     /**
      * 
-     * @type {AuditLogEventType}
-     * @memberof AuditLog
      */
     type: AuditLogEventType;
     /**
      * The Unix timestamp (in seconds) of the event.
-     * @type {number}
-     * @memberof AuditLog
      */
     effectiveAt: number;
     /**
      * 
-     * @type {AuditLogProject}
-     * @memberof AuditLog
      */
     project?: AuditLogProject;
     /**
      * 
-     * @type {AuditLogActor}
-     * @memberof AuditLog
      */
     actor: AuditLogActor;
     /**
      * 
-     * @type {AuditLogApiKeyCreated}
-     * @memberof AuditLog
      */
     apiKeyCreated?: AuditLogApiKeyCreated;
     /**
      * 
-     * @type {AuditLogApiKeyUpdated}
-     * @memberof AuditLog
      */
     apiKeyUpdated?: AuditLogApiKeyUpdated;
     /**
      * 
-     * @type {AuditLogApiKeyDeleted}
-     * @memberof AuditLog
      */
     apiKeyDeleted?: AuditLogApiKeyDeleted;
     /**
      * 
-     * @type {AuditLogInviteSent}
-     * @memberof AuditLog
      */
     inviteSent?: AuditLogInviteSent;
     /**
      * 
-     * @type {AuditLogInviteAccepted}
-     * @memberof AuditLog
      */
     inviteAccepted?: AuditLogInviteAccepted;
     /**
      * 
-     * @type {AuditLogInviteAccepted}
-     * @memberof AuditLog
      */
     inviteDeleted?: AuditLogInviteAccepted;
     /**
      * 
-     * @type {AuditLogLoginFailed}
-     * @memberof AuditLog
      */
     loginFailed?: AuditLogLoginFailed;
     /**
      * 
-     * @type {AuditLogLoginFailed}
-     * @memberof AuditLog
      */
     logoutFailed?: AuditLogLoginFailed;
     /**
      * 
-     * @type {AuditLogOrganizationUpdated}
-     * @memberof AuditLog
      */
     organizationUpdated?: AuditLogOrganizationUpdated;
     /**
      * 
-     * @type {AuditLogProjectCreated}
-     * @memberof AuditLog
      */
     projectCreated?: AuditLogProjectCreated;
     /**
      * 
-     * @type {AuditLogProjectUpdated}
-     * @memberof AuditLog
      */
     projectUpdated?: AuditLogProjectUpdated;
     /**
      * 
-     * @type {AuditLogProjectArchived}
-     * @memberof AuditLog
      */
     projectArchived?: AuditLogProjectArchived;
     /**
      * 
-     * @type {AuditLogRateLimitUpdated}
-     * @memberof AuditLog
      */
     rateLimitUpdated?: AuditLogRateLimitUpdated;
     /**
      * 
-     * @type {AuditLogRateLimitDeleted}
-     * @memberof AuditLog
      */
     rateLimitDeleted?: AuditLogRateLimitDeleted;
     /**
      * 
-     * @type {AuditLogServiceAccountCreated}
-     * @memberof AuditLog
      */
     serviceAccountCreated?: AuditLogServiceAccountCreated;
     /**
      * 
-     * @type {AuditLogServiceAccountUpdated}
-     * @memberof AuditLog
      */
     serviceAccountUpdated?: AuditLogServiceAccountUpdated;
     /**
      * 
-     * @type {AuditLogServiceAccountDeleted}
-     * @memberof AuditLog
      */
     serviceAccountDeleted?: AuditLogServiceAccountDeleted;
     /**
      * 
-     * @type {AuditLogUserAdded}
-     * @memberof AuditLog
      */
     userAdded?: AuditLogUserAdded;
     /**
      * 
-     * @type {AuditLogUserUpdated}
-     * @memberof AuditLog
      */
     userUpdated?: AuditLogUserUpdated;
     /**
      * 
-     * @type {AuditLogUserDeleted}
-     * @memberof AuditLog
      */
     userDeleted?: AuditLogUserDeleted;
 }

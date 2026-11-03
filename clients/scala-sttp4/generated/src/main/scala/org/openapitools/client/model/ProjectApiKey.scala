@@ -32,7 +32,7 @@ object ProjectApiKeyEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object OrganizationProjectApiKey extends `Object`
+    case object OrganizationProjectApiKey extends `Object` { override def toString: String = "organization.project.api_key" }
 
     import org.json4s._
 

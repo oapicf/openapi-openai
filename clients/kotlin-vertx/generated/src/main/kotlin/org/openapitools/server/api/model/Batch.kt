@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * 
  * @param id 
- * @param &#x60;object&#x60; The object type, which is always `batch`.
+ * @param `object` The object type, which is always `batch`.
  * @param endpoint The OpenAI API endpoint used by the batch.
  * @param inputFileId The ID of the input file for the batch.
  * @param completionWindow The time frame within which the batch should be processed.

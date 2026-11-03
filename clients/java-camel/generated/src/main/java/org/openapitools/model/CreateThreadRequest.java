@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,10 +25,9 @@ import jakarta.annotation.Generated;
  * CreateThreadRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequest {
 
-  @Valid
   private List<@Valid CreateMessageRequest> messages = new ArrayList<>();
 
   private JsonNullable<CreateThreadRequestToolResources> toolResources = JsonNullable.<CreateThreadRequestToolResources>undefined();
@@ -53,7 +51,7 @@ public class CreateThreadRequest {
    * A list of [messages](/docs/api-reference/messages) to start the thread with.
    * @return messages
    */
-  @Valid 
+  
   @Schema(name = "messages", description = "A list of [messages](/docs/api-reference/messages) to start the thread with.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("messages")
   public List<@Valid CreateMessageRequest> getMessages() {

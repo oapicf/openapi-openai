@@ -141,9 +141,10 @@ class _$RealtimeServerEventSessionCreatedSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// The event type, must be `session.created`.
 class RealtimeServerEventSessionCreatedTypeEnum extends EnumClass {
 
-  /// The event type, must be `session.created`.
   @BuiltValueEnumConst(wireName: r'session.created')
   static const RealtimeServerEventSessionCreatedTypeEnum sessionPeriodCreated = _$realtimeServerEventSessionCreatedTypeEnum_sessionPeriodCreated;
 

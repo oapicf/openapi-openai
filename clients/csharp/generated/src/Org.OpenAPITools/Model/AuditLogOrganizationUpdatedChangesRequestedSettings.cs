@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (threadsUiVisibility.IsSet && threadsUiVisibility.Value == null)
-                throw new ArgumentNullException(nameof(threadsUiVisibility), "Property is not nullable for class AuditLogOrganizationUpdatedChangesRequestedSettings.");
+                throw new JsonException("Property is not nullable for class AuditLogOrganizationUpdatedChangesRequestedSettings: threads_ui_visibility.");
 
             if (usageDashboardVisibility.IsSet && usageDashboardVisibility.Value == null)
-                throw new ArgumentNullException(nameof(usageDashboardVisibility), "Property is not nullable for class AuditLogOrganizationUpdatedChangesRequestedSettings.");
+                throw new JsonException("Property is not nullable for class AuditLogOrganizationUpdatedChangesRequestedSettings: usage_dashboard_visibility.");
 
             return new AuditLogOrganizationUpdatedChangesRequestedSettings(threadsUiVisibility, usageDashboardVisibility);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogOrganizationUpdatedChangesRequestedSettings"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogOrganizationUpdatedChangesRequestedSettings auditLogOrganizationUpdatedChangesRequestedSettings, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogOrganizationUpdatedChangesRequestedSettings"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogOrganizationUpdatedChangesRequestedSettings auditLogOrganizationUpdatedChangesRequestedSettings, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibilityOption.IsSet && auditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibility == null)
-                throw new ArgumentNullException(nameof(auditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibility), "Property is required for class AuditLogOrganizationUpdatedChangesRequestedSettings.");
+                throw new JsonException("Cannot write null property AuditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibility to non-nullable JSON property 'threads_ui_visibility'.");
 
             if (auditLogOrganizationUpdatedChangesRequestedSettings.UsageDashboardVisibilityOption.IsSet && auditLogOrganizationUpdatedChangesRequestedSettings.UsageDashboardVisibility == null)
-                throw new ArgumentNullException(nameof(auditLogOrganizationUpdatedChangesRequestedSettings.UsageDashboardVisibility), "Property is required for class AuditLogOrganizationUpdatedChangesRequestedSettings.");
+                throw new JsonException("Cannot write null property AuditLogOrganizationUpdatedChangesRequestedSettings.UsageDashboardVisibility to non-nullable JSON property 'usage_dashboard_visibility'.");
 
             if (auditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibilityOption.IsSet)
                 writer.WriteString("threads_ui_visibility", auditLogOrganizationUpdatedChangesRequestedSettings.ThreadsUiVisibility);

@@ -36,7 +36,7 @@ export namespace RealtimeConversationItemContentInner {
         InputAudio: 'input_audio',
         InputText: 'input_text',
         ItemReference: 'item_reference',
-        Text: 'text'
+        Text: 'text',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

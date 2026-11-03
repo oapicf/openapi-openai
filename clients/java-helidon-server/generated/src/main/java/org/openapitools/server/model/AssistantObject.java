@@ -62,7 +62,7 @@ public class AssistantObject   {
     private String description;
     private String model;
     private String instructions;
-    private List<AssistantObjectToolsInner> tools = new ArrayList<>();
+    private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
     private AssistantObjectToolResources toolResources;
     private Object metadata;
     private BigDecimal temperature = new BigDecimal("1");
@@ -101,7 +101,7 @@ public class AssistantObject   {
         String description, 
         String model, 
         String instructions, 
-        List<AssistantObjectToolsInner> tools, 
+        List<@Valid AssistantObjectToolsInner> tools, 
         AssistantObjectToolResources toolResources, 
         Object metadata, 
         BigDecimal temperature, 
@@ -213,11 +213,11 @@ public class AssistantObject   {
      * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`. 
      * @return tools
      */
-    public List<AssistantObjectToolsInner> getTools() {
+    public List<@Valid AssistantObjectToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<AssistantObjectToolsInner> tools) {
+    public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
         this.tools = tools;
     }
 

@@ -240,7 +240,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ListBatchesResponse.ObjectEnum?>(ListBatchesResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ListBatchesResponse.ObjectEnum? varObjectValue = ListBatchesResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ListBatchesResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "first_id":
                             firstId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -255,28 +260,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListBatchesResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListBatchesResponse: data.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class ListBatchesResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class ListBatchesResponse: has_more.");
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListBatchesResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListBatchesResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListBatchesResponse.");
+                throw new JsonException("Property is not nullable for class ListBatchesResponse: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class ListBatchesResponse.");
+                throw new JsonException("Property is not nullable for class ListBatchesResponse: has_more.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListBatchesResponse.");
+                throw new JsonException("Property is not nullable for class ListBatchesResponse: object.");
 
             if (firstId.IsSet && firstId.Value == null)
-                throw new ArgumentNullException(nameof(firstId), "Property is not nullable for class ListBatchesResponse.");
+                throw new JsonException("Property is not nullable for class ListBatchesResponse: first_id.");
 
             if (lastId.IsSet && lastId.Value == null)
-                throw new ArgumentNullException(nameof(lastId), "Property is not nullable for class ListBatchesResponse.");
+                throw new JsonException("Property is not nullable for class ListBatchesResponse: last_id.");
 
             return new ListBatchesResponse(data.Value!, hasMore.Value!.Value!, varObject.Value!.Value!, firstId, lastId);
         }
@@ -287,7 +292,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listBatchesResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListBatchesResponse listBatchesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -302,17 +306,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listBatchesResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListBatchesResponse listBatchesResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listBatchesResponse.Data == null)
-                throw new ArgumentNullException(nameof(listBatchesResponse.Data), "Property is required for class ListBatchesResponse.");
-
             if (listBatchesResponse.FirstIdOption.IsSet && listBatchesResponse.FirstId == null)
-                throw new ArgumentNullException(nameof(listBatchesResponse.FirstId), "Property is required for class ListBatchesResponse.");
+                throw new JsonException("Cannot write null property ListBatchesResponse.FirstId to non-nullable JSON property 'first_id'.");
 
             if (listBatchesResponse.LastIdOption.IsSet && listBatchesResponse.LastId == null)
-                throw new ArgumentNullException(nameof(listBatchesResponse.LastId), "Property is required for class ListBatchesResponse.");
+                throw new JsonException("Cannot write null property ListBatchesResponse.LastId to non-nullable JSON property 'last_id'.");
 
             writer.WritePropertyName("data");
             JsonSerializer.Serialize(writer, listBatchesResponse.Data, jsonSerializerOptions);

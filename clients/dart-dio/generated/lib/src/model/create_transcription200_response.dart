@@ -77,3 +77,4 @@ class _$CreateTranscription200ResponseSerializer implements PrimitiveSerializer<
   }
 }
 
+

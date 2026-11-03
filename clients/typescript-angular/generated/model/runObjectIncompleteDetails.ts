@@ -21,7 +21,7 @@ export interface RunObjectIncompleteDetails {
 export namespace RunObjectIncompleteDetails {
     export const ReasonEnum = {
         MaxCompletionTokens: 'max_completion_tokens',
-        MaxPromptTokens: 'max_prompt_tokens'
+        MaxPromptTokens: 'max_prompt_tokens',
     } as const;
     export type ReasonEnum = typeof ReasonEnum[keyof typeof ReasonEnum];
 }

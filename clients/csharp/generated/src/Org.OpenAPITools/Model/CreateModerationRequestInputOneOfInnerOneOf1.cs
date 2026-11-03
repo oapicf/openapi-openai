@@ -192,7 +192,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<CreateModerationRequestInputOneOfInnerOneOf1.TypeEnum?>(CreateModerationRequestInputOneOfInnerOneOf1.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                CreateModerationRequestInputOneOfInnerOneOf1.TypeEnum? typeValue = CreateModerationRequestInputOneOfInnerOneOf1.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<CreateModerationRequestInputOneOfInnerOneOf1.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -204,16 +209,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationRequestInputOneOfInnerOneOf1.", nameof(type));
+                throw new JsonException("Property is required for class CreateModerationRequestInputOneOfInnerOneOf1: type.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class CreateModerationRequestInputOneOfInnerOneOf1.", nameof(text));
+                throw new JsonException("Property is required for class CreateModerationRequestInputOneOfInnerOneOf1: text.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOf1.");
+                throw new JsonException("Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOf1: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOf1.");
+                throw new JsonException("Property is not nullable for class CreateModerationRequestInputOneOfInnerOneOf1: text.");
 
             return new CreateModerationRequestInputOneOfInnerOneOf1(type.Value!.Value!, text.Value!);
         }
@@ -224,7 +229,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInputOneOfInnerOneOf1"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateModerationRequestInputOneOfInnerOneOf1 createModerationRequestInputOneOfInnerOneOf1, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,12 +243,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createModerationRequestInputOneOfInnerOneOf1"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateModerationRequestInputOneOfInnerOneOf1 createModerationRequestInputOneOfInnerOneOf1, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createModerationRequestInputOneOfInnerOneOf1.Text == null)
-                throw new ArgumentNullException(nameof(createModerationRequestInputOneOfInnerOneOf1.Text), "Property is required for class CreateModerationRequestInputOneOfInnerOneOf1.");
-
             var typeRawValue = CreateModerationRequestInputOneOfInnerOneOf1.TypeEnumToJsonValue(createModerationRequestInputOneOfInnerOneOf1.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("text", createModerationRequestInputOneOfInnerOneOf1.Text);

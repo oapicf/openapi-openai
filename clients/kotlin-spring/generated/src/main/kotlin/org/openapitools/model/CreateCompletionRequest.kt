@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ChatCompletionStreamOptions
 import org.openapitools.model.CreateCompletionRequestModel
 import org.openapitools.model.CreateCompletionRequestPrompt
@@ -45,12 +42,12 @@ data class CreateCompletionRequest(
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("model")
+    @param:JsonProperty("model", required = true)
     @get:JsonProperty("model", required = true) val model: CreateCompletionRequestModel,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("prompt")
+    @param:JsonProperty("prompt", required = true)
     @get:JsonProperty("prompt", required = true) val prompt: CreateCompletionRequestPrompt?,
 
     @get:Min(value=0)
@@ -133,8 +130,6 @@ data class CreateCompletionRequest(
     @get:JsonProperty("top_p") val topP: java.math.BigDecimal? = java.math.BigDecimal("1"),
 
     @Schema(example = "user-1234", description = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). ")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("user")
     @get:JsonProperty("user") val user: kotlin.String? = null
 ) {

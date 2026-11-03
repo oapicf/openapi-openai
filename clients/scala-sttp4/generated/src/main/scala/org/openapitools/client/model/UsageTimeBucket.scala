@@ -22,7 +22,7 @@ object UsageTimeBucketEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object Bucket extends `Object`
+    case object Bucket extends `Object` { override def toString: String = "bucket" }
 
     import org.json4s._
 

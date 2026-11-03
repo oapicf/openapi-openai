@@ -14,13 +14,13 @@ import org.openapitools.model.CreateMessageRequestAttachmentsInnerToolsInner;
 /**
  * CreateMessageRequestAttachmentsInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateMessageRequestAttachmentsInner   {
   @JsonProperty("file_id")
   private String fileId;
 
   @JsonProperty("tools")
-  private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = null;
 
   public CreateMessageRequestAttachmentsInner fileId(String fileId) {
     this.fileId = fileId;
@@ -40,7 +40,7 @@ public class CreateMessageRequestAttachmentsInner   {
     this.fileId = fileId;
   }
 
-  public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -58,11 +58,11 @@ public class CreateMessageRequestAttachmentsInner   {
    * @return tools
   **/
   @ApiModelProperty(value = "The tools to add this file to.")
-  public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 

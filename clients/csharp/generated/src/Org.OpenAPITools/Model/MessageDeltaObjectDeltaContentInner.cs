@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaObjectDeltaContentInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentImageFileObject"></param>
-        public MessageDeltaObjectDeltaContentInner(MessageDeltaContentImageFileObject messageDeltaContentImageFileObject)
+        internal MessageDeltaObjectDeltaContentInner(MessageDeltaContentImageFileObject messageDeltaContentImageFileObject)
         {
             MessageDeltaContentImageFileObject = messageDeltaContentImageFileObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaObjectDeltaContentInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentTextObject"></param>
-        public MessageDeltaObjectDeltaContentInner(MessageDeltaContentTextObject messageDeltaContentTextObject)
+        internal MessageDeltaObjectDeltaContentInner(MessageDeltaContentTextObject messageDeltaContentTextObject)
         {
             MessageDeltaContentTextObject = messageDeltaContentTextObject;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaObjectDeltaContentInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentRefusalObject"></param>
-        public MessageDeltaObjectDeltaContentInner(MessageDeltaContentRefusalObject messageDeltaContentRefusalObject)
+        internal MessageDeltaObjectDeltaContentInner(MessageDeltaContentRefusalObject messageDeltaContentRefusalObject)
         {
             MessageDeltaContentRefusalObject = messageDeltaContentRefusalObject;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageDeltaObjectDeltaContentInner" /> class.
         /// </summary>
         /// <param name="messageDeltaContentImageUrlObject"></param>
-        public MessageDeltaObjectDeltaContentInner(MessageDeltaContentImageUrlObject messageDeltaContentImageUrlObject)
+        internal MessageDeltaObjectDeltaContentInner(MessageDeltaContentImageUrlObject messageDeltaContentImageUrlObject)
         {
             MessageDeltaContentImageUrlObject = messageDeltaContentImageUrlObject;
             OnCreated();
@@ -220,7 +220,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObjectDeltaContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageDeltaObjectDeltaContentInner messageDeltaObjectDeltaContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,7 +234,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageDeltaObjectDeltaContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageDeltaObjectDeltaContentInner messageDeltaObjectDeltaContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

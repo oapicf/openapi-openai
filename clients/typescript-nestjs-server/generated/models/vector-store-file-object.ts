@@ -35,14 +35,14 @@ export interface VectorStoreFileObject {
 }
 export namespace VectorStoreFileObject {
   export const ObjectEnum = {
-    VectorStoreFile: 'vector_store.file'
+    VectorStoreFile: 'vector_store.file',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
   export const StatusEnum = {
     InProgress: 'in_progress',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Failed: 'failed'
+    Failed: 'failed',
   } as const;
   export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

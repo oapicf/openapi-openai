@@ -49,7 +49,7 @@ import javax.validation.Valid;
   RealtimeSessionCreateRequest.JSON_PROPERTY_TEMPERATURE,
   RealtimeSessionCreateRequest.JSON_PROPERTY_MAX_RESPONSE_OUTPUT_TOKENS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeSessionCreateRequest   {
   /**
    * Gets or Sets modalities
@@ -483,7 +483,7 @@ public class RealtimeSessionCreateRequest   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "Tools (functions) available to the model.")
-  @Valid 
+  
   public List<@Valid RealtimeResponseCreateParamsToolsInner> getTools() {
     return tools;
   }

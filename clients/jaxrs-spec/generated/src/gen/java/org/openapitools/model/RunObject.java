@@ -31,7 +31,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Represents an execution run on a [thread](/docs/api-reference/threads).")
 @JsonTypeName("RunObject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObject   {
   private String id;
   public enum ObjectEnum {
@@ -143,7 +143,7 @@ public class RunObject   {
   private RunObjectIncompleteDetails incompleteDetails;
   private String model;
   private String instructions;
-  private @Valid List<AssistantObjectToolsInner> tools = new ArrayList<>();
+  private List<@Valid AssistantObjectToolsInner> tools = new ArrayList<>();
   private Object metadata;
   private RunCompletionUsage usage;
   private BigDecimal temperature;
@@ -533,7 +533,7 @@ public class RunObject   {
   /**
    * The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.
    **/
-  public RunObject tools(List<AssistantObjectToolsInner> tools) {
+  public RunObject tools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -541,12 +541,12 @@ public class RunObject   {
   
   @ApiModelProperty(required = true, value = "The list of tools that the [assistant](/docs/api-reference/assistants) used for this run.")
   @JsonProperty(required = true, value = "tools")
-  @NotNull @Valid  @Size(max=20)public List<@Valid AssistantObjectToolsInner> getTools() {
+  @NotNull  @Size(max=20)public List<@Valid AssistantObjectToolsInner> getTools() {
     return tools;
   }
 
   @JsonProperty(required = true, value = "tools")
-  public void setTools(List<AssistantObjectToolsInner> tools) {
+  public void setTools(List<@Valid AssistantObjectToolsInner> tools) {
     this.tools = tools;
   }
 

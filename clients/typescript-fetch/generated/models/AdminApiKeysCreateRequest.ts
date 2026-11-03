@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AdminApiKeysCreateRequest {
     /**
      * 
-     * @type {string}
-     * @memberof AdminApiKeysCreateRequest
      */
     name: string;
 }

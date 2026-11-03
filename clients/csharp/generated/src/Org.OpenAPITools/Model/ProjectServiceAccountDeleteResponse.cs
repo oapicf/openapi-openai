@@ -198,7 +198,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectServiceAccountDeleteResponse.ObjectEnum?>(ProjectServiceAccountDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectServiceAccountDeleteResponse.ObjectEnum? varObjectValue = ProjectServiceAccountDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectServiceAccountDeleteResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -213,22 +218,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountDeleteResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectServiceAccountDeleteResponse: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountDeleteResponse.", nameof(id));
+                throw new JsonException("Property is required for class ProjectServiceAccountDeleteResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountDeleteResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class ProjectServiceAccountDeleteResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectServiceAccountDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountDeleteResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectServiceAccountDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountDeleteResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class ProjectServiceAccountDeleteResponse.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountDeleteResponse: deleted.");
 
             return new ProjectServiceAccountDeleteResponse(varObject.Value!.Value!, id.Value!, deleted.Value!.Value!);
         }
@@ -239,7 +244,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectServiceAccountDeleteResponse projectServiceAccountDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -254,12 +258,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectServiceAccountDeleteResponse projectServiceAccountDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectServiceAccountDeleteResponse.Id == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountDeleteResponse.Id), "Property is required for class ProjectServiceAccountDeleteResponse.");
-
             var varObjectRawValue = ProjectServiceAccountDeleteResponse.ObjectEnumToJsonValue(projectServiceAccountDeleteResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", projectServiceAccountDeleteResponse.Id);

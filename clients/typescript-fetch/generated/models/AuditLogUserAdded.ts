@@ -29,14 +29,10 @@ import {
 export interface AuditLogUserAdded {
     /**
      * The user ID.
-     * @type {string}
-     * @memberof AuditLogUserAdded
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogUserAddedData}
-     * @memberof AuditLogUserAdded
      */
     data?: AuditLogUserAddedData;
 }

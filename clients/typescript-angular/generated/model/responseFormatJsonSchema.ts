@@ -19,7 +19,7 @@ export interface ResponseFormatJsonSchema {
 }
 export namespace ResponseFormatJsonSchema {
     export const TypeEnum = {
-        JsonSchema: 'json_schema'
+        JsonSchema: 'json_schema',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -20,24 +20,24 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param id The upload Part unique identifier, which can be referenced in API endpoints.
  * @param createdAt The Unix timestamp (in seconds) for when the Part was created.
  * @param uploadId The ID of the Upload object that this Part was added to.
- * @param &#x60;object&#x60; The object type, which is always `upload.part`.
+ * @param `object` The object type, which is always `upload.part`.
  */
 data class UploadPart(
 
     @Schema(required = true, description = "The upload Part unique identifier, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the Part was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "The ID of the Upload object that this Part was added to.")
-    @param:JsonProperty("upload_id")
+    @param:JsonProperty("upload_id", required = true)
     @get:JsonProperty("upload_id", required = true) val uploadId: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `upload.part`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UploadPart.`Object`
 ) {
 
@@ -48,12 +48,12 @@ data class UploadPart(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         uploadPeriodPart("upload.part");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

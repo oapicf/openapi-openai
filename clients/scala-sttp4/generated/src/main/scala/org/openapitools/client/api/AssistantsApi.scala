@@ -53,7 +53,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the thread to which this run belongs.
    * @param runId The ID of the run to cancel.
    */
-  def cancelRun(bearerToken: String)(threadId: String, runId: String): Request[Either[ResponseException[String], RunObject]] =
+  def cancelRun(bearerToken: String)(threadId: String, runId: String): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/runs/${runId}/cancel")
       .contentType("application/json")
@@ -69,7 +69,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param createAssistantRequest 
    */
-  def createAssistant(bearerToken: String)(createAssistantRequest: CreateAssistantRequest): Request[Either[ResponseException[String], AssistantObject]] =
+  def createAssistant(bearerToken: String)(createAssistantRequest: CreateAssistantRequest): sttp.client4.Request[Either[ResponseException[String], AssistantObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/assistants")
       .contentType("application/json")
@@ -87,7 +87,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the [thread](/docs/api-reference/threads) to create a message for.
    * @param createMessageRequest 
    */
-  def createMessage(bearerToken: String)(threadId: String, createMessageRequest: CreateMessageRequest): Request[Either[ResponseException[String], MessageObject]] =
+  def createMessage(bearerToken: String)(threadId: String, createMessageRequest: CreateMessageRequest): sttp.client4.Request[Either[ResponseException[String], MessageObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/messages")
       .contentType("application/json")
@@ -106,7 +106,7 @@ class AssistantsApi(baseUrl: String) {
    * @param createRunRequest 
    * @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
    */
-  def createRun(bearerToken: String)(threadId: String, createRunRequest: CreateRunRequest, include: Option[Seq[String]] = None): Request[Either[ResponseException[String], RunObject]] =
+  def createRun(bearerToken: String)(threadId: String, createRunRequest: CreateRunRequest, include: Option[Seq[String]] = None): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/runs?include[]=${ include }")
       .contentType("application/json")
@@ -123,7 +123,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param createThreadRequest 
    */
-  def createThread(bearerToken: String)(createThreadRequest: Option[CreateThreadRequest] = None): Request[Either[ResponseException[String], ThreadObject]] =
+  def createThread(bearerToken: String)(createThreadRequest: Option[CreateThreadRequest] = None): sttp.client4.Request[Either[ResponseException[String], ThreadObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads")
       .contentType("application/json")
@@ -140,7 +140,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param createThreadAndRunRequest 
    */
-  def createThreadAndRun(bearerToken: String)(createThreadAndRunRequest: CreateThreadAndRunRequest): Request[Either[ResponseException[String], RunObject]] =
+  def createThreadAndRun(bearerToken: String)(createThreadAndRunRequest: CreateThreadAndRunRequest): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/runs")
       .contentType("application/json")
@@ -157,7 +157,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param assistantId The ID of the assistant to delete.
    */
-  def deleteAssistant(bearerToken: String)(assistantId: String): Request[Either[ResponseException[String], DeleteAssistantResponse]] =
+  def deleteAssistant(bearerToken: String)(assistantId: String): sttp.client4.Request[Either[ResponseException[String], DeleteAssistantResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/assistants/${assistantId}")
       .contentType("application/json")
@@ -174,7 +174,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the thread to which this message belongs.
    * @param messageId The ID of the message to delete.
    */
-  def deleteMessage(bearerToken: String)(threadId: String, messageId: String): Request[Either[ResponseException[String], DeleteMessageResponse]] =
+  def deleteMessage(bearerToken: String)(threadId: String, messageId: String): sttp.client4.Request[Either[ResponseException[String], DeleteMessageResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/threads/${threadId}/messages/${messageId}")
       .contentType("application/json")
@@ -190,7 +190,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param threadId The ID of the thread to delete.
    */
-  def deleteThread(bearerToken: String)(threadId: String): Request[Either[ResponseException[String], DeleteThreadResponse]] =
+  def deleteThread(bearerToken: String)(threadId: String): sttp.client4.Request[Either[ResponseException[String], DeleteThreadResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/threads/${threadId}")
       .contentType("application/json")
@@ -206,7 +206,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param assistantId The ID of the assistant to retrieve.
    */
-  def getAssistant(bearerToken: String)(assistantId: String): Request[Either[ResponseException[String], AssistantObject]] =
+  def getAssistant(bearerToken: String)(assistantId: String): sttp.client4.Request[Either[ResponseException[String], AssistantObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/assistants/${assistantId}")
       .contentType("application/json")
@@ -223,7 +223,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the [thread](/docs/api-reference/threads) to which this message belongs.
    * @param messageId The ID of the message to retrieve.
    */
-  def getMessage(bearerToken: String)(threadId: String, messageId: String): Request[Either[ResponseException[String], MessageObject]] =
+  def getMessage(bearerToken: String)(threadId: String, messageId: String): sttp.client4.Request[Either[ResponseException[String], MessageObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/messages/${messageId}")
       .contentType("application/json")
@@ -240,7 +240,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the [thread](/docs/api-reference/threads) that was run.
    * @param runId The ID of the run to retrieve.
    */
-  def getRun(bearerToken: String)(threadId: String, runId: String): Request[Either[ResponseException[String], RunObject]] =
+  def getRun(bearerToken: String)(threadId: String, runId: String): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/runs/${runId}")
       .contentType("application/json")
@@ -259,7 +259,7 @@ class AssistantsApi(baseUrl: String) {
    * @param stepId The ID of the run step to retrieve.
    * @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
    */
-  def getRunStep(bearerToken: String)(threadId: String, runId: String, stepId: String, include: Option[Seq[String]] = None): Request[Either[ResponseException[String], RunStepObject]] =
+  def getRunStep(bearerToken: String)(threadId: String, runId: String, stepId: String, include: Option[Seq[String]] = None): sttp.client4.Request[Either[ResponseException[String], RunStepObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/runs/${runId}/steps/${stepId}?include[]=${ include }")
       .contentType("application/json")
@@ -275,7 +275,7 @@ class AssistantsApi(baseUrl: String) {
    * 
    * @param threadId The ID of the thread to retrieve.
    */
-  def getThread(bearerToken: String)(threadId: String): Request[Either[ResponseException[String], ThreadObject]] =
+  def getThread(bearerToken: String)(threadId: String): sttp.client4.Request[Either[ResponseException[String], ThreadObject]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}")
       .contentType("application/json")
@@ -294,7 +294,7 @@ class AssistantsApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    */
-  def listAssistants(bearerToken: String)(limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): Request[Either[ResponseException[String], ListAssistantsResponse]] =
+  def listAssistants(bearerToken: String)(limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListAssistantsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/assistants?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }")
       .contentType("application/json")
@@ -315,7 +315,7 @@ class AssistantsApi(baseUrl: String) {
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    * @param runId Filter messages by the run ID that generated them. 
    */
-  def listMessages(bearerToken: String)(threadId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, runId: Option[String] = None): Request[Either[ResponseException[String], ListMessagesResponse]] =
+  def listMessages(bearerToken: String)(threadId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, runId: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListMessagesResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/messages?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }&run_id=${ runId }")
       .contentType("application/json")
@@ -337,7 +337,7 @@ class AssistantsApi(baseUrl: String) {
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    * @param include A list of additional fields to include in the response. Currently the only supported value is `step_details.tool_calls[*].file_search.results[*].content` to fetch the file search result content.  See the [file search tool documentation](/docs/assistants/tools/file-search#customizing-file-search-settings) for more information. 
    */
-  def listRunSteps(bearerToken: String)(threadId: String, runId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, include: Option[Seq[String]] = None): Request[Either[ResponseException[String], ListRunStepsResponse]] =
+  def listRunSteps(bearerToken: String)(threadId: String, runId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None, include: Option[Seq[String]] = None): sttp.client4.Request[Either[ResponseException[String], ListRunStepsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/runs/${runId}/steps?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }&include[]=${ include }")
       .contentType("application/json")
@@ -357,7 +357,7 @@ class AssistantsApi(baseUrl: String) {
    * @param after A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. 
    * @param before A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. 
    */
-  def listRuns(bearerToken: String)(threadId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): Request[Either[ResponseException[String], ListRunsResponse]] =
+  def listRuns(bearerToken: String)(threadId: String, limit: Option[Int] = None, order: Option[String] = None, after: Option[String] = None, before: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ListRunsResponse]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/threads/${threadId}/runs?limit=${ limit }&order=${ order }&after=${ after }&before=${ before }")
       .contentType("application/json")
@@ -374,7 +374,7 @@ class AssistantsApi(baseUrl: String) {
    * @param assistantId The ID of the assistant to modify.
    * @param modifyAssistantRequest 
    */
-  def modifyAssistant(bearerToken: String)(assistantId: String, modifyAssistantRequest: ModifyAssistantRequest): Request[Either[ResponseException[String], AssistantObject]] =
+  def modifyAssistant(bearerToken: String)(assistantId: String, modifyAssistantRequest: ModifyAssistantRequest): sttp.client4.Request[Either[ResponseException[String], AssistantObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/assistants/${assistantId}")
       .contentType("application/json")
@@ -393,7 +393,7 @@ class AssistantsApi(baseUrl: String) {
    * @param messageId The ID of the message to modify.
    * @param modifyMessageRequest 
    */
-  def modifyMessage(bearerToken: String)(threadId: String, messageId: String, modifyMessageRequest: ModifyMessageRequest): Request[Either[ResponseException[String], MessageObject]] =
+  def modifyMessage(bearerToken: String)(threadId: String, messageId: String, modifyMessageRequest: ModifyMessageRequest): sttp.client4.Request[Either[ResponseException[String], MessageObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/messages/${messageId}")
       .contentType("application/json")
@@ -412,7 +412,7 @@ class AssistantsApi(baseUrl: String) {
    * @param runId The ID of the run to modify.
    * @param modifyRunRequest 
    */
-  def modifyRun(bearerToken: String)(threadId: String, runId: String, modifyRunRequest: ModifyRunRequest): Request[Either[ResponseException[String], RunObject]] =
+  def modifyRun(bearerToken: String)(threadId: String, runId: String, modifyRunRequest: ModifyRunRequest): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/runs/${runId}")
       .contentType("application/json")
@@ -430,7 +430,7 @@ class AssistantsApi(baseUrl: String) {
    * @param threadId The ID of the thread to modify. Only the `metadata` can be modified.
    * @param modifyThreadRequest 
    */
-  def modifyThread(bearerToken: String)(threadId: String, modifyThreadRequest: ModifyThreadRequest): Request[Either[ResponseException[String], ThreadObject]] =
+  def modifyThread(bearerToken: String)(threadId: String, modifyThreadRequest: ModifyThreadRequest): sttp.client4.Request[Either[ResponseException[String], ThreadObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}")
       .contentType("application/json")
@@ -449,7 +449,7 @@ class AssistantsApi(baseUrl: String) {
    * @param runId The ID of the run that requires the tool output submission.
    * @param submitToolOutputsRunRequest 
    */
-  def submitToolOuputsToRun(bearerToken: String)(threadId: String, runId: String, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest): Request[Either[ResponseException[String], RunObject]] =
+  def submitToolOuputsToRun(bearerToken: String)(threadId: String, runId: String, submitToolOutputsRunRequest: SubmitToolOutputsRunRequest): sttp.client4.Request[Either[ResponseException[String], RunObject]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/threads/${threadId}/runs/${runId}/submit_tool_outputs")
       .contentType("application/json")

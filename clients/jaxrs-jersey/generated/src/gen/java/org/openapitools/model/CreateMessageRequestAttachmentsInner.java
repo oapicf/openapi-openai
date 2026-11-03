@@ -34,7 +34,7 @@ import javax.validation.Valid;
   CreateMessageRequestAttachmentsInner.JSON_PROPERTY_FILE_ID,
   CreateMessageRequestAttachmentsInner.JSON_PROPERTY_TOOLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateMessageRequestAttachmentsInner   {
   public static final String JSON_PROPERTY_FILE_ID = "file_id";
   @JsonProperty(JSON_PROPERTY_FILE_ID)
@@ -42,7 +42,7 @@ public class CreateMessageRequestAttachmentsInner   {
 
   public static final String JSON_PROPERTY_TOOLS = "tools";
   @JsonProperty(JSON_PROPERTY_TOOLS)
-  private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
 
   public CreateMessageRequestAttachmentsInner fileId(String fileId) {
     this.fileId = fileId;
@@ -64,7 +64,7 @@ public class CreateMessageRequestAttachmentsInner   {
     this.fileId = fileId;
   }
 
-  public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
     return this;
   }
@@ -83,12 +83,12 @@ public class CreateMessageRequestAttachmentsInner   {
    **/
   @JsonProperty(value = "tools")
   @ApiModelProperty(value = "The tools to add this file to.")
-  @Valid 
-  public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
 
-  public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 

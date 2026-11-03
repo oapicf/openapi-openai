@@ -33,7 +33,7 @@ import javax.validation.Valid;
   SubmitToolOutputsRunRequest.JSON_PROPERTY_TOOL_OUTPUTS,
   SubmitToolOutputsRunRequest.JSON_PROPERTY_STREAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class SubmitToolOutputsRunRequest   {
   public static final String JSON_PROPERTY_TOOL_OUTPUTS = "tool_outputs";
   @JsonProperty(JSON_PROPERTY_TOOL_OUTPUTS)
@@ -62,7 +62,7 @@ public class SubmitToolOutputsRunRequest   {
    **/
   @JsonProperty(value = "tool_outputs")
   @ApiModelProperty(required = true, value = "A list of tools for which the outputs are being submitted.")
-  @NotNull @Valid 
+  @NotNull 
   public List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> getToolOutputs() {
     return toolOutputs;
   }

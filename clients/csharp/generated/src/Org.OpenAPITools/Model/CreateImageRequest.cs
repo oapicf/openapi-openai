@@ -599,19 +599,48 @@ namespace Org.OpenAPITools.Model
                         case "quality":
                             string? qualityRawValue = utf8JsonReader.GetString();
                             if (qualityRawValue != null)
-                                quality = new Option<CreateImageRequest.QualityEnum?>(CreateImageRequest.QualityEnumFromStringOrDefault(qualityRawValue));
+                            {
+                                CreateImageRequest.QualityEnum? qualityValue = CreateImageRequest.QualityEnumFromStringOrDefault(qualityRawValue);
+                                if (qualityValue == null)
+                                    throw new JsonException();
+                                quality = new Option<CreateImageRequest.QualityEnum?>(qualityValue);
+                            }
                             break;
                         case "response_format":
                             string? responseFormatRawValue = utf8JsonReader.GetString();
-                            responseFormat = new Option<CreateImageRequest.ResponseFormatEnum?>(responseFormatRawValue == null ? null : CreateImageRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue));
+                            if (responseFormatRawValue == null)
+                                responseFormat = new Option<CreateImageRequest.ResponseFormatEnum?>(null);
+                            else
+                            {
+                                CreateImageRequest.ResponseFormatEnum? responseFormatValue = CreateImageRequest.ResponseFormatEnumFromStringOrDefault(responseFormatRawValue);
+                                if (responseFormatValue == null)
+                                    throw new JsonException();
+                                responseFormat = new Option<CreateImageRequest.ResponseFormatEnum?>(responseFormatValue);
+                            }
                             break;
                         case "size":
                             string? sizeRawValue = utf8JsonReader.GetString();
-                            size = new Option<CreateImageRequest.SizeEnum?>(sizeRawValue == null ? null : CreateImageRequest.SizeEnumFromStringOrDefault(sizeRawValue));
+                            if (sizeRawValue == null)
+                                size = new Option<CreateImageRequest.SizeEnum?>(null);
+                            else
+                            {
+                                CreateImageRequest.SizeEnum? sizeValue = CreateImageRequest.SizeEnumFromStringOrDefault(sizeRawValue);
+                                if (sizeValue == null)
+                                    throw new JsonException();
+                                size = new Option<CreateImageRequest.SizeEnum?>(sizeValue);
+                            }
                             break;
                         case "style":
                             string? styleRawValue = utf8JsonReader.GetString();
-                            style = new Option<CreateImageRequest.StyleEnum?>(styleRawValue == null ? null : CreateImageRequest.StyleEnumFromStringOrDefault(styleRawValue));
+                            if (styleRawValue == null)
+                                style = new Option<CreateImageRequest.StyleEnum?>(null);
+                            else
+                            {
+                                CreateImageRequest.StyleEnum? styleValue = CreateImageRequest.StyleEnumFromStringOrDefault(styleRawValue);
+                                if (styleValue == null)
+                                    throw new JsonException();
+                                style = new Option<CreateImageRequest.StyleEnum?>(styleValue);
+                            }
                             break;
                         case "user":
                             user = new Option<string?>(utf8JsonReader.GetString()!);
@@ -623,16 +652,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!prompt.IsSet)
-                throw new ArgumentException("Property is required for class CreateImageRequest.", nameof(prompt));
+                throw new JsonException("Property is required for class CreateImageRequest: prompt.");
 
             if (prompt.IsSet && prompt.Value == null)
-                throw new ArgumentNullException(nameof(prompt), "Property is not nullable for class CreateImageRequest.");
+                throw new JsonException("Property is not nullable for class CreateImageRequest: prompt.");
 
             if (quality.IsSet && quality.Value == null)
-                throw new ArgumentNullException(nameof(quality), "Property is not nullable for class CreateImageRequest.");
+                throw new JsonException("Property is not nullable for class CreateImageRequest: quality.");
 
             if (user.IsSet && user.Value == null)
-                throw new ArgumentNullException(nameof(user), "Property is not nullable for class CreateImageRequest.");
+                throw new JsonException("Property is not nullable for class CreateImageRequest: user.");
 
             return new CreateImageRequest(prompt.Value!, model, n, quality, responseFormat, size, style, user);
         }
@@ -643,7 +672,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createImageRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateImageRequest createImageRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -658,14 +686,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createImageRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateImageRequest createImageRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createImageRequest.Prompt == null)
-                throw new ArgumentNullException(nameof(createImageRequest.Prompt), "Property is required for class CreateImageRequest.");
+            if (createImageRequest.QualityOption.IsSet && createImageRequest.Quality == null)
+                throw new JsonException("Cannot write null property CreateImageRequest.Quality to non-nullable JSON property 'quality'.");
 
             if (createImageRequest.UserOption.IsSet && createImageRequest.User == null)
-                throw new ArgumentNullException(nameof(createImageRequest.User), "Property is required for class CreateImageRequest.");
+                throw new JsonException("Cannot write null property CreateImageRequest.User to non-nullable JSON property 'user'.");
 
             writer.WriteString("prompt", createImageRequest.Prompt);
 

@@ -188,7 +188,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ListModelsResponse.ObjectEnum?>(ListModelsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ListModelsResponse.ObjectEnum? varObjectValue = ListModelsResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ListModelsResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<Model>?>(JsonSerializer.Deserialize<List<Model>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -200,16 +205,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ListModelsResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class ListModelsResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListModelsResponse.", nameof(data));
+                throw new JsonException("Property is required for class ListModelsResponse: data.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ListModelsResponse.");
+                throw new JsonException("Property is not nullable for class ListModelsResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ListModelsResponse.");
+                throw new JsonException("Property is not nullable for class ListModelsResponse: data.");
 
             return new ListModelsResponse(varObject.Value!.Value!, data.Value!);
         }
@@ -220,7 +225,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listModelsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListModelsResponse listModelsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,12 +239,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="listModelsResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListModelsResponse listModelsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (listModelsResponse.Data == null)
-                throw new ArgumentNullException(nameof(listModelsResponse.Data), "Property is required for class ListModelsResponse.");
-
             var varObjectRawValue = ListModelsResponse.ObjectEnumToJsonValue(listModelsResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WritePropertyName("data");

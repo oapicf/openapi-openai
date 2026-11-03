@@ -237,12 +237,12 @@ class _$CreateChatCompletionResponseSerializer implements PrimitiveSerializer<Cr
   }
 }
 
+
+/// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
 class CreateChatCompletionResponseServiceTierEnum extends EnumClass {
 
-  /// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
   @BuiltValueEnumConst(wireName: r'scale')
   static const CreateChatCompletionResponseServiceTierEnum scale = _$createChatCompletionResponseServiceTierEnum_scale;
-  /// The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
   @BuiltValueEnumConst(wireName: r'default')
   static const CreateChatCompletionResponseServiceTierEnum default_ = _$createChatCompletionResponseServiceTierEnum_default_;
 
@@ -254,9 +254,9 @@ class CreateChatCompletionResponseServiceTierEnum extends EnumClass {
   static CreateChatCompletionResponseServiceTierEnum valueOf(String name) => _$createChatCompletionResponseServiceTierEnumValueOf(name);
 }
 
+/// The object type, which is always `chat.completion`.
 class CreateChatCompletionResponseObjectEnum extends EnumClass {
 
-  /// The object type, which is always `chat.completion`.
   @BuiltValueEnumConst(wireName: r'chat.completion')
   static const CreateChatCompletionResponseObjectEnum chatPeriodCompletion = _$createChatCompletionResponseObjectEnum_chatPeriodCompletion;
 

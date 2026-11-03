@@ -41,7 +41,7 @@ export interface OpenAIFile {
 }
 export namespace OpenAIFile {
   export const ObjectEnum = {
-    File: 'file'
+    File: 'file',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
   export const PurposeEnum = {
@@ -51,13 +51,13 @@ export namespace OpenAIFile {
     BatchOutput: 'batch_output',
     FineTune: 'fine-tune',
     FineTuneResults: 'fine-tune-results',
-    Vision: 'vision'
+    Vision: 'vision',
   } as const;
   export type PurposeEnum = typeof PurposeEnum[keyof typeof PurposeEnum];
   export const StatusEnum = {
     Uploaded: 'uploaded',
     Processed: 'processed',
-    Error: 'error'
+    Error: 'error',
   } as const;
   export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

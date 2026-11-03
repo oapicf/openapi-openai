@@ -34,8 +34,6 @@ public class CreateCompletionResponse  {
   */
   @ApiModelProperty(required = true, value = "The list of completion choices the model generated for the input prompt.")
 
-  @Valid
-
   private List<@Valid CreateCompletionResponseChoicesInner> choices = new ArrayList<>();
 
  /**

@@ -171,9 +171,10 @@ class _$RealtimeResponseCreateParamsToolsInnerSerializer implements PrimitiveSer
   }
 }
 
+
+/// The type of the tool, i.e. `function`.
 class RealtimeResponseCreateParamsToolsInnerTypeEnum extends EnumClass {
 
-  /// The type of the tool, i.e. `function`.
   @BuiltValueEnumConst(wireName: r'function')
   static const RealtimeResponseCreateParamsToolsInnerTypeEnum function_ = _$realtimeResponseCreateParamsToolsInnerTypeEnum_function_;
 

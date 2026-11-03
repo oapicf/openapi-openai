@@ -29,26 +29,18 @@ import {
 export interface AuditLogOrganizationUpdatedChangesRequested {
     /**
      * The organization title.
-     * @type {string}
-     * @memberof AuditLogOrganizationUpdatedChangesRequested
      */
     title?: string;
     /**
      * The organization description.
-     * @type {string}
-     * @memberof AuditLogOrganizationUpdatedChangesRequested
      */
     description?: string;
     /**
      * The organization name.
-     * @type {string}
-     * @memberof AuditLogOrganizationUpdatedChangesRequested
      */
     name?: string;
     /**
      * 
-     * @type {AuditLogOrganizationUpdatedChangesRequestedSettings}
-     * @memberof AuditLogOrganizationUpdatedChangesRequested
      */
     settings?: AuditLogOrganizationUpdatedChangesRequestedSettings;
 }

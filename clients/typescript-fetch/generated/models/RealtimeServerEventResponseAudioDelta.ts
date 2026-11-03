@@ -21,44 +21,30 @@ import { mapValues } from '../runtime';
 export interface RealtimeServerEventResponseAudioDelta {
     /**
      * The unique ID of the server event.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     eventId: string;
     /**
      * The event type, must be `response.audio.delta`.
-     * @type {RealtimeServerEventResponseAudioDeltaTypeEnum}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     type: RealtimeServerEventResponseAudioDeltaTypeEnum;
     /**
      * The ID of the response.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     responseId: string;
     /**
      * The ID of the item.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     itemId: string;
     /**
      * The index of the output item in the response.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     outputIndex: number;
     /**
      * The index of the content part in the item's content array.
-     * @type {number}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     contentIndex: number;
     /**
      * Base64-encoded audio data delta.
-     * @type {string}
-     * @memberof RealtimeServerEventResponseAudioDelta
      */
     delta: string;
 }
@@ -68,7 +54,7 @@ export interface RealtimeServerEventResponseAudioDelta {
  * @export
  */
 export const RealtimeServerEventResponseAudioDeltaTypeEnum = {
-    ResponseAudioDelta: 'response.audio.delta'
+    ResponseAudioDelta: 'response.audio.delta',
 } as const;
 export type RealtimeServerEventResponseAudioDeltaTypeEnum = typeof RealtimeServerEventResponseAudioDeltaTypeEnum[keyof typeof RealtimeServerEventResponseAudioDeltaTypeEnum];
 

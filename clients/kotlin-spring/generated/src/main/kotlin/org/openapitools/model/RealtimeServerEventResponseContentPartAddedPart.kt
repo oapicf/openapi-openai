@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -28,26 +25,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventResponseContentPartAddedPart(
 
     @Schema(description = "The content type (\"text\", \"audio\").")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("type")
     @get:JsonProperty("type") val type: RealtimeServerEventResponseContentPartAddedPart.Type? = null,
 
     @Schema(description = "The text content (if type is \"text\").")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("text")
     @get:JsonProperty("text") val text: kotlin.String? = null,
 
     @Schema(description = "Base64-encoded audio data (if type is \"audio\").")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("audio")
     @get:JsonProperty("audio") val audio: kotlin.String? = null,
 
     @Schema(description = "The transcript of the audio (if type is \"audio\").")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("transcript")
     @get:JsonProperty("transcript") val transcript: kotlin.String? = null
 ) {
@@ -60,12 +49,12 @@ data class RealtimeServerEventResponseContentPartAddedPart(
 
         audio("audio"),
         text("text");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

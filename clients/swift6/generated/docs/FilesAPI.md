@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **createFile**
 ```swift
-    open class func createFile(file: URL, purpose: Purpose_createFile, completion: @escaping (_ data: OpenAIFile?, _ error: Error?) -> Void)
+    open class func createFile(file: URL, purpose: Purpose_createFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> OpenAIFile
 ```
 
 Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
@@ -27,15 +27,11 @@ let file = URL(string: "https://example.com")! // URL | The File object (not fil
 let purpose = "purpose_example" // String | The intended purpose of the uploaded file.  Use \\\"assistants\\\" for [Assistants](/docs/api-reference/assistants) and [Message](/docs/api-reference/messages) files, \\\"vision\\\" for Assistants image file inputs, \\\"batch\\\" for [Batch API](/docs/guides/batch), and \\\"fine-tune\\\" for [Fine-tuning](/docs/api-reference/fine-tuning). 
 
 // Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and the size of all files uploaded by one organization can be up to 100 GB.  The Assistants API supports files up to 2 million tokens and of specific file types. See the [Assistants Tools guide](/docs/assistants/tools) for details.  The Fine-tuning API only supports `.jsonl` files. The input also has certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models.  The Batch API only supports `.jsonl` files up to 200 MB in size. The input also has a specific required [format](/docs/api-reference/batch/request-input).  Please [contact us](https://help.openai.com/) if you need to increase these storage limits. 
-FilesAPI.createFile(file: file, purpose: purpose) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FilesAPI.createFile(file: file, purpose: purpose)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -63,7 +59,7 @@ Name | Type | Description  | Notes
 
 # **deleteFile**
 ```swift
-    open class func deleteFile(fileId: String, completion: @escaping (_ data: DeleteFileResponse?, _ error: Error?) -> Void)
+    open class func deleteFile(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DeleteFileResponse
 ```
 
 Delete a file.
@@ -76,15 +72,11 @@ import OpenAPIClient
 let fileId = "fileId_example" // String | The ID of the file to use for this request.
 
 // Delete a file.
-FilesAPI.deleteFile(fileId: fileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FilesAPI.deleteFile(fileId: fileId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -111,7 +103,7 @@ Name | Type | Description  | Notes
 
 # **downloadFile**
 ```swift
-    open class func downloadFile(fileId: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func downloadFile(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 Returns the contents of the specified file.
@@ -124,15 +116,11 @@ import OpenAPIClient
 let fileId = "fileId_example" // String | The ID of the file to use for this request.
 
 // Returns the contents of the specified file.
-FilesAPI.downloadFile(fileId: fileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FilesAPI.downloadFile(fileId: fileId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -159,7 +147,7 @@ Name | Type | Description  | Notes
 
 # **listFiles**
 ```swift
-    open class func listFiles(purpose: String? = nil, limit: Int? = nil, order: Order_listFiles? = nil, after: String? = nil, completion: @escaping (_ data: ListFilesResponse?, _ error: Error?) -> Void)
+    open class func listFiles(purpose: String? = nil, limit: Int? = nil, order: Order_listFiles? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListFilesResponse
 ```
 
 Returns a list of files.
@@ -175,15 +163,11 @@ let order = "order_example" // String | Sort order by the `created_at` timestamp
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Returns a list of files.
-FilesAPI.listFiles(purpose: purpose, limit: limit, order: order, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FilesAPI.listFiles(purpose: purpose, limit: limit, order: order, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -213,7 +197,7 @@ Name | Type | Description  | Notes
 
 # **retrieveFile**
 ```swift
-    open class func retrieveFile(fileId: String, completion: @escaping (_ data: OpenAIFile?, _ error: Error?) -> Void)
+    open class func retrieveFile(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> OpenAIFile
 ```
 
 Returns information about a specific file.
@@ -226,15 +210,11 @@ import OpenAPIClient
 let fileId = "fileId_example" // String | The ID of the file to use for this request.
 
 // Returns information about a specific file.
-FilesAPI.retrieveFile(fileId: fileId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await FilesAPI.retrieveFile(fileId: fileId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

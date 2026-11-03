@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MessageDeltaContentImageUrlObjectImageUrl {
     /**
      * The URL of the image, must be a supported image types: jpeg, jpg, png, gif, webp.
-     * @type {string}
-     * @memberof MessageDeltaContentImageUrlObjectImageUrl
      */
     url?: string;
     /**
      * Specifies the detail level of the image. `low` uses fewer tokens, you can opt in to high resolution using `high`.
-     * @type {MessageDeltaContentImageUrlObjectImageUrlDetailEnum}
-     * @memberof MessageDeltaContentImageUrlObjectImageUrl
      */
     detail?: MessageDeltaContentImageUrlObjectImageUrlDetailEnum;
 }
@@ -40,7 +36,7 @@ export interface MessageDeltaContentImageUrlObjectImageUrl {
 export const MessageDeltaContentImageUrlObjectImageUrlDetailEnum = {
     Auto: 'auto',
     Low: 'low',
-    High: 'high'
+    High: 'high',
 } as const;
 export type MessageDeltaContentImageUrlObjectImageUrlDetailEnum = typeof MessageDeltaContentImageUrlObjectImageUrlDetailEnum[keyof typeof MessageDeltaContentImageUrlObjectImageUrlDetailEnum];
 

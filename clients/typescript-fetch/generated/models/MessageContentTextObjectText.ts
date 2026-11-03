@@ -29,14 +29,10 @@ import {
 export interface MessageContentTextObjectText {
     /**
      * The data that makes up the text.
-     * @type {string}
-     * @memberof MessageContentTextObjectText
      */
     value: string;
     /**
      * 
-     * @type {Array<MessageContentTextObjectTextAnnotationsInner>}
-     * @memberof MessageContentTextObjectText
      */
     annotations: Array<MessageContentTextObjectTextAnnotationsInner>;
 }

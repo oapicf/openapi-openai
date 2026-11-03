@@ -15,7 +15,7 @@ import org.openapitools.model.RealtimeResponse;
  **/
 
 @ApiModel(description = "Returned when a new Response is created. The first event of response creation, where the response is in an initial state of `in_progress`. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventResponseCreated   {
   @JsonProperty("event_id")
   private String eventId;

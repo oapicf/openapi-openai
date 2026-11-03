@@ -32,20 +32,14 @@ import {
 export interface ChatCompletionRequestSystemMessage {
     /**
      * 
-     * @type {ChatCompletionRequestSystemMessageContent}
-     * @memberof ChatCompletionRequestSystemMessage
      */
     content: ChatCompletionRequestSystemMessageContent;
     /**
      * The role of the messages author, in this case `system`.
-     * @type {ChatCompletionRequestSystemMessageRoleEnum}
-     * @memberof ChatCompletionRequestSystemMessage
      */
     role: ChatCompletionRequestSystemMessageRoleEnum;
     /**
      * An optional name for the participant. Provides the model information to differentiate between participants of the same role.
-     * @type {string}
-     * @memberof ChatCompletionRequestSystemMessage
      */
     name?: string;
 }
@@ -55,7 +49,7 @@ export interface ChatCompletionRequestSystemMessage {
  * @export
  */
 export const ChatCompletionRequestSystemMessageRoleEnum = {
-    System: 'system'
+    System: 'system',
 } as const;
 export type ChatCompletionRequestSystemMessageRoleEnum = typeof ChatCompletionRequestSystemMessageRoleEnum[keyof typeof ChatCompletionRequestSystemMessageRoleEnum];
 

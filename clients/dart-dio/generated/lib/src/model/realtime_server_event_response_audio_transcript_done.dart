@@ -209,9 +209,10 @@ class _$RealtimeServerEventResponseAudioTranscriptDoneSerializer implements Prim
   }
 }
 
+
+/// The event type, must be `response.audio_transcript.done`.
 class RealtimeServerEventResponseAudioTranscriptDoneTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.audio_transcript.done`.
   @BuiltValueEnumConst(wireName: r'response.audio_transcript.done')
   static const RealtimeServerEventResponseAudioTranscriptDoneTypeEnum responsePeriodAudioTranscriptPeriodDone = _$realtimeServerEventResponseAudioTranscriptDoneTypeEnum_responsePeriodAudioTranscriptPeriodDone;
 

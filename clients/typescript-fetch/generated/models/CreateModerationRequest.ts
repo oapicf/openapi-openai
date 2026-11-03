@@ -36,14 +36,10 @@ import {
 export interface CreateModerationRequest {
     /**
      * 
-     * @type {CreateModerationRequestInput}
-     * @memberof CreateModerationRequest
      */
     input: CreateModerationRequestInput;
     /**
      * 
-     * @type {CreateModerationRequestModel}
-     * @memberof CreateModerationRequest
      */
     model?: CreateModerationRequestModel;
 }

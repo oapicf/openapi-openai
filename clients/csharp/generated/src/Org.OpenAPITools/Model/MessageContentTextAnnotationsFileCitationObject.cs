@@ -233,7 +233,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<MessageContentTextAnnotationsFileCitationObject.TypeEnum?>(MessageContentTextAnnotationsFileCitationObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                MessageContentTextAnnotationsFileCitationObject.TypeEnum? typeValue = MessageContentTextAnnotationsFileCitationObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<MessageContentTextAnnotationsFileCitationObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "text":
                             text = new Option<string?>(utf8JsonReader.GetString()!);
@@ -254,34 +259,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObject.", nameof(type));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObject: type.");
 
             if (!text.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObject.", nameof(text));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObject: text.");
 
             if (!fileCitation.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObject.", nameof(fileCitation));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObject: file_citation.");
 
             if (!startIndex.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObject.", nameof(startIndex));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObject: start_index.");
 
             if (!endIndex.IsSet)
-                throw new ArgumentException("Property is required for class MessageContentTextAnnotationsFileCitationObject.", nameof(endIndex));
+                throw new JsonException("Property is required for class MessageContentTextAnnotationsFileCitationObject: end_index.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObject: type.");
 
             if (text.IsSet && text.Value == null)
-                throw new ArgumentNullException(nameof(text), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObject: text.");
 
             if (fileCitation.IsSet && fileCitation.Value == null)
-                throw new ArgumentNullException(nameof(fileCitation), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObject: file_citation.");
 
             if (startIndex.IsSet && startIndex.Value == null)
-                throw new ArgumentNullException(nameof(startIndex), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObject: start_index.");
 
             if (endIndex.IsSet && endIndex.Value == null)
-                throw new ArgumentNullException(nameof(endIndex), "Property is not nullable for class MessageContentTextAnnotationsFileCitationObject.");
+                throw new JsonException("Property is not nullable for class MessageContentTextAnnotationsFileCitationObject: end_index.");
 
             return new MessageContentTextAnnotationsFileCitationObject(type.Value!.Value!, text.Value!, fileCitation.Value!, startIndex.Value!.Value!, endIndex.Value!.Value!);
         }
@@ -292,7 +297,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFileCitationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageContentTextAnnotationsFileCitationObject messageContentTextAnnotationsFileCitationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -307,15 +311,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageContentTextAnnotationsFileCitationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageContentTextAnnotationsFileCitationObject messageContentTextAnnotationsFileCitationObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageContentTextAnnotationsFileCitationObject.Text == null)
-                throw new ArgumentNullException(nameof(messageContentTextAnnotationsFileCitationObject.Text), "Property is required for class MessageContentTextAnnotationsFileCitationObject.");
-
-            if (messageContentTextAnnotationsFileCitationObject.FileCitation == null)
-                throw new ArgumentNullException(nameof(messageContentTextAnnotationsFileCitationObject.FileCitation), "Property is required for class MessageContentTextAnnotationsFileCitationObject.");
-
             var typeRawValue = MessageContentTextAnnotationsFileCitationObject.TypeEnumToJsonValue(messageContentTextAnnotationsFileCitationObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WriteString("text", messageContentTextAnnotationsFileCitationObject.Text);

@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageObjectContentInner" /> class.
         /// </summary>
         /// <param name="messageContentImageFileObject"></param>
-        public MessageObjectContentInner(MessageContentImageFileObject messageContentImageFileObject)
+        internal MessageObjectContentInner(MessageContentImageFileObject messageContentImageFileObject)
         {
             MessageContentImageFileObject = messageContentImageFileObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageObjectContentInner" /> class.
         /// </summary>
         /// <param name="messageContentImageUrlObject"></param>
-        public MessageObjectContentInner(MessageContentImageUrlObject messageContentImageUrlObject)
+        internal MessageObjectContentInner(MessageContentImageUrlObject messageContentImageUrlObject)
         {
             MessageContentImageUrlObject = messageContentImageUrlObject;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageObjectContentInner" /> class.
         /// </summary>
         /// <param name="messageContentTextObject"></param>
-        public MessageObjectContentInner(MessageContentTextObject messageContentTextObject)
+        internal MessageObjectContentInner(MessageContentTextObject messageContentTextObject)
         {
             MessageContentTextObject = messageContentTextObject;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="MessageObjectContentInner" /> class.
         /// </summary>
         /// <param name="messageContentRefusalObject"></param>
-        public MessageObjectContentInner(MessageContentRefusalObject messageContentRefusalObject)
+        internal MessageObjectContentInner(MessageContentRefusalObject messageContentRefusalObject)
         {
             MessageContentRefusalObject = messageContentRefusalObject;
             OnCreated();
@@ -220,7 +220,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObjectContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageObjectContentInner messageObjectContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,7 +234,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageObjectContentInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageObjectContentInner messageObjectContentInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

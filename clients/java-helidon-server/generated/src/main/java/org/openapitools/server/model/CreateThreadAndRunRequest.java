@@ -23,7 +23,7 @@ public class CreateThreadAndRunRequest   {
     private CreateThreadRequest thread;
     private CreateRunRequestModel model;
     private String instructions;
-    private List<CreateThreadAndRunRequestToolsInner> tools;
+    private List<@Valid CreateThreadAndRunRequestToolsInner> tools;
     private CreateThreadAndRunRequestToolResources toolResources;
     private Object metadata;
     private BigDecimal temperature = new BigDecimal("1");
@@ -68,7 +68,7 @@ public class CreateThreadAndRunRequest   {
         CreateThreadRequest thread, 
         CreateRunRequestModel model, 
         String instructions, 
-        List<CreateThreadAndRunRequestToolsInner> tools, 
+        List<@Valid CreateThreadAndRunRequestToolsInner> tools, 
         CreateThreadAndRunRequestToolResources toolResources, 
         Object metadata, 
         BigDecimal temperature, 
@@ -153,11 +153,11 @@ public class CreateThreadAndRunRequest   {
      * Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis.
      * @return tools
      */
-    public List<CreateThreadAndRunRequestToolsInner> getTools() {
+    public List<@Valid CreateThreadAndRunRequestToolsInner> getTools() {
         return tools;
     }
 
-    public void setTools(List<CreateThreadAndRunRequestToolsInner> tools) {
+    public void setTools(List<@Valid CreateThreadAndRunRequestToolsInner> tools) {
         this.tools = tools;
     }
 

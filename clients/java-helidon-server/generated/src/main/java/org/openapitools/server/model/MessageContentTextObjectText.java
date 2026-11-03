@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 public class MessageContentTextObjectText   {
 
     private String value;
-    private List<MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
+    private List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -30,7 +30,7 @@ public class MessageContentTextObjectText   {
      */
     public MessageContentTextObjectText(
         String value, 
-        List<MessageContentTextObjectTextAnnotationsInner> annotations
+        List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations
     ) {
         this.value = value;
         this.annotations = annotations;
@@ -54,11 +54,11 @@ public class MessageContentTextObjectText   {
      * Get annotations
      * @return annotations
      */
-    public List<MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
+    public List<@Valid MessageContentTextObjectTextAnnotationsInner> getAnnotations() {
         return annotations;
     }
 
-    public void setAnnotations(List<MessageContentTextObjectTextAnnotationsInner> annotations) {
+    public void setAnnotations(List<@Valid MessageContentTextObjectTextAnnotationsInner> annotations) {
         this.annotations = annotations;
     }
 

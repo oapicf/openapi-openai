@@ -105,3 +105,4 @@ class _$AssistantsNamedToolChoiceFunctionSerializer implements PrimitiveSerializ
   }
 }
 
+

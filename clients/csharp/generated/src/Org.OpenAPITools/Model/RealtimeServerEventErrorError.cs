@@ -211,16 +211,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventErrorError.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventErrorError: type.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventErrorError.", nameof(message));
+                throw new JsonException("Property is required for class RealtimeServerEventErrorError: message.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventErrorError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventErrorError: type.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class RealtimeServerEventErrorError.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventErrorError: message.");
 
             return new RealtimeServerEventErrorError(type.Value!, message.Value!, code, param, eventId);
         }
@@ -231,7 +231,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventErrorError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventErrorError realtimeServerEventErrorError, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -246,15 +245,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventErrorError"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventErrorError realtimeServerEventErrorError, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventErrorError.Type == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventErrorError.Type), "Property is required for class RealtimeServerEventErrorError.");
-
-            if (realtimeServerEventErrorError.Message == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventErrorError.Message), "Property is required for class RealtimeServerEventErrorError.");
-
             writer.WriteString("type", realtimeServerEventErrorError.Type);
 
             writer.WriteString("message", realtimeServerEventErrorError.Message);

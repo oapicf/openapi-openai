@@ -24,37 +24,37 @@ import io.swagger.v3.oas.annotations.media.Schema
  * @param stepNumber The step number that the checkpoint was created at.
  * @param metrics 
  * @param fineTuningJobId The name of the fine-tuning job that this checkpoint was created from.
- * @param &#x60;object&#x60; The object type, which is always \"fine_tuning.job.checkpoint\".
+ * @param `object` The object type, which is always \"fine_tuning.job.checkpoint\".
  */
 data class FineTuningJobCheckpoint(
 
     @Schema(required = true, description = "The checkpoint identifier, which can be referenced in the API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the checkpoint was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "The name of the fine-tuned checkpoint model that is created.")
-    @param:JsonProperty("fine_tuned_model_checkpoint")
+    @param:JsonProperty("fine_tuned_model_checkpoint", required = true)
     @get:JsonProperty("fine_tuned_model_checkpoint", required = true) val fineTunedModelCheckpoint: kotlin.String,
 
     @Schema(required = true, description = "The step number that the checkpoint was created at.")
-    @param:JsonProperty("step_number")
+    @param:JsonProperty("step_number", required = true)
     @get:JsonProperty("step_number", required = true) val stepNumber: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("metrics")
+    @param:JsonProperty("metrics", required = true)
     @get:JsonProperty("metrics", required = true) val metrics: FineTuningJobCheckpointMetrics,
 
     @Schema(required = true, description = "The name of the fine-tuning job that this checkpoint was created from.")
-    @param:JsonProperty("fine_tuning_job_id")
+    @param:JsonProperty("fine_tuning_job_id", required = true)
     @get:JsonProperty("fine_tuning_job_id", required = true) val fineTuningJobId: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always \"fine_tuning.job.checkpoint\".")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: FineTuningJobCheckpoint.`Object`
 ) {
 
@@ -65,12 +65,12 @@ data class FineTuningJobCheckpoint(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         fine_tuningPeriodJobPeriodCheckpoint("fine_tuning.job.checkpoint");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

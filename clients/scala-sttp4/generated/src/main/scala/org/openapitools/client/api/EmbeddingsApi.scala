@@ -32,7 +32,7 @@ class EmbeddingsApi(baseUrl: String) {
    * 
    * @param createEmbeddingRequest 
    */
-  def createEmbedding(bearerToken: String)(createEmbeddingRequest: CreateEmbeddingRequest): Request[Either[ResponseException[String], CreateEmbeddingResponse]] =
+  def createEmbedding(bearerToken: String)(createEmbeddingRequest: CreateEmbeddingRequest): sttp.client4.Request[Either[ResponseException[String], CreateEmbeddingResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/embeddings")
       .contentType("application/json")

@@ -210,7 +210,9 @@ class RealtimeSessionCreateRequest {
         turnDetection: RealtimeSessionCreateRequestTurnDetection.fromJson(json[r'turn_detection']),
         tools: RealtimeResponseCreateParamsToolsInner.listFromJson(json[r'tools']),
         toolChoice: mapValueOfType<String>(json, r'tool_choice'),
-        temperature: num.parse('${json[r'temperature']}'),
+        temperature: json[r'temperature'] == null
+            ? null
+            : num.parse('${json[r'temperature']}'),
         maxResponseOutputTokens: RealtimeResponseCreateParamsMaxResponseOutputTokens.fromJson(json[r'max_response_output_tokens']),
       );
     }

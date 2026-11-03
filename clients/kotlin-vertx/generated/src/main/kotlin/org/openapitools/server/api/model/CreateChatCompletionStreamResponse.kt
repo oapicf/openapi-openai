@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * @param choices A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {\"include_usage\": true}`. 
  * @param created The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
  * @param model The model to generate the completion.
- * @param &#x60;object&#x60; The object type, which is always `chat.completion.chunk`.
+ * @param `object` The object type, which is always `chat.completion.chunk`.
  * @param serviceTier The service tier used for processing the request. This field is only included if the `service_tier` parameter is specified in the request.
  * @param systemFingerprint This fingerprint represents the backend configuration that the model runs with. Can be used in conjunction with the `seed` request parameter to understand when backend changes have been made that might impact determinism. 
  * @param usage 

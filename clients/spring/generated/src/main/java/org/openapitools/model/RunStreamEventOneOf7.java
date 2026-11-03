@@ -24,7 +24,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunStreamEvent_oneOf_7", description = "Occurs when a [run](/docs/api-reference/runs/object) moves to a `cancelling` status.")
 @JsonTypeName("RunStreamEvent_oneOf_7")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunStreamEventOneOf7 implements RunStreamEvent {
 
   /**

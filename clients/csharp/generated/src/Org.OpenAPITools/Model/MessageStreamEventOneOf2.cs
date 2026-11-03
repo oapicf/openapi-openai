@@ -188,7 +188,12 @@ namespace Org.OpenAPITools.Model
                         case "event":
                             string? varEventRawValue = utf8JsonReader.GetString();
                             if (varEventRawValue != null)
-                                varEvent = new Option<MessageStreamEventOneOf2.EventEnum?>(MessageStreamEventOneOf2.EventEnumFromStringOrDefault(varEventRawValue));
+                            {
+                                MessageStreamEventOneOf2.EventEnum? varEventValue = MessageStreamEventOneOf2.EventEnumFromStringOrDefault(varEventRawValue);
+                                if (varEventValue == null)
+                                    throw new JsonException();
+                                varEvent = new Option<MessageStreamEventOneOf2.EventEnum?>(varEventValue);
+                            }
                             break;
                         case "data":
                             data = new Option<MessageDeltaObject?>(JsonSerializer.Deserialize<MessageDeltaObject>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -200,16 +205,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class MessageStreamEventOneOf2.", nameof(varEvent));
+                throw new JsonException("Property is required for class MessageStreamEventOneOf2: event.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class MessageStreamEventOneOf2.", nameof(data));
+                throw new JsonException("Property is required for class MessageStreamEventOneOf2: data.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class MessageStreamEventOneOf2.");
+                throw new JsonException("Property is not nullable for class MessageStreamEventOneOf2: event.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class MessageStreamEventOneOf2.");
+                throw new JsonException("Property is not nullable for class MessageStreamEventOneOf2: data.");
 
             return new MessageStreamEventOneOf2(varEvent.Value!.Value!, data.Value!);
         }
@@ -220,7 +225,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageStreamEventOneOf2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MessageStreamEventOneOf2 messageStreamEventOneOf2, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,12 +239,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="messageStreamEventOneOf2"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MessageStreamEventOneOf2 messageStreamEventOneOf2, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (messageStreamEventOneOf2.Data == null)
-                throw new ArgumentNullException(nameof(messageStreamEventOneOf2.Data), "Property is required for class MessageStreamEventOneOf2.");
-
             var varEventRawValue = MessageStreamEventOneOf2.EventEnumToJsonValue(messageStreamEventOneOf2.Event);
             writer.WriteString("event", varEventRawValue);
             writer.WritePropertyName("data");

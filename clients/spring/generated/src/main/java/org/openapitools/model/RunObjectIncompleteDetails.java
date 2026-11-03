@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -24,7 +23,7 @@ import jakarta.annotation.Generated;
 
 @Schema(name = "RunObject_incomplete_details", description = "Details on why the run is incomplete. Will be `null` if the run is not incomplete.")
 @JsonTypeName("RunObject_incomplete_details")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObjectIncompleteDetails {
 
   /**
@@ -62,7 +61,6 @@ public class RunObjectIncompleteDetails {
     }
   }
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ReasonEnum reason;
 
   public RunObjectIncompleteDetails reason(@Nullable ReasonEnum reason) {
@@ -116,7 +114,7 @@ public class RunObjectIncompleteDetails {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
+  private String toIndentedString(@Nullable Object o) {
     return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }

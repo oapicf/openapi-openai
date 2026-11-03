@@ -40,26 +40,18 @@ export interface CreateChatCompletionResponseChoicesInner {
      * `content_filter` if content was omitted due to a flag from our content filters,
      * `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function.
      * 
-     * @type {CreateChatCompletionResponseChoicesInnerFinishReasonEnum}
-     * @memberof CreateChatCompletionResponseChoicesInner
      */
     finishReason: CreateChatCompletionResponseChoicesInnerFinishReasonEnum;
     /**
      * The index of the choice in the list of choices.
-     * @type {number}
-     * @memberof CreateChatCompletionResponseChoicesInner
      */
     index: number;
     /**
      * 
-     * @type {ChatCompletionResponseMessage}
-     * @memberof CreateChatCompletionResponseChoicesInner
      */
     message: ChatCompletionResponseMessage;
     /**
      * 
-     * @type {CreateChatCompletionResponseChoicesInnerLogprobs}
-     * @memberof CreateChatCompletionResponseChoicesInner
      */
     logprobs: CreateChatCompletionResponseChoicesInnerLogprobs | null;
 }
@@ -73,7 +65,7 @@ export const CreateChatCompletionResponseChoicesInnerFinishReasonEnum = {
     Length: 'length',
     ToolCalls: 'tool_calls',
     ContentFilter: 'content_filter',
-    FunctionCall: 'function_call'
+    FunctionCall: 'function_call',
 } as const;
 export type CreateChatCompletionResponseChoicesInnerFinishReasonEnum = typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum[keyof typeof CreateChatCompletionResponseChoicesInnerFinishReasonEnum];
 

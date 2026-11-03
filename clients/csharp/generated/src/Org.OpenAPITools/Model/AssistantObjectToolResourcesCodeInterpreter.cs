@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileIds.IsSet && fileIds.Value == null)
-                throw new ArgumentNullException(nameof(fileIds), "Property is not nullable for class AssistantObjectToolResourcesCodeInterpreter.");
+                throw new JsonException("Property is not nullable for class AssistantObjectToolResourcesCodeInterpreter: file_ids.");
 
             return new AssistantObjectToolResourcesCodeInterpreter(fileIds);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObjectToolResourcesCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssistantObjectToolResourcesCodeInterpreter assistantObjectToolResourcesCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="assistantObjectToolResourcesCodeInterpreter"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssistantObjectToolResourcesCodeInterpreter assistantObjectToolResourcesCodeInterpreter, JsonSerializerOptions jsonSerializerOptions)
         {
             if (assistantObjectToolResourcesCodeInterpreter.FileIdsOption.IsSet && assistantObjectToolResourcesCodeInterpreter.FileIds == null)
-                throw new ArgumentNullException(nameof(assistantObjectToolResourcesCodeInterpreter.FileIds), "Property is required for class AssistantObjectToolResourcesCodeInterpreter.");
+                throw new JsonException("Cannot write null property AssistantObjectToolResourcesCodeInterpreter.FileIds to non-nullable JSON property 'file_ids'.");
 
             if (assistantObjectToolResourcesCodeInterpreter.FileIdsOption.IsSet)
             {

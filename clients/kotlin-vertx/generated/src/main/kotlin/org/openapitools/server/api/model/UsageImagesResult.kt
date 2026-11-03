@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * The aggregated images usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param images The number of images processed.
  * @param numModelRequests The count of requests made to the model.
  * @param source When `group_by=source`, this field provides the source of the grouped usage result, possible values are `image.generation`, `image.edit`, `image.variation`.

@@ -24,12 +24,12 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ChatCompletionRequestMessageContentPartImage(
 
     @Schema(required = true, description = "The type of the content part.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: ChatCompletionRequestMessageContentPartImage.Type,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("image_url")
+    @param:JsonProperty("image_url", required = true)
     @get:JsonProperty("image_url", required = true) val imageUrl: ChatCompletionRequestMessageContentPartImageImageUrl
 ) : ChatCompletionRequestUserMessageContentPart {
 
@@ -40,12 +40,12 @@ data class ChatCompletionRequestMessageContentPartImage(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         image_url("image_url");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

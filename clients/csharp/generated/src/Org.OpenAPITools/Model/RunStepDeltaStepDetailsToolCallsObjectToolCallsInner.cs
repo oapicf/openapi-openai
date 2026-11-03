@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsCodeObject"></param>
-        public RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsCodeObject runStepDeltaStepDetailsToolCallsCodeObject)
+        internal RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsCodeObject runStepDeltaStepDetailsToolCallsCodeObject)
         {
             RunStepDeltaStepDetailsToolCallsCodeObject = runStepDeltaStepDetailsToolCallsCodeObject;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsFileSearchObject"></param>
-        public RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsFileSearchObject runStepDeltaStepDetailsToolCallsFileSearchObject)
+        internal RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsFileSearchObject runStepDeltaStepDetailsToolCallsFileSearchObject)
         {
             RunStepDeltaStepDetailsToolCallsFileSearchObject = runStepDeltaStepDetailsToolCallsFileSearchObject;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStepDeltaStepDetailsToolCallsObjectToolCallsInner" /> class.
         /// </summary>
         /// <param name="runStepDeltaStepDetailsToolCallsFunctionObject"></param>
-        public RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsFunctionObject runStepDeltaStepDetailsToolCallsFunctionObject)
+        internal RunStepDeltaStepDetailsToolCallsObjectToolCallsInner(RunStepDeltaStepDetailsToolCallsFunctionObject runStepDeltaStepDetailsToolCallsFunctionObject)
         {
             RunStepDeltaStepDetailsToolCallsFunctionObject = runStepDeltaStepDetailsToolCallsFunctionObject;
             OnCreated();
@@ -198,7 +198,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsObjectToolCallsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsObjectToolCallsInner runStepDeltaStepDetailsToolCallsObjectToolCallsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -213,7 +212,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDeltaStepDetailsToolCallsObjectToolCallsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDeltaStepDetailsToolCallsObjectToolCallsInner runStepDeltaStepDetailsToolCallsObjectToolCallsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

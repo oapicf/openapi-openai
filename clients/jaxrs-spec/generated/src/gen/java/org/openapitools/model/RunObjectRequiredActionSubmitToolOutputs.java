@@ -23,9 +23,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
  **/
 @ApiModel(description = "Details on the tool outputs needed for this run to continue.")
 @JsonTypeName("RunObject_required_action_submit_tool_outputs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RunObjectRequiredActionSubmitToolOutputs   {
-  private @Valid List<@Valid RunToolCallObject> toolCalls = new ArrayList<>();
+  private List<@Valid RunToolCallObject> toolCalls = new ArrayList<>();
 
   public RunObjectRequiredActionSubmitToolOutputs() {
   }
@@ -48,7 +48,7 @@ public class RunObjectRequiredActionSubmitToolOutputs   {
   
   @ApiModelProperty(required = true, value = "A list of the relevant tool calls.")
   @JsonProperty(required = true, value = "tool_calls")
-  @NotNull @Valid public List<@Valid RunToolCallObject> getToolCalls() {
+  @NotNull public List<@Valid RunToolCallObject> getToolCalls() {
     return toolCalls;
   }
 

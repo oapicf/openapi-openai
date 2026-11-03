@@ -29,14 +29,10 @@ import {
 export interface CreateModerationRequestInputOneOfInnerOneOf {
     /**
      * Always `image_url`.
-     * @type {CreateModerationRequestInputOneOfInnerOneOfTypeEnum}
-     * @memberof CreateModerationRequestInputOneOfInnerOneOf
      */
     type: CreateModerationRequestInputOneOfInnerOneOfTypeEnum;
     /**
      * 
-     * @type {CreateModerationRequestInputOneOfInnerOneOfImageUrl}
-     * @memberof CreateModerationRequestInputOneOfInnerOneOf
      */
     imageUrl: CreateModerationRequestInputOneOfInnerOneOfImageUrl;
 }
@@ -46,7 +42,7 @@ export interface CreateModerationRequestInputOneOfInnerOneOf {
  * @export
  */
 export const CreateModerationRequestInputOneOfInnerOneOfTypeEnum = {
-    ImageUrl: 'image_url'
+    ImageUrl: 'image_url',
 } as const;
 export type CreateModerationRequestInputOneOfInnerOneOfTypeEnum = typeof CreateModerationRequestInputOneOfInnerOneOfTypeEnum[keyof typeof CreateModerationRequestInputOneOfInnerOneOfTypeEnum];
 

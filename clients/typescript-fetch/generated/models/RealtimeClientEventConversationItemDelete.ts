@@ -25,20 +25,14 @@ import { mapValues } from '../runtime';
 export interface RealtimeClientEventConversationItemDelete {
     /**
      * Optional client-generated ID used to identify this event.
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemDelete
      */
     eventId?: string;
     /**
      * The event type, must be `conversation.item.delete`.
-     * @type {RealtimeClientEventConversationItemDeleteTypeEnum}
-     * @memberof RealtimeClientEventConversationItemDelete
      */
     type: RealtimeClientEventConversationItemDeleteTypeEnum;
     /**
      * The ID of the item to delete.
-     * @type {string}
-     * @memberof RealtimeClientEventConversationItemDelete
      */
     itemId: string;
 }
@@ -48,7 +42,7 @@ export interface RealtimeClientEventConversationItemDelete {
  * @export
  */
 export const RealtimeClientEventConversationItemDeleteTypeEnum = {
-    ConversationItemDelete: 'conversation.item.delete'
+    ConversationItemDelete: 'conversation.item.delete',
 } as const;
 export type RealtimeClientEventConversationItemDeleteTypeEnum = typeof RealtimeClientEventConversationItemDeleteTypeEnum[keyof typeof RealtimeClientEventConversationItemDeleteTypeEnum];
 

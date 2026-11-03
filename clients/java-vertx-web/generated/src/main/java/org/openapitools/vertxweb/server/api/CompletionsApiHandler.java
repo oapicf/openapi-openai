@@ -45,7 +45,7 @@ public class CompletionsApiHandler {
         RequestParameter body = requestParameters.body();
         CreateCompletionRequest createCompletionRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateCompletionRequest>(){}) : null;
 
-        logger.debug("Parameter createCompletionRequest is {}", createCompletionRequest);
+        logger.debug("Parameter createCompletionRequest is (body omitted)");
 
         api.createCompletion(createCompletionRequest)
             .onSuccess(apiResponse -> {

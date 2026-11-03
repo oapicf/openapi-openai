@@ -16,9 +16,9 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* The role of the author of a message
-* Values: system,user,assistant,tool,function
-*/
+ * The role of the author of a message
+ * Values: system,user,assistant,tool,function
+ */
 enum class ChatCompletionRole(@get:JsonValue val value: kotlin.String) {
 
     system("system"),
@@ -31,9 +31,8 @@ enum class ChatCompletionRole(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): ChatCompletionRole {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRole'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'ChatCompletionRole'")
         }
     }
 }
-

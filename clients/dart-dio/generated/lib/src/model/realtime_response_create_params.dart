@@ -315,6 +315,7 @@ class _$RealtimeResponseCreateParamsSerializer implements PrimitiveSerializer<Re
   }
 }
 
+
 class RealtimeResponseCreateParamsModalitiesEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'text')
@@ -330,30 +331,23 @@ class RealtimeResponseCreateParamsModalitiesEnum extends EnumClass {
   static RealtimeResponseCreateParamsModalitiesEnum valueOf(String name) => _$realtimeResponseCreateParamsModalitiesEnumValueOf(name);
 }
 
+/// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
 class RealtimeResponseCreateParamsVoiceEnum extends EnumClass {
 
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'alloy')
   static const RealtimeResponseCreateParamsVoiceEnum alloy = _$realtimeResponseCreateParamsVoiceEnum_alloy;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ash')
   static const RealtimeResponseCreateParamsVoiceEnum ash = _$realtimeResponseCreateParamsVoiceEnum_ash;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'ballad')
   static const RealtimeResponseCreateParamsVoiceEnum ballad = _$realtimeResponseCreateParamsVoiceEnum_ballad;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'coral')
   static const RealtimeResponseCreateParamsVoiceEnum coral = _$realtimeResponseCreateParamsVoiceEnum_coral;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'echo')
   static const RealtimeResponseCreateParamsVoiceEnum echo = _$realtimeResponseCreateParamsVoiceEnum_echo;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'sage')
   static const RealtimeResponseCreateParamsVoiceEnum sage = _$realtimeResponseCreateParamsVoiceEnum_sage;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'shimmer')
   static const RealtimeResponseCreateParamsVoiceEnum shimmer = _$realtimeResponseCreateParamsVoiceEnum_shimmer;
-  /// The voice the model uses to respond. Voice cannot be changed during the  session once the model has responded with audio at least once. Current  voice options are `alloy`, `ash`, `ballad`, `coral`, `echo` `sage`,  `shimmer` and `verse`. 
   @BuiltValueEnumConst(wireName: r'verse')
   static const RealtimeResponseCreateParamsVoiceEnum verse = _$realtimeResponseCreateParamsVoiceEnum_verse;
 
@@ -365,15 +359,13 @@ class RealtimeResponseCreateParamsVoiceEnum extends EnumClass {
   static RealtimeResponseCreateParamsVoiceEnum valueOf(String name) => _$realtimeResponseCreateParamsVoiceEnumValueOf(name);
 }
 
+/// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
 class RealtimeResponseCreateParamsOutputAudioFormatEnum extends EnumClass {
 
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'pcm16')
   static const RealtimeResponseCreateParamsOutputAudioFormatEnum pcm16 = _$realtimeResponseCreateParamsOutputAudioFormatEnum_pcm16;
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_ulaw')
   static const RealtimeResponseCreateParamsOutputAudioFormatEnum g711Ulaw = _$realtimeResponseCreateParamsOutputAudioFormatEnum_g711Ulaw;
-  /// The format of output audio. Options are `pcm16`, `g711_ulaw`, or `g711_alaw`. 
   @BuiltValueEnumConst(wireName: r'g711_alaw')
   static const RealtimeResponseCreateParamsOutputAudioFormatEnum g711Alaw = _$realtimeResponseCreateParamsOutputAudioFormatEnum_g711Alaw;
 

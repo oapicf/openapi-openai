@@ -29,32 +29,22 @@ import {
 export interface ProjectUserListResponse {
     /**
      * 
-     * @type {string}
-     * @memberof ProjectUserListResponse
      */
     object: string;
     /**
      * 
-     * @type {Array<ProjectUser>}
-     * @memberof ProjectUserListResponse
      */
     data: Array<ProjectUser>;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectUserListResponse
      */
     firstId: string;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectUserListResponse
      */
     lastId: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof ProjectUserListResponse
      */
     hasMore: boolean;
 }

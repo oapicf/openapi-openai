@@ -204,16 +204,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeSessionCreateResponseTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseTurnDetection: type.");
 
             if (threshold.IsSet && threshold.Value == null)
-                throw new ArgumentNullException(nameof(threshold), "Property is not nullable for class RealtimeSessionCreateResponseTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseTurnDetection: threshold.");
 
             if (prefixPaddingMs.IsSet && prefixPaddingMs.Value == null)
-                throw new ArgumentNullException(nameof(prefixPaddingMs), "Property is not nullable for class RealtimeSessionCreateResponseTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseTurnDetection: prefix_padding_ms.");
 
             if (silenceDurationMs.IsSet && silenceDurationMs.Value == null)
-                throw new ArgumentNullException(nameof(silenceDurationMs), "Property is not nullable for class RealtimeSessionCreateResponseTurnDetection.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponseTurnDetection: silence_duration_ms.");
 
             return new RealtimeSessionCreateResponseTurnDetection(type, threshold, prefixPaddingMs, silenceDurationMs);
         }
@@ -224,7 +224,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponseTurnDetection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeSessionCreateResponseTurnDetection realtimeSessionCreateResponseTurnDetection, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -239,11 +238,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponseTurnDetection"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeSessionCreateResponseTurnDetection realtimeSessionCreateResponseTurnDetection, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeSessionCreateResponseTurnDetection.TypeOption.IsSet && realtimeSessionCreateResponseTurnDetection.Type == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponseTurnDetection.Type), "Property is required for class RealtimeSessionCreateResponseTurnDetection.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseTurnDetection.Type to non-nullable JSON property 'type'.");
+
+            if (realtimeSessionCreateResponseTurnDetection.ThresholdOption.IsSet && realtimeSessionCreateResponseTurnDetection.Threshold == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseTurnDetection.Threshold to non-nullable JSON property 'threshold'.");
+
+            if (realtimeSessionCreateResponseTurnDetection.PrefixPaddingMsOption.IsSet && realtimeSessionCreateResponseTurnDetection.PrefixPaddingMs == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseTurnDetection.PrefixPaddingMs to non-nullable JSON property 'prefix_padding_ms'.");
+
+            if (realtimeSessionCreateResponseTurnDetection.SilenceDurationMsOption.IsSet && realtimeSessionCreateResponseTurnDetection.SilenceDurationMs == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponseTurnDetection.SilenceDurationMs to non-nullable JSON property 'silence_duration_ms'.");
 
             if (realtimeSessionCreateResponseTurnDetection.TypeOption.IsSet)
                 writer.WriteString("type", realtimeSessionCreateResponseTurnDetection.Type);

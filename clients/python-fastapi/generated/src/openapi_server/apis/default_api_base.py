@@ -2,7 +2,7 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
-from pydantic import StrictInt, StrictStr, field_validator
+from pydantic import field_validator
 from typing import Optional
 from openapi_server.models.admin_api_key import AdminApiKey
 from openapi_server.models.admin_api_keys_create_request import AdminApiKeysCreateRequest
@@ -18,9 +18,9 @@ class BaseDefaultApi:
         BaseDefaultApi.subclasses = BaseDefaultApi.subclasses + (cls,)
     async def admin_api_keys_list(
         self,
-        after: Optional[StrictStr],
-        order: Optional[StrictStr],
-        limit: Optional[StrictInt],
+        after: Optional[str],
+        order: Optional[str],
+        limit: Optional[int],
     ) -> ApiKeyList:
         """Retrieve a paginated list of organization admin API keys."""
         ...
@@ -36,7 +36,7 @@ class BaseDefaultApi:
 
     async def admin_api_keys_get(
         self,
-        key_id: StrictStr,
+        key_id: str,
     ) -> AdminApiKey:
         """Get details for a specific organization API key by its ID."""
         ...
@@ -44,7 +44,7 @@ class BaseDefaultApi:
 
     async def admin_api_keys_delete(
         self,
-        key_id: StrictStr,
+        key_id: str,
     ) -> AdminApiKeysDelete200Response:
         """Delete the specified admin API key."""
         ...

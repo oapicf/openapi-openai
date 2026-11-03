@@ -27,7 +27,7 @@ object RunStepDeltaObjectEnums {
 
   sealed trait `Object`
   object `Object` {
-    case object ThreadRunStepDelta extends `Object`
+    case object ThreadRunStepDelta extends `Object` { override def toString: String = "thread.run.step.delta" }
 
     import org.json4s._
 

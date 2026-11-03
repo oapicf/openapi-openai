@@ -18,7 +18,6 @@ public class ListMessagesResponse  {
   private String _object;
 
   @ApiModelProperty(required = true, value = "")
-  @Valid
   private List<@Valid MessageObject> data = new ArrayList<>();
 
   @ApiModelProperty(example = "msg_abc123", required = true, value = "")

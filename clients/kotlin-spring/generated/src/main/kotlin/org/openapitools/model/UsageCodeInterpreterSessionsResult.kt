@@ -4,9 +4,6 @@ import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
 import javax.validation.constraints.Email
@@ -20,18 +17,18 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * The aggregated code interpreter sessions usage details of the specific time bucket.
- * @param &#x60;object&#x60; 
+ * @param `object` 
  * @param sessions The number of code interpreter sessions.
  * @param projectId When `group_by=project_id`, this field provides the project ID of the grouped usage result.
  */
 data class UsageCodeInterpreterSessionsResult(
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: UsageCodeInterpreterSessionsResult.`Object`,
 
     @Schema(required = true, description = "The number of code interpreter sessions.")
-    @param:JsonProperty("sessions")
+    @param:JsonProperty("sessions", required = true)
     @get:JsonProperty("sessions", required = true) val sessions: kotlin.Int,
 
     @Schema(description = "When `group_by=project_id`, this field provides the project ID of the grouped usage result.")
@@ -46,12 +43,12 @@ data class UsageCodeInterpreterSessionsResult(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodUsagePeriodCode_interpreter_sessionsPeriodResult("organization.usage.code_interpreter_sessions.result");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

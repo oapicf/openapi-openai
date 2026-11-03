@@ -216,7 +216,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeClientEventResponseCancel.TypeEnum?>(RealtimeClientEventResponseCancel.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeClientEventResponseCancel.TypeEnum? typeValue = RealtimeClientEventResponseCancel.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeClientEventResponseCancel.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "event_id":
                             eventId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -231,16 +236,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeClientEventResponseCancel.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeClientEventResponseCancel: type.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeClientEventResponseCancel.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventResponseCancel: type.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeClientEventResponseCancel.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventResponseCancel: event_id.");
 
             if (responseId.IsSet && responseId.Value == null)
-                throw new ArgumentNullException(nameof(responseId), "Property is not nullable for class RealtimeClientEventResponseCancel.");
+                throw new JsonException("Property is not nullable for class RealtimeClientEventResponseCancel: response_id.");
 
             return new RealtimeClientEventResponseCancel(type.Value!.Value!, eventId, responseId);
         }
@@ -251,7 +256,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventResponseCancel"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeClientEventResponseCancel realtimeClientEventResponseCancel, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -266,14 +270,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeClientEventResponseCancel"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeClientEventResponseCancel realtimeClientEventResponseCancel, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeClientEventResponseCancel.EventIdOption.IsSet && realtimeClientEventResponseCancel.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventResponseCancel.EventId), "Property is required for class RealtimeClientEventResponseCancel.");
+                throw new JsonException("Cannot write null property RealtimeClientEventResponseCancel.EventId to non-nullable JSON property 'event_id'.");
 
             if (realtimeClientEventResponseCancel.ResponseIdOption.IsSet && realtimeClientEventResponseCancel.ResponseId == null)
-                throw new ArgumentNullException(nameof(realtimeClientEventResponseCancel.ResponseId), "Property is required for class RealtimeClientEventResponseCancel.");
+                throw new JsonException("Cannot write null property RealtimeClientEventResponseCancel.ResponseId to non-nullable JSON property 'response_id'.");
 
             var typeRawValue = RealtimeClientEventResponseCancel.TypeEnumToJsonValue(realtimeClientEventResponseCancel.Type);
             writer.WriteString("type", typeRawValue);

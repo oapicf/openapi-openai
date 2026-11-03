@@ -25,7 +25,7 @@ export interface FileSearchRankingOptions {
 export namespace FileSearchRankingOptions {
     export const RankerEnum = {
         Auto: 'auto',
-        Default20240821: 'default_2024_08_21'
+        Default20240821: 'default_2024_08_21',
     } as const;
     export type RankerEnum = typeof RankerEnum[keyof typeof RankerEnum];
 }

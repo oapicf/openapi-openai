@@ -197,16 +197,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class FunctionObject.", nameof(name));
+                throw new JsonException("Property is required for class FunctionObject: name.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class FunctionObject.");
+                throw new JsonException("Property is not nullable for class FunctionObject: name.");
 
             if (description.IsSet && description.Value == null)
-                throw new ArgumentNullException(nameof(description), "Property is not nullable for class FunctionObject.");
+                throw new JsonException("Property is not nullable for class FunctionObject: description.");
 
             if (parameters.IsSet && parameters.Value == null)
-                throw new ArgumentNullException(nameof(parameters), "Property is not nullable for class FunctionObject.");
+                throw new JsonException("Property is not nullable for class FunctionObject: parameters.");
 
             return new FunctionObject(name.Value!, description, parameters, strict);
         }
@@ -217,7 +217,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="functionObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FunctionObject functionObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -232,17 +231,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="functionObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FunctionObject functionObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (functionObject.Name == null)
-                throw new ArgumentNullException(nameof(functionObject.Name), "Property is required for class FunctionObject.");
-
             if (functionObject.DescriptionOption.IsSet && functionObject.Description == null)
-                throw new ArgumentNullException(nameof(functionObject.Description), "Property is required for class FunctionObject.");
+                throw new JsonException("Cannot write null property FunctionObject.Description to non-nullable JSON property 'description'.");
 
             if (functionObject.ParametersOption.IsSet && functionObject.Parameters == null)
-                throw new ArgumentNullException(nameof(functionObject.Parameters), "Property is required for class FunctionObject.");
+                throw new JsonException("Cannot write null property FunctionObject.Parameters to non-nullable JSON property 'parameters'.");
 
             writer.WriteString("name", functionObject.Name);
 

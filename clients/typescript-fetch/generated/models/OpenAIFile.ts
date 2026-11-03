@@ -21,51 +21,35 @@ import { mapValues } from '../runtime';
 export interface OpenAIFile {
     /**
      * The file identifier, which can be referenced in the API endpoints.
-     * @type {string}
-     * @memberof OpenAIFile
      */
     id: string;
     /**
      * The size of the file, in bytes.
-     * @type {number}
-     * @memberof OpenAIFile
      */
     bytes: number;
     /**
      * The Unix timestamp (in seconds) for when the file was created.
-     * @type {number}
-     * @memberof OpenAIFile
      */
     createdAt: number;
     /**
      * The name of the file.
-     * @type {string}
-     * @memberof OpenAIFile
      */
     filename: string;
     /**
      * The object type, which is always `file`.
-     * @type {OpenAIFileObjectEnum}
-     * @memberof OpenAIFile
      */
     object: OpenAIFileObjectEnum;
     /**
      * The intended purpose of the file. Supported values are `assistants`, `assistants_output`, `batch`, `batch_output`, `fine-tune`, `fine-tune-results` and `vision`.
-     * @type {OpenAIFilePurposeEnum}
-     * @memberof OpenAIFile
      */
     purpose: OpenAIFilePurposeEnum;
     /**
      * Deprecated. The current status of the file, which can be either `uploaded`, `processed`, or `error`.
-     * @type {OpenAIFileStatusEnum}
-     * @memberof OpenAIFile
      * @deprecated
      */
     status: OpenAIFileStatusEnum;
     /**
      * Deprecated. For details on why a fine-tuning training file failed validation, see the `error` field on `fine_tuning.job`.
-     * @type {string}
-     * @memberof OpenAIFile
      * @deprecated
      */
     statusDetails?: string;
@@ -76,7 +60,7 @@ export interface OpenAIFile {
  * @export
  */
 export const OpenAIFileObjectEnum = {
-    File: 'file'
+    File: 'file',
 } as const;
 export type OpenAIFileObjectEnum = typeof OpenAIFileObjectEnum[keyof typeof OpenAIFileObjectEnum];
 
@@ -90,7 +74,7 @@ export const OpenAIFilePurposeEnum = {
     BatchOutput: 'batch_output',
     FineTune: 'fine-tune',
     FineTuneResults: 'fine-tune-results',
-    Vision: 'vision'
+    Vision: 'vision',
 } as const;
 export type OpenAIFilePurposeEnum = typeof OpenAIFilePurposeEnum[keyof typeof OpenAIFilePurposeEnum];
 
@@ -100,7 +84,7 @@ export type OpenAIFilePurposeEnum = typeof OpenAIFilePurposeEnum[keyof typeof Op
 export const OpenAIFileStatusEnum = {
     Uploaded: 'uploaded',
     Processed: 'processed',
-    Error: 'error'
+    Error: 'error',
 } as const;
 export type OpenAIFileStatusEnum = typeof OpenAIFileStatusEnum[keyof typeof OpenAIFileStatusEnum];
 

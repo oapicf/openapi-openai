@@ -111,7 +111,7 @@ export interface RunObject {
 }
 export namespace RunObject {
     export const ObjectEnum = {
-        ThreadRun: 'thread.run'
+        ThreadRun: 'thread.run',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
@@ -123,7 +123,7 @@ export namespace RunObject {
         Failed: 'failed',
         Completed: 'completed',
         Incomplete: 'incomplete',
-        Expired: 'expired'
+        Expired: 'expired',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

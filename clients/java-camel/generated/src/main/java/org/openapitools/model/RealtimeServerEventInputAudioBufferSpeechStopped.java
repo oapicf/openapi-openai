@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "RealtimeServerEventInputAudioBufferSpeechStopped", description = "Returned in `server_vad` mode when the server detects the end of speech in  the audio buffer. The server will also send an `conversation.item.created`  event with the user message item that is created from the audio buffer. ")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventInputAudioBufferSpeechStopped {
 
   private String eventId;

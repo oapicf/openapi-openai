@@ -223,16 +223,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileIds.IsSet && fileIds.Value == null)
-                throw new ArgumentNullException(nameof(fileIds), "Property is not nullable for class CreateVectorStoreRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreRequest: file_ids.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class CreateVectorStoreRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreRequest: name.");
 
             if (expiresAfter.IsSet && expiresAfter.Value == null)
-                throw new ArgumentNullException(nameof(expiresAfter), "Property is not nullable for class CreateVectorStoreRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreRequest: expires_after.");
 
             if (chunkingStrategy.IsSet && chunkingStrategy.Value == null)
-                throw new ArgumentNullException(nameof(chunkingStrategy), "Property is not nullable for class CreateVectorStoreRequest.");
+                throw new JsonException("Property is not nullable for class CreateVectorStoreRequest: chunking_strategy.");
 
             return new CreateVectorStoreRequest(fileIds, name, expiresAfter, chunkingStrategy, metadata);
         }
@@ -243,7 +243,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createVectorStoreRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateVectorStoreRequest createVectorStoreRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -258,20 +257,19 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createVectorStoreRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateVectorStoreRequest createVectorStoreRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createVectorStoreRequest.FileIdsOption.IsSet && createVectorStoreRequest.FileIds == null)
-                throw new ArgumentNullException(nameof(createVectorStoreRequest.FileIds), "Property is required for class CreateVectorStoreRequest.");
+                throw new JsonException("Cannot write null property CreateVectorStoreRequest.FileIds to non-nullable JSON property 'file_ids'.");
 
             if (createVectorStoreRequest.NameOption.IsSet && createVectorStoreRequest.Name == null)
-                throw new ArgumentNullException(nameof(createVectorStoreRequest.Name), "Property is required for class CreateVectorStoreRequest.");
+                throw new JsonException("Cannot write null property CreateVectorStoreRequest.Name to non-nullable JSON property 'name'.");
 
             if (createVectorStoreRequest.ExpiresAfterOption.IsSet && createVectorStoreRequest.ExpiresAfter == null)
-                throw new ArgumentNullException(nameof(createVectorStoreRequest.ExpiresAfter), "Property is required for class CreateVectorStoreRequest.");
+                throw new JsonException("Cannot write null property CreateVectorStoreRequest.ExpiresAfter to non-nullable JSON property 'expires_after'.");
 
             if (createVectorStoreRequest.ChunkingStrategyOption.IsSet && createVectorStoreRequest.ChunkingStrategy == null)
-                throw new ArgumentNullException(nameof(createVectorStoreRequest.ChunkingStrategy), "Property is required for class CreateVectorStoreRequest.");
+                throw new JsonException("Cannot write null property CreateVectorStoreRequest.ChunkingStrategy to non-nullable JSON property 'chunking_strategy'.");
 
             if (createVectorStoreRequest.FileIdsOption.IsSet)
             {

@@ -138,6 +138,7 @@ class _$ProjectApiKeyDeleteResponseSerializer implements PrimitiveSerializer<Pro
   }
 }
 
+
 class ProjectApiKeyDeleteResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'organization.project.api_key.deleted')

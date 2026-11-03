@@ -36,7 +36,7 @@ import javax.validation.Valid;
   RealtimeResponseUsage.JSON_PROPERTY_INPUT_TOKEN_DETAILS,
   RealtimeResponseUsage.JSON_PROPERTY_OUTPUT_TOKEN_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeResponseUsage   {
   public static final String JSON_PROPERTY_TOTAL_TOKENS = "total_tokens";
   @JsonProperty(JSON_PROPERTY_TOTAL_TOKENS)

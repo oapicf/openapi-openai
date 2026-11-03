@@ -155,13 +155,13 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!partIds.IsSet)
-                throw new ArgumentException("Property is required for class CompleteUploadRequest.", nameof(partIds));
+                throw new JsonException("Property is required for class CompleteUploadRequest: part_ids.");
 
             if (partIds.IsSet && partIds.Value == null)
-                throw new ArgumentNullException(nameof(partIds), "Property is not nullable for class CompleteUploadRequest.");
+                throw new JsonException("Property is not nullable for class CompleteUploadRequest: part_ids.");
 
             if (md5.IsSet && md5.Value == null)
-                throw new ArgumentNullException(nameof(md5), "Property is not nullable for class CompleteUploadRequest.");
+                throw new JsonException("Property is not nullable for class CompleteUploadRequest: md5.");
 
             return new CompleteUploadRequest(partIds.Value!, md5);
         }
@@ -172,7 +172,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completeUploadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompleteUploadRequest completeUploadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -187,14 +186,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="completeUploadRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompleteUploadRequest completeUploadRequest, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (completeUploadRequest.PartIds == null)
-                throw new ArgumentNullException(nameof(completeUploadRequest.PartIds), "Property is required for class CompleteUploadRequest.");
-
             if (completeUploadRequest.Md5Option.IsSet && completeUploadRequest.Md5 == null)
-                throw new ArgumentNullException(nameof(completeUploadRequest.Md5), "Property is required for class CompleteUploadRequest.");
+                throw new JsonException("Cannot write null property CompleteUploadRequest.Md5 to non-nullable JSON property 'md5'.");
 
             writer.WritePropertyName("part_ids");
             JsonSerializer.Serialize(writer, completeUploadRequest.PartIds, jsonSerializerOptions);

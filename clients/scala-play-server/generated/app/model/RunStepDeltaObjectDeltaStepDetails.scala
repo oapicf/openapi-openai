@@ -8,7 +8,7 @@ import play.api.libs.json._
   * @param toolCalls An array of tool calls the run step was involved in. These can be associated with one of three types of tools: `code_interpreter`, `file_search`, or `function`. 
   * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class RunStepDeltaObjectDeltaStepDetails(
   `type`: RunStepDeltaObjectDeltaStepDetails.Type.Value,
   messageCreation: Option[RunStepDeltaStepDetailsMessageCreationObjectMessageCreation],

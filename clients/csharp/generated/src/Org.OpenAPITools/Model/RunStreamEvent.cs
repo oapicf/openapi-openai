@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf"></param>
-        public RunStreamEvent(RunStreamEventOneOf runStreamEventOneOf)
+        internal RunStreamEvent(RunStreamEventOneOf runStreamEventOneOf)
         {
             RunStreamEventOneOf = runStreamEventOneOf;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf1"></param>
-        public RunStreamEvent(RunStreamEventOneOf1 runStreamEventOneOf1)
+        internal RunStreamEvent(RunStreamEventOneOf1 runStreamEventOneOf1)
         {
             RunStreamEventOneOf1 = runStreamEventOneOf1;
             OnCreated();
@@ -55,7 +55,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf2"></param>
-        public RunStreamEvent(RunStreamEventOneOf2 runStreamEventOneOf2)
+        internal RunStreamEvent(RunStreamEventOneOf2 runStreamEventOneOf2)
         {
             RunStreamEventOneOf2 = runStreamEventOneOf2;
             OnCreated();
@@ -65,7 +65,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf3"></param>
-        public RunStreamEvent(RunStreamEventOneOf3 runStreamEventOneOf3)
+        internal RunStreamEvent(RunStreamEventOneOf3 runStreamEventOneOf3)
         {
             RunStreamEventOneOf3 = runStreamEventOneOf3;
             OnCreated();
@@ -75,7 +75,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf4"></param>
-        public RunStreamEvent(RunStreamEventOneOf4 runStreamEventOneOf4)
+        internal RunStreamEvent(RunStreamEventOneOf4 runStreamEventOneOf4)
         {
             RunStreamEventOneOf4 = runStreamEventOneOf4;
             OnCreated();
@@ -85,7 +85,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf5"></param>
-        public RunStreamEvent(RunStreamEventOneOf5 runStreamEventOneOf5)
+        internal RunStreamEvent(RunStreamEventOneOf5 runStreamEventOneOf5)
         {
             RunStreamEventOneOf5 = runStreamEventOneOf5;
             OnCreated();
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf6"></param>
-        public RunStreamEvent(RunStreamEventOneOf6 runStreamEventOneOf6)
+        internal RunStreamEvent(RunStreamEventOneOf6 runStreamEventOneOf6)
         {
             RunStreamEventOneOf6 = runStreamEventOneOf6;
             OnCreated();
@@ -105,7 +105,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf7"></param>
-        public RunStreamEvent(RunStreamEventOneOf7 runStreamEventOneOf7)
+        internal RunStreamEvent(RunStreamEventOneOf7 runStreamEventOneOf7)
         {
             RunStreamEventOneOf7 = runStreamEventOneOf7;
             OnCreated();
@@ -115,7 +115,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf8"></param>
-        public RunStreamEvent(RunStreamEventOneOf8 runStreamEventOneOf8)
+        internal RunStreamEvent(RunStreamEventOneOf8 runStreamEventOneOf8)
         {
             RunStreamEventOneOf8 = runStreamEventOneOf8;
             OnCreated();
@@ -125,7 +125,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="RunStreamEvent" /> class.
         /// </summary>
         /// <param name="runStreamEventOneOf9"></param>
-        public RunStreamEvent(RunStreamEventOneOf9 runStreamEventOneOf9)
+        internal RunStreamEvent(RunStreamEventOneOf9 runStreamEventOneOf9)
         {
             RunStreamEventOneOf9 = runStreamEventOneOf9;
             OnCreated();
@@ -352,7 +352,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStreamEvent runStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -367,7 +366,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStreamEvent"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStreamEvent runStreamEvent, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -14,7 +14,7 @@ import org.openapitools.model.FineTuneSupervisedMethodHyperparameters;
  **/
 
 @ApiModel(description = "Configuration for the supervised fine-tuning method.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-26T05:15:28.776347668Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-03T06:33:11.350562883Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneSupervisedMethod   {
   @JsonProperty("hyperparameters")
   private FineTuneSupervisedMethodHyperparameters hyperparameters;

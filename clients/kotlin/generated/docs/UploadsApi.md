@@ -38,9 +38,9 @@ try {
 ```
 
 ### Parameters
-| **uploadId** | **kotlin.String**| The ID of the Upload.  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **uploadId** | **kotlin.String**| The ID of the Upload.  | |
 | **&#x60;data&#x60;** | **java.io.File**| The chunk of bytes for this Part.  | |
 
 ### Return type
@@ -144,9 +144,9 @@ try {
 ```
 
 ### Parameters
-| **uploadId** | **kotlin.String**| The ID of the Upload.  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **uploadId** | **kotlin.String**| The ID of the Upload.  | |
 | **completeUploadRequest** | [**CompleteUploadRequest**](CompleteUploadRequest.md)|  | |
 
 ### Return type

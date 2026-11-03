@@ -71,7 +71,7 @@ public class BatchApiHandler {
         RequestParameter body = requestParameters.body();
         CreateBatchRequest createBatchRequest = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<CreateBatchRequest>(){}) : null;
 
-        logger.debug("Parameter createBatchRequest is {}", createBatchRequest);
+        logger.debug("Parameter createBatchRequest is (body omitted)");
 
         api.createBatch(createBatchRequest)
             .onSuccess(apiResponse -> {

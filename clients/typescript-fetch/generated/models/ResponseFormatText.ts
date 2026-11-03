@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface ResponseFormatText {
     /**
      * The type of response format being defined: `text`
-     * @type {ResponseFormatTextTypeEnum}
-     * @memberof ResponseFormatText
      */
     type: ResponseFormatTextTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface ResponseFormatText {
  * @export
  */
 export const ResponseFormatTextTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type ResponseFormatTextTypeEnum = typeof ResponseFormatTextTypeEnum[keyof typeof ResponseFormatTextTypeEnum];
 

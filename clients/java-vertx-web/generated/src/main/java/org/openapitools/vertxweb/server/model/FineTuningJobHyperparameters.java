@@ -13,9 +13,9 @@ import org.openapitools.vertxweb.server.model.CreateFineTuningJobRequestHyperpar
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FineTuningJobHyperparameters   {
   
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   public FineTuningJobHyperparameters () {
 

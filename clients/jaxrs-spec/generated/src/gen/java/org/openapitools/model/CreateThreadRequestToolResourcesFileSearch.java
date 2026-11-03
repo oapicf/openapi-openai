@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CreateThreadRequest_tool_resources_file_search")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateThreadRequestToolResourcesFileSearch   {
-  private @Valid List<String> vectorStoreIds = new ArrayList<>();
-  private @Valid List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
+  private List<String> vectorStoreIds = new ArrayList<>();
+  private List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> vectorStores = new ArrayList<>();
 
   public CreateThreadRequestToolResourcesFileSearch() {
   }
@@ -76,7 +76,7 @@ public class CreateThreadRequestToolResourcesFileSearch   {
   
   @ApiModelProperty(value = "A helper to create a [vector store](/docs/api-reference/vector-stores/object) with file_ids and attach it to this thread. There can be a maximum of 1 vector store attached to the thread. ")
   @JsonProperty("vector_stores")
-  @Valid  @Size(max=1)public List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
+   @Size(max=1)public List<@Valid CreateThreadRequestToolResourcesFileSearchVectorStoresInner> getVectorStores() {
     return vectorStores;
   }
 

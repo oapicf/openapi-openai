@@ -35,7 +35,7 @@ export interface RealtimeServerEventResponseFunctionCallArgumentsDelta {
 }
 export namespace RealtimeServerEventResponseFunctionCallArgumentsDelta {
   export const TypeEnum = {
-    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta'
+    ResponseFunctionCallArgumentsDelta: 'response.function_call_arguments.delta',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

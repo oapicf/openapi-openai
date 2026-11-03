@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 # **archiveProject**
 ```swift
-    open class func archiveProject(projectId: String, completion: @escaping (_ data: Project?, _ error: Error?) -> Void)
+    open class func archiveProject(projectId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Project
 ```
 
 Archives a project in the organization. Archived projects cannot be used or updated.
@@ -40,15 +40,11 @@ import OpenAPIClient
 let projectId = "projectId_example" // String | The ID of the project.
 
 // Archives a project in the organization. Archived projects cannot be used or updated.
-ProjectsAPI.archiveProject(projectId: projectId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.archiveProject(projectId: projectId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -75,7 +71,7 @@ Name | Type | Description  | Notes
 
 # **createProject**
 ```swift
-    open class func createProject(projectCreateRequest: ProjectCreateRequest, completion: @escaping (_ data: Project?, _ error: Error?) -> Void)
+    open class func createProject(projectCreateRequest: ProjectCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Project
 ```
 
 Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
@@ -88,15 +84,11 @@ import OpenAPIClient
 let projectCreateRequest = ProjectCreateRequest(name: "name_example") // ProjectCreateRequest | The project create request payload.
 
 // Create a new project in the organization. Projects can be created and archived, but cannot be deleted.
-ProjectsAPI.createProject(projectCreateRequest: projectCreateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.createProject(projectCreateRequest: projectCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -123,7 +115,7 @@ Name | Type | Description  | Notes
 
 # **createProjectServiceAccount**
 ```swift
-    open class func createProjectServiceAccount(projectId: String, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest, completion: @escaping (_ data: ProjectServiceAccountCreateResponse?, _ error: Error?) -> Void)
+    open class func createProjectServiceAccount(projectId: String, projectServiceAccountCreateRequest: ProjectServiceAccountCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectServiceAccountCreateResponse
 ```
 
 Creates a new service account in the project. This also returns an unredacted API key for the service account.
@@ -137,15 +129,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let projectServiceAccountCreateRequest = ProjectServiceAccountCreateRequest(name: "name_example") // ProjectServiceAccountCreateRequest | The project service account create request payload.
 
 // Creates a new service account in the project. This also returns an unredacted API key for the service account.
-ProjectsAPI.createProjectServiceAccount(projectId: projectId, projectServiceAccountCreateRequest: projectServiceAccountCreateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.createProjectServiceAccount(projectId: projectId, projectServiceAccountCreateRequest: projectServiceAccountCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -173,7 +161,7 @@ Name | Type | Description  | Notes
 
 # **createProjectUser**
 ```swift
-    open class func createProjectUser(projectId: String, projectUserCreateRequest: ProjectUserCreateRequest, completion: @escaping (_ data: ProjectUser?, _ error: Error?) -> Void)
+    open class func createProjectUser(projectId: String, projectUserCreateRequest: ProjectUserCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectUser
 ```
 
 Adds a user to the project. Users must already be members of the organization to be added to a project.
@@ -187,15 +175,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let projectUserCreateRequest = ProjectUserCreateRequest(userId: "userId_example", role: "role_example") // ProjectUserCreateRequest | The project user create request payload.
 
 // Adds a user to the project. Users must already be members of the organization to be added to a project.
-ProjectsAPI.createProjectUser(projectId: projectId, projectUserCreateRequest: projectUserCreateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.createProjectUser(projectId: projectId, projectUserCreateRequest: projectUserCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -223,7 +207,7 @@ Name | Type | Description  | Notes
 
 # **deleteProjectApiKey**
 ```swift
-    open class func deleteProjectApiKey(projectId: String, keyId: String, completion: @escaping (_ data: ProjectApiKeyDeleteResponse?, _ error: Error?) -> Void)
+    open class func deleteProjectApiKey(projectId: String, keyId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectApiKeyDeleteResponse
 ```
 
 Deletes an API key from the project.
@@ -237,15 +221,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let keyId = "keyId_example" // String | The ID of the API key.
 
 // Deletes an API key from the project.
-ProjectsAPI.deleteProjectApiKey(projectId: projectId, keyId: keyId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.deleteProjectApiKey(projectId: projectId, keyId: keyId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -273,7 +253,7 @@ Name | Type | Description  | Notes
 
 # **deleteProjectServiceAccount**
 ```swift
-    open class func deleteProjectServiceAccount(projectId: String, serviceAccountId: String, completion: @escaping (_ data: ProjectServiceAccountDeleteResponse?, _ error: Error?) -> Void)
+    open class func deleteProjectServiceAccount(projectId: String, serviceAccountId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectServiceAccountDeleteResponse
 ```
 
 Deletes a service account from the project.
@@ -287,15 +267,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let serviceAccountId = "serviceAccountId_example" // String | The ID of the service account.
 
 // Deletes a service account from the project.
-ProjectsAPI.deleteProjectServiceAccount(projectId: projectId, serviceAccountId: serviceAccountId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.deleteProjectServiceAccount(projectId: projectId, serviceAccountId: serviceAccountId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -323,7 +299,7 @@ Name | Type | Description  | Notes
 
 # **deleteProjectUser**
 ```swift
-    open class func deleteProjectUser(projectId: String, userId: String, completion: @escaping (_ data: ProjectUserDeleteResponse?, _ error: Error?) -> Void)
+    open class func deleteProjectUser(projectId: String, userId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectUserDeleteResponse
 ```
 
 Deletes a user from the project.
@@ -337,15 +313,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let userId = "userId_example" // String | The ID of the user.
 
 // Deletes a user from the project.
-ProjectsAPI.deleteProjectUser(projectId: projectId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.deleteProjectUser(projectId: projectId, userId: userId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -373,7 +345,7 @@ Name | Type | Description  | Notes
 
 # **listProjectApiKeys**
 ```swift
-    open class func listProjectApiKeys(projectId: String, limit: Int? = nil, after: String? = nil, completion: @escaping (_ data: ProjectApiKeyListResponse?, _ error: Error?) -> Void)
+    open class func listProjectApiKeys(projectId: String, limit: Int? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectApiKeyListResponse
 ```
 
 Returns a list of API keys in the project.
@@ -388,15 +360,11 @@ let limit = 987 // Int | A limit on the number of objects to be returned. Limit 
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Returns a list of API keys in the project.
-ProjectsAPI.listProjectApiKeys(projectId: projectId, limit: limit, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.listProjectApiKeys(projectId: projectId, limit: limit, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -425,7 +393,7 @@ Name | Type | Description  | Notes
 
 # **listProjectRateLimits**
 ```swift
-    open class func listProjectRateLimits(projectId: String, limit: Int? = nil, after: String? = nil, before: String? = nil, completion: @escaping (_ data: ProjectRateLimitListResponse?, _ error: Error?) -> Void)
+    open class func listProjectRateLimits(projectId: String, limit: Int? = nil, after: String? = nil, before: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectRateLimitListResponse
 ```
 
 Returns the rate limits per model for a project.
@@ -441,15 +409,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let before = "before_example" // String | A cursor for use in pagination. `before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, beginning with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list.  (optional)
 
 // Returns the rate limits per model for a project.
-ProjectsAPI.listProjectRateLimits(projectId: projectId, limit: limit, after: after, before: before) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.listProjectRateLimits(projectId: projectId, limit: limit, after: after, before: before)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -479,7 +443,7 @@ Name | Type | Description  | Notes
 
 # **listProjectServiceAccounts**
 ```swift
-    open class func listProjectServiceAccounts(projectId: String, limit: Int? = nil, after: String? = nil, completion: @escaping (_ data: ProjectServiceAccountListResponse?, _ error: Error?) -> Void)
+    open class func listProjectServiceAccounts(projectId: String, limit: Int? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectServiceAccountListResponse
 ```
 
 Returns a list of service accounts in the project.
@@ -494,15 +458,11 @@ let limit = 987 // Int | A limit on the number of objects to be returned. Limit 
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Returns a list of service accounts in the project.
-ProjectsAPI.listProjectServiceAccounts(projectId: projectId, limit: limit, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.listProjectServiceAccounts(projectId: projectId, limit: limit, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -531,7 +491,7 @@ Name | Type | Description  | Notes
 
 # **listProjectUsers**
 ```swift
-    open class func listProjectUsers(projectId: String, limit: Int? = nil, after: String? = nil, completion: @escaping (_ data: ProjectUserListResponse?, _ error: Error?) -> Void)
+    open class func listProjectUsers(projectId: String, limit: Int? = nil, after: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectUserListResponse
 ```
 
 Returns a list of users in the project.
@@ -546,15 +506,11 @@ let limit = 987 // Int | A limit on the number of objects to be returned. Limit 
 let after = "after_example" // String | A cursor for use in pagination. `after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list.  (optional)
 
 // Returns a list of users in the project.
-ProjectsAPI.listProjectUsers(projectId: projectId, limit: limit, after: after) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.listProjectUsers(projectId: projectId, limit: limit, after: after)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -583,7 +539,7 @@ Name | Type | Description  | Notes
 
 # **listProjects**
 ```swift
-    open class func listProjects(limit: Int? = nil, after: String? = nil, includeArchived: Bool? = nil, completion: @escaping (_ data: ProjectListResponse?, _ error: Error?) -> Void)
+    open class func listProjects(limit: Int? = nil, after: String? = nil, includeArchived: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectListResponse
 ```
 
 Returns a list of projects.
@@ -598,15 +554,11 @@ let after = "after_example" // String | A cursor for use in pagination. `after` 
 let includeArchived = true // Bool | If `true` returns all projects including those that have been `archived`. Archived projects are not included by default. (optional) (default to false)
 
 // Returns a list of projects.
-ProjectsAPI.listProjects(limit: limit, after: after, includeArchived: includeArchived) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.listProjects(limit: limit, after: after, includeArchived: includeArchived)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -635,7 +587,7 @@ Name | Type | Description  | Notes
 
 # **modifyProject**
 ```swift
-    open class func modifyProject(projectId: String, projectUpdateRequest: ProjectUpdateRequest, completion: @escaping (_ data: Project?, _ error: Error?) -> Void)
+    open class func modifyProject(projectId: String, projectUpdateRequest: ProjectUpdateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Project
 ```
 
 Modifies a project in the organization.
@@ -649,15 +601,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let projectUpdateRequest = ProjectUpdateRequest(name: "name_example") // ProjectUpdateRequest | The project update request payload.
 
 // Modifies a project in the organization.
-ProjectsAPI.modifyProject(projectId: projectId, projectUpdateRequest: projectUpdateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.modifyProject(projectId: projectId, projectUpdateRequest: projectUpdateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -685,7 +633,7 @@ Name | Type | Description  | Notes
 
 # **modifyProjectUser**
 ```swift
-    open class func modifyProjectUser(projectId: String, userId: String, projectUserUpdateRequest: ProjectUserUpdateRequest, completion: @escaping (_ data: ProjectUser?, _ error: Error?) -> Void)
+    open class func modifyProjectUser(projectId: String, userId: String, projectUserUpdateRequest: ProjectUserUpdateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectUser
 ```
 
 Modifies a user's role in the project.
@@ -700,15 +648,11 @@ let userId = "userId_example" // String | The ID of the user.
 let projectUserUpdateRequest = ProjectUserUpdateRequest(role: "role_example") // ProjectUserUpdateRequest | The project user update request payload.
 
 // Modifies a user's role in the project.
-ProjectsAPI.modifyProjectUser(projectId: projectId, userId: userId, projectUserUpdateRequest: projectUserUpdateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.modifyProjectUser(projectId: projectId, userId: userId, projectUserUpdateRequest: projectUserUpdateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -737,7 +681,7 @@ Name | Type | Description  | Notes
 
 # **retrieveProject**
 ```swift
-    open class func retrieveProject(projectId: String, completion: @escaping (_ data: Project?, _ error: Error?) -> Void)
+    open class func retrieveProject(projectId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Project
 ```
 
 Retrieves a project.
@@ -750,15 +694,11 @@ import OpenAPIClient
 let projectId = "projectId_example" // String | The ID of the project.
 
 // Retrieves a project.
-ProjectsAPI.retrieveProject(projectId: projectId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.retrieveProject(projectId: projectId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -785,7 +725,7 @@ Name | Type | Description  | Notes
 
 # **retrieveProjectApiKey**
 ```swift
-    open class func retrieveProjectApiKey(projectId: String, keyId: String, completion: @escaping (_ data: ProjectApiKey?, _ error: Error?) -> Void)
+    open class func retrieveProjectApiKey(projectId: String, keyId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectApiKey
 ```
 
 Retrieves an API key in the project.
@@ -799,15 +739,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let keyId = "keyId_example" // String | The ID of the API key.
 
 // Retrieves an API key in the project.
-ProjectsAPI.retrieveProjectApiKey(projectId: projectId, keyId: keyId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.retrieveProjectApiKey(projectId: projectId, keyId: keyId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -835,7 +771,7 @@ Name | Type | Description  | Notes
 
 # **retrieveProjectServiceAccount**
 ```swift
-    open class func retrieveProjectServiceAccount(projectId: String, serviceAccountId: String, completion: @escaping (_ data: ProjectServiceAccount?, _ error: Error?) -> Void)
+    open class func retrieveProjectServiceAccount(projectId: String, serviceAccountId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectServiceAccount
 ```
 
 Retrieves a service account in the project.
@@ -849,15 +785,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let serviceAccountId = "serviceAccountId_example" // String | The ID of the service account.
 
 // Retrieves a service account in the project.
-ProjectsAPI.retrieveProjectServiceAccount(projectId: projectId, serviceAccountId: serviceAccountId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.retrieveProjectServiceAccount(projectId: projectId, serviceAccountId: serviceAccountId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -885,7 +817,7 @@ Name | Type | Description  | Notes
 
 # **retrieveProjectUser**
 ```swift
-    open class func retrieveProjectUser(projectId: String, userId: String, completion: @escaping (_ data: ProjectUser?, _ error: Error?) -> Void)
+    open class func retrieveProjectUser(projectId: String, userId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectUser
 ```
 
 Retrieves a user in the project.
@@ -899,15 +831,11 @@ let projectId = "projectId_example" // String | The ID of the project.
 let userId = "userId_example" // String | The ID of the user.
 
 // Retrieves a user in the project.
-ProjectsAPI.retrieveProjectUser(projectId: projectId, userId: userId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.retrieveProjectUser(projectId: projectId, userId: userId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -935,7 +863,7 @@ Name | Type | Description  | Notes
 
 # **updateProjectRateLimits**
 ```swift
-    open class func updateProjectRateLimits(projectId: String, rateLimitId: String, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest, completion: @escaping (_ data: ProjectRateLimit?, _ error: Error?) -> Void)
+    open class func updateProjectRateLimits(projectId: String, rateLimitId: String, projectRateLimitUpdateRequest: ProjectRateLimitUpdateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProjectRateLimit
 ```
 
 Updates a project rate limit.
@@ -950,15 +878,11 @@ let rateLimitId = "rateLimitId_example" // String | The ID of the rate limit.
 let projectRateLimitUpdateRequest = ProjectRateLimitUpdateRequest(maxRequestsPer1Minute: 123, maxTokensPer1Minute: 123, maxImagesPer1Minute: 123, maxAudioMegabytesPer1Minute: 123, maxRequestsPer1Day: 123, batch1DayMaxInputTokens: 123) // ProjectRateLimitUpdateRequest | The project rate limit update request payload.
 
 // Updates a project rate limit.
-ProjectsAPI.updateProjectRateLimits(projectId: projectId, rateLimitId: rateLimitId, projectRateLimitUpdateRequest: projectRateLimitUpdateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ProjectsAPI.updateProjectRateLimits(projectId: projectId, rateLimitId: rateLimitId, projectRateLimitUpdateRequest: projectRateLimitUpdateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

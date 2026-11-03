@@ -50,56 +50,40 @@ import {
 export interface CreateAssistantRequest {
     /**
      * 
-     * @type {CreateAssistantRequestModel}
-     * @memberof CreateAssistantRequest
      */
     model: CreateAssistantRequestModel;
     /**
      * The name of the assistant. The maximum length is 256 characters.
      * 
-     * @type {string}
-     * @memberof CreateAssistantRequest
      */
     name?: string | null;
     /**
      * The description of the assistant. The maximum length is 512 characters.
      * 
-     * @type {string}
-     * @memberof CreateAssistantRequest
      */
     description?: string | null;
     /**
      * The system instructions that the assistant uses. The maximum length is 256,000 characters.
      * 
-     * @type {string}
-     * @memberof CreateAssistantRequest
      */
     instructions?: string | null;
     /**
      * A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant. Tools can be of types `code_interpreter`, `file_search`, or `function`.
      * 
-     * @type {Array<AssistantObjectToolsInner>}
-     * @memberof CreateAssistantRequest
      */
     tools?: Array<AssistantObjectToolsInner>;
     /**
      * 
-     * @type {CreateAssistantRequestToolResources}
-     * @memberof CreateAssistantRequest
      */
     toolResources?: CreateAssistantRequestToolResources | null;
     /**
      * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.
      * 
-     * @type {object}
-     * @memberof CreateAssistantRequest
      */
     metadata?: object | null;
     /**
      * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
      * 
-     * @type {number}
-     * @memberof CreateAssistantRequest
      */
     temperature?: number | null;
     /**
@@ -107,14 +91,10 @@ export interface CreateAssistantRequest {
      * 
      * We generally recommend altering this or temperature but not both.
      * 
-     * @type {number}
-     * @memberof CreateAssistantRequest
      */
     topP?: number | null;
     /**
      * 
-     * @type {AssistantsApiResponseFormatOption}
-     * @memberof CreateAssistantRequest
      */
     responseFormat?: AssistantsApiResponseFormatOption;
 }

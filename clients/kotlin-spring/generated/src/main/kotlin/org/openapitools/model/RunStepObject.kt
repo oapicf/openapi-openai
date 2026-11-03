@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * Represents a step in execution of a run. 
  * @param id The identifier of the run step, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `thread.run.step`.
+ * @param `object` The object type, which is always `thread.run.step`.
  * @param createdAt The Unix timestamp (in seconds) for when the run step was created.
  * @param assistantId The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.
  * @param threadId The ID of the [thread](/docs/api-reference/threads) that was run.
@@ -40,71 +40,71 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunStepObject(
 
     @Schema(required = true, description = "The identifier of the run step, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `thread.run.step`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: RunStepObject.`Object`,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the run step was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "The ID of the [assistant](/docs/api-reference/assistants) associated with the run step.")
-    @param:JsonProperty("assistant_id")
+    @param:JsonProperty("assistant_id", required = true)
     @get:JsonProperty("assistant_id", required = true) val assistantId: kotlin.String,
 
     @Schema(required = true, description = "The ID of the [thread](/docs/api-reference/threads) that was run.")
-    @param:JsonProperty("thread_id")
+    @param:JsonProperty("thread_id", required = true)
     @get:JsonProperty("thread_id", required = true) val threadId: kotlin.String,
 
     @Schema(required = true, description = "The ID of the [run](/docs/api-reference/runs) that this run step is a part of.")
-    @param:JsonProperty("run_id")
+    @param:JsonProperty("run_id", required = true)
     @get:JsonProperty("run_id", required = true) val runId: kotlin.String,
 
     @Schema(required = true, description = "The type of run step, which can be either `message_creation` or `tool_calls`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RunStepObject.Type,
 
     @Schema(required = true, description = "The status of the run step, which can be either `in_progress`, `cancelled`, `failed`, `completed`, or `expired`.")
-    @param:JsonProperty("status")
+    @param:JsonProperty("status", required = true)
     @get:JsonProperty("status", required = true) val status: RunStepObject.Status,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("step_details")
+    @param:JsonProperty("step_details", required = true)
     @get:JsonProperty("step_details", required = true) val stepDetails: RunStepObjectStepDetails,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("last_error")
+    @param:JsonProperty("last_error", required = true)
     @get:JsonProperty("last_error", required = true) val lastError: RunStepObjectLastError?,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the run step expired. A step is considered expired if the parent run is expired.")
-    @param:JsonProperty("expired_at")
+    @param:JsonProperty("expired_at", required = true)
     @get:JsonProperty("expired_at", required = true) val expiredAt: kotlin.Int?,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the run step was cancelled.")
-    @param:JsonProperty("cancelled_at")
+    @param:JsonProperty("cancelled_at", required = true)
     @get:JsonProperty("cancelled_at", required = true) val cancelledAt: kotlin.Int?,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the run step failed.")
-    @param:JsonProperty("failed_at")
+    @param:JsonProperty("failed_at", required = true)
     @get:JsonProperty("failed_at", required = true) val failedAt: kotlin.Int?,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the run step completed.")
-    @param:JsonProperty("completed_at")
+    @param:JsonProperty("completed_at", required = true)
     @get:JsonProperty("completed_at", required = true) val completedAt: kotlin.Int?,
 
     @field:Valid
     @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
-    @param:JsonProperty("metadata")
+    @param:JsonProperty("metadata", required = true)
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("usage")
+    @param:JsonProperty("usage", required = true)
     @get:JsonProperty("usage", required = true) val usage: RunStepCompletionUsage?
 ) {
 
@@ -115,12 +115,12 @@ data class RunStepObject(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         threadPeriodRunPeriodStep("thread.run.step");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -134,12 +134,12 @@ data class RunStepObject(
 
         message_creation("message_creation"),
         tool_calls("tool_calls");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }
@@ -156,12 +156,12 @@ data class RunStepObject(
         failed("failed"),
         completed("completed"),
         expired("expired");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

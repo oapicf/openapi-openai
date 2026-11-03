@@ -144,9 +144,10 @@ class _$MessageDeltaContentImageUrlObjectSerializer implements PrimitiveSerializ
   }
 }
 
+
+/// Always `image_url`.
 class MessageDeltaContentImageUrlObjectTypeEnum extends EnumClass {
 
-  /// Always `image_url`.
   @BuiltValueEnumConst(wireName: r'image_url')
   static const MessageDeltaContentImageUrlObjectTypeEnum imageUrl = _$messageDeltaContentImageUrlObjectTypeEnum_imageUrl;
 

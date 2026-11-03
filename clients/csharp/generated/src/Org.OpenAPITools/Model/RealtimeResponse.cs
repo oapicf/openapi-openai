@@ -391,12 +391,22 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<RealtimeResponse.ObjectEnum?>(RealtimeResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                RealtimeResponse.ObjectEnum? varObjectValue = RealtimeResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<RealtimeResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "status":
                             string? statusRawValue = utf8JsonReader.GetString();
                             if (statusRawValue != null)
-                                status = new Option<RealtimeResponse.StatusEnum?>(RealtimeResponse.StatusEnumFromStringOrDefault(statusRawValue));
+                            {
+                                RealtimeResponse.StatusEnum? statusValue = RealtimeResponse.StatusEnumFromStringOrDefault(statusRawValue);
+                                if (statusValue == null)
+                                    throw new JsonException();
+                                status = new Option<RealtimeResponse.StatusEnum?>(statusValue);
+                            }
                             break;
                         case "status_details":
                             statusDetails = new Option<RealtimeResponseStatusDetails?>(JsonSerializer.Deserialize<RealtimeResponseStatusDetails>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -417,22 +427,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: object.");
 
             if (status.IsSet && status.Value == null)
-                throw new ArgumentNullException(nameof(status), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: status.");
 
             if (statusDetails.IsSet && statusDetails.Value == null)
-                throw new ArgumentNullException(nameof(statusDetails), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: status_details.");
 
             if (output.IsSet && output.Value == null)
-                throw new ArgumentNullException(nameof(output), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: output.");
 
             if (usage.IsSet && usage.Value == null)
-                throw new ArgumentNullException(nameof(usage), "Property is not nullable for class RealtimeResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeResponse: usage.");
 
             return new RealtimeResponse(id, varObject, status, statusDetails, output, metadata, usage);
         }
@@ -443,7 +453,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeResponse realtimeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -458,20 +467,25 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeResponse realtimeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeResponse.IdOption.IsSet && realtimeResponse.Id == null)
-                throw new ArgumentNullException(nameof(realtimeResponse.Id), "Property is required for class RealtimeResponse.");
+                throw new JsonException("Cannot write null property RealtimeResponse.Id to non-nullable JSON property 'id'.");
+
+            if (realtimeResponse.ObjectOption.IsSet && realtimeResponse.Object == null)
+                throw new JsonException("Cannot write null property RealtimeResponse.Object to non-nullable JSON property 'object'.");
+
+            if (realtimeResponse.StatusOption.IsSet && realtimeResponse.Status == null)
+                throw new JsonException("Cannot write null property RealtimeResponse.Status to non-nullable JSON property 'status'.");
 
             if (realtimeResponse.StatusDetailsOption.IsSet && realtimeResponse.StatusDetails == null)
-                throw new ArgumentNullException(nameof(realtimeResponse.StatusDetails), "Property is required for class RealtimeResponse.");
+                throw new JsonException("Cannot write null property RealtimeResponse.StatusDetails to non-nullable JSON property 'status_details'.");
 
             if (realtimeResponse.OutputOption.IsSet && realtimeResponse.Output == null)
-                throw new ArgumentNullException(nameof(realtimeResponse.Output), "Property is required for class RealtimeResponse.");
+                throw new JsonException("Cannot write null property RealtimeResponse.Output to non-nullable JSON property 'output'.");
 
             if (realtimeResponse.UsageOption.IsSet && realtimeResponse.Usage == null)
-                throw new ArgumentNullException(nameof(realtimeResponse.Usage), "Property is required for class RealtimeResponse.");
+                throw new JsonException("Cannot write null property RealtimeResponse.Usage to non-nullable JSON property 'usage'.");
 
             if (realtimeResponse.IdOption.IsSet)
                 writer.WriteString("id", realtimeResponse.Id);

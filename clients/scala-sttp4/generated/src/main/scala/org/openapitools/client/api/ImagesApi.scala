@@ -34,7 +34,7 @@ class ImagesApi(baseUrl: String) {
    * 
    * @param createImageRequest 
    */
-  def createImage(bearerToken: String)(createImageRequest: CreateImageRequest): Request[Either[ResponseException[String], ImagesResponse]] =
+  def createImage(bearerToken: String)(createImageRequest: CreateImageRequest): sttp.client4.Request[Either[ResponseException[String], ImagesResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/images/generations")
       .contentType("application/json")
@@ -58,7 +58,7 @@ class ImagesApi(baseUrl: String) {
    * @param responseFormat The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.
    * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    */
-  def createImageEdit(bearerToken: String)(image: File, prompt: String, mask: Option[File] = None, model: Option[CreateImageEditRequestModel] = None, `n`: Option[Int] = None, size: Option[String] = None, responseFormat: Option[String] = None, user: Option[String] = None): Request[Either[ResponseException[String], ImagesResponse]] =
+  def createImageEdit(bearerToken: String)(image: File, prompt: String, mask: Option[File] = None, model: Option[CreateImageEditRequestModel] = None, `n`: Option[Int] = None, size: Option[String] = None, responseFormat: Option[String] = None, user: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ImagesResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/images/edits")
       .contentType("multipart/form-data")
@@ -97,7 +97,7 @@ class ImagesApi(baseUrl: String) {
    * @param size The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.
    * @param user A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](/docs/guides/safety-best-practices#end-user-ids). 
    */
-  def createImageVariation(bearerToken: String)(image: File, model: Option[CreateImageEditRequestModel] = None, `n`: Option[Int] = None, responseFormat: Option[String] = None, size: Option[String] = None, user: Option[String] = None): Request[Either[ResponseException[String], ImagesResponse]] =
+  def createImageVariation(bearerToken: String)(image: File, model: Option[CreateImageEditRequestModel] = None, `n`: Option[Int] = None, responseFormat: Option[String] = None, size: Option[String] = None, user: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], ImagesResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/images/variations")
       .contentType("multipart/form-data")

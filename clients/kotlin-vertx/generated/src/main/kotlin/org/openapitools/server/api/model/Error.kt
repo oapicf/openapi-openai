@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * 
  * @param code 
  * @param message 
- * @param &#x60;param&#x60; 
+ * @param `param` 
  * @param type 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

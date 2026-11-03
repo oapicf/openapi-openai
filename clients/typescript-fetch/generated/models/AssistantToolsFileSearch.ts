@@ -29,14 +29,10 @@ import {
 export interface AssistantToolsFileSearch {
     /**
      * The type of tool being defined: `file_search`
-     * @type {AssistantToolsFileSearchTypeEnum}
-     * @memberof AssistantToolsFileSearch
      */
     type: AssistantToolsFileSearchTypeEnum;
     /**
      * 
-     * @type {AssistantToolsFileSearchFileSearch}
-     * @memberof AssistantToolsFileSearch
      */
     fileSearch?: AssistantToolsFileSearchFileSearch;
 }
@@ -46,7 +42,7 @@ export interface AssistantToolsFileSearch {
  * @export
  */
 export const AssistantToolsFileSearchTypeEnum = {
-    FileSearch: 'file_search'
+    FileSearch: 'file_search',
 } as const;
 export type AssistantToolsFileSearchTypeEnum = typeof AssistantToolsFileSearchTypeEnum[keyof typeof AssistantToolsFileSearchTypeEnum];
 

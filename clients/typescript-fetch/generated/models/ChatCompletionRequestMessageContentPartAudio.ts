@@ -30,14 +30,10 @@ import {
 export interface ChatCompletionRequestMessageContentPartAudio {
     /**
      * The type of the content part. Always `input_audio`.
-     * @type {ChatCompletionRequestMessageContentPartAudioTypeEnum}
-     * @memberof ChatCompletionRequestMessageContentPartAudio
      */
     type: ChatCompletionRequestMessageContentPartAudioTypeEnum;
     /**
      * 
-     * @type {ChatCompletionRequestMessageContentPartAudioInputAudio}
-     * @memberof ChatCompletionRequestMessageContentPartAudio
      */
     inputAudio: ChatCompletionRequestMessageContentPartAudioInputAudio;
 }
@@ -47,7 +43,7 @@ export interface ChatCompletionRequestMessageContentPartAudio {
  * @export
  */
 export const ChatCompletionRequestMessageContentPartAudioTypeEnum = {
-    InputAudio: 'input_audio'
+    InputAudio: 'input_audio',
 } as const;
 export type ChatCompletionRequestMessageContentPartAudioTypeEnum = typeof ChatCompletionRequestMessageContentPartAudioTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartAudioTypeEnum];
 

@@ -22,7 +22,6 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from pydantic import Field, StrictBytes, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
@@ -32,6 +31,7 @@ from openapi_server.models.create_transcription200_response import CreateTranscr
 from openapi_server.models.create_transcription_request_model import CreateTranscriptionRequestModel
 from openapi_server.models.create_translation200_response import CreateTranslation200Response
 from fastapi import File, UploadFile
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_ApiKeyAuth
 
 router = APIRouter()
@@ -51,7 +51,7 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def create_speech(
-    create_speech_request: CreateSpeechRequest = Body(None, description=""),
+    create_speech_request: CreateSpeechRequest = Body(..., description=""),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -71,13 +71,13 @@ async def create_speech(
     response_model_by_alias=True,
 )
 async def create_transcription(
-    file: UploadFile = File(..., description="The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. "),
-    model: CreateTranscriptionRequestModel = Form(None, description=""),
-    language: Annotated[Optional[StrictStr], Field(description="The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ")] = Form(None, description="The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. "),
-    prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ")] = Form(None, description="An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. "),
-    response_format: Optional[AudioResponseFormat] = Form('json', description=""),
-    temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ")] = Form(0, description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. "),
-    timestamp_granularities: Annotated[Optional[List[StrictStr]], Field(description="The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. ")] = Form(None, description="The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. "),
+    file: UploadFile = File(..., description="The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ", alias="file"),
+    model: CreateTranscriptionRequestModel = Form(..., description="", alias="model"),
+    language: Annotated[Optional[StrictStr], Field(description="The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ")] = Form(None, description="The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format will improve accuracy and latency. ", alias="language"),
+    prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ")] = Form(None, description="An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should match the audio language. ", alias="prompt"),
+    response_format: Optional[AudioResponseFormat] = Form('json', description="", alias="response_format"),
+    temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ")] = Form(0, description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", alias="temperature"),
+    timestamp_granularities: Annotated[Optional[List[StrictStr]], Field(description="The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. ")] = Form(None, description="The timestamp granularities to populate for this transcription. &#x60;response_format&#x60; must be set &#x60;verbose_json&#x60; to use timestamp granularities. Either or both of these options are supported: &#x60;word&#x60;, or &#x60;segment&#x60;. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. ", alias="timestamp_granularities[]"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),
@@ -97,11 +97,11 @@ async def create_transcription(
     response_model_by_alias=True,
 )
 async def create_translation(
-    file: UploadFile = File(..., description="The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. "),
-    model: CreateTranscriptionRequestModel = Form(None, description=""),
-    prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ")] = Form(None, description="An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. "),
-    response_format: Optional[AudioResponseFormat] = Form('json', description=""),
-    temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ")] = Form(0, description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. "),
+    file: UploadFile = File(..., description="The audio file object (not file name) translate, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm. ", alias="file"),
+    model: CreateTranscriptionRequestModel = Form(..., description="", alias="model"),
+    prompt: Annotated[Optional[StrictStr], Field(description="An optional text to guide the model's style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ")] = Form(None, description="An optional text to guide the model&#39;s style or continue a previous audio segment. The [prompt](/docs/guides/speech-to-text#prompting) should be in English. ", alias="prompt"),
+    response_format: Optional[AudioResponseFormat] = Form('json', description="", alias="response_format"),
+    temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ")] = Form(0, description="The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. ", alias="temperature"),
     token_ApiKeyAuth: TokenModel = Security(
         get_token_ApiKeyAuth
     ),

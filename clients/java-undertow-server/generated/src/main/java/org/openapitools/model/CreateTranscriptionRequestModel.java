@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiModel;
  */
 
 @ApiModel(description = "ID of the model to use. Only `whisper-1` (which is powered by our open source Whisper V2 model) is currently available. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateTranscriptionRequestModel   {
   
 

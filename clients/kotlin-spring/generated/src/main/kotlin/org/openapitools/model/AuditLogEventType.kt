@@ -16,9 +16,9 @@ import javax.validation.Valid
 import io.swagger.v3.oas.annotations.media.Schema
 
 /**
-* The event type.
-* Values: api_keyPeriodCreated,api_keyPeriodUpdated,api_keyPeriodDeleted,invitePeriodSent,invitePeriodAccepted,invitePeriodDeleted,loginPeriodSucceeded,loginPeriodFailed,logoutPeriodSucceeded,logoutPeriodFailed,organizationPeriodUpdated,projectPeriodCreated,projectPeriodUpdated,projectPeriodArchived,service_accountPeriodCreated,service_accountPeriodUpdated,service_accountPeriodDeleted,rate_limitPeriodUpdated,rate_limitPeriodDeleted,userPeriodAdded,userPeriodUpdated,userPeriodDeleted
-*/
+ * The event type.
+ * Values: api_keyPeriodCreated,api_keyPeriodUpdated,api_keyPeriodDeleted,invitePeriodSent,invitePeriodAccepted,invitePeriodDeleted,loginPeriodSucceeded,loginPeriodFailed,logoutPeriodSucceeded,logoutPeriodFailed,organizationPeriodUpdated,projectPeriodCreated,projectPeriodUpdated,projectPeriodArchived,service_accountPeriodCreated,service_accountPeriodUpdated,service_accountPeriodDeleted,rate_limitPeriodUpdated,rate_limitPeriodDeleted,userPeriodAdded,userPeriodUpdated,userPeriodDeleted
+ */
 enum class AuditLogEventType(@get:JsonValue val value: kotlin.String) {
 
     api_keyPeriodCreated("api_key.created"),
@@ -48,9 +48,8 @@ enum class AuditLogEventType(@get:JsonValue val value: kotlin.String) {
         @JvmStatic
         @JsonCreator
         fun forValue(value: kotlin.String): AuditLogEventType {
-                return values().firstOrNull{it -> it.value == value}
-                    ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AuditLogEventType'")
+            return values().firstOrNull{ it.value == value }
+                ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'AuditLogEventType'")
         }
     }
 }
-

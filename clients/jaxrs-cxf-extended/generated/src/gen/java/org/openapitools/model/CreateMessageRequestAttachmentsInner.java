@@ -25,8 +25,7 @@ public class CreateMessageRequestAttachmentsInner  {
   * The tools to add this file to.
   */
   @ApiModelProperty(value = "The tools to add this file to.")
-  @Valid
-  private List<CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
+  private List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools = new ArrayList<>();
  /**
   * The ID of the file to attach to the message.
   * @return fileId
@@ -56,21 +55,21 @@ public class CreateMessageRequestAttachmentsInner  {
   * @return tools
   */
   @JsonProperty("tools")
-  public List<CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
+  public List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> getTools() {
     return tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
- public void setTools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+ public void setTools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
   }
 
   /**
    * Sets the <code>tools</code> property.
    */
-  public CreateMessageRequestAttachmentsInner tools(List<CreateMessageRequestAttachmentsInnerToolsInner> tools) {
+  public CreateMessageRequestAttachmentsInner tools(List<@Valid CreateMessageRequestAttachmentsInnerToolsInner> tools) {
     this.tools = tools;
     return this;
   }

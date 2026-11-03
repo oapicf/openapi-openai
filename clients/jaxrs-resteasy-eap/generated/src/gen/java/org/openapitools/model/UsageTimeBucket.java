@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-26T05:16:17.496778002Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-03T06:34:11.380565921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageTimeBucket   {
   
 
@@ -40,7 +40,7 @@ public class UsageTimeBucket   {
   private ObjectEnum _object;
   private Integer startTime;
   private Integer endTime;
-  private List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   /**
    **/
@@ -87,10 +87,10 @@ public class UsageTimeBucket   {
   @ApiModelProperty(required = true, value = "")
   @JsonProperty("result")
   @NotNull
-  public List<UsageTimeBucketResultInner> getResult() {
+  public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

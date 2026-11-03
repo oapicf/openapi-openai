@@ -34,7 +34,7 @@ import javax.validation.Valid;
   RealtimeServerEventRateLimitsUpdatedRateLimitsInner.JSON_PROPERTY_REMAINING,
   RealtimeServerEventRateLimitsUpdatedRateLimitsInner.JSON_PROPERTY_RESET_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RealtimeServerEventRateLimitsUpdatedRateLimitsInner   {
   /**
    * The name of the rate limit (&#x60;requests&#x60;, &#x60;tokens&#x60;). 

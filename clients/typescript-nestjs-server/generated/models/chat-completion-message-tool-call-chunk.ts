@@ -15,7 +15,7 @@ export interface ChatCompletionMessageToolCallChunk {
 }
 export namespace ChatCompletionMessageToolCallChunk {
   export const TypeEnum = {
-    Function: 'function'
+    Function: 'function',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

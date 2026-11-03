@@ -124,12 +124,12 @@ class _$InviteRequestProjectsInnerSerializer implements PrimitiveSerializer<Invi
   }
 }
 
+
+/// Project membership role
 class InviteRequestProjectsInnerRoleEnum extends EnumClass {
 
-  /// Project membership role
   @BuiltValueEnumConst(wireName: r'member')
   static const InviteRequestProjectsInnerRoleEnum member = _$inviteRequestProjectsInnerRoleEnum_member;
-  /// Project membership role
   @BuiltValueEnumConst(wireName: r'owner')
   static const InviteRequestProjectsInnerRoleEnum owner = _$inviteRequestProjectsInnerRoleEnum_owner;
 

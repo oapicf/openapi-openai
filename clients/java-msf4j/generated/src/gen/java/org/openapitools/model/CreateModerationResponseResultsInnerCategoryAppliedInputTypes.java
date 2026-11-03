@@ -15,7 +15,7 @@ import java.util.List;
  * A list of the categories along with the input type(s) that the score applies to.
  */
 @ApiModel(description = "A list of the categories along with the input type(s) that the score applies to.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-26T05:15:38.483838325Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-03T06:33:23.712376461Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateModerationResponseResultsInnerCategoryAppliedInputTypes   {
   /**
    * Gets or Sets hate

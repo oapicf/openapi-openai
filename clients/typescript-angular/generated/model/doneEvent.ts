@@ -18,11 +18,11 @@ export interface DoneEvent {
 }
 export namespace DoneEvent {
     export const EventEnum = {
-        Done: 'done'
+        Done: 'done',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
     export const DataEnum = {
-        Done: '[DONE]'
+        Done: '[DONE]',
     } as const;
     export type DataEnum = typeof DataEnum[keyof typeof DataEnum];
 }

@@ -30,56 +30,38 @@ import {
 export interface Upload {
     /**
      * The Upload unique identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof Upload
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) for when the Upload was created.
-     * @type {number}
-     * @memberof Upload
      */
     createdAt: number;
     /**
      * The name of the file to be uploaded.
-     * @type {string}
-     * @memberof Upload
      */
     filename: string;
     /**
      * The intended number of bytes to be uploaded.
-     * @type {number}
-     * @memberof Upload
      */
     bytes: number;
     /**
      * The intended purpose of the file. [Please refer here](/docs/api-reference/files/object#files/object-purpose) for acceptable values.
-     * @type {string}
-     * @memberof Upload
      */
     purpose: string;
     /**
      * The status of the Upload.
-     * @type {UploadStatusEnum}
-     * @memberof Upload
      */
     status: UploadStatusEnum;
     /**
      * The Unix timestamp (in seconds) for when the Upload was created.
-     * @type {number}
-     * @memberof Upload
      */
     expiresAt: number;
     /**
      * The object type, which is always "upload".
-     * @type {UploadObjectEnum}
-     * @memberof Upload
      */
     object?: UploadObjectEnum;
     /**
      * 
-     * @type {OpenAIFile}
-     * @memberof Upload
      */
     file?: OpenAIFile;
 }
@@ -92,7 +74,7 @@ export const UploadStatusEnum = {
     Pending: 'pending',
     Completed: 'completed',
     Cancelled: 'cancelled',
-    Expired: 'expired'
+    Expired: 'expired',
 } as const;
 export type UploadStatusEnum = typeof UploadStatusEnum[keyof typeof UploadStatusEnum];
 
@@ -100,7 +82,7 @@ export type UploadStatusEnum = typeof UploadStatusEnum[keyof typeof UploadStatus
  * @export
  */
 export const UploadObjectEnum = {
-    Upload: 'upload'
+    Upload: 'upload',
 } as const;
 export type UploadObjectEnum = typeof UploadObjectEnum[keyof typeof UploadObjectEnum];
 

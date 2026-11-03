@@ -141,9 +141,10 @@ class _$RealtimeServerEventResponseCreatedSerializer implements PrimitiveSeriali
   }
 }
 
+
+/// The event type, must be `response.created`.
 class RealtimeServerEventResponseCreatedTypeEnum extends EnumClass {
 
-  /// The event type, must be `response.created`.
   @BuiltValueEnumConst(wireName: r'response.created')
   static const RealtimeServerEventResponseCreatedTypeEnum responsePeriodCreated = _$realtimeServerEventResponseCreatedTypeEnum_responsePeriodCreated;
 

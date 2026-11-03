@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface AutoChunkingStrategyRequestParam {
     /**
      * Always `auto`.
-     * @type {AutoChunkingStrategyRequestParamTypeEnum}
-     * @memberof AutoChunkingStrategyRequestParam
      */
     type: AutoChunkingStrategyRequestParamTypeEnum;
 }
@@ -32,7 +30,7 @@ export interface AutoChunkingStrategyRequestParam {
  * @export
  */
 export const AutoChunkingStrategyRequestParamTypeEnum = {
-    Auto: 'auto'
+    Auto: 'auto',
 } as const;
 export type AutoChunkingStrategyRequestParamTypeEnum = typeof AutoChunkingStrategyRequestParamTypeEnum[keyof typeof AutoChunkingStrategyRequestParamTypeEnum];
 

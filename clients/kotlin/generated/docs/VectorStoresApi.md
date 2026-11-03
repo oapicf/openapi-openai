@@ -47,9 +47,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file batch belongs to. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file batch belongs to. | |
 | **batchId** | **kotlin.String**| The ID of the file batch to cancel. | |
 
 ### Return type
@@ -153,9 +153,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store for which to create a File.  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store for which to create a File.  | |
 | **createVectorStoreFileRequest** | [**CreateVectorStoreFileRequest**](CreateVectorStoreFileRequest.md)|  | |
 
 ### Return type
@@ -207,9 +207,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store for which to create a File Batch.  | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store for which to create a File Batch.  | |
 | **createVectorStoreFileBatchRequest** | [**CreateVectorStoreFileBatchRequest**](CreateVectorStoreFileBatchRequest.md)|  | |
 
 ### Return type
@@ -313,9 +313,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file belongs to. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file belongs to. | |
 | **fileId** | **kotlin.String**| The ID of the file to delete. | |
 
 ### Return type
@@ -419,9 +419,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file belongs to. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file belongs to. | |
 | **fileId** | **kotlin.String**| The ID of the file being retrieved. | |
 
 ### Return type
@@ -473,9 +473,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file batch belongs to. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store that the file batch belongs to. | |
 | **batchId** | **kotlin.String**| The ID of the file batch being retrieved. | |
 
 ### Return type
@@ -532,14 +532,14 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **vectorStoreId** | **kotlin.String**| The ID of the vector store that the files belong to. | |
 | **batchId** | **kotlin.String**| The ID of the file batch that the files belong to. | |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filter** | **kotlin.String**| Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. | [optional] [enum: in_progress, completed, failed, cancelled] |
 
 ### Return type
@@ -595,13 +595,13 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **vectorStoreId** | **kotlin.String**| The ID of the vector store that the files belong to. | |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **filter** | **kotlin.String**| Filter by file status. One of &#x60;in_progress&#x60;, &#x60;completed&#x60;, &#x60;failed&#x60;, &#x60;cancelled&#x60;. | [optional] [enum: in_progress, completed, failed, cancelled] |
 
 ### Return type
@@ -655,11 +655,11 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **limit** | **kotlin.Int**| A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20.  | [optional] [default to 20] |
 | **order** | **kotlin.String**| Sort order by the &#x60;created_at&#x60; timestamp of the objects. &#x60;asc&#x60; for ascending order and &#x60;desc&#x60; for descending order.  | [optional] [default to Order.desc] [enum: asc, desc] |
 | **after** | **kotlin.String**| A cursor for use in pagination. &#x60;after&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after&#x3D;obj_foo in order to fetch the next page of the list.  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **before** | **kotlin.String**| A cursor for use in pagination. &#x60;before&#x60; is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_foo, your subsequent call can include before&#x3D;obj_foo in order to fetch the previous page of the list.  | [optional] |
 
 ### Return type
@@ -711,9 +711,9 @@ try {
 ```
 
 ### Parameters
-| **vectorStoreId** | **kotlin.String**| The ID of the vector store to modify. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **vectorStoreId** | **kotlin.String**| The ID of the vector store to modify. | |
 | **updateVectorStoreRequest** | [**UpdateVectorStoreRequest**](UpdateVectorStoreRequest.md)|  | |
 
 ### Return type

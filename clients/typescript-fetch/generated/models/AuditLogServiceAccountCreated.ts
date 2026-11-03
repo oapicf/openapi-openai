@@ -29,14 +29,10 @@ import {
 export interface AuditLogServiceAccountCreated {
     /**
      * The service account ID.
-     * @type {string}
-     * @memberof AuditLogServiceAccountCreated
      */
     id?: string;
     /**
      * 
-     * @type {AuditLogServiceAccountCreatedData}
-     * @memberof AuditLogServiceAccountCreated
      */
     data?: AuditLogServiceAccountCreatedData;
 }

@@ -2,11 +2,8 @@ package org.openapitools.model
 
 import java.util.Objects
 import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonValue
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.VectorStoreExpirationAfter
 import org.openapitools.model.VectorStoreObjectFileCounts
 import javax.validation.constraints.DecimalMax
@@ -23,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 /**
  * A vector store is a collection of processed files can be used by the `file_search` tool.
  * @param id The identifier, which can be referenced in API endpoints.
- * @param &#x60;object&#x60; The object type, which is always `vector_store`.
+ * @param `object` The object type, which is always `vector_store`.
  * @param createdAt The Unix timestamp (in seconds) for when the vector store was created.
  * @param name The name of the vector store.
  * @param usageBytes The total number of bytes used by the files in the vector store.
@@ -37,47 +34,45 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class VectorStoreObject(
 
     @Schema(required = true, description = "The identifier, which can be referenced in API endpoints.")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String,
 
     @Schema(required = true, description = "The object type, which is always `vector_store`.")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: VectorStoreObject.`Object`,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the vector store was created.")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "The name of the vector store.")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(required = true, description = "The total number of bytes used by the files in the vector store.")
-    @param:JsonProperty("usage_bytes")
+    @param:JsonProperty("usage_bytes", required = true)
     @get:JsonProperty("usage_bytes", required = true) val usageBytes: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("file_counts")
+    @param:JsonProperty("file_counts", required = true)
     @get:JsonProperty("file_counts", required = true) val fileCounts: VectorStoreObjectFileCounts,
 
     @Schema(required = true, description = "The status of the vector store, which can be either `expired`, `in_progress`, or `completed`. A status of `completed` indicates that the vector store is ready for use.")
-    @param:JsonProperty("status")
+    @param:JsonProperty("status", required = true)
     @get:JsonProperty("status", required = true) val status: VectorStoreObject.Status,
 
     @Schema(required = true, description = "The Unix timestamp (in seconds) for when the vector store was last active.")
-    @param:JsonProperty("last_active_at")
+    @param:JsonProperty("last_active_at", required = true)
     @get:JsonProperty("last_active_at", required = true) val lastActiveAt: kotlin.Int?,
 
     @field:Valid
     @Schema(required = true, description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ")
-    @param:JsonProperty("metadata")
+    @param:JsonProperty("metadata", required = true)
     @get:JsonProperty("metadata", required = true) val metadata: kotlin.Any?,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("expires_after")
     @get:JsonProperty("expires_after") val expiresAfter: VectorStoreExpirationAfter? = null,
 
@@ -93,12 +88,12 @@ data class VectorStoreObject(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         vector_store("vector_store");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }
@@ -113,12 +108,12 @@ data class VectorStoreObject(
         expired("expired"),
         in_progress("in_progress"),
         completed("completed");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Status {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Status'")
             }
         }

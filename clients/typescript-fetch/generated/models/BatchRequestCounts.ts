@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface BatchRequestCounts {
     /**
      * Total number of requests in the batch.
-     * @type {number}
-     * @memberof BatchRequestCounts
      */
     total: number;
     /**
      * Number of requests that have been completed successfully.
-     * @type {number}
-     * @memberof BatchRequestCounts
      */
     completed: number;
     /**
      * Number of requests that have failed.
-     * @type {number}
-     * @memberof BatchRequestCounts
      */
     failed: number;
 }

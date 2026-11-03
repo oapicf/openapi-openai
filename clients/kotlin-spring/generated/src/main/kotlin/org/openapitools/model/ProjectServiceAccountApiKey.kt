@@ -17,8 +17,8 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param &#x60;object&#x60; The object type, which is always `organization.project.service_account.api_key`
- * @param &#x60;value&#x60; 
+ * @param `object` The object type, which is always `organization.project.service_account.api_key`
+ * @param `value` 
  * @param name 
  * @param createdAt 
  * @param id 
@@ -26,23 +26,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ProjectServiceAccountApiKey(
 
     @Schema(required = true, description = "The object type, which is always `organization.project.service_account.api_key`")
-    @param:JsonProperty("object")
+    @param:JsonProperty("object", required = true)
     @get:JsonProperty("object", required = true) val `object`: ProjectServiceAccountApiKey.`Object`,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("value")
+    @param:JsonProperty("value", required = true)
     @get:JsonProperty("value", required = true) val `value`: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("name")
+    @param:JsonProperty("name", required = true)
     @get:JsonProperty("name", required = true) val name: kotlin.String,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("created_at")
+    @param:JsonProperty("created_at", required = true)
     @get:JsonProperty("created_at", required = true) val createdAt: kotlin.Int,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("id")
+    @param:JsonProperty("id", required = true)
     @get:JsonProperty("id", required = true) val id: kotlin.String
 ) {
 
@@ -53,12 +53,12 @@ data class ProjectServiceAccountApiKey(
     enum class `Object`(@get:JsonValue val value: kotlin.String) {
 
         organizationPeriodProjectPeriodService_accountPeriodApi_key("organization.project.service_account.api_key");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): `Object` {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum '&#x60;Object&#x60;'")
             }
         }

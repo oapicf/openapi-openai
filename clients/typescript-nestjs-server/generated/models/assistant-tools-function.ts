@@ -10,7 +10,7 @@ export interface AssistantToolsFunction {
 }
 export namespace AssistantToolsFunction {
   export const TypeEnum = {
-    Function: 'function'
+    Function: 'function',
   } as const;
   export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

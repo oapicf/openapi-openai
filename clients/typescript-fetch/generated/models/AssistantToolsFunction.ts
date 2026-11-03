@@ -29,14 +29,10 @@ import {
 export interface AssistantToolsFunction {
     /**
      * The type of tool being defined: `function`
-     * @type {AssistantToolsFunctionTypeEnum}
-     * @memberof AssistantToolsFunction
      */
     type: AssistantToolsFunctionTypeEnum;
     /**
      * 
-     * @type {FunctionObject}
-     * @memberof AssistantToolsFunction
      */
     _function: FunctionObject;
 }
@@ -46,7 +42,7 @@ export interface AssistantToolsFunction {
  * @export
  */
 export const AssistantToolsFunctionTypeEnum = {
-    Function: 'function'
+    Function: 'function',
 } as const;
 export type AssistantToolsFunctionTypeEnum = typeof AssistantToolsFunctionTypeEnum[keyof typeof AssistantToolsFunctionTypeEnum];
 

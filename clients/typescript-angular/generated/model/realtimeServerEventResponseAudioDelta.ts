@@ -44,7 +44,7 @@ export interface RealtimeServerEventResponseAudioDelta {
 }
 export namespace RealtimeServerEventResponseAudioDelta {
     export const TypeEnum = {
-        ResponseAudioDelta: 'response.audio.delta'
+        ResponseAudioDelta: 'response.audio.delta',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  */
 
 @Schema(name = "VectorStoreObject", description = "A vector store is a collection of processed files can be used by the `file_search` tool.")
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class VectorStoreObject {
 
   private String id;
@@ -329,7 +328,7 @@ public class VectorStoreObject {
    * The Unix timestamp (in seconds) for when the vector store was last active.
    * @return lastActiveAt
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "last_active_at", description = "The Unix timestamp (in seconds) for when the vector store was last active.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("last_active_at")
   public JsonNullable<Integer> getLastActiveAt() {
@@ -349,7 +348,7 @@ public class VectorStoreObject {
    * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. 
    * @return metadata
    */
-  @NotNull 
+  /* @Present */ 
   @Schema(name = "metadata", description = "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long. ", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("metadata")
   public JsonNullable<Object> getMetadata() {

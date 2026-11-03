@@ -42,7 +42,7 @@ export interface RealtimeServerEventResponseContentPartDone {
 }
 export namespace RealtimeServerEventResponseContentPartDone {
     export const TypeEnum = {
-        ResponseContentPartDone: 'response.content_part.done'
+        ResponseContentPartDone: 'response.content_part.done',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

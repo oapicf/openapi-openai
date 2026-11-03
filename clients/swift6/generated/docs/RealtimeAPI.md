@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **createRealtimeSession**
 ```swift
-    open class func createRealtimeSession(realtimeSessionCreateRequest: RealtimeSessionCreateRequest, completion: @escaping (_ data: RealtimeSessionCreateResponse?, _ error: Error?) -> Void)
+    open class func createRealtimeSession(realtimeSessionCreateRequest: RealtimeSessionCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RealtimeSessionCreateResponse
 ```
 
 Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
@@ -22,15 +22,11 @@ import OpenAPIClient
 let realtimeSessionCreateRequest = RealtimeSessionCreateRequest(modalities: ["modalities_example"], model: "model_example", instructions: "instructions_example", voice: "voice_example", inputAudioFormat: "inputAudioFormat_example", outputAudioFormat: "outputAudioFormat_example", inputAudioTranscription: RealtimeSession_input_audio_transcription(model: "model_example"), turnDetection: RealtimeSessionCreateRequest_turn_detection(type: "type_example", threshold: 123, prefixPaddingMs: 123, silenceDurationMs: 123, createResponse: false), tools: [RealtimeResponseCreateParams_tools_inner(type: "type_example", name: "name_example", description: "description_example", parameters: 123)], toolChoice: "toolChoice_example", temperature: 123, maxResponseOutputTokens: RealtimeResponseCreateParams_max_response_output_tokens()) // RealtimeSessionCreateRequest | Create an ephemeral API key with the given session configuration.
 
 // Create an ephemeral API token for use in client-side applications with the Realtime API. Can be configured with the same session parameters as the `session.update` client event.  It responds with a session object, plus a `client_secret` key which contains a usable ephemeral API token that can be used to authenticate browser clients for the Realtime API. 
-RealtimeAPI.createRealtimeSession(realtimeSessionCreateRequest: realtimeSessionCreateRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RealtimeAPI.createRealtimeSession(realtimeSessionCreateRequest: realtimeSessionCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

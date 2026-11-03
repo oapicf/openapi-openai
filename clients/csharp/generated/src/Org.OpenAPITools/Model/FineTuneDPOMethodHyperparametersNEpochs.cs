@@ -35,7 +35,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersNEpochs" /> class.
         /// </summary>
         /// <param name="string"></param>
-        internal FineTuneDPOMethodHyperparametersNEpochs(string @string)
+        public FineTuneDPOMethodHyperparametersNEpochs(string @string)
         {
             String = @string;
             OnCreated();
@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="FineTuneDPOMethodHyperparametersNEpochs" /> class.
         /// </summary>
         /// <param name="int"></param>
-        internal FineTuneDPOMethodHyperparametersNEpochs(int @int)
+        public FineTuneDPOMethodHyperparametersNEpochs(int @int)
         {
             Int = @int;
             OnCreated();
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersNEpochs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersNEpochs fineTuneDPOMethodHyperparametersNEpochs, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,7 +190,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="fineTuneDPOMethodHyperparametersNEpochs"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FineTuneDPOMethodHyperparametersNEpochs fineTuneDPOMethodHyperparametersNEpochs, JsonSerializerOptions jsonSerializerOptions)
         {
 

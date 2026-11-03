@@ -25,7 +25,7 @@ export interface ThreadObject {
 }
 export namespace ThreadObject {
   export const ObjectEnum = {
-    Thread: 'thread'
+    Thread: 'thread',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

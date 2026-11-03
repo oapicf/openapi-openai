@@ -38,7 +38,7 @@ export interface ChatCompletionResponseMessage {
 }
 export namespace ChatCompletionResponseMessage {
     export const RoleEnum = {
-        Assistant: 'assistant'
+        Assistant: 'assistant',
     } as const;
     export type RoleEnum = typeof RoleEnum[keyof typeof RoleEnum];
 }

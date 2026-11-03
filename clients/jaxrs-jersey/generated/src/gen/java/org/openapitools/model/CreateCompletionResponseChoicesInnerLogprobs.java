@@ -37,7 +37,7 @@ import javax.validation.Valid;
   CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOKENS,
   CreateCompletionResponseChoicesInnerLogprobs.JSON_PROPERTY_TOP_LOGPROBS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-26T05:16:07.346796379Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-03T06:33:59.727428422Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateCompletionResponseChoicesInnerLogprobs   {
   public static final String JSON_PROPERTY_TEXT_OFFSET = "text_offset";
   @JsonProperty(JSON_PROPERTY_TEXT_OFFSET)
@@ -102,7 +102,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
    **/
   @JsonProperty(value = "token_logprobs")
   @ApiModelProperty(value = "")
-  @Valid 
+  
   public List<BigDecimal> getTokenLogprobs() {
     return tokenLogprobs;
   }
@@ -158,7 +158,7 @@ public class CreateCompletionResponseChoicesInnerLogprobs   {
    **/
   @JsonProperty(value = "top_logprobs")
   @ApiModelProperty(value = "")
-  @Valid 
+  
   public List<Map<String, BigDecimal>> getTopLogprobs() {
     return topLogprobs;
   }

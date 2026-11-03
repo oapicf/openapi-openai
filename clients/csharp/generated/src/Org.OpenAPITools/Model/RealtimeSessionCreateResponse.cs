@@ -554,7 +554,12 @@ namespace Org.OpenAPITools.Model
                         case "voice":
                             string? voiceRawValue = utf8JsonReader.GetString();
                             if (voiceRawValue != null)
-                                voice = new Option<RealtimeSessionCreateResponse.VoiceEnum?>(RealtimeSessionCreateResponse.VoiceEnumFromStringOrDefault(voiceRawValue));
+                            {
+                                RealtimeSessionCreateResponse.VoiceEnum? voiceValue = RealtimeSessionCreateResponse.VoiceEnumFromStringOrDefault(voiceRawValue);
+                                if (voiceValue == null)
+                                    throw new JsonException();
+                                voice = new Option<RealtimeSessionCreateResponse.VoiceEnum?>(voiceValue);
+                            }
                             break;
                         case "input_audio_format":
                             inputAudioFormat = new Option<string?>(utf8JsonReader.GetString()!);
@@ -587,40 +592,40 @@ namespace Org.OpenAPITools.Model
             }
 
             if (clientSecret.IsSet && clientSecret.Value == null)
-                throw new ArgumentNullException(nameof(clientSecret), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: client_secret.");
 
             if (modalities.IsSet && modalities.Value == null)
-                throw new ArgumentNullException(nameof(modalities), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: modalities.");
 
             if (instructions.IsSet && instructions.Value == null)
-                throw new ArgumentNullException(nameof(instructions), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: instructions.");
 
             if (voice.IsSet && voice.Value == null)
-                throw new ArgumentNullException(nameof(voice), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: voice.");
 
             if (inputAudioFormat.IsSet && inputAudioFormat.Value == null)
-                throw new ArgumentNullException(nameof(inputAudioFormat), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: input_audio_format.");
 
             if (outputAudioFormat.IsSet && outputAudioFormat.Value == null)
-                throw new ArgumentNullException(nameof(outputAudioFormat), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: output_audio_format.");
 
             if (inputAudioTranscription.IsSet && inputAudioTranscription.Value == null)
-                throw new ArgumentNullException(nameof(inputAudioTranscription), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: input_audio_transcription.");
 
             if (turnDetection.IsSet && turnDetection.Value == null)
-                throw new ArgumentNullException(nameof(turnDetection), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: turn_detection.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: tools.");
 
             if (toolChoice.IsSet && toolChoice.Value == null)
-                throw new ArgumentNullException(nameof(toolChoice), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: tool_choice.");
 
             if (temperature.IsSet && temperature.Value == null)
-                throw new ArgumentNullException(nameof(temperature), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: temperature.");
 
             if (maxResponseOutputTokens.IsSet && maxResponseOutputTokens.Value == null)
-                throw new ArgumentNullException(nameof(maxResponseOutputTokens), "Property is not nullable for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Property is not nullable for class RealtimeSessionCreateResponse: max_response_output_tokens.");
 
             return new RealtimeSessionCreateResponse(clientSecret, modalities, instructions, voice, inputAudioFormat, outputAudioFormat, inputAudioTranscription, turnDetection, tools, toolChoice, temperature, maxResponseOutputTokens);
         }
@@ -631,7 +636,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeSessionCreateResponse realtimeSessionCreateResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -646,38 +650,43 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeSessionCreateResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeSessionCreateResponse realtimeSessionCreateResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             if (realtimeSessionCreateResponse.ClientSecretOption.IsSet && realtimeSessionCreateResponse.ClientSecret == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.ClientSecret), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.ClientSecret to non-nullable JSON property 'client_secret'.");
 
             if (realtimeSessionCreateResponse.ModalitiesOption.IsSet && realtimeSessionCreateResponse.Modalities == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.Modalities), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.Modalities to non-nullable JSON property 'modalities'.");
 
             if (realtimeSessionCreateResponse.InstructionsOption.IsSet && realtimeSessionCreateResponse.Instructions == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.Instructions), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.Instructions to non-nullable JSON property 'instructions'.");
+
+            if (realtimeSessionCreateResponse.VoiceOption.IsSet && realtimeSessionCreateResponse.Voice == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.Voice to non-nullable JSON property 'voice'.");
 
             if (realtimeSessionCreateResponse.InputAudioFormatOption.IsSet && realtimeSessionCreateResponse.InputAudioFormat == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.InputAudioFormat), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.InputAudioFormat to non-nullable JSON property 'input_audio_format'.");
 
             if (realtimeSessionCreateResponse.OutputAudioFormatOption.IsSet && realtimeSessionCreateResponse.OutputAudioFormat == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.OutputAudioFormat), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.OutputAudioFormat to non-nullable JSON property 'output_audio_format'.");
 
             if (realtimeSessionCreateResponse.InputAudioTranscriptionOption.IsSet && realtimeSessionCreateResponse.InputAudioTranscription == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.InputAudioTranscription), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.InputAudioTranscription to non-nullable JSON property 'input_audio_transcription'.");
 
             if (realtimeSessionCreateResponse.TurnDetectionOption.IsSet && realtimeSessionCreateResponse.TurnDetection == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.TurnDetection), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.TurnDetection to non-nullable JSON property 'turn_detection'.");
 
             if (realtimeSessionCreateResponse.ToolsOption.IsSet && realtimeSessionCreateResponse.Tools == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.Tools), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.Tools to non-nullable JSON property 'tools'.");
 
             if (realtimeSessionCreateResponse.ToolChoiceOption.IsSet && realtimeSessionCreateResponse.ToolChoice == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.ToolChoice), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.ToolChoice to non-nullable JSON property 'tool_choice'.");
+
+            if (realtimeSessionCreateResponse.TemperatureOption.IsSet && realtimeSessionCreateResponse.Temperature == null)
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.Temperature to non-nullable JSON property 'temperature'.");
 
             if (realtimeSessionCreateResponse.MaxResponseOutputTokensOption.IsSet && realtimeSessionCreateResponse.MaxResponseOutputTokens == null)
-                throw new ArgumentNullException(nameof(realtimeSessionCreateResponse.MaxResponseOutputTokens), "Property is required for class RealtimeSessionCreateResponse.");
+                throw new JsonException("Cannot write null property RealtimeSessionCreateResponse.MaxResponseOutputTokens to non-nullable JSON property 'max_response_output_tokens'.");
 
             if (realtimeSessionCreateResponse.ClientSecretOption.IsSet)
             {

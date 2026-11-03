@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RunStepDetailsMessageCreationObject.TypeEnum?>(RunStepDetailsMessageCreationObject.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RunStepDetailsMessageCreationObject.TypeEnum? typeValue = RunStepDetailsMessageCreationObject.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RunStepDetailsMessageCreationObject.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "message_creation":
                             messageCreation = new Option<RunStepDetailsMessageCreationObjectMessageCreation?>(JsonSerializer.Deserialize<RunStepDetailsMessageCreationObjectMessageCreation>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsMessageCreationObject.", nameof(type));
+                throw new JsonException("Property is required for class RunStepDetailsMessageCreationObject: type.");
 
             if (!messageCreation.IsSet)
-                throw new ArgumentException("Property is required for class RunStepDetailsMessageCreationObject.", nameof(messageCreation));
+                throw new JsonException("Property is required for class RunStepDetailsMessageCreationObject: message_creation.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RunStepDetailsMessageCreationObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsMessageCreationObject: type.");
 
             if (messageCreation.IsSet && messageCreation.Value == null)
-                throw new ArgumentNullException(nameof(messageCreation), "Property is not nullable for class RunStepDetailsMessageCreationObject.");
+                throw new JsonException("Property is not nullable for class RunStepDetailsMessageCreationObject: message_creation.");
 
             return new RunStepDetailsMessageCreationObject(type.Value!.Value!, messageCreation.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsMessageCreationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStepDetailsMessageCreationObject runStepDetailsMessageCreationObject, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStepDetailsMessageCreationObject"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStepDetailsMessageCreationObject runStepDetailsMessageCreationObject, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStepDetailsMessageCreationObject.MessageCreation == null)
-                throw new ArgumentNullException(nameof(runStepDetailsMessageCreationObject.MessageCreation), "Property is required for class RunStepDetailsMessageCreationObject.");
-
             var typeRawValue = RunStepDetailsMessageCreationObject.TypeEnumToJsonValue(runStepDetailsMessageCreationObject.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("message_creation");

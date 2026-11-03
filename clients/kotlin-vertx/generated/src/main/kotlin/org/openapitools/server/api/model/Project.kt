@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 /**
  * Represents an individual project.
  * @param id The identifier, which can be referenced in API endpoints
- * @param &#x60;object&#x60; The object type, which is always `organization.project`
+ * @param `object` The object type, which is always `organization.project`
  * @param name The name of the project. This appears in reporting.
  * @param createdAt The Unix timestamp (in seconds) of when the project was created.
  * @param status `active` or `archived`

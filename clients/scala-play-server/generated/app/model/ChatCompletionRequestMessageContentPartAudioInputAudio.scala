@@ -7,7 +7,7 @@ import play.api.libs.json._
   * @param data Base64 encoded audio data.
   * @param format The format of the encoded audio data. Currently supports \"wav\" and \"mp3\". 
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class ChatCompletionRequestMessageContentPartAudioInputAudio(
   data: String,
   format: ChatCompletionRequestMessageContentPartAudioInputAudio.Format.Value

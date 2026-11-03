@@ -26,12 +26,12 @@ import org.openapitools.model.CreateFineTuningJobRequestHyperparametersNEpochs;
  */
 
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-26T05:15:47.876757065Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-03T06:33:35.125110854Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateFineTuningJobRequestHyperparameters   {
   
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   /**
    */

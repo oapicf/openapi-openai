@@ -29,38 +29,26 @@ import {
 export interface ProjectServiceAccountCreateResponse {
     /**
      * 
-     * @type {ProjectServiceAccountCreateResponseObjectEnum}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     object: ProjectServiceAccountCreateResponseObjectEnum;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     id: string;
     /**
      * 
-     * @type {string}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     name: string;
     /**
      * Service accounts can only have one role of type `member`
-     * @type {ProjectServiceAccountCreateResponseRoleEnum}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     role: ProjectServiceAccountCreateResponseRoleEnum;
     /**
      * 
-     * @type {number}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     createdAt: number;
     /**
      * 
-     * @type {ProjectServiceAccountApiKey}
-     * @memberof ProjectServiceAccountCreateResponse
      */
     apiKey: ProjectServiceAccountApiKey;
 }
@@ -70,7 +58,7 @@ export interface ProjectServiceAccountCreateResponse {
  * @export
  */
 export const ProjectServiceAccountCreateResponseObjectEnum = {
-    OrganizationProjectServiceAccount: 'organization.project.service_account'
+    OrganizationProjectServiceAccount: 'organization.project.service_account',
 } as const;
 export type ProjectServiceAccountCreateResponseObjectEnum = typeof ProjectServiceAccountCreateResponseObjectEnum[keyof typeof ProjectServiceAccountCreateResponseObjectEnum];
 
@@ -78,7 +66,7 @@ export type ProjectServiceAccountCreateResponseObjectEnum = typeof ProjectServic
  * @export
  */
 export const ProjectServiceAccountCreateResponseRoleEnum = {
-    Member: 'member'
+    Member: 'member',
 } as const;
 export type ProjectServiceAccountCreateResponseRoleEnum = typeof ProjectServiceAccountCreateResponseRoleEnum[keyof typeof ProjectServiceAccountCreateResponseRoleEnum];
 

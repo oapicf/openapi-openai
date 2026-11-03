@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,12 +25,11 @@ import jakarta.annotation.Generated;
  * SubmitToolOutputsRunRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-26T05:22:24.124939009Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-03T06:38:48.434581935Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class SubmitToolOutputsRunRequest {
 
   private List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> toolOutputs = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)
   private JsonNullable<Boolean> stream = JsonNullable.<Boolean>undefined();
 
   public SubmitToolOutputsRunRequest() {
@@ -62,7 +60,7 @@ public class SubmitToolOutputsRunRequest {
    * A list of tools for which the outputs are being submitted.
    * @return toolOutputs
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "tool_outputs", description = "A list of tools for which the outputs are being submitted.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("tool_outputs")
   public List<@Valid SubmitToolOutputsRunRequestToolOutputsInner> getToolOutputs() {
@@ -84,7 +82,7 @@ public class SubmitToolOutputsRunRequest {
    * @return stream
    */
   
-  @Schema(name = "stream", description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "stream", description = "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED, nullable = true)
   @JsonProperty("stream")
   public JsonNullable<Boolean> getStream() {
     return stream;

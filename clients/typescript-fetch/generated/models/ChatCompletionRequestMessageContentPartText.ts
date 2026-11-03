@@ -22,14 +22,10 @@ import { mapValues } from '../runtime';
 export interface ChatCompletionRequestMessageContentPartText {
     /**
      * The type of the content part.
-     * @type {ChatCompletionRequestMessageContentPartTextTypeEnum}
-     * @memberof ChatCompletionRequestMessageContentPartText
      */
     type: ChatCompletionRequestMessageContentPartTextTypeEnum;
     /**
      * The text content.
-     * @type {string}
-     * @memberof ChatCompletionRequestMessageContentPartText
      */
     text: string;
 }
@@ -39,7 +35,7 @@ export interface ChatCompletionRequestMessageContentPartText {
  * @export
  */
 export const ChatCompletionRequestMessageContentPartTextTypeEnum = {
-    Text: 'text'
+    Text: 'text',
 } as const;
 export type ChatCompletionRequestMessageContentPartTextTypeEnum = typeof ChatCompletionRequestMessageContentPartTextTypeEnum[keyof typeof ChatCompletionRequestMessageContentPartTextTypeEnum];
 

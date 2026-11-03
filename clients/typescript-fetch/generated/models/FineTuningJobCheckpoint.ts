@@ -30,44 +30,30 @@ import {
 export interface FineTuningJobCheckpoint {
     /**
      * The checkpoint identifier, which can be referenced in the API endpoints.
-     * @type {string}
-     * @memberof FineTuningJobCheckpoint
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) for when the checkpoint was created.
-     * @type {number}
-     * @memberof FineTuningJobCheckpoint
      */
     createdAt: number;
     /**
      * The name of the fine-tuned checkpoint model that is created.
-     * @type {string}
-     * @memberof FineTuningJobCheckpoint
      */
     fineTunedModelCheckpoint: string;
     /**
      * The step number that the checkpoint was created at.
-     * @type {number}
-     * @memberof FineTuningJobCheckpoint
      */
     stepNumber: number;
     /**
      * 
-     * @type {FineTuningJobCheckpointMetrics}
-     * @memberof FineTuningJobCheckpoint
      */
     metrics: FineTuningJobCheckpointMetrics;
     /**
      * The name of the fine-tuning job that this checkpoint was created from.
-     * @type {string}
-     * @memberof FineTuningJobCheckpoint
      */
     fineTuningJobId: string;
     /**
      * The object type, which is always "fine_tuning.job.checkpoint".
-     * @type {FineTuningJobCheckpointObjectEnum}
-     * @memberof FineTuningJobCheckpoint
      */
     object: FineTuningJobCheckpointObjectEnum;
 }
@@ -77,7 +63,7 @@ export interface FineTuningJobCheckpoint {
  * @export
  */
 export const FineTuningJobCheckpointObjectEnum = {
-    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint'
+    FineTuningJobCheckpoint: 'fine_tuning.job.checkpoint',
 } as const;
 export type FineTuningJobCheckpointObjectEnum = typeof FineTuningJobCheckpointObjectEnum[keyof typeof FineTuningJobCheckpointObjectEnum];
 

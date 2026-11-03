@@ -200,7 +200,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<InviteDeleteResponse.ObjectEnum?>(InviteDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                InviteDeleteResponse.ObjectEnum? varObjectValue = InviteDeleteResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<InviteDeleteResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
@@ -215,22 +220,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class InviteDeleteResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class InviteDeleteResponse: object.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class InviteDeleteResponse.", nameof(id));
+                throw new JsonException("Property is required for class InviteDeleteResponse: id.");
 
             if (!deleted.IsSet)
-                throw new ArgumentException("Property is required for class InviteDeleteResponse.", nameof(deleted));
+                throw new JsonException("Property is required for class InviteDeleteResponse: deleted.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class InviteDeleteResponse.");
+                throw new JsonException("Property is not nullable for class InviteDeleteResponse: object.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class InviteDeleteResponse.");
+                throw new JsonException("Property is not nullable for class InviteDeleteResponse: id.");
 
             if (deleted.IsSet && deleted.Value == null)
-                throw new ArgumentNullException(nameof(deleted), "Property is not nullable for class InviteDeleteResponse.");
+                throw new JsonException("Property is not nullable for class InviteDeleteResponse: deleted.");
 
             return new InviteDeleteResponse(varObject.Value!.Value!, id.Value!, deleted.Value!.Value!);
         }
@@ -241,7 +246,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, InviteDeleteResponse inviteDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -256,12 +260,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="inviteDeleteResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, InviteDeleteResponse inviteDeleteResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (inviteDeleteResponse.Id == null)
-                throw new ArgumentNullException(nameof(inviteDeleteResponse.Id), "Property is required for class InviteDeleteResponse.");
-
             var varObjectRawValue = InviteDeleteResponse.ObjectEnumToJsonValue(inviteDeleteResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("id", inviteDeleteResponse.Id);

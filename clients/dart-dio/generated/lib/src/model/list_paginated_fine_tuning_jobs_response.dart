@@ -139,6 +139,7 @@ class _$ListPaginatedFineTuningJobsResponseSerializer implements PrimitiveSerial
   }
 }
 
+
 class ListPaginatedFineTuningJobsResponseObjectEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'list')

@@ -15,8 +15,8 @@ import jakarta.validation.Valid;
 public class FineTunePreferenceRequestInput   {
 
     private FineTunePreferenceRequestInputInput input;
-    private List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = new ArrayList<>();
-    private List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = new ArrayList<>();
+    private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = new ArrayList<>();
+    private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = new ArrayList<>();
 
     /**
      * Default constructor.
@@ -34,8 +34,8 @@ public class FineTunePreferenceRequestInput   {
      */
     public FineTunePreferenceRequestInput(
         FineTunePreferenceRequestInputInput input, 
-        List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion, 
-        List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion
+        List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion, 
+        List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion
     ) {
         this.input = input;
         this.preferredCompletion = preferredCompletion;
@@ -60,11 +60,11 @@ public class FineTunePreferenceRequestInput   {
      * The preferred completion message for the output.
      * @return preferredCompletion
      */
-    public List<FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
+    public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
         return preferredCompletion;
     }
 
-    public void setPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
+    public void setPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
         this.preferredCompletion = preferredCompletion;
     }
 
@@ -72,11 +72,11 @@ public class FineTunePreferenceRequestInput   {
      * The non-preferred completion message for the output.
      * @return nonPreferredCompletion
      */
-    public List<FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
+    public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
         return nonPreferredCompletion;
     }
 
-    public void setNonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
+    public void setNonPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
         this.nonPreferredCompletion = nonPreferredCompletion;
     }
 

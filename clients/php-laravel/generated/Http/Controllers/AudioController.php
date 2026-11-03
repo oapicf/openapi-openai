@@ -51,10 +51,10 @@ class AudioController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
             ],
@@ -87,10 +87,10 @@ class AudioController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'file' => [
@@ -106,11 +106,11 @@ class AudioController extends Controller
                 'prompt' => [
                     'string',
                 ],
-                'responseFormat' => [
+                'response_format' => [
                 ],
                 'temperature' => [
                 ],
-                'timestampGranularities' => [
+                'timestamp_granularities[]' => [
                     'array',
                 ],
             ],
@@ -132,7 +132,7 @@ class AudioController extends Controller
 
         $temperature = $request->float('temperature');
 
-        $timestampGranularities = $request->get('timestampGranularities');
+        $timestampGranularities = $request->get('timestamp_granularities[]');
 
 
         $apiResult = $this->api->createTranscription($file, $model, $language, $prompt, $responseFormat, $temperature, $timestampGranularities);
@@ -155,10 +155,10 @@ class AudioController extends Controller
     {
         $validator = Validator::make(
             array_merge(
+                $request->all(),
                 [
                     
                 ],
-                $request->all(),
             ),
             [
                 'file' => [
@@ -171,7 +171,7 @@ class AudioController extends Controller
                 'prompt' => [
                     'string',
                 ],
-                'responseFormat' => [
+                'response_format' => [
                 ],
                 'temperature' => [
                 ],

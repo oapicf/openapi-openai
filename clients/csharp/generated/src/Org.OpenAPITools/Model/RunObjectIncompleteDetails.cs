@@ -201,7 +201,12 @@ namespace Org.OpenAPITools.Model
                         case "reason":
                             string? reasonRawValue = utf8JsonReader.GetString();
                             if (reasonRawValue != null)
-                                reason = new Option<RunObjectIncompleteDetails.ReasonEnum?>(RunObjectIncompleteDetails.ReasonEnumFromStringOrDefault(reasonRawValue));
+                            {
+                                RunObjectIncompleteDetails.ReasonEnum? reasonValue = RunObjectIncompleteDetails.ReasonEnumFromStringOrDefault(reasonRawValue);
+                                if (reasonValue == null)
+                                    throw new JsonException();
+                                reason = new Option<RunObjectIncompleteDetails.ReasonEnum?>(reasonValue);
+                            }
                             break;
                         default:
                             break;
@@ -210,7 +215,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (reason.IsSet && reason.Value == null)
-                throw new ArgumentNullException(nameof(reason), "Property is not nullable for class RunObjectIncompleteDetails.");
+                throw new JsonException("Property is not nullable for class RunObjectIncompleteDetails: reason.");
 
             return new RunObjectIncompleteDetails(reason);
         }
@@ -221,7 +226,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectIncompleteDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunObjectIncompleteDetails runObjectIncompleteDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -236,9 +240,11 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runObjectIncompleteDetails"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunObjectIncompleteDetails runObjectIncompleteDetails, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (runObjectIncompleteDetails.ReasonOption.IsSet && runObjectIncompleteDetails.Reason == null)
+                throw new JsonException("Cannot write null property RunObjectIncompleteDetails.Reason to non-nullable JSON property 'reason'.");
+
             var reasonRawValue = RunObjectIncompleteDetails.ReasonEnumToJsonValue(runObjectIncompleteDetails.ReasonOption.Value!.Value);
             writer.WriteString("reason", reasonRawValue);
         }

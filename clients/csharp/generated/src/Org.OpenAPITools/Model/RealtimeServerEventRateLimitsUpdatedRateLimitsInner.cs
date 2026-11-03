@@ -255,7 +255,12 @@ namespace Org.OpenAPITools.Model
                         case "name":
                             string? nameRawValue = utf8JsonReader.GetString();
                             if (nameRawValue != null)
-                                name = new Option<RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnum?>(RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnumFromStringOrDefault(nameRawValue));
+                            {
+                                RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnum? nameValue = RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnumFromStringOrDefault(nameRawValue);
+                                if (nameValue == null)
+                                    throw new JsonException();
+                                name = new Option<RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnum?>(nameValue);
+                            }
                             break;
                         case "limit":
                             limit = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -273,16 +278,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner: name.");
 
             if (limit.IsSet && limit.Value == null)
-                throw new ArgumentNullException(nameof(limit), "Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner: limit.");
 
             if (remaining.IsSet && remaining.Value == null)
-                throw new ArgumentNullException(nameof(remaining), "Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner: remaining.");
 
             if (resetSeconds.IsSet && resetSeconds.Value == null)
-                throw new ArgumentNullException(nameof(resetSeconds), "Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventRateLimitsUpdatedRateLimitsInner: reset_seconds.");
 
             return new RealtimeServerEventRateLimitsUpdatedRateLimitsInner(name, limit, remaining, resetSeconds);
         }
@@ -293,7 +298,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventRateLimitsUpdatedRateLimitsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventRateLimitsUpdatedRateLimitsInner realtimeServerEventRateLimitsUpdatedRateLimitsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -308,9 +312,20 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventRateLimitsUpdatedRateLimitsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventRateLimitsUpdatedRateLimitsInner realtimeServerEventRateLimitsUpdatedRateLimitsInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (realtimeServerEventRateLimitsUpdatedRateLimitsInner.NameOption.IsSet && realtimeServerEventRateLimitsUpdatedRateLimitsInner.Name == null)
+                throw new JsonException("Cannot write null property RealtimeServerEventRateLimitsUpdatedRateLimitsInner.Name to non-nullable JSON property 'name'.");
+
+            if (realtimeServerEventRateLimitsUpdatedRateLimitsInner.LimitOption.IsSet && realtimeServerEventRateLimitsUpdatedRateLimitsInner.Limit == null)
+                throw new JsonException("Cannot write null property RealtimeServerEventRateLimitsUpdatedRateLimitsInner.Limit to non-nullable JSON property 'limit'.");
+
+            if (realtimeServerEventRateLimitsUpdatedRateLimitsInner.RemainingOption.IsSet && realtimeServerEventRateLimitsUpdatedRateLimitsInner.Remaining == null)
+                throw new JsonException("Cannot write null property RealtimeServerEventRateLimitsUpdatedRateLimitsInner.Remaining to non-nullable JSON property 'remaining'.");
+
+            if (realtimeServerEventRateLimitsUpdatedRateLimitsInner.ResetSecondsOption.IsSet && realtimeServerEventRateLimitsUpdatedRateLimitsInner.ResetSeconds == null)
+                throw new JsonException("Cannot write null property RealtimeServerEventRateLimitsUpdatedRateLimitsInner.ResetSeconds to non-nullable JSON property 'reset_seconds'.");
+
             var nameRawValue = RealtimeServerEventRateLimitsUpdatedRateLimitsInner.NameEnumToJsonValue(realtimeServerEventRateLimitsUpdatedRateLimitsInner.NameOption.Value!.Value);
             writer.WriteString("name", nameRawValue);
             if (realtimeServerEventRateLimitsUpdatedRateLimitsInner.LimitOption.IsSet)

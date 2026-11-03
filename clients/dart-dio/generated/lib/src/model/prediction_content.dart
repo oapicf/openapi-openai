@@ -124,9 +124,10 @@ class _$PredictionContentSerializer implements PrimitiveSerializer<PredictionCon
   }
 }
 
+
+/// The type of the predicted content you want to provide. This type is currently always `content`. 
 class PredictionContentTypeEnum extends EnumClass {
 
-  /// The type of the predicted content you want to provide. This type is currently always `content`. 
   @BuiltValueEnumConst(wireName: r'content')
   static const PredictionContentTypeEnum content = _$predictionContentTypeEnum_content;
 

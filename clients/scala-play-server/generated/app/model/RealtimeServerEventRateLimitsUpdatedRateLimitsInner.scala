@@ -9,7 +9,7 @@ import play.api.libs.json._
   * @param remaining The remaining value before the limit is reached.
   * @param resetSeconds Seconds until the rate limit resets.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-08-26T05:22:02.282422614Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2026-11-03T06:38:29.809972473Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 case class RealtimeServerEventRateLimitsUpdatedRateLimitsInner(
   name: Option[RealtimeServerEventRateLimitsUpdatedRateLimitsInner.Name.Value],
   limit: Option[Int],

@@ -27,7 +27,7 @@ object ChatCompletionRequestUserMessageEnums {
 
   sealed trait Role
   object Role {
-    case object User extends Role
+    case object User extends Role { override def toString: String = "user" }
 
     import org.json4s._
 

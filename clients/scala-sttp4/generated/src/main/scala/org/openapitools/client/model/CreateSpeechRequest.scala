@@ -27,12 +27,12 @@ object CreateSpeechRequestEnums {
 
   sealed trait Voice
   object Voice {
-    case object Alloy extends Voice
-    case object Echo extends Voice
-    case object Fable extends Voice
-    case object Onyx extends Voice
-    case object Nova extends Voice
-    case object Shimmer extends Voice
+    case object Alloy extends Voice { override def toString: String = "alloy" }
+    case object Echo extends Voice { override def toString: String = "echo" }
+    case object Fable extends Voice { override def toString: String = "fable" }
+    case object Onyx extends Voice { override def toString: String = "onyx" }
+    case object Nova extends Voice { override def toString: String = "nova" }
+    case object Shimmer extends Voice { override def toString: String = "shimmer" }
 
     import org.json4s._
 
@@ -63,12 +63,12 @@ object CreateSpeechRequestEnums {
 
   sealed trait ResponseFormat
   object ResponseFormat {
-    case object Mp3 extends ResponseFormat
-    case object Opus extends ResponseFormat
-    case object Aac extends ResponseFormat
-    case object Flac extends ResponseFormat
-    case object Wav extends ResponseFormat
-    case object Pcm extends ResponseFormat
+    case object Mp3 extends ResponseFormat { override def toString: String = "mp3" }
+    case object Opus extends ResponseFormat { override def toString: String = "opus" }
+    case object Aac extends ResponseFormat { override def toString: String = "aac" }
+    case object Flac extends ResponseFormat { override def toString: String = "flac" }
+    case object Wav extends ResponseFormat { override def toString: String = "wav" }
+    case object Pcm extends ResponseFormat { override def toString: String = "pcm" }
 
     import org.json4s._
 

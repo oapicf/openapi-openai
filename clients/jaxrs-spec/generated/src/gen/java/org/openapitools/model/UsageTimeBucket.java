@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("UsageTimeBucket")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageTimeBucket   {
   public enum ObjectEnum {
 
@@ -72,7 +72,7 @@ public class UsageTimeBucket   {
   private ObjectEnum _object;
   private Integer startTime;
   private Integer endTime;
-  private @Valid List<UsageTimeBucketResultInner> result = new ArrayList<>();
+  private List<@Valid UsageTimeBucketResultInner> result = new ArrayList<>();
 
   public UsageTimeBucket() {
   }
@@ -149,7 +149,7 @@ public class UsageTimeBucket   {
 
   /**
    **/
-  public UsageTimeBucket result(List<UsageTimeBucketResultInner> result) {
+  public UsageTimeBucket result(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
     return this;
   }
@@ -157,12 +157,12 @@ public class UsageTimeBucket   {
   
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(required = true, value = "result")
-  @NotNull @Valid public List<@Valid UsageTimeBucketResultInner> getResult() {
+  @NotNull public List<@Valid UsageTimeBucketResultInner> getResult() {
     return result;
   }
 
   @JsonProperty(required = true, value = "result")
-  public void setResult(List<UsageTimeBucketResultInner> result) {
+  public void setResult(List<@Valid UsageTimeBucketResultInner> result) {
     this.result = result;
   }
 

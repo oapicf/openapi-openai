@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RunStepDetailsToolCallsCodeOutputImageObjectImage(
 
     @Schema(required = true, description = "The [file](/docs/api-reference/files) ID of the image.")
-    @param:JsonProperty("file_id")
+    @param:JsonProperty("file_id", required = true)
     @get:JsonProperty("file_id", required = true) val fileId: kotlin.String
 ) {
 

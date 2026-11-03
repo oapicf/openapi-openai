@@ -188,7 +188,12 @@ namespace Org.OpenAPITools.Model
                         case "event":
                             string? varEventRawValue = utf8JsonReader.GetString();
                             if (varEventRawValue != null)
-                                varEvent = new Option<RunStreamEventOneOf8.EventEnum?>(RunStreamEventOneOf8.EventEnumFromStringOrDefault(varEventRawValue));
+                            {
+                                RunStreamEventOneOf8.EventEnum? varEventValue = RunStreamEventOneOf8.EventEnumFromStringOrDefault(varEventRawValue);
+                                if (varEventValue == null)
+                                    throw new JsonException();
+                                varEvent = new Option<RunStreamEventOneOf8.EventEnum?>(varEventValue);
+                            }
                             break;
                         case "data":
                             data = new Option<RunObject?>(JsonSerializer.Deserialize<RunObject>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -200,16 +205,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varEvent.IsSet)
-                throw new ArgumentException("Property is required for class RunStreamEventOneOf8.", nameof(varEvent));
+                throw new JsonException("Property is required for class RunStreamEventOneOf8: event.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class RunStreamEventOneOf8.", nameof(data));
+                throw new JsonException("Property is required for class RunStreamEventOneOf8: data.");
 
             if (varEvent.IsSet && varEvent.Value == null)
-                throw new ArgumentNullException(nameof(varEvent), "Property is not nullable for class RunStreamEventOneOf8.");
+                throw new JsonException("Property is not nullable for class RunStreamEventOneOf8: event.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class RunStreamEventOneOf8.");
+                throw new JsonException("Property is not nullable for class RunStreamEventOneOf8: data.");
 
             return new RunStreamEventOneOf8(varEvent.Value!.Value!, data.Value!);
         }
@@ -220,7 +225,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStreamEventOneOf8"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RunStreamEventOneOf8 runStreamEventOneOf8, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -235,12 +239,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="runStreamEventOneOf8"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RunStreamEventOneOf8 runStreamEventOneOf8, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (runStreamEventOneOf8.Data == null)
-                throw new ArgumentNullException(nameof(runStreamEventOneOf8.Data), "Property is required for class RunStreamEventOneOf8.");
-
             var varEventRawValue = RunStreamEventOneOf8.EventEnumToJsonValue(runStreamEventOneOf8.Event);
             writer.WriteString("event", varEventRawValue);
             writer.WritePropertyName("data");

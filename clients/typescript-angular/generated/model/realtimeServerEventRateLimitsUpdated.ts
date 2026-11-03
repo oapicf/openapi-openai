@@ -29,7 +29,7 @@ export interface RealtimeServerEventRateLimitsUpdated {
 }
 export namespace RealtimeServerEventRateLimitsUpdated {
     export const TypeEnum = {
-        RateLimitsUpdated: 'rate_limits.updated'
+        RateLimitsUpdated: 'rate_limits.updated',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

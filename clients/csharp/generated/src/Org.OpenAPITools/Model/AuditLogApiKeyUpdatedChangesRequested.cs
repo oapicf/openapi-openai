@@ -141,7 +141,7 @@ namespace Org.OpenAPITools.Model
             }
 
             if (scopes.IsSet && scopes.Value == null)
-                throw new ArgumentNullException(nameof(scopes), "Property is not nullable for class AuditLogApiKeyUpdatedChangesRequested.");
+                throw new JsonException("Property is not nullable for class AuditLogApiKeyUpdatedChangesRequested: scopes.");
 
             return new AuditLogApiKeyUpdatedChangesRequested(scopes);
         }
@@ -152,7 +152,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogApiKeyUpdatedChangesRequested auditLogApiKeyUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -167,11 +166,10 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyUpdatedChangesRequested"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogApiKeyUpdatedChangesRequested auditLogApiKeyUpdatedChangesRequested, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogApiKeyUpdatedChangesRequested.ScopesOption.IsSet && auditLogApiKeyUpdatedChangesRequested.Scopes == null)
-                throw new ArgumentNullException(nameof(auditLogApiKeyUpdatedChangesRequested.Scopes), "Property is required for class AuditLogApiKeyUpdatedChangesRequested.");
+                throw new JsonException("Cannot write null property AuditLogApiKeyUpdatedChangesRequested.Scopes to non-nullable JSON property 'scopes'.");
 
             if (auditLogApiKeyUpdatedChangesRequested.ScopesOption.IsSet)
             {

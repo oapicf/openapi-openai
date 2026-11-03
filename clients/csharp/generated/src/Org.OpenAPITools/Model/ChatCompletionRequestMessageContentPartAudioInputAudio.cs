@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "format":
                             string? formatRawValue = utf8JsonReader.GetString();
                             if (formatRawValue != null)
-                                format = new Option<ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnum?>(ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnumFromStringOrDefault(formatRawValue));
+                            {
+                                ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnum? formatValue = ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnumFromStringOrDefault(formatRawValue);
+                                if (formatValue == null)
+                                    throw new JsonException();
+                                format = new Option<ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnum?>(formatValue);
+                            }
                             break;
                         default:
                             break;
@@ -217,16 +222,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestMessageContentPartAudioInputAudio.", nameof(data));
+                throw new JsonException("Property is required for class ChatCompletionRequestMessageContentPartAudioInputAudio: data.");
 
             if (!format.IsSet)
-                throw new ArgumentException("Property is required for class ChatCompletionRequestMessageContentPartAudioInputAudio.", nameof(format));
+                throw new JsonException("Property is required for class ChatCompletionRequestMessageContentPartAudioInputAudio: format.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class ChatCompletionRequestMessageContentPartAudioInputAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartAudioInputAudio: data.");
 
             if (format.IsSet && format.Value == null)
-                throw new ArgumentNullException(nameof(format), "Property is not nullable for class ChatCompletionRequestMessageContentPartAudioInputAudio.");
+                throw new JsonException("Property is not nullable for class ChatCompletionRequestMessageContentPartAudioInputAudio: format.");
 
             return new ChatCompletionRequestMessageContentPartAudioInputAudio(data.Value!, format.Value!.Value!);
         }
@@ -237,7 +242,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartAudioInputAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartAudioInputAudio chatCompletionRequestMessageContentPartAudioInputAudio, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -252,12 +256,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="chatCompletionRequestMessageContentPartAudioInputAudio"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ChatCompletionRequestMessageContentPartAudioInputAudio chatCompletionRequestMessageContentPartAudioInputAudio, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (chatCompletionRequestMessageContentPartAudioInputAudio.Data == null)
-                throw new ArgumentNullException(nameof(chatCompletionRequestMessageContentPartAudioInputAudio.Data), "Property is required for class ChatCompletionRequestMessageContentPartAudioInputAudio.");
-
             writer.WriteString("data", chatCompletionRequestMessageContentPartAudioInputAudio.Data);
 
             var formatRawValue = ChatCompletionRequestMessageContentPartAudioInputAudio.FormatEnumToJsonValue(chatCompletionRequestMessageContentPartAudioInputAudio.Format);

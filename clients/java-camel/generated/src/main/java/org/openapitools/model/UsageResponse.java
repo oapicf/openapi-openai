@@ -23,7 +23,7 @@ import jakarta.annotation.Generated;
  * UsageResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-26T05:15:54.509838742Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-03T06:33:43.721796025Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class UsageResponse {
 
   /**
@@ -61,7 +61,6 @@ public class UsageResponse {
 
   private ObjectEnum _object;
 
-  @Valid
   private List<@Valid UsageTimeBucket> data = new ArrayList<>();
 
   private Boolean hasMore;
@@ -119,7 +118,7 @@ public class UsageResponse {
    * Get data
    * @return data
    */
-  @NotNull @Valid 
+  @NotNull 
   @Schema(name = "data", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("data")
   public List<@Valid UsageTimeBucket> getData() {

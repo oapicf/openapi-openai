@@ -190,7 +190,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<ResponseFormatJsonSchema.TypeEnum?>(ResponseFormatJsonSchema.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                ResponseFormatJsonSchema.TypeEnum? typeValue = ResponseFormatJsonSchema.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<ResponseFormatJsonSchema.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "json_schema":
                             jsonSchema = new Option<ResponseFormatJsonSchemaJsonSchema?>(JsonSerializer.Deserialize<ResponseFormatJsonSchemaJsonSchema>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -202,16 +207,16 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ResponseFormatJsonSchema.", nameof(type));
+                throw new JsonException("Property is required for class ResponseFormatJsonSchema: type.");
 
             if (!jsonSchema.IsSet)
-                throw new ArgumentException("Property is required for class ResponseFormatJsonSchema.", nameof(jsonSchema));
+                throw new JsonException("Property is required for class ResponseFormatJsonSchema: json_schema.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class ResponseFormatJsonSchema.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonSchema: type.");
 
             if (jsonSchema.IsSet && jsonSchema.Value == null)
-                throw new ArgumentNullException(nameof(jsonSchema), "Property is not nullable for class ResponseFormatJsonSchema.");
+                throw new JsonException("Property is not nullable for class ResponseFormatJsonSchema: json_schema.");
 
             return new ResponseFormatJsonSchema(type.Value!.Value!, jsonSchema.Value!);
         }
@@ -222,7 +227,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonSchema"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ResponseFormatJsonSchema responseFormatJsonSchema, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -237,12 +241,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="responseFormatJsonSchema"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ResponseFormatJsonSchema responseFormatJsonSchema, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (responseFormatJsonSchema.JsonSchema == null)
-                throw new ArgumentNullException(nameof(responseFormatJsonSchema.JsonSchema), "Property is required for class ResponseFormatJsonSchema.");
-
             var typeRawValue = ResponseFormatJsonSchema.TypeEnumToJsonValue(responseFormatJsonSchema.Type);
             writer.WriteString("type", typeRawValue);
             writer.WritePropertyName("json_schema");

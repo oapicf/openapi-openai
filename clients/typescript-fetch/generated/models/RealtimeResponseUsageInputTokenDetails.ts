@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface RealtimeResponseUsageInputTokenDetails {
     /**
      * The number of cached tokens used in the Response.
-     * @type {number}
-     * @memberof RealtimeResponseUsageInputTokenDetails
      */
     cachedTokens?: number;
     /**
      * The number of text tokens used in the Response.
-     * @type {number}
-     * @memberof RealtimeResponseUsageInputTokenDetails
      */
     textTokens?: number;
     /**
      * The number of audio tokens used in the Response.
-     * @type {number}
-     * @memberof RealtimeResponseUsageInputTokenDetails
      */
     audioTokens?: number;
 }

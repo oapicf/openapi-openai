@@ -16,7 +16,7 @@ import org.openapitools.vertxweb.server.model.CreateCompletionRequestStop;
 public class CreateCompletionRequest   {
   
   private CreateCompletionRequestModel model;
-  private CreateCompletionRequestPrompt prompt;
+  private CreateCompletionRequestPrompt prompt = <|endoftext|>;
   private Integer bestOf = 1;
   private Boolean echo = false;
   private BigDecimal frequencyPenalty = new BigDecimal("0");

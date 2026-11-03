@@ -29,32 +29,32 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class RealtimeServerEventResponseContentPartAdded(
 
     @Schema(required = true, description = "The unique ID of the server event.")
-    @param:JsonProperty("event_id")
+    @param:JsonProperty("event_id", required = true)
     @get:JsonProperty("event_id", required = true) val eventId: kotlin.String,
 
     @Schema(required = true, description = "The event type, must be `response.content_part.added`.")
-    @param:JsonProperty("type")
+    @param:JsonProperty("type", required = true)
     @get:JsonProperty("type", required = true) val type: RealtimeServerEventResponseContentPartAdded.Type,
 
     @Schema(required = true, description = "The ID of the response.")
-    @param:JsonProperty("response_id")
+    @param:JsonProperty("response_id", required = true)
     @get:JsonProperty("response_id", required = true) val responseId: kotlin.String,
 
     @Schema(required = true, description = "The ID of the item to which the content part was added.")
-    @param:JsonProperty("item_id")
+    @param:JsonProperty("item_id", required = true)
     @get:JsonProperty("item_id", required = true) val itemId: kotlin.String,
 
     @Schema(required = true, description = "The index of the output item in the response.")
-    @param:JsonProperty("output_index")
+    @param:JsonProperty("output_index", required = true)
     @get:JsonProperty("output_index", required = true) val outputIndex: kotlin.Int,
 
     @Schema(required = true, description = "The index of the content part in the item's content array.")
-    @param:JsonProperty("content_index")
+    @param:JsonProperty("content_index", required = true)
     @get:JsonProperty("content_index", required = true) val contentIndex: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("part")
+    @param:JsonProperty("part", required = true)
     @get:JsonProperty("part", required = true) val part: RealtimeServerEventResponseContentPartAddedPart
 ) {
 
@@ -65,12 +65,12 @@ data class RealtimeServerEventResponseContentPartAdded(
     enum class Type(@get:JsonValue val value: kotlin.String) {
 
         responsePeriodContent_partPeriodAdded("response.content_part.added");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): Type {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'Type'")
             }
         }

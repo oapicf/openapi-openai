@@ -40,31 +40,68 @@ import {
 } from '../models/ListPaginatedFineTuningJobsResponse';
 
 export interface CancelFineTuningJobRequest {
+    /**
+     * The ID of the fine-tuning job to cancel.
+     * 
+     */
     fineTuningJobId: string;
 }
 
 export interface CreateFineTuningJobOperationRequest {
+    /**
+     * 
+     */
     createFineTuningJobRequest: CreateFineTuningJobRequest;
 }
 
 export interface ListFineTuningEventsRequest {
+    /**
+     * The ID of the fine-tuning job to get events for.
+     * 
+     */
     fineTuningJobId: string;
+    /**
+     * Identifier for the last event from the previous pagination request.
+     */
     after?: string;
+    /**
+     * Number of events to retrieve.
+     */
     limit?: number;
 }
 
 export interface ListFineTuningJobCheckpointsRequest {
+    /**
+     * The ID of the fine-tuning job to get checkpoints for.
+     * 
+     */
     fineTuningJobId: string;
+    /**
+     * Identifier for the last checkpoint ID from the previous pagination request.
+     */
     after?: string;
+    /**
+     * Number of checkpoints to retrieve.
+     */
     limit?: number;
 }
 
 export interface ListPaginatedFineTuningJobsRequest {
+    /**
+     * Identifier for the last job from the previous pagination request.
+     */
     after?: string;
+    /**
+     * Number of fine-tuning jobs to retrieve.
+     */
     limit?: number;
 }
 
 export interface RetrieveFineTuningJobRequest {
+    /**
+     * The ID of the fine-tuning job.
+     * 
+     */
     fineTuningJobId: string;
 }
 

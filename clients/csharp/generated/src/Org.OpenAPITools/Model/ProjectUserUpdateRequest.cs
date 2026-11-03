@@ -194,7 +194,12 @@ namespace Org.OpenAPITools.Model
                         case "role":
                             string? roleRawValue = utf8JsonReader.GetString();
                             if (roleRawValue != null)
-                                role = new Option<ProjectUserUpdateRequest.RoleEnum?>(ProjectUserUpdateRequest.RoleEnumFromStringOrDefault(roleRawValue));
+                            {
+                                ProjectUserUpdateRequest.RoleEnum? roleValue = ProjectUserUpdateRequest.RoleEnumFromStringOrDefault(roleRawValue);
+                                if (roleValue == null)
+                                    throw new JsonException();
+                                role = new Option<ProjectUserUpdateRequest.RoleEnum?>(roleValue);
+                            }
                             break;
                         default:
                             break;
@@ -203,10 +208,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!role.IsSet)
-                throw new ArgumentException("Property is required for class ProjectUserUpdateRequest.", nameof(role));
+                throw new JsonException("Property is required for class ProjectUserUpdateRequest: role.");
 
             if (role.IsSet && role.Value == null)
-                throw new ArgumentNullException(nameof(role), "Property is not nullable for class ProjectUserUpdateRequest.");
+                throw new JsonException("Property is not nullable for class ProjectUserUpdateRequest: role.");
 
             return new ProjectUserUpdateRequest(role.Value!.Value!);
         }
@@ -217,7 +222,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectUserUpdateRequest projectUserUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -232,7 +236,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectUserUpdateRequest"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectUserUpdateRequest projectUserUpdateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             var roleRawValue = ProjectUserUpdateRequest.RoleEnumToJsonValue(projectUserUpdateRequest.Role);

@@ -243,7 +243,12 @@ namespace Org.OpenAPITools.Model
                         case "finish_reason":
                             string? finishReasonRawValue = utf8JsonReader.GetString();
                             if (finishReasonRawValue != null)
-                                finishReason = new Option<CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnum?>(CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue));
+                            {
+                                CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnum? finishReasonValue = CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnumFromStringOrDefault(finishReasonRawValue);
+                                if (finishReasonValue == null)
+                                    throw new JsonException();
+                                finishReason = new Option<CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnum?>(finishReasonValue);
+                            }
                             break;
                         case "index":
                             index = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -258,22 +263,22 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!finishReason.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner.", nameof(finishReason));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner: finish_reason.");
 
             if (!index.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner.", nameof(index));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner: index.");
 
             if (!message.IsSet)
-                throw new ArgumentException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner.", nameof(message));
+                throw new JsonException("Property is required for class CreateChatCompletionFunctionResponseChoicesInner: message.");
 
             if (finishReason.IsSet && finishReason.Value == null)
-                throw new ArgumentNullException(nameof(finishReason), "Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner: finish_reason.");
 
             if (index.IsSet && index.Value == null)
-                throw new ArgumentNullException(nameof(index), "Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner: index.");
 
             if (message.IsSet && message.Value == null)
-                throw new ArgumentNullException(nameof(message), "Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner.");
+                throw new JsonException("Property is not nullable for class CreateChatCompletionFunctionResponseChoicesInner: message.");
 
             return new CreateChatCompletionFunctionResponseChoicesInner(finishReason.Value!.Value!, index.Value!.Value!, message.Value!);
         }
@@ -284,7 +289,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionFunctionResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateChatCompletionFunctionResponseChoicesInner createChatCompletionFunctionResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -299,12 +303,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createChatCompletionFunctionResponseChoicesInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateChatCompletionFunctionResponseChoicesInner createChatCompletionFunctionResponseChoicesInner, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (createChatCompletionFunctionResponseChoicesInner.Message == null)
-                throw new ArgumentNullException(nameof(createChatCompletionFunctionResponseChoicesInner.Message), "Property is required for class CreateChatCompletionFunctionResponseChoicesInner.");
-
             var finishReasonRawValue = CreateChatCompletionFunctionResponseChoicesInner.FinishReasonEnumToJsonValue(createChatCompletionFunctionResponseChoicesInner.FinishReason);
             writer.WriteString("finish_reason", finishReasonRawValue);
             writer.WriteNumber("index", createChatCompletionFunctionResponseChoicesInner.Index);

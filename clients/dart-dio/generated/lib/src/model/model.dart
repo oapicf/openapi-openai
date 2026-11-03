@@ -158,9 +158,10 @@ class _$ModelSerializer implements PrimitiveSerializer<Model> {
   }
 }
 
+
+/// The object type, which is always \"model\".
 class ModelObjectEnum extends EnumClass {
 
-  /// The object type, which is always \"model\".
   @BuiltValueEnumConst(wireName: r'model')
   static const ModelObjectEnum model = _$modelObjectEnum_model;
 

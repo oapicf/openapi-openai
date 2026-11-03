@@ -16,10 +16,10 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@ApiModel(description="The per-line training example of a fine-tuning input file for chat models using the supervised method.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-26T05:16:14.314804265Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@ApiModel(description="The per-line training example of a fine-tuning input file for chat models using the supervised method.")@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-03T06:34:07.738556030Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneChatRequestInput   {
   
-  private List<FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
+  private List<@Valid FineTuneChatRequestInputMessagesInner> messages = new ArrayList<>();
   private List<@Valid ChatCompletionTool> tools = new ArrayList<>();
   private Boolean parallelToolCalls = true;
   private List<@Valid ChatCompletionFunctions> functions = new ArrayList<>();
@@ -29,11 +29,10 @@ public class FineTuneChatRequestInput   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("messages")
- @Size(min=1)  @Valid
-  public List<FineTuneChatRequestInputMessagesInner> getMessages() {
+ @Size(min=1)  public List<@Valid FineTuneChatRequestInputMessagesInner> getMessages() {
     return messages;
   }
-  public void setMessages(List<FineTuneChatRequestInputMessagesInner> messages) {
+  public void setMessages(List<@Valid FineTuneChatRequestInputMessagesInner> messages) {
     this.messages = messages;
   }
 
@@ -43,7 +42,6 @@ public class FineTuneChatRequestInput   {
   
   @ApiModelProperty(value = "A list of tools the model may generate JSON inputs for.")
   @JsonProperty("tools")
-  @Valid
   public List<@Valid ChatCompletionTool> getTools() {
     return tools;
   }
@@ -70,8 +68,7 @@ public class FineTuneChatRequestInput   {
   
   @ApiModelProperty(value = "A list of functions the model may generate JSON inputs for.")
   @JsonProperty("functions")
- @Size(min=1,max=128)  @Valid
-  public List<@Valid ChatCompletionFunctions> getFunctions() {
+ @Size(min=1,max=128)  public List<@Valid ChatCompletionFunctions> getFunctions() {
     return functions;
   }
   public void setFunctions(List<@Valid ChatCompletionFunctions> functions) {

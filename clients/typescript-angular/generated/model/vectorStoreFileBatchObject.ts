@@ -38,14 +38,14 @@ export interface VectorStoreFileBatchObject {
 }
 export namespace VectorStoreFileBatchObject {
     export const ObjectEnum = {
-        VectorStoreFilesBatch: 'vector_store.files_batch'
+        VectorStoreFilesBatch: 'vector_store.files_batch',
     } as const;
     export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
     export const StatusEnum = {
         InProgress: 'in_progress',
         Completed: 'completed',
         Cancelled: 'cancelled',
-        Failed: 'failed'
+        Failed: 'failed',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

@@ -92,8 +92,7 @@ class CreateFineTuningJobRequest(BaseModel):
         _items = []
         if self.integrations:
             for _item_integrations in self.integrations:
-                if _item_integrations:
-                    _items.append(_item_integrations.to_dict())
+                _items.append(_item_integrations.to_dict() if _item_integrations is not None else None)
             _dict['integrations'] = _items
         # override the default output from pydantic by calling `to_dict()` of method
         if self.method:

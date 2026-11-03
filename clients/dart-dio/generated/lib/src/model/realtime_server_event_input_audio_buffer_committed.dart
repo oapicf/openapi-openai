@@ -158,9 +158,10 @@ class _$RealtimeServerEventInputAudioBufferCommittedSerializer implements Primit
   }
 }
 
+
+/// The event type, must be `input_audio_buffer.committed`.
 class RealtimeServerEventInputAudioBufferCommittedTypeEnum extends EnumClass {
 
-  /// The event type, must be `input_audio_buffer.committed`.
   @BuiltValueEnumConst(wireName: r'input_audio_buffer.committed')
   static const RealtimeServerEventInputAudioBufferCommittedTypeEnum inputAudioBufferPeriodCommitted = _$realtimeServerEventInputAudioBufferCommittedTypeEnum_inputAudioBufferPeriodCommitted;
 

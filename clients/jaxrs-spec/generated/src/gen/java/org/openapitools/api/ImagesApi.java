@@ -21,7 +21,7 @@ import javax.validation.Valid;
 */
 @Path("/images")
 @Api(description = "the images API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-26T05:16:20.587896400Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-03T06:34:15.250240212Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ImagesApi {
 
     @POST
@@ -35,7 +35,8 @@ public class ImagesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
-    public Response createImage(@Valid @NotNull CreateImageRequest createImageRequest) {
+    public Response createImage(@Valid @NotNull CreateImageRequest createImageRequest
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -50,7 +51,15 @@ public class ImagesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
-    public Response createImageEdit(@FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "prompt")  String prompt,@FormParam(value = "mask") InputStream maskInputStream,@FormParam(value = "model")  CreateImageEditRequestModel model,@FormParam(value = "n")  Integer n,@FormParam(value = "size")  String size,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "user")  String user) {
+    public Response createImageEdit(
+@FormParam(value = "image") InputStream imageInputStream,
+@FormParam(value = "prompt")  String prompt,
+@FormParam(value = "mask") InputStream maskInputStream,
+@FormParam(value = "model")  CreateImageEditRequestModel model,
+@FormParam(value = "n")  Integer n,
+@FormParam(value = "size")  String size,
+@FormParam(value = "response_format")  String responseFormat,
+@FormParam(value = "user")  String user) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -65,7 +74,13 @@ public class ImagesApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = ImagesResponse.class)
     })
-    public Response createImageVariation(@FormParam(value = "image") InputStream imageInputStream,@FormParam(value = "model")  CreateImageEditRequestModel model,@FormParam(value = "n")  Integer n,@FormParam(value = "response_format")  String responseFormat,@FormParam(value = "size")  String size,@FormParam(value = "user")  String user) {
+    public Response createImageVariation(
+@FormParam(value = "image") InputStream imageInputStream,
+@FormParam(value = "model")  CreateImageEditRequestModel model,
+@FormParam(value = "n")  Integer n,
+@FormParam(value = "response_format")  String responseFormat,
+@FormParam(value = "size")  String size,
+@FormParam(value = "user")  String user) {
         return Response.ok().entity("magic!").build();
     }
 }

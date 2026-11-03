@@ -26,20 +26,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CreateCompletionResponseChoicesInner(
 
     @Schema(required = true, description = "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters. ")
-    @param:JsonProperty("finish_reason")
+    @param:JsonProperty("finish_reason", required = true)
     @get:JsonProperty("finish_reason", required = true) val finishReason: CreateCompletionResponseChoicesInner.FinishReason,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("index")
+    @param:JsonProperty("index", required = true)
     @get:JsonProperty("index", required = true) val index: kotlin.Int,
 
     @field:Valid
     @Schema(required = true, description = "")
-    @param:JsonProperty("logprobs")
+    @param:JsonProperty("logprobs", required = true)
     @get:JsonProperty("logprobs", required = true) val logprobs: CreateCompletionResponseChoicesInnerLogprobs?,
 
     @Schema(required = true, description = "")
-    @param:JsonProperty("text")
+    @param:JsonProperty("text", required = true)
     @get:JsonProperty("text", required = true) val text: kotlin.String
 ) {
 
@@ -52,12 +52,12 @@ data class CreateCompletionResponseChoicesInner(
         stop("stop"),
         length("length"),
         content_filter("content_filter");
-
+    
         companion object {
             @JvmStatic
             @JsonCreator
             fun forValue(value: kotlin.String): FinishReason {
-                return values().firstOrNull{it -> it.value == value}
+                return values().firstOrNull{ it.value == value }
                     ?: throw IllegalArgumentException("Unexpected value '$value' for enum 'FinishReason'")
             }
         }

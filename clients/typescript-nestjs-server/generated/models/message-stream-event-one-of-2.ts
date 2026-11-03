@@ -10,7 +10,7 @@ export interface MessageStreamEventOneOf2 {
 }
 export namespace MessageStreamEventOneOf2 {
   export const EventEnum = {
-    ThreadMessageDelta: 'thread.message.delta'
+    ThreadMessageDelta: 'thread.message.delta',
   } as const;
   export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

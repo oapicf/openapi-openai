@@ -22,11 +22,11 @@ import java.util.Objects;
 @ApiModel(description = "The hyperparameters used for the fine-tuning job. This value will only be returned when running `supervised` jobs.")
 public class FineTuningJobHyperparameters   {
   
-  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize;
+  private CreateFineTuningJobRequestHyperparametersBatchSize batchSize = auto;
 
-  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier;
+  private CreateFineTuningJobRequestHyperparametersLearningRateMultiplier learningRateMultiplier = auto;
 
-  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs;
+  private CreateFineTuningJobRequestHyperparametersNEpochs nEpochs = auto;
 
   /**
    **/

@@ -175,9 +175,10 @@ class _$RealtimeServerEventConversationItemInputAudioTranscriptionFailedSerializ
   }
 }
 
+
+/// The event type, must be `conversation.item.input_audio_transcription.failed`. 
 class RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum extends EnumClass {
 
-  /// The event type, must be `conversation.item.input_audio_transcription.failed`. 
   @BuiltValueEnumConst(wireName: r'conversation.item.input_audio_transcription.failed')
   static const RealtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed = _$realtimeServerEventConversationItemInputAudioTranscriptionFailedTypeEnum_conversationPeriodItemPeriodInputAudioTranscriptionPeriodFailed;
 

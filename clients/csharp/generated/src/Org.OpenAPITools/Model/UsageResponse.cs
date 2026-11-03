@@ -208,7 +208,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<UsageResponse.ObjectEnum?>(UsageResponse.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                UsageResponse.ObjectEnum? varObjectValue = UsageResponse.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<UsageResponse.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "data":
                             data = new Option<List<UsageTimeBucket>?>(JsonSerializer.Deserialize<List<UsageTimeBucket>>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -226,28 +231,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class UsageResponse.", nameof(varObject));
+                throw new JsonException("Property is required for class UsageResponse: object.");
 
             if (!data.IsSet)
-                throw new ArgumentException("Property is required for class UsageResponse.", nameof(data));
+                throw new JsonException("Property is required for class UsageResponse: data.");
 
             if (!hasMore.IsSet)
-                throw new ArgumentException("Property is required for class UsageResponse.", nameof(hasMore));
+                throw new JsonException("Property is required for class UsageResponse: has_more.");
 
             if (!nextPage.IsSet)
-                throw new ArgumentException("Property is required for class UsageResponse.", nameof(nextPage));
+                throw new JsonException("Property is required for class UsageResponse: next_page.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class UsageResponse.");
+                throw new JsonException("Property is not nullable for class UsageResponse: object.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class UsageResponse.");
+                throw new JsonException("Property is not nullable for class UsageResponse: data.");
 
             if (hasMore.IsSet && hasMore.Value == null)
-                throw new ArgumentNullException(nameof(hasMore), "Property is not nullable for class UsageResponse.");
+                throw new JsonException("Property is not nullable for class UsageResponse: has_more.");
 
             if (nextPage.IsSet && nextPage.Value == null)
-                throw new ArgumentNullException(nameof(nextPage), "Property is not nullable for class UsageResponse.");
+                throw new JsonException("Property is not nullable for class UsageResponse: next_page.");
 
             return new UsageResponse(varObject.Value!.Value!, data.Value!, hasMore.Value!.Value!, nextPage.Value!);
         }
@@ -258,7 +263,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UsageResponse usageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -273,15 +277,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="usageResponse"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UsageResponse usageResponse, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (usageResponse.Data == null)
-                throw new ArgumentNullException(nameof(usageResponse.Data), "Property is required for class UsageResponse.");
-
-            if (usageResponse.NextPage == null)
-                throw new ArgumentNullException(nameof(usageResponse.NextPage), "Property is required for class UsageResponse.");
-
             var varObjectRawValue = UsageResponse.ObjectEnumToJsonValue(usageResponse.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WritePropertyName("data");

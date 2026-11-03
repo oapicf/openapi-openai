@@ -21,56 +21,38 @@ import { mapValues } from '../runtime';
 export interface ProjectRateLimit {
     /**
      * The object type, which is always `project.rate_limit`
-     * @type {ProjectRateLimitObjectEnum}
-     * @memberof ProjectRateLimit
      */
     object: ProjectRateLimitObjectEnum;
     /**
      * The identifier, which can be referenced in API endpoints.
-     * @type {string}
-     * @memberof ProjectRateLimit
      */
     id: string;
     /**
      * The model this rate limit applies to.
-     * @type {string}
-     * @memberof ProjectRateLimit
      */
     model: string;
     /**
      * The maximum requests per minute.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     maxRequestsPer1Minute: number;
     /**
      * The maximum tokens per minute.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     maxTokensPer1Minute: number;
     /**
      * The maximum images per minute. Only present for relevant models.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     maxImagesPer1Minute?: number;
     /**
      * The maximum audio megabytes per minute. Only present for relevant models.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     maxAudioMegabytesPer1Minute?: number;
     /**
      * The maximum requests per day. Only present for relevant models.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     maxRequestsPer1Day?: number;
     /**
      * The maximum batch input tokens per day. Only present for relevant models.
-     * @type {number}
-     * @memberof ProjectRateLimit
      */
     batch1DayMaxInputTokens?: number;
 }
@@ -80,7 +62,7 @@ export interface ProjectRateLimit {
  * @export
  */
 export const ProjectRateLimitObjectEnum = {
-    ProjectRateLimit: 'project.rate_limit'
+    ProjectRateLimit: 'project.rate_limit',
 } as const;
 export type ProjectRateLimitObjectEnum = typeof ProjectRateLimitObjectEnum[keyof typeof ProjectRateLimitObjectEnum];
 

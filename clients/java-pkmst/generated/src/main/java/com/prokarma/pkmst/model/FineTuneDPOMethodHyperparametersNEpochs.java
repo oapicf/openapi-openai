@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel(description = "The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. ")
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-26T05:15:41.467232090Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-11-03T06:33:27.586799071Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FineTuneDPOMethodHyperparametersNEpochs   {
 
   @Override

@@ -145,12 +145,12 @@ class _$InviteRequestSerializer implements PrimitiveSerializer<InviteRequest> {
   }
 }
 
+
+/// `owner` or `reader`
 class InviteRequestRoleEnum extends EnumClass {
 
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'reader')
   static const InviteRequestRoleEnum reader = _$inviteRequestRoleEnum_reader;
-  /// `owner` or `reader`
   @BuiltValueEnumConst(wireName: r'owner')
   static const InviteRequestRoleEnum owner = _$inviteRequestRoleEnum_owner;
 

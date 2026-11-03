@@ -161,10 +161,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class AuditLogApiKeyCreated.");
+                throw new JsonException("Property is not nullable for class AuditLogApiKeyCreated: id.");
 
             if (data.IsSet && data.Value == null)
-                throw new ArgumentNullException(nameof(data), "Property is not nullable for class AuditLogApiKeyCreated.");
+                throw new JsonException("Property is not nullable for class AuditLogApiKeyCreated: data.");
 
             return new AuditLogApiKeyCreated(id, data);
         }
@@ -175,7 +175,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuditLogApiKeyCreated auditLogApiKeyCreated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -190,14 +189,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="auditLogApiKeyCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuditLogApiKeyCreated auditLogApiKeyCreated, JsonSerializerOptions jsonSerializerOptions)
         {
             if (auditLogApiKeyCreated.IdOption.IsSet && auditLogApiKeyCreated.Id == null)
-                throw new ArgumentNullException(nameof(auditLogApiKeyCreated.Id), "Property is required for class AuditLogApiKeyCreated.");
+                throw new JsonException("Cannot write null property AuditLogApiKeyCreated.Id to non-nullable JSON property 'id'.");
 
             if (auditLogApiKeyCreated.DataOption.IsSet && auditLogApiKeyCreated.Data == null)
-                throw new ArgumentNullException(nameof(auditLogApiKeyCreated.Data), "Property is required for class AuditLogApiKeyCreated.");
+                throw new JsonException("Cannot write null property AuditLogApiKeyCreated.Data to non-nullable JSON property 'data'.");
 
             if (auditLogApiKeyCreated.IdOption.IsSet)
                 writer.WriteString("id", auditLogApiKeyCreated.Id);

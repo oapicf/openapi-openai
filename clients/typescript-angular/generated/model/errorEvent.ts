@@ -18,7 +18,7 @@ export interface ErrorEvent {
 }
 export namespace ErrorEvent {
     export const EventEnum = {
-        Error: 'error'
+        Error: 'error',
     } as const;
     export type EventEnum = typeof EventEnum[keyof typeof EventEnum];
 }

@@ -220,7 +220,12 @@ namespace Org.OpenAPITools.Model
                         case "object":
                             string? varObjectRawValue = utf8JsonReader.GetString();
                             if (varObjectRawValue != null)
-                                varObject = new Option<ProjectServiceAccountApiKey.ObjectEnum?>(ProjectServiceAccountApiKey.ObjectEnumFromStringOrDefault(varObjectRawValue));
+                            {
+                                ProjectServiceAccountApiKey.ObjectEnum? varObjectValue = ProjectServiceAccountApiKey.ObjectEnumFromStringOrDefault(varObjectRawValue);
+                                if (varObjectValue == null)
+                                    throw new JsonException();
+                                varObject = new Option<ProjectServiceAccountApiKey.ObjectEnum?>(varObjectValue);
+                            }
                             break;
                         case "value":
                             value = new Option<string?>(utf8JsonReader.GetString()!);
@@ -241,34 +246,34 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!varObject.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountApiKey.", nameof(varObject));
+                throw new JsonException("Property is required for class ProjectServiceAccountApiKey: object.");
 
             if (!value.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountApiKey.", nameof(value));
+                throw new JsonException("Property is required for class ProjectServiceAccountApiKey: value.");
 
             if (!name.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountApiKey.", nameof(name));
+                throw new JsonException("Property is required for class ProjectServiceAccountApiKey: name.");
 
             if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountApiKey.", nameof(createdAt));
+                throw new JsonException("Property is required for class ProjectServiceAccountApiKey: created_at.");
 
             if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ProjectServiceAccountApiKey.", nameof(id));
+                throw new JsonException("Property is required for class ProjectServiceAccountApiKey: id.");
 
             if (varObject.IsSet && varObject.Value == null)
-                throw new ArgumentNullException(nameof(varObject), "Property is not nullable for class ProjectServiceAccountApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountApiKey: object.");
 
             if (value.IsSet && value.Value == null)
-                throw new ArgumentNullException(nameof(value), "Property is not nullable for class ProjectServiceAccountApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountApiKey: value.");
 
             if (name.IsSet && name.Value == null)
-                throw new ArgumentNullException(nameof(name), "Property is not nullable for class ProjectServiceAccountApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountApiKey: name.");
 
             if (createdAt.IsSet && createdAt.Value == null)
-                throw new ArgumentNullException(nameof(createdAt), "Property is not nullable for class ProjectServiceAccountApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountApiKey: created_at.");
 
             if (id.IsSet && id.Value == null)
-                throw new ArgumentNullException(nameof(id), "Property is not nullable for class ProjectServiceAccountApiKey.");
+                throw new JsonException("Property is not nullable for class ProjectServiceAccountApiKey: id.");
 
             return new ProjectServiceAccountApiKey(varObject.Value!.Value!, value.Value!, name.Value!, createdAt.Value!.Value!, id.Value!);
         }
@@ -279,7 +284,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ProjectServiceAccountApiKey projectServiceAccountApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -294,18 +298,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="projectServiceAccountApiKey"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ProjectServiceAccountApiKey projectServiceAccountApiKey, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (projectServiceAccountApiKey.Value == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountApiKey.Value), "Property is required for class ProjectServiceAccountApiKey.");
-
-            if (projectServiceAccountApiKey.Name == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountApiKey.Name), "Property is required for class ProjectServiceAccountApiKey.");
-
-            if (projectServiceAccountApiKey.Id == null)
-                throw new ArgumentNullException(nameof(projectServiceAccountApiKey.Id), "Property is required for class ProjectServiceAccountApiKey.");
-
             var varObjectRawValue = ProjectServiceAccountApiKey.ObjectEnumToJsonValue(projectServiceAccountApiKey.Object);
             writer.WriteString("object", varObjectRawValue);
             writer.WriteString("value", projectServiceAccountApiKey.Value);

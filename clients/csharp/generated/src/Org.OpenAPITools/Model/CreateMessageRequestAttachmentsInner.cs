@@ -162,10 +162,10 @@ namespace Org.OpenAPITools.Model
             }
 
             if (fileId.IsSet && fileId.Value == null)
-                throw new ArgumentNullException(nameof(fileId), "Property is not nullable for class CreateMessageRequestAttachmentsInner.");
+                throw new JsonException("Property is not nullable for class CreateMessageRequestAttachmentsInner: file_id.");
 
             if (tools.IsSet && tools.Value == null)
-                throw new ArgumentNullException(nameof(tools), "Property is not nullable for class CreateMessageRequestAttachmentsInner.");
+                throw new JsonException("Property is not nullable for class CreateMessageRequestAttachmentsInner: tools.");
 
             return new CreateMessageRequestAttachmentsInner(fileId, tools);
         }
@@ -176,7 +176,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequestAttachmentsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateMessageRequestAttachmentsInner createMessageRequestAttachmentsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -191,14 +190,13 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="createMessageRequestAttachmentsInner"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateMessageRequestAttachmentsInner createMessageRequestAttachmentsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (createMessageRequestAttachmentsInner.FileIdOption.IsSet && createMessageRequestAttachmentsInner.FileId == null)
-                throw new ArgumentNullException(nameof(createMessageRequestAttachmentsInner.FileId), "Property is required for class CreateMessageRequestAttachmentsInner.");
+                throw new JsonException("Cannot write null property CreateMessageRequestAttachmentsInner.FileId to non-nullable JSON property 'file_id'.");
 
             if (createMessageRequestAttachmentsInner.ToolsOption.IsSet && createMessageRequestAttachmentsInner.Tools == null)
-                throw new ArgumentNullException(nameof(createMessageRequestAttachmentsInner.Tools), "Property is required for class CreateMessageRequestAttachmentsInner.");
+                throw new JsonException("Cannot write null property CreateMessageRequestAttachmentsInner.Tools to non-nullable JSON property 'tools'.");
 
             if (createMessageRequestAttachmentsInner.FileIdOption.IsSet)
                 writer.WriteString("file_id", createMessageRequestAttachmentsInner.FileId);

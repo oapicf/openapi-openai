@@ -84,8 +84,7 @@ class RealtimeServerEventRateLimitsUpdated(BaseModel):
         _items = []
         if self.rate_limits:
             for _item_rate_limits in self.rate_limits:
-                if _item_rate_limits:
-                    _items.append(_item_rate_limits.to_dict())
+                _items.append(_item_rate_limits.to_dict() if _item_rate_limits is not None else None)
             _dict['rate_limits'] = _items
         return _dict
 

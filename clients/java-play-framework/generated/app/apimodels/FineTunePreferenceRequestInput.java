@@ -14,7 +14,7 @@ import javax.validation.Valid;
 /**
  * The per-line training example of a fine-tuning input file for chat models using the dpo method.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-26T05:15:44.940200602Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-03T06:33:31.485430633Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FineTunePreferenceRequestInput   {
   @JsonProperty("input")
@@ -26,13 +26,13 @@ public class FineTunePreferenceRequestInput   {
   @Size(max=1)
 @Valid
 
-  private List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = null;
+  private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion = null;
 
   @JsonProperty("non_preferred_completion")
   @Size(max=1)
 @Valid
 
-  private List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = null;
+  private List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion = null;
 
   public FineTunePreferenceRequestInput input(FineTunePreferenceRequestInputInput input) {
     this.input = input;
@@ -51,7 +51,7 @@ public class FineTunePreferenceRequestInput   {
     this.input = input;
   }
 
-  public FineTunePreferenceRequestInput preferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
+  public FineTunePreferenceRequestInput preferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
     this.preferredCompletion = preferredCompletion;
     return this;
   }
@@ -68,15 +68,15 @@ public class FineTunePreferenceRequestInput   {
    * The preferred completion message for the output.
    * @return preferredCompletion
   **/
-  public List<FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
+  public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getPreferredCompletion() {
     return preferredCompletion;
   }
 
-  public void setPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
+  public void setPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> preferredCompletion) {
     this.preferredCompletion = preferredCompletion;
   }
 
-  public FineTunePreferenceRequestInput nonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
+  public FineTunePreferenceRequestInput nonPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
     this.nonPreferredCompletion = nonPreferredCompletion;
     return this;
   }
@@ -93,11 +93,11 @@ public class FineTunePreferenceRequestInput   {
    * The non-preferred completion message for the output.
    * @return nonPreferredCompletion
   **/
-  public List<FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
+  public List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> getNonPreferredCompletion() {
     return nonPreferredCompletion;
   }
 
-  public void setNonPreferredCompletion(List<FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
+  public void setNonPreferredCompletion(List<@Valid FineTunePreferenceRequestInputPreferredCompletionInner> nonPreferredCompletion) {
     this.nonPreferredCompletion = nonPreferredCompletion;
   }
 

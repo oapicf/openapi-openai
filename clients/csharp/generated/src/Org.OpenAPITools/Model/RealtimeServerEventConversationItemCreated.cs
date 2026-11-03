@@ -215,7 +215,12 @@ namespace Org.OpenAPITools.Model
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
                             if (typeRawValue != null)
-                                type = new Option<RealtimeServerEventConversationItemCreated.TypeEnum?>(RealtimeServerEventConversationItemCreated.TypeEnumFromStringOrDefault(typeRawValue));
+                            {
+                                RealtimeServerEventConversationItemCreated.TypeEnum? typeValue = RealtimeServerEventConversationItemCreated.TypeEnumFromStringOrDefault(typeRawValue);
+                                if (typeValue == null)
+                                    throw new JsonException();
+                                type = new Option<RealtimeServerEventConversationItemCreated.TypeEnum?>(typeValue);
+                            }
                             break;
                         case "previous_item_id":
                             previousItemId = new Option<string?>(utf8JsonReader.GetString()!);
@@ -230,28 +235,28 @@ namespace Org.OpenAPITools.Model
             }
 
             if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemCreated.", nameof(eventId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemCreated: event_id.");
 
             if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemCreated.", nameof(type));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemCreated: type.");
 
             if (!previousItemId.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemCreated.", nameof(previousItemId));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemCreated: previous_item_id.");
 
             if (!item.IsSet)
-                throw new ArgumentException("Property is required for class RealtimeServerEventConversationItemCreated.", nameof(item));
+                throw new JsonException("Property is required for class RealtimeServerEventConversationItemCreated: item.");
 
             if (eventId.IsSet && eventId.Value == null)
-                throw new ArgumentNullException(nameof(eventId), "Property is not nullable for class RealtimeServerEventConversationItemCreated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemCreated: event_id.");
 
             if (type.IsSet && type.Value == null)
-                throw new ArgumentNullException(nameof(type), "Property is not nullable for class RealtimeServerEventConversationItemCreated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemCreated: type.");
 
             if (previousItemId.IsSet && previousItemId.Value == null)
-                throw new ArgumentNullException(nameof(previousItemId), "Property is not nullable for class RealtimeServerEventConversationItemCreated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemCreated: previous_item_id.");
 
             if (item.IsSet && item.Value == null)
-                throw new ArgumentNullException(nameof(item), "Property is not nullable for class RealtimeServerEventConversationItemCreated.");
+                throw new JsonException("Property is not nullable for class RealtimeServerEventConversationItemCreated: item.");
 
             return new RealtimeServerEventConversationItemCreated(eventId.Value!, type.Value!.Value!, previousItemId.Value!, item.Value!);
         }
@@ -262,7 +267,6 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RealtimeServerEventConversationItemCreated realtimeServerEventConversationItemCreated, JsonSerializerOptions jsonSerializerOptions)
         {
             writer.WriteStartObject();
@@ -277,18 +281,8 @@ namespace Org.OpenAPITools.Model
         /// <param name="writer"></param>
         /// <param name="realtimeServerEventConversationItemCreated"></param>
         /// <param name="jsonSerializerOptions"></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RealtimeServerEventConversationItemCreated realtimeServerEventConversationItemCreated, JsonSerializerOptions jsonSerializerOptions)
         {
-            if (realtimeServerEventConversationItemCreated.EventId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemCreated.EventId), "Property is required for class RealtimeServerEventConversationItemCreated.");
-
-            if (realtimeServerEventConversationItemCreated.PreviousItemId == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemCreated.PreviousItemId), "Property is required for class RealtimeServerEventConversationItemCreated.");
-
-            if (realtimeServerEventConversationItemCreated.Item == null)
-                throw new ArgumentNullException(nameof(realtimeServerEventConversationItemCreated.Item), "Property is required for class RealtimeServerEventConversationItemCreated.");
-
             writer.WriteString("event_id", realtimeServerEventConversationItemCreated.EventId);
 
             var typeRawValue = RealtimeServerEventConversationItemCreated.TypeEnumToJsonValue(realtimeServerEventConversationItemCreated.Type);

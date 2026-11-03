@@ -54,14 +54,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
   CreateCompletionRequest.JSON_PROPERTY_USER
 })
 @JsonTypeName("CreateCompletionRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-26T05:15:35.221528120Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-03T06:33:19.536427465Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class CreateCompletionRequest {
     public static final String JSON_PROPERTY_MODEL = "model";
     private CreateCompletionRequestModel model;
 
     public static final String JSON_PROPERTY_PROMPT = "prompt";
-    private CreateCompletionRequestPrompt prompt;
+    private CreateCompletionRequestPrompt prompt = <|endoftext|>;
 
     public static final String JSON_PROPERTY_BEST_OF = "best_of";
     private Integer bestOf = 1;

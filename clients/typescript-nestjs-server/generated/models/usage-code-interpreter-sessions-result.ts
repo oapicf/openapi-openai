@@ -16,7 +16,7 @@ export interface UsageCodeInterpreterSessionsResult {
 }
 export namespace UsageCodeInterpreterSessionsResult {
   export const ObjectEnum = {
-    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result'
+    OrganizationUsageCodeInterpreterSessionsResult: 'organization.usage.code_interpreter_sessions.result',
   } as const;
   export type ObjectEnum = typeof ObjectEnum[keyof typeof ObjectEnum];
 }

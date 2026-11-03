@@ -148,8 +148,6 @@ ALLOY(String.valueOf("alloy")), ASH(String.valueOf("ash")), BALLAD(String.valueO
   */
   @ApiModelProperty(value = "Tools (functions) available to the model.")
 
-  @Valid
-
   private List<@Valid RealtimeResponseCreateParamsToolsInner> tools = new ArrayList<>();
 
  /**

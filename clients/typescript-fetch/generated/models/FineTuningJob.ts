@@ -51,110 +51,74 @@ import {
 export interface FineTuningJob {
     /**
      * The object identifier, which can be referenced in the API endpoints.
-     * @type {string}
-     * @memberof FineTuningJob
      */
     id: string;
     /**
      * The Unix timestamp (in seconds) for when the fine-tuning job was created.
-     * @type {number}
-     * @memberof FineTuningJob
      */
     createdAt: number;
     /**
      * 
-     * @type {FineTuningJobError}
-     * @memberof FineTuningJob
      */
     error: FineTuningJobError | null;
     /**
      * The name of the fine-tuned model that is being created. The value will be null if the fine-tuning job is still running.
-     * @type {string}
-     * @memberof FineTuningJob
      */
     fineTunedModel: string | null;
     /**
      * The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be null if the fine-tuning job is still running.
-     * @type {number}
-     * @memberof FineTuningJob
      */
     finishedAt: number | null;
     /**
      * 
-     * @type {FineTuningJobHyperparameters}
-     * @memberof FineTuningJob
      */
     hyperparameters: FineTuningJobHyperparameters;
     /**
      * The base model that is being fine-tuned.
-     * @type {string}
-     * @memberof FineTuningJob
      */
     model: string;
     /**
      * The object type, which is always "fine_tuning.job".
-     * @type {FineTuningJobObjectEnum}
-     * @memberof FineTuningJob
      */
     object: FineTuningJobObjectEnum;
     /**
      * The organization that owns the fine-tuning job.
-     * @type {string}
-     * @memberof FineTuningJob
      */
     organizationId: string;
     /**
      * The compiled results file ID(s) for the fine-tuning job. You can retrieve the results with the [Files API](/docs/api-reference/files/retrieve-contents).
-     * @type {Array<string>}
-     * @memberof FineTuningJob
      */
     resultFiles: Array<string>;
     /**
      * The current status of the fine-tuning job, which can be either `validating_files`, `queued`, `running`, `succeeded`, `failed`, or `cancelled`.
-     * @type {FineTuningJobStatusEnum}
-     * @memberof FineTuningJob
      */
     status: FineTuningJobStatusEnum;
     /**
      * The total number of billable tokens processed by this fine-tuning job. The value will be null if the fine-tuning job is still running.
-     * @type {number}
-     * @memberof FineTuningJob
      */
     trainedTokens: number | null;
     /**
      * The file ID used for training. You can retrieve the training data with the [Files API](/docs/api-reference/files/retrieve-contents).
-     * @type {string}
-     * @memberof FineTuningJob
      */
     trainingFile: string;
     /**
      * The file ID used for validation. You can retrieve the validation results with the [Files API](/docs/api-reference/files/retrieve-contents).
-     * @type {string}
-     * @memberof FineTuningJob
      */
     validationFile: string | null;
     /**
      * A list of integrations to enable for this fine-tuning job.
-     * @type {Array<FineTuningJobIntegrationsInner>}
-     * @memberof FineTuningJob
      */
     integrations?: Array<FineTuningJobIntegrationsInner> | null;
     /**
      * The seed used for the fine-tuning job.
-     * @type {number}
-     * @memberof FineTuningJob
      */
     seed: number;
     /**
      * The Unix timestamp (in seconds) for when the fine-tuning job is estimated to finish. The value will be null if the fine-tuning job is not running.
-     * @type {number}
-     * @memberof FineTuningJob
      */
     estimatedFinish?: number | null;
     /**
      * 
-     * @type {FineTuneMethod}
-     * @memberof FineTuningJob
      */
     method?: FineTuneMethod;
 }
@@ -164,7 +128,7 @@ export interface FineTuningJob {
  * @export
  */
 export const FineTuningJobObjectEnum = {
-    FineTuningJob: 'fine_tuning.job'
+    FineTuningJob: 'fine_tuning.job',
 } as const;
 export type FineTuningJobObjectEnum = typeof FineTuningJobObjectEnum[keyof typeof FineTuningJobObjectEnum];
 
@@ -177,7 +141,7 @@ export const FineTuningJobStatusEnum = {
     Running: 'running',
     Succeeded: 'succeeded',
     Failed: 'failed',
-    Cancelled: 'cancelled'
+    Cancelled: 'cancelled',
 } as const;
 export type FineTuningJobStatusEnum = typeof FineTuningJobStatusEnum[keyof typeof FineTuningJobStatusEnum];
 

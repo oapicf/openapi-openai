@@ -1,7 +1,6 @@
 ---
-spec_uri: >-
-  https://raw.githubusercontent.com/openai/openai-openapi/d2eaa350b5b619ad6355384279a9beb9d423d88b/openapi.yaml
-version: 1.3.1-pre.0
+spec_uri: https://raw.githubusercontent.com/openai/openai-openapi/d2eaa350b5b619ad6355384279a9beb9d423d88b/openapi.yaml
+version: 1.4.0
 contact:
   name: Cliffano Subagio
   url: https://github.com/oapicf/openapi-openai
@@ -9,8 +8,7 @@ contact:
 base_dir:
   github_actions: /home/runner/work/openapi-openai/openapi-openai
   local: /Users/cliffano/dev/workspace-oapicf/openapi-openai
-  custom: >-
-    /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-c/
+  custom: /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-c/
 generator:
   component: oag-url-spec
   inputs:
